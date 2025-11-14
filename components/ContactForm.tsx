@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 export default function ContactForm() {
@@ -10,53 +10,108 @@ export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   
-  // Get solution_interest from URL params
+  // Get solution_interest and package from URL params
   const solutionInterest = searchParams?.get('solution_interest') || ''
   const packageType = searchParams?.get('package') || ''
 
+  // Get UTM parameters from URL
+  const getUTMParams = () => {
+    if (typeof window === 'undefined') return {}
+    const params = new URLSearchParams(window.location.search)
+    return {
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+    }
+  }
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    if (!formspreeEndpoint) {
-      setErrorMessage('Form endpoint missing. Please set NEXT_PUBLIC_FORMSPREE_ENDPOINT.')
-      setStatus('error')
-      return
-    }
 
     setIsSubmitting(true)
     setStatus('idle')
     setErrorMessage(null)
 
     const formData = new FormData(event.currentTarget)
-    formData.append('from_site', 'Blue Team Africa Contact Form')
+    const utmParams = getUTMParams()
     
-    // Add URL params if present
-    if (solutionInterest) {
-      formData.append('solution_interest', solutionInterest)
-    }
-    if (packageType) {
-      formData.append('package', packageType)
+    // Prepare data for both Formspree and Firebase
+    const formDataObj: Record<string, string> = {
+      name: formData.get('name') as string,
+      company: (formData.get('company') as string) || '',
+      email: formData.get('email') as string,
+      phone: (formData.get('phone') as string) || '',
+      country: formData.get('country') as string,
+      solution_interest: (formData.get('solution_interest') as string) || solutionInterest || '',
+      approx_annual_revenue: (formData.get('approx_annual_revenue') as string) || '',
+      employees: (formData.get('employees') as string) || '',
+      message: formData.get('message') as string,
+      preferred_time: (formData.get('preferred_time') as string) || '',
+      package: packageType || '',
+      from_site: 'Blue Team Africa Contact Form',
+      ...utmParams,
     }
 
     try {
-      const response = await fetch(formspreeEndpoint, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-        },
-        body: formData,
-      })
+      // Send to both Formspree (for email) and Firebase (for database)
+      const promises: Promise<any>[] = []
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}))
-        throw new Error(data.error || 'Something went wrong. Please try again.')
+      // 1. Send to Formspree (if configured) - for email notifications
+      if (formspreeEndpoint) {
+        const formspreeData = new FormData()
+        Object.entries(formDataObj).forEach(([key, value]) => {
+          if (value) formspreeData.append(key, value)
+        })
+
+        promises.push(
+          fetch(formspreeEndpoint, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: formspreeData,
+          }).catch((error) => {
+            console.warn('Formspree submission failed:', error)
+            // Don't fail the whole form if Formspree fails
+            return { ok: false }
+          })
+        )
       }
 
-      setStatus('success')
-      event.currentTarget.reset()
+      // 2. Send to Firebase (if configured) - for lead storage
+      if (process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
+        promises.push(
+          fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formDataObj),
+          }).catch((error) => {
+            console.warn('Firebase submission failed:', error)
+            // Don't fail the whole form if Firebase fails
+            return { ok: false }
+          })
+        )
+      }
+
+      // Wait for all submissions (at least one should succeed)
+      const results = await Promise.allSettled(promises)
+      
+      // Check if at least one succeeded
+      const hasSuccess = results.some((result) => {
+        if (result.status === 'fulfilled') {
+          const response = result.value
+          return response && (response.ok || response.status === 200)
+        }
+        return false
+      })
+
+      if (hasSuccess || promises.length === 0) {
+        setStatus('success')
+        event.currentTarget.reset()
+      } else {
+        throw new Error('Failed to submit form. Please try again or contact us directly.')
+      }
     } catch (error) {
       setStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message.')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -241,9 +296,9 @@ export default function ContactForm() {
         )}
       </div>
 
-      {!formspreeEndpoint && (
+      {!formspreeEndpoint && !process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID && (
         <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-lg p-3">
-          Reminder: Set NEXT_PUBLIC_FORMSPREE_ENDPOINT to your Formspree form URL (e.g. https://formspree.io/f/xxxx) to enable submissions.
+          <strong>Setup Required:</strong> Configure either Formspree (for email) or Firebase (for database storage) to enable form submissions.
         </p>
       )}
     </form>
