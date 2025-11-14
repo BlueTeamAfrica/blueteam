@@ -38,8 +38,22 @@ npm install
 NEXT_PUBLIC_SITE_URL=https://blueteamafrica.com
 
 # Formspree endpoint for the contact form (create a form at formspree.io)
+# Optional - for email notifications
 NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/yourFormId
+
+# Firebase Configuration (for lead storage)
+# Get these from Firebase Console: Project Settings → Your apps → Web app
+NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyC...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=blueteamafrica.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=blueteamafrica
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=blueteamafrica.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=166097215782
+NEXT_PUBLIC_FIREBASE_APP_ID=1:166097215782:web:...
 ```
+
+**Quick Setup:**
+- Run `./setup-env.sh` to create `.env.local` template
+- Or see `FIREBASE_CREDENTIALS_SETUP.md` for detailed instructions
 
 3. Run the development server:
 ```bash
