@@ -19,14 +19,12 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
+            <h4 className="font-semibold mb-4">Solutions</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/services/web-design" className="hover:text-white transition">Web Design</Link></li>
-              <li><Link href="/services/web-development" className="hover:text-white transition">Web Development</Link></li>
-              <li><Link href="/services/hosting" className="hover:text-white transition">Hosting</Link></li>
-              <li><Link href="/services/app-development" className="hover:text-white transition">App Development</Link></li>
-              <li><Link href="/services/saas" className="hover:text-white transition">SaaS Solutions</Link></li>
-              <li><Link href="/services/cloud" className="hover:text-white transition">Cloud Services</Link></li>
+              <li><Link href="/solutions" className="hover:text-white transition">All Solutions</Link></li>
+              <li><Link href="/solutions/foundational" className="hover:text-white transition">Foundational (T1)</Link></li>
+              <li><Link href="/solutions/growth" className="hover:text-white transition">Growth (T2)</Link></li>
+              <li><Link href="/solutions/enterprise" className="hover:text-white transition">Enterprise (T3)</Link></li>
             </ul>
           </div>
 

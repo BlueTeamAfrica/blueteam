@@ -4,12 +4,12 @@ import { JsonLd } from '@/components/SEO'
 import { generateServiceSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
-  title: 'Web Design Services - Professional Website Design Company',
-  description: 'Expert web design services and website design services. Professional web design company providing custom website design solutions in Uganda, Kenya, and Rwanda. SEO-optimized web design for your business.',
-  keywords: ['web design services', 'website design services', 'web design company', 'website design company', 'web design agency', 'website design agency', 'seo website design', 'web design', 'website design'],
+  title: 'Web Design Company in Uganda — Fast, SEO-Ready Websites | Blue Team Africa',
+  description: 'We craft websites that convert: responsive design, performance, and SEO for local search. Professional web design services in Uganda, Kenya, Rwanda, and Sudan.',
+  keywords: ['web design company Uganda', 'website design', 'SEO website', 'responsive web design', 'web design services'],
   openGraph: {
-    title: 'Web Design Services - Professional Website Design Company | Blue Team Africa',
-    description: 'Expert web design services and website design services across East Africa.',
+    title: 'Web Design Company in Uganda — Fast, SEO-Ready Websites | Blue Team Africa',
+    description: 'We craft websites that convert: responsive design, performance, and SEO for local search.',
   },
 }
 
@@ -29,14 +29,13 @@ export default function WebDesignPage() {
       
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold mb-6">Professional Web Design Services</h1>
+          <h1 className="text-5xl font-bold mb-6">Web Design Company in Uganda — Fast, SEO-Ready Websites</h1>
           
           <div className="prose prose-lg max-w-none mb-8">
             <p className="text-xl text-gray-700 mb-6">
-              At Blue Team Africa, we specialize in professional web design and website design services 
-              that help businesses across East Africa establish a strong online presence. Our web design 
-              services combine stunning aesthetics with user experience best practices to create websites 
-              that not only look great but also drive conversions.
+              We craft websites that convert: responsive design, performance, and SEO for local search. 
+              Our web design services help businesses across Uganda, Kenya, Rwanda, and Sudan establish 
+              a strong online presence that drives measurable results.
             </p>
 
             <h2 className="text-3xl font-semibold mt-8 mb-4">Why Choose Our Web Design Services?</h2>

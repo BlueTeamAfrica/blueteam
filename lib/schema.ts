@@ -139,7 +139,9 @@ export function generateOrganizationSchema(
   description: string,
   url: string,
   logo?: string,
-  sameAs?: string[]
+  sameAs?: string[],
+  telephone?: string,
+  email?: string
 ): OrganizationSchema {
   const schema: OrganizationSchema = {
     '@context': 'https://schema.org',
@@ -155,6 +157,15 @@ export function generateOrganizationSchema(
 
   if (sameAs && sameAs.length > 0) {
     schema.sameAs = sameAs;
+  }
+
+  if (telephone || email) {
+    schema.contactPoint = [{
+      '@type': 'ContactPoint',
+      telephone: telephone || '',
+      contactType: 'customer service',
+      areaServed: ['UG', 'KE', 'RW', 'SD'],
+    }];
   }
 
   return schema;

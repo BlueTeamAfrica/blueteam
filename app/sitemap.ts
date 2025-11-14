@@ -11,6 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/portfolio',
     '/blog',
     '/faq',
+    '/solutions',
+    '/solutions/foundational',
+    '/solutions/growth',
+    '/solutions/enterprise',
   ]
 
   // Service pages
@@ -21,6 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'app-development',
     'saas',
     'cloud',
+    'erp',
+    'crm',
+    'cybersecurity',
   ]
 
   // Location pages
