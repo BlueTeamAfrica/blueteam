@@ -3,6 +3,8 @@ import { JsonLd } from '@/components/SEO'
 import { generateOrganizationSchema } from '@/lib/schema'
 import ContactForm from '@/components/ContactForm'
 
+// This is a server component - metadata export is allowed
+
 export const metadata: Metadata = {
   title: 'Contact Us - Get in Touch with Blue Team Africa',
   description: 'Contact Blue Team Africa for web design, development, and technology services in Uganda, Kenya, and Rwanda. Get a free quote for your project.',
