@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { JsonLd } from '@/components/SEO'
 import { generateOrganizationSchema } from '@/lib/schema'
 
@@ -28,30 +29,43 @@ export default function Home() {
     <>
       <JsonLd schema={organizationSchema} />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+      {/* Hero Section - White Peak Digital Style */}
+      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero/1.webp"
+            alt="Blue Team Africa - Technology Solutions for East Africa"
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/75 to-blue-900/85"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10 py-24 md:py-32">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
               Blue Team Africa — Websites, Hosting & Unified Systems for East Africa
             </h1>
-            <p className="text-xl md:text-2xl mb-4 text-blue-100 font-light">
+            <p className="text-xl md:text-2xl mb-4 text-blue-100 font-light max-w-3xl mx-auto">
               From fast, SEO-ready websites and reliable hosting to ERP, CRM and secure cloud operations — we help NGOs, startups and enterprises turn fragmented tech into reliable, measurable outcomes.
             </p>
             <p className="text-lg mb-10 text-blue-200 max-w-3xl mx-auto">
               Book a free 30-minute systems audit and get a prioritized action plan you can pilot within weeks.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Link 
                 href="/contact?solution_interest=T3" 
-                className="btn-primary text-lg px-8 py-4 inline-block"
+                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition shadow-lg hover:shadow-xl inline-block"
               >
                 Book a Free 30-Minute Systems Audit
               </Link>
               <Link 
                 href="/solutions/foundational#packages" 
-                className="btn-secondary text-lg px-8 py-4 inline-block border-white text-white hover:bg-white hover:text-blue-600"
+                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition inline-block"
               >
                 Get a Website Quote
               </Link>
