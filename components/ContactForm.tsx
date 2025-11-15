@@ -50,7 +50,9 @@ export default function ContactForm() {
       preferred_time: (formData.get('preferred_time') as string) || '',
       package: packageType || '',
       from_site: 'Blue Team Africa Contact Form',
-      ...utmParams,
+      utm_source: utmParams.utm_source || '',
+      utm_medium: utmParams.utm_medium || '',
+      utm_campaign: utmParams.utm_campaign || '',
     }
 
     try {
