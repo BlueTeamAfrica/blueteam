@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Leads collection - production security rules
+    // This allows server-side writes via Next.js API route but prevents direct client access
+    match /leads/{leadId} {
+      // Only allow authenticated admin users to read leads
+      // For now, we disable client-side reads (you can enable admin auth later)
+      allow read: if false;
+      
+      // Disable all client-side writes (your Next.js API route handles writes server-side)
+      // This prevents unauthorized users from directly writing to Firestore
+      allow write: if false;
+    }
+    
+    // Allow read access to other collections if needed in the future
+    // Example: public blog posts, service pages, etc.
+    // match /blog/{postId} {
+    //   allow read: if true;
+    //   allow write: if false;
+    // }
+  }
+}
+

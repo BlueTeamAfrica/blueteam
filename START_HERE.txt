@@ -1,0 +1,26 @@
+🚀 QUICK START INSTRUCTIONS
+===========================
+
+STEP 1: Open Terminal and navigate to project:
+------------------------------------------------
+cd /Users/mohamedeldaby/Documents/blueteamafrica
+
+STEP 2: Start the development server:
+--------------------------------------
+npm run dev
+
+STEP 3: Open your browser:
+---------------------------
+Go to: http://localhost:3000
+
+STEP 4: Test the contact form:
+-------------------------------
+Go to: http://localhost:3000/contact
+Fill out and submit the form
+
+STEP 5: Check Firebase:
+------------------------
+Go to Firebase Console → Firestore → leads collection
+
+That's it! 🎉
+
