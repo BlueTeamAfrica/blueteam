@@ -111,8 +111,12 @@ export async function POST(request: NextRequest) {
     )
   } catch (error) {
     console.error('Error saving lead to Firestore:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
     return NextResponse.json(
-      { error: 'Failed to save lead. Please try again.' },
+      { 
+        error: 'Failed to save lead. Please try again.',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     )
   }
