@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useState, useEffect } from 'react'
+import { FormEvent, useState, useEffect, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 export default function ContactForm() {
@@ -9,6 +9,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const formRef = useRef<HTMLFormElement>(null)
   
   // Get solution_interest and package from URL params
   const solutionInterest = searchParams?.get('solution_interest') || ''
@@ -105,7 +106,12 @@ export default function ContactForm() {
 
       if (hasSuccess || promises.length === 0) {
         setStatus('success')
-        event.currentTarget.reset()
+        // Reset form using ref or currentTarget (whichever is available)
+        if (formRef.current) {
+          formRef.current.reset()
+        } else if (event.currentTarget) {
+          event.currentTarget.reset()
+        }
       } else {
         throw new Error('Failed to submit form. Please try again or contact us directly.')
       }
@@ -118,7 +124,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
           Name *
