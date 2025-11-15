@@ -9,11 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
+        primary: '#2563EB',
+        'primary-dark': '#1E40AF',
+        'primary-light': '#60A5FA',
+        secondary: '#D97706',
+        background: '#F8FAFC',
+        surface: '#FFFFFF',
+        dark: '#0F172A',
+        muted: '#64748B',
+        // Keep for backward compatibility
         foreground: 'var(--foreground)',
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
         accent: 'var(--accent)',
+      },
+      fontFamily: {
+        heading: ['Poppins', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',

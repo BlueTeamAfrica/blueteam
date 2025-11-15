@@ -27,9 +27,9 @@ export default function AboutPage() {
     <>
       <JsonLd schema={organizationSchema} />
       
-      {/* Hero Section - White Peak Digital Style */}
-      <section className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900">
-        {/* Background Image */}
+      {/* Hero Section - Optimized */}
+      <section className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-light to-secondary">
+        {/* Background Image - Optimized for faster loading */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/about/5.webp"
@@ -37,15 +37,18 @@ export default function AboutPage() {
             fill
             className="object-cover"
             priority
-            quality={90}
+            quality={75}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/75 via-blue-800/70 to-blue-900/80"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
         
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-24">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
               Our Story — From Survival to Systems
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 font-light max-w-3xl mx-auto">
@@ -66,7 +69,9 @@ export default function AboutPage() {
                   alt="Mohamed Eldaby - Founder of Blue Team Africa"
                   fill
                   className="object-cover"
-                  quality={90}
+                  quality={75}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -105,7 +110,9 @@ export default function AboutPage() {
                   alt="Blue Team Africa - What Drives Us"
                   fill
                   className="object-cover"
-                  quality={90}
+                  quality={75}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -141,7 +148,9 @@ export default function AboutPage() {
                   alt="Blue Team Africa - Our Commitment to East Africa"
                   fill
                   className="object-cover"
-                  quality={90}
+                  quality={75}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
               </div>
               <div className="order-1 md:order-2">

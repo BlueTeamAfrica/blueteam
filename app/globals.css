@@ -1,21 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-  --secondary: #64748b;
+  --color-primary: #2563EB;
+  --color-primary-dark: #1E40AF;
+  --color-primary-light: #60A5FA;
+  --color-secondary: #D97706;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-dark: #0F172A;
+  --color-muted: #64748B;
+  
+  /* Keep existing for backward compatibility */
+  --background: var(--color-surface);
+  --foreground: var(--color-dark);
+  --primary: var(--color-primary);
+  --primary-dark: var(--color-primary-dark);
+  --secondary: var(--color-muted);
   --accent: #0ea5e9;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-dark);
   line-height: 1.6;
+}
+
+.font-heading {
+  font-family: 'Poppins', 'Inter', sans-serif;
 }
 
 @layer utilities {
@@ -29,13 +50,38 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Utility colors matching new design */
+.bg-primary {
+  background: var(--color-primary);
+}
+
+.bg-primary-dark {
+  background: var(--color-primary-dark);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.bg-secondary {
+  background: var(--color-secondary);
+}
+
+.bg-dark {
+  background: var(--color-dark);
+}
+
 /* Custom button styles */
 .btn-primary {
-  @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl;
+  @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl;
 }
 
 .btn-secondary {
-  @apply bg-transparent border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300;
+  @apply bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300;
 }
 
 /* Card hover effects */

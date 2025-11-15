@@ -1,17 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
+import WhatsAppFloat from '@/components/WhatsAppFloat'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Blue Team Africa - Professional Web Design & Development Services in East Africa',
+    default: 'Blue Team Africa — Websites, Hosting & Enterprise Systems',
     template: '%s | Blue Team Africa'
   },
-  description: 'Expert web design and development services in Uganda, Kenya, and Rwanda. Sudanese tech experts providing web design, hosting, app development, SaaS, and cloud solutions across East Africa.',
+  description: 'Blue Team Africa builds high-performance websites, secure hosting and enterprise systems for East African NGOs, startups and businesses.',
   keywords: ['web design', 'website design', 'web development', 'Uganda', 'Kenya', 'Rwanda', 'East Africa', 'hosting services', 'app development'],
   authors: [{ name: 'Blue Team Africa' }],
   creator: 'Blue Team Africa',
@@ -48,10 +46,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="bg-background text-dark font-body">
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   )
