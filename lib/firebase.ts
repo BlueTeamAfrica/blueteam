@@ -14,26 +14,38 @@ const firebaseConfig = {
 }
 
 // Validate required config
-if (!firebaseConfig.apiKey || !firebaseConfig.appId) {
+const isConfigValid = firebaseConfig.apiKey && firebaseConfig.appId
+
+// Initialize Firebase (only if config is valid and not already initialized)
+let app: FirebaseApp | null = null
+let db: Firestore | null = null
+
+if (isConfigValid) {
+  try {
+    if (getApps().length === 0) {
+      app = initializeApp(firebaseConfig)
+      console.log('Firebase initialized successfully')
+    } else {
+      app = getApps()[0]
+    }
+    
+    // Initialize Firestore only if app was initialized
+    if (app) {
+      db = getFirestore(app)
+    }
+  } catch (error) {
+    console.error('Error initializing Firebase:', error)
+    // Don't throw - allow app to continue without Firebase
+    app = null
+    db = null
+  }
+} else {
   console.warn('Firebase configuration is incomplete. Please set NEXT_PUBLIC_FIREBASE_API_KEY and NEXT_PUBLIC_FIREBASE_APP_ID in .env.local')
 }
 
-// Initialize Firebase (only if not already initialized)
-let app: FirebaseApp
-if (getApps().length === 0) {
-  try {
-    app = initializeApp(firebaseConfig)
-    console.log('Firebase initialized successfully')
-  } catch (error) {
-    console.error('Error initializing Firebase:', error)
-    throw error
-  }
-} else {
-  app = getApps()[0]
-}
+// Export db - will be null if Firebase not configured
+export { db }
 
-// Initialize Firestore
-export const db: Firestore = getFirestore(app)
-
+// Export app - will be null if Firebase not configured
 export default app
 

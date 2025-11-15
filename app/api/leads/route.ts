@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { collection, addDoc, serverTimestamp, Firestore } from 'firebase/firestore'
+
+// Import Firebase - will handle errors in the route handlers
+let db: Firestore | null = null
+
+// Try to import Firebase on module load
+try {
+  const firebase = require('@/lib/firebase')
+  db = firebase.db
+} catch (error) {
+  console.warn('Firebase initialization warning:', error)
+  // db remains null - will be handled in route handlers
+}
+
+function getFirestoreDB(): Firestore | null {
+  return db
+}
 
 // Firestore lead schema (matches content pack)
 interface LeadData {
@@ -70,6 +85,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Get Firestore database
+    const db = getFirestoreDB()
+    if (!db) {
+      return NextResponse.json(
+        { error: 'Firebase Firestore not initialized. Please check your Firebase configuration.' },
+        { status: 500 }
+      )
+    }
+
     // Add to Firestore
     const docRef = await addDoc(collection(db, 'leads'), {
       ...leadData,
@@ -96,8 +120,15 @@ export async function POST(request: NextRequest) {
 
 // Optional: GET endpoint to check if API is working
 export async function GET() {
+  const db = getFirestoreDB()
+  const isFirebaseConfigured = !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID && !!db
+  
   return NextResponse.json(
-    { message: 'Leads API is running. Use POST to submit leads.' },
+    { 
+      message: 'Leads API is running. Use POST to submit leads.',
+      firebaseConfigured: isFirebaseConfigured,
+      firebaseProjectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'not set'
+    },
     { status: 200 }
   )
 }
