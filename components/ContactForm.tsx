@@ -117,7 +117,9 @@ export default function ContactForm() {
       }
     } catch (error) {
       setStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.')
+      const errorMsg = error instanceof Error ? error.message : 'Failed to send message. Please try again.'
+      console.error('Form submission error:', error)
+      setErrorMessage(errorMsg)
     } finally {
       setIsSubmitting(false)
     }
