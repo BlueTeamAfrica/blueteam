@@ -61,7 +61,7 @@
 
 **About Images:**
 - `about/5.webp` - About page hero background
-- `about/6.webp` - Founder photo (Mohamed Eldaby)
+- `about/6.webp` - Team photo
 - `about/7.webp` - What Drives Us section
 - `about/8.webp` - Our Commitment section
 
