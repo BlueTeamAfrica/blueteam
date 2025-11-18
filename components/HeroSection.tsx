@@ -58,7 +58,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20 md:pt-[88px]">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16 md:pt-[72px]">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image

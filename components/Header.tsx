@@ -140,39 +140,31 @@ export default function Header() {
   return (
     <>
       <header
-        className={`w-full bg-white shadow-sm sticky top-0 z-50 transition-all duration-300 ${
-          scrolled ? 'shadow-md' : ''
+        className={`w-full bg-white fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? 'shadow-md' : 'shadow-sm'
         }`}
         role="banner"
       >
-        {/* Top Bar (phone + email + WhatsApp) */}
-        <div className="hidden md:flex items-center justify-end text-sm text-gray-600 px-6 py-2 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center gap-6">
+        {/* Top Bar (phone + email) */}
+        <div className="hidden md:flex items-center justify-end text-xs text-gray-600 px-6 py-1.5 bg-gray-50 border-b border-gray-100">
+          <div className="flex items-center gap-4">
             <a
               href="tel:+256765508131"
-              className="flex items-center gap-1 hover:text-primary transition"
+              className="flex items-center gap-1 hover:text-primary transition-colors"
             >
-              <Phone size={14} /> +256 765 508 131
+              <Phone size={13} /> +256 765 508 131
             </a>
             <a
               href="mailto:contact@blueteamafrica.com"
-              className="flex items-center gap-1 hover:text-primary transition"
+              className="flex items-center gap-1 hover:text-primary transition-colors"
             >
-              <Mail size={14} /> contact@blueteamafrica.com
-            </a>
-            <a
-              href="https://wa.me/256765508131"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-primary text-white px-3 py-1.5 rounded-lg text-sm shadow hover:bg-primary-dark transition"
-            >
-              <MessageCircle size={15} /> WhatsApp Us
+              <Mail size={13} /> contact@blueteamafrica.com
             </a>
           </div>
         </div>
 
         {/* Main Navigation */}
-        <div ref={containerRef} className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+        <div ref={containerRef} className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between relative">
           {/* Logo - Left */}
           <Link href="/" className="flex items-center gap-2 text-xl font-heading font-semibold text-gray-900 flex-shrink-0">
             <div className="w-10 h-10 bg-primary text-white flex items-center justify-center font-heading font-bold rounded-md">
@@ -184,12 +176,16 @@ export default function Header() {
           {/* Nav - Center */}
           <nav
             ref={navRef}
-            className="hidden md:flex items-center gap-8 text-gray-800 font-medium absolute left-1/2 transform -translate-x-1/2"
+            className="hidden md:flex items-center gap-6 text-sm text-gray-800 font-medium absolute left-1/2 transform -translate-x-1/2"
             role="navigation"
             aria-label="Main navigation"
           >
-            <Link href="/" className="hover:text-primary transition whitespace-nowrap">
+            <Link 
+              href="/" 
+              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+            >
               Home
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
             {/* About Dropdown */}
@@ -201,13 +197,14 @@ export default function Header() {
                   setAboutOpen(!aboutOpen)
                   if (servicesOpen) setServicesOpen(false)
                 }}
-                className="flex items-center gap-1 hover:text-primary transition select-none"
+                className="flex items-center gap-1 relative py-2 transition-colors hover:text-primary select-none group"
                 aria-haspopup="true"
                 aria-expanded={aboutOpen}
                 aria-controls="about-dropdown"
               >
                 About
-                <ChevronDown size={16} className={`mt-0.5 transition-transform duration-200 ${aboutOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown size={14} className={`mt-0.5 transition-transform duration-200 ${aboutOpen ? 'rotate-180' : ''}`} />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
 
               <AnimatePresence>
@@ -220,18 +217,19 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute left-0 top-full mt-3 w-[240px] bg-white shadow-2xl rounded-xl p-4 border border-gray-100 z-[60]"
+                    className="absolute left-0 top-full mt-2 w-[220px] bg-white shadow-2xl rounded-lg p-3 border border-gray-100 z-[60]"
                   >
-                    <ul className="space-y-2" role="none">
+                    <ul className="space-y-0.5" role="none">
                       {aboutLinks.map((link, idx) => (
                         <li key={idx} role="none">
                           <Link
                             href={link.href}
                             role="menuitem"
-                            className="text-gray-800 hover:text-primary transition-colors text-sm block py-2 px-2 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                            className="text-gray-700 hover:text-primary transition-colors text-sm block py-2 px-3 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 relative group"
                             onClick={() => setAboutOpen(false)}
                           >
                             {link.name}
+                            <span className="absolute bottom-1.5 left-3 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-[calc(100%-1.5rem)]"></span>
                           </Link>
                         </li>
                       ))}
@@ -250,13 +248,14 @@ export default function Header() {
                   setServicesOpen(!servicesOpen)
                   if (aboutOpen) setAboutOpen(false)
                 }}
-                className="flex items-center gap-1 hover:text-primary transition select-none"
+                className="flex items-center gap-1 relative py-2 transition-colors hover:text-primary select-none group"
                 aria-haspopup="true"
                 aria-expanded={servicesOpen}
                 aria-controls="services-dropdown"
               >
                 Services
-                <ChevronDown size={16} className={`mt-0.5 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown size={14} className={`mt-0.5 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
 
               <AnimatePresence>
@@ -269,23 +268,24 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute left-0 top-full mt-3 w-[750px] max-w-[calc(100vw-2rem)] bg-white shadow-2xl rounded-xl p-6 flex flex-col md:flex-row gap-8 border border-gray-100 z-[60]"
+                    className="absolute left-0 top-full mt-2 w-[750px] max-w-[calc(100vw-2rem)] bg-white shadow-2xl rounded-lg p-5 flex flex-col md:flex-row gap-6 border border-gray-100 z-[60]"
                   >
                     {serviceColumns.map((col, i) => (
                       <div key={i} className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-4 font-semibold">
+                        <p className="text-[10px] uppercase tracking-wider text-gray-500 mb-3 font-semibold">
                           {col.label}
                         </p>
-                        <ul className="space-y-3" role="none">
+                        <ul className="space-y-1.5" role="none">
                           {col.items.map((item, idx) => (
                             <li key={idx} role="none">
                               <Link
                                 href={item.href}
                                 role="menuitem"
-                                className="text-gray-800 hover:text-blue-600 transition-colors text-sm block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1 py-0.5 -mx-1 -my-0.5"
+                                className="text-gray-700 hover:text-blue-600 transition-colors text-sm block py-1.5 relative group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1 -mx-1"
                                 onClick={() => setServicesOpen(false)}
                               >
                                 {item.name}
+                                <span className="absolute bottom-0.5 left-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-[calc(100%-0.5rem)]"></span>
                               </Link>
                             </li>
                           ))}
@@ -297,15 +297,27 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            <Link href="/portfolio" className="hover:text-primary transition whitespace-nowrap">
+            <Link 
+              href="/portfolio" 
+              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+            >
               Portfolio
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/blog" className="hover:text-primary transition whitespace-nowrap">
+            <Link 
+              href="/blog" 
+              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+            >
               Blog
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/contact" className="hover:text-primary transition whitespace-nowrap">
-            Contact
-          </Link>
+            <Link 
+              href="/contact" 
+              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+            >
+              Contact
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            </Link>
         </nav>
 
           {/* Mobile Menu Button */}
