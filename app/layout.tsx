@@ -6,37 +6,10 @@ import WhatsAppFloat from '@/components/WhatsAppFloat'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Blue Team Africa — Websites, Hosting & Enterprise Systems',
+    default: 'Blue Team Africa',
     template: '%s | Blue Team Africa'
   },
-  description: 'Blue Team Africa builds high-performance websites, secure hosting and enterprise systems for East African NGOs, startups and businesses.',
-  keywords: ['web design', 'website design', 'web development', 'Uganda', 'Kenya', 'Rwanda', 'East Africa', 'hosting services', 'app development'],
-  authors: [{ name: 'Blue Team Africa' }],
-  creator: 'Blue Team Africa',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://blueteamafrica.com',
-    siteName: 'Blue Team Africa',
-    title: 'Blue Team Africa - Professional Web Design & Development Services',
-    description: 'Expert web design and development services in Uganda, Kenya, and Rwanda.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blue Team Africa - Professional Web Design & Development Services',
-    description: 'Expert web design and development services in East Africa.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  description: 'Blue Team Africa - Professional web design, hosting, and enterprise systems for East Africa.',
 }
 
 export default function RootLayout({
@@ -46,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-background text-dark font-body">
+      <body className="bg-white text-gray-900 font-body antialiased">
         <Header />
         <main>{children}</main>
         <Footer />
@@ -55,4 +28,3 @@ export default function RootLayout({
     </html>
   )
 }
-

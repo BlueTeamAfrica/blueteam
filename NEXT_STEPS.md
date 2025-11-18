@@ -1,256 +1,200 @@
-# 🎉 What's Next - Blue Team Africa Website
+# ✅ Next Steps Checklist
 
-Congratulations! Your contact form is working and Firebase is integrated! ✅
+Your Blue Team Africa website is now running! Here's what to do next:
 
-## ✅ What's Complete
+## 🧪 1. Test All Features (Do This First)
 
-- ✅ Website is live and running
-- ✅ Contact form is functional
-- ✅ Firebase/Firestore integration working
-- ✅ Lead storage configured
-- ✅ All pages created with content
-- ✅ SEO optimization in place
+Visit http://localhost:3000 and test:
 
-## 🔥 Immediate Next Steps
+- [ ] **Header Navigation** — Click all nav links (Home, Solutions, Portfolio, Blog, Company, Contact)
+- [ ] **Mobile Menu** — Test on mobile/tablet viewport (resize browser or use DevTools)
+- [ ] **Hero Video Button** — Click play button, verify modal opens/closes (ESC key should close)
+- [ ] **WhatsApp Floating Button** — Click floating WhatsApp button (bottom-right)
+- [ ] **WhatsApp Header Button** — Click WhatsApp button in header
+- [ ] **Contact Form** — Fill out and submit (check `data/leads.json` file is created)
+- [ ] **Services Pages** — Visit all 6 service pages:
+  - `/services/web-design`
+  - `/services/hosting`
+  - `/services/erp-integration`
+  - `/services/crm-automation`
+  - `/services/mobile-apps`
+  - `/services/cybersecurity`
+- [ ] **Portfolio** — Visit `/portfolio` and case study `/portfolio/regional-logistics`
+- [ ] **Blog** — Visit `/blog` and sample post `/blog/how-to-choose-erp-in-uganda`
+- [ ] **FAQ Page** — Visit `/faq` and verify all 12 questions display
+- [ ] **Company Page** — Visit `/company` (About/Our Story)
+- [ ] **Scroll Behavior** — Test sticky header shadow change on scroll
 
-### 1. Verify Firebase Lead Storage
+## 🖼️ 2. Add Placeholder Images (Required)
 
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Select project: **blueteamafrica**
-3. Go to **Firestore Database**
-4. Click on **`leads`** collection
-5. **Check**: You should see the form submission you just made!
+The site needs placeholder images. See `public/images/PLACEHOLDER_IMAGES.md` for details.
 
-If you see your lead there, everything is working perfectly! 🎉
+**Quick options:**
 
-### 2. Set Up Firestore Security Rules (⚠️ IMPORTANT - Do This Now!)
+### Option A: Use Unsplash API (Fast)
+```bash
+cd public/images
 
-Right now Firestore is in "test mode" which:
-- ⚠️ Allows anyone to read/write your leads
-- ⚠️ Will expire in 30 days
-- ⚠️ Leaves your data vulnerable
+# Download hero image
+curl -L "https://source.unsplash.com/1920x1080/?abstract,gradient,blue" -o hero-gradient-abstract.webp
 
-**Quick Setup (5 minutes):**
+# Download web design image
+curl -L "https://source.unsplash.com/1920x1080/?laptop,code,web,design" -o webdesign-laptop.webp
 
-1. Go to Firebase Console → Firestore Database → **Rules** tab
-2. **Copy the rules from `firestore.rules` file** (in your project root)
-3. **Paste into the Rules editor**
-4. Click **"Publish"**
+# Download hosting image
+curl -L "https://source.unsplash.com/1920x1080/?datacenter,server,room" -o hosting-datacenter.webp
 
-**Detailed instructions:** See `FIRESTORE_SECURITY_RULES.md` for step-by-step guide with screenshots.
+# Download ERP image
+curl -L "https://source.unsplash.com/1920x1080/?business,architecture,diagram" -o erp-architecture.webp
 
-**Why this works:**
-- Your contact form uses `/api/leads` (server-side API route)
-- Server-side code can write to Firestore regardless of rules
-- Rules only block direct client access (protecting your data)
-- Form will continue working perfectly! ✅
+# Download CRM image
+curl -L "https://source.unsplash.com/1920x1080/?dashboard,analytics,crm" -o crm-dashboard.webp
 
-### 3. Add Images to Your Website
+# Download mobile image
+curl -L "https://source.unsplash.com/1920x1080/?mobile,phone,business" -o mobile-field.webp
 
-Your website needs images! Here's how:
+# Download cybersecurity image
+curl -L "https://source.unsplash.com/1920x1080/?cybersecurity,lock,security" -o cybersecurity-lock.webp
 
-1. **Create image folders** (if not already done):
-   ```bash
-   mkdir -p public/images/{hero,about,services,portfolio,logo}
-   ```
+# Download team image
+curl -L "https://source.unsplash.com/1920x1080/?diverse,team,collaboration" -o about-team.webp
 
-2. **Download images** from Unsplash/Pexels using these searches:
-   - Hero: `colorful gradient background abstract`
-   - About: `portrait entrepreneur africa`
-   - Services: `web design laptop office africa`
-   - Portfolio: `business website africa`
+# Portfolio image
+curl -L "https://source.unsplash.com/800x600/?logistics,shipping" -o portfolio/regional-logistics-thumb.webp
+```
 
-3. **Place images** in `public/images/` subfolders
+**Note:** These will download JPG files. Convert to WebP format using:
+- Online converter: https://convertio.co/jpg-webp/
+- Or ImageMagick: `convert input.jpg -quality 85 output.webp`
 
-4. **I can help you** integrate images into pages once you have them
+### Option B: Manual Download
+1. Visit https://unsplash.com or https://pexels.com
+2. Search for keywords from `PLACEHOLDER_IMAGES.md`
+3. Download high-resolution images
+4. Convert to WebP format
+5. Place in correct directories under `public/images/`
 
-See `IMAGE_UPLOAD_GUIDE.md` for detailed instructions.
+### Logo & Favicon
+- [ ] Add `public/logo.png` (512x512px, square)
+- [ ] Add `public/favicon.ico` (32x32px)
+- [ ] Add 6 logo placeholders in `public/images/logos/logo-placeholder-1.png` through `logo-placeholder-6.png`
 
-### 4. Set Up Formspree (Optional - for Email Notifications)
+## 📝 3. Customize Content (Optional)
 
-Right now leads only go to Firebase. If you want email notifications too:
+Review and customize:
 
-1. Go to [Formspree](https://formspree.io/)
-2. Create a free account
-3. Create a new form
-4. Copy your form endpoint (e.g., `https://formspree.io/f/xxxxx`)
-5. Add to `.env.local`:
+- [ ] **Home Page Hero** — Update title/subtitle in `app/page.tsx`
+- [ ] **Services Descriptions** — Update service details in service pages
+- [ ] **Package Cards** — Review pricing/details in `components/PackageCards.tsx`
+- [ ] **FAQ** — Review/update FAQ questions in `app/faq/page.tsx`
+- [ ] **Company Story** — Review/update company page content in `app/company/page.tsx`
+- [ ] **Contact Info** — Verify phone/email correct in `components/Header.tsx`, `components/Footer.tsx`, `components/ContactForm.tsx`
+
+## 🎬 4. Add Brand Video (Optional)
+
+Update hero video URL in `components/HeroWithVideo.tsx`:
+
+```tsx
+videoUrl = 'YOUR_YOUTUBE_OR_VIMEO_EMBED_URL'
+```
+
+Or leave placeholder for now.
+
+## 🔧 5. Set Up Analytics (Optional)
+
+Add Google Analytics 4 tracking:
+
+1. Get your GA4 Measurement ID (e.g., `G-XXXXXXXXXX`)
+2. Add to `app/layout.tsx` in `<head>` section:
+
+```tsx
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}></script>
+<script dangerouslySetInnerHTML={{
+  __html: `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA4_MEASUREMENT_ID}');
+  `
+}}></script>
+```
+
+Events are already tracked:
+- `video_play` — Hero video play
+- `lead_form_submit` — Contact form submission
+- `whatsapp_click` — WhatsApp button clicks
+
+## 🔥 6. Production Setup (When Ready)
+
+### Set Up Firestore (For Contact Form)
+
+Currently using dev JSON file logging. For production:
+
+1. **Create Firebase Project:**
+   - Go to https://console.firebase.google.com
+   - Create new project
+   - Enable Firestore Database
+
+2. **Get Service Account:**
+   - Project Settings → Service Accounts
+   - Generate new private key
+   - Save as `firebase-service-account.json` (add to `.gitignore`)
+
+3. **Update API Endpoint:**
+   - Follow instructions in `app/api/leads/route.ts`
+   - Uncomment Firestore code
+   - Remove local JSON file logic
+
+4. **Set Environment Variables:**
    ```env
-   NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/yourFormId
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+   FIREBASE_SERVICE_ACCOUNT_KEY=path/to/firebase-service-account.json
    ```
-6. Restart dev server: `npm run dev`
 
-Then the form will send to **both** Firebase (database) and Formspree (email).
+### Deploy to Vercel (Recommended)
 
-## 🚀 Deployment Options
-
-### Option A: Deploy to Vercel (Recommended)
-
-1. **Push to GitHub** (if not already):
+1. **Push to GitHub:**
    ```bash
-   git add -A
-   git commit -m "Ready for deployment"
-   git push origin main
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin YOUR_GITHUB_REPO_URL
+   git push -u origin main
    ```
 
-2. **Go to [Vercel](https://vercel.com/)**:
-   - Sign up/login with GitHub
-   - Click "New Project"
-   - Import your `BlueTeamAfrica/blueteam` repository
+2. **Deploy to Vercel:**
+   - Go to https://vercel.com
+   - Import your GitHub repository
+   - Add environment variables if needed
+   - Deploy!
 
-3. **Add Environment Variables in Vercel**:
-   - Go to Project Settings → Environment Variables
-   - Add all Firebase variables from `.env.local`:
-     - `NEXT_PUBLIC_FIREBASE_API_KEY`
-     - `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
-     - `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
-     - `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
-     - `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
-     - `NEXT_PUBLIC_FIREBASE_APP_ID`
-     - `NEXT_PUBLIC_SITE_URL` (set to your Vercel URL or custom domain)
+   Or use CLI:
+   ```bash
+   npm i -g vercel
+   vercel
+   ```
 
-4. **Deploy**: Click "Deploy" and Vercel will build and deploy your site!
+## 📋 7. Final Checks Before Launch
 
-### Option B: Deploy to Other Platforms
+- [ ] All placeholder images replaced
+- [ ] All links work correctly
+- [ ] Contact form tested (submissions working)
+- [ ] Mobile responsive (test on real devices)
+- [ ] SEO meta tags verified (check page source)
+- [ ] JSON-LD schema validated (use Google Rich Results Test)
+- [ ] Performance check (Lighthouse score)
+- [ ] Accessibility check (WCAG compliance)
+- [ ] Analytics configured (if using)
+- [ ] Firestore set up (for production contact form)
+- [ ] Domain configured (if using custom domain)
 
-- **Netlify**: Similar to Vercel
-- **AWS Amplify**: Enterprise option
-- **DigitalOcean App Platform**: Cost-effective
-- **Traditional hosting**: Requires Node.js server
+## 🎉 You're Done!
 
-## 📋 Content & SEO Enhancements
+Once you've completed these steps, your Blue Team Africa website is ready for production!
 
-### 1. Add Real Case Studies
+---
 
-Update `app/portfolio/page.tsx` with real client projects:
-- Before/after screenshots
-- Results/metrics
-- Client testimonials
-
-### 2. Create Blog Content
-
-Add real blog posts in `app/blog/`:
-- Target keywords from your SEO plan
-- Monthly posts for ongoing SEO
-- Share on social media
-
-### 3. Add Client Testimonials
-
-Create a testimonials section on homepage or about page:
-- Real client quotes
-- Company logos
-- Case study links
-
-### 4. Set Up Google Analytics
-
-Track your website visitors:
-1. Create Google Analytics account
-2. Get tracking ID
-3. Add to `app/layout.tsx`
-
-### 5. Submit Sitemap to Google
-
-1. Go to [Google Search Console](https://search.google.com/search-console)
-2. Add your property (website URL)
-3. Submit sitemap: `https://yourdomain.com/sitemap.xml`
-
-## 🎨 Design Improvements
-
-### 1. Add Animations
-
-- Fade-in effects on scroll
-- Hover animations
-- Loading states
-
-### 2. Improve Mobile Experience
-
-- Test on real devices
-- Optimize images for mobile
-- Improve touch interactions
-
-### 3. Add Interactive Elements
-
-- Live chat widget
-- Interactive service calculator
-- Progress indicators
-
-## 🔧 Technical Improvements
-
-### 1. Add Error Tracking
-
-Set up Sentry or similar:
-- Track JavaScript errors
-- Monitor API failures
-- Get alerts for issues
-
-### 2. Add Performance Monitoring
-
-- Lighthouse scores
-- Core Web Vitals
-- Page load optimization
-
-### 3. Set Up CI/CD
-
-Automate deployments:
-- GitHub Actions
-- Automated testing
-- Staging environment
-
-## 📊 Marketing & Growth
-
-### 1. Set Up Social Media
-
-- Create accounts for Blue Team Africa
-- Share blog posts
-- Engage with East African tech community
-
-### 2. Start Content Marketing
-
-- Regular blog posts
-- LinkedIn articles
-- Twitter/X engagement
-
-### 3. Set Up Email Marketing
-
-- Collect emails via contact form
-- Send newsletters
-- Nurture leads
-
-## 🎯 Priority Checklist
-
-**High Priority (Do First):**
-- [ ] Verify leads are saving to Firebase
-- [ ] Update Firestore security rules
-- [ ] Add images to website
-- [ ] Deploy to Vercel
-
-**Medium Priority (This Week):**
-- [ ] Set up Formspree for emails
-- [ ] Add real case studies
-- [ ] Set up Google Analytics
-- [ ] Submit sitemap to Google
-
-**Low Priority (Future):**
-- [ ] Add animations
-- [ ] Create blog content
-- [ ] Set up social media
-- [ ] Add testimonials
-
-## 💡 Quick Wins
-
-1. **Add Logo**: Replace "Blue Team Africa" text with actual logo image
-2. **Add Favicon**: Create `public/favicon.ico`
-3. **Add Social Links**: Update footer with social media links
-4. **Test All Pages**: Make sure all navigation links work
-5. **Mobile Testing**: Test on phone/tablet
-
-## 🆘 Need Help?
-
-If you need help with any of these:
-- Adding images to pages
-- Setting up deployments
-- Creating content
-- Technical improvements
-
-Just ask! I'm here to help you build a successful website. 🚀
-
+**Need Help?**
+- Check `README.md` for detailed documentation
+- Review `FILES_CREATED.md` for file structure
+- See `public/images/PLACEHOLDER_IMAGES.md` for image requirements

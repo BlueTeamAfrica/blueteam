@@ -43,6 +43,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  /* Provide a utility class for hover:bg-primary-dark */
+  .hover\:bg-primary-dark:hover {
+    background: var(--color-primary-dark);
+  }
 }
 
 /* Smooth scrolling */
@@ -77,11 +81,16 @@ html {
 
 /* Custom button styles */
 .btn-primary {
-  @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl;
+  @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl;
 }
 
 .btn-secondary {
   @apply bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300;
+}
+
+/* Button hover (custom, since @apply can't see our custom hover token) */
+.btn-primary:hover {
+  background: var(--color-primary-dark);
 }
 
 /* Card hover effects */
@@ -92,5 +101,22 @@ html {
 /* Section spacing */
 .section-padding {
   @apply py-16 md:py-20;
+}
+
+/* Pulse animation for WhatsApp button */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Ensure WhatsApp button stays on top */
+.z-50 {
+  z-index: 50;
 }
 
