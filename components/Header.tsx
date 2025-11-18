@@ -20,6 +20,7 @@ export default function Header() {
   const aboutButtonRef = useRef<HTMLButtonElement>(null)
   const aboutDropdownRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
@@ -27,16 +28,18 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mobile menu on ESC key
+  // Close dropdowns and mobile menu on ESC key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && open) {
-        setOpen(false)
+      if (e.key === 'Escape') {
+        if (open) setOpen(false)
+        if (servicesOpen) setServicesOpen(false)
+        if (aboutOpen) setAboutOpen(false)
       }
     }
     window.addEventListener('keydown', handleEsc)
     return () => window.removeEventListener('keydown', handleEsc)
-  }, [open])
+  }, [open, servicesOpen, aboutOpen])
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -44,83 +47,53 @@ export default function Header() {
     setMobileDropdowns({ about: false, services: false })
   }, [])
 
-  // Dynamic dropdown positioning for Services (align with button)
+  // Close dropdowns on outside click
   useEffect(() => {
-    const positionMenu = () => {
-      if (!servicesButtonRef.current || !servicesDropdownRef.current || !navRef.current) return
+    function handleClickOutside(e: MouseEvent) {
+      // Close Services dropdown
+      if (
+        servicesOpen &&
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(e.target as Node) &&
+        servicesButtonRef.current &&
+        !servicesButtonRef.current.contains(e.target as Node)
+      ) {
+        setServicesOpen(false)
+      }
 
-      const btn = servicesButtonRef.current
-      const menu = servicesDropdownRef.current
-      const nav = navRef.current
-      const parent = btn.closest('.relative') as HTMLElement
-      
-      if (!parent) return
-
-      const btnRect = btn.getBoundingClientRect()
-      const parentRect = parent.getBoundingClientRect()
-      const navRect = nav.getBoundingClientRect()
-
-      // Position relative to parent
-      const left = Math.max(0, btnRect.left - parentRect.left)
-      menu.style.left = `${left}px`
-      menu.style.top = '100%'
-      menu.style.marginTop = '8px'
-
-      // Check if overflow and adjust
-      const menuRect = menu.getBoundingClientRect()
-      const viewportWidth = window.innerWidth
-      
-      if (menuRect.right > viewportWidth - 12) {
-        const overflow = menuRect.right - viewportWidth + 12
-        menu.style.left = `${left - overflow}px`
+      // Close About dropdown
+      if (
+        aboutOpen &&
+        aboutDropdownRef.current &&
+        !aboutDropdownRef.current.contains(e.target as Node) &&
+        aboutButtonRef.current &&
+        !aboutButtonRef.current.contains(e.target as Node)
+      ) {
+        setAboutOpen(false)
       }
     }
 
-    if (servicesOpen) {
-      // Small delay to ensure DOM is ready
-      setTimeout(positionMenu, 0)
-      window.addEventListener('resize', positionMenu)
-      return () => window.removeEventListener('resize', positionMenu)
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [servicesOpen, aboutOpen])
+
+  // Focus first item when Services dropdown opens
+  useEffect(() => {
+    if (servicesOpen && servicesDropdownRef.current) {
+      const firstLink = servicesDropdownRef.current.querySelector<HTMLAnchorElement>('a[href]')
+      if (firstLink) {
+        setTimeout(() => firstLink.focus(), 100)
+      }
     }
   }, [servicesOpen])
 
-  // Dynamic dropdown positioning for About (align with button)
+  // Focus first item when About dropdown opens
   useEffect(() => {
-    const positionMenu = () => {
-      if (!aboutButtonRef.current || !aboutDropdownRef.current || !navRef.current) return
-
-      const btn = aboutButtonRef.current
-      const menu = aboutDropdownRef.current
-      const nav = navRef.current
-      const parent = btn.closest('.relative') as HTMLElement
-      
-      if (!parent) return
-
-      const btnRect = btn.getBoundingClientRect()
-      const parentRect = parent.getBoundingClientRect()
-      const navRect = nav.getBoundingClientRect()
-
-      // Position relative to parent
-      const left = Math.max(0, btnRect.left - parentRect.left)
-      menu.style.left = `${left}px`
-      menu.style.top = '100%'
-      menu.style.marginTop = '8px'
-
-      // Check if overflow and adjust
-      const menuRect = menu.getBoundingClientRect()
-      const viewportWidth = window.innerWidth
-      
-      if (menuRect.right > viewportWidth - 12) {
-        const overflow = menuRect.right - viewportWidth + 12
-        menu.style.left = `${left - overflow}px`
+    if (aboutOpen && aboutDropdownRef.current) {
+      const firstLink = aboutDropdownRef.current.querySelector<HTMLAnchorElement>('a[href]')
+      if (firstLink) {
+        setTimeout(() => firstLink.focus(), 100)
       }
-    }
-
-    if (aboutOpen) {
-      // Small delay to ensure DOM is ready
-      setTimeout(positionMenu, 0)
-      window.addEventListener('resize', positionMenu)
-      return () => window.removeEventListener('resize', positionMenu)
     }
   }, [aboutOpen])
 
@@ -170,6 +143,7 @@ export default function Header() {
         className={`w-full bg-white shadow-sm sticky top-0 z-50 transition-all duration-300 ${
           scrolled ? 'shadow-md' : ''
         }`}
+        role="banner"
       >
         {/* Top Bar (phone + email + WhatsApp) */}
         <div className="hidden md:flex items-center justify-end text-sm text-gray-600 px-6 py-2 bg-gray-50 border-b border-gray-200">
@@ -198,7 +172,7 @@ export default function Header() {
         </div>
 
         {/* Main Navigation */}
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+        <div ref={containerRef} className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
           {/* Logo - Left */}
           <Link href="/" className="flex items-center gap-2 text-xl font-heading font-semibold text-gray-900 flex-shrink-0">
             <div className="w-10 h-10 bg-primary text-white flex items-center justify-center font-heading font-bold rounded-md">
@@ -211,90 +185,116 @@ export default function Header() {
           <nav
             ref={navRef}
             className="hidden md:flex items-center gap-8 text-gray-800 font-medium absolute left-1/2 transform -translate-x-1/2"
+            role="navigation"
+            aria-label="Main navigation"
           >
             <Link href="/" className="hover:text-primary transition whitespace-nowrap">
               Home
             </Link>
 
             {/* About Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setAboutOpen(true)}
-              onMouseLeave={() => setAboutOpen(false)}
-            >
+            <div className="relative">
               <button
                 ref={aboutButtonRef}
                 id="about-btn"
-                className="flex items-center gap-1 hover:text-primary transition"
+                onClick={() => {
+                  setAboutOpen(!aboutOpen)
+                  if (servicesOpen) setServicesOpen(false)
+                }}
+                className="flex items-center gap-1 hover:text-primary transition select-none"
+                aria-haspopup="true"
+                aria-expanded={aboutOpen}
+                aria-controls="about-dropdown"
               >
                 About
-                <ChevronDown size={16} className="mt-0.5" />
+                <ChevronDown size={16} className={`mt-0.5 transition-transform duration-200 ${aboutOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {aboutOpen && (
-                <div
-                  ref={aboutDropdownRef}
-                  id="about-dropdown"
-                  className="absolute left-0 top-full mt-2 w-[240px] bg-white shadow-xl rounded-xl p-4 border border-gray-100 z-50"
-                >
-                  <ul className="space-y-2">
-                    {aboutLinks.map((link, idx) => (
-                      <li key={idx}>
-                        <Link
-                          href={link.href}
-                          className="text-gray-800 hover:text-primary transition-colors text-sm block py-2 px-2 rounded-lg hover:bg-blue-50"
-                        >
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-        </div>
+              <AnimatePresence>
+                {aboutOpen && (
+                  <motion.div
+                    ref={aboutDropdownRef}
+                    id="about-dropdown"
+                    role="menu"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="absolute left-0 top-full mt-3 w-[240px] bg-white shadow-2xl rounded-xl p-4 border border-gray-100 z-[60]"
+                  >
+                    <ul className="space-y-2" role="none">
+                      {aboutLinks.map((link, idx) => (
+                        <li key={idx} role="none">
+                          <Link
+                            href={link.href}
+                            role="menuitem"
+                            className="text-gray-800 hover:text-primary transition-colors text-sm block py-2 px-2 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                            onClick={() => setAboutOpen(false)}
+                          >
+                            {link.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-            {/* SERVICES DROPDOWN - Oracom Style */}
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
+            {/* SERVICES DROPDOWN - Click-based with animations */}
+            <div className="relative">
               <button
                 ref={servicesButtonRef}
                 id="services-btn"
-                className="flex items-center gap-1 hover:text-primary transition"
+                onClick={() => {
+                  setServicesOpen(!servicesOpen)
+                  if (aboutOpen) setAboutOpen(false)
+                }}
+                className="flex items-center gap-1 hover:text-primary transition select-none"
+                aria-haspopup="true"
+                aria-expanded={servicesOpen}
+                aria-controls="services-dropdown"
               >
                 Services
-                <ChevronDown size={16} className="mt-0.5" />
+                <ChevronDown size={16} className={`mt-0.5 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {servicesOpen && (
-                <div
-                  ref={servicesDropdownRef}
-                  id="services-dropdown"
-                  className="absolute left-0 top-full mt-2 w-[720px] bg-white shadow-xl rounded-xl p-6 flex gap-8 border border-gray-100 z-50"
-                >
-                  {serviceColumns.map((col, i) => (
-                    <div key={i} className="flex-1">
-                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-4 font-semibold">
-                        {col.label}
-                      </p>
-                      <ul className="space-y-3">
-                        {col.items.map((item, idx) => (
-                          <li key={idx}>
-                            <Link
-                              href={item.href}
-                              className="text-gray-800 hover:text-primary transition-colors text-sm block py-1.5"
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <AnimatePresence>
+                {servicesOpen && (
+                  <motion.div
+                    ref={servicesDropdownRef}
+                    id="services-dropdown"
+                    role="menu"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="absolute left-0 top-full mt-3 w-[750px] max-w-[calc(100vw-2rem)] bg-white shadow-2xl rounded-xl p-6 flex flex-col md:flex-row gap-8 border border-gray-100 z-[60]"
+                  >
+                    {serviceColumns.map((col, i) => (
+                      <div key={i} className="flex-1 min-w-0">
+                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-4 font-semibold">
+                          {col.label}
+                        </p>
+                        <ul className="space-y-3" role="none">
+                          {col.items.map((item, idx) => (
+                            <li key={idx} role="none">
+                              <Link
+                                href={item.href}
+                                role="menuitem"
+                                className="text-gray-800 hover:text-blue-600 transition-colors text-sm block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1 py-0.5 -mx-1 -my-0.5"
+                                onClick={() => setServicesOpen(false)}
+                              >
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link href="/portfolio" className="hover:text-primary transition whitespace-nowrap">
