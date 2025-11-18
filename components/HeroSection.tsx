@@ -105,7 +105,7 @@ export default function Hero() {
           >
             <Link
               href="/contact"
-              className="bg-[#2563EB] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#1E40AF] transition-all duration-300 font-medium"
+              className="bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300 font-medium"
               onClick={() => {
                 if (typeof window !== 'undefined' && (window as any).gtag) {
                   (window as any).gtag('event', 'audit_cta_click', {

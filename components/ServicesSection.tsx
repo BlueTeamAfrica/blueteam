@@ -18,7 +18,7 @@ const services = [
     description:
       'Custom websites and web applications built with modern technologies for optimal performance and user experience.',
     href: '/web-design',
-    color: 'bg-blue-100 text-blue-600',
+    color: 'bg-primary-100 text-primary',
   },
   {
     icon: Smartphone,
@@ -97,18 +97,18 @@ export default function ServicesSection() {
               >
                 <Link
                   href={service.href}
-                  className="block bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 h-full group border border-gray-100 hover:border-[#2563EB]/20"
+                  className="block bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 h-full group border border-gray-100 hover:border-primary/20"
                 >
                   <div className={`w-12 h-12 rounded-lg ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#2563EB] transition-colors">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
                     {service.description}
                   </p>
-                  <div className="mt-4 flex items-center text-[#2563EB] font-medium text-sm group-hover:gap-2 transition-all">
+                  <div className="mt-4 flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
                     Learn more
                     <svg
                       className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"

@@ -9,9 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#2563EB',
-        'primary-dark': '#1E40AF',
-        'primary-light': '#60A5FA',
+        primary: '#1982c4',
+        'primary-dark': '#14699a',
+        'primary-light': '#4da3d9',
+        'primary-50': '#e6f2f8',
+        'primary-100': '#cce5f1',
         secondary: '#D97706',
         background: '#F8FAFC',
         surface: '#FFFFFF',

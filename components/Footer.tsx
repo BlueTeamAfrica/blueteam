@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-[#2563EB] text-white flex items-center justify-center font-heading font-bold">
+              <div className="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center font-heading font-bold">
                 BT
               </div>
               <span className="text-lg font-heading font-semibold">

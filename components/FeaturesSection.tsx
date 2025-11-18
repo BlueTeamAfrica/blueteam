@@ -9,7 +9,7 @@ const features = [
     title: 'Mission-Driven Approach',
     description:
       'We understand the unique needs of NGOs and mission-driven organizations across East Africa.',
-    color: 'text-[#2563EB]',
+    color: 'text-primary',
   },
   {
     icon: Zap,
