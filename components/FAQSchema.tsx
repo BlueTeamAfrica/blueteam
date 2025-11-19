@@ -1,4 +1,4 @@
-import { faqs } from './FAQSection'
+import { faqs } from '@/lib/faqs'
 
 export default function FAQSchema() {
   const faqSchema = {
