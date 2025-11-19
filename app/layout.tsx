@@ -1,8 +1,23 @@
 import type { Metadata } from 'next'
+import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -18,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-gray-900 font-body antialiased">
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+      <body className={`${inter.className} bg-white text-gray-900 font-body antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />
