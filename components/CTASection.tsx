@@ -25,6 +25,7 @@ export default function CTASection() {
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+              aria-label="Get started with website design and cyber security services - Contact us"
               onClick={() => {
                 if (typeof window !== 'undefined' && (window as any).gtag) {
                   (window as any).gtag('event', 'cta_click', {
@@ -38,10 +39,11 @@ export default function CTASection() {
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              href="/solutions"
+              href="/portfolio"
               className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-all duration-300"
+              aria-label="View our portfolio of website design and development projects"
             >
-              View Solutions
+              View Portfolio
             </Link>
           </div>
         </motion.div>

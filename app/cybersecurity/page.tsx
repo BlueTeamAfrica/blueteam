@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 
 export const metadata = {
@@ -18,6 +19,21 @@ export default function CybersecurityPage() {
           <p className="text-xl text-primary-100 max-w-2xl mx-auto">
             Protect your business with comprehensive security solutions and expert guidance
           </p>
+        </div>
+      </section>
+
+      {/* Hero Image */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+            <Image
+              src="/images/services/cybersecurity/b.webp"
+              alt="Cybersecurity"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
         </div>
       </section>
 

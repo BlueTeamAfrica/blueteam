@@ -61,15 +61,15 @@ export default function Hero() {
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16 md:pt-[72px]">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
-            src="/images/hero/8.webp"
-            alt="Blue Team Africa Hero"
-            fill
-            className="object-cover opacity-80"
-            priority
-            quality={85}
-            sizes="100vw"
-          />
+            <Image
+              src="/images/hero/P.webp"
+              alt="Blue Team Africa hero — enterprise web design and cyber security"
+              fill
+              className="object-cover opacity-80"
+              priority
+              quality={85}
+              sizes="100vw"
+            />
         </div>
 
         {/* Dark Overlay */}
@@ -83,7 +83,7 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="text-white text-4xl md:text-6xl font-heading font-bold leading-tight"
           >
-            Leading Web, Mobile & Cloud Solutions in East Africa
+            Transform Your Business with Enterprise-Grade Website Design & Cyber Security
           </motion.h1>
 
           <motion.p
@@ -92,8 +92,7 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-gray-200 mt-4 text-lg md:text-xl max-w-3xl mx-auto"
           >
-            We build powerful digital systems for NGOs, companies & startups across Uganda,
-            Kenya & Rwanda.
+            Professional website development and cyber security solutions for businesses across Uganda, Kenya & Rwanda. Build powerful digital systems that grow your business.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -106,6 +105,7 @@ export default function Hero() {
             <Link
               href="/contact"
               className="bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary-dark transition-all duration-300 font-medium"
+              aria-label="Get started with website design and cyber security services"
               onClick={() => {
                 if (typeof window !== 'undefined' && (window as any).gtag) {
                   (window as any).gtag('event', 'audit_cta_click', {

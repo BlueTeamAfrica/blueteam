@@ -1,44 +1,43 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CheckCircle, Target, Zap, Users } from 'lucide-react'
+import { CheckCircle, Target, Users } from 'lucide-react'
 
 const features = [
   {
     icon: Target,
-    title: 'Mission-Driven Approach',
+    title: 'Outcome-First',
     description:
-      'We understand the unique needs of NGOs and mission-driven organizations across East Africa.',
+      'We focus on delivering measurable results that drive business growth and success for our clients across East Africa.',
     color: 'text-primary',
   },
   {
-    icon: Zap,
-    title: 'Fast Delivery',
+    icon: Users,
+    title: 'Regional Expertise',
     description:
-      'Agile development process ensures rapid delivery without compromising quality.',
-    color: 'text-[#D97706]',
+      'Deep understanding of East African markets, business practices, and technical infrastructure requirements.',
+    color: 'text-primary',
   },
   {
     icon: CheckCircle,
-    title: 'Proven Track Record',
+    title: 'Security & Reliability',
     description:
-      'Years of experience delivering successful projects for businesses and organizations.',
+      'Enterprise-grade security practices, reliable hosting, and comprehensive data protection for your business.',
     color: 'text-green-600',
-  },
-  {
-    icon: Users,
-    title: 'Expert Team',
-    description:
-      'Skilled developers and designers with deep expertise in modern technologies.',
-    color: 'text-purple-600',
   },
 ]
 
 export default function FeaturesSection() {
   return (
-    <section className="py-20 bg-white">
+    <section 
+      className="py-20 bg-white"
+      aria-labelledby="why-choose-us"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <h2 id="why-choose-us" className="text-3xl font-heading font-bold text-gray-900 mb-12 text-center">
+          Why Choose Blue Team Africa
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon
             return (

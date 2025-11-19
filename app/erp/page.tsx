@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 
 export const metadata = {
@@ -18,6 +19,21 @@ export default function ERPPage() {
           <p className="text-xl text-primary-100 max-w-2xl mx-auto">
             Streamline operations and boost productivity with integrated ERP solutions
           </p>
+        </div>
+      </section>
+
+      {/* Hero Image */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+            <Image
+              src="/images/services/erp/s.webp"
+              alt="ERP Systems"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
         </div>
       </section>
 
