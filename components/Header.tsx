@@ -137,6 +137,13 @@ export default function Header() {
     { name: 'Our Process', href: '/process' },
   ]
 
+  // X.com Icon Component (Twitter replacement) - Official X logo
+  const XIcon = ({ size, className }: { size: number; className?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  )
+
   const socialLinks = [
     { 
       label: 'Facebook', 
@@ -145,10 +152,10 @@ export default function Header() {
       color: '#1877F2'
     },
     { 
-      label: 'Twitter', 
+      label: 'X (Twitter)', 
       href: 'https://twitter.com/blueteamafrica', 
-      icon: Twitter,
-      color: '#1DA1F2'
+      icon: XIcon,
+      color: '#000000'
     },
     { 
       label: 'LinkedIn', 
@@ -179,37 +186,42 @@ export default function Header() {
         role="banner"
       >
         {/* Top Bar (phone + email + social) - Oracom Style */}
-        <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-2.5 text-white border-b" style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-primary-dark)' }}>
-          {/* Left: Social Icons (Mobile only) */}
-          <div className="flex items-center gap-2 md:hidden">
-            {socialLinks.map((social) => {
-              const Icon = social.icon
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-1.5 hover:bg-white/10 rounded transition-colors"
-                  aria-label={social.label}
-                  style={{
-                    ['--hover-color' as string]: social.color
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = social.color
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'white'
-                  }}
-                >
-                  <Icon size={16} className="text-white" />
-                </a>
-              )
-            })}
-          </div>
-
-          {/* Right: Phone + Email */}
-          <div className="flex items-center gap-4 md:gap-6">
+        <div className="flex items-center justify-end px-4 md:px-6 py-2 md:py-2.5 text-white border-b" style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-primary-dark)' }}>
+          {/* Right: Social Icons + Phone + Email */}
+          <div className="flex items-center gap-3 md:gap-4">
+            {/* Social Icons - Mobile next to phone, Desktop together */}
+            <div className="flex items-center gap-1.5 md:gap-2">
+              {socialLinks.map((social) => {
+                const Icon = social.icon
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 md:p-2 rounded transition-all duration-300 hover:opacity-0 hover:scale-0 hover:pointer-events-none"
+                    aria-label={social.label}
+                    style={{
+                      ['--hover-color' as string]: social.color
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.opacity = '0'
+                      e.currentTarget.style.transform = 'scale(0)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.opacity = '1'
+                      e.currentTarget.style.transform = 'scale(1)'
+                    }}
+                  >
+                    {social.label === 'X (Twitter)' ? (
+                      <XIcon size={16} className="text-white" />
+                    ) : (
+                      <Icon size={16} className="text-white" />
+                    )}
+                  </a>
+                )
+              })}
+            </div>
             <a
               href="tel:+256765508131"
               className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm font-semibold hover:text-gray-100 transition-colors"
@@ -395,21 +407,22 @@ export default function Header() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-gray-600 hover:text-white rounded-lg transition-all duration-300 hover:scale-110"
+                  className="p-2 text-gray-600 rounded-lg transition-all duration-300 hover:opacity-0 hover:scale-0 hover:pointer-events-none"
                   aria-label={social.label}
-                  style={{
-                    ['--hover-bg' as string]: social.color
-                  }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = social.color
-                    e.currentTarget.style.backgroundColor = `${social.color}20`
+                    e.currentTarget.style.opacity = '0'
+                    e.currentTarget.style.transform = 'scale(0)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#4B5563'
-                    e.currentTarget.style.backgroundColor = 'transparent'
+                    e.currentTarget.style.opacity = '1'
+                    e.currentTarget.style.transform = 'scale(1)'
                   }}
                 >
-                  <Icon size={18} />
+                  {social.label === 'X (Twitter)' ? (
+                    <XIcon size={18} className="text-gray-600" />
+                  ) : (
+                    <Icon size={18} className="text-gray-600" />
+                  )}
                 </a>
               )
             })}
