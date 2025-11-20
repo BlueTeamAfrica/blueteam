@@ -81,7 +81,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-gray-400 mb-4 leading-relaxed text-sm">
-              Empowering East Africa with cutting-edge digital solutions. We build powerful web, mobile, and cloud systems for businesses, NGOs, and startups.
+              Blue Team Africa provides high-performance web design, hosting, branding, and digital solutions for NGOs, companies, and startups across East Africa. Built with precision, powered by technology, and crafted with psylo.
             </p>
             
             {/* Location */}

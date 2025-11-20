@@ -55,40 +55,17 @@ export default function Home() {
         {/* HERO */}
         <HeroClient />
 
-        {/* INTRO */}
-        <section className="py-20 bg-white" aria-labelledby="intro-heading">
-          <div className="max-w-5xl mx-auto px-6 text-center">
-            <h2 id="intro-heading" className="text-3xl font-heading font-semibold">
-              Digital Systems Built for East African Organisations
-            </h2>
-            <p className="mt-4 text-gray-600 leading-relaxed">
-              Blue Team Africa builds fast, secure websites and fully integrated digital systems for NGOs, startups and enterprises.
-              Our solutions reduce operational friction, speed up reporting, strengthen security and increase online revenue.
-              Explore how our work in website design, website development, ERP systems and cyber security is transforming digital operations across the region.
-            </p>
-            <div className="mt-6 flex items-center justify-center gap-4 flex-wrap">
-              <Link href="/web-design" className="text-primary underline hover:text-primary-dark">
-                Website Design
-              </Link>
-              <Link href="/cybersecurity" className="text-primary underline hover:text-primary-dark">
-                Cyber Security
-              </Link>
-              <Link href="/portfolio" className="text-primary underline hover:text-primary-dark">
-                Portfolio
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* INTRO - This section can be removed or merged since hero now has expanded content */}
 
         {/* SERVICES GRID */}
         <section id="services" className="py-20 bg-gray-50" aria-labelledby="services-heading">
         <div className="max-w-6xl mx-auto px-6">
             <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              Our Services — Website Design, Development & Security
+              What We Do
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* CARD 1 */}
+              {/* CARD 1 - Web Design & Development */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
@@ -99,109 +76,109 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Website Design & Development</h3>
+                <h3 className="text-xl font-semibold">Web Design & Development</h3>
                 <p className="mt-2 text-gray-600">
-                  Mobile-first, SEO-ready websites built for NGOs & SMEs in Uganda, Kenya and Rwanda.
+                  We design modern, responsive, and user-friendly websites tailored to NGOs, businesses, and startups in East Africa. Every project includes SEO, security, performance optimization, and analytics.
                 </p>
                 <Link href="/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 2 */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/portfolio/i.webp"
-                    alt="website build fast launch package Uganda"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">Quick Website Build</h3>
-                <p className="mt-2 text-gray-600">
-                  Launch a fast, secure website in days using our rapid build framework.
-                </p>
-                <Link href="/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  Learn more →
-                </Link>
-              </article>
-
-              {/* CARD 3 */}
+              {/* CARD 2 - Web Hosting & Management */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
                     src="/images/home/services/hosting.webp"
-                    alt="managed hosting Uganda secure"
+                    alt="web hosting Uganda secure managed hosting"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Managed Hosting</h3>
+                <h3 className="text-xl font-semibold">Web Hosting & Management</h3>
                 <p className="mt-2 text-gray-600">
-                  Secure hosting with backups, SSL, CDN and 99.9% uptime monitoring.
+                  Fast, secure, and reliable hosting on global-grade servers. Includes domain integration, security monitoring, uptime tracking, automatic backups, and 24/7 technical support.
                 </p>
                 <Link href="/hosting" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 4 */}
+              {/* CARD 3 - Digital Transformation Solutions */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
                     src="/images/home/services/crm-erp.webp"
-                    alt="ERP CRM systems Uganda"
+                    alt="digital transformation ERP CRM systems Uganda"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">CRM & ERP Systems</h3>
+                <h3 className="text-xl font-semibold">Digital Transformation Solutions</h3>
                 <p className="mt-2 text-gray-600">
-                  Connect finance, sales and operations into one integrated system.
+                  We help organizations modernize their operations with enterprise tools — including CRM systems, ERP integrations, automation, and cloud workflows powered by Google AI Studio.
                 </p>
                 <Link href="/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 5 */}
+              {/* CARD 4 - Branding & Visual Identity */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
                     src="/images/home/services/mobile-apps.webp"
-                    alt="mobile app development Uganda"
+                    alt="branding logo design visual identity Uganda"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Mobile App Development</h3>
+                <h3 className="text-xl font-semibold">Branding & Visual Identity</h3>
                 <p className="mt-2 text-gray-600">
-                  Field apps and customer apps built for low-bandwidth environments.
+                  Logo design, brand guidelines, digital assets, and messaging frameworks that reflect your mission, values, and audience.
                 </p>
-                <Link href="/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/branding" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 6 */}
+              {/* CARD 5 - NGO & Humanitarian Digital Support */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/cybersecurity.webp"
-                    alt="cyber security Uganda"
+                    src="/images/portfolio/i.webp"
+                    alt="NGO humanitarian digital support portals Uganda"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Cyber Security</h3>
+                <h3 className="text-xl font-semibold">NGO & Humanitarian Digital Support</h3>
                 <p className="mt-2 text-gray-600">
-                  Pen testing, incident response and complete security hardening.
+                  Specialized digital services for NGOs, community organizations, and humanitarian entities — including portals, reporting tools, M&E dashboards, and donor-focused digital assets.
+                </p>
+                <Link href="/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                  Learn more →
+                </Link>
+              </article>
+
+              {/* CARD 6 - Cybersecurity */}
+              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/home/services/cybersecurity.webp"
+                    alt="cyber security Uganda penetration testing"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">Cybersecurity</h3>
+                <p className="mt-2 text-gray-600">
+                  Security audits, penetration testing, infrastructure hardening & incident response for SMEs and NGOs.
                 </p>
                 <Link href="/cybersecurity" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
@@ -214,46 +191,73 @@ export default function Home() {
         {/* WHY CHOOSE */}
         <section className="py-20 bg-white" aria-labelledby="why-choose-heading">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 id="why-choose-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              Why Organisations Choose Blue Team Africa
+            <h2 id="why-choose-heading" className="text-3xl font-heading font-semibold text-center mb-6">
+              Why Organizations Choose Blue Team Africa
             </h2>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+              Our approach blends technical excellence with deep understanding of the East African market. We don't just build websites — we build systems that support your operations, improve trust, and unlock new opportunities.
+            </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div>
-                <h3 className="text-xl font-semibold">Outcome-first Approach</h3>
-                <p className="mt-2 text-gray-600">
-                  We focus on measurable results — reduced errors, faster reporting and increased conversions.
+                <h3 className="text-xl font-semibold mb-3">Lightning-Fast Performance</h3>
+                <p className="text-gray-600">
+                  We build fully optimized websites with clean structure, compressed assets, CDN delivery, and high Lighthouse scores — ensuring your site loads instantly even on slow connections.
                 </p>
-                <Link href="/portfolio" className="text-primary underline mt-3 inline-block hover:text-primary-dark">
-                  See Projects
-                </Link>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold">Regional Expertise</h3>
-                <p className="mt-2 text-gray-600">
-                  Deep understanding of East African UX, mobile money and low-bandwidth systems.
+                <h3 className="text-xl font-semibold mb-3">SEO Built Into Every Page</h3>
+                <p className="text-gray-600">
+                  From metadata to content structure, keyword targeting, schema, and internal linking — your website is engineered to rank on page 1 in Uganda, Kenya, Rwanda, and the broader region.
                 </p>
-                <Link href="/mobile-apps" className="text-primary underline mt-3 inline-block hover:text-primary-dark">
-                  Learn More
-                </Link>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold">Security & Reliability</h3>
-                <p className="mt-2 text-gray-600">
-                  Built-in hosting, backups, monitoring and penetration testing.
+                <h3 className="text-xl font-semibold mb-3">High-Security Hosting</h3>
+                <p className="text-gray-600">
+                  We host your systems on global-grade infrastructure with automatic backups, SSL, firewalls, and AI-powered threat detection.
                 </p>
-                <Link href="/cybersecurity" className="text-primary underline mt-3 inline-block hover:text-primary-dark">
-                  Cyber Security
-                </Link>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Affordable & Scalable Packages</h3>
+                <p className="text-gray-600">
+                  From small organizations to large regional NGOs, our packages adapt to your operations, budget, and long-term growth plans.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Psylo-Driven Creativity</h3>
+                <p className="text-gray-600">
+                  Your brand deserves something unique. Psylo is our creative philosophy — blending precision, clarity, and elegant simplicity into every design.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Regional Expertise</h3>
+                <p className="text-gray-600">
+                  Deep understanding of East African UX, mobile money, low-bandwidth systems, and donor reporting requirements.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
+        {/* REGIONAL SEO SECTION */}
+        <section className="py-20 bg-gray-50" aria-labelledby="regional-heading">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <h2 id="regional-heading" className="text-3xl font-heading font-semibold mb-6">
+              Serving NGOs & Businesses Across East Africa
+            </h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Blue Team Africa supports organizations operating across <strong>Uganda</strong>, <strong>Kenya</strong>, <strong>Rwanda</strong>, and <strong>Sudan</strong>. We understand the unique challenges of the region — from infrastructure to donor reporting — and deliver solutions that work in real field conditions. Whether you need <strong>Uganda web design</strong>, <strong>Kenya SEO services</strong>, <strong>Rwanda hosting</strong>, <strong>Sudan humanitarian tech</strong>, or <strong>East Africa NGOs digital support</strong> — our team has the expertise to deliver results.
+            </p>
+          </div>
+        </section>
+
         {/* PORTFOLIO PREVIEW */}
-        <section id="portfolio" className="py-20 bg-gray-50" aria-labelledby="portfolio-heading">
+        <section id="portfolio" className="py-20 bg-white" aria-labelledby="portfolio-heading">
         <div className="max-w-6xl mx-auto px-6">
             <h2 id="portfolio-heading" className="text-3xl font-heading font-semibold text-center mb-12">
               Selected Projects — Measurable Results
@@ -337,7 +341,7 @@ export default function Home() {
         </section>
 
         {/* FAQ PREVIEW */}
-        <section className="py-20 bg-white" aria-labelledby="faq-heading">
+        <section className="py-20 bg-gray-50" aria-labelledby="faq-heading">
           <div className="max-w-5xl mx-auto px-6">
             <h2 id="faq-heading" className="text-3xl font-heading font-semibold text-center mb-12">
               FAQ
@@ -393,28 +397,26 @@ export default function Home() {
         <section className="py-20 bg-[#F8FAFF] text-center" aria-labelledby="cta-heading">
           <div className="max-w-4xl mx-auto px-6">
             <h3 id="cta-heading" className="text-3xl font-heading font-semibold">
-              Ready to remove operational friction?
+              Book a Free Consultation
             </h3>
             <p className="mt-3 text-gray-600">
-              Book a free systems audit and get a prioritized digital roadmap.
+              Let's discuss your project and build a solution tailored to your mission.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <Link
                 href="/contact"
                 className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition"
-                aria-label="Book a free systems audit"
+                aria-label="Book a free consultation"
               >
-                Book Audit
+                Book a Free Consultation
               </Link>
-              <a
-                href="https://wa.me/256765508131"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/web-design"
                 className="px-6 py-3 border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-50 transition"
-                aria-label="Contact us on WhatsApp"
+                aria-label="Explore our services"
               >
-                WhatsApp Us
-              </a>
+                Explore Our Services
+              </Link>
           </div>
         </div>
       </section>

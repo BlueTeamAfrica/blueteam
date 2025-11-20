@@ -59,7 +59,7 @@ export default function HeroClient() {
   return (
     <>
       <section className="relative w-full min-h-screen flex items-center justify-center bg-black text-white pt-16 md:pt-[72px]">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero/hero-gradient-abstract.webp"
             alt="website design and cyber security services in Uganda"
@@ -71,55 +71,36 @@ export default function HeroClient() {
         </div>
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-black/30 z-0"></div>
 
-        <div className="relative z-10 text-center max-w-3xl px-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-heading font-bold leading-tight"
-          >
-            Enterprise Website Design,
-            <span className="block text-[#60A5FA]">Web Development & Cyber Security</span>
-          </motion.h1>
+        <div className="relative z-20 text-center max-w-4xl px-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white">
+            Website Design & Digital Solutions
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="mt-6 text-lg md:text-xl text-gray-200"
-          >
-            Modern, fast and secure digital systems built for NGOs, SMEs and enterprises across Uganda, Kenya and Rwanda.
-          </motion.p>
+          <p className="mt-6 text-lg sm:text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto">
+            Professional web design, hosting, and cybersecurity services for businesses in Uganda, Kenya, and Rwanda.
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="px-6 py-3 bg-primary rounded-lg text-white hover:bg-primary-dark transition"
-              aria-label="Start your website design and development project"
+              className="px-8 py-4 bg-primary rounded-lg text-white hover:bg-primary-dark transition font-semibold"
+              aria-label="Start your project"
             >
               Start Your Project
             </Link>
 
-            {/* Animated Play Button */}
-            <motion.button
+            {/* Play Button */}
+            <button
               onClick={handleVideoPlay}
-              initial={{ scale: 1 }}
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ repeat: Infinity, duration: 1.8 }}
               className="flex items-center gap-3 px-4 py-3 rounded-full bg-white/20 border border-white/30 text-white backdrop-blur hover:bg-white/30 transition-all duration-300"
               aria-label="Play introduction video"
             >
               <Play className="w-5 h-5 fill-white" />
               <span className="font-medium">Watch Video</span>
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -186,4 +167,3 @@ export default function HeroClient() {
     </>
   )
 }
-

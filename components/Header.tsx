@@ -145,20 +145,24 @@ export default function Header() {
         }`}
         role="banner"
       >
-        {/* Top Bar (phone + email) */}
-        <div className="hidden md:flex items-center justify-end text-xs text-gray-600 px-6 py-1.5 bg-gray-50 border-b border-gray-100">
-          <div className="flex items-center gap-4">
+        {/* Top Bar (phone + email) - Oracom Style */}
+        <div className="flex items-center justify-end px-4 md:px-6 py-2 md:py-2.5 text-white border-b" style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-primary-dark)' }}>
+          {/* Mobile: Phone only, Desktop: Phone + Email */}
+          <div className="flex items-center gap-4 md:gap-6">
             <a
               href="tel:+256765508131"
-              className="flex items-center gap-1 hover:text-primary transition-colors"
+              className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm font-semibold hover:text-gray-100 transition-colors"
             >
-              <Phone size={13} /> +256 765 508 131
+              <Phone size={14} className="md:w-4 md:h-4 text-white" /> 
+              <span className="font-bold">+256 765 508 131</span>
             </a>
+            {/* Email - Hidden on mobile, visible on desktop */}
             <a
               href="mailto:contact@blueteamafrica.com"
-              className="flex items-center gap-1 hover:text-primary transition-colors"
+              className="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-gray-100 transition-colors"
             >
-              <Mail size={13} /> contact@blueteamafrica.com
+              <Mail size={16} className="text-white" /> 
+              <span className="font-bold">contact@blueteamafrica.com</span>
             </a>
           </div>
         </div>
