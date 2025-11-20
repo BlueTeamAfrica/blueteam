@@ -55,7 +55,53 @@ export default function Home() {
         {/* HERO */}
         <HeroClient />
 
-        {/* INTRO - This section can be removed or merged since hero now has expanded content */}
+        {/* FEATURED CASE STUDY - CSLO Sudan */}
+        <section className="py-20 bg-white" aria-labelledby="case-study-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 id="case-study-heading" className="text-3xl font-heading font-semibold text-center mb-8">
+              Digital Transformation for CSLO Sudan
+            </h2>
+            <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                Blue Team implemented a complete ERPNext + Frappe CRM system for CSLO Sudan, enabling real-time project tracking, automated reporting, secure data storage, and a custom mobile app for field officers working in crisis-affected areas.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700">Centralized beneficiaries, projects & inventory</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700">Automated workflows and reporting dashboards</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700">Mobile app for field data collection (even in low network zones)</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700">Full integration with their website</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-gray-700">100% secure cloud hosting</p>
+                  </div>
+                </div>
+              </div>
+              <div className="text-center">
+                <Link
+                  href="/portfolio/cslo-sudan"
+                  className="inline-block text-primary font-semibold hover:text-primary-dark underline"
+                >
+                  See full case study →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* SERVICES GRID */}
         <section id="services" className="py-20 bg-gray-50" aria-labelledby="services-heading">
@@ -78,7 +124,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold">Web Design & Development</h3>
                 <p className="mt-2 text-gray-600">
-                  We design modern, responsive, and user-friendly websites tailored to NGOs, businesses, and startups in East Africa. Every project includes SEO, security, performance optimization, and analytics.
+                  Modern, fast-loading websites optimized for visibility in East African markets and designed to convert visitors into partners, donors and clients.
                 </p>
                 <Link href="/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
@@ -96,51 +142,51 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Web Hosting & Management</h3>
+                <h3 className="text-xl font-semibold">ERP & CRM Systems (ERPNext/Frappe)</h3>
                 <p className="mt-2 text-gray-600">
-                  Fast, secure, and reliable hosting on global-grade servers. Includes domain integration, security monitoring, uptime tracking, automatic backups, and 24/7 technical support.
-                </p>
-                <Link href="/hosting" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  Learn more →
-                </Link>
-              </article>
-
-              {/* CARD 3 - Digital Transformation Solutions */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/crm-erp.webp"
-                    alt="digital transformation ERP CRM systems Uganda"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">Digital Transformation Solutions</h3>
-                <p className="mt-2 text-gray-600">
-                  We help organizations modernize their operations with enterprise tools — including CRM systems, ERP integrations, automation, and cloud workflows powered by Google AI Studio.
+                  Powerful, customizable systems for donor reporting, project tracking, HR, finance and inventory—tailored for NGOs and businesses.
                 </p>
                 <Link href="/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 4 - Branding & Visual Identity */}
+              {/* CARD 3 - Mobile App Development */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
                     src="/images/home/services/mobile-apps.webp"
-                    alt="branding logo design visual identity Uganda"
+                    alt="mobile app development for field teams"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Branding & Visual Identity</h3>
+                <h3 className="text-xl font-semibold">Mobile App Development</h3>
                 <p className="mt-2 text-gray-600">
-                  Logo design, brand guidelines, digital assets, and messaging frameworks that reflect your mission, values, and audience.
+                  Offline-first mobile apps for field teams, assessments, surveys and project monitoring. Syncs directly to your ERP or CRM.
                 </p>
-                <Link href="/branding" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                  Learn more →
+                </Link>
+              </article>
+
+              {/* CARD 4 - Hosting & Cloud Infrastructure */}
+              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/home/services/hosting.webp"
+                    alt="secure cloud hosting infrastructure"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">Hosting & Cloud Infrastructure</h3>
+                <p className="mt-2 text-gray-600">
+                  Secure cloud hosting built for speed, reliability and data protection.
+                </p>
+                <Link href="/hosting" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -149,7 +195,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/portfolio/i.webp"
+                    src="/images/portfolio/q.webp"
                     alt="NGO humanitarian digital support portals Uganda"
                     fill
                     className="object-cover"
@@ -188,71 +234,141 @@ export default function Home() {
         </div>
       </section>
 
-        {/* WHY CHOOSE */}
-        <section className="py-20 bg-white" aria-labelledby="why-choose-heading">
+        {/* WHY NGOs TRUST US */}
+        <section className="py-20 bg-white" aria-labelledby="why-trust-heading">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 id="why-choose-heading" className="text-3xl font-heading font-semibold text-center mb-6">
-              Why Organizations Choose Blue Team Africa
+            <h2 id="why-trust-heading" className="text-3xl font-heading font-semibold text-center mb-6">
+              Trusted Technology Partner for NGOs in Sudan, Uganda, Kenya & Rwanda
             </h2>
             <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-              Our approach blends technical excellence with deep understanding of the East African market. We don't just build websites — we build systems that support your operations, improve trust, and unlock new opportunities.
+              We specialize in digital tools for humanitarian organizations—including ERP systems, CRM platforms, monitoring tools, website portals and mobile data-collection apps. Our solutions are built to work in difficult environments, with limited connectivity and high security needs.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-3">Lightning-Fast Performance</h3>
+                <h3 className="text-xl font-semibold mb-3">Proven experience with East African NGOs</h3>
                 <p className="text-gray-600">
-                  We build fully optimized websites with clean structure, compressed assets, CDN delivery, and high Lighthouse scores — ensuring your site loads instantly even on slow connections.
+                  We've successfully implemented digital solutions for humanitarian organizations across the region.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-3">SEO Built Into Every Page</h3>
+                <h3 className="text-xl font-semibold mb-3">ERPNext & Frappe specialists</h3>
                 <p className="text-gray-600">
-                  From metadata to content structure, keyword targeting, schema, and internal linking — your website is engineered to rank on page 1 in Uganda, Kenya, Rwanda, and the broader region.
+                  Deep expertise in open-source ERP and CRM platforms tailored for NGOs and humanitarian operations.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-3">High-Security Hosting</h3>
+                <h3 className="text-xl font-semibold mb-3">Mobile apps for field reporting</h3>
                 <p className="text-gray-600">
-                  We host your systems on global-grade infrastructure with automatic backups, SSL, firewalls, and AI-powered threat detection.
+                  Offline-first mobile applications that sync seamlessly with your backend systems.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-3">Affordable & Scalable Packages</h3>
+                <h3 className="text-xl font-semibold mb-3">Secure, audited cloud hosting</h3>
                 <p className="text-gray-600">
-                  From small organizations to large regional NGOs, our packages adapt to your operations, budget, and long-term growth plans.
+                  Enterprise-grade infrastructure with encryption, backups, and compliance standards.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-3">Psylo-Driven Creativity</h3>
+                <h3 className="text-xl font-semibold mb-3">Fast delivery powered by AI pipelines</h3>
                 <p className="text-gray-600">
-                  Your brand deserves something unique. Psylo is our creative philosophy — blending precision, clarity, and elegant simplicity into every design.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Regional Expertise</h3>
-                <p className="text-gray-600">
-                  Deep understanding of East African UX, mobile money, low-bandwidth systems, and donor reporting requirements.
+                  Streamlined development processes that accelerate time-to-market without compromising quality.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* REGIONAL SEO SECTION */}
-        <section className="py-20 bg-gray-50" aria-labelledby="regional-heading">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <h2 id="regional-heading" className="text-3xl font-heading font-semibold mb-6">
-              Serving NGOs & Businesses Across East Africa
+        {/* OUR PROCESS */}
+        <section className="py-20 bg-gray-50" aria-labelledby="process-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 id="process-heading" className="text-3xl font-heading font-semibold text-center mb-12">
+              Our Process
             </h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Blue Team Africa supports organizations operating across <strong>Uganda</strong>, <strong>Kenya</strong>, <strong>Rwanda</strong>, and <strong>Sudan</strong>. We understand the unique challenges of the region — from infrastructure to donor reporting — and deliver solutions that work in real field conditions. Whether you need <strong>Uganda web design</strong>, <strong>Kenya SEO services</strong>, <strong>Rwanda hosting</strong>, <strong>Sudan humanitarian tech</strong>, or <strong>East Africa NGOs digital support</strong> — our team has the expertise to deliver results.
+            <div className="grid md:grid-cols-5 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">1</div>
+                <h3 className="text-lg font-semibold mb-2">Discovery</h3>
+                <p className="text-gray-600 text-sm">
+                  We analyze your operations, workflows and reporting needs.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">2</div>
+                <h3 className="text-lg font-semibold mb-2">Prototype</h3>
+                <p className="text-gray-600 text-sm">
+                  We design a clear system layout before development begins.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">3</div>
+                <h3 className="text-lg font-semibold mb-2">Development</h3>
+                <p className="text-gray-600 text-sm">
+                  We build your website, app or ERP using clean, scalable architecture.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">4</div>
+                <h3 className="text-lg font-semibold mb-2">Deployment</h3>
+                <p className="text-gray-600 text-sm">
+                  We migrate data, configure hosting and train your team.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">5</div>
+                <h3 className="text-lg font-semibold mb-2">Support</h3>
+                <p className="text-gray-600 text-sm">
+                  We monitor performance, updates and security—24/7.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* REGIONAL IMPACT */}
+        <section className="py-20 bg-white" aria-labelledby="regional-impact-heading">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <h2 id="regional-impact-heading" className="text-3xl font-heading font-semibold mb-6">
+              Serving Organizations Across East Africa
+            </h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+              From Sudan to Uganda, Kenya and Rwanda, we support NGOs, startups and growing businesses with digital solutions that improve operations, accountability and service delivery.
             </p>
+            {/* Country logos/icons can be added here */}
+            <div className="flex items-center justify-center gap-8 flex-wrap mt-8">
+              <div className="text-gray-600 font-semibold">Sudan</div>
+              <div className="text-gray-600 font-semibold">Uganda</div>
+              <div className="text-gray-600 font-semibold">Kenya</div>
+              <div className="text-gray-600 font-semibold">Rwanda</div>
+            </div>
+          </div>
+        </section>
+
+        {/* TECH STACK */}
+        <section className="py-12 bg-gray-50 border-t border-gray-200">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <p className="text-gray-600 mb-4">We build using:</p>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-gray-700 font-medium">
+              <span>ERPNext</span>
+              <span>•</span>
+              <span>Frappe</span>
+              <span>•</span>
+              <span>React</span>
+              <span>•</span>
+              <span>Next.js</span>
+              <span>•</span>
+              <span>Flutter</span>
+              <span>•</span>
+              <span>Firebase</span>
+              <span>•</span>
+              <span>Vercel</span>
+              <span>•</span>
+              <span>Tailwind</span>
+            </div>
           </div>
         </section>
 
@@ -267,18 +383,18 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/regional-logistics.webp"
-                    alt="ERP integration Uganda case study"
+                    src="/images/portfolio/cslo-sudan/cslo-banner.webp"
+                    alt="CSLO Sudan ERPNext and CRM implementation case study"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold">Regional Logistics — ERP Integration</h3>
+                  <h3 className="font-semibold">CSLO Sudan — ERP & CRM Digital Transformation</h3>
                   <p className="text-sm text-gray-600 mt-2">
-                    70% reduction in inventory discrepancies.
-                    <Link href="/portfolio/erp-integration" className="text-primary ml-1 hover:text-primary-dark">
+                    Complete ERPNext + Frappe CRM system with mobile field reporting for humanitarian operations.
+                    <Link href="/portfolio/cslo-sudan" className="text-primary ml-1 hover:text-primary-dark">
                       Read case study →
                     </Link>
                   </p>
@@ -350,19 +466,28 @@ export default function Home() {
             <div className="space-y-6">
               <details className="bg-gray-50 p-6 rounded-xl">
                 <summary className="font-semibold cursor-pointer">
-                  How long does a website take?
+                  Do you build ERP systems for NGOs in Sudan?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Standard websites take 7–21 days depending on features. Quick-build packages are ready in 3–5 days.
+                  Yes. We specialize in ERPNext and CRM solutions tailored for NGOs working in crisis-affected and low-connectivity regions.
                 </p>
               </details>
 
               <details className="bg-gray-50 p-6 rounded-xl">
                 <summary className="font-semibold cursor-pointer">
-                  Do you build eCommerce websites?
+                  Can you connect mobile apps directly to our ERP?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Yes — including mobile money, card payments and regional gateways.
+                  Absolutely. We build secure mobile apps that sync directly with ERPNext and Frappe databases.
+                </p>
+              </details>
+
+              <details className="bg-gray-50 p-6 rounded-xl">
+                <summary className="font-semibold cursor-pointer">
+                  How fast can you deliver a new website?
+                </summary>
+                <p className="mt-4 text-gray-600">
+                  Most NGO or business websites go live within 7–14 days.
                 </p>
               </details>
 
@@ -372,15 +497,6 @@ export default function Home() {
                 </summary>
                 <p className="mt-4 text-gray-600">
                   Yes — managed hosting with backups, SSL, CDN and uptime monitoring.
-                </p>
-              </details>
-
-              <details className="bg-gray-50 p-6 rounded-xl">
-                <summary className="font-semibold cursor-pointer">
-                  Can you integrate ERP or CRM systems?
-                </summary>
-                <p className="mt-4 text-gray-600">
-                  Absolutely. We integrate finance, inventory and sales systems for NGOs and enterprises.
                 </p>
               </details>
             </div>

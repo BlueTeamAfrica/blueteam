@@ -8,6 +8,13 @@ export const metadata = {
 
 const portfolioItems = [
   {
+    id: 'cslo-sudan',
+    title: 'ERP & CRM for CSLO Sudan',
+    description: 'Full ERPNext and Frappe CRM implementation with mobile field reporting for humanitarian operations in Sudan',
+    category: 'ERP Systems',
+    image: '/images/portfolio/cslo-sudan/cslo-banner.webp',
+  },
+  {
     id: 'ngo-portal',
     title: 'NGO Management Portal',
     description: 'Comprehensive platform for managing programs, beneficiaries, and donor relations',
@@ -19,7 +26,7 @@ const portfolioItems = [
     title: 'Enterprise ERP Integration',
     description: 'Custom ERP system integration for manufacturing company across multiple locations',
     category: 'ERP Systems',
-    image: '/images/portfolio/i.webp',
+    image: '/images/portfolio/q.webp',
   },
   {
     id: 'ecommerce-shop',

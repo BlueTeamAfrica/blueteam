@@ -27,7 +27,7 @@ export default function ERPIntegrationCaseStudy() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
-              src="/images/portfolio/i.webp"
+              src="/images/portfolio/q.webp"
               alt="Enterprise ERP Integration"
               fill
               className="object-cover"

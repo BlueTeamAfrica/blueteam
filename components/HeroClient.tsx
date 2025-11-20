@@ -75,11 +75,11 @@ export default function HeroClient() {
 
         <div className="relative z-20 text-center max-w-4xl px-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white">
-            Website Design & Digital Solutions
+            Digital Solutions for NGOs & Businesses Across East Africa
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto">
-            Professional web design, hosting, and cybersecurity services for businesses in Uganda, Kenya, and Rwanda.
+            We build fast, secure and scalable websites, ERP systems, CRMs and mobile apps—trusted by organizations operating in high-risk and low-connectivity regions.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

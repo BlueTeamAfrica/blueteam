@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
+import InteriorPageLayout from '@/components/InteriorPageLayout'
+import SectionWrapper from '@/components/SectionWrapper'
 
 export const metadata = {
   title: 'About Us',
@@ -9,36 +10,12 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Our Story
-          </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            From displacement to building digital solutions across East Africa
-          </p>
-        </div>
-      </section>
-
-      {/* Hero Image */}
-      <section className="py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
-            <Image
-              src="/images/about/1.jpg"
-              alt="Our Story"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Main Story */}
-      <section className="py-16 bg-white">
+    <InteriorPageLayout
+      title="Our Story"
+      subtitle="From displacement to building digital solutions across East Africa"
+    >
+      {/* Intro Text Section */}
+      <SectionWrapper bgColor="white">
         <div className="max-w-3xl mx-auto px-6">
           <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
@@ -87,10 +64,10 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Values Highlight */}
-      <section className="py-16 bg-gray-50">
+      <SectionWrapper bgColor="light">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
             What Drives Us
@@ -119,10 +96,10 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Related Pages */}
-      <section className="py-12 bg-white">
+      <SectionWrapper bgColor="highlight">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Learn More</h2>
           <div className="flex flex-wrap gap-4">
@@ -137,7 +114,7 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* CTA Strip */}
       <section className="py-12 bg-primary text-white">
@@ -164,7 +141,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </div>
+    </InteriorPageLayout>
   )
 }
-

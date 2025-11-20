@@ -1,6 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
+import InteriorPageLayout from '@/components/InteriorPageLayout'
+import SectionWrapper from '@/components/SectionWrapper'
+import ServiceSidebar from '@/components/ServiceSidebar'
 
 export const metadata = {
   title: 'Web Design & Development',
@@ -9,36 +11,14 @@ export const metadata = {
 
 export default function WebDesignPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Web Design & Development
-          </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            Custom websites that engage your audience and drive business growth
-          </p>
-        </div>
-      </section>
-
-      {/* Hero Image */}
-      <section className="py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
-            <Image
-              src="/images/services/web-design/e.webp"
-              alt="Web Design & Development"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Intro */}
-      <section className="py-12 bg-white">
+    <InteriorPageLayout
+      title="Web Design & Development"
+      subtitle="Custom websites that engage your audience and drive business growth"
+      showSidebar={true}
+      sidebar={<ServiceSidebar />}
+    >
+      {/* Intro Text Section */}
+      <SectionWrapper bgColor="white">
         <div className="max-w-3xl mx-auto px-6">
           <p className="text-lg text-gray-700 leading-relaxed">
             At Blue Team Africa, we create stunning, functional websites tailored to your business needs. 
@@ -47,10 +27,10 @@ export default function WebDesignPage() {
             that perform beautifully across all devices.
           </p>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* 3 Value Pillars */}
-      <section className="py-16 bg-gray-50">
+      <SectionWrapper bgColor="light">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -76,10 +56,10 @@ export default function WebDesignPage() {
             </div>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Why Choose Blue Team Africa */}
-      <section className="py-16 bg-white">
+      <SectionWrapper bgColor="white">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
             Why Choose Blue Team Africa?
@@ -99,10 +79,10 @@ export default function WebDesignPage() {
             </div>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Related Services */}
-      <section className="py-12 bg-gray-50">
+      <SectionWrapper bgColor="highlight">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
           <div className="flex flex-wrap gap-4">
@@ -117,7 +97,7 @@ export default function WebDesignPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* CTA Strip */}
       <section className="py-12 bg-primary text-white">
@@ -144,7 +124,6 @@ export default function WebDesignPage() {
           </div>
         </div>
       </section>
-    </div>
+    </InteriorPageLayout>
   )
 }
-
