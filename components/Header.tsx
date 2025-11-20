@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, Mail, ChevronDown, MessageCircle, Menu, X } from 'lucide-react'
+import { Phone, Mail, ChevronDown, MessageCircle, Menu, X, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -137,6 +137,39 @@ export default function Header() {
     { name: 'Our Process', href: '/process' },
   ]
 
+  const socialLinks = [
+    { 
+      label: 'Facebook', 
+      href: 'https://facebook.com/blueteamafrica', 
+      icon: Facebook,
+      color: '#1877F2'
+    },
+    { 
+      label: 'Twitter', 
+      href: 'https://twitter.com/blueteamafrica', 
+      icon: Twitter,
+      color: '#1DA1F2'
+    },
+    { 
+      label: 'LinkedIn', 
+      href: 'https://linkedin.com/company/blueteamafrica', 
+      icon: Linkedin,
+      color: '#0A66C2'
+    },
+    { 
+      label: 'Instagram', 
+      href: 'https://instagram.com/blueteamafrica', 
+      icon: Instagram,
+      color: '#E4405F'
+    },
+    { 
+      label: 'YouTube', 
+      href: 'https://youtube.com/@blueteamafrica', 
+      icon: Youtube,
+      color: '#FF0000'
+    },
+  ]
+
   return (
     <>
       <header
@@ -145,9 +178,37 @@ export default function Header() {
         }`}
         role="banner"
       >
-        {/* Top Bar (phone + email) - Oracom Style */}
-        <div className="flex items-center justify-end px-4 md:px-6 py-2 md:py-2.5 text-white border-b" style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-primary-dark)' }}>
-          {/* Mobile: Phone only, Desktop: Phone + Email */}
+        {/* Top Bar (phone + email + social) - Oracom Style */}
+        <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-2.5 text-white border-b" style={{ backgroundColor: 'var(--color-primary)', borderColor: 'var(--color-primary-dark)' }}>
+          {/* Left: Social Icons (Mobile only) */}
+          <div className="flex items-center gap-2 md:hidden">
+            {socialLinks.map((social) => {
+              const Icon = social.icon
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 hover:bg-white/10 rounded transition-colors"
+                  aria-label={social.label}
+                  style={{
+                    ['--hover-color' as string]: social.color
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = social.color
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = 'white'
+                  }}
+                >
+                  <Icon size={16} className="text-white" />
+                </a>
+              )
+            })}
+          </div>
+
+          {/* Right: Phone + Email */}
           <div className="flex items-center gap-4 md:gap-6">
             <a
               href="tel:+256765508131"
@@ -323,6 +384,36 @@ export default function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </nav>
+
+          {/* Social Icons - Desktop Only (Right Side) */}
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+            {socialLinks.map((social) => {
+              const Icon = social.icon
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-gray-600 hover:text-white rounded-lg transition-all duration-300 hover:scale-110"
+                  aria-label={social.label}
+                  style={{
+                    ['--hover-bg' as string]: social.color
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = social.color
+                    e.currentTarget.style.backgroundColor = `${social.color}20`
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '#4B5563'
+                    e.currentTarget.style.backgroundColor = 'transparent'
+                  }}
+                >
+                  <Icon size={18} />
+                </a>
+              )
+            })}
+          </div>
 
           {/* Mobile Menu Button */}
           <button
