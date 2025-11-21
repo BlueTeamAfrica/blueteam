@@ -338,12 +338,24 @@ export default function Home() {
             <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
               From Sudan to Uganda, Kenya and Rwanda, we support NGOs, startups and growing businesses with digital solutions that improve operations, accountability and service delivery.
             </p>
-            {/* Country logos/icons can be added here */}
+            {/* Country flags */}
             <div className="flex items-center justify-center gap-8 flex-wrap mt-8">
-              <div className="text-gray-600 font-semibold">Sudan</div>
-              <div className="text-gray-600 font-semibold">Uganda</div>
-              <div className="text-gray-600 font-semibold">Kenya</div>
-              <div className="text-gray-600 font-semibold">Rwanda</div>
+              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
+                <span className="text-3xl">🇸🇩</span>
+                <span>Sudan</span>
+              </div>
+              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
+                <span className="text-3xl">🇺🇬</span>
+                <span>Uganda</span>
+              </div>
+              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
+                <span className="text-3xl">🇰🇪</span>
+                <span>Kenya</span>
+              </div>
+              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
+                <span className="text-3xl">🇷🇼</span>
+                <span>Rwanda</span>
+              </div>
             </div>
           </div>
         </section>
@@ -351,23 +363,64 @@ export default function Home() {
         {/* TECH STACK */}
         <section className="py-12 bg-gray-50 border-t border-gray-200">
           <div className="max-w-6xl mx-auto px-6 text-center">
-            <p className="text-gray-600 mb-4">We build using:</p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-gray-700 font-medium">
-              <span>ERPNext</span>
-              <span>•</span>
-              <span>Frappe</span>
-              <span>•</span>
-              <span>React</span>
-              <span>•</span>
-              <span>Next.js</span>
-              <span>•</span>
-              <span>Flutter</span>
-              <span>•</span>
-              <span>Firebase</span>
-              <span>•</span>
-              <span>Vercel</span>
-              <span>•</span>
-              <span>Tailwind</span>
+            <p className="text-gray-600 mb-6">We build using:</p>
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+              {/* ERPNext */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/erpnext/0089FF" alt="ERPNext" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">ERPNext</span>
+              </div>
+              {/* Frappe */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/frappe/0089FF" alt="Frappe" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">Frappe</span>
+              </div>
+              {/* React */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">React</span>
+              </div>
+              {/* Next.js */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">Next.js</span>
+              </div>
+              {/* Flutter */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">Flutter</span>
+              </div>
+              {/* Firebase */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">Firebase</span>
+              </div>
+              {/* Vercel */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">Vercel</span>
+              </div>
+              {/* Tailwind CSS */}
+              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
+                <div className="w-20 h-12 flex items-center justify-center">
+                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" className="w-12 h-12" />
+                </div>
+                <span className="text-xs text-gray-600 font-medium">Tailwind</span>
+              </div>
             </div>
           </div>
         </section>
