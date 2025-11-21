@@ -5,14 +5,14 @@ import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
 export const metadata = {
-  title: 'Web Design & Development',
-  description: 'Professional web design and development services for businesses across East Africa. Custom websites built with modern technologies.',
+  title: 'Web Design',
+  description: 'Professional web design services for businesses across East Africa. Custom websites built with modern technologies.',
 }
 
 export default function WebDesignPage() {
   return (
     <InteriorPageLayout
-      title="Web Design & Development"
+      title="Web Design"
       subtitle="Custom websites that engage your audience and drive business growth"
       showSidebar={true}
       sidebar={<ServiceSidebar />}

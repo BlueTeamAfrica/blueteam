@@ -110,7 +110,7 @@ export default function CRMPage() {
               ERP Systems →
             </Link>
             <Link href="/services/web-design" className="text-primary hover:text-primary-dark font-medium">
-              Web Design & Development →
+              Web Design →
             </Link>
             <Link href="/services/custom-systems" className="text-primary hover:text-primary-dark font-medium">
               Custom Software Development →

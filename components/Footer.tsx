@@ -14,7 +14,7 @@ export default function Footer() {
   ]
 
   const servicesLinks = [
-    { label: 'Web Design & Development', href: '/services/web-design' },
+    { label: 'Web Design', href: '/services/web-design' },
     { label: 'Mobile App Development', href: '/services/mobile-apps' },
     { label: 'Cloud & Web Hosting', href: '/services/hosting' },
     { label: 'ERP Systems', href: '/services/erp' },

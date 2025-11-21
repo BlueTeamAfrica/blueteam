@@ -111,7 +111,7 @@ export default function Home() {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* CARD 1 - Web Design & Development */}
+              {/* CARD 1 - Web Design */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
@@ -122,7 +122,7 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Web Design & Development</h3>
+                <h3 className="text-xl font-semibold">Web Design</h3>
                 <p className="mt-2 text-gray-600">
                   Modern, fast-loading websites optimized for visibility in East African markets and designed to convert visitors into partners, donors and clients.
                 </p>

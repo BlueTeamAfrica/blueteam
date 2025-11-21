@@ -108,7 +108,7 @@ export default function Header() {
     {
       label: 'Development',
       items: [
-        { name: 'Web Design & Development', href: '/services/web-design' },
+        { name: 'Web Design', href: '/services/web-design' },
         { name: 'Website Development', href: '/services/website-development' },
         { name: 'Mobile App Development', href: '/services/mobile-apps' },
         { name: 'E-commerce Development', href: '/services/ecommerce' },

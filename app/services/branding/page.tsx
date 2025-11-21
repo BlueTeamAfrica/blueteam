@@ -107,7 +107,7 @@ export default function BrandingPage() {
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
           <div className="flex flex-wrap gap-4">
             <Link href="/services/web-design" className="text-primary hover:text-primary-dark font-medium">
-              Web Design & Development →
+              Web Design →
             </Link>
             <Link href="/services/ui-ux" className="text-primary hover:text-primary-dark font-medium">
               UI/UX Design →
