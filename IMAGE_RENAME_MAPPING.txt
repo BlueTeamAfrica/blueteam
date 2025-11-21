@@ -1,0 +1,39 @@
+# Image Renaming Mapping
+# Format: OLD_PATH -> NEW_PATH
+
+/images/about/1.jpg -> /images/about/about-team-member-1-v01.jpg
+/images/about/11.jpg -> /images/about/about-team-member-11-v01.jpg
+/images/about/12.jpg -> /images/about/about-team-member-12-v01.jpg
+/images/about/13.jpg -> /images/about/about-team-member-13-v01.jpg
+/images/about/3.jpg -> /images/about/about-team-member-3-v01.jpg
+/images/blog/2.jpg -> /images/blog/blog-post-thumbnail-2-v01.jpg
+/images/blog/3.webp -> /images/blog/blog-post-thumbnail-3-v01.webp
+/images/blog/6.webp -> /images/blog/blog-post-thumbnail-6-v01.webp
+/images/blog/7.webp -> /images/blog/blog-post-thumbnail-7-v01.webp
+/images/blog/d.webp -> /images/blog/blog-post-thumbnail-d-v01.webp
+/images/clients/8.webp -> /images/clients/clients-logo-8-v01.webp
+/images/home/a.webp -> /images/home/home-section-feature-a-v01.webp
+/images/home/b.webp -> /images/home/home-section-feature-b-v01.webp
+/images/home/e.webp -> /images/home/home-section-feature-e-v01.webp
+/images/home/m.webp -> /images/home/home-section-feature-m-v01.webp
+/images/home/portfolio/i.webp -> /images/home/portfolio/home-portfolio-preview-i-v01.webp
+/images/icons/2.webp -> /images/icons/icons-feature-2-v01.webp
+/images/portfolio/i.webp -> /images/portfolio/portfolio-project-preview-i-v01.webp
+/images/portfolio/q.webp -> /images/portfolio/portfolio-project-preview-q-v01.webp
+/images/portfolio/t.webp -> /images/portfolio/portfolio-project-preview-t-v01.webp
+/images/portfolio/u.webp -> /images/portfolio/portfolio-project-preview-u-v01.webp
+/images/portfolio/v.webp -> /images/portfolio/portfolio-project-preview-v-v01.webp
+/images/services/14.jpg -> /images/services/services-feature-process-14-v01.jpg
+/images/services/15.jpg -> /images/services/services-feature-process-15-v01.jpg
+/images/services/16.jpg -> /images/services/services-feature-process-16-v01.jpg
+/images/services/17.jpg -> /images/services/services-feature-process-17-v01.jpg
+/images/services/18.jpg -> /images/services/services-feature-process-18-v01.jpg
+/images/services/19.jpg -> /images/services/services-feature-process-19-v01.jpg
+/images/services/20.jpg -> /images/services/services-feature-process-20-v01.jpg
+/images/services/21.jpg -> /images/services/services-feature-process-21-v01.jpg
+/images/services/22.jpg -> /images/services/services-feature-process-22-v01.jpg
+/images/services/23.jpg -> /images/services/services-feature-process-23-v01.jpg
+/images/services/24.jpg -> /images/services/services-feature-process-24-v01.jpg
+/images/services/25.jpg -> /images/services/services-feature-process-25-v01.jpg
+/images/services/26.jpg -> /images/services/services-feature-process-26-v01.jpg
+/images/services/crm/_legacy/5.webp -> /images/services/crm/_legacy/services/crm/_legacy/crm-feature-legacy-5-v01.webp

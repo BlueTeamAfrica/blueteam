@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: 'Blue Team Africa',
     images: [
       {
-        url: '/images/portfolio/cslo-sudan/cslo-banner.webp',
+        url: '/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp',
         width: 1200,
         height: 630,
         alt: 'CSLO Sudan ERPNext and CRM Implementation',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ERP & CRM Digital Transformation for CSLO Sudan',
     description: 'A complete ERPNext + CRM digital transformation built for humanitarian operations in Sudan.',
-    images: ['/images/portfolio/cslo-banner.webp'],
+    images: ['/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp'],
   },
 }
 
@@ -100,7 +100,7 @@ export default function CSLOSudanCaseStudy() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="relative h-96 md:h-[500px] bg-gray-200 rounded-lg overflow-hidden">
               <Image
-                src="/images/portfolio/cslo-sudan/cslo-banner.webp"
+                src="/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp"
                 alt="ERPNext and Frappe CRM dashboard for CSLO Sudan humanitarian operations"
                 fill
                 className="object-cover"
@@ -155,8 +155,8 @@ export default function CSLOSudanCaseStudy() {
               <p>
                 Blue Team Africa delivered a complete digital transformation for CSLO Sudan, implementing 
                 a full ERPNext and Frappe CRM platform tailored for humanitarian operations. This project 
-                is part of our <Link href="/erp" className="text-primary hover:text-primary-dark underline">ERPNext Development</Link> and 
-                {' '}<Link href="/mobile-apps" className="text-primary hover:text-primary-dark underline">Mobile App Solutions</Link> for NGOs across Africa.
+                is part of our <Link href="/services/erp" className="text-primary hover:text-primary-dark underline">ERPNext Development</Link> and 
+                {' '}<Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark underline">Mobile App Solutions</Link> for NGOs across Africa.
               </p>
               <p>
                 The solution included:
@@ -245,17 +245,17 @@ export default function CSLOSudanCaseStudy() {
               </p>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/erp" className="text-primary hover:text-primary-dark underline">
+                  <Link href="/services/erp" className="text-primary hover:text-primary-dark underline">
                     → ERPNext Development & Implementation
                   </Link>
                 </li>
                 <li>
-                  <Link href="/crm" className="text-primary hover:text-primary-dark underline">
+                  <Link href="/services/crm" className="text-primary hover:text-primary-dark underline">
                     → CRM Solutions for NGOs
                   </Link>
                 </li>
                 <li>
-                  <Link href="/mobile-apps" className="text-primary hover:text-primary-dark underline">
+                  <Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark underline">
                     → Mobile App Development
                   </Link>
                 </li>

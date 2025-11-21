@@ -61,7 +61,7 @@ export default function HeroClient() {
       <section className="relative w-full min-h-screen flex items-center justify-center bg-black text-white pt-16 md:pt-[72px]">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero/hero-gradient-abstract.webp"
+            src="/images/hero/hero-banner-gradient-abstract-v01.webp"
             alt="website design and cyber security services in Uganda"
             fill
             className="object-cover opacity-90"

@@ -9,7 +9,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
     category: 'Web Development',
-    image: '/images/blog/2.jpg',
+    image: '/images/blog/blog-post-thumbnail-2-v01.jpg',
     content: `
       <p>Choosing the right website for your NGO is crucial for effectively reaching your audience, engaging donors, and managing your programs. With so many options available, it can be overwhelming to determine which solution best fits your organization's needs and budget.</p>
       
@@ -46,7 +46,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'Understanding the importance of fast hosting speeds for African businesses and how it impacts user experience and conversions.',
     date: '2024-01-10',
     category: 'Hosting',
-    image: '/images/blog/3.webp',
+    image: '/images/blog/blog-post-thumbnail-3-v01.webp',
     content: `
       <p>Website speed is critical for businesses everywhere, but in Africa, it takes on even greater significance due to unique infrastructure challenges and user behavior patterns. Slow-loading websites don't just frustrate users—they directly impact your bottom line.</p>
       

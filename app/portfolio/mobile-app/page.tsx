@@ -27,7 +27,7 @@ export default function MobileAppCaseStudy() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
-              src="/images/portfolio/k.webp"
+              src="/images/portfolio/_legacy/u.webp"
               alt="Healthcare Mobile App"
               fill
               className="object-cover"

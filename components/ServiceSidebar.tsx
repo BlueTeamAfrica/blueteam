@@ -4,16 +4,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const services = [
-  { name: 'Web Design & Development', href: '/web-design' },
-  { name: 'ERP & CRM Systems', href: '/erp' },
-  { name: 'Mobile App Development', href: '/mobile-apps' },
-  { name: 'Hosting & Cloud Infrastructure', href: '/hosting' },
-  { name: 'Cybersecurity', href: '/cybersecurity' },
-  { name: 'Branding & Visual Identity', href: '/branding' },
-  { name: 'UI/UX Design', href: '/ui-ux' },
-  { name: 'E-commerce Development', href: '/ecommerce' },
-  { name: 'Custom Systems', href: '/custom-systems' },
-  { name: 'Maintenance & Support', href: '/maintenance' },
+  { name: 'Web Design', href: '/services/web-design' },
+  { name: 'Website Development', href: '/services/website-development' },
+  { name: 'ERP & CRM Systems', href: '/services/erp' },
+  { name: 'Mobile App Development', href: '/services/mobile-apps' },
+  { name: 'Hosting & Cloud Infrastructure', href: '/services/hosting' },
+  { name: 'Cybersecurity', href: '/services/cybersecurity' },
+  { name: 'Branding & Visual Identity', href: '/services/branding' },
+  { name: 'UI/UX Design', href: '/services/ui-ux' },
+  { name: 'E-commerce Development', href: '/services/ecommerce' },
+  { name: 'Custom Systems', href: '/services/custom-systems' },
+  { name: 'Maintenance & Support', href: '/services/maintenance' },
 ]
 
 export default function ServiceSidebar() {

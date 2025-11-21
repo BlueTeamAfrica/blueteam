@@ -13,7 +13,7 @@ const blogPosts = [
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
     category: 'Web Development',
-    image: '/images/blog/2.jpg',
+    image: '/images/blog/blog-post-thumbnail-2-v01.jpg',
   },
   {
     slug: 'why-hosting-speed-matters-in-africa',
@@ -21,7 +21,7 @@ const blogPosts = [
     excerpt: 'Understanding the importance of fast hosting speeds for African businesses and how it impacts user experience and conversions.',
     date: '2024-01-10',
     category: 'Hosting',
-    image: '/images/blog/3.webp',
+    image: '/images/blog/blog-post-thumbnail-3-v01.webp',
   },
   {
     slug: 'erp-for-african-smes-a-complete-guide',

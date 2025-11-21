@@ -27,7 +27,7 @@ export default function CloudMigrationCaseStudy() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
-              src="/images/portfolio/o.webp"
+              src="/images/portfolio/_legacy/i.webp"
               alt="Cloud Migration Project"
               fill
               className="object-cover"

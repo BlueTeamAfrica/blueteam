@@ -27,7 +27,7 @@ export default function EcommerceShopCaseStudy() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
-              src="/images/portfolio/j.webp"
+              src="/images/portfolio/_legacy/t.webp"
               alt="E-commerce Platform"
               fill
               className="object-cover"

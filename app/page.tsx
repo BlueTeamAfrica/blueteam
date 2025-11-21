@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'Blue Team Africa',
     images: [
       {
-        url: '/images/og-home-hero.webp',
+        url: '/images/hero/hero-banner-og-image-v01.webp',
         width: 1200,
         height: 630,
         alt: 'Blue Team Africa hero — enterprise web design and cyber security',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Website Design & Cyber Security Solutions | Blue Team Africa',
     description: 'Professional website design, website development, and cyber security solutions for businesses in Uganda, Kenya & Rwanda.',
-    images: ['/images/og-home-hero.webp'],
+    images: ['/images/hero/hero-banner-og-image-v01.webp'],
   },
   keywords: [
     'website design',
@@ -115,7 +115,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/e.webp"
+                    src="/images/home/services/web-design-icon-layout-v01.webp"
                     alt="website design Uganda mobile-first UX"
                     fill
                     className="object-cover"
@@ -126,7 +126,7 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">
                   Modern, fast-loading websites optimized for visibility in East African markets and designed to convert visitors into partners, donors and clients.
                 </p>
-                <Link href="/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -135,7 +135,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/hosting.webp"
+                    src="/images/home/services/erp-systems-icon-dashboard-v01.webp"
                     alt="web hosting Uganda secure managed hosting"
                     fill
                     className="object-cover"
@@ -146,7 +146,7 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">
                   Powerful, customizable systems for donor reporting, project tracking, HR, finance and inventory—tailored for NGOs and businesses.
                 </p>
-                <Link href="/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -155,7 +155,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/mobile-apps.webp"
+                    src="/images/home/services/mobile-apps-icon-phone-v01.webp"
                     alt="mobile app development for field teams"
                     fill
                     className="object-cover"
@@ -166,7 +166,7 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">
                   Offline-first mobile apps for field teams, assessments, surveys and project monitoring. Syncs directly to your ERP or CRM.
                 </p>
-                <Link href="/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -175,7 +175,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/hosting.webp"
+                    src="/images/home/services/cloud-hosting-icon-server-v01.webp"
                     alt="secure cloud hosting infrastructure"
                     fill
                     className="object-cover"
@@ -186,7 +186,7 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">
                   Secure cloud hosting built for speed, reliability and data protection.
                 </p>
-                <Link href="/hosting" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/hosting" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -195,7 +195,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/portfolio/q.webp"
+                    src="/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp"
                     alt="NGO humanitarian digital support portals Uganda"
                     fill
                     className="object-cover"
@@ -206,7 +206,7 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">
                   Specialized digital services for NGOs, community organizations, and humanitarian entities — including portals, reporting tools, M&E dashboards, and donor-focused digital assets.
                 </p>
-                <Link href="/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -215,7 +215,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/cybersecurity.webp"
+                    src="/images/home/services/cybersecurity-icon-shield-v01.webp"
                     alt="cyber security Uganda penetration testing"
                     fill
                     className="object-cover"
@@ -226,7 +226,7 @@ export default function Home() {
                 <p className="mt-2 text-gray-600">
                   Security audits, penetration testing, infrastructure hardening & incident response for SMEs and NGOs.
                 </p>
-                <Link href="/cybersecurity" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/cybersecurity" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -383,7 +383,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/portfolio/cslo-sudan/cslo-banner.webp"
+                    src="/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp"
                     alt="CSLO Sudan ERPNext and CRM implementation case study"
                     fill
                     className="object-cover"
@@ -404,7 +404,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/ngo-portal.jpg"
+                    src="/images/home/portfolio/portfolio-mockup-ngo-portal-v01.jpg"
                     alt="NGO portal Uganda"
                     fill
                     className="object-cover"
@@ -425,7 +425,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/retail-ecommerce.webp"
+                    src="/images/home/portfolio/portfolio-mockup-retail-ecommerce-v01.webp"
                     alt="Ecommerce Uganda case study"
                     fill
                     className="object-cover"
@@ -527,7 +527,7 @@ export default function Home() {
                 Book a Free Consultation
               </Link>
               <Link
-                href="/web-design"
+                href="/services/web-design"
                 className="px-6 py-3 border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-50 transition"
                 aria-label="Explore our services"
               >

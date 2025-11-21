@@ -14,14 +14,14 @@ export default function Footer() {
   ]
 
   const servicesLinks = [
-    { label: 'Web Design & Development', href: '/web-design' },
-    { label: 'Mobile App Development', href: '/mobile-apps' },
-    { label: 'Cloud & Web Hosting', href: '/hosting' },
-    { label: 'ERP Systems', href: '/erp' },
-    { label: 'CRM Solutions', href: '/crm' },
-    { label: 'Cybersecurity', href: '/cybersecurity' },
-    { label: 'E-commerce Development', href: '/ecommerce' },
-    { label: 'UI/UX Design', href: '/ui-ux' },
+    { label: 'Web Design & Development', href: '/services/web-design' },
+    { label: 'Mobile App Development', href: '/services/mobile-apps' },
+    { label: 'Cloud & Web Hosting', href: '/services/hosting' },
+    { label: 'ERP Systems', href: '/services/erp' },
+    { label: 'CRM Solutions', href: '/services/crm' },
+    { label: 'Cybersecurity', href: '/services/cybersecurity' },
+    { label: 'E-commerce Development', href: '/services/ecommerce' },
+    { label: 'UI/UX Design', href: '/services/ui-ux' },
   ]
 
   const quickLinks = [
