@@ -58,48 +58,54 @@ export default function HeroClient() {
 
   return (
     <>
-      <section className="hero relative w-full min-h-screen flex items-center justify-center bg-black text-white pt-16 md:pt-[72px]">
-        {/* Background Image - z-0 */}
-        <div className="absolute inset-0" style={{ zIndex: 0 }}>
-          <Image
-            src="/images/hero/hero-banner-gradient-abstract-v01.webp"
-            alt="website design and cyber security services in Uganda"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-            quality={90}
-          />
-        </div>
+      <section className="bta-hero">
+        {/* Hero Inner Container */}
+        <div className="bta-hero-inner">
+          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+            {/* Left Column - Content */}
+            <div className="bta-hero-left">
+              <h1>
+                Web Design, SEO & Hosting for East African Businesses
+              </h1>
 
-        {/* Content - z-20 */}
-        <div className="relative text-center max-w-4xl px-6" style={{ zIndex: 20 }}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white">
-            Digital Solutions for NGOs & Businesses Across East Africa
-          </h1>
+              <p>
+                We build high-performance websites and digital systems trusted by NGOs, startups, and companies across Sudan, Uganda, Kenya, and Rwanda.
+              </p>
 
-          <p className="mt-6 text-lg sm:text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto">
-            We build fast, secure and scalable websites, ERP systems, CRMs and mobile apps—trusted by organizations operating in high-risk and low-connectivity regions.
-          </p>
+              {/* CTA Buttons */}
+              <div className="bta-hero-ctas">
+                <Link
+                  href="/contact"
+                  className="bta-btn-primary"
+                  aria-label="Get started with your project"
+                >
+                  Get Started
+                </Link>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="px-8 py-4 bg-primary rounded-lg text-white hover:bg-primary-dark transition font-semibold"
-              aria-label="Start your project"
-            >
-              Start Your Project
-            </Link>
+                <Link
+                  href="/portfolio"
+                  className="bta-btn-secondary"
+                  aria-label="See our portfolio"
+                >
+                  See Our Work
+                </Link>
+              </div>
 
-            {/* Play Button */}
-            <button
-              onClick={handleVideoPlay}
-              className="flex items-center gap-3 px-4 py-3 rounded-full bg-white/20 border border-white/30 text-white backdrop-blur hover:bg-white/30 transition-all duration-300"
-              aria-label="Play introduction video"
-            >
-              <Play className="w-5 h-5 fill-white" />
-              <span className="font-medium">Watch Video</span>
-            </button>
+              {/* WhatsApp Link */}
+              <a
+                href="https://wa.me/256765508131"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bta-hero-whatsapp"
+              >
+                WhatsApp Us →
+              </a>
+            </div>
+
+            {/* Right Column - Visual */}
+            <div className="bta-hero-right">
+              <div className="bta-hero-visual"></div>
+            </div>
           </div>
         </div>
       </section>

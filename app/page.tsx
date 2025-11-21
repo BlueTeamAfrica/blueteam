@@ -6,11 +6,11 @@ import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroClient from '@/components/HeroClient'
 
 export const metadata: Metadata = {
-  title: 'Website Design & Cyber Security Solutions | Blue Team Africa',
-  description: 'Professional website design, website development, and cyber security solutions for businesses in Uganda, Kenya & Rwanda. Enterprise-grade web design and security services.',
+  title: 'Website Design, Web Development & Cyber Security | Blue Team Africa Uganda',
+  description: 'Blue Team Africa delivers website design, website development, cybersecurity, ERP systems, CRM solutions, and mobile app development for NGOs and businesses in Uganda, Sudan, Kenya & Rwanda. Trusted digital solutions built by Sudanese tech professionals.',
   openGraph: {
-    title: 'Website Design & Cyber Security Solutions | Blue Team Africa',
-    description: 'Professional website design, website development, and cyber security solutions for businesses in Uganda, Kenya & Rwanda.',
+    title: 'Website Design, Web Development & Cyber Security | Blue Team Africa',
+    description: 'Professional website design, website development, cybersecurity, and digital systems for NGOs and businesses across East Africa.',
     url: 'https://blueteamafrica.com',
     siteName: 'Blue Team Africa',
     images: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: '/images/hero/hero-banner-og-image-v01.webp',
         width: 1200,
         height: 630,
-        alt: 'Blue Team Africa hero — enterprise web design and cyber security',
+        alt: 'Blue Team Africa — website design, web development and cyber security in Uganda',
       },
     ],
     locale: 'en_US',
@@ -26,21 +26,31 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Website Design & Cyber Security Solutions | Blue Team Africa',
-    description: 'Professional website design, website development, and cyber security solutions for businesses in Uganda, Kenya & Rwanda.',
+    title: 'Website Design, Web Development & Cyber Security | Blue Team Africa',
+    description: 'Professional website design, website development, cybersecurity, and digital systems for NGOs and businesses across East Africa.',
     images: ['/images/hero/hero-banner-og-image-v01.webp'],
   },
   keywords: [
     'website design',
     'web design',
     'website development',
-    'website build',
+    'web development',
     'cyber security',
     'cybersecurity',
     'website design Uganda',
-    'website development Kenya',
-    'cyber security Rwanda',
-    'web design East Africa',
+    'web design Uganda',
+    'website development Uganda',
+    'cyber security Uganda',
+    'web design company',
+    'ICT company Uganda',
+    'ERP systems',
+    'CRM solutions',
+    'mobile app development',
+    'NGO digital solutions',
+    'ERPNext Uganda',
+    'website design Kenya',
+    'web design Rwanda',
+    'website development Sudan',
   ],
 }
 
@@ -106,9 +116,12 @@ export default function Home() {
         {/* SERVICES GRID */}
         <section id="services" className="py-20 bg-gray-50" aria-labelledby="services-heading">
         <div className="max-w-6xl mx-auto px-6">
-            <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              What We Do
+            <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-4">
+              Our Core Digital Services
             </h2>
+            <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+              We combine design, engineering, and cybersecurity to deliver complete digital solutions.
+            </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* CARD 1 - Web Design */}
@@ -122,96 +135,36 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Web Design</h3>
+                <h3 className="text-xl font-semibold">Web Design (SEO-Ready Websites)</h3>
                 <p className="mt-2 text-gray-600">
-                  Modern, fast-loading websites optimized for visibility in East African markets and designed to convert visitors into partners, donors and clients.
+                  Modern, mobile-first website design optimized for speed, ranking, and user experience.
                 </p>
                 <Link href="/services/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 2 - Web Hosting & Management */}
+              {/* CARD 2 - Website Development */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/erp-systems-icon-dashboard-v01.webp"
-                    alt="web hosting Uganda secure managed hosting"
+                    src="/images/home/services/web-design-icon-layout-v01.webp"
+                    alt="website development Uganda custom systems"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">ERP & CRM Systems (ERPNext/Frappe)</h3>
+                <h3 className="text-xl font-semibold">Website Development (Fast, Secure, Custom)</h3>
                 <p className="mt-2 text-gray-600">
-                  Powerful, customizable systems for donor reporting, project tracking, HR, finance and inventory—tailored for NGOs and businesses.
+                  Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow.
                 </p>
-                <Link href="/services/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                <Link href="/services/website-development" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
 
-              {/* CARD 3 - Mobile App Development */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/mobile-apps-icon-phone-v01.webp"
-                    alt="mobile app development for field teams"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">Mobile App Development</h3>
-                <p className="mt-2 text-gray-600">
-                  Offline-first mobile apps for field teams, assessments, surveys and project monitoring. Syncs directly to your ERP or CRM.
-                </p>
-                <Link href="/services/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  Learn more →
-                </Link>
-              </article>
-
-              {/* CARD 4 - Hosting & Cloud Infrastructure */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/cloud-hosting-icon-server-v01.webp"
-                    alt="secure cloud hosting infrastructure"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">Hosting & Cloud Infrastructure</h3>
-                <p className="mt-2 text-gray-600">
-                  Secure cloud hosting built for speed, reliability and data protection.
-                </p>
-                <Link href="/services/hosting" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  Learn more →
-                </Link>
-              </article>
-
-              {/* CARD 5 - NGO & Humanitarian Digital Support */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp"
-                    alt="NGO humanitarian digital support portals Uganda"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">NGO & Humanitarian Digital Support</h3>
-                <p className="mt-2 text-gray-600">
-                  Specialized digital services for NGOs, community organizations, and humanitarian entities — including portals, reporting tools, M&E dashboards, and donor-focused digital assets.
-                </p>
-                <Link href="/services/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  Learn more →
-                </Link>
-              </article>
-
-              {/* CARD 6 - Cybersecurity */}
+              {/* CARD 3 - Cyber Security */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
@@ -222,11 +175,71 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Cybersecurity</h3>
+                <h3 className="text-xl font-semibold">Cyber Security Services</h3>
                 <p className="mt-2 text-gray-600">
-                  Security audits, penetration testing, infrastructure hardening & incident response for SMEs and NGOs.
+                  Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance.
                 </p>
                 <Link href="/services/cybersecurity" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                  Learn more →
+                </Link>
+              </article>
+
+              {/* CARD 4 - Mobile App Development */}
+              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/home/services/mobile-apps-icon-phone-v01.webp"
+                    alt="mobile app development for field teams"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">Mobile App Development (NGO Field Data Applications)</h3>
+                <p className="mt-2 text-gray-600">
+                  We build offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database.
+                </p>
+                <Link href="/services/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                  Learn more →
+                </Link>
+              </article>
+
+              {/* CARD 5 - ERP & CRM Systems */}
+              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/home/services/erp-systems-icon-dashboard-v01.webp"
+                    alt="ERP CRM systems for NGOs ERPNext"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">ERP & CRM Systems for NGOs (Powered by ERPNext)</h3>
+                <p className="mt-2 text-gray-600">
+                  End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking.
+                </p>
+                <Link href="/services/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
+                  Learn more →
+                </Link>
+              </article>
+
+              {/* CARD 6 - Digital Marketing */}
+              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/home/services/web-design-icon-layout-v01.webp"
+                    alt="digital marketing SEO Uganda"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">Digital Marketing</h3>
+                <p className="mt-2 text-gray-600">
+                  SEO, content, analytics, social media management, and lead-generation funnels.
+                </p>
+                <Link href="/services/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
                   Learn more →
                 </Link>
               </article>
@@ -234,51 +247,99 @@ export default function Home() {
         </div>
       </section>
 
-        {/* WHY NGOs TRUST US */}
+        {/* WHY CHOOSE BLUE TEAM AFRICA */}
         <section className="py-20 bg-white" aria-labelledby="why-trust-heading">
           <div className="max-w-6xl mx-auto px-6">
             <h2 id="why-trust-heading" className="text-3xl font-heading font-semibold text-center mb-6">
-              Trusted Technology Partner for NGOs in Sudan, Uganda, Kenya & Rwanda
+              A Digital Team Shaped by Real-World Challenges
             </h2>
-            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-              We specialize in digital tools for humanitarian organizations—including ERP systems, CRM platforms, monitoring tools, website portals and mobile data-collection apps. Our solutions are built to work in difficult environments, with limited connectivity and high security needs.
+            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, operating from Uganda, our mission is to provide reliable, affordable, and secure digital solutions for organizations across East Africa.
+            </p>
+            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+              We specialize in building systems for NGOs, companies, startups, and institutions that operate in difficult environments — where reliability, security, and performance are not optional.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Proven experience with East African NGOs</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Security First</h3>
                 <p className="text-gray-600">
-                  We've successfully implemented digital solutions for humanitarian organizations across the region.
+                  Every website and system follows cybersecurity best practices.
                 </p>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-3">ERPNext & Frappe specialists</h3>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">NGO Experience</h3>
                 <p className="text-gray-600">
-                  Deep expertise in open-source ERP and CRM platforms tailored for NGOs and humanitarian operations.
+                  We've built ERP, CRM & field-data systems for humanitarian organizations.
                 </p>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Mobile apps for field reporting</h3>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Scalable Technology</h3>
                 <p className="text-gray-600">
-                  Offline-first mobile applications that sync seamlessly with your backend systems.
+                  Modern stack → Next.js, ERPNext, Flutter, Firebase, Linux.
                 </p>
               </div>
+            </div>
+        </div>
+      </section>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Secure, audited cloud hosting</h3>
-                <p className="text-gray-600">
-                  Enterprise-grade infrastructure with encryption, backups, and compliance standards.
-                </p>
-              </div>
+        {/* NGO DIGITAL SOLUTIONS */}
+        <section className="py-20 bg-white" aria-labelledby="ngo-solutions-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 id="ngo-solutions-heading" className="text-3xl font-heading font-semibold text-center mb-6">
+              Reliable Digital Systems for NGOs Working in Challenging Environments
+            </h2>
+            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
+              We understand the unique challenges NGOs face in Sudan, South Sudan, and Uganda — connectivity issues, data security risks, field-level reporting, and resource constraints. Our team builds tools that work even in difficult conditions:
+            </p>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Fast delivery powered by AI pipelines</h3>
-                <p className="text-gray-600">
-                  Streamlined development processes that accelerate time-to-market without compromising quality.
-                </p>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <p className="text-gray-700">ERPNext NGO Modules (finance, HR, programs, logistics)</p>
               </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <p className="text-gray-700">CRM systems for beneficiary & donor management</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <p className="text-gray-700">Mobile apps for field staff (offline data capture → automatic sync)</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <p className="text-gray-700">Secure cloud deployment</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <p className="text-gray-700">Training & continuous support</p>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Link
+                href="/contact"
+                className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition font-semibold"
+              >
+                Request an NGO System Demo
+              </Link>
             </div>
           </div>
         </section>
@@ -357,6 +418,18 @@ export default function Home() {
                 <span>Rwanda</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* SEO KEYWORD BLOCK */}
+        <section className="py-16 bg-gray-50" aria-labelledby="seo-keyword-heading">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <h2 id="seo-keyword-heading" className="text-3xl font-heading font-semibold mb-6">
+              Trusted Website Design & Cyber Security Company in Uganda
+            </h2>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Blue Team Africa provides web design, web development, cybersecurity, mobile app development, ERP systems, and SEO services to businesses and NGOs in Kampala, Juba, Khartoum, Nairobi, and across East Africa. Our solutions are built for speed, reliability, and long-term growth.
+            </p>
           </div>
         </section>
 
@@ -513,50 +586,59 @@ export default function Home() {
         <section className="py-20 bg-gray-50" aria-labelledby="faq-heading">
           <div className="max-w-5xl mx-auto px-6">
             <h2 id="faq-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              FAQ
+              Frequently Asked Questions
             </h2>
 
             <div className="space-y-6">
-              <details className="bg-gray-50 p-6 rounded-xl">
-                <summary className="font-semibold cursor-pointer">
-                  Do you build ERP systems for NGOs in Sudan?
+              <details className="bg-white p-6 rounded-xl shadow-sm">
+                <summary className="font-semibold cursor-pointer text-gray-900">
+                  How long does it take to design a website?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Yes. We specialize in ERPNext and CRM solutions tailored for NGOs working in crisis-affected and low-connectivity regions.
+                  Most websites take 7–14 days depending on requirements.
                 </p>
               </details>
 
-              <details className="bg-gray-50 p-6 rounded-xl">
-                <summary className="font-semibold cursor-pointer">
-                  Can you connect mobile apps directly to our ERP?
+              <details className="bg-white p-6 rounded-xl shadow-sm">
+                <summary className="font-semibold cursor-pointer text-gray-900">
+                  Do you offer hosting and maintenance?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Absolutely. We build secure mobile apps that sync directly with ERPNext and Frappe databases.
+                  Yes — secure hosting, backups, monitoring, and updates.
                 </p>
               </details>
 
-              <details className="bg-gray-50 p-6 rounded-xl">
-                <summary className="font-semibold cursor-pointer">
-                  How fast can you deliver a new website?
+              <details className="bg-white p-6 rounded-xl shadow-sm">
+                <summary className="font-semibold cursor-pointer text-gray-900">
+                  Can you build systems for NGOs?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Most NGO or business websites go live within 7–14 days.
+                  Yes. We build ERP, CRM, dashboards, and field-data apps.
                 </p>
               </details>
 
-              <details className="bg-gray-50 p-6 rounded-xl">
-                <summary className="font-semibold cursor-pointer">
-                  Do you offer hosting & maintenance?
+              <details className="bg-white p-6 rounded-xl shadow-sm">
+                <summary className="font-semibold cursor-pointer text-gray-900">
+                  How secure are your websites?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Yes — managed hosting with backups, SSL, CDN and uptime monitoring.
+                  All websites include encryption, server hardening, and threat protection.
+                </p>
+              </details>
+
+              <details className="bg-white p-6 rounded-xl shadow-sm">
+                <summary className="font-semibold cursor-pointer text-gray-900">
+                  Can you migrate my old website?
+                </summary>
+                <p className="mt-4 text-gray-600">
+                  Yes — we migrate from WordPress, Joomla, Wix, or custom systems.
                 </p>
               </details>
             </div>
 
             <div className="mt-10 text-center">
-              <Link href="/faq" className="text-primary underline hover:text-primary-dark">
-                View Full FAQ →
+              <Link href="/contact" className="text-primary underline hover:text-primary-dark font-semibold">
+                Have more questions? Contact us →
               </Link>
             </div>
           </div>
@@ -565,26 +647,31 @@ export default function Home() {
         {/* BOTTOM CTA */}
         <section className="py-20 bg-[#F8FAFF] text-center" aria-labelledby="cta-heading">
           <div className="max-w-4xl mx-auto px-6">
-            <h3 id="cta-heading" className="text-3xl font-heading font-semibold">
-              Book a Free Consultation
+            <h3 id="cta-heading" className="text-3xl font-heading font-semibold text-gray-900">
+              Ready to start your project?
             </h3>
-            <p className="mt-3 text-gray-600">
-              Let's discuss your project and build a solution tailored to your mission.
+            <p className="mt-3 text-lg text-gray-700">
+              Let's design your next digital solution — secure, fast, and built to scale.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
+              <a
+                href="https://wa.me/256765508131"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition font-semibold"
+                aria-label="Contact us on WhatsApp"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Contact Us on WhatsApp
+              </a>
               <Link
                 href="/contact"
-                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition"
-                aria-label="Book a free consultation"
+                className="px-8 py-4 border-2 border-primary rounded-lg text-primary hover:bg-primary/5 transition font-semibold"
+                aria-label="Get a free quote"
               >
-                Book a Free Consultation
-              </Link>
-              <Link
-                href="/services/web-design"
-                className="px-6 py-3 border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-50 transition"
-                aria-label="Explore our services"
-              >
-                Explore Our Services
+                Get a Free Quote
               </Link>
           </div>
         </div>
