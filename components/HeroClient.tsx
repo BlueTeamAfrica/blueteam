@@ -59,18 +59,21 @@ export default function HeroClient() {
   return (
     <>
       <section className="hero relative w-full min-h-screen flex items-center justify-center bg-black text-white pt-16 md:pt-[72px]">
-        <div className="absolute inset-0 z-0">
+        {/* Background Image - z-0 */}
+        <div className="absolute inset-0" style={{ zIndex: 0 }}>
           <Image
             src="/images/hero/hero-banner-gradient-abstract-v01.webp"
             alt="website design and cyber security services in Uganda"
             fill
-            className="object-cover opacity-90"
+            className="object-cover"
             priority
             sizes="100vw"
+            quality={90}
           />
         </div>
 
-        <div className="relative z-20 text-center max-w-4xl px-6">
+        {/* Content - z-20 */}
+        <div className="relative text-center max-w-4xl px-6" style={{ zIndex: 20 }}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white">
             Digital Solutions for NGOs & Businesses Across East Africa
           </h1>

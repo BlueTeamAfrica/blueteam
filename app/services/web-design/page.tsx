@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { MessageCircle, ArrowRight } from 'lucide-react'
-import InteriorPageLayout from '@/components/InteriorPageLayout'
+import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
@@ -11,12 +11,25 @@ export const metadata = {
 
 export default function WebDesignPage() {
   return (
-    <InteriorPageLayout
-      title="Web Design"
-      subtitle="Custom websites that engage your audience and drive business growth"
-      showSidebar={true}
-      sidebar={<ServiceSidebar />}
-    >
+    <>
+      <InteriorHeader
+        title="Web Design"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: 'Web Design' }
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <aside className="lg:w-1/4 flex-shrink-0">
+            <div className="lg:sticky lg:top-24">
+              <ServiceSidebar />
+            </div>
+          </aside>
+          
+          <div className="lg:w-3/4 flex-grow">
       {/* Intro Text Section */}
       <SectionWrapper bgColor="white">
         <div className="max-w-3xl mx-auto px-6">
@@ -124,6 +137,9 @@ export default function WebDesignPage() {
           </div>
         </div>
       </section>
-    </InteriorPageLayout>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

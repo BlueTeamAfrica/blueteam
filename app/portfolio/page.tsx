@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import InteriorPageLayout from '@/components/InteriorPageLayout'
+import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 
 export const metadata = {
@@ -62,12 +62,18 @@ const portfolioItems = [
 
 export default function PortfolioPage() {
   return (
-    <InteriorPageLayout
-      title="Our Portfolio"
-      subtitle="Success stories from clients across East Africa"
-    >
-      {/* Portfolio Grid */}
-      <SectionWrapper bgColor="white">
+    <>
+      <InteriorHeader
+        title="Our Portfolio"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Portfolio' }
+        ]}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+        {/* Portfolio Grid */}
+        <SectionWrapper bgColor="white">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolioItems.map((item) => (
             <Link
@@ -146,7 +152,8 @@ export default function PortfolioPage() {
           </Link>
         </div>
       </SectionWrapper>
-    </InteriorPageLayout>
+      </div>
+    </>
   )
 }
 
