@@ -30,7 +30,8 @@ export default function WebsiteDevelopmentPage() {
   return (
     <InteriorPageLayout
       title="Professional Website Development Services in Uganda & East Africa"
-      breadcrumb="Website Development"
+      subtitle="At Blue Team Africa, we develop fast, secure, and scalable websites that help businesses, NGOs, and organizations grow online. Whether you need a custom-built system, a dynamic website integrated with your internal workflows, or a fully optimized business platform — our development team delivers reliable, modern, and SEO-ready solutions."
+      showSidebar={true}
     >
       <div className="grid lg:grid-cols-[1fr_320px] gap-12">
         {/* Main Content */}
@@ -46,7 +47,10 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* Why Website Development Matters */}
-          <SectionWrapper title="Why Website Development Matters">
+          <SectionWrapper>
+            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Why Website Development Matters
+            </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Most companies stop at "web design," but real success requires <strong>website development</strong> — the part that makes your site powerful, functional, automated, and secure.
             </p>
@@ -85,7 +89,10 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* What We Build */}
-          <SectionWrapper title="What We Build">
+          <SectionWrapper>
+            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+              What We Build
+            </h2>
             <div className="space-y-6">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -157,7 +164,10 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* Real Case Example */}
-          <SectionWrapper title="Real Case Example" bgColor="bg-blue-50">
+          <SectionWrapper bgColor="highlight">
+            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Real Case Example
+            </h2>
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-gray-900">
                 CSLO Sudan – ERP + CRM + Website Development
@@ -184,7 +194,10 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* Why Choose Blue Team Africa */}
-          <SectionWrapper title="Why Choose Blue Team Africa">
+          <SectionWrapper>
+            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Why Choose Blue Team Africa
+            </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               We are a Sudanese-founded team with firsthand experience navigating crisis environments. We operate in Uganda, serving clients across East Africa.
             </p>
@@ -194,7 +207,10 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* Service Highlights */}
-          <SectionWrapper title="Service Highlights">
+          <SectionWrapper>
+            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Service Highlights
+            </h2>
             <div className="grid md:grid-cols-2 gap-4">
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start">
@@ -236,7 +252,10 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* Related Services */}
-          <SectionWrapper title="Related Services">
+          <SectionWrapper>
+            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Related Services
+            </h2>
             <div className="grid md:grid-cols-2 gap-4">
               <Link
                 href="/services/web-design"
@@ -270,7 +289,7 @@ export default function WebsiteDevelopmentPage() {
           </SectionWrapper>
 
           {/* Call to Action */}
-          <SectionWrapper bgColor="bg-gradient-to-br from-blue-50 to-blue-100">
+          <SectionWrapper className="bg-gradient-to-br from-blue-50 to-blue-100">
             <div className="text-center space-y-4">
               <h2 className="text-2xl font-bold text-gray-900">
                 Ready to Build a Reliable Website or System for Your Organization?

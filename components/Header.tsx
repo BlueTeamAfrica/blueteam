@@ -109,24 +109,26 @@ export default function Header() {
       label: 'Development',
       items: [
         { name: 'Web Design & Development', href: '/services/web-design' },
+        { name: 'Website Development', href: '/services/website-development' },
         { name: 'Mobile App Development', href: '/services/mobile-apps' },
-        { name: 'CRM Solutions', href: '/services/crm' },
+        { name: 'E-commerce Development', href: '/services/ecommerce' },
       ],
     },
     {
-      label: 'Cloud & Hosting',
+      label: 'Enterprise Systems',
+      items: [
+        { name: 'ERP Systems', href: '/services/erp' },
+        { name: 'CRM Solutions', href: '/services/crm' },
+        { name: 'Custom Systems', href: '/services/custom-systems' },
+      ],
+    },
+    {
+      label: 'Infrastructure & Design',
       items: [
         { name: 'Cloud & Web Hosting', href: '/services/hosting' },
-        { name: 'ERP Systems', href: '/services/erp' },
         { name: 'Cybersecurity', href: '/services/cybersecurity' },
-      ],
-    },
-    {
-      label: 'Digital Solutions',
-      items: [
-        { name: 'IT Consultancy', href: '/services/consulting' },
-        { name: 'System Integration', href: '/services/system-integration' },
-        { name: 'Digital Transformation', href: '/services/digital-transformation' },
+        { name: 'UI/UX Design', href: '/services/ui-ux' },
+        { name: 'Branding', href: '/services/branding' },
       ],
     },
   ]
