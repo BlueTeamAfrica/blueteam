@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { MessageCircle, ArrowRight } from 'lucide-react'
+import InteriorPageLayout from '@/components/InteriorPageLayout'
+import SectionWrapper from '@/components/SectionWrapper'
 
 export const metadata = {
   title: 'Our Team',
@@ -43,78 +45,63 @@ export default function TeamPage() {
   ]
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Our Team
-          </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            Dedicated professionals building technology solutions for East Africa
-          </p>
-        </div>
-      </section>
-
+    <InteriorPageLayout
+      title="Our Team"
+      subtitle="Dedicated professionals building technology solutions for East Africa"
+    >
       {/* Team Introduction */}
-      <section className="py-12 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <p className="text-lg text-gray-700 leading-relaxed text-center">
-            Our team brings together diverse expertise in software development, design, infrastructure, 
-            and project management. We're united by a shared commitment to delivering quality solutions 
-            that serve our clients and communities across East Africa.
-          </p>
-        </div>
-      </section>
+      <SectionWrapper bgColor="white">
+        <p className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
+          Our team brings together diverse expertise in software development, design, infrastructure, 
+          and project management. We're united by a shared commitment to delivering quality solutions 
+          that serve our clients and communities across East Africa.
+        </p>
+      </SectionWrapper>
 
       {/* Team Roles Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamRoles.map((member, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {member.role}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {member.description}
-                </p>
-              </div>
-            ))}
-          </div>
+      <SectionWrapper bgColor="light">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {teamRoles.map((member, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                {member.role}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {member.description}
+              </p>
+            </div>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Team Values */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-            What Unites Us
-          </h2>
-          <div className="space-y-6 text-gray-700">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Collaboration</h3>
-              <p>We work together seamlessly, combining our individual strengths to deliver exceptional results for our clients.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Continuous Learning</h3>
-              <p>We stay current with the latest technologies and best practices, constantly improving our skills and methodologies.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Client Focus</h3>
-              <p>Our clients' success is our success. We go above and beyond to understand their needs and deliver solutions that truly serve them.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Regional Understanding</h3>
-              <p>Having built our business in East Africa, we understand local contexts, challenges, and opportunities better than most.</p>
-            </div>
+      <SectionWrapper bgColor="white">
+        <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
+          What Unites Us
+        </h2>
+        <div className="space-y-6 text-gray-700">
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Collaboration</h3>
+            <p>We work together seamlessly, combining our individual strengths to deliver exceptional results for our clients.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Continuous Learning</h3>
+            <p>We stay current with the latest technologies and best practices, constantly improving our skills and methodologies.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Client Focus</h3>
+            <p>Our clients' success is our success. We go above and beyond to understand their needs and deliver solutions that truly serve them.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Regional Understanding</h3>
+            <p>Having built our business in East Africa, we understand local contexts, challenges, and opportunities better than most.</p>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Join Us */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <SectionWrapper bgColor="light">
+        <div className="text-center">
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
             Join Our Team
           </h2>
@@ -129,29 +116,27 @@ export default function TeamPage() {
             Get in Touch →
           </Link>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Related Pages */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Learn More</h2>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/about" className="text-primary hover:text-primary-dark font-medium">
-              Our Story →
-            </Link>
-            <Link href="/mission" className="text-primary hover:text-primary-dark font-medium">
-              Our Mission & Values →
-            </Link>
-            <Link href="/process" className="text-primary hover:text-primary-dark font-medium">
-              Our Process →
-            </Link>
-          </div>
+      <SectionWrapper bgColor="white">
+        <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Learn More</h2>
+        <div className="flex flex-wrap gap-4">
+          <Link href="/about" className="text-primary hover:text-primary-dark font-medium">
+            Our Story →
+          </Link>
+          <Link href="/mission" className="text-primary hover:text-primary-dark font-medium">
+            Our Mission & Values →
+          </Link>
+          <Link href="/process" className="text-primary hover:text-primary-dark font-medium">
+            Our Process →
+          </Link>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* CTA Strip */}
-      <section className="py-12 bg-primary text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <SectionWrapper className="bg-primary text-white">
+        <div className="text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">Ready to Work Together?</h2>
           <p className="text-primary-100 mb-6">Let's discuss how we can help your organization.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -173,8 +158,7 @@ export default function TeamPage() {
             </Link>
           </div>
         </div>
-      </section>
-    </div>
+      </SectionWrapper>
+    </InteriorPageLayout>
   )
 }
-

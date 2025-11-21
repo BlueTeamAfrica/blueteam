@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
         <Header />
-        <main className="pt-10">{children}</main>
+        <main>{children}</main>
         <Footer />
         <WhatsAppFloat />
       </body>

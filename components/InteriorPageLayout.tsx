@@ -25,22 +25,22 @@ export default function InteriorPageLayout({
 
   return (
     <div className="min-h-screen bg-[#F8F9FC]">
-      {/* Page Title Section */}
+      {/* Page Title Block - Standardized: 80-100px below fixed header */}
       <section 
         ref={ref}
-        className="bg-[#F8F9FC] pt-[70px] pb-[30px] md:pt-[100px]"
+        className="bg-[#F8F9FC] pt-[150px] md:pt-[180px] pb-8"
       >
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <h1 className="text-[36px] font-heading font-bold text-gray-900 mb-2">
+            <h1 className="text-[36px] leading-tight font-heading font-bold text-gray-900">
               {title}
             </h1>
             {subtitle && (
-              <p className="text-lg text-gray-600 mt-2">
+              <p className="text-lg text-gray-600 mt-4 max-w-3xl">
                 {subtitle}
               </p>
             )}
@@ -49,13 +49,13 @@ export default function InteriorPageLayout({
       </section>
 
       {/* Content Area */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className={`grid ${showSidebar ? 'md:grid-cols-[1fr_300px]' : 'grid-cols-1'} gap-8 pb-12`}>
+      <div className="max-w-6xl mx-auto px-6 pb-16">
+        <div className={`grid ${showSidebar ? 'md:grid-cols-[1fr_300px]' : 'grid-cols-1'} gap-8`}>
           {/* Main Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           >
             {children}
           </motion.div>
@@ -63,7 +63,7 @@ export default function InteriorPageLayout({
           {/* Sidebar */}
           {showSidebar && sidebar && (
             <aside className="hidden md:block">
-              <div className="sticky top-[120px]">
+              <div className="sticky top-[140px]">
                 {sidebar}
               </div>
             </aside>

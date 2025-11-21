@@ -58,7 +58,7 @@ export default function HeroClient() {
 
   return (
     <>
-      <section className="relative w-full min-h-screen flex items-center justify-center bg-black text-white pt-16 md:pt-[72px]">
+      <section className="hero relative w-full min-h-screen flex items-center justify-center bg-black text-white pt-16 md:pt-[72px]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero/hero-banner-gradient-abstract-v01.webp"
@@ -69,9 +69,6 @@ export default function HeroClient() {
             sizes="100vw"
           />
         </div>
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30 z-0"></div>
 
         <div className="relative z-20 text-center max-w-4xl px-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight text-white">

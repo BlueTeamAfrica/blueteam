@@ -205,3 +205,24 @@ html {
   background-size: 200% 200%;
 }
 
+/* Hero Section Enhancements */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Responsive Hero Styles */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+  
+  .hero {
+    padding: 5rem 1.2rem;
+  }
+}
+

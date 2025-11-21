@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { MessageCircle, ArrowRight } from 'lucide-react'
+import InteriorPageLayout from '@/components/InteriorPageLayout'
+import SectionWrapper from '@/components/SectionWrapper'
 
 export const metadata = {
   title: 'Our Process',
@@ -41,95 +43,80 @@ export default function ProcessPage() {
   ]
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Our Process
-          </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            A structured approach to delivering quality solutions
-          </p>
-        </div>
-      </section>
-
+    <InteriorPageLayout
+      title="Our Process"
+      subtitle="A structured approach to delivering quality solutions"
+    >
       {/* Process Introduction */}
-      <section className="py-12 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <p className="text-lg text-gray-700 leading-relaxed text-center">
-            We follow a proven 6-step process designed to deliver exceptional results while keeping 
-            you informed and involved every step of the way. From initial discovery to ongoing support, 
-            our methodology ensures your project succeeds.
-          </p>
-        </div>
-      </section>
+      <SectionWrapper bgColor="white">
+        <p className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
+          We follow a proven 6-step process designed to deliver exceptional results while keeping 
+          you informed and involved every step of the way. From initial discovery to ongoing support, 
+          our methodology ensures your project succeeds.
+        </p>
+      </SectionWrapper>
 
       {/* 6 Steps */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="space-y-12">
-            {steps.map((step, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-primary text-white rounded-lg flex items-center justify-center text-2xl font-bold">
-                      {step.number}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {step.description}
-                    </p>
+      <SectionWrapper bgColor="light">
+        <div className="space-y-12">
+          {steps.map((step, index) => (
+            <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-start gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 bg-primary text-white rounded-lg flex items-center justify-center text-2xl font-bold">
+                    {step.number}
                   </div>
                 </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-heading font-bold text-gray-900 mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Why Our Process Works */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-            Why Our Process Works
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Clear Communication</h3>
-              <p className="text-gray-700">
-                Regular updates and demos ensure you're always informed about progress and can provide feedback when it matters most.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Flexible & Agile</h3>
-              <p className="text-gray-700">
-                Our process adapts to your needs. We can adjust timelines, priorities, and approaches based on changing requirements.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Quality Focused</h3>
-              <p className="text-gray-700">
-                Built-in quality checks at every stage ensure we deliver solutions that meet your standards and exceed expectations.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Long-Term Partnership</h3>
-              <p className="text-gray-700">
-                Our process extends beyond launch with ongoing support, ensuring your solution evolves with your business needs.
-              </p>
-            </div>
+      <SectionWrapper bgColor="white">
+        <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
+          Why Our Process Works
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Clear Communication</h3>
+            <p className="text-gray-700">
+              Regular updates and demos ensure you're always informed about progress and can provide feedback when it matters most.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Flexible & Agile</h3>
+            <p className="text-gray-700">
+              Our process adapts to your needs. We can adjust timelines, priorities, and approaches based on changing requirements.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Quality Focused</h3>
+            <p className="text-gray-700">
+              Built-in quality checks at every stage ensure we deliver solutions that meet your standards and exceed expectations.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-2">Long-Term Partnership</h3>
+            <p className="text-gray-700">
+              Our process extends beyond launch with ongoing support, ensuring your solution evolves with your business needs.
+            </p>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Timeline */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+      <SectionWrapper bgColor="light">
+        <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6 text-center">
             Typical Timeline
           </h2>
@@ -164,29 +151,27 @@ export default function ProcessPage() {
             </p>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* Related Pages */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Learn More</h2>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/about" className="text-primary hover:text-primary-dark font-medium">
-              Our Story →
-            </Link>
-            <Link href="/team" className="text-primary hover:text-primary-dark font-medium">
-              Our Team →
-            </Link>
-            <Link href="/mission" className="text-primary hover:text-primary-dark font-medium">
-              Our Mission & Values →
-            </Link>
-          </div>
+      <SectionWrapper bgColor="white">
+        <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Learn More</h2>
+        <div className="flex flex-wrap gap-4">
+          <Link href="/about" className="text-primary hover:text-primary-dark font-medium">
+            Our Story →
+          </Link>
+          <Link href="/team" className="text-primary hover:text-primary-dark font-medium">
+            Our Team →
+          </Link>
+          <Link href="/mission" className="text-primary hover:text-primary-dark font-medium">
+            Our Mission & Values →
+          </Link>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* CTA Strip */}
-      <section className="py-12 bg-primary text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <SectionWrapper className="bg-primary text-white">
+        <div className="text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">Ready to Start Your Project?</h2>
           <p className="text-primary-100 mb-6">Let's discuss your needs and begin the discovery phase.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -208,8 +193,8 @@ export default function ProcessPage() {
             </Link>
           </div>
         </div>
-      </section>
-    </div>
+      </SectionWrapper>
+    </InteriorPageLayout>
   )
 }
 
