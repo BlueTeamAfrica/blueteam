@@ -4,6 +4,7 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
+import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
   title: 'UI/UX Design',
   description: 'User interface and user experience design services. Create intuitive, beautiful digital experiences for your users.',
@@ -32,13 +33,14 @@ export default function UIUXPage() {
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
-              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/web-design/n.webp"
+                  src="/images/services/ui-ux/ui-ux-hero-1.webp"
                   alt="UI/UX Design"
                   fill
                   className="object-cover"
                   sizes="100vw"
+                  priority
                 />
               </div>
             </section>
@@ -145,6 +147,10 @@ export default function UIUXPage() {
           </div>
         </div>
       </div>
-    </>
+    
+      
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
+</>
   )
 }

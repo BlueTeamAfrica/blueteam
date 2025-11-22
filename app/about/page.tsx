@@ -1,126 +1,187 @@
 import Link from 'next/link'
-import { MessageCircle, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
-import SectionWrapper from '@/components/SectionWrapper'
+import PsyloLinks from '@/components/seo/PsyloLinks'
 
 export const metadata = {
-  title: 'About Us',
-  description: 'The story of Blue Team Africa - from displacement to serving East Africa with technology solutions.',
+  title: 'About Us | Blue Team Africa',
+  description: 'A digital team built for East Africa and humanitarian work. Blue Team Africa empowers NGOs, businesses, and organizations with modern digital solutions.',
 }
 
 export default function AboutPage() {
   return (
-    <>
+    <main className="bg-white text-gray-800">
       <InteriorHeader
-        title="Our Story"
+        title="About Blue Team Africa"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'About Us' }
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        {/* Intro Text Section */}
-        <SectionWrapper bgColor="white">
-          <div className="max-w-3xl mx-auto px-6">
-            <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-                A Journey of Resilience and Innovation
-              </h2>
-              
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Blue Team Africa was born from a story of displacement, resilience, and determination. 
-                Our founders, Sudanese nationals displaced by conflict, found themselves starting anew 
-                in Uganda with little more than their skills, ambition, and hope for a better future.
-              </p>
+      {/* Hero Section */}
+      <section className="relative w-full h-[60vh] bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/about/about-team-01.webp')" }}>
+        <div className="absolute inset-0 bg-black/20"></div>
+      </section>
 
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                What began as a struggle to rebuild lives has evolved into a mission to serve communities 
-                across East Africa through technology. Having experienced the challenges of displacement 
-                and starting over, we understand the importance of reliable digital infrastructure and 
-                accessible technology solutions.
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Today, we work with businesses, NGOs, and organizations throughout Uganda, Kenya, and 
-                Rwanda, providing web development, cloud hosting, and enterprise systems that empower 
-                organizations to serve their communities more effectively.
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Our story is not just about technology—it's about using our expertise to bridge gaps, 
-                create opportunities, and contribute to the digital transformation of East Africa. We 
-                believe that access to quality technology should not be limited by geography, resources, 
-                or circumstance.
-              </p>
-
-              <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6 mt-12">
-                What Drives Us
-              </h2>
-
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Every organization we work with represents an opportunity to make a real difference. 
-                Whether it's helping an NGO deliver humanitarian aid more efficiently, enabling a 
-                business to expand its reach, or supporting organizations working in challenging 
-                environments, we approach each project with dedication and purpose.
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                We've built our reputation on delivering quality work, maintaining transparent 
-                communication, and truly understanding the unique contexts in which our clients operate. 
-                From conflict zones to remote rural areas, we design solutions that work where they're 
-                needed most.
-              </p>
-
-              <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6 mt-12">
-                Our Commitment
-              </h2>
-
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                We're committed to maintaining the highest standards of technical excellence while 
-                remaining accessible and affordable for organizations of all sizes. Whether you're 
-                a small startup or an established organization, we bring the same level of expertise 
-                and dedication to your project.
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                As we continue to grow, our mission remains unchanged: to use technology as a force 
-                for positive change in East Africa, one project at a time.
-              </p>
-            </div>
-          </div>
-        </SectionWrapper>
-
-        {/* CTA Section */}
-        <SectionWrapper bgColor="highlight">
-          <div className="max-w-4xl mx-auto text-center px-6">
-            <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
-              Let's Work Together
+      {/* Who We Are */}
+      <section className="py-20 container mx-auto px-6 max-w-6xl">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              A Digital Team Built for East Africa & Humanitarian Work
             </h2>
-            <p className="text-gray-700 mb-6">
-              Ready to discuss your project? We'd love to hear from you.
+            <p className="text-lg leading-relaxed mb-4">
+              Blue Team Africa is a technology company serving Uganda, Kenya,
+              Rwanda, and Sudan — empowering NGOs, businesses, and community-driven
+              organizations with modern digital solutions. Our work spans{" "}
+              <Link href="/services/web-design" className="text-primary hover:underline font-semibold">website design</Link>,{" "}
+              <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">mobile app development</Link>,{" "}
+              <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">cybersecurity solutions</Link>,{" "}
+              <Link href="/services/hosting" className="text-primary hover:underline font-semibold">website hosting</Link>,{" "}
+              <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP systems</Link>, and{" "}
+              <Link href="/services/crm" className="text-primary hover:underline font-semibold">CRM automation</Link>.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://wa.me/256765508131"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
-              >
-                <MessageCircle size={20} />
-                Chat on WhatsApp
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition"
-              >
-                Get in Touch
-                <ArrowRight size={18} />
-              </Link>
+
+            <p className="text-lg leading-relaxed mb-4">
+              We operate with a mission-driven mindset, building reliable,
+              long-lasting systems that help organizations function with
+              efficiency, transparency, and data security — especially those
+              working in fragile environments.
+            </p>
+
+            <p className="text-lg leading-relaxed">
+              Our approach blends practical field experience, deep technical
+              knowledge, and strong regional understanding — making us a trusted
+              partner for organizations across East Africa.
+            </p>
+          </div>
+
+          <div>
+            <Image
+              src="/images/about/about-office-01.webp"
+              alt="Blue Team Africa Office"
+              width={600}
+              height={400}
+              className="rounded-xl shadow-lg w-full h-auto"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Sudan Case Story */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <Image
+                src="/images/about/about-story-01.webp"
+                alt="Field Operations"
+                width={600}
+                height={400}
+                className="rounded-xl shadow-lg w-full h-auto"
+              />
+            </div>
+
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Our Humanitarian Technology Work in Sudan
+              </h2>
+              <p className="text-lg leading-relaxed mb-4">
+                One of our most impactful projects was partnering with a Sudanese
+                humanitarian organization to build a full{" "}
+                <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP system</Link>,{" "}
+                <strong>donor reporting dashboard</strong>, and{" "}
+                <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">mobile field data collection app</Link>.
+              </p>
+
+              <p className="text-lg leading-relaxed mb-4">
+                The system enabled transparent procurement, automated HR workflow,
+                real-time program insights, and secure communication across teams
+                working in high-risk regions.
+              </p>
+
+              <p className="text-lg leading-relaxed">
+                This experience shaped our signature approach: designing technology
+                that remains reliable even in conflict zones, rural areas, and
+                low-connectivity environments.
+              </p>
             </div>
           </div>
-        </SectionWrapper>
-      </div>
-    </>
+        </div>
+      </section>
+
+      {/* Our Services Overview (SEO + Psylo Linking) */}
+      <section className="py-20 container mx-auto px-6 max-w-6xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
+          What We Specialize In
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-10">
+          <div>
+            <h3 className="font-semibold text-xl mb-2">Digital Services</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/services/web-design" className="text-primary hover:underline">Website Design</Link>
+              </li>
+              <li>
+                <Link href="/services/website-development" className="text-primary hover:underline">Website Development</Link>
+              </li>
+              <li>
+                <Link href="/services/ecommerce" className="text-primary hover:underline">E-commerce Systems</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-xl mb-2">Business Systems</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/services/erp" className="text-primary hover:underline">ERP Solutions</Link>
+              </li>
+              <li>
+                <Link href="/services/crm" className="text-primary hover:underline">CRM Automation</Link>
+              </li>
+              <li>
+                <Link href="/services/mobile-apps" className="text-primary hover:underline">Mobile App Development</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-xl mb-2">Security & Hosting</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/services/cybersecurity" className="text-primary hover:underline">Cybersecurity Solutions</Link>
+              </li>
+              <li>
+                <Link href="/services/maintenance" className="text-primary hover:underline">Hosting & Maintenance</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-[#F5F7FA]/80 backdrop-blur-md border-b border-gray-200 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+          Ready to Work with a Team That Understands Your Mission?
+        </h2>
+        <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto px-6 text-gray-700">
+          Whether you're a business, NGO, or startup — we build technology that
+          supports your growth and impact.
+        </p>
+        <Link 
+          href="/contact" 
+          className="inline-block bg-primary text-white px-10 py-3 font-semibold rounded-lg shadow hover:bg-primary-dark transition"
+        >
+          Contact Us
+        </Link>
+      </section>
+
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
+    </main>
   )
 }

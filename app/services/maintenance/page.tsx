@@ -4,6 +4,7 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
+import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
   title: 'IT Maintenance & Support',
   description: 'Ongoing IT maintenance and technical support services. Keep your systems running smoothly with expert assistance.',
@@ -32,13 +33,14 @@ export default function MaintenancePage() {
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
-              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/hosting/y.webp"
+                  src="/images/services/maintenance/maintenance-hero-1.webp"
                   alt="IT Maintenance & Support"
                   fill
                   className="object-cover"
                   sizes="100vw"
+                  priority
                 />
               </div>
             </section>
@@ -145,6 +147,10 @@ export default function MaintenancePage() {
           </div>
         </div>
       </div>
-    </>
+    
+      
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
+</>
   )
 }

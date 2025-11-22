@@ -1,9 +1,11 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
+import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
   title: 'Web Design',
   description: 'Professional web design services for businesses across East Africa. Custom websites built with modern technologies.',
@@ -30,8 +32,22 @@ export default function WebDesignPage() {
           </aside>
           
           <div className="lg:w-3/4 flex-grow">
-      {/* Intro Text Section */}
-      <SectionWrapper bgColor="white">
+            {/* Hero Image */}
+            <section className="mb-12">
+              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src="/images/services/web-design/web-design-hero-1.webp"
+                  alt="Professional Web Design Services"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            </section>
+
+            {/* Intro Text Section */}
+            <SectionWrapper bgColor="white">
         <div className="max-w-3xl mx-auto px-6">
           <p className="text-lg text-gray-700 leading-relaxed">
             At Blue Team Africa, we create stunning, functional websites tailored to your business needs. 
@@ -140,6 +156,10 @@ export default function WebDesignPage() {
           </div>
         </div>
       </div>
-    </>
+    
+      
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
+</>
   )
 }

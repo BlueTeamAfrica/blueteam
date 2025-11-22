@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: 'Blue Team Africa',
     images: [
       {
-        url: '/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp',
+        url: '/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp',
         width: 1200,
         height: 630,
         alt: 'CSLO Sudan ERPNext and CRM Implementation',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ERP & CRM Digital Transformation for CSLO Sudan',
     description: 'A complete ERPNext + CRM digital transformation built for humanitarian operations in Sudan.',
-    images: ['/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp'],
+    images: ['/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp'],
   },
 }
 
@@ -100,7 +100,7 @@ export default function CSLOSudanCaseStudy() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="relative h-96 md:h-[500px] bg-gray-200 rounded-lg overflow-hidden">
               <Image
-                src="/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp"
+                src="/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp"
                 alt="ERPNext and Frappe CRM dashboard for CSLO Sudan humanitarian operations"
                 fill
                 className="object-cover"

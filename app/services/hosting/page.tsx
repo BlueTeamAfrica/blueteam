@@ -4,6 +4,7 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
+import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
   title: 'Cloud & Web Hosting',
   description: 'Reliable cloud hosting and domain services with 99.9% uptime guarantee. Secure hosting solutions for businesses in East Africa.',
@@ -32,13 +33,14 @@ export default function HostingPage() {
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
-              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/hosting/f.webp"
+                  src="/images/services/hosting/hosting-hero-1.webp"
                   alt="Cloud & Web Hosting"
                   fill
                   className="object-cover"
                   sizes="100vw"
+                  priority
                 />
               </div>
             </section>
@@ -145,6 +147,10 @@ export default function HostingPage() {
           </div>
         </div>
       </div>
-    </>
+    
+      
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
+</>
   )
 }

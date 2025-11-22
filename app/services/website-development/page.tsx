@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import InteriorHeader from "@/components/InteriorHeader";
 import ServiceSidebar from "@/components/ServiceSidebar";
 import SectionWrapper from "@/components/SectionWrapper";
+import PsyloLinks from '@/components/seo/PsyloLinks'
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Professional Website Development Services in Uganda & East Africa",
     description: "Fast, secure, and scalable website development for businesses and NGOs across East Africa.",
-    images: ["/images/hero/hero-banner-og-image-v01.webp"],
+    images: ["/images/hero/hero-og-1.webp"],
   },
 };
 
@@ -47,6 +49,20 @@ export default function WebsiteDevelopmentPage() {
           </aside>
 
           <div className="lg:w-3/4 flex-grow">
+            {/* Hero Image */}
+            <section className="mb-12">
+              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src="/images/services/website-development/website-development-hero-1.webp"
+                  alt="Professional Website Development Services"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            </section>
+
             {/* Introduction */}
             <SectionWrapper>
               <p className="text-lg text-gray-700 leading-relaxed">

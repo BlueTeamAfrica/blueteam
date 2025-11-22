@@ -4,6 +4,7 @@ import Link from 'next/link'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroClient from '@/components/HeroClient'
+import PsyloLinks from '@/components/seo/PsyloLinks'
 
 export const metadata: Metadata = {
   title: 'Website Design, Web Development & Cyber Security | Blue Team Africa Uganda',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     siteName: 'Blue Team Africa',
     images: [
       {
-        url: '/images/hero/hero-banner-og-image-v01.webp',
+        url: '/images/hero/hero-og-1.webp',
         width: 1200,
         height: 630,
         alt: 'Blue Team Africa — website design, web development and cyber security in Uganda',
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Website Design, Web Development & Cyber Security | Blue Team Africa',
     description: 'Professional website design, website development, cybersecurity, and digital systems for NGOs and businesses across East Africa.',
-    images: ['/images/hero/hero-banner-og-image-v01.webp'],
+    images: ['/images/hero/hero-og-1.webp'],
   },
   keywords: [
     'website design',
@@ -73,7 +74,7 @@ export default function Home() {
             </h2>
             <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Blue Team implemented a complete ERPNext + Frappe CRM system for CSLO Sudan, enabling real-time project tracking, automated reporting, secure data storage, and a custom mobile app for field officers working in crisis-affected areas.
+                Blue Team implemented a complete <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> + <Link href="/services/crm" className="text-primary hover:underline">Frappe CRM</Link> system for CSLO Sudan, enabling real-time project tracking, automated reporting, secure data storage, and a custom <Link href="/services/mobile-apps" className="text-primary hover:underline">mobile app</Link> for field officers working in crisis-affected areas.
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-3">
@@ -128,7 +129,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/web-design-icon-layout-v01.webp"
+                    src="/images/home/services/home-service-web-design-1.webp"
                     alt="website design Uganda mobile-first UX"
                     fill
                     className="object-cover"
@@ -148,7 +149,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/web-design-icon-layout-v01.webp"
+                    src="/images/home/services/home-service-web-design-1.webp"
                     alt="website development Uganda custom systems"
                     fill
                     className="object-cover"
@@ -168,7 +169,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/cybersecurity-icon-shield-v01.webp"
+                    src="/images/home/services/home-service-cybersecurity-1.webp"
                     alt="cyber security Uganda penetration testing"
                     fill
                     className="object-cover"
@@ -188,7 +189,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/mobile-apps-icon-phone-v01.webp"
+                    src="/images/home/services/home-service-mobile-apps-1.webp"
                     alt="mobile app development for field teams"
                     fill
                     className="object-cover"
@@ -208,7 +209,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/erp-systems-icon-dashboard-v01.webp"
+                    src="/images/home/services/home-service-erp-1.webp"
                     alt="ERP CRM systems for NGOs ERPNext"
                     fill
                     className="object-cover"
@@ -228,7 +229,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/web-design-icon-layout-v01.webp"
+                    src="/images/home/services/home-service-web-design-1.webp"
                     alt="digital marketing SEO Uganda"
                     fill
                     className="object-cover"
@@ -313,15 +314,15 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">ERPNext NGO Modules (finance, HR, programs, logistics)</p>
+                <p className="text-gray-700"><Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> NGO Modules (finance, HR, programs, logistics)</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">CRM systems for beneficiary & donor management</p>
+                <p className="text-gray-700"><Link href="/services/crm" className="text-primary hover:underline">CRM systems</Link> for beneficiary & donor management</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">Mobile apps for field staff (offline data capture → automatic sync)</p>
+                <p className="text-gray-700"><Link href="/services/mobile-apps" className="text-primary hover:underline">Mobile apps</Link> for field staff (offline data capture → automatic sync)</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -509,7 +510,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp"
+                    src="/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp"
                     alt="CSLO Sudan ERPNext and CRM implementation case study"
                     fill
                     className="object-cover"
@@ -530,7 +531,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/portfolio-mockup-ngo-portal-v01.jpg"
+                    src="/images/home/portfolio/home-portfolio-ngo-portal-1.webp"
                     alt="NGO portal Uganda"
                     fill
                     className="object-cover"
@@ -551,7 +552,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/portfolio-mockup-retail-ecommerce-v01.webp"
+                    src="/images/home/portfolio/home-portfolio-ecommerce-1.webp"
                     alt="Ecommerce Uganda case study"
                     fill
                     className="object-cover"
@@ -677,6 +678,9 @@ export default function Home() {
         </div>
       </section>
       </div>
+      
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
     </>
   )
 }

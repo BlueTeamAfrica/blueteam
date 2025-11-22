@@ -4,6 +4,7 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
+import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
   title: 'Custom Software Development',
   description: 'Tailored software solutions built specifically for your business needs. Custom applications and systems for East African businesses.',
@@ -32,13 +33,14 @@ export default function CustomSystemsPage() {
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
-              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/mobile-apps/z.webp"
+                  src="/images/services/custom-systems/custom-systems-hero-1.webp"
                   alt="Custom Software Development"
                   fill
                   className="object-cover"
                   sizes="100vw"
+                  priority
                 />
               </div>
             </section>
@@ -145,6 +147,10 @@ export default function CustomSystemsPage() {
           </div>
         </div>
       </div>
-    </>
+    
+      
+      {/* Psylo Links for SEO */}
+      <PsyloLinks />
+</>
   )
 }

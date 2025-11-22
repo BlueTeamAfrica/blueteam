@@ -62,7 +62,7 @@ export default function Hero() {
         {/* Background Image */}
         <div className="absolute inset-0">
             <Image
-              src="/images/hero/P.webp"
+              src="/images/hero/hero-gradient-1.webp"
               alt="Blue Team Africa hero — enterprise web design and cyber security"
               fill
               className="object-cover opacity-80"

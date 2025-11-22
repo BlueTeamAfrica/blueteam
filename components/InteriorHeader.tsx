@@ -27,7 +27,7 @@ export default function InteriorHeader({ title, breadcrumb }: InteriorHeaderProp
         initial={{ width: 0 }}
         animate={{ width: "90px" }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="h-[6px] bg-[#2563EB] rounded-full mx-auto mt-4"
+        className="h-[6px] bg-primary rounded-full mx-auto mt-4"
       />
 
       {/* Breadcrumb */}
@@ -40,7 +40,7 @@ export default function InteriorHeader({ title, breadcrumb }: InteriorHeaderProp
         {breadcrumb.map((item, index) => (
           <span key={index} className="flex items-center">
             {item.href ? (
-              <Link href={item.href} className="hover:text-[#2563EB]">
+              <Link href={item.href} className="hover:text-primary">
                 {item.label}
               </Link>
             ) : (
