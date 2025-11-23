@@ -1,3 +1,5 @@
+import Script from 'next/script'
+
 export default function WebSiteSchema() {
   const websiteSchema = {
     '@context': 'https://schema.org',
@@ -24,8 +26,10 @@ export default function WebSiteSchema() {
   }
 
   return (
-    <script
+    <Script
+      id="website-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
     />
   )

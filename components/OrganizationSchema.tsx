@@ -1,3 +1,5 @@
+import Script from 'next/script'
+
 export default function OrganizationSchema() {
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -26,8 +28,10 @@ export default function OrganizationSchema() {
   }
 
   return (
-    <script
+    <Script
+      id="organization-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
     />
   )

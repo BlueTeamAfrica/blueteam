@@ -1,5 +1,3 @@
-'use client'
-
 import { generateBreadcrumbSchema } from '@/lib/schema'
 
 interface BreadcrumbSchemaProps {

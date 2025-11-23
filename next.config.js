@@ -19,10 +19,6 @@ const nextConfig = {
   swcMinify: true,
   // Performance optimizations
   poweredByHeader: false,
-  // Enable experimental features for better performance
-  experimental: {
-    optimizeCss: true,
-  },
   // Headers for security and performance
   async headers() {
     return [
