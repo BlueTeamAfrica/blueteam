@@ -275,6 +275,7 @@ export default function ContactPage() {
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover"
+                    unoptimized={true}
                   />
                 </div>
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">

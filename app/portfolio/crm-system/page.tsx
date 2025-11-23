@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
+import InteriorHeader from '@/components/InteriorHeader'
 
 export const metadata = {
   title: 'Sales CRM Platform - Case Study',
@@ -9,21 +10,19 @@ export const metadata = {
 
 export default function CRMSystemCaseStudy() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Sales CRM Platform
-          </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            Customer relationship management system with automated workflows and analytics
-          </p>
-        </div>
-      </section>
+    <>
+      <InteriorHeader
+        title="Sales CRM Platform"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Portfolio', href: '/portfolio' },
+          { label: 'Sales CRM Platform' }
+        ]}
+      />
 
-      {/* Project Image */}
-      <section className="py-12 bg-white">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+        {/* Project Image */}
+        <section className="mb-12">
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
@@ -142,12 +141,12 @@ export default function CRMSystemCaseStudy() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-primary text-white">
+      <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">
             Ready to Start Your Project?
           </h2>
-          <p className="text-primary-100 mb-6">
+          <p className="text-gray-300 mb-6">
             Let's discuss how we can help improve your sales process with a CRM solution.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -155,7 +154,7 @@ export default function CRMSystemCaseStudy() {
               href="https://wa.me/256765508131"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
               Chat on WhatsApp
@@ -170,7 +169,8 @@ export default function CRMSystemCaseStudy() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }
 

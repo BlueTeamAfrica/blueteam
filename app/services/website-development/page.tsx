@@ -89,27 +89,27 @@ export default function WebsiteDevelopmentPage() {
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">✓</span>
+                  <span className="text-primary mr-2">✓</span>
                   <span><strong>Speed optimization</strong> (Core Web Vitals)</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">✓</span>
+                  <span className="text-primary mr-2">✓</span>
                   <span><strong>Secure backend systems</strong></span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">✓</span>
+                  <span className="text-primary mr-2">✓</span>
                   <span><strong>Integrations</strong> with databases & APIs</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">✓</span>
+                  <span className="text-primary mr-2">✓</span>
                   <span><strong>Scalable architecture</strong> for growth</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">✓</span>
+                  <span className="text-primary mr-2">✓</span>
                   <span><strong>Mobile-first performance</strong></span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">✓</span>
+                  <span className="text-primary mr-2">✓</span>
                   <span><strong>SEO-ready code structure</strong></span>
                 </li>
               </ul>
@@ -169,23 +169,23 @@ export default function WebsiteDevelopmentPage() {
                   </p>
                   <ul className="space-y-2 text-gray-700 ml-4">
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-primary mr-2">•</span>
                       <span>Mobile apps for data collection</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-primary mr-2">•</span>
                       <span>Secure dashboards</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-primary mr-2">•</span>
                       <span>Centralized cloud reporting</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-primary mr-2">•</span>
                       <span>Offline-to-online sync</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-primary mr-2">•</span>
                       <span>Multi-level access for staff</span>
                     </li>
                   </ul>
@@ -216,7 +216,7 @@ export default function WebsiteDevelopmentPage() {
                 </p>
                 <Link
                   href="/portfolio/cslo-sudan"
-                  className="inline-block mt-4 text-blue-600 hover:text-blue-700 font-semibold"
+                  className="inline-block mt-4 text-primary hover:text-primary-dark font-semibold"
                 >
                   View Full Case Study →
                 </Link>
@@ -244,37 +244,37 @@ export default function WebsiteDevelopmentPage() {
               <div className="grid md:grid-cols-2 gap-4">
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Website development in Uganda</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Custom web applications</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Fast & SEO-optimized websites</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Secure database-driven platforms</span>
                   </li>
                 </ul>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Humanitarian & NGO technology solutions</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Mobile + website integration</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>API & cloud system integrations</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">✓</span>
+                    <span className="text-primary mr-2">✓</span>
                     <span>Scalable hosting & maintenance packages</span>
                   </li>
                 </ul>
@@ -289,28 +289,28 @@ export default function WebsiteDevelopmentPage() {
               <div className="grid md:grid-cols-2 gap-4">
                 <Link
                   href="/services/web-design"
-                  className="block p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all"
+                  className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
                   <h3 className="font-semibold text-gray-900 mb-1">Website Design</h3>
                   <p className="text-sm text-gray-600">UI/UX design and visual branding</p>
                 </Link>
                 <Link
                   href="/services/mobile-apps"
-                  className="block p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all"
+                  className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
                   <h3 className="font-semibold text-gray-900 mb-1">Mobile App Development</h3>
                   <p className="text-sm text-gray-600">iOS and Android applications</p>
                 </Link>
                 <Link
                   href="/services/cybersecurity"
-                  className="block p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all"
+                  className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
                   <h3 className="font-semibold text-gray-900 mb-1">Cyber Security Services</h3>
                   <p className="text-sm text-gray-600">Security audits and protection</p>
                 </Link>
                 <Link
                   href="/services/erp"
-                  className="block p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all"
+                  className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
                   <h3 className="font-semibold text-gray-900 mb-1">ERP Systems for NGOs</h3>
                   <p className="text-sm text-gray-600">ERPNext and enterprise solutions</p>
@@ -320,7 +320,7 @@ export default function WebsiteDevelopmentPage() {
 
             {/* Call to Action */}
             <SectionWrapper>
-              <div className="text-center space-y-4 p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg">
+              <div className="text-center space-y-4 p-8 bg-gray-50 rounded-lg">
                 <h2 className="text-2xl font-bold text-gray-900">
                   Ready to Build a Reliable Website or System for Your Organization?
                 </h2>
@@ -330,13 +330,13 @@ export default function WebsiteDevelopmentPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                   <a
                     href="tel:+256765508131"
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
                   >
                     📞 +256 765 508 131
                   </a>
                   <a
                     href="mailto:contact@blueteamafrica.com"
-                    className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-white text-primary font-semibold rounded-lg border-2 border-primary hover:bg-gray-50 transition-colors"
                   >
                     📧 Get Started
                   </a>

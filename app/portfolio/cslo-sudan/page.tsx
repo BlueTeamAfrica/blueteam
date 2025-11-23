@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
+import InteriorHeader from '@/components/InteriorHeader'
 
 export const metadata: Metadata = {
   title: 'ERP & CRM Digital Transformation for CSLO Sudan | Blue Team Africa',
@@ -82,21 +83,18 @@ export default function CSLOSudanCaseStudy() {
       {/* JSON-LD Schema */}
       <CaseStudySchema />
 
-      <div className="min-h-screen">
-        {/* Hero Banner */}
-        <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              ERP & CRM Digital Transformation for CSLO Sudan
-            </h1>
-            <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-              Full ERPNext and Frappe CRM implementation enabling mobile field reporting and secure multi-program dashboards for humanitarian operations
-            </p>
-          </div>
-        </section>
+      <InteriorHeader
+        title="ERP & CRM Digital Transformation for CSLO Sudan"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Portfolio', href: '/portfolio' },
+          { label: 'CSLO Sudan' }
+        ]}
+      />
 
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
         {/* Project Hero Image */}
-        <section className="py-12 bg-white">
+        <section className="mb-12">
           <div className="max-w-6xl mx-auto px-6">
             <div className="relative h-96 md:h-[500px] bg-gray-200 rounded-lg overflow-hidden">
               <Image
@@ -341,12 +339,12 @@ export default function CSLOSudanCaseStudy() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-primary text-white">
+        <section className="py-16 bg-gray-900 text-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-2xl font-heading font-bold mb-4">
               Ready to Transform Your NGO's Operations?
             </h2>
-            <p className="text-primary-100 mb-6">
+            <p className="text-gray-300 mb-6">
               Let's discuss how we can help streamline your programs with ERP, CRM, and mobile solutions tailored for humanitarian operations.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -354,7 +352,7 @@ export default function CSLOSudanCaseStudy() {
                 href="https://wa.me/256765508131"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
               >
                 <MessageCircle size={20} />
                 Chat on WhatsApp

@@ -146,7 +146,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-web-design-1.webp"
+                    src="/images/home/services/home-service-website-development-1.webp"
                     alt="website development Uganda custom systems"
                     fill
                     className="object-cover"
@@ -226,7 +226,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-web-design-1.webp"
+                    src="/images/home/services/home-service-digital-marketing-1.webp"
                     alt="digital marketing SEO Uganda"
                     fill
                     className="object-cover"
