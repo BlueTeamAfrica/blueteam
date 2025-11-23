@@ -6,8 +6,11 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 
 import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
-  title: 'Cloud & Web Hosting',
-  description: 'Reliable cloud hosting and domain services with 99.9% uptime guarantee. Secure hosting solutions for businesses in East Africa.',
+  title: 'Website Hosting Uganda — Secure, Fast & Reliable Hosting',
+  description: 'Reliable cloud hosting with 99.9% uptime, SSL, backups and strong security. Perfect for NGOs and businesses.',
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/hosting',
+  },
 }
 
 export default function HostingPage() {

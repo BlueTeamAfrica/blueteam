@@ -7,8 +7,11 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 
 import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
-  title: 'Web Design',
-  description: 'Professional web design services for businesses across East Africa. Custom websites built with modern technologies.',
+  title: 'Website Design Uganda — Modern, Fast & SEO-Ready Sites',
+  description: 'High-performance website design crafted for speed, SEO and conversion. Serving NGOs, SMEs, and enterprises across East Africa.',
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/website-design',
+  },
 }
 
 export default function WebDesignPage() {

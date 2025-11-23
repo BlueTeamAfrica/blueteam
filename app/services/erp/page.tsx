@@ -9,8 +9,11 @@ import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations | Blue Team Africa',
-  description: 'Modern, scalable, and secure ERP systems powered by ERPNext—designed for NGOs, companies, and humanitarian organizations operating in complex environments. Streamline operations, automate workflows, and gain real-time visibility.',
+  title: 'ERP Solutions Uganda — ERPNext Setup, Customization & Support',
+  description: 'Implement ERPNext for finance, HR, procurement and logistics. ERP for NGOs and enterprises.',
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/erp',
+  },
   keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
   openGraph: {
     title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',

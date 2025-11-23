@@ -10,8 +10,11 @@ import type { Metadata } from 'next'
 import type { FAQ } from '@/lib/faqs'
 
 export const metadata: Metadata = {
-  title: 'Cybersecurity Solutions | Blue Team Africa',
-  description: 'Trusted cybersecurity solutions for East African businesses & NGOs. Protect your websites, data, and operations with enterprise-grade security built for high-risk environments in Sudan, Uganda, Kenya, and Rwanda.',
+  title: 'Cybersecurity Solutions Uganda — Protect Your Systems & Data',
+  description: 'Penetration testing, endpoint protection, audits and monitoring to secure your organization from advanced threats.',
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/cybersecurity',
+  },
   keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
   openGraph: {
     title: 'Cybersecurity Solutions for East African Businesses & NGOs',

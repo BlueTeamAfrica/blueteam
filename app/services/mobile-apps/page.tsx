@@ -134,7 +134,7 @@ export default function MobileAppsPage() {
                 <div className="flex justify-center">
                   <div className="relative w-full max-w-lg h-80 rounded-xl overflow-hidden shadow-lg bg-gray-50">
                     <Image
-                      src="/images/services/mobile-apps/mobile-apps-dashboard-1.webp"
+                      src="/images/services/mobile-apps/mobile-apps-hero-3.webp"
                       alt="Mobile app dashboard"
                       fill
                       className="object-cover"
@@ -207,7 +207,7 @@ export default function MobileAppsPage() {
                 <div className="flex justify-center">
                   <div className="relative w-full max-w-lg h-80 rounded-xl overflow-hidden shadow-lg bg-gray-50">
                     <Image
-                      src="/images/services/mobile-apps/mobile-apps-api-1.webp"
+                      src="/images/services/mobile-apps/mobile-apps-hero-2.webp"
                       alt="Mobile app API integration"
                       fill
                       className="object-cover"

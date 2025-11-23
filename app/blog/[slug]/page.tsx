@@ -84,7 +84,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'Everything small and medium enterprises in Africa need to know about implementing ERP systems to streamline operations.',
     date: '2024-01-05',
     category: 'ERP Systems',
-    image: '/images/blog/4.webp',
+    image: '/images/blog/blog-thumbnail-3.webp',
     content: `
       <p>Enterprise Resource Planning (ERP) systems are no longer reserved for large corporations. Small and medium enterprises (SMEs) across Africa are discovering that ERP solutions can transform their operations, improve efficiency, and enable growth.</p>
       

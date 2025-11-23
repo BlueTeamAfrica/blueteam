@@ -6,8 +6,11 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 
 import PsyloLinks from '@/components/seo/PsyloLinks'
 export const metadata = {
-  title: 'CRM Solutions',
-  description: 'Customer relationship management systems to automate sales, track leads, and grow your business in East Africa.',
+  title: 'CRM Solutions Uganda — Customer Management & Automation',
+  description: 'Frappe-based CRM for lead tracking, sales automation and client communication.',
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/crm',
+  },
 }
 
 export default function CRMPage() {

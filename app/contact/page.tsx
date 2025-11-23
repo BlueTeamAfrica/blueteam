@@ -81,7 +81,7 @@ export default function ContactPage() {
               {/* Hero Image */}
               <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/contact/contact-hero-01.webp"
+                  src="/images/contact/contact-hero-1.webp"
                   alt="Blue Team Africa Contact"
                   width={600}
                   height={400}
@@ -270,7 +270,7 @@ export default function ContactPage() {
               <div className="space-y-6">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <Image
-                    src="/images/contact/contact-office-01.webp"
+                    src="/images/contact/contact-office-1.webp"
                     alt="Blue Team Africa Office"
                     width={600}
                     height={400}
@@ -279,7 +279,7 @@ export default function ContactPage() {
                 </div>
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <Image
-                    src="/images/contact/contact-team-01.webp"
+                    src="/images/contact/contact-team-1.webp"
                     alt="Blue Team Africa Team"
                     width={600}
                     height={400}

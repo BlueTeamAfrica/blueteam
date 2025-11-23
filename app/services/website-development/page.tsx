@@ -7,8 +7,11 @@ import PsyloLinks from '@/components/seo/PsyloLinks'
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Professional Website Development Services in Uganda & East Africa | Blue Team Africa",
-  description: "Expert website development services in Uganda, Kenya, Rwanda & Sudan. We build fast, secure, and scalable websites for businesses and NGOs. Custom web applications, e-commerce platforms, and integrated systems.",
+  title: "Website Development Uganda — Custom Sites for NGOs & Businesses",
+  description: "Secure, scalable website development with strong UX and full SEO optimization. Tailored for NGOs and growing companies.",
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/website-development',
+  },
   keywords: [
     "website development Uganda",
     "web development East Africa",

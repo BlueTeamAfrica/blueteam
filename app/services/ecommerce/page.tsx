@@ -8,8 +8,11 @@ import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'E-commerce Solutions | Blue Team Africa',
-  description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation — Blue Team builds e-commerce platforms that convert and scale across Uganda, Kenya, Rwanda and Sudan.',
+  title: 'E-Commerce Development Uganda — Sell Online Easily',
+  description: 'Custom e-commerce websites with secure payments, inventory control and mobile-friendly UX for East Africa.',
+  alternates: {
+    canonical: 'https://www.blueteamafrica.com/services/ecommerce',
+  },
   keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
   openGraph: {
     title: 'E-commerce Solutions for Businesses in East Africa',
