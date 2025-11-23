@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blueteamafrica.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.blueteamafrica.com'
 
   // Core pages
   const routes = [
@@ -11,35 +11,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/portfolio',
     '/blog',
     '/faq',
-    '/solutions',
-    '/solutions/foundational',
-    '/solutions/growth',
-    '/solutions/enterprise',
   ]
 
-  // Service pages
+  // Service pages - All actual service pages
   const services = [
     'web-design',
-    'web-development',
+    'website-development',
     'hosting',
-    'app-development',
-    'saas',
-    'cloud',
+    'mobile-apps',
     'erp',
     'crm',
     'cybersecurity',
+    'ecommerce',
+    'custom-systems',
+    'maintenance',
+    'branding',
+    'ui-ux',
   ]
 
-  // Location pages
-  const locations = ['uganda', 'kenya', 'rwanda']
-  const locationServices = ['web-design'] // Can be expanded
+  // Portfolio items - All actual portfolio projects
+  const portfolioItems = [
+    'cslo-sudan',
+    'ngo-portal',
+    'erp-integration',
+    'ecommerce-shop',
+    'mobile-app',
+    'crm-system',
+    'cloud-migration',
+  ]
 
-  // Blog posts
+  // Blog posts - All actual blog posts
   const blogPosts = [
-    'seo-website-design-best-practices',
-    'web-design-services-what-to-look-for',
-    'best-web-design-practices-uganda',
-    'web-development-trends-east-africa',
+    'how-to-choose-the-right-website-for-your-ngo',
+    'why-hosting-speed-matters-in-africa',
+    'erp-for-african-smes-a-complete-guide',
   ]
 
   const sitemapEntries: MetadataRoute.Sitemap = []
@@ -64,15 +69,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Add location-specific pages
-  locations.forEach((location) => {
-    locationServices.forEach((service) => {
-      sitemapEntries.push({
-        url: `${baseUrl}/${location}/${service}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.85,
-      })
+  // Add portfolio items
+  portfolioItems.forEach((item) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/portfolio/${item}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
     })
   })
 

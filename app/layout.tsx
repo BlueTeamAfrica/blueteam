@@ -4,6 +4,9 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
+import OrganizationSchema from '@/components/OrganizationSchema'
+import WebSiteSchema from '@/components/WebSiteSchema'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,6 +28,7 @@ export const metadata: Metadata = {
     template: '%s | Blue Team Africa'
   },
   description: 'Blue Team Africa - Professional web design, hosting, and enterprise systems for East Africa.',
+  metadataBase: new URL('https://www.blueteamafrica.com'),
 }
 
 export default function RootLayout({
@@ -32,9 +36,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
+
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
+        <OrganizationSchema />
+        <WebSiteSchema />
+        {gaId && <GoogleAnalytics gaId={gaId} />}
         <Header />
         <main>{children}</main>
         <Footer />

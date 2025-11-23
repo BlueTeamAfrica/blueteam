@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import PsyloLinks from '@/components/seo/PsyloLinks'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = {
   title: 'About BlueTeam Africa — Web Design & Technology Experts in East Africa',
@@ -12,15 +13,22 @@ export const metadata = {
 }
 
 export default function AboutPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'About Us', url: 'https://www.blueteamafrica.com/about' },
+  ]
+
   return (
-    <main className="bg-white text-gray-800">
-      <InteriorHeader
-        title="About Blue Team Africa"
-        breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'About Us' }
-        ]}
-      />
+    <>
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <main className="bg-white text-gray-800">
+        <InteriorHeader
+          title="About Blue Team Africa"
+          breadcrumb={[
+            { label: 'Home', href: '/' },
+            { label: 'About Us' }
+          ]}
+        />
 
       {/* Hero Section */}
       <section className="relative w-full h-[60vh] bg-cover bg-center"
@@ -185,6 +193,7 @@ export default function AboutPage() {
 
       {/* Psylo Links for SEO */}
       <PsyloLinks />
-    </main>
+      </main>
+    </>
   )
 }
