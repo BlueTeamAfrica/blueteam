@@ -1,7 +1,5 @@
-import Script from 'next/script'
-
 export default function WebSiteSchema() {
-  const websiteSchema = {
+  const websiteSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Blue Team Africa',
@@ -23,14 +21,12 @@ export default function WebSiteSchema() {
         url: 'https://www.blueteamafrica.com/logo.png',
       },
     },
-  }
+  })
 
   return (
-    <Script
-      id="website-schema"
+    <script
       type="application/ld+json"
-      strategy="beforeInteractive"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      dangerouslySetInnerHTML={{ __html: websiteSchema }}
     />
   )
 }

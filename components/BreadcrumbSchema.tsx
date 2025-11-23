@@ -5,12 +5,12 @@ interface BreadcrumbSchemaProps {
 }
 
 export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-  const breadcrumbSchema = generateBreadcrumbSchema(items)
+  const breadcrumbSchema = JSON.stringify(generateBreadcrumbSchema(items))
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
     />
   )
 }

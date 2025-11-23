@@ -4,7 +4,6 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
-import OrganizationSchema from '@/components/OrganizationSchema'
 import WebSiteSchema from '@/components/WebSiteSchema'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 
@@ -41,7 +40,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
-        <OrganizationSchema />
         <WebSiteSchema />
         {gaId && <GoogleAnalytics gaId={gaId} />}
         <Header />

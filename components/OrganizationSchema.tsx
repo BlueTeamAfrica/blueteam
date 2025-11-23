@@ -1,7 +1,5 @@
-import Script from 'next/script'
-
 export default function OrganizationSchema() {
-  const organizationSchema = {
+  const organizationSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Blue Team Africa',
@@ -25,14 +23,12 @@ export default function OrganizationSchema() {
         availableLanguage: ['English'],
       },
     ],
-  }
+  })
 
   return (
-    <Script
-      id="organization-schema"
+    <script
       type="application/ld+json"
-      strategy="beforeInteractive"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      dangerouslySetInnerHTML={{ __html: organizationSchema }}
     />
   )
 }
