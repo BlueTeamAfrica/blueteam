@@ -9,11 +9,11 @@ import { useState, useEffect, useRef } from 'react'
 // Rotating Text Animation Component (Pure Tailwind + CSS)
 function RotatingTextAnimation() {
   const words = [
-    'Web Design',
+    'websites',
     'Mobile Apps',
     'ERP Systems',
-    'Cybersecurity',
-    'Cloud Hosting',
+    'Cybersecurity Solutions',
+    'We Provide Reliable and Secure Cloud Hosting',
     'Digital Solutions',
   ]
   
@@ -27,17 +27,20 @@ function RotatingTextAnimation() {
         setCurrentIndex((prev) => (prev + 1) % words.length)
         setIsVisible(true)
       }, 150)
-    }, 2000) // Change every 2 seconds
+    }, 4000) // Change every 4 seconds (doubled from 2 seconds)
     
     return () => clearInterval(interval)
   }, [words.length])
+  
+  // Check if current word is the cloud hosting phrase (doesn't need "We Build" prefix)
+  const isFullPhrase = words[currentIndex].startsWith('We Provide')
   
   return (
     <div className="hero-animation-slot flex items-center justify-center">
       <div className="relative inline-block text-center lg:text-left">
         <span className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-heading leading-tight">
-          We Build{' '}
-          <span className="inline-block min-w-[180px] sm:min-w-[200px] md:min-w-[250px] lg:min-w-[300px] text-left">
+          {!isFullPhrase && 'We Build '}
+          <span className={`inline-block text-left ${isFullPhrase ? 'min-w-[280px] sm:min-w-[320px] md:min-w-[400px] lg:min-w-[500px]' : 'min-w-[180px] sm:min-w-[200px] md:min-w-[250px] lg:min-w-[300px]'}`}>
             <span 
               className={`inline-block text-white transition-all duration-300 ${
                 isVisible 
