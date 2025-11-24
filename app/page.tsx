@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
-import HeroClient from '@/components/HeroClient'
+import HeroMobileFirst from '@/components/HeroMobileFirst'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export default function Home() {
 
       <div className="w-full overflow-hidden">
         {/* HERO */}
-        <HeroClient />
+        <HeroMobileFirst />
 
         {/* FEATURED CASE STUDY - CSLO Sudan */}
         <section className="py-20 bg-white" aria-labelledby="case-study-heading">
