@@ -65,11 +65,11 @@ export default function HeroClient() {
             {/* Left Column - Content */}
             <div className="bta-hero-left">
               <h1>
-                Web Design, SEO & Hosting for East African Businesses
+                Digital solutions for NGOs & East African businesses
               </h1>
 
               <p>
-                We build high-performance websites and digital systems trusted by NGOs, startups, and companies across Sudan, Uganda, Kenya, and Rwanda.
+                We are a team of Sudanese digital professionals working from Uganda to empower NGOs, startups and companies across Uganda, Kenya, Rwanda and Sudan.
               </p>
 
               {/* CTA Buttons */}
