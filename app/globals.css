@@ -249,6 +249,9 @@ html {
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .bta-hero-left p {
@@ -256,6 +259,8 @@ html {
   margin-bottom: 28px;
   max-width: 520px;
   opacity: 0.95;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Hero CTA Buttons Container */
@@ -357,15 +362,23 @@ html {
   }
 
   .bta-hero-left h1 {
-    font-size: 2.2rem;
-    line-height: 1.15;
+    font-size: 1.75rem;
+    line-height: 1.3;
     margin-bottom: 16px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding: 0 8px;
   }
 
   .bta-hero-left p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 24px;
     max-width: 100%;
+    padding: 0 8px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .bta-hero-ctas {
@@ -378,6 +391,29 @@ html {
   .bta-btn-secondary {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+  .bta-hero {
+    padding: 6rem 1rem 3rem;
+  }
+
+  .bta-hero-inner {
+    padding: 0 12px;
+  }
+
+  .bta-hero-left h1 {
+    font-size: 1.5rem;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+
+  .bta-hero-left p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
   }
 }
 
