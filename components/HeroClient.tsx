@@ -58,6 +58,9 @@ export default function HeroClient() {
 
   return (
     <>
+      {/* Header Spacer - Prevents overlap with sticky header */}
+      <div className="bta-hero-header-spacer"></div>
+
       <section className="bta-hero">
         {/* Hero Inner Container */}
         <div className="bta-hero-inner">
@@ -102,9 +105,9 @@ export default function HeroClient() {
               </a>
             </div>
 
-            {/* Right Column - Visual */}
+            {/* Right Column - Clean Animation Slot */}
             <div className="bta-hero-right">
-              <div className="bta-hero-visual"></div>
+              <div className="hero-animation-slot"></div>
             </div>
           </div>
         </div>

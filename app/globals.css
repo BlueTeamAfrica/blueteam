@@ -205,29 +205,23 @@ html {
   background-size: 200% 200%;
 }
 
+/* Header Spacer - Prevents overlap with sticky header */
+.bta-hero-header-spacer {
+  height: 72px;
+}
+
 /* Hero Section Styles */
 .bta-hero {
   position: relative;
-  height: 100vh;
-  background: url('/images/hero/hero-gradient-1.webp') center/cover no-repeat;
+  min-height: 100vh;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.45)
+  ),
+  url('/images/hero/hero-gradient-1.webp') center/cover no-repeat;
   display: flex;
   align-items: center;
   color: #ffffff;
-}
-
-/* Hero Overlay - Lighter for better background visibility */
-.bta-hero-overlay,
-.bta-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.3)
-  );
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* Hero Inner Container */
@@ -250,7 +244,7 @@ html {
 }
 
 .bta-hero-left h1 {
-  font-size: 3.2rem;
+  font-size: clamp(1.6rem, 5vw, 3.2rem);
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -261,7 +255,7 @@ html {
 }
 
 .bta-hero-left p {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
   margin-bottom: 28px;
   max-width: 520px;
   opacity: 0.95;
@@ -337,49 +331,34 @@ html {
   justify-content: center;
 }
 
-.bta-hero-right .bta-hero-visual {
+/* Clean Animation Slot - No blur, no background, invisible container */
+.hero-animation-slot {
   width: 420px;
   height: 420px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Empty container - ready for future animation */
 }
 
 /* Responsive Hero Styles */
 @media (max-width: 1024px) {
-  .bta-hero {
-    padding-top: 140px; /* Account for fixed navbar */
-  }
-
   .bta-hero-inner {
     padding: 0 24px;
   }
 
-  .bta-hero-right .bta-hero-visual {
+  .hero-animation-slot {
     width: 300px;
     height: 300px;
   }
 }
 
 @media (max-width: 900px) {
-  .bta-hero-overlay,
-  .bta-hero::before {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.4)
-    );
-  }
-
   .bta-hero {
-    height: auto;
-    min-height: 100vh;
-    padding: 140px 1.5rem 4rem; /* Top padding accounts for navbar */
+    min-height: auto;
+    padding: 0 1.5rem 4rem;
   }
 
   .bta-hero-inner {
     padding: 0 20px;
+    padding-top: 0;
   }
 
   .bta-hero-inner .grid {
@@ -394,7 +373,7 @@ html {
     justify-content: center;
   }
 
-  .bta-hero-right .bta-hero-visual {
+  .hero-animation-slot {
     width: 280px;
     height: 280px;
     max-width: 100%;
@@ -407,33 +386,23 @@ html {
   }
 
   .bta-hero-left h1 {
-    font-size: 1.75rem;
     line-height: 1.3;
     margin-bottom: 16px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
     width: 100%;
   }
 
   .bta-hero-left p {
-    font-size: 1rem;
     margin-bottom: 24px;
     max-width: 100%;
     width: 100%;
     line-height: 1.6;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    white-space: normal;
   }
 
   .bta-hero-ctas {
     flex-direction: column;
     width: 100%;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .bta-btn-primary,
@@ -451,64 +420,66 @@ html {
   }
 }
 
-/* Extra small mobile screens - 414px and below */
-@media (max-width: 414px) {
+/* Mobile adjustments - Lower hero text for screens < 640px */
+@media (max-width: 640px) {
+  .bta-hero-header-spacer {
+    height: 72px;
+  }
+
   .bta-hero {
-    padding: 130px 1rem 3rem; /* Account for navbar on small screens */
-    min-height: auto;
+    padding-top: 35px; /* Lower hero text by 25-35px */
+    padding-bottom: 3rem;
   }
 
   .bta-hero-inner {
-    padding: 0 16px;
-    width: 100%;
+    padding-top: 0;
   }
 
   .bta-hero-left h1 {
-    font-size: 1.5rem;
-    line-height: 1.35;
     margin-bottom: 12px;
-    width: 100%;
-    word-break: break-word;
   }
 
   .bta-hero-left p {
-    font-size: 0.95rem;
-    line-height: 1.5;
     margin-bottom: 20px;
-    width: 100%;
-    max-width: 100%;
-    word-break: break-word;
-    white-space: normal;
   }
 
-  .bta-hero-right .bta-hero-visual {
+  .hero-animation-slot {
     width: 240px;
     height: 240px;
   }
 }
 
-/* Very small screens - 390px and below */
-@media (max-width: 390px) {
+/* Small mobile screens - 414px and below */
+@media (max-width: 414px) {
   .bta-hero {
-    padding: 120px 0.75rem 2.5rem;
+    padding-top: 30px;
+    padding-bottom: 2.5rem;
+  }
+
+  .bta-hero-inner {
+    padding: 0 16px;
+  }
+
+  .hero-animation-slot {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Very small screens - 375px and below */
+@media (max-width: 375px) {
+  .bta-hero {
+    padding-top: 25px;
+    padding-bottom: 2rem;
   }
 
   .bta-hero-inner {
     padding: 0 12px;
   }
 
-  .bta-hero-left h1 {
-    font-size: 1.4rem;
-    line-height: 1.3;
-  }
-
-  .bta-hero-left p {
-    font-size: 0.9rem;
-  }
-
-  .bta-hero-right .bta-hero-visual {
-    width: 200px;
-    height: 200px;
+  .hero-animation-slot {
+    width: 180px;
+    height: 180px;
   }
 }
 
