@@ -1,0 +1,44 @@
+[
+  {
+    "expectedPath": "/images/hero/hero-main-01.webp",
+    "folder": "hero",
+    "fileName": "hero-main-01.webp",
+    "section": "hero"
+  },
+  {
+    "expectedPath": "/images/portfolio/cslo-sudan/portfolio-project-cslo-01.webp",
+    "folder": "portfolio/cslo-sudan",
+    "fileName": "portfolio-project-cslo-01.webp",
+    "section": "portfolio/cslo-sudan"
+  },
+  {
+    "expectedPath": "/images/services/web-design/services-webdesign-hero-01.webp",
+    "folder": "services/web-design",
+    "fileName": "services-webdesign-hero-01.webp",
+    "section": "services/web-design"
+  },
+  {
+    "expectedPath": "/images/services/website-development/services-website-development-hero-01.webp",
+    "folder": "services/website-development",
+    "fileName": "services-website-development-hero-01.webp",
+    "section": "services/website-development"
+  },
+  {
+    "expectedPath": "/images/services/mobile-apps/services-mobile-apps-hero-01.webp",
+    "folder": "services/mobile-apps",
+    "fileName": "services-mobile-apps-hero-01.webp",
+    "section": "services/mobile-apps"
+  },
+  {
+    "expectedPath": "/images/services/mobile-apps/services-mobile-apps-ui-01.webp",
+    "folder": "services/mobile-apps",
+    "fileName": "services-mobile-apps-ui-01.webp",
+    "section": "services/mobile-apps"
+  },
+  {
+    "expectedPath": "/images/services/erp/services-erp-hero-01.webp",
+    "folder": "services/erp",
+    "fileName": "services-erp-hero-01.webp",
+    "section": "services/erp"
+  }
+]

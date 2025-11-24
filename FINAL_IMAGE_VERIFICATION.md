@@ -11,9 +11,9 @@ Generated: $(date)
 ## ✅ Verified Image Categories
 
 ### Hero Images
-- ✅ `/images/hero/hero-bg-1.webp`
-- ✅ `/images/hero/hero-gradient-1.webp`
-- ✅ `/images/hero/hero-og-1.webp` (created)
+- ✅ `/images/hero/hero-bg-01.webp`
+- ✅ `/images/hero/hero-gradient-01.webp`
+- ✅ `/images/hero/hero-og-01.webp` (created)
 
 ### Home Page Images
 - ✅ `/images/home/home-feature-1.webp` (created)
@@ -21,15 +21,15 @@ Generated: $(date)
 - ✅ `/images/home/home-feature-3.webp`
 - ✅ `/images/home/home-feature-4.webp`
 - ✅ `/images/home/home-clients-1.webp` (created)
-- ✅ `/images/home/home-team-1.webp`
-- ✅ `/images/home/services/home-service-web-design-1.webp`
-- ✅ `/images/home/services/home-service-cybersecurity-1.webp`
-- ✅ `/images/home/services/home-service-mobile-apps-1.webp`
-- ✅ `/images/home/services/home-service-erp-1.webp`
-- ✅ `/images/home/services/home-service-hosting-1.webp`
-- ✅ `/images/home/portfolio/home-portfolio-ngo-portal-1.webp`
-- ✅ `/images/home/portfolio/home-portfolio-ecommerce-1.webp`
-- ✅ `/images/home/portfolio/home-portfolio-preview-1.webp`
+- ✅ `/images/home/home-team-01.webp`
+- ✅ `/images/home/services/home-service-web-design-01.webp`
+- ✅ `/images/home/services/home-service-cybersecurity-01.webp`
+- ✅ `/images/home/services/home-service-mobile-apps-01.webp`
+- ✅ `/images/home/services/home-service-erp-01.webp`
+- ✅ `/images/home/services/home-service-hosting-01.webp`
+- ✅ `/images/home/portfolio/home-portfolio-ngo-portal-01.webp`
+- ✅ `/images/home/portfolio/home-portfolio-ecommerce-01.webp`
+- ✅ `/images/home/portfolio/home-portfolio-preview-01.webp`
 
 ### Service Images
 - ✅ All web-design images
@@ -45,15 +45,15 @@ Generated: $(date)
 - ✅ All custom-systems images (including hero)
 
 ### About & Contact
-- ✅ `/images/about/about-team-1.webp`
-- ✅ `/images/about/about-office-1.webp`
-- ✅ `/images/about/about-story-1.webp` (created)
+- ✅ `/images/about/about-team-01.webp`
+- ✅ `/images/about/about-office-01.webp`
+- ✅ `/images/about/about-story-01.webp` (created)
 - ✅ `/images/contact/contact-hero-1.webp` (created)
-- ✅ `/images/contact/contact-office-1.webp`
-- ✅ `/images/contact/contact-team-1.webp`
+- ✅ `/images/contact/contact-office-01.webp`
+- ✅ `/images/contact/contact-team-01.webp`
 
 ### Portfolio
-- ✅ `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp`
+- ✅ `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp`
 - ✅ All portfolio project preview images
 
 ### Blog

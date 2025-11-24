@@ -6,6 +6,54 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 
+// Rotating Text Animation Component (Pure Tailwind + CSS)
+function RotatingTextAnimation() {
+  const words = [
+    'Web Design',
+    'Mobile Apps',
+    'ERP Systems',
+    'Cybersecurity',
+    'Cloud Hosting',
+    'Digital Solutions',
+  ]
+  
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false)
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % words.length)
+        setIsVisible(true)
+      }, 150)
+    }, 2000) // Change every 2 seconds
+    
+    return () => clearInterval(interval)
+  }, [words.length])
+  
+  return (
+    <div className="hero-animation-slot flex items-center justify-center">
+      <div className="relative inline-block text-center lg:text-left">
+        <span className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-heading leading-tight">
+          We Build{' '}
+          <span className="inline-block min-w-[180px] sm:min-w-[200px] md:min-w-[250px] lg:min-w-[300px] text-left">
+            <span 
+              className={`inline-block text-white transition-all duration-300 ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-2'
+              }`}
+            >
+              {words[currentIndex]}
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export default function HeroClient() {
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
@@ -62,6 +110,26 @@ export default function HeroClient() {
       <div className="bta-hero-header-spacer"></div>
 
       <section className="bta-hero">
+        {/* Hero Background Image - Using Next.js Image for better performance */}
+        <div className="bta-hero-background">
+          <Image
+            src="/images/hero/hero-gradient-01.webp"
+            alt=""
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="bta-hero-background-image"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+            aria-hidden="true"
+          />
+          {/* Dark overlay for text contrast (WCAG compliant) */}
+          <div className="bta-hero-overlay" aria-hidden="true"></div>
+        </div>
+
         {/* Hero Inner Container */}
         <div className="bta-hero-inner">
           <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
@@ -105,9 +173,9 @@ export default function HeroClient() {
               </a>
             </div>
 
-            {/* Right Column - Clean Animation Slot */}
+            {/* Right Column - Rotating Text Animation */}
             <div className="bta-hero-right">
-              <div className="hero-animation-slot"></div>
+              <RotatingTextAnimation />
             </div>
           </div>
         </div>

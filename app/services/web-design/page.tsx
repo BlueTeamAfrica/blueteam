@@ -39,7 +39,7 @@ export default function WebDesignPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/web-design/web-design-hero-1.webp"
+                  src="/images/services/web-design/services-webdesign-web-design-hero-01.webp"
                   alt="Professional Web Design Services"
                   fill
                   className="object-cover"

@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.blueteamafrica.com/',
   },
+  other: {
+    // Preload hero image for better LCP performance
+    'preload-hero': '/images/hero/hero-gradient-01.webp',
+  },
   openGraph: {
     title: 'BlueTeam Africa — Web Design & Digital Solutions',
     description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
@@ -21,7 +25,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero/hero-og-1.webp',
+        url: '/images/hero/hero-og-01.webp',
         width: 1200,
         height: 630,
         alt: 'Blue Team Africa — Web Design, Website Development & Digital Solutions',
@@ -33,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BlueTeam Africa — Web Design & Digital Solutions',
     description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
-    images: ['/images/hero/hero-og-1.webp'],
+    images: ['/images/hero/hero-og-01.webp'],
   },
   keywords: [
     'web design',
@@ -126,7 +130,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-web-design-1.webp"
+                    src="/images/home/services/home-service-web-design-01.webp"
                     alt="website design Uganda mobile-first UX"
                     fill
                     className="object-cover"
@@ -146,7 +150,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-website-development-1.webp"
+                    src="/images/home/services/home-service-website-development-01.webp"
                     alt="website development Uganda custom systems"
                     fill
                     className="object-cover"
@@ -166,7 +170,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-cybersecurity-1.webp"
+                    src="/images/home/services/home-service-cybersecurity-01.webp"
                     alt="cyber security Uganda penetration testing"
                     fill
                     className="object-cover"
@@ -186,7 +190,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-mobile-apps-1.webp"
+                    src="/images/home/services/home-service-mobile-apps-01.webp"
                     alt="mobile app development for field teams"
                     fill
                     className="object-cover"
@@ -206,7 +210,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-erp-1.webp"
+                    src="/images/home/services/home-service-erp-01.webp"
                     alt="ERP CRM systems for NGOs ERPNext"
                     fill
                     className="object-cover"
@@ -226,7 +230,7 @@ export default function Home() {
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
                   <Image
-                    src="/images/home/services/home-service-digital-marketing-1.webp"
+                    src="/images/home/services/home-service-digital-marketing-01.webp"
                     alt="digital marketing SEO Uganda"
                     fill
                     className="object-cover"
@@ -507,7 +511,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp"
+                    src="/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp"
                     alt="CSLO Sudan ERPNext and CRM implementation case study"
                     fill
                     className="object-cover"
@@ -528,7 +532,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/home-portfolio-ngo-portal-1.webp"
+                    src="/images/home/portfolio/home-portfolio-ngo-portal-01.webp"
                     alt="NGO portal Uganda"
                     fill
                     className="object-cover"
@@ -549,7 +553,7 @@ export default function Home() {
               <article className="rounded-2xl overflow-hidden shadow bg-white">
                 <div className="relative w-full h-48">
                   <Image
-                    src="/images/home/portfolio/home-portfolio-ecommerce-1.webp"
+                    src="/images/home/portfolio/home-portfolio-ecommerce-01.webp"
                     alt="Ecommerce Uganda case study"
                     fill
                     className="object-cover"

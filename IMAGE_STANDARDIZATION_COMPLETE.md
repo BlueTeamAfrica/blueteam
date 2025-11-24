@@ -72,22 +72,22 @@ These images are referenced in code but don't exist yet. Upload them with the ex
 ### Service Pages
 
 #### Custom Systems
-- **Path**: `public/images/services/custom-systems/custom-systems-hero-1.webp`
+- **Path**: `public/images/services/customsystems/services-customsystems-custom-systems-hero-01.webp`
 - **Used in**: `app/services/custom-systems/page.tsx`
 - **Action**: Upload hero image for custom systems service
 
 #### UI/UX
-- **Path**: `public/images/services/ui-ux/ui-ux-hero-1.webp`
+- **Path**: `public/images/services/uiux/services-uiux-ui-ux-hero-01.webp`
 - **Used in**: `app/services/ui-ux/page.tsx`
 - **Action**: Upload hero image for UI/UX service
 
 #### Branding
-- **Path**: `public/images/services/branding/branding-hero-1.webp`
+- **Path**: `public/images/services/branding/services-branding-hero-01.webp`
 - **Used in**: `app/services/branding/page.tsx`
 - **Action**: Upload hero image for branding service (already exists, may need path update)
 
 #### Maintenance
-- **Path**: `public/images/services/maintenance/maintenance-hero-1.webp`
+- **Path**: `public/images/services/maintenance/services-maintenance-hero-01.webp`
 - **Used in**: `app/services/maintenance/page.tsx`
 - **Action**: Upload hero image for maintenance service (already exists, may need path update)
 
@@ -137,7 +137,7 @@ import { getServiceImagePath, validateImageName } from '@/lib/imageNaming';
 
 // Generate correct path
 const heroImage = getServiceImagePath('web-design', 'hero', 1);
-// Returns: '/images/services/web-design/web-design-hero-1.webp'
+// Returns: '/images/services/webdesign/services-webdesign-web-design-hero-01.webp'
 
 // Validate existing image
 const validation = validateImageName('web-design-hero-1.webp');

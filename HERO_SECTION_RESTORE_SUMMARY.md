@@ -30,7 +30,7 @@
   - Desktop: Full two-column layout
 
 ### 5. **Image Paths**
-- ✅ Kept all image paths exactly as they were: `/images/hero/hero-gradient-1.webp`
+- ✅ Kept all image paths exactly as they were: `/images/hero/hero-gradient-01.webp`
 
 ---
 

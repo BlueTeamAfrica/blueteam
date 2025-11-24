@@ -67,11 +67,11 @@ services/website-development/t-1.webp → services/website-development/website-d
 
 ## ❌ MISSING IMAGE REPORT
 
-- **Path:** `public/images/hero/hero-bg-1.webp`
+- **Path:** `public/images/hero/hero-bg-01.webp`
   - **Suggested Filename:** `hero-bg-1.webp`
   - **Action:** Upload image as: hero-bg-1.webp
 
-- **Path:** `public/images/home/home-team-1.webp`
+- **Path:** `public/images/home/home-team-01.webp`
   - **Suggested Filename:** `home-team-1.webp`
   - **Action:** Upload image as: home-team-1.webp
 
@@ -79,7 +79,7 @@ services/website-development/t-1.webp → services/website-development/website-d
   - **Suggested Filename:** `web-design-ui-1.webp`
   - **Action:** Upload image as: web-design-ui-1.webp
 
-- **Path:** `public/images/services/cybersecurity/cybersecurity-shield-1.webp`
+- **Path:** `public/images/services/cybersecurity/services-cybersecurity-shield-01.webp`
   - **Suggested Filename:** `cybersecurity-shield-1.webp`
   - **Action:** Upload image as: cybersecurity-shield-1.webp
 
@@ -87,11 +87,11 @@ services/website-development/t-1.webp → services/website-development/website-d
   - **Suggested Filename:** `ecommerce-store-1.webp`
   - **Action:** Upload image as: ecommerce-store-1.webp
 
-- **Path:** `public/images/services/seo/seo-hero-1.webp`
+- **Path:** `public/images/services/seo/services-seo-hero-01.webp`
   - **Suggested Filename:** `seo-hero-1.webp`
   - **Action:** Upload image as: seo-hero-1.webp
 
-- **Path:** `public/images/services/seo/seo-feature-1.webp`
+- **Path:** `public/images/services/seo/services-seo-feature-01.webp`
   - **Suggested Filename:** `seo-feature-1.webp`
   - **Action:** Upload image as: seo-feature-1.webp
 
@@ -115,15 +115,15 @@ services/website-development/t-1.webp → services/website-development/website-d
   - **Suggested Filename:** `portfolio-project-cslo-1.webp`
   - **Action:** Upload image as: portfolio-project-cslo-1.webp
 
-- **Path:** `public/images/common/common-icon-1.webp`
+- **Path:** `public/images/general/general-common-icon-01.webp`
   - **Suggested Filename:** `common-icon-1.webp`
   - **Action:** Upload image as: common-icon-1.webp
 
-- **Path:** `public/images/common/common-icon-2.webp`
+- **Path:** `public/images/general/general-common-icon-02.webp`
   - **Suggested Filename:** `common-icon-2.webp`
   - **Action:** Upload image as: common-icon-2.webp
 
-- **Path:** `public/images/icons/icons-feature-1.webp`
+- **Path:** `public/images/general/general-icons-feature-01.webp`
   - **Suggested Filename:** `icons-feature-1.webp`
   - **Action:** Upload image as: icons-feature-1.webp
 

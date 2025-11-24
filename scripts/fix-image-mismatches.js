@@ -16,13 +16,13 @@ const IMAGES_DIR = path.join(process.cwd(), 'public/images');
 const FIXES = [
   // Hero images
   {
-    codeRef: '/images/hero/hero-og-1.webp',
+    codeRef: '/images/hero/hero-og-01.webp',
     actualFile: '/images/hero/hero-banner-gradient-abstract-1.webp',
     action: 'copy', // Copy since we might need both
     priority: 'high'
   },
   {
-    codeRef: '/images/hero/hero-gradient-1.webp',
+    codeRef: '/images/hero/hero-gradient-01.webp',
     actualFile: '/images/hero/hero-banner-gradient-abstract-1.webp',
     action: 'rename', // Rename to match blueprint
     priority: 'high'
@@ -30,31 +30,31 @@ const FIXES = [
   
   // Home service icons - these exist but with old names
   {
-    codeRef: '/images/home/services/home-service-web-design-1.webp',
+    codeRef: '/images/home/services/home-service-web-design-01.webp',
     actualFile: '/images/home/services/web-design-icon-layout-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/home/services/home-service-cybersecurity-1.webp',
+    codeRef: '/images/home/services/home-service-cybersecurity-01.webp',
     actualFile: '/images/home/services/cybersecurity-icon-shield-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/home/services/home-service-mobile-apps-1.webp',
+    codeRef: '/images/home/services/home-service-mobile-apps-01.webp',
     actualFile: '/images/home/services/mobile-apps-icon-phone-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/home/services/home-service-erp-1.webp',
+    codeRef: '/images/home/services/home-service-erp-01.webp',
     actualFile: '/images/home/services/erp-systems-icon-dashboard-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/home/services/home-service-hosting-1.webp',
+    codeRef: '/images/home/services/home-service-hosting-01.webp',
     actualFile: '/images/home/services/cloud-hosting-icon-server-1.webp',
     action: 'rename',
     priority: 'high'
@@ -62,13 +62,13 @@ const FIXES = [
   
   // Home portfolio
   {
-    codeRef: '/images/home/portfolio/home-portfolio-ngo-portal-1.webp',
+    codeRef: '/images/home/portfolio/home-portfolio-ngo-portal-01.webp',
     actualFile: '/images/home/portfolio/portfolio-mockup-ng-portal-uganda-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/home/portfolio/home-portfolio-ecommerce-1.webp',
+    codeRef: '/images/home/portfolio/home-portfolio-ecommerce-01.webp',
     actualFile: '/images/home/portfolio/portfolio-mockup-retail-ecommerce-1.webp',
     action: 'rename',
     priority: 'high'
@@ -76,31 +76,31 @@ const FIXES = [
   
   // Portfolio
   {
-    codeRef: '/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp',
+    codeRef: '/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp',
     actualFile: '/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/portfolio/portfolio-project-preview-1.webp',
+    codeRef: '/images/portfolio/portfolio-preview-01.webp',
     actualFile: '/images/portfolio/portfolio-project-preview-i-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/portfolio/portfolio-project-preview-2.webp',
+    codeRef: '/images/portfolio/portfolio-preview-02.webp',
     actualFile: '/images/portfolio/portfolio-project-preview-q-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/portfolio/portfolio-project-preview-3.webp',
+    codeRef: '/images/portfolio/portfolio-preview-03.webp',
     actualFile: '/images/portfolio/portfolio-project-preview-t-1.webp',
     action: 'rename',
     priority: 'high'
   },
   {
-    codeRef: '/images/portfolio/portfolio-project-preview-4.webp',
+    codeRef: '/images/portfolio/portfolio-preview-04.webp',
     actualFile: '/images/portfolio/portfolio-project-preview-u-1.webp',
     action: 'rename',
     priority: 'high'
@@ -108,19 +108,19 @@ const FIXES = [
   
   // Blog - rename existing files
   {
-    codeRef: '/images/blog/blog-thumbnail-1.webp',
+    codeRef: '/images/blog/blog-thumbnail-01.webp',
     actualFile: '/images/blog/blog-post-thumbnail-3.webp', // Use existing as placeholder
     action: 'copy',
     priority: 'medium'
   },
   {
-    codeRef: '/images/blog/blog-thumbnail-2.webp',
+    codeRef: '/images/blog/blog-thumbnail-02.webp',
     actualFile: '/images/blog/blog-post-thumbnail-3.webp',
     action: 'copy',
     priority: 'medium'
   },
   {
-    codeRef: '/images/blog/blog-thumbnail-3.webp',
+    codeRef: '/images/blog/blog-thumbnail-03.webp',
     actualFile: '/images/blog/blog-post-thumbnail-3.webp',
     action: 'rename',
     priority: 'medium'
@@ -128,13 +128,13 @@ const FIXES = [
   
   // ERP-CRM folder - need to create and move files
   {
-    codeRef: '/images/services/erp-crm/erp-crm-hero-1.webp',
+    codeRef: '/images/services/erpcrm/services-erpcrm-erp-crm-hero-01.webp',
     actualFile: '/images/services/crm/crm-feature-legacy-5-1.webp',
     action: 'move',
     priority: 'high'
   },
   {
-    codeRef: '/images/services/erp-crm/erp-crm-dashboard-1.webp',
+    codeRef: '/images/services/erpcrm/services-erpcrm-erp-crm-dashboard-01.webp',
     actualFile: '/images/services/erp/erp-systems-dashboard-1.webp',
     action: 'move',
     priority: 'high'
@@ -142,14 +142,14 @@ const FIXES = [
   
   // Ecommerce - use hero as placeholder for missing images
   {
-    codeRef: '/images/services/ecommerce/ecommerce-dashboard-1.webp',
-    actualFile: '/images/services/ecommerce/ecommerce-hero-1.webp',
+    codeRef: '/images/services/ecommerce/services-ecommerce-dashboard-01.webp',
+    actualFile: '/images/services/ecommerce/services-ecommerce-hero-01.webp',
     action: 'copy',
     priority: 'medium'
   },
   {
-    codeRef: '/images/services/ecommerce/ecommerce-integrations-1.webp',
-    actualFile: '/images/services/ecommerce/ecommerce-hero-1.webp',
+    codeRef: '/images/services/ecommerce/services-ecommerce-integrations-01.webp',
+    actualFile: '/images/services/ecommerce/services-ecommerce-hero-01.webp',
     action: 'copy',
     priority: 'medium'
   },

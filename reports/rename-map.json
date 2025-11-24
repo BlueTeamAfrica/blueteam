@@ -1,0 +1,512 @@
+[
+  {
+    "original": "about/about-office-1.webp",
+    "renamed": "about/about-office-01.webp",
+    "oldPath": "/images/about/about-office-1.webp",
+    "newPath": "/images/about/about-office-01.webp"
+  },
+  {
+    "original": "about/about-story-1.webp",
+    "renamed": "about/about-story-01.webp",
+    "oldPath": "/images/about/about-story-1.webp",
+    "newPath": "/images/about/about-story-01.webp"
+  },
+  {
+    "original": "about/about-team-1.webp",
+    "renamed": "about/about-team-01.webp",
+    "oldPath": "/images/about/about-team-1.webp",
+    "newPath": "/images/about/about-team-01.webp"
+  },
+  {
+    "original": "blog/blog-post-thumbnail-d-1.webp",
+    "renamed": "blog/blog-post-thumbnail-d-01.webp",
+    "oldPath": "/images/blog/blog-post-thumbnail-d-1.webp",
+    "newPath": "/images/blog/blog-post-thumbnail-d-01.webp"
+  },
+  {
+    "original": "blog/blog-thumbnail-1.webp",
+    "renamed": "blog/blog-thumbnail-01.webp",
+    "oldPath": "/images/blog/blog-thumbnail-1.webp",
+    "newPath": "/images/blog/blog-thumbnail-01.webp"
+  },
+  {
+    "original": "blog/blog-thumbnail-2.webp",
+    "renamed": "blog/blog-thumbnail-02.webp",
+    "oldPath": "/images/blog/blog-thumbnail-2.webp",
+    "newPath": "/images/blog/blog-thumbnail-02.webp"
+  },
+  {
+    "original": "blog/blog-thumbnail-3.webp",
+    "renamed": "blog/blog-thumbnail-03.webp",
+    "oldPath": "/images/blog/blog-thumbnail-3.webp",
+    "newPath": "/images/blog/blog-thumbnail-03.webp"
+  },
+  {
+    "original": "common/common-icon-1.webp",
+    "renamed": "general/general-common-icon-01.webp",
+    "oldPath": "/images/common/common-icon-1.webp",
+    "newPath": "/images/general/general-common-icon-01.webp"
+  },
+  {
+    "original": "common/common-icon-2.webp",
+    "renamed": "general/general-common-icon-02.webp",
+    "oldPath": "/images/common/common-icon-2.webp",
+    "newPath": "/images/general/general-common-icon-02.webp"
+  },
+  {
+    "original": "contact/about-office-2.webp",
+    "renamed": "contact/contact-about-office-02.webp",
+    "oldPath": "/images/contact/about-office-2.webp",
+    "newPath": "/images/contact/contact-about-office-02.webp"
+  },
+  {
+    "original": "contact/about-office-8.webp",
+    "renamed": "contact/contact-about-office-08.webp",
+    "oldPath": "/images/contact/about-office-8.webp",
+    "newPath": "/images/contact/contact-about-office-08.webp"
+  },
+  {
+    "original": "contact/about-story-4.webp",
+    "renamed": "contact/contact-about-story-04.webp",
+    "oldPath": "/images/contact/about-story-4.webp",
+    "newPath": "/images/contact/contact-about-story-04.webp"
+  },
+  {
+    "original": "contact/about-story-5.webp",
+    "renamed": "contact/contact-about-story-05.webp",
+    "oldPath": "/images/contact/about-story-5.webp",
+    "newPath": "/images/contact/contact-about-story-05.webp"
+  },
+  {
+    "original": "contact/about-story-7.webp",
+    "renamed": "contact/contact-about-story-07.webp",
+    "oldPath": "/images/contact/about-story-7.webp",
+    "newPath": "/images/contact/contact-about-story-07.webp"
+  },
+  {
+    "original": "contact/about-team-8.webp",
+    "renamed": "contact/contact-about-team-08.webp",
+    "oldPath": "/images/contact/about-team-8.webp",
+    "newPath": "/images/contact/contact-about-team-08.webp"
+  },
+  {
+    "original": "contact/about-team-9.webp",
+    "renamed": "contact/contact-about-team-09.webp",
+    "oldPath": "/images/contact/about-team-9.webp",
+    "newPath": "/images/contact/contact-about-team-09.webp"
+  },
+  {
+    "original": "contact/about-team.webp",
+    "renamed": "contact/contact-about-team-01.webp",
+    "oldPath": "/images/contact/about-team.webp",
+    "newPath": "/images/contact/contact-about-team-01.webp"
+  },
+  {
+    "original": "contact/contact-hero-3.webp",
+    "renamed": "contact/contact-hero-03.webp",
+    "oldPath": "/images/contact/contact-hero-3.webp",
+    "newPath": "/images/contact/contact-hero-03.webp"
+  },
+  {
+    "original": "contact/contact-hero.webp",
+    "renamed": "contact/contact-hero-01.webp",
+    "oldPath": "/images/contact/contact-hero.webp",
+    "newPath": "/images/contact/contact-hero-01.webp"
+  },
+  {
+    "original": "contact/contact-office-1.webp",
+    "renamed": "contact/contact-office-01.webp",
+    "oldPath": "/images/contact/contact-office-1.webp",
+    "newPath": "/images/contact/contact-office-01.webp"
+  },
+  {
+    "original": "contact/contact-office-9.webp",
+    "renamed": "contact/contact-office-09.webp",
+    "oldPath": "/images/contact/contact-office-9.webp",
+    "newPath": "/images/contact/contact-office-09.webp"
+  },
+  {
+    "original": "contact/contact-support-2.webp",
+    "renamed": "contact/contact-support-02.webp",
+    "oldPath": "/images/contact/contact-support-2.webp",
+    "newPath": "/images/contact/contact-support-02.webp"
+  },
+  {
+    "original": "contact/contact-team-1.webp",
+    "renamed": "contact/contact-team-01.webp",
+    "oldPath": "/images/contact/contact-team-1.webp",
+    "newPath": "/images/contact/contact-team-01.webp"
+  },
+  {
+    "original": "contact/contact-team-2.webp",
+    "renamed": "contact/contact-team-02.webp",
+    "oldPath": "/images/contact/contact-team-2.webp",
+    "newPath": "/images/contact/contact-team-02.webp"
+  },
+  {
+    "original": "contact/f-1.webp",
+    "renamed": "contact/contact-f-01.webp",
+    "oldPath": "/images/contact/f-1.webp",
+    "newPath": "/images/contact/contact-f-01.webp"
+  },
+  {
+    "original": "contact/g-1.webp",
+    "renamed": "contact/contact-g-01.webp",
+    "oldPath": "/images/contact/g-1.webp",
+    "newPath": "/images/contact/contact-g-01.webp"
+  },
+  {
+    "original": "contact/h-1.webp",
+    "renamed": "contact/contact-h-01.webp",
+    "oldPath": "/images/contact/h-1.webp",
+    "newPath": "/images/contact/contact-h-01.webp"
+  },
+  {
+    "original": "contact/hosting-infrastructure-1.webp",
+    "renamed": "contact/contact-hosting-infrastructure-01.webp",
+    "oldPath": "/images/contact/hosting-infrastructure-1.webp",
+    "newPath": "/images/contact/contact-hosting-infrastructure-01.webp"
+  },
+  {
+    "original": "contact/k-1.webp",
+    "renamed": "contact/contact-k-01.webp",
+    "oldPath": "/images/contact/k-1.webp",
+    "newPath": "/images/contact/contact-k-01.webp"
+  },
+  {
+    "original": "contact/l-1.webp",
+    "renamed": "contact/contact-l-01.webp",
+    "oldPath": "/images/contact/l-1.webp",
+    "newPath": "/images/contact/contact-l-01.webp"
+  },
+  {
+    "original": "contact/m-1.webp",
+    "renamed": "contact/contact-m-01.webp",
+    "oldPath": "/images/contact/m-1.webp",
+    "newPath": "/images/contact/contact-m-01.webp"
+  },
+  {
+    "original": "contact/maintenance-support-1.webp",
+    "renamed": "contact/contact-maintenance-support-01.webp",
+    "oldPath": "/images/contact/maintenance-support-1.webp",
+    "newPath": "/images/contact/contact-maintenance-support-01.webp"
+  },
+  {
+    "original": "contact/u-1.webp",
+    "renamed": "contact/contact-u-01.webp",
+    "oldPath": "/images/contact/u-1.webp",
+    "newPath": "/images/contact/contact-u-01.webp"
+  },
+  {
+    "original": "contact/v-1.webp",
+    "renamed": "contact/contact-v-01.webp",
+    "oldPath": "/images/contact/v-1.webp",
+    "newPath": "/images/contact/contact-v-01.webp"
+  },
+  {
+    "original": "contact/website-development-hero-.webp",
+    "renamed": "contact/contact-website-development-hero-01.webp",
+    "oldPath": "/images/contact/website-development-hero-.webp",
+    "newPath": "/images/contact/contact-website-development-hero-01.webp"
+  },
+  {
+    "original": "hero/hero-bg-1.webp",
+    "renamed": "hero/hero-bg-01.webp",
+    "oldPath": "/images/hero/hero-bg-1.webp",
+    "newPath": "/images/hero/hero-bg-01.webp"
+  },
+  {
+    "original": "hero/hero-gradient-1.webp",
+    "renamed": "hero/hero-gradient-01.webp",
+    "oldPath": "/images/hero/hero-gradient-1.webp",
+    "newPath": "/images/hero/hero-gradient-01.webp"
+  },
+  {
+    "original": "hero/hero-og-1.webp",
+    "renamed": "hero/hero-og-01.webp",
+    "oldPath": "/images/hero/hero-og-1.webp",
+    "newPath": "/images/hero/hero-og-01.webp"
+  },
+  {
+    "original": "home/home-team-1.webp",
+    "renamed": "home/home-team-01.webp",
+    "oldPath": "/images/home/home-team-1.webp",
+    "newPath": "/images/home/home-team-01.webp"
+  },
+  {
+    "original": "home/portfolio/home-portfolio-ecommerce-1.webp",
+    "renamed": "home/portfolio/home-portfolio-ecommerce-01.webp",
+    "oldPath": "/images/home/portfolio/home-portfolio-ecommerce-1.webp",
+    "newPath": "/images/home/portfolio/home-portfolio-ecommerce-01.webp"
+  },
+  {
+    "original": "home/portfolio/home-portfolio-ngo-portal-1.webp",
+    "renamed": "home/portfolio/home-portfolio-ngo-portal-01.webp",
+    "oldPath": "/images/home/portfolio/home-portfolio-ngo-portal-1.webp",
+    "newPath": "/images/home/portfolio/home-portfolio-ngo-portal-01.webp"
+  },
+  {
+    "original": "home/portfolio/home-portfolio-preview-1.webp",
+    "renamed": "home/portfolio/home-portfolio-preview-01.webp",
+    "oldPath": "/images/home/portfolio/home-portfolio-preview-1.webp",
+    "newPath": "/images/home/portfolio/home-portfolio-preview-01.webp"
+  },
+  {
+    "original": "home/portfolio/home-portfolio-preview-2.webp",
+    "renamed": "home/portfolio/home-portfolio-preview-02.webp",
+    "oldPath": "/images/home/portfolio/home-portfolio-preview-2.webp",
+    "newPath": "/images/home/portfolio/home-portfolio-preview-02.webp"
+  },
+  {
+    "original": "home/services/home-service-cybersecurity-1.webp",
+    "renamed": "home/services/home-service-cybersecurity-01.webp",
+    "oldPath": "/images/home/services/home-service-cybersecurity-1.webp",
+    "newPath": "/images/home/services/home-service-cybersecurity-01.webp"
+  },
+  {
+    "original": "home/services/home-service-digital-marketing-1.webp",
+    "renamed": "home/services/home-service-digital-marketing-01.webp",
+    "oldPath": "/images/home/services/home-service-digital-marketing-1.webp",
+    "newPath": "/images/home/services/home-service-digital-marketing-01.webp"
+  },
+  {
+    "original": "home/services/home-service-erp-1.webp",
+    "renamed": "home/services/home-service-erp-01.webp",
+    "oldPath": "/images/home/services/home-service-erp-1.webp",
+    "newPath": "/images/home/services/home-service-erp-01.webp"
+  },
+  {
+    "original": "home/services/home-service-hosting-1.webp",
+    "renamed": "home/services/home-service-hosting-01.webp",
+    "oldPath": "/images/home/services/home-service-hosting-1.webp",
+    "newPath": "/images/home/services/home-service-hosting-01.webp"
+  },
+  {
+    "original": "home/services/home-service-mobile-apps-1.webp",
+    "renamed": "home/services/home-service-mobile-apps-01.webp",
+    "oldPath": "/images/home/services/home-service-mobile-apps-1.webp",
+    "newPath": "/images/home/services/home-service-mobile-apps-01.webp"
+  },
+  {
+    "original": "home/services/home-service-web-design-1.webp",
+    "renamed": "home/services/home-service-web-design-01.webp",
+    "oldPath": "/images/home/services/home-service-web-design-1.webp",
+    "newPath": "/images/home/services/home-service-web-design-01.webp"
+  },
+  {
+    "original": "home/services/home-service-website-development-1.webp",
+    "renamed": "home/services/home-service-website-development-01.webp",
+    "oldPath": "/images/home/services/home-service-website-development-1.webp",
+    "newPath": "/images/home/services/home-service-website-development-01.webp"
+  },
+  {
+    "original": "home/services/z-1.webp",
+    "renamed": "home/services/home-service-z-01.webp",
+    "oldPath": "/images/home/services/z-1.webp",
+    "newPath": "/images/home/services/home-service-z-01.webp"
+  },
+  {
+    "original": "home/team/about-team-3.webp",
+    "renamed": "home/home-about-team-03.webp",
+    "oldPath": "/images/home/team/about-team-3.webp",
+    "newPath": "/images/home/home-about-team-03.webp"
+  },
+  {
+    "original": "home/team/about-team-4.webp",
+    "renamed": "home/home-about-team-04.webp",
+    "oldPath": "/images/home/team/about-team-4.webp",
+    "newPath": "/images/home/home-about-team-04.webp"
+  },
+  {
+    "original": "home/team/brand-team-photo-1.webp",
+    "renamed": "home/home-brand-team-photo-01.webp",
+    "oldPath": "/images/home/team/brand-team-photo-1.webp",
+    "newPath": "/images/home/home-brand-team-photo-01.webp"
+  },
+  {
+    "original": "home/team/w-1.webp",
+    "renamed": "home/home-w-01.webp",
+    "oldPath": "/images/home/team/w-1.webp",
+    "newPath": "/images/home/home-w-01.webp"
+  },
+  {
+    "original": "home/team/x-1.webp",
+    "renamed": "home/home-x-01.webp",
+    "oldPath": "/images/home/team/x-1.webp",
+    "newPath": "/images/home/home-x-01.webp"
+  },
+  {
+    "original": "home/y-1.webp",
+    "renamed": "home/home-y-01.webp",
+    "oldPath": "/images/home/y-1.webp",
+    "newPath": "/images/home/home-y-01.webp"
+  },
+  {
+    "original": "icons/icons-feature-1.webp",
+    "renamed": "general/general-icons-feature-01.webp",
+    "oldPath": "/images/icons/icons-feature-1.webp",
+    "newPath": "/images/general/general-icons-feature-01.webp"
+  },
+  {
+    "original": "portfolio/cslo-sudan/portfolio-project-cslo-1.webp",
+    "renamed": "portfolio/cslo-sudan/case-cslo-cslo-01.webp",
+    "oldPath": "/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp",
+    "newPath": "/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp"
+  },
+  {
+    "original": "portfolio/portfolio-project-preview-1.webp",
+    "renamed": "portfolio/portfolio-preview-01.webp",
+    "oldPath": "/images/portfolio/portfolio-project-preview-1.webp",
+    "newPath": "/images/portfolio/portfolio-preview-01.webp"
+  },
+  {
+    "original": "portfolio/portfolio-project-preview-2.webp",
+    "renamed": "portfolio/portfolio-preview-02.webp",
+    "oldPath": "/images/portfolio/portfolio-project-preview-2.webp",
+    "newPath": "/images/portfolio/portfolio-preview-02.webp"
+  },
+  {
+    "original": "portfolio/portfolio-project-preview-3.webp",
+    "renamed": "portfolio/portfolio-preview-03.webp",
+    "oldPath": "/images/portfolio/portfolio-project-preview-3.webp",
+    "newPath": "/images/portfolio/portfolio-preview-03.webp"
+  },
+  {
+    "original": "portfolio/portfolio-project-preview-4.webp",
+    "renamed": "portfolio/portfolio-preview-04.webp",
+    "oldPath": "/images/portfolio/portfolio-project-preview-4.webp",
+    "newPath": "/images/portfolio/portfolio-preview-04.webp"
+  },
+  {
+    "original": "portfolio/portfolio-project-preview-5.webp",
+    "renamed": "portfolio/portfolio-preview-05.webp",
+    "oldPath": "/images/portfolio/portfolio-project-preview-5.webp",
+    "newPath": "/images/portfolio/portfolio-preview-05.webp"
+  },
+  {
+    "original": "services/branding/branding-hero-1.webp",
+    "renamed": "services/branding/services-branding-hero-01.webp",
+    "oldPath": "/images/services/branding/branding-hero-1.webp",
+    "newPath": "/images/services/branding/services-branding-hero-01.webp"
+  },
+  {
+    "original": "services/custom-systems/custom-systems-hero-1.webp",
+    "renamed": "services/customsystems/services-customsystems-custom-systems-hero-01.webp",
+    "oldPath": "/images/services/custom-systems/custom-systems-hero-1.webp",
+    "newPath": "/images/services/customsystems/services-customsystems-custom-systems-hero-01.webp"
+  },
+  {
+    "original": "services/cybersecurity/cybersecurity-hero-1.webp",
+    "renamed": "services/cybersecurity/services-cybersecurity-hero-01.webp",
+    "oldPath": "/images/services/cybersecurity/cybersecurity-hero-1.webp",
+    "newPath": "/images/services/cybersecurity/services-cybersecurity-hero-01.webp"
+  },
+  {
+    "original": "services/cybersecurity/cybersecurity-shield-1.webp",
+    "renamed": "services/cybersecurity/services-cybersecurity-shield-01.webp",
+    "oldPath": "/images/services/cybersecurity/cybersecurity-shield-1.webp",
+    "newPath": "/images/services/cybersecurity/services-cybersecurity-shield-01.webp"
+  },
+  {
+    "original": "services/ecommerce/ecommerce-dashboard-1.webp",
+    "renamed": "services/ecommerce/services-ecommerce-dashboard-01.webp",
+    "oldPath": "/images/services/ecommerce/ecommerce-dashboard-1.webp",
+    "newPath": "/images/services/ecommerce/services-ecommerce-dashboard-01.webp"
+  },
+  {
+    "original": "services/ecommerce/ecommerce-hero-1.webp",
+    "renamed": "services/ecommerce/services-ecommerce-hero-01.webp",
+    "oldPath": "/images/services/ecommerce/ecommerce-hero-1.webp",
+    "newPath": "/images/services/ecommerce/services-ecommerce-hero-01.webp"
+  },
+  {
+    "original": "services/ecommerce/ecommerce-integrations-1.webp",
+    "renamed": "services/ecommerce/services-ecommerce-integrations-01.webp",
+    "oldPath": "/images/services/ecommerce/ecommerce-integrations-1.webp",
+    "newPath": "/images/services/ecommerce/services-ecommerce-integrations-01.webp"
+  },
+  {
+    "original": "services/erp/about-founder-1.webp",
+    "renamed": "services/erp/services-erp-about-founder-01.webp",
+    "oldPath": "/images/services/erp/about-founder-1.webp",
+    "newPath": "/images/services/erp/services-erp-about-founder-01.webp"
+  },
+  {
+    "original": "services/erp-crm/erp-crm-dashboard-1.webp",
+    "renamed": "services/erpcrm/services-erpcrm-erp-crm-dashboard-01.webp",
+    "oldPath": "/images/services/erp-crm/erp-crm-dashboard-1.webp",
+    "newPath": "/images/services/erpcrm/services-erpcrm-erp-crm-dashboard-01.webp"
+  },
+  {
+    "original": "services/erp-crm/erp-crm-hero-1.webp",
+    "renamed": "services/erpcrm/services-erpcrm-erp-crm-hero-01.webp",
+    "oldPath": "/images/services/erp-crm/erp-crm-hero-1.webp",
+    "newPath": "/images/services/erpcrm/services-erpcrm-erp-crm-hero-01.webp"
+  },
+  {
+    "original": "services/hosting/hosting-hero-1.webp",
+    "renamed": "services/hosting/services-hosting-hero-01.webp",
+    "oldPath": "/images/services/hosting/hosting-hero-1.webp",
+    "newPath": "/images/services/hosting/services-hosting-hero-01.webp"
+  },
+  {
+    "original": "services/maintenance/maintenance-hero-1.webp",
+    "renamed": "services/maintenance/services-maintenance-hero-01.webp",
+    "oldPath": "/images/services/maintenance/maintenance-hero-1.webp",
+    "newPath": "/images/services/maintenance/services-maintenance-hero-01.webp"
+  },
+  {
+    "original": "services/mobile-apps/mobile-apps-hero-1.webp",
+    "renamed": "services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp",
+    "oldPath": "/images/services/mobile-apps/mobile-apps-hero-1.webp",
+    "newPath": "/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp"
+  },
+  {
+    "original": "services/mobile-apps/mobile-apps-hero-2.webp",
+    "renamed": "services/mobileapps/services-mobileapps-mobile-apps-hero-02.webp",
+    "oldPath": "/images/services/mobile-apps/mobile-apps-hero-2.webp",
+    "newPath": "/images/services/mobileapps/services-mobileapps-mobile-apps-hero-02.webp"
+  },
+  {
+    "original": "services/mobile-apps/mobile-apps-hero-3.webp",
+    "renamed": "services/mobileapps/services-mobileapps-mobile-apps-hero-03.webp",
+    "oldPath": "/images/services/mobile-apps/mobile-apps-hero-3.webp",
+    "newPath": "/images/services/mobileapps/services-mobileapps-mobile-apps-hero-03.webp"
+  },
+  {
+    "original": "services/mobile-apps/mobile-apps-ui-1.webp",
+    "renamed": "services/mobileapps/services-mobileapps-mobile-apps-ui-01.webp",
+    "oldPath": "/images/services/mobile-apps/mobile-apps-ui-1.webp",
+    "newPath": "/images/services/mobileapps/services-mobileapps-mobile-apps-ui-01.webp"
+  },
+  {
+    "original": "services/seo/seo-feature-1.webp",
+    "renamed": "services/seo/services-seo-feature-01.webp",
+    "oldPath": "/images/services/seo/seo-feature-1.webp",
+    "newPath": "/images/services/seo/services-seo-feature-01.webp"
+  },
+  {
+    "original": "services/seo/seo-hero-1.webp",
+    "renamed": "services/seo/services-seo-hero-01.webp",
+    "oldPath": "/images/services/seo/seo-hero-1.webp",
+    "newPath": "/images/services/seo/services-seo-hero-01.webp"
+  },
+  {
+    "original": "services/ui-ux/ui-ux-hero-1.webp",
+    "renamed": "services/uiux/services-uiux-ui-ux-hero-01.webp",
+    "oldPath": "/images/services/ui-ux/ui-ux-hero-1.webp",
+    "newPath": "/images/services/uiux/services-uiux-ui-ux-hero-01.webp"
+  },
+  {
+    "original": "services/web-design/web-design-hero-1.webp",
+    "renamed": "services/webdesign/services-webdesign-web-design-hero-01.webp",
+    "oldPath": "/images/services/web-design/web-design-hero-1.webp",
+    "newPath": "/images/services/webdesign/services-webdesign-web-design-hero-01.webp"
+  },
+  {
+    "original": "services/website-development/website-development-hero-1.webp",
+    "renamed": "services/websitedevelopment/services-websitedevelopment-website-development-hero-01.webp",
+    "oldPath": "/images/services/website-development/website-development-hero-1.webp",
+    "newPath": "/images/services/websitedevelopment/services-websitedevelopment-website-development-hero-01.webp"
+  }
+]

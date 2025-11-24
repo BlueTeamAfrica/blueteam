@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Professional Website Development Services in Uganda & East Africa",
     description: "Fast, secure, and scalable website development for businesses and NGOs across East Africa.",
-    images: ["/images/hero/hero-og-1.webp"],
+    images: ["/images/hero/hero-og-01.webp"],
   },
 };
 
@@ -56,7 +56,7 @@ export default function WebsiteDevelopmentPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/website-development/website-development-hero-1.webp"
+                  src="/images/services/website-development/services-websitedevelopment-website-development-hero-01.webp"
                   alt="Professional Website Development Services"
                   fill
                   className="object-cover"

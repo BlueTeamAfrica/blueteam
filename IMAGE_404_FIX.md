@@ -6,15 +6,15 @@ Some images are showing 404 errors even though the files exist.
 ## Solution Applied
 1. ✅ Fixed CSS reference in `app/globals.css`:
    - Changed: `/images/hero/hero-banner-gradient-abstract-v01.webp`
-   - To: `/images/hero/hero-gradient-1.webp`
+   - To: `/images/hero/hero-gradient-01.webp`
 
 2. ✅ Verified all critical images exist:
-   - `/images/home/services/home-service-web-design-1.webp` ✅
-   - `/images/home/services/home-service-cybersecurity-1.webp` ✅
-   - `/images/home/services/home-service-mobile-apps-1.webp` ✅
-   - `/images/home/services/home-service-erp-1.webp` ✅
-   - `/images/services/ecommerce/ecommerce-dashboard-1.webp` ✅
-   - `/images/services/ecommerce/ecommerce-integrations-1.webp` ✅
+   - `/images/home/services/home-service-web-design-01.webp` ✅
+   - `/images/home/services/home-service-cybersecurity-01.webp` ✅
+   - `/images/home/services/home-service-mobile-apps-01.webp` ✅
+   - `/images/home/services/home-service-erp-01.webp` ✅
+   - `/images/services/ecommerce/services-ecommerce-dashboard-01.webp` ✅
+   - `/images/services/ecommerce/services-ecommerce-integrations-01.webp` ✅
 
 ## Why You're Seeing 404s
 
@@ -49,9 +49,9 @@ npm run dev
 
 After clearing cache, all these images should load:
 - ✅ `/images/home/services/home-service-*-1.webp` (all service icons)
-- ✅ `/images/services/ecommerce/ecommerce-dashboard-1.webp`
-- ✅ `/images/services/ecommerce/ecommerce-integrations-1.webp`
-- ✅ `/images/hero/hero-gradient-1.webp`
+- ✅ `/images/services/ecommerce/services-ecommerce-dashboard-01.webp`
+- ✅ `/images/services/ecommerce/services-ecommerce-integrations-01.webp`
+- ✅ `/images/hero/hero-gradient-01.webp`
 
 ---
 

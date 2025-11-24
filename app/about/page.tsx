@@ -32,7 +32,7 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="relative w-full h-[60vh] bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/about/about-team-1.webp')" }}>
+        style={{ backgroundImage: "url('/images/about/about-team-01.webp')" }}>
         <div className="absolute inset-0 bg-black/20"></div>
       </section>
 
@@ -71,7 +71,7 @@ export default function AboutPage() {
 
           <div>
             <Image
-              src="/images/about/about-office-1.webp"
+              src="/images/about/about-office-01.webp"
               alt="Blue Team Africa Office"
               width={600}
               height={400}
@@ -87,7 +87,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <Image
-                src="/images/about/about-story-1.webp"
+                src="/images/about/about-story-01.webp"
                 alt="Field Operations"
                 width={600}
                 height={400}

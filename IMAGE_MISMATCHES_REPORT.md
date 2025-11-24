@@ -16,10 +16,10 @@ Generated: 2025-11-22T11:42:48.023Z
   - `/images/about/4.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/_legacy/u.webp`
 - **Used in:** `./app/portfolio/mobile-app/page.tsx`, `./app/portfolio/mobile-app/page.tsx`
@@ -40,12 +40,12 @@ Generated: 2025-11-22T11:42:48.023Z
 ### `/images/portfolio/portfolio-project-preview-v-v01.webp`
 - **Used in:** `./app/portfolio/page.tsx`, `./app/portfolio/page.tsx`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/_legacy/q.webp`
 - **Used in:** `./app/portfolio/erp-integration/page.tsx`, `./app/portfolio/erp-integration/page.tsx`
@@ -54,123 +54,123 @@ Generated: 2025-11-22T11:42:48.023Z
 ### `/images/hero/hero-banner-gradient-abstract-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`, `./scripts/fix-image-mismatches.js`, `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/hero/hero-gradient-1.webp` ✅ (maybe this one?)
-  - `/images/hero/hero-og-1.webp` ✅ (maybe this one?)
+  - `/images/hero/hero-gradient-01.webp` ✅ (maybe this one?)
+  - `/images/hero/hero-og-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/web-design-icon-layout-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/cybersecurity-icon-shield-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/mobile-apps-icon-phone-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/erp-systems-icon-dashboard-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/cloud-hosting-icon-server-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/portfolio/portfolio-mockup-ng-portal-uganda-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/portfolio/home-portfolio-ecommerce-1.webp` ✅ (maybe this one?)
-  - `/images/home/portfolio/home-portfolio-ngo-portal-1.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ecommerce-01.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ngo-portal-01.webp` ✅ (maybe this one?)
   - `/images/home/portfolio/home-portfolio-preview-i-1.webp` ✅ (maybe this one?)
 
 ### `/images/home/portfolio/portfolio-mockup-retail-ecommerce-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/home/portfolio/home-portfolio-ecommerce-1.webp` ✅ (maybe this one?)
-  - `/images/home/portfolio/home-portfolio-ngo-portal-1.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ecommerce-01.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ngo-portal-01.webp` ✅ (maybe this one?)
   - `/images/home/portfolio/home-portfolio-preview-i-1.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-i-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-q-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-t-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-u-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-post-thumbnail-3.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`, `./scripts/fix-image-mismatches.js`, `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/services/crm/crm-feature-legacy-5-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
@@ -180,200 +180,200 @@ Generated: 2025-11-22T11:42:48.023Z
 ### `/images/services/erp/erp-systems-dashboard-1.webp`
 - **Used in:** `./scripts/fix-image-mismatches.js`
 - **Similar files found:**
-  - `/images/services/erp-crm/erp-crm-dashboard-1.webp` ✅ (maybe this one?)
-  - `/images/services/erp-crm/erp-crm-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/erpcrm/services-erpcrm-erp-crm-dashboard-01.webp` ✅ (maybe this one?)
+  - `/images/services/erpcrm/services-erpcrm-erp-crm-hero-01.webp` ✅ (maybe this one?)
 
 ### `/images/hero/hero-banner-gradient-abstract-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/hero/hero-gradient-1.webp` ✅ (maybe this one?)
-  - `/images/hero/hero-og-1.webp` ✅ (maybe this one?)
+  - `/images/hero/hero-gradient-01.webp` ✅ (maybe this one?)
+  - `/images/hero/hero-og-01.webp` ✅ (maybe this one?)
 
 ### `/images/hero/hero-banner-og-image-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/hero/hero-gradient-1.webp` ✅ (maybe this one?)
-  - `/images/hero/hero-og-1.webp` ✅ (maybe this one?)
+  - `/images/hero/hero-gradient-01.webp` ✅ (maybe this one?)
+  - `/images/hero/hero-og-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/web-design-icon-layout-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/cybersecurity-icon-shield-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/mobile-apps-icon-phone-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/erp-systems-icon-dashboard-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/services/cloud-hosting-icon-server-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/services/home-service-cybersecurity-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-erp-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-hosting-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-mobile-apps-1.webp` ✅ (maybe this one?)
-  - `/images/home/services/home-service-web-design-1.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-cybersecurity-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-erp-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-hosting-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-mobile-apps-01.webp` ✅ (maybe this one?)
+  - `/images/home/services/home-service-web-design-01.webp` ✅ (maybe this one?)
 
 ### `/images/home/portfolio/portfolio-mockup-ngo-portal-v01.jpg`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/portfolio/home-portfolio-ecommerce-1.webp` ✅ (maybe this one?)
-  - `/images/home/portfolio/home-portfolio-ngo-portal-1.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ecommerce-01.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ngo-portal-01.webp` ✅ (maybe this one?)
   - `/images/home/portfolio/home-portfolio-preview-i-1.webp` ✅ (maybe this one?)
 
 ### `/images/home/portfolio/portfolio-mockup-retail-ecommerce-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/home/portfolio/home-portfolio-ecommerce-1.webp` ✅ (maybe this one?)
-  - `/images/home/portfolio/home-portfolio-ngo-portal-1.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ecommerce-01.webp` ✅ (maybe this one?)
+  - `/images/home/portfolio/home-portfolio-ngo-portal-01.webp` ✅ (maybe this one?)
   - `/images/home/portfolio/home-portfolio-preview-i-1.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-i-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-q-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-t-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/portfolio/portfolio-project-preview-u-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/portfolio/cslo-sudan/portfolio-project-cslo-1.webp` ✅ (maybe this one?)
+  - `/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp` ✅ (maybe this one?)
   - `/images/portfolio/cslo-sudan/portfolio-project-cslo-erp-system-v01.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-1.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-2.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-3.webp` ✅ (maybe this one?)
-  - `/images/portfolio/portfolio-project-preview-4.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-01.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-02.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-03.webp` ✅ (maybe this one?)
+  - `/images/portfolio/portfolio-preview-04.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-post-thumbnail-2-v01.jpg`
 - **Used in:** `./scripts/update-image-references.js`, `./update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-post-thumbnail-3-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-post-thumbnail-6-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-post-thumbnail-7-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-thumbnail-4.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-post-thumbnail-d-v01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/blog/blog-thumbnail-5.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ### `/images/services/web-design/web-design_hero-background_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/web-design/web-design-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/webdesign/services-webdesign-web-design-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/web-design/web-design-hero-background-1.webp` ✅ (maybe this one?)
 
 ### `/images/services/web-design/web-design_hero-background_0.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/web-design/web-design-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/webdesign/services-webdesign-web-design-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/web-design/web-design-hero-background-1.webp` ✅ (maybe this one?)
 
 ### `/images/services/web-development/web-development_hero-background_01.webp`
@@ -383,61 +383,61 @@ Generated: 2025-11-22T11:42:48.023Z
 ### `/images/services/cybersecurity/cybersecurity_hero-background_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/cybersecurity/cybersecurity-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/cybersecurity/services-cybersecurity-hero-01.webp` ✅ (maybe this one?)
 
 ### `/images/services/ecommerce/ecommerce_feature-shop_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/ecommerce/ecommerce-dashboard-1.webp` ✅ (maybe this one?)
-  - `/images/services/ecommerce/ecommerce-hero-1.webp` ✅ (maybe this one?)
-  - `/images/services/ecommerce/ecommerce-integrations-1.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-dashboard-01.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-hero-01.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-integrations-01.webp` ✅ (maybe this one?)
 
 ### `/images/services/ecommerce/ecommerce_dashboard-sample_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/ecommerce/ecommerce-dashboard-1.webp` ✅ (maybe this one?)
-  - `/images/services/ecommerce/ecommerce-hero-1.webp` ✅ (maybe this one?)
-  - `/images/services/ecommerce/ecommerce-integrations-1.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-dashboard-01.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-hero-01.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-integrations-01.webp` ✅ (maybe this one?)
 
 ### `/images/services/ecommerce/ecommerce_integrations-overview_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/ecommerce/ecommerce-dashboard-1.webp` ✅ (maybe this one?)
-  - `/images/services/ecommerce/ecommerce-hero-1.webp` ✅ (maybe this one?)
-  - `/images/services/ecommerce/ecommerce-integrations-1.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-dashboard-01.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-hero-01.webp` ✅ (maybe this one?)
+  - `/images/services/ecommerce/services-ecommerce-integrations-01.webp` ✅ (maybe this one?)
 
 ### `/images/services/mobile-apps/mobile-apps_hero-background_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/mobile-apps/mobile-apps-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-2.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-3.webp` ✅ (maybe this one?)
 
 ### `/images/services/mobile-apps/mobile-apps_hero-background_02.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/mobile-apps/mobile-apps-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-2.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-3.webp` ✅ (maybe this one?)
 
-### `/images/services/mobile-apps/mobile-apps-hero-2.webp`
+### `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-02.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/mobile-apps/mobile-apps-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-2.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-3.webp` ✅ (maybe this one?)
 
 ### `/images/services/mobile-apps/mobile-apps_hero-background_03.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/mobile-apps/mobile-apps-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-2.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-3.webp` ✅ (maybe this one?)
 
-### `/images/services/mobile-apps/mobile-apps-hero-3.webp`
+### `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-03.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/mobile-apps/mobile-apps-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-2.webp` ✅ (maybe this one?)
   - `/images/services/mobile-apps/mobile-apps-hero-background-3.webp` ✅ (maybe this one?)
 
@@ -445,7 +445,7 @@ Generated: 2025-11-22T11:42:48.023Z
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/services/hosting/hosting-feature-server-1.webp` ✅ (maybe this one?)
-  - `/images/services/hosting/hosting-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/hosting/services-hosting-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/hosting/o-1.webp` ✅ (maybe this one?)
   - `/images/services/hosting/p-1.webp` ✅ (maybe this one?)
 
@@ -453,7 +453,7 @@ Generated: 2025-11-22T11:42:48.023Z
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/services/hosting/hosting-feature-server-1.webp` ✅ (maybe this one?)
-  - `/images/services/hosting/hosting-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/hosting/services-hosting-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/hosting/o-1.webp` ✅ (maybe this one?)
   - `/images/services/hosting/p-1.webp` ✅ (maybe this one?)
 
@@ -461,15 +461,15 @@ Generated: 2025-11-22T11:42:48.023Z
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
   - `/images/services/hosting/hosting-feature-server-1.webp` ✅ (maybe this one?)
-  - `/images/services/hosting/hosting-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/hosting/services-hosting-hero-01.webp` ✅ (maybe this one?)
   - `/images/services/hosting/o-1.webp` ✅ (maybe this one?)
   - `/images/services/hosting/p-1.webp` ✅ (maybe this one?)
 
 ### `/images/services/erp/erp_systems-dashboard_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
 - **Similar files found:**
-  - `/images/services/erp-crm/erp-crm-dashboard-1.webp` ✅ (maybe this one?)
-  - `/images/services/erp-crm/erp-crm-hero-1.webp` ✅ (maybe this one?)
+  - `/images/services/erpcrm/services-erpcrm-erp-crm-dashboard-01.webp` ✅ (maybe this one?)
+  - `/images/services/erpcrm/services-erpcrm-erp-crm-hero-01.webp` ✅ (maybe this one?)
 
 ### `/images/services/crm/crm_feature-legacy-5_01.webp`
 - **Used in:** `./scripts/update-image-references.js`
@@ -481,10 +481,10 @@ Generated: 2025-11-22T11:42:48.023Z
 - **Similar files found:**
   - `/images/blog/blog-post-thumbnail-6.webp` ✅ (maybe this one?)
   - `/images/blog/blog-post-thumbnail-7.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-post-thumbnail-d-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-1.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-2.webp` ✅ (maybe this one?)
-  - `/images/blog/blog-thumbnail-3.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-post-thumbnail-d-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-01.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-02.webp` ✅ (maybe this one?)
+  - `/images/blog/blog-thumbnail-03.webp` ✅ (maybe this one?)
 
 ## ⚠️  Orphaned Images (Exist but not referenced in code)
 
@@ -522,17 +522,17 @@ Generated: 2025-11-22T11:42:48.023Z
 - `/images/about/z-1.webp`
 - `/images/blog/blog-post-thumbnail-6.webp`
 - `/images/blog/blog-post-thumbnail-7.webp`
-- `/images/blog/blog-post-thumbnail-d-1.webp`
+- `/images/blog/blog-post-thumbnail-d-01.webp`
 - `/images/home/clients-logo-8.webp`
 - `/images/home/home-section-feature-a-1.webp`
 - `/images/home/home-section-feature-b-1.webp`
 - `/images/home/home-section-feature-e-1.webp`
 - `/images/home/home-section-feature-m-1.webp`
 - `/images/home/portfolio/home-portfolio-preview-i-1.webp`
-- `/images/home/team/brand-team-photo-1.webp`
+- `/images/home/home-brand-team-photo-01.webp`
 - `/images/home/w-1.webp`
 - `/images/home/x-1.webp`
-- `/images/home/y-1.webp`
+- `/images/home/home-y-01.webp`
 - `/images/home/z-1.webp`
 - `/images/icons/icons-feature-2.webp`
 - `/images/services/branding/n-1.webp`

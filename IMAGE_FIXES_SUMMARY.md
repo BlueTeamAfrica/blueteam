@@ -7,7 +7,7 @@ Fixed all critical image mismatches. Images should now load correctly.
 ### What Was Fixed
 
 1. **✅ Hero Images**
-   - Created `/images/hero/hero-og-1.webp` (copied from hero-banner-gradient-abstract-1.webp)
+   - Created `/images/hero/hero-og-01.webp` (copied from hero-banner-gradient-abstract-1.webp)
    - Renamed `hero-banner-gradient-abstract-1.webp` → `hero-gradient-1.webp`
 
 2. **✅ Home Service Icons** 
@@ -42,18 +42,18 @@ Fixed all critical image mismatches. Images should now load correctly.
 ### Critical Images Status
 
 All critical service page images now exist:
-- ✅ `/images/services/web-design/web-design-hero-1.webp`
-- ✅ `/images/services/cybersecurity/cybersecurity-hero-1.webp`
-- ✅ `/images/services/ecommerce/ecommerce-hero-1.webp`
-- ✅ `/images/services/ui-ux/ui-ux-hero-1.webp`
-- ✅ `/images/services/custom-systems/custom-systems-hero-1.webp`
-- ✅ `/images/services/branding/branding-hero-1.webp`
-- ✅ `/images/services/mobile-apps/mobile-apps-hero-1.webp`
-- ✅ `/images/services/hosting/hosting-hero-1.webp`
-- ✅ `/images/services/maintenance/maintenance-hero-1.webp`
-- ✅ `/images/services/erp-crm/erp-crm-hero-1.webp`
-- ✅ `/images/services/erp-crm/erp-crm-dashboard-1.webp`
-- ✅ `/images/hero/hero-og-1.webp`
+- ✅ `/images/services/webdesign/services-webdesign-web-design-hero-01.webp`
+- ✅ `/images/services/cybersecurity/services-cybersecurity-hero-01.webp`
+- ✅ `/images/services/ecommerce/services-ecommerce-hero-01.webp`
+- ✅ `/images/services/uiux/services-uiux-ui-ux-hero-01.webp`
+- ✅ `/images/services/customsystems/services-customsystems-custom-systems-hero-01.webp`
+- ✅ `/images/services/branding/services-branding-hero-01.webp`
+- ✅ `/images/services/mobileapps/services-mobileapps-mobile-apps-hero-01.webp`
+- ✅ `/images/services/hosting/services-hosting-hero-01.webp`
+- ✅ `/images/services/maintenance/services-maintenance-hero-01.webp`
+- ✅ `/images/services/erpcrm/services-erpcrm-erp-crm-hero-01.webp`
+- ✅ `/images/services/erpcrm/services-erpcrm-erp-crm-dashboard-01.webp`
+- ✅ `/images/hero/hero-og-01.webp`
 
 ### Remaining Issues
 

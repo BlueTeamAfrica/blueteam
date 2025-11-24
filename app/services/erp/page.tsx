@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: 'Blue Team Africa',
     images: [
       {
-        url: '/images/services/erp-crm/erp-crm-dashboard-1.webp',
+        url: '/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp',
         width: 1200,
         height: 630,
         alt: 'ERP Solutions for NGOs and Companies',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ERP Solutions | Blue Team Africa',
     description: 'Streamline operations with ERPNext-powered ERP systems for NGOs and companies.',
-    images: ['/images/services/erp-crm/erp-crm-dashboard-1.webp'],
+    images: ['/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp'],
   },
 }
 
@@ -64,7 +64,7 @@ export default function ERPPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/erp-crm/erp-crm-dashboard-1.webp"
+                  src="/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp"
                   alt="ERP Systems"
                   fill
                   className="object-cover"

@@ -38,7 +38,7 @@ export default function HostingPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/hosting/hosting-hero-1.webp"
+                  src="/images/services/hosting/services-hosting-hero-01.webp"
                   alt="Cloud & Web Hosting"
                   fill
                   className="object-cover"

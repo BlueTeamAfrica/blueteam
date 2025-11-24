@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         siteName: 'Blue Team Africa',
         images: [
           {
-            url: '/images/services/cybersecurity/cybersecurity-hero-1.webp',
+            url: '/images/services/cybersecurity/services-cybersecurity-hero-01.webp',
             width: 1200,
             height: 630,
             alt: 'Cybersecurity Solutions for East Africa',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Cybersecurity Solutions | Blue Team Africa',
     description: 'Protect your digital infrastructure with expert cybersecurity solutions for East Africa.',
-    images: ['/images/services/cybersecurity/cybersecurity-hero-1.webp'],
+    images: ['/images/services/cybersecurity/services-cybersecurity-hero-01.webp'],
   },
 }
 
@@ -156,7 +156,7 @@ export default function CybersecurityPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/cybersecurity/cybersecurity-hero-1.webp"
+                  src="/images/services/cybersecurity/services-cybersecurity-hero-01.webp"
                   alt="Trusted Cybersecurity Solutions for East African Businesses & NGOs"
                   fill
                   className="object-cover"

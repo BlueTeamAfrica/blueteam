@@ -127,7 +127,7 @@ Every service page must include these **6 sections**:
   **Example:**
   ```tsx
   <Image
-    src="/images/services/web-design/web-design-hero-1.webp"
+    src="/images/services/webdesign/services-webdesign-web-design-hero-01.webp"
     alt="Web Design Services"
     fill
     className="object-cover"

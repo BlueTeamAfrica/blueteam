@@ -214,14 +214,34 @@ html {
 .bta-hero {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.45),
-    rgba(0, 0, 0, 0.45)
-  ),
-  url('/images/hero/hero-gradient-1.webp') center/cover no-repeat;
   display: flex;
   align-items: center;
   color: #ffffff;
+  overflow: hidden;
+}
+
+/* Hero Background Container */
+.bta-hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bta-hero-background-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Hero Overlay - Dark gradient for text contrast (WCAG AA compliant) */
+.bta-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.45)
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Hero Inner Container */
@@ -241,10 +261,36 @@ html {
 .bta-hero-left {
   width: 100%;
   max-width: 100%;
+  padding-top: 0;
+}
+
+/* Mobile: Add extra top padding to lower hero text */
+@media (max-width: 640px) {
+  .bta-hero-left {
+    padding-top: 3rem; /* pt-12 equivalent */
+  }
+}
+
+@media (min-width: 641px) {
+  .bta-hero-left {
+    padding-top: 5rem; /* sm:pt-20 equivalent */
+  }
+}
+
+@media (min-width: 768px) {
+  .bta-hero-left {
+    padding-top: 6rem; /* md:pt-24 equivalent */
+  }
+}
+
+@media (min-width: 1024px) {
+  .bta-hero-left {
+    padding-top: 0; /* Reset on desktop */
+  }
 }
 
 .bta-hero-left h1 {
-  font-size: clamp(1.6rem, 5vw, 3.2rem);
+  font-size: clamp(1.75rem, 4.5vw + 0.5rem, 3.2rem); /* Improved clamp for better mobile scaling */
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -252,10 +298,11 @@ html {
   overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;
+  color: #ffffff; /* Ensure WCAG contrast */
 }
 
 .bta-hero-left p {
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-size: clamp(1rem, 2.5vw + 0.25rem, 1.25rem); /* Improved clamp for better mobile scaling */
   margin-bottom: 28px;
   max-width: 520px;
   opacity: 0.95;
@@ -263,6 +310,7 @@ html {
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: normal;
+  color: rgba(255, 255, 255, 0.95); /* Ensure WCAG contrast */
 }
 
 /* Hero CTA Buttons Container */
@@ -334,7 +382,8 @@ html {
 /* Clean Animation Slot - No blur, no background, invisible container */
 .hero-animation-slot {
   width: 420px;
-  height: 420px;
+  height: 4rem; /* Desktop: ~3-4rem (64px) */
+  background: transparent;
   /* Empty container - ready for future animation */
 }
 
@@ -345,8 +394,9 @@ html {
   }
 
   .hero-animation-slot {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    max-width: 420px;
+    height: 3.5rem; /* Tablet: ~3.5rem */
   }
 }
 
@@ -369,14 +419,15 @@ html {
 
   .bta-hero-right {
     margin-top: 2rem;
+    margin-bottom: 0.625rem; /* 10px - drops animation section lower on mobile */
     display: flex;
     justify-content: center;
   }
 
   .hero-animation-slot {
-    width: 280px;
-    height: 280px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 420px;
+    height: 3rem; /* Mobile tablet: ~3rem */
   }
 
   .bta-hero-left {
@@ -444,8 +495,8 @@ html {
   }
 
   .hero-animation-slot {
-    width: 240px;
-    height: 240px;
+    width: 100%;
+    height: 2rem; /* Mobile (< 640px): ~2rem (32px) */
   }
 }
 
@@ -461,8 +512,8 @@ html {
   }
 
   .hero-animation-slot {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 2rem; /* Small mobile: ~2rem */
   }
 }
 
@@ -478,8 +529,8 @@ html {
   }
 
   .hero-animation-slot {
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    height: 2rem; /* Very small mobile: ~2rem */
   }
 }
 

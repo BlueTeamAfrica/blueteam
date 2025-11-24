@@ -35,7 +35,7 @@ export default function MaintenancePage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/maintenance/maintenance-hero-1.webp"
+                  src="/images/services/maintenance/services-maintenance-hero-01.webp"
                   alt="IT Maintenance & Support"
                   fill
                   className="object-cover"

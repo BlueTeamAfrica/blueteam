@@ -35,7 +35,7 @@ export default function UIUXPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/ui-ux/ui-ux-hero-1.webp"
+                  src="/images/services/ui-ux/services-uiux-ui-ux-hero-01.webp"
                   alt="UI/UX Design"
                   fill
                   className="object-cover"

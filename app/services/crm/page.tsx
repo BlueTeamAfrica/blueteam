@@ -38,7 +38,7 @@ export default function CRMPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/erp-crm/erp-crm-hero-1.webp"
+                  src="/images/services/erp-crm/services-erpcrm-erp-crm-hero-01.webp"
                   alt="CRM Solutions"
                   fill
                   className="object-cover"

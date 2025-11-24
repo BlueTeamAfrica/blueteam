@@ -35,7 +35,7 @@ export default function CustomSystemsPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/custom-systems/custom-systems-hero-1.webp"
+                  src="/images/services/custom-systems/services-customsystems-custom-systems-hero-01.webp"
                   alt="Custom Software Development"
                   fill
                   className="object-cover"

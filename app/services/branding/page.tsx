@@ -35,7 +35,7 @@ export default function BrandingPage() {
             <section className="mb-12">
               <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/services/branding/branding-hero-1.webp"
+                  src="/images/services/branding/services-branding-hero-01.webp"
                   alt="Branding & Logo Design"
                   fill
                   className="object-cover"

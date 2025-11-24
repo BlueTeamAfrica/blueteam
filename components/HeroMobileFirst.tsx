@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function HeroMobileFirst() {
   // Use the existing hero background image
-  const poster = '/images/hero/hero-gradient-1.webp'
+  const poster = '/images/hero/hero-gradient-01.webp'
 
   return (
     <section className="relative bg-white overflow-hidden min-h-screen flex items-center">

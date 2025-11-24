@@ -42,6 +42,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
         <WebSiteSchema />
         {gaId && <GoogleAnalytics gaId={gaId} />}
+        {/* Preload hero image for better LCP - Next.js Image priority prop handles this automatically */}
         <Header />
         <main>{children}</main>
         <Footer />
