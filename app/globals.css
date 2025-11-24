@@ -215,7 +215,7 @@ html {
   color: #ffffff;
 }
 
-/* Hero Overlay */
+/* Hero Overlay - Lighter for better background visibility */
 .bta-hero-overlay,
 .bta-hero::before {
   content: "";
@@ -223,8 +223,8 @@ html {
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(10, 15, 28, 0.75),
-    rgba(10, 15, 28, 0.4)
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.3)
   );
   z-index: 1;
   pointer-events: none;
@@ -347,26 +347,57 @@ html {
 }
 
 /* Responsive Hero Styles */
+@media (max-width: 1024px) {
+  .bta-hero {
+    padding-top: 140px; /* Account for fixed navbar */
+  }
+
+  .bta-hero-inner {
+    padding: 0 24px;
+  }
+
+  .bta-hero-right .bta-hero-visual {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 @media (max-width: 900px) {
   .bta-hero-overlay,
   .bta-hero::before {
-    background: rgba(10, 15, 28, 0.70);
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.4)
+    );
   }
 
   .bta-hero {
     height: auto;
     min-height: 100vh;
-    padding: 8rem 1.5rem 4rem;
+    padding: 140px 1.5rem 4rem; /* Top padding accounts for navbar */
   }
 
   .bta-hero-inner {
-    padding: 0 16px;
-    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .bta-hero-inner .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
     text-align: center;
   }
 
   .bta-hero-right {
-    margin-top: 40px;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bta-hero-right .bta-hero-visual {
+    width: 280px;
+    height: 280px;
+    max-width: 100%;
   }
 
   .bta-hero-left {
@@ -402,30 +433,34 @@ html {
     flex-direction: column;
     width: 100%;
     justify-content: center;
+    gap: 12px;
   }
 
   .bta-btn-primary,
   .bta-btn-secondary {
     width: 100%;
     text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .bta-hero-whatsapp {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
   }
 }
 
-/* Extra small mobile screens */
-@media (max-width: 480px) {
+/* Extra small mobile screens - 414px and below */
+@media (max-width: 414px) {
   .bta-hero {
-    padding: 6rem 1rem 3rem;
+    padding: 130px 1rem 3rem; /* Account for navbar on small screens */
+    min-height: auto;
   }
 
   .bta-hero-inner {
-    padding: 0 12px;
+    padding: 0 16px;
     width: 100%;
-  }
-
-  .bta-hero-left {
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
   }
 
   .bta-hero-left h1 {
@@ -444,6 +479,36 @@ html {
     max-width: 100%;
     word-break: break-word;
     white-space: normal;
+  }
+
+  .bta-hero-right .bta-hero-visual {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* Very small screens - 390px and below */
+@media (max-width: 390px) {
+  .bta-hero {
+    padding: 120px 0.75rem 2.5rem;
+  }
+
+  .bta-hero-inner {
+    padding: 0 12px;
+  }
+
+  .bta-hero-left h1 {
+    font-size: 1.4rem;
+    line-height: 1.3;
+  }
+
+  .bta-hero-left p {
+    font-size: 0.9rem;
+  }
+
+  .bta-hero-right .bta-hero-visual {
+    width: 200px;
+    height: 200px;
   }
 }
 
