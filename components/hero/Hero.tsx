@@ -1,67 +1,59 @@
 'use client'
 
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-screen bg-black flex items-center overflow-hidden">
+    <section className="relative w-full h-[90vh] flex items-center justify-center text-white overflow-hidden">
+      
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/images/hero/hero-bg-01.webp')"
+        }}
+      />
 
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/images/hero/hero-gradient-01.webp"
-          alt="Blue Team Africa"
-          fill
-          priority
-          quality={90}
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
 
-      <div className="relative z-10 w-full max-w-lg mx-auto px-5 py-10 text-white">
-
-        <h1
-          className="font-extrabold leading-tight text-white"
-          style={{ fontSize: "clamp(1.8rem, 7vw, 2.8rem)", lineHeight: 1.1 }}
-        >
-          Digital solutions for NGOs & East African businesses
+      {/* Text Container */}
+      <div className="relative z-10 max-w-3xl px-6 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
+          Blue Team Africa — Your Digital Transformation Partner
         </h1>
 
-        <p
-          className="mt-4 text-white/90"
-          style={{ fontSize: "clamp(1rem, 3.2vw, 1.15rem)" }}
-        >
-          Websites, ERPs, mobile apps, SEO, branding and digital systems for Uganda, Kenya, Rwanda and Sudan.
+        <p className="text-lg md:text-xl opacity-90">
+          Web design, mobile apps, cloud hosting, cybersecurity & full-stack enterprise solutions — built for East Africa and beyond.
         </p>
 
-        <div className="mt-6 grid gap-3">
-          <Link
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10 mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center"
+        >
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl py-3 px-4 bg-white text-gray-900 font-semibold shadow-lg hover:bg-gray-200 transition"
+            className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-shadow shadow-md hover:shadow-lg"
           >
-            Get Started
-          </Link>
+            Start Your Project
+          </motion.a>
 
-          <Link
-            href="/portfolio"
-            className="inline-flex items-center justify-center rounded-lg py-3 px-4 border-2 border-white text-white hover:bg-white/10 transition"
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            href="/services"
+            className="px-6 py-3 bg-white/90 hover:bg-white text-black font-semibold rounded-lg transition-shadow shadow-md hover:shadow-lg"
           >
-            See Our Work
-          </Link>
-
-          <a
-            href="https://wa.me/256765508131"
-            target="_blank"
-            className="text-white underline text-center hover:text-white/80"
-          >
-            WhatsApp Us →
-          </a>
-        </div>
+            Explore Our Services
+          </motion.a>
+        </motion.div>
       </div>
 
     </section>
-  )
+  );
 }
-

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface AnimatedCTASectionProps {
   rotatingWords?: string[]
@@ -30,22 +31,19 @@ export default function AnimatedCTASection({
   const services = rotatingWords
 
   const [rotatingText, setRotatingText] = useState<string>(services[0])
-  const [fade, setFade] = useState(true)
+  const [key, setKey] = useState(0)
 
   useEffect(() => {
     // Safety: ensure services not empty
     if (!services || services.length === 0) return
 
     const interval = setInterval(() => {
-      setFade(false)
-      setTimeout(() => {
-        setRotatingText((prev) => {
-          const idx = services.indexOf(prev)
-          const nextIndex = (idx === -1 ? 0 : (idx + 1) % services.length)
-          return services[nextIndex]
-        })
-        setFade(true)
-      }, 350) // fade-out/fade-in gap
+      setRotatingText((prev) => {
+        const idx = services.indexOf(prev)
+        const nextIndex = (idx === -1 ? 0 : (idx + 1) % services.length)
+        return services[nextIndex]
+      })
+      setKey((prev) => prev + 1) // Force re-render for animation
     }, 4000) // 4 second interval
 
     return () => clearInterval(interval)
@@ -67,13 +65,23 @@ export default function AnimatedCTASection({
 
       {/* Animated Rotating Text */}
       <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white text-center leading-tight px-4">
-        We <span className="text-white opacity-90">{prefixText}</span>
-        <span
-          className={`ml-3 inline-block text-white transition-opacity duration-700 ease-in-out ${
-            fade ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          {rotatingText}
+        We <span className="text-white opacity-90">{prefixText}</span>{' '}
+        <span className="ml-3 inline-block relative">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={key}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ 
+                duration: 0.6, 
+                ease: [0.4, 0, 0.2, 1] // Custom cubic-bezier for smooth motion
+              }}
+              className="inline-block text-white"
+            >
+              {rotatingText}
+            </motion.span>
+          </AnimatePresence>
         </span>
       </h1>
     </div>
