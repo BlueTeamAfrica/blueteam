@@ -57,6 +57,65 @@ body {
   }
 }
 
+/* Oracom-style Navlink Underline Animation */
+.navlink-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.navlink-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.25s ease-in-out;
+}
+
+.navlink-underline:hover::after {
+  width: 100%;
+}
+
+.navlink-underline.active::after {
+  width: 100%;
+}
+
+/* White text variant - underline should be white when text is white */
+.navlink-underline.text-white::after,
+.navlink-underline.text-white:hover::after {
+  background: #ffffff;
+}
+
+.navlink-underline.text-white.active::after {
+  background: #ffffff;
+  width: 100%;
+}
+
+/* Footer links: white underline on hover when hover:text-white class is applied */
+.navlink-underline.hover\:text-white:hover::after {
+  background: #ffffff;
+}
+
+/* Gradient Wave Animation */
+@keyframes gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-wave {
+  background-size: 400% 400%;
+  animation: gradient-wave 12s ease-in-out infinite;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -217,7 +276,14 @@ html {
 
 /* Header Spacer - Prevents overlap with sticky header */
 .bta-hero-header-spacer {
-  height: 72px;
+  height: 72px; /* Desktop default */
+}
+
+/* Mobile: Account for taller header with top bar */
+@media (max-width: 768px) {
+  .bta-hero-header-spacer {
+    height: 104px; /* Top bar (~40px) + Main nav (64px) = 104px */
+  }
 }
 
 /* Hero Section Styles */
@@ -274,28 +340,10 @@ html {
   padding-top: 0;
 }
 
-/* Mobile: Add extra top padding to lower hero text */
-@media (max-width: 640px) {
-  .bta-hero-left {
-    padding-top: 3rem; /* pt-12 equivalent */
-  }
-}
-
-@media (min-width: 641px) {
-  .bta-hero-left {
-    padding-top: 5rem; /* sm:pt-20 equivalent */
-  }
-}
-
-@media (min-width: 768px) {
-  .bta-hero-left {
-    padding-top: 6rem; /* md:pt-24 equivalent */
-  }
-}
-
+/* Desktop: No extra padding needed */
 @media (min-width: 1024px) {
   .bta-hero-left {
-    padding-top: 0; /* Reset on desktop */
+    padding-top: 0;
   }
 }
 
@@ -387,13 +435,20 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  overflow: hidden; /* Prevent overflow */
 }
 
 /* Clean Animation Slot - No blur, no background, invisible container */
 .hero-animation-slot {
   width: 420px;
-  height: 4rem; /* Desktop: ~3-4rem (64px) */
+  min-height: 4rem; /* Desktop: ~3-4rem (64px) - use min-height to allow expansion */
+  height: auto; /* Allow content to expand */
   background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Prevent text overflow */
   /* Empty container - ready for future animation */
 }
 
@@ -406,44 +461,55 @@ html {
   .hero-animation-slot {
     width: 100%;
     max-width: 420px;
-    height: 3.5rem; /* Tablet: ~3.5rem */
+    min-height: 3.5rem; /* Tablet: ~3.5rem - use min-height */
+    height: auto; /* Allow content to expand */
   }
 }
 
 @media (max-width: 900px) {
   .bta-hero {
     min-height: auto;
-    padding: 0 1.5rem 4rem;
+    padding-top: 2.5rem; /* Increased top padding to prevent header overlap */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 4rem;
   }
 
   .bta-hero-inner {
     padding: 0 20px;
-    padding-top: 0;
+    padding-top: 1.5rem; /* Increased top padding */
+    padding-bottom: 1rem;
   }
 
   .bta-hero-inner .grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3.5rem; /* Increased gap from 2rem to 3.5rem for better separation */
     text-align: center;
   }
 
   .bta-hero-right {
-    margin-top: 2rem;
-    margin-bottom: 0.625rem; /* 10px - drops animation section lower on mobile */
+    margin-top: 0; /* Remove top margin to avoid extra spacing */
+    margin-bottom: 0; /* Remove bottom margin */
     display: flex;
     justify-content: center;
+    order: -1; /* Move animation to top on mobile for better flow */
+    padding-bottom: 0.5rem; /* Small bottom padding */
   }
 
   .hero-animation-slot {
     width: 100%;
     max-width: 420px;
-    height: 3rem; /* Mobile tablet: ~3rem */
+    min-height: 3rem; /* Use min-height instead of fixed height */
+    height: auto; /* Allow content to expand */
+    padding: 0.75rem 0; /* Increased vertical padding */
+    overflow: hidden; /* Prevent any overflow */
   }
 
   .bta-hero-left {
     width: 100%;
     max-width: 100%;
-    padding: 0;
+    padding-top: 0; /* Remove conflicting padding */
+    padding-bottom: 0;
   }
 
   .bta-hero-left h1 {
@@ -484,63 +550,99 @@ html {
 /* Mobile adjustments - Lower hero text for screens < 640px */
 @media (max-width: 640px) {
   .bta-hero-header-spacer {
-    height: 72px;
+    height: 104px; /* Match mobile header height (top bar + nav) */
   }
 
   .bta-hero {
-    padding-top: 35px; /* Lower hero text by 25-35px */
+    padding-top: 2.5rem; /* Increased top padding to prevent overlap */
+    padding-left: 1rem;
+    padding-right: 1rem;
     padding-bottom: 3rem;
+    min-height: auto; /* Remove viewport height constraint on small screens */
   }
 
   .bta-hero-inner {
-    padding-top: 0;
+    padding-top: 1rem; /* Increased top padding */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .bta-hero-inner .grid {
+    gap: 3rem; /* Maintain good gap on small screens */
+  }
+
+  .bta-hero-left {
+    padding-top: 0 !important; /* Override any conflicting padding */
+    padding-bottom: 0;
   }
 
   .bta-hero-left h1 {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    font-size: clamp(1.5rem, 6vw, 2rem); /* Slightly smaller on very small screens */
+    padding-top: 0;
   }
 
   .bta-hero-left p {
     margin-bottom: 20px;
+    font-size: clamp(0.9rem, 3vw, 1.1rem); /* Slightly smaller on very small screens */
   }
 
   .hero-animation-slot {
     width: 100%;
-    height: 2rem; /* Mobile (< 640px): ~2rem (32px) */
+    min-height: 3rem; /* Increased min-height for better text display */
+    height: auto; /* Allow content to expand */
+    padding: 1rem 0.75rem; /* Increased padding for text breathing room */
+    overflow: hidden; /* Prevent overflow */
+    max-width: 100%; /* Ensure it doesn't exceed container */
+  }
+
+  .bta-hero-right {
+    margin-top: 0;
+    margin-bottom: 0.5rem; /* Small space before main content */
+    width: 100%;
+    overflow: hidden; /* Prevent any overflow */
   }
 }
 
 /* Small mobile screens - 414px and below */
 @media (max-width: 414px) {
   .bta-hero {
-    padding-top: 30px;
+    padding-top: 2.5rem; /* Consistent with main mobile breakpoint */
     padding-bottom: 2.5rem;
   }
 
   .bta-hero-inner {
-    padding: 0 16px;
+    padding: 1rem 16px 1rem; /* Consistent padding */
   }
 
   .hero-animation-slot {
     width: 100%;
-    height: 2rem; /* Small mobile: ~2rem */
+    min-height: 3rem; /* Use min-height instead of fixed height */
+    height: auto; /* Allow content to expand */
+    padding: 0.75rem 0.5rem; /* Adequate padding */
   }
 }
 
 /* Very small screens - 375px and below */
 @media (max-width: 375px) {
-  .bta-hero {
-    padding-top: 25px;
-    padding-bottom: 2rem;
+  .hero-animation-slot {
+    min-height: 2.5rem; /* Slightly smaller for very small screens */
+    padding: 0.5rem 0.5rem;
+    width: 100%;
   }
 
   .bta-hero-inner {
-    padding: 0 12px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
-  .hero-animation-slot {
-    width: 100%;
-    height: 2rem; /* Very small mobile: ~2rem */
+  .bta-hero-left h1 {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+  }
+
+  .bta-hero-left p {
+    font-size: clamp(0.85rem, 3vw, 1rem);
   }
 }
 

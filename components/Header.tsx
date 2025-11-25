@@ -1,12 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Phone, Mail, ChevronDown, MessageCircle, Menu, X, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // ORACOM-STYLE EXACT DROPDOWN HEADER (React + Tailwind)
 export default function Header() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
@@ -21,6 +23,24 @@ export default function Header() {
   const aboutDropdownRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  
+  // Helper function to check if a route is active
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/'
+    }
+    return pathname.startsWith(href)
+  }
+  
+  // Check if any service route is active (for Services dropdown button)
+  const isServicesActive = () => {
+    return pathname.startsWith('/services/')
+  }
+  
+  // Check if any about route is active (for About dropdown button)
+  const isAboutActive = () => {
+    return pathname === '/about' || pathname.startsWith('/about/') || pathname === '/team' || pathname === '/process'
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
@@ -238,7 +258,7 @@ export default function Header() {
         {/* Main Navigation */}
         <div ref={containerRef} className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between relative">
           {/* Logo - Left */}
-          <Link href="/" className="flex items-center gap-2 text-xl font-heading font-semibold text-gray-900 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2 text-xl font-heading font-semibold text-gray-900 flex-shrink-0 h-full">
             <div className="w-10 h-10 bg-primary text-white flex items-center justify-center font-heading font-bold rounded-md">
               BT
             </div>
@@ -248,16 +268,17 @@ export default function Header() {
           {/* Nav - Center */}
           <nav
             ref={navRef}
-            className="hidden md:flex items-center gap-6 text-sm text-gray-800 font-medium absolute left-1/2 transform -translate-x-1/2"
+            className="hidden md:flex items-center justify-center gap-6 text-sm text-gray-800 font-medium absolute left-1/2 transform -translate-x-1/2 h-full"
             role="navigation"
             aria-label="Main navigation"
           >
             <Link 
               href="/" 
-              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+              className={`navlink-underline whitespace-nowrap py-2.5 transition-colors hover:text-primary flex items-center ${
+                isActive('/') ? 'text-primary active' : ''
+              }`}
             >
               Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
             {/* About Dropdown */}
@@ -269,14 +290,15 @@ export default function Header() {
                   setAboutOpen(!aboutOpen)
                   if (servicesOpen) setServicesOpen(false)
                 }}
-                className="flex items-center gap-1 relative py-2 transition-colors hover:text-primary select-none group"
+                className={`navlink-underline flex items-center gap-1 py-2.5 transition-colors hover:text-primary select-none ${
+                  isAboutActive() ? 'text-primary active' : ''
+                }`}
                 aria-haspopup="true"
                 aria-expanded={aboutOpen}
                 aria-controls="about-dropdown"
               >
                 About
                 <ChevronDown size={14} className={`mt-0.5 transition-transform duration-200 ${aboutOpen ? 'rotate-180' : ''}`} />
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
 
               <AnimatePresence>
@@ -297,11 +319,12 @@ export default function Header() {
                           <Link
                             href={link.href}
                             role="menuitem"
-                            className="text-gray-700 hover:text-primary transition-colors text-sm block py-2 px-3 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 relative group"
+                            className={`navlink-underline text-gray-700 hover:text-primary transition-colors text-sm block py-2 px-3 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                              isActive(link.href) ? 'text-primary active' : ''
+                            }`}
                             onClick={() => setAboutOpen(false)}
                           >
                             {link.name}
-                            <span className="absolute bottom-1.5 left-3 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-[calc(100%-1.5rem)]"></span>
                           </Link>
                         </li>
                       ))}
@@ -320,14 +343,15 @@ export default function Header() {
                   setServicesOpen(!servicesOpen)
                   if (aboutOpen) setAboutOpen(false)
                 }}
-                className="flex items-center gap-1 relative py-2 transition-colors hover:text-primary select-none group"
+                className={`navlink-underline flex items-center gap-1 py-2.5 transition-colors hover:text-primary select-none ${
+                  isServicesActive() ? 'text-primary active' : ''
+                }`}
                 aria-haspopup="true"
                 aria-expanded={servicesOpen}
                 aria-controls="services-dropdown"
               >
                 Services
                 <ChevronDown size={14} className={`mt-0.5 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
 
               <AnimatePresence>
@@ -353,11 +377,12 @@ export default function Header() {
                               <Link
                                 href={item.href}
                                 role="menuitem"
-                                className="text-gray-700 hover:text-blue-600 transition-colors text-sm block py-1.5 relative group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1 -mx-1"
+                                className={`navlink-underline text-gray-700 hover:text-primary transition-colors text-sm block py-1.5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1 -mx-1 ${
+                                  isActive(item.href) ? 'text-primary active' : ''
+                                }`}
                                 onClick={() => setServicesOpen(false)}
                               >
                                 {item.name}
-                                <span className="absolute bottom-0.5 left-1 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-[calc(100%-0.5rem)]"></span>
                               </Link>
                             </li>
                           ))}
@@ -371,29 +396,32 @@ export default function Header() {
 
             <Link 
               href="/portfolio" 
-              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+              className={`navlink-underline whitespace-nowrap py-2.5 transition-colors hover:text-primary flex items-center ${
+                isActive('/portfolio') ? 'text-primary active' : ''
+              }`}
             >
               Portfolio
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link 
               href="/blog" 
-              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+              className={`navlink-underline whitespace-nowrap py-2.5 transition-colors hover:text-primary flex items-center ${
+                isActive('/blog') ? 'text-primary active' : ''
+              }`}
             >
               Blog
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link 
               href="/contact" 
-              className="relative whitespace-nowrap py-2 transition-colors hover:text-primary group"
+              className={`navlink-underline whitespace-nowrap py-2.5 transition-colors hover:text-primary flex items-center ${
+                isActive('/contact') ? 'text-primary active' : ''
+              }`}
             >
               Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </nav>
 
           {/* Social Icons - Desktop Only (Right Side) */}
-          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+          <div className="hidden md:flex items-center justify-center gap-2 flex-shrink-0 h-full">
             {socialLinks.map((social) => {
               const Icon = social.icon
               return (
@@ -461,7 +489,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-lg border border-gray-300 text-gray-700 hover:border-primary hover:text-primary transition"
+            className="md:hidden p-2 rounded-lg border border-gray-300 text-gray-700 hover:border-primary hover:text-primary transition flex items-center justify-center h-full"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >

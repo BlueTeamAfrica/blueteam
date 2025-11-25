@@ -8,48 +8,46 @@ import { useState, useEffect, useRef } from 'react'
 
 // Rotating Text Animation Component (Pure Tailwind + CSS)
 function RotatingTextAnimation() {
-  const words = [
-    'websites',
-    'Mobile Apps',
-    'ERP Systems',
-    'Cybersecurity Solutions',
-    'We Provide Reliable and Secure Cloud Hosting',
-    'Digital Solutions',
+  const rotatingWords = [
+    "Modern Websites",
+    "Website Development",
+    "Cybersecurity Solutions",
+    "ERP Systems",
+    "CRM Systems",
+    "Mobile Apps",
+    "E-commerce Platforms",
+    "NGO Digital Solutions",
+    "Hosting & Domain Management",
+    "Branding & UI/UX"
   ]
   
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isVisible, setIsVisible] = useState(true)
+  const [index, setIndex] = useState(0)
+  const [fade, setFade] = useState(true)
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsVisible(false)
+      setFade(false)
+      
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % words.length)
-        setIsVisible(true)
-      }, 150)
-    }, 4000) // Change every 4 seconds (doubled from 2 seconds)
+        setIndex((prev) => (prev + 1) % rotatingWords.length)
+        setFade(true)
+      }, 300)
+    }, 2000) // Change every 2 seconds
     
     return () => clearInterval(interval)
-  }, [words.length])
-  
-  // Check if current word is the cloud hosting phrase (doesn't need "We Build" prefix)
-  const isFullPhrase = words[currentIndex].startsWith('We Provide')
+  }, [rotatingWords.length])
   
   return (
-    <div className="hero-animation-slot flex items-center justify-center">
-      <div className="relative inline-block text-center lg:text-left">
-        <span className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-heading leading-tight">
-          {!isFullPhrase && 'We Build '}
-          <span className={`inline-block text-left ${isFullPhrase ? 'min-w-[280px] sm:min-w-[320px] md:min-w-[400px] lg:min-w-[500px]' : 'min-w-[180px] sm:min-w-[200px] md:min-w-[250px] lg:min-w-[300px]'}`}>
-            <span 
-              className={`inline-block text-white transition-all duration-300 ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-2'
-              }`}
-            >
-              {words[currentIndex]}
-            </span>
+    <div className="hero-animation-slot flex items-center justify-center overflow-hidden">
+      <div className="relative inline-block text-center lg:text-left w-full px-2 sm:px-4">
+        <span className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold font-heading leading-tight break-words hyphens-auto">
+          We Build{" "}
+          <span
+            className={`inline-block text-white font-extrabold transition-opacity duration-300 break-words ${
+              fade ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {rotatingWords[index]}
           </span>
         </span>
       </div>
