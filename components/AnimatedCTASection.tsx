@@ -11,37 +11,41 @@ interface AnimatedCTASectionProps {
 export default function AnimatedCTASection({
   rotatingWords = [
     "Mobile Apps",
-    "StunningWebsites",
+    "Stunning Websites",
     "Cloud Hosting Solutions",
-    "cybersecurity defenses",
-    "AI-powered chatbots",
-    "enterprise IT systems",
-    "ERP systems",
-    "CRM platforms",
+    "Cybersecurity Solutions",
+    "AI-powered Chatbots",
+    "Enterprise IT Systems",
+    "ERP Systems",
+    "CRM Platforms",
     "SEO Optimization",
-    "brand identities",
-    "social media presence",
-    "e-commerce solutions",
+    "Brand Identities",
+    "Social Media Presence",
+    "E-commerce Solutions",
     "Custom Business Systems",
   ],
   prefixText = 'deliver',
   className = '',
 }: AnimatedCTASectionProps) {
   const services = rotatingWords
-  
-  const [rotatingText, setRotatingText] = useState(services[0])
+
+  const [rotatingText, setRotatingText] = useState<string>(services[0])
   const [fade, setFade] = useState(true)
 
   useEffect(() => {
+    // Safety: ensure services not empty
+    if (!services || services.length === 0) return
+
     const interval = setInterval(() => {
       setFade(false)
       setTimeout(() => {
         setRotatingText((prev) => {
-          const nextIndex = (services.indexOf(prev) + 1) % services.length
+          const idx = services.indexOf(prev)
+          const nextIndex = (idx === -1 ? 0 : (idx + 1) % services.length)
           return services[nextIndex]
         })
         setFade(true)
-      }, 300)
+      }, 350) // fade-out/fade-in gap
     }, 4000) // 4 second interval
 
     return () => clearInterval(interval)
@@ -50,18 +54,22 @@ export default function AnimatedCTASection({
   return (
     <div className={`relative py-20 flex flex-col items-center justify-center overflow-hidden ${className}`}>
       {/* Gradient Wave Background */}
-      <div 
-        className="absolute inset-0 -z-10 opacity-90 animate-gradient-wave"
+      <div
+        className="absolute inset-0 -z-10 opacity-80 animate-gradient-wave rounded-3xl"
         style={{
-          background: 'linear-gradient(-45deg, #f97316, #ef4444, #dc2626, #991b1b, #dc2626, #ef4444, #f97316)',
+          background:
+            'linear-gradient(-45deg, #ff7a2a 0%, #ef4444 25%, #dc2626 50%, #991b1b 75%, #ef4444 100%)',
+          filter: 'saturate(1.05) blur(6px)',
+          transform: 'scale(1.2)',
         }}
+        aria-hidden="true"
       ></div>
 
       {/* Animated Rotating Text */}
-      <h1 className="text-4xl md:text-6xl font-bold text-white text-center">
-        We <span className="text-white opacity-80">{prefixText}</span>
+      <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white text-center leading-tight px-4">
+        We <span className="text-white opacity-90">{prefixText}</span>
         <span
-          className={`ml-3 text-white transition-opacity duration-700 ease-in-out ${
+          className={`ml-3 inline-block text-white transition-opacity duration-700 ease-in-out ${
             fade ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -71,4 +79,3 @@ export default function AnimatedCTASection({
     </div>
   )
 }
-
