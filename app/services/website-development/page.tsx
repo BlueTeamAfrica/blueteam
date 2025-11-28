@@ -3,6 +3,7 @@ import Image from "next/image";
 import InteriorHeader from "@/components/InteriorHeader";
 import ServiceSidebar from "@/components/ServiceSidebar";
 import SectionWrapper from "@/components/SectionWrapper";
+import RelatedServicesMobile from "@/components/RelatedServicesMobile";
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import Link from "next/link";
 
@@ -349,6 +350,18 @@ export default function WebsiteDevelopmentPage() {
           </div>
         </div>
       </div>
+
+      {/* Related Services Mobile */}
+      <RelatedServicesMobile services={[
+        { name: "Web Design", href: "/services/web-design" },
+        { name: "Website Development", href: "/services/website-development" },
+        { name: "Mobile Apps", href: "/services/mobile-apps" },
+        { name: "E-Commerce", href: "/services/ecommerce" },
+        { name: "ERP Systems", href: "/services/erp" },
+        { name: "CRM Platforms", href: "/services/crm" },
+        { name: "Cloud Hosting", href: "/services/hosting" },
+        { name: "Cybersecurity", href: "/services/cybersecurity" },
+      ]} />
     </>
   );
 }

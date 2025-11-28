@@ -5,6 +5,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import FAQSection from '@/components/FAQSection'
+import RelatedServicesMobile from '@/components/RelatedServicesMobile'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 import type { FAQ } from '@/lib/faqs'
@@ -591,6 +592,18 @@ export default function CybersecurityPage() {
       
       {/* Psylo Links for SEO */}
       <PsyloLinks />
+
+      {/* Related Services Mobile */}
+      <RelatedServicesMobile services={[
+        { name: "Web Design", href: "/services/web-design" },
+        { name: "Website Development", href: "/services/website-development" },
+        { name: "Mobile Apps", href: "/services/mobile-apps" },
+        { name: "E-Commerce", href: "/services/ecommerce" },
+        { name: "ERP Systems", href: "/services/erp" },
+        { name: "CRM Platforms", href: "/services/crm" },
+        { name: "Cloud Hosting", href: "/services/hosting" },
+        { name: "Cybersecurity", href: "/services/cybersecurity" },
+      ]} />
     </>
   )
 }

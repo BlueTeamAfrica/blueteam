@@ -36,7 +36,7 @@ export default function InteriorPageLayout({
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <h1 className="text-[36px] leading-tight font-heading font-bold text-gray-900">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight font-heading text-gray-900">
               {title}
             </h1>
             {subtitle && (
