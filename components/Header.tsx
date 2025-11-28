@@ -78,6 +78,19 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [servicesOpen, aboutOpen])
 
+  // prevent body scroll when mobile menu open
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
   const toggleMobileDropdown = (dropdown: 'about' | 'services') => {
     setMobileDropdowns((prev) => ({ ...prev, [dropdown]: !prev[dropdown] }))
   }
@@ -137,10 +150,10 @@ export default function Header() {
         }`}
         role="banner"
       >
-        {/* Top Info Bar - using site primary color variable (fallback to #2563EB) */}
+        {/* Top Info Bar */}
         <div style={{ backgroundColor: 'var(--color-primary, #2563EB)' }} className="w-full text-white">
           <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center">
-            <div className="flex-1" /> {/* left empty to push content to right */}
+            <div className="flex-1" />
             <div className="flex items-center gap-4 text-sm">
               <a href="tel:+256765508131" className="font-semibold hover:underline">
                 +256 765 508 131
@@ -196,7 +209,7 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -6 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 p-3 z-50"
+                        className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 p-3 z-60"
                       >
                         {aboutLinks.map((l, i) => (
                           <Link
@@ -239,7 +252,7 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[880px] max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-2xl border border-gray-100 p-6 z-50"
+                        className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[880px] max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-2xl border border-gray-100 p-6 z-60"
                       >
                         <div className="grid grid-cols-3 gap-6">
                           {serviceColumns.map((col, i) => (
@@ -296,7 +309,6 @@ export default function Header() {
                 title="Chat on WhatsApp"
                 style={{ color: '#25D366' }}
               >
-                {/* WhatsApp SVG (fill = currentColor) */}
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M20.52 3.48A11.86 11.86 0 0012 .04C6.01.04.98 5.07.98 11.06c0 1.95.51 3.86 1.48 5.52L.03 24l7.7-2.02a11.02 11.02 0 004.28.86h.01c6 0 11.03-4.03 11.03-10.02 0-2.68-1.05-5.2-2.53-6.84zM12 21.02c-1.5 0-2.98-.4-4.24-1.12l-.3-.17-4.56 1.2 1.2-4.56-.18-.31A8.86 8.86 0 013.08 11.06c0-4.9 4.03-8.89 8.92-8.89 4.9 0 8.92 3.99 8.92 8.89 0 4.9-4.03 8.89-8.92 8.89z" />
                   <path d="M16.02 13.1c-.2-.1-1.1-.6-1.3-.6-.2-.1-.4-.1-.6.1l-.6.6c-.1.1-.4.1-.7 0-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.4-1.8-.1-.3 0-.5.1-.7l.7-1.8c.1-.3 0-.5-.1-.6-.3-.3-.8-.7-1.2-1-.4-.3-1-.1-1.4.1-.5.3-1.7 1.2-1.7 3.1 0 1.8 1.2 3.8 2.6 5.1 1.4 1.3 3.1 2.2 4.9 2.5.7.1 1.4.1 2.1.1 1.3 0 3.2-.6 4-2.4.4-.9.4-1.9.3-2.2 0-.2 0-.4-.2-.5-.1-.2-.9-.5-1.1-.6z" />
@@ -339,7 +351,7 @@ export default function Header() {
               type="button"
               aria-controls="mobile-menu"
               aria-expanded={open}
-              className="md:hidden ml-auto p-2 rounded-lg border border-gray-200 text-gray-700 hover:text-[color:var(--color-primary,#2563EB)] hover:border-[color:var(--color-primary,#2563EB)] transition min-h-[44px] min-w-[44px]"
+              className="md:hidden ml-auto p-2 rounded-lg border border-gray-200 text-gray-700 hover:text-[color:var(--color-primary,#2563EB)] hover:border-[color:var(--color-primary,#2563EB)] transition min-h-[44px] min-w-[44px] z-60"
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -350,20 +362,22 @@ export default function Header() {
         <AnimatePresence>
           {open && (
             <>
+              {/* Backdrop above header: z-60 */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/40 z-40 md:hidden"
+                className="fixed inset-0 bg-black/40 z-60 md:hidden"
                 onClick={() => setOpen(false)}
               />
 
+              {/* Slide panel above header/backdrop: z-70 */}
               <motion.aside
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="fixed right-0 top-0 h-full w-[320px] bg-white shadow-2xl z-50 md:hidden"
+                className="fixed right-0 top-0 h-full w-[320px] bg-white shadow-2xl z-70 md:hidden"
                 role="dialog"
                 aria-label="Mobile navigation"
               >
@@ -417,7 +431,6 @@ export default function Header() {
 
                     <div className="mt-6">
                       <a href="https://wa.me/256765508131" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-3 bg-gray-100 rounded-lg w-full justify-center">
-                        {/* WhatsApp small icon */}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg">
                           <path d="M20.52 3.48A11.86 11.86 0 0012 .04C6.01.04.98 5.07.98 11.06c0 1.95.51 3.86 1.48 5.52L.03 24l7.7-2.02a11.02 11.02 0 004.28.86h.01c6 0 11.03-4.03 11.03-10.02 0-2.68-1.05-5.2-2.53-6.84zM12 21.02c-1.5 0-2.98-.4-4.24-1.12l-.3-.17-4.56 1.2 1.2-4.56-.18-.31A8.86 8.86 0 013.08 11.06c0-4.9 4.03-8.89 8.92-8.89 4.9 0 8.92 3.99 8.92 8.89 0 4.9-4.03 8.89-8.92 8.89z"/>
                           <path d="M16.02 13.1c-.2-.1-1.1-.6-1.3-.6-.2-.1-.4-.1-.6.1l-.6.6c-.1.1-.4.1-.7 0-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.4-1.8-.1-.3 0-.5.1-.7l.7-1.8c.1-.3 0-.5-.1-.6-.3-.3-.8-.7-1.2-1-.4-.3-1-.1-1.4.1-.5.3-1.7 1.2-1.7 3.1 0 1.8 1.2 3.8 2.6 5.1 1.4 1.3 3.1 2.2 4.9 2.5.7.1 1.4.1 2.1.1 1.3 0 3.2-.6 4-2.4.4-.9.4-1.9.3-2.2 0-.2 0-.4-.2-.5-.1-.2-.9-.5-1.1-.6z"/>
