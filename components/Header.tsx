@@ -18,11 +18,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header() {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [aboutOpen, setAboutOpen] = useState(false)
-  const [mobileDropdowns, setMobileDropdowns] = useState({ about: false, services: false })
 
   const servicesButtonRef = useRef<HTMLButtonElement>(null)
   const servicesDropdownRef = useRef<HTMLDivElement>(null)
@@ -38,7 +37,7 @@ export default function Header() {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setOpen(false)
+        setMobileOpen(false)
         setServicesOpen(false)
         setAboutOpen(false)
       }
@@ -48,8 +47,9 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    setOpen(false)
-    setMobileDropdowns({ about: false, services: false })
+    setMobileOpen(false)
+    setServicesOpen(false)
+    setAboutOpen(false)
   }, [])
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function Header() {
   // prevent body scroll when mobile menu open
   useEffect(() => {
     if (typeof window === 'undefined') return
-    if (open) {
+    if (mobileOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
@@ -89,11 +89,8 @@ export default function Header() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [open])
+  }, [mobileOpen])
 
-  const toggleMobileDropdown = (dropdown: 'about' | 'services') => {
-    setMobileDropdowns((prev) => ({ ...prev, [dropdown]: !prev[dropdown] }))
-  }
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
@@ -345,109 +342,100 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setOpen(!open)}
-              type="button"
-              aria-controls="mobile-menu"
-              aria-expanded={open}
-              className="md:hidden ml-auto p-2 rounded-lg border border-gray-200 text-gray-700 hover:text-[color:var(--color-primary,#2563EB)] hover:border-[color:var(--color-primary,#2563EB)] transition min-h-[44px] min-w-[44px] z-60"
-            >
-              {open ? <X size={20} /> : <Menu size={20} />}
-            </button>
+            {/* HAMBURGER (mobile only) */}
+            <div className="md:hidden flex items-center ml-auto">
+              <button
+                onClick={() => {
+                  setMobileOpen(!mobileOpen)
+                  // Close desktop dropdowns when opening mobile menu
+                  if (!mobileOpen) {
+                    setServicesOpen(false)
+                    setAboutOpen(false)
+                  }
+                }}
+                className="p-2 focus:outline-none"
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileOpen}
+                type="button"
+              >
+                {mobileOpen ? (
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {open && (
-            <>
-              {/* Backdrop above header: z-60 */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/40 z-60 md:hidden"
-                onClick={() => setOpen(false)}
-              />
+        {/* MOBILE MENU PANEL */}
+        {mobileOpen && (
+          <div className="md:hidden w-full bg-white border-t shadow-lg z-50 animate-slideDown">
+            <nav className="flex flex-col p-4 space-y-3" role="navigation" aria-label="Mobile">
+              {/* Services (full list from live site) */}
+              <div>
+                <button
+                  onClick={() => setServicesOpen(!servicesOpen)}
+                  className="flex justify-between items-center w-full font-semibold text-gray-900"
+                  aria-expanded={servicesOpen}
+                  aria-controls="mobile-services-list"
+                >
+                  Services
+                  <svg className={`w-5 h-5 transform transition ${servicesOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </svg>
+                </button>
 
-              {/* Slide panel above header/backdrop: z-70 */}
-              <motion.aside
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="fixed right-0 top-0 h-full w-[320px] bg-white shadow-2xl z-70 md:hidden"
-                role="dialog"
-                aria-label="Mobile navigation"
-              >
-                <div className="p-6 flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-md bg-[color:var(--color-primary,#2563EB)] text-white flex items-center justify-center font-bold">BT</div>
-                      <span className="font-semibold">Blue Team Africa</span>
-                    </div>
-                    <button onClick={() => setOpen(false)} className="p-2 rounded hover:bg-gray-100">
-                      <X size={20} />
-                    </button>
+                {servicesOpen && (
+                  <div id="mobile-services-list" className="pl-4 mt-2 flex flex-col space-y-2 text-gray-700 animate-fadeIn">
+                    <Link href="/services/web-design" onClick={() => setMobileOpen(false)} className="block">Web Design</Link>
+                    <Link href="/services/mobile-apps" onClick={() => setMobileOpen(false)} className="block">Mobile App Development</Link>
+                    <Link href="/services/hosting" onClick={() => setMobileOpen(false)} className="block">Cloud & Web Hosting</Link>
+                    <Link href="/services/erp" onClick={() => setMobileOpen(false)} className="block">ERP Systems</Link>
+                    <Link href="/services/crm" onClick={() => setMobileOpen(false)} className="block">CRM Solutions</Link>
+                    <Link href="/services/cybersecurity" onClick={() => setMobileOpen(false)} className="block">Cybersecurity</Link>
+                    <Link href="/services/ecommerce" onClick={() => setMobileOpen(false)} className="block">E-commerce Development</Link>
+                    <Link href="/services/ui-ux" onClick={() => setMobileOpen(false)} className="block">UI/UX Design</Link>
                   </div>
+                )}
+              </div>
 
-                  <nav className="flex-1 overflow-y-auto">
-                    <Link href="/" onClick={() => setOpen(false)} className="block px-3 py-3 rounded hover:bg-gray-50">Home</Link>
+              {/* About (all subpages) */}
+              <div>
+                <button
+                  onClick={() => setAboutOpen(!aboutOpen)}
+                  className="flex justify-between items-center w-full font-semibold text-gray-900"
+                  aria-expanded={aboutOpen}
+                  aria-controls="mobile-about-list"
+                >
+                  About
+                  <svg className={`w-5 h-5 transform transition ${aboutOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M5 7l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </svg>
+                </button>
 
-                    {/* Mobile about */}
-                    <div>
-                      <button onClick={() => toggleMobileDropdown('about')} className="w-full flex items-center justify-between px-3 py-3 rounded hover:bg-gray-50">
-                        About
-                        <ChevronDown className={`${mobileDropdowns.about ? 'rotate-180' : ''}`} />
-                      </button>
-                      {mobileDropdowns.about && (
-                        <div className="pl-4 mt-2 space-y-1">
-                          {aboutLinks.map((l, i) => <Link key={i} href={l.href} onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 text-sm">{l.name}</Link>)}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Mobile services */}
-                    <div className="mt-2">
-                      <button onClick={() => toggleMobileDropdown('services')} className="w-full flex items-center justify-between px-3 py-3 rounded hover:bg-gray-50">
-                        Services
-                        <ChevronDown className={`${mobileDropdowns.services ? 'rotate-180' : ''}`} />
-                      </button>
-
-                      {mobileDropdowns.services && (
-                        <div className="pl-4 mt-2 space-y-1">
-                          {serviceColumns.map((col) => col.items.map((it, idx) => (
-                            <Link key={idx} href={it.href} onClick={() => setOpen(false)} className="block px-3 py-2 rounded hover:bg-gray-50 text-sm">{it.name}</Link>
-                          )))}
-                        </div>
-                      )}
-                    </div>
-
-                    <Link href="/portfolio" onClick={() => setOpen(false)} className="block px-3 py-3 rounded hover:bg-gray-50">Portfolio</Link>
-                    <Link href="/blog" onClick={() => setOpen(false)} className="block px-3 py-3 rounded hover:bg-gray-50">Blog</Link>
-
-                    <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 bg-[color:var(--color-primary,#2563EB)] text-white rounded-full">Contact</Link>
-
-                    <div className="mt-6">
-                      <a href="https://wa.me/256765508131" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-4 py-3 bg-gray-100 rounded-lg w-full justify-center">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20.52 3.48A11.86 11.86 0 0012 .04C6.01.04.98 5.07.98 11.06c0 1.95.51 3.86 1.48 5.52L.03 24l7.7-2.02a11.02 11.02 0 004.28.86h.01c6 0 11.03-4.03 11.03-10.02 0-2.68-1.05-5.2-2.53-6.84zM12 21.02c-1.5 0-2.98-.4-4.24-1.12l-.3-.17-4.56 1.2 1.2-4.56-.18-.31A8.86 8.86 0 013.08 11.06c0-4.9 4.03-8.89 8.92-8.89 4.9 0 8.92 3.99 8.92 8.89 0 4.9-4.03 8.89-8.92 8.89z"/>
-                          <path d="M16.02 13.1c-.2-.1-1.1-.6-1.3-.6-.2-.1-.4-.1-.6.1l-.6.6c-.1.1-.4.1-.7 0-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.4-1.8-.1-.3 0-.5.1-.7l.7-1.8c.1-.3 0-.5-.1-.6-.3-.3-.8-.7-1.2-1-.4-.3-1-.1-1.4.1-.5.3-1.7 1.2-1.7 3.1 0 1.8 1.2 3.8 2.6 5.1 1.4 1.3 3.1 2.2 4.9 2.5.7.1 1.4.1 2.1.1 1.3 0 3.2-.6 4-2.4.4-.9.4-1.9.3-2.2 0-.2 0-.4-.2-.5-.1-.2-.9-.5-1.1-.6z"/>
-                        </svg>
-                        WhatsApp Us
-                      </a>
-                    </div>
-                  </nav>
-
-                  <div className="mt-6 text-xs text-gray-500">
-                    © {new Date().getFullYear()} Blue Team Africa
+                {aboutOpen && (
+                  <div id="mobile-about-list" className="pl-4 mt-2 flex flex-col space-y-2 text-gray-700 animate-fadeIn">
+                    <Link href="/about" onClick={() => setMobileOpen(false)} className="block">About Us</Link>
+                    <Link href="/team" onClick={() => setMobileOpen(false)} className="block">Our Team</Link>
+                    <Link href="/mission" onClick={() => setMobileOpen(false)} className="block">Our Mission</Link>
+                    <Link href="/process" onClick={() => setMobileOpen(false)} className="block">Our Process</Link>
                   </div>
-                </div>
-              </motion.aside>
-            </>
-          )}
-        </AnimatePresence>
+                )}
+              </div>
+
+              {/* Quick links copied from live site */}
+              <Link href="/portfolio" onClick={() => setMobileOpen(false)} className="text-gray-900 font-medium">Portfolio</Link>
+              <Link href="/blog" onClick={() => setMobileOpen(false)} className="text-gray-900 font-medium">Blog</Link>
+              <Link href="/faq" onClick={() => setMobileOpen(false)} className="text-gray-900 font-medium">FAQ</Link>
+              <Link href="/contact" onClick={() => setMobileOpen(false)} className="text-gray-900 font-medium">Contact</Link>
+            </nav>
+          </div>
+        )}
       </header>
     </>
   )
