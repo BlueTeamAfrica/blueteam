@@ -5,6 +5,7 @@ import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'
 import PsyloLinks from '@/components/seo/PsyloLinks'
+import MobileMoveOurServices from '@/components/MobileMoveOurServices'
 
 export const metadata: Metadata = {
   title: 'BlueTeam Africa — Web Design, Website Development & Digital Solutions',
@@ -63,6 +64,9 @@ export default function Home() {
       <OrganizationSchema />
       <HomepageFAQSchema />
 
+      {/* Mobile Move Our Services Component */}
+      <MobileMoveOurServices />
+
       <div className="w-full overflow-hidden">
         {/* HERO */}
         <HeroSection />
@@ -116,7 +120,7 @@ export default function Home() {
         </section>
 
         {/* SERVICES GRID */}
-        <section id="services" className="py-20 bg-gray-50" aria-labelledby="services-heading">
+        <section id="services" data-our-services="top" className="py-20 bg-gray-50" aria-labelledby="services-heading">
         <div className="max-w-6xl mx-auto px-6">
             <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-4">
               Our Core Digital Services
@@ -583,7 +587,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </div>
 
+      {/* Bottom Container for Mobile Services Repositioning */}
+      <div data-bottom-container>
         {/* FAQ PREVIEW */}
         <section className="py-20 bg-gray-50" aria-labelledby="faq-heading">
           <div className="max-w-5xl mx-auto px-6">
