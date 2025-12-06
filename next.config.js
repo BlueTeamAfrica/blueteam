@@ -15,8 +15,7 @@ const nextConfig = {
   },
   // Enable compression
   compress: true,
-  // Optimize production builds
-  swcMinify: true,
+  // SWC minification is enabled by default in Next.js 16+
   // Performance optimizations
   poweredByHeader: false,
   // Headers for security and performance
