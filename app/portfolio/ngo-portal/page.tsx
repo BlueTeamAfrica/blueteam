@@ -26,7 +26,7 @@ export default function NGOPortalCaseStudy() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
-              src="/images/portfolio/_legacy/i.webp"
+              src="/images/portfolio/portfolio-preview-01.webp"
               alt="NGO Management Portal"
               fill
               className="object-cover"

@@ -1,302 +1,454 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Code, Smartphone, Server, Shield, Palette, ShoppingCart, Settings, Database, Globe, Layers } from 'lucide-react'
-import InteriorHeader from '@/components/InteriorHeader'
-import SectionWrapper from '@/components/SectionWrapper'
+import Link from 'next/link'
+import type { Metadata } from 'next'
+import ServiceCard from './ServiceCard'
 
 export const metadata: Metadata = {
-  title: 'Our Services — Web Design, Development & Digital Solutions | Blue Team Africa',
-  description: 'Comprehensive digital services including web design, mobile apps, ERP systems, cybersecurity, hosting, and more. Serving NGOs and businesses across East Africa.',
-  robots: 'index, follow',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services',
-  },
-  openGraph: {
-    title: 'Our Services — Digital Solutions for East Africa',
-    description: 'Web design, mobile apps, ERP systems, cybersecurity, hosting, and enterprise solutions.',
-    url: 'https://www.blueteamafrica.com/services',
-  },
+  title: 'Services — Blue Team Africa',
+  description:
+    'Web design, hosting, ERP/CRM, mobile apps and NGO solutions—SEO-first, performance-focused digital services for East Africa.',
 }
 
-const services = [
+export const services = [
   {
-    name: 'Web Design',
+    id: 'web-design',
+    title: 'Web Design & Development',
+    excerpt:
+      'Modern, fast, SEO-ready websites for NGOs and businesses in East Africa. Built with Next.js for performance and conversions.',
     href: '/services/web-design',
-    description: 'Modern, mobile-first website design optimized for speed, SEO, and user experience.',
-    icon: Palette,
-    category: 'Design & Development',
+    icon: '/icons/web-design.svg',
   },
   {
-    name: 'Website Development',
-    href: '/services/website-development',
-    description: 'Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow.',
-    icon: Code,
-    category: 'Design & Development',
-  },
-  {
-    name: 'Mobile App Development',
+    id: 'mobile-apps',
+    title: 'Mobile App Development',
+    excerpt:
+      'Cross-platform mobile apps focused on usability and offline-first features for field teams and communities.',
     href: '/services/mobile-apps',
-    description: 'Offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database.',
-    icon: Smartphone,
-    category: 'Design & Development',
+    icon: '/icons/mobile-app.svg',
   },
   {
-    name: 'E-commerce Development',
-    href: '/services/ecommerce',
-    description: 'Complete online stores with payment integration, inventory management, and order processing.',
-    icon: ShoppingCart,
-    category: 'Design & Development',
-  },
-  {
-    name: 'ERP Systems',
-    href: '/services/erp',
-    description: 'End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking powered by ERPNext.',
-    icon: Database,
-    category: 'Enterprise Systems',
-  },
-  {
-    name: 'CRM Solutions',
-    href: '/services/crm',
-    description: 'Customer and donor management systems for tracking relationships, communications, and engagement.',
-    icon: Layers,
-    category: 'Enterprise Systems',
-  },
-  {
-    name: 'Custom Systems',
-    href: '/services/custom-systems',
-    description: 'Tailored software solutions built specifically for your unique business processes and requirements.',
-    icon: Settings,
-    category: 'Enterprise Systems',
-  },
-  {
-    name: 'Cloud & Web Hosting',
+    id: 'hosting',
+    title: 'Hosting & Maintenance',
+    excerpt:
+      'Managed hosting, monitoring, automated backups and security updates — worry-free operations for your team.',
     href: '/services/hosting',
-    description: 'Secure, scalable cloud hosting with 99.9% uptime, automated backups, and 24/7 monitoring.',
-    icon: Server,
-    category: 'Infrastructure',
+    icon: '/icons/hosting.svg',
   },
   {
-    name: 'Cybersecurity',
-    href: '/services/cybersecurity',
-    description: 'Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance.',
-    icon: Shield,
-    category: 'Infrastructure',
+    id: 'erp-crm',
+    title: 'ERP & CRM',
+    excerpt:
+      'ERPNext / Odoo implementations and CRM integrations tailored to NGOs and small enterprises in East Africa.',
+    href: '/services/erp-crm',
+    icon: '/icons/erp.svg',
   },
   {
-    name: 'UI/UX Design',
-    href: '/services/ui-ux',
-    description: 'User-centered design that creates intuitive, engaging experiences for your digital products.',
-    icon: Globe,
-    category: 'Design & Development',
+    id: 'm-and-e',
+    title: 'M&E & Reporting',
+    excerpt:
+      'Monitoring & evaluation systems, dashboards, and automated reporting to make decisions faster and clearer.',
+    href: '/services/monitoring-evaluation',
+    icon: '/icons/analytics.svg',
   },
   {
-    name: 'Branding & Visual Identity',
-    href: '/services/branding',
-    description: 'Complete brand identity packages including logos, color schemes, typography, and brand guidelines.',
-    icon: Palette,
-    category: 'Design & Development',
-  },
-  {
-    name: 'Maintenance & Support',
-    href: '/services/maintenance',
-    description: 'Ongoing website maintenance, updates, security patches, and technical support to keep your systems running smoothly.',
-    icon: Settings,
-    category: 'Infrastructure',
+    id: 'proposal-writing',
+    title: 'Proposal Writing',
+    excerpt:
+      'Grant and project proposal support — technical writing aligned with donor requirements across the region.',
+    href: '/services/proposal-writing',
+    icon: '/icons/proposal.svg',
   },
 ]
 
-const categories = ['All Services', 'Design & Development', 'Enterprise Systems', 'Infrastructure']
+const caseStudies = [
+  {
+    title: 'CSLO Sudan — ERPNext Implementation',
+    excerpt: 'Custom ERP for field finance and logistics. Reduced monthly reporting time from 12 days to 2 days.',
+    href: '/portfolio/cslo-sudan',
+  },
+  {
+    title: 'NGO Management Portal',
+    excerpt: 'Comprehensive platform for managing programs, beneficiaries, and donor relations.',
+    href: '/portfolio/ngo-portal',
+  },
+  {
+    title: 'E-commerce Platform',
+    excerpt: 'Full-featured online store with mobile money integration and inventory management.',
+    href: '/portfolio/ecommerce-shop',
+  },
+]
+
+// Service detail data for dynamic routes
+export const allServices = {
+  'web-design': {
+    id: 'web-design',
+    title: 'Web Design & Development',
+    hero: 'Build fast, SEO-first websites for NGOs and businesses in East Africa.',
+    description:
+      'We design and build Next.js websites optimized for performance, accessibility, and search. Includes content strategy, SEO, and analytics setup.',
+    bullets: [
+      'SEO-first architecture',
+      'Performance & accessibility',
+      'CMS integration (WordPress, Strapi, Sanity)',
+    ],
+    cta: { text: 'Get a web design quote', href: '/contact' },
+  },
+  'mobile-apps': {
+    id: 'mobile-apps',
+    title: 'Mobile App Development',
+    hero: 'Cross-platform mobile apps for field teams and communities.',
+    description:
+      'Native-feeling cross-platform apps with offline-first features, push notifications, and secure sync with backend systems.',
+    bullets: ['Offline-first', 'Push notifications', 'API integrations'],
+    cta: { text: 'Start a mobile app project', href: '/contact' },
+  },
+  hosting: {
+    id: 'hosting',
+    title: 'Hosting & Maintenance',
+    hero: 'Managed hosting and site maintenance for mission-critical services.',
+    description:
+      'Managed VPS and serverless hosting, automated backups, SSL, performance monitoring, and 24/7 incident response options.',
+    bullets: ['Automated backups', 'Monitoring & alerts', 'Security updates'],
+    cta: { text: 'Discuss hosting options', href: '/contact' },
+  },
+  'erp-crm': {
+    id: 'erp-crm',
+    title: 'ERP & CRM',
+    hero: 'ERPNext and Odoo implementations tailored to NGOs and SMEs.',
+    description:
+      'We configure and customize ERP and CRM systems for finance, procurement, HR, and program management, with training and support.',
+    bullets: ['Finance & procurement', 'HR & payroll', 'Custom workflows'],
+    cta: { text: 'Request ERP consultation', href: '/contact' },
+  },
+  'm-and-e': {
+    id: 'm-and-e',
+    title: 'M&E & Reporting',
+    hero: 'Monitoring, evaluation and reporting tools for program teams.',
+    description:
+      'Dashboards, mobile data capture, and automated reports to reduce manual work and improve decision-making.',
+    bullets: ['Realtime dashboards', 'Mobile data capture', 'Automated reports'],
+    cta: { text: 'Talk to an M&E specialist', href: '/contact' },
+  },
+  'proposal-writing': {
+    id: 'proposal-writing',
+    title: 'Proposal Writing',
+    hero: 'Grant and project proposal writing aligned with donor requirements.',
+    description:
+      'Technical writing, theory of change, budgets and donor-aligned proposals for NGOs and social enterprises.',
+    bullets: ['Donor-aligned proposals', 'Logical frameworks', 'Budget templates'],
+    cta: { text: 'Request a proposal quote', href: '/contact' },
+  },
+}
 
 export default function ServicesPage() {
   return (
-    <>
-      <InteriorHeader
-        title="Our Services"
-        breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services' }
-        ]}
+    <main className="min-h-screen bg-white text-slate-900">
+      {/* JSON-LD: Organization + FAQ for SEO (server-rendered in head would be better; included here to ensure presence) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'Organization',
+                '@id': 'https://www.blueteamafrica.com/#organization',
+                name: 'Blue Team Africa',
+                url: 'https://www.blueteamafrica.com',
+                logo: 'https://www.blueteamafrica.com/logo.png',
+                sameAs: ['https://www.linkedin.com/company/blueteamafrica'],
+                contactPoint: [
+                  {
+                    '@type': 'ContactPoint',
+                    telephone: '+256765508131',
+                    contactType: 'sales',
+                    areaServed: ['UG', 'KE', 'RW', 'SD'],
+                  },
+                ],
+              },
+              {
+                '@type': 'FAQPage',
+                mainEntity: [
+                  {
+                    '@type': 'Question',
+                    name: 'How long does a web design project take?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'Typical projects take 3–8 weeks depending on scope. We provide a clear timeline at proposal stage.',
+                    },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Do you offer hosting and maintenance?',
+                    acceptedAnswer: {
+                      '@type': 'Answer',
+                      text: 'Yes — managed hosting, backups, security updates and SLA options are available.',
+                    },
+                  },
+                ],
+              },
+            ],
+          }),
+        }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        {/* Introduction */}
-        <SectionWrapper bgColor="white">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Complete Digital Solutions for Your Business
-            </h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              From stunning websites to enterprise systems, we provide end-to-end digital services 
-              that help NGOs, businesses, and organizations across East Africa achieve their goals. 
-              Our team combines design expertise, technical innovation, and regional understanding 
-              to deliver solutions that work in challenging environments.
-            </p>
-          </div>
-        </SectionWrapper>
+      {/* HERO */}
+      <section className="bg-gradient-to-b from-sky-50 to-white">
+        <div className="max-w-6xl mx-auto px-6 py-12 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                Digital solutions for NGOs, startups & enterprises in East Africa
+              </h1>
+              <p className="mt-4 text-lg sm:text-xl text-slate-600">
+                Fast, SEO-first websites, mobile apps, hosting and business systems built for
+                results — tailored to the needs of organizations across the region.
+              </p>
 
-        {/* Services Grid */}
-        <SectionWrapper bgColor="light">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => {
-              const Icon = service.icon
-              return (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 border border-gray-100 hover:border-primary/20"
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-blue-600 text-white font-medium shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                        {service.name}
-                      </h3>
-                      <span className="inline-block text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-                        {service.category}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                    {service.description}
-                  </p>
-                  <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
-                    Learn more
-                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-        </SectionWrapper>
+                  Get a Free Quote
+                </a>
 
-        {/* Service Categories Overview */}
-        <SectionWrapper bgColor="white">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-              What We Offer
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Design & Development</h3>
-                <p className="text-gray-600 mb-4">
-                  Beautiful, functional websites and mobile apps built with modern technologies 
-                  and best practices for performance and user experience.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Web Design & Development</li>
-                  <li>• Mobile App Development</li>
-                  <li>• E-commerce Solutions</li>
-                  <li>• UI/UX Design</li>
-                  <li>• Branding & Visual Identity</li>
-                </ul>
+                <a
+                  href="https://wa.me/256765508131"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-3 rounded-2xl border border-slate-200 text-slate-700 bg-white shadow-sm hover:bg-slate-50"
+                >
+                  Chat on WhatsApp
+                </a>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Enterprise Systems</h3>
-                <p className="text-gray-600 mb-4">
-                  Comprehensive business management systems including ERP, CRM, and custom 
-                  solutions tailored for NGOs and growing businesses.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• ERPNext Implementation</li>
-                  <li>• CRM Platforms</li>
-                  <li>• Custom Business Software</li>
-                  <li>• Field Data Collection Apps</li>
-                  <li>• Integration Services</li>
-                </ul>
+              <div className="mt-6 flex gap-4 text-sm text-slate-500">
+                <div>⭐ Trusted by NGOs & startups across East Africa</div>
+                <div className="hidden sm:block">•</div>
+                <div className="hidden sm:block">Fast turnarounds & local expertise</div>
               </div>
+            </div>
 
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Infrastructure & Security</h3>
-                <p className="text-gray-600 mb-4">
-                  Reliable hosting, cybersecurity, and ongoing support to keep your digital 
-                  infrastructure secure and running smoothly.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Cloud & Web Hosting</li>
-                  <li>• Cybersecurity Services</li>
-                  <li>• Maintenance & Support</li>
-                  <li>• Backup & Recovery</li>
-                  <li>• Performance Monitoring</li>
-                </ul>
+            <div className="order-first lg:order-last">
+              <div className="relative w-full h-56 sm:h-64 lg:h-72 rounded-2xl overflow-hidden shadow">
+                {/* Decorative hero image: use an optimized image in production */}
+                <Image
+                  src="/images/hero/hero-gradient-01.webp"
+                  alt="Blue Team Africa services overview"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
-        </SectionWrapper>
+        </div>
+      </section>
 
-        {/* Why Choose Us */}
-        <SectionWrapper bgColor="highlight">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-              Why Choose Blue Team Africa?
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Regional Expertise</h3>
-                <p className="text-gray-600">
-                  We understand the unique challenges of operating in East Africa, from connectivity 
-                  issues to data security requirements in challenging environments.
-                </p>
-              </div>
-              <div className="bg-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">NGO Experience</h3>
-                <p className="text-gray-600">
-                  Specialized in building systems for humanitarian organizations, with deep understanding 
-                  of donor reporting, field operations, and compliance requirements.
-                </p>
-              </div>
-              <div className="bg-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Modern Technology</h3>
-                <p className="text-gray-600">
-                  We use cutting-edge tools like Next.js, ERPNext, Flutter, and Firebase to build 
-                  scalable, future-proof solutions.
-                </p>
-              </div>
-              <div className="bg-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Ongoing Support</h3>
-                <p className="text-gray-600">
-                  From launch to long-term maintenance, we provide continuous support, updates, 
-                  and optimization to keep your systems running at peak performance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </SectionWrapper>
+      {/* CATEGORIES */}
+      <section className="max-w-6xl mx-auto px-6 py-10 lg:py-16">
+        <header className="mb-8">
+          <h2 className="text-2xl font-bold">Service categories</h2>
+          <p className="mt-2 text-slate-600">Grouped by outcome so you can find the right service fast.</p>
+        </header>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-primary text-white rounded-xl">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-heading font-bold mb-4">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-lg text-primary-100 mb-8">
-              Let's discuss your needs and find the perfect solution for your organization.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://wa.me/256765508131"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg"
-              >
-                Chat on WhatsApp
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition"
-              >
-                Get a Free Quote
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <CategoryCard
+            title="Web & Mobile"
+            items={[
+              { label: 'Web Design & Development', href: '/services/web-design' },
+              { label: 'Mobile Apps', href: '/services/mobile-apps' },
+              { label: 'Hosting & Maintenance', href: '/services/hosting' },
+            ]}
+          />
+
+          <CategoryCard
+            title="Business Systems"
+            items={[
+              { label: 'ERP & CRM', href: '/services/erp-crm' },
+              { label: 'HRM & Payroll', href: '/services/hrm' },
+              { label: 'Inventory & POS', href: '/services/inventory-pos' },
+            ]}
+          />
+
+          <CategoryCard
+            title="NGO & Data"
+            items={[
+              { label: 'M&E & Reporting', href: '/services/monitoring-evaluation' },
+              { label: 'Proposal Writing', href: '/services/proposal-writing' },
+              { label: 'Custom Integrations', href: '/services/integrations' },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* SERVICE CARDS */}
+      <div className="hidden sm:block">
+        <section className="bg-slate-50">
+          <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
+            <header className="mb-8">
+              <h2 className="text-2xl font-bold">Our Services</h2>
+              <p className="mt-2 text-slate-600">Detailed offerings with focused outcomes and pathway to engagement.</p>
+            </header>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.map((s) => (
+                <ServiceCard key={s.id} service={s} />
+              ))}
             </div>
           </div>
         </section>
       </div>
-    </>
+
+      {/* WHY CHOOSE US STRIP */}
+      <section className="max-w-6xl mx-auto px-6 py-10 lg:py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 items-center">
+          <div className="sm:col-span-2">
+            <h3 className="text-xl font-bold">Why choose Blue Team Africa?</h3>
+            <p className="mt-2 text-slate-600">Local teams, fast delivery, and systems built for NGOs and enterprises.</p>
+          </div>
+
+          <FeatureItem title="Fast Delivery" desc="Lean teams and rapid iterations." />
+          <FeatureItem title="SEO-first" desc="Performance and content strategies that rank." />
+          <FeatureItem title="NGO-ready" desc="Experience with donor reporting and compliance." />
+        </div>
+      </section>
+
+      {/* CASE STUDIES */}
+      <section className="bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
+          <header className="mb-6">
+            <h2 className="text-2xl font-bold">Case studies</h2>
+            <p className="mt-2 text-slate-600">Real projects with measurable impact.</p>
+          </header>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {caseStudies.map((c) => (
+              <a
+                key={c.title}
+                href={c.href}
+                className="block rounded-2xl bg-white p-6 shadow-sm border border-slate-100 hover:shadow-md transition-transform transform-gpu hover:-translate-y-2"
+              >
+                <h4 className="font-semibold">{c.title}</h4>
+                <p className="mt-2 text-sm text-slate-600">{c.excerpt}</p>
+                <div className="mt-4 text-sm text-blue-600">Read case study →</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
+        <header className="mb-6">
+          <h2 className="text-2xl font-bold">Frequently asked questions</h2>
+        </header>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <FaqItem
+            question="How long does a web design project take?"
+            answer="Projects typically take 3–8 weeks depending on scope. We'll provide a detailed timeline in the proposal."
+          />
+
+          <FaqItem
+            question="Do you offer hosting and maintenance?"
+            answer="Yes. We provide managed hosting, backups, security updates and optional SLAs for mission-critical services."
+          />
+
+          <FaqItem
+            question="Can you integrate ERP/CRM with mobile apps?"
+            answer="Yes. We design APIs and mobile data flows so mobile apps sync with your ERP/CRM securely and efficiently."
+          />
+
+          <FaqItem
+            question="Do you work across East Africa?"
+            answer="Yes. We work with clients in Uganda, Kenya, Rwanda, Sudan and more — remote or on-the-ground."
+          />
+        </div>
+      </section>
+
+      {/* MOBILE-ONLY Our Services */}
+      <div className="block sm:hidden">
+        <section className="bg-slate-50">
+          <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
+            <header className="mb-8">
+              <h2 className="text-2xl font-bold">Our Services</h2>
+              <p className="mt-2 text-slate-600">Detailed offerings with focused outcomes and pathway to engagement.</p>
+            </header>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.map((s) => (
+                <ServiceCard key={s.id} service={s} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* MOBILE STICKY CTA */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 sm:hidden z-50">
+        <div className="flex gap-3 items-center bg-white rounded-full p-2 shadow-lg border border-slate-200">
+          <a
+            href="https://wa.me/256765508131"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"
+            aria-label="Chat on WhatsApp"
+          >
+            WhatsApp
+          </a>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700"
+            aria-label="Get a free quote"
+          >
+            Get Quote
+          </a>
+        </div>
+      </div>
+
+      <footer className="mt-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-10 text-slate-500 text-sm">© {new Date().getFullYear()} Blue Team Africa</div>
+      </footer>
+    </main>
   )
 }
 
+function CategoryCard({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+  return (
+    <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+      <h4 className="font-semibold mb-3">{title}</h4>
+      <ul className="space-y-2">
+        {items.map((it) => (
+          <li key={it.label}>
+            <a href={it.href} className="text-slate-700 hover:text-blue-600">
+              {it.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function FeatureItem({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-white">
+      <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center">🚀</div>
+      <div>
+        <div className="font-semibold">{title}</div>
+        <p className="text-sm text-slate-600">{desc}</p>
+      </div>
+    </div>
+  )
+}
+
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <details className="group bg-white rounded-2xl p-4 border border-slate-100 shadow-sm" aria-expanded="false">
+      <summary className="font-medium cursor-pointer list-none">{question}</summary>
+      <div className="mt-2 text-sm text-slate-600">{answer}</div>
+    </details>
+  )
+}

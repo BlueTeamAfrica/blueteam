@@ -26,7 +26,7 @@ export default function CRMSystemCaseStudy() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
-              src="/images/portfolio/_legacy/v.webp"
+              src="/images/portfolio/portfolio-preview-01.webp"
               alt="Sales CRM Platform"
               fill
               className="object-cover"
