@@ -134,14 +134,28 @@ export async function POST(request: NextRequest) {
 
     // Try to save to Firebase first, fallback to JSON file
     let savedToFirebase = false
+    let firebaseError: Error | null = null
+    
     if (adminDb) {
       try {
         await adminDb.collection('leads').add(leadData)
         savedToFirebase = true
-        console.log('Lead saved to Firestore')
-      } catch (firebaseError) {
-        console.error('Firebase save failed, falling back to JSON:', firebaseError)
+        console.log('✅ Lead saved to Firestore successfully')
+      } catch (error) {
+        firebaseError = error instanceof Error ? error : new Error(String(error))
+        console.error('❌ Firebase save failed:', {
+          message: firebaseError.message,
+          stack: firebaseError.stack,
+          error: error
+        })
       }
+    } else {
+      console.warn('⚠️ Firebase Admin DB is not initialized. Check Firebase credentials.')
+      console.warn('Available env vars:', {
+            hasProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+            hasServiceAccountKey: !!process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
+            hasGoogleAppCreds: !!process.env.GOOGLE_APPLICATION_CREDENTIALS,
+          })
     }
 
     // Fallback: Save to JSON file (for development or if Firebase fails)
@@ -187,7 +201,8 @@ export async function POST(request: NextRequest) {
       { 
         success: true, 
         message: 'Lead saved successfully',
-        storage: savedToFirebase ? 'firebase' : 'json'
+        storage: savedToFirebase ? 'firebase' : 'json',
+        firebaseError: firebaseError ? (process.env.NODE_ENV === 'development' ? firebaseError.message : undefined) : undefined
       },
       { 
         status: 200,

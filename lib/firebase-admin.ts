@@ -60,12 +60,30 @@ try {
 
   if (adminApp) {
     adminDb = getFirestore(adminApp)
+    console.log('✅ Firestore database initialized')
+  } else {
+    console.warn('⚠️ Firebase Admin app not initialized - Firestore will not be available')
   }
 } catch (error) {
-  console.warn('Firebase Admin initialization failed. App will use JSON file fallback:', error)
+  const errorMessage = error instanceof Error ? error.message : String(error)
+  console.error('❌ Firebase Admin initialization failed:', errorMessage)
+  if (error instanceof Error && error.stack) {
+    console.error('Stack trace:', error.stack)
+  }
   // Don't throw - allow app to continue without Firebase
   adminApp = null
   adminDb = null
+}
+
+// Log initialization status
+if (adminDb) {
+  console.log('✅ Firebase Admin SDK ready - Firestore operations will work')
+} else {
+  console.warn('⚠️ Firebase Admin SDK not available - will use JSON file fallback')
+  console.warn('To enable Firebase, set one of:')
+  console.warn('  - FIREBASE_SERVICE_ACCOUNT_KEY (service account JSON as string)')
+  console.warn('  - GOOGLE_APPLICATION_CREDENTIALS (path to service account file)')
+  console.warn('  - Or use Application Default Credentials on Vercel/Google Cloud')
 }
 
 export { adminDb }
