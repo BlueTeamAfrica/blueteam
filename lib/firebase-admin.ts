@@ -1,31 +1,59 @@
 // Firebase Admin SDK for server-side operations
 // This bypasses Firestore security rules
 
-import { initializeApp, getApps, cert, App } from 'firebase-admin/app'
+import { initializeApp, getApps, cert, App, applicationDefault } from 'firebase-admin/app'
 import { getFirestore, Firestore } from 'firebase-admin/firestore'
 
 let adminApp: App | null = null
 let adminDb: Firestore | null = null
 
 // Initialize Admin SDK if credentials are available
-// Option 1: Using service account (preferred for production)
-// Option 2: Using application default credentials (works on Vercel/Google Cloud)
+// Supports multiple credential methods:
+// 1. Service account JSON (FIREBASE_SERVICE_ACCOUNT_KEY env var)
+// 2. Service account file path (GOOGLE_APPLICATION_CREDENTIALS env var)
+// 3. Application Default Credentials (works on Vercel/Google Cloud)
 
 try {
   // Check if we already have an initialized app
   if (getApps().length === 0) {
-    // Try to initialize with service account credentials
-    // For now, we'll use application default credentials if available
-    // On Vercel, this will use the environment variable if set
-    adminApp = initializeApp({
-      credential: cert({
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'blueteamafrica',
-        // For now, we'll use application default credentials
-        // You can add a service account JSON later
-      }) as any,
-      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'blueteamafrica',
-    })
-    console.log('Firebase Admin initialized successfully')
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'blueteamafrica'
+    
+    let credential
+    
+    // Option 1: Service account JSON from environment variable
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+      try {
+        const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
+        credential = cert(serviceAccount)
+        console.log('Firebase Admin: Using service account from env var')
+      } catch (parseError) {
+        console.warn('Firebase Admin: Failed to parse FIREBASE_SERVICE_ACCOUNT_KEY', parseError)
+      }
+    }
+    
+    // Option 2: Application Default Credentials (Vercel/Google Cloud)
+    if (!credential) {
+      try {
+        credential = applicationDefault()
+        console.log('Firebase Admin: Using Application Default Credentials')
+      } catch (adcError) {
+        console.warn('Firebase Admin: Application Default Credentials not available', adcError)
+      }
+    }
+    
+    // Initialize with available credential or minimal config
+    if (credential) {
+      adminApp = initializeApp({
+        credential,
+        projectId,
+      })
+      console.log('Firebase Admin initialized successfully')
+    } else {
+      // Fallback: Initialize without credentials (will fail on Firestore operations)
+      // This allows the app to continue but Firebase operations will fail gracefully
+      console.warn('Firebase Admin: No credentials found. Admin SDK will not work.')
+      adminApp = null
+    }
   } else {
     adminApp = getApps()[0]
   }
@@ -34,8 +62,8 @@ try {
     adminDb = getFirestore(adminApp)
   }
 } catch (error) {
-  console.warn('Firebase Admin initialization failed. Using client SDK instead:', error)
-  // Fall back to client SDK if Admin SDK fails
+  console.warn('Firebase Admin initialization failed. App will use JSON file fallback:', error)
+  // Don't throw - allow app to continue without Firebase
   adminApp = null
   adminDb = null
 }

@@ -1,16 +1,119 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
+import { adminDb } from '@/lib/firebase-admin'
+
+// Rate limiting: Simple in-memory store (use Redis in production)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
+const RATE_LIMIT_MAX = 5 // Max 5 submissions per hour per IP
+
+// Input sanitization
+function sanitizeInput(input: string): string {
+  if (typeof input !== 'string') return ''
+  return input
+    .trim()
+    .replace(/[<>]/g, '') // Remove potential HTML tags
+    .replace(/[\x00-\x1F\x7F]/g, '') // Remove control characters
+    .slice(0, 2000) // Max length
+}
+
+// Email validation
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email) && email.length <= 255
+}
+
+// Phone validation
+function isValidPhone(phone: string): boolean {
+  const digits = phone.replace(/\D/g, '')
+  return digits.length >= 9 && digits.length <= 15
+}
+
+// Rate limiting check
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
+  const now = Date.now()
+  const record = rateLimitMap.get(ip)
+
+  if (!record || now > record.resetTime) {
+    // New or expired, reset
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+    return { allowed: true, remaining: RATE_LIMIT_MAX - 1 }
+  }
+
+  if (record.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, remaining: 0 }
+  }
+
+  record.count++
+  return { allowed: true, remaining: RATE_LIMIT_MAX - record.count }
+}
 
 export async function POST(request: NextRequest) {
   try {
+    // Get client IP for rate limiting
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 
+               request.headers.get('x-real-ip') || 
+               'unknown'
+
+    // Check rate limit
+    const rateLimit = checkRateLimit(ip)
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': '3600', // 1 hour in seconds
+            'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
+            'X-RateLimit-Remaining': '0',
+          }
+        }
+      )
+    }
+
     const body = await request.json()
-    const { name, email, phone, subject, message } = body
+    let { name, email, phone, subject, message } = body
+
+    // Sanitize all inputs
+    name = sanitizeInput(name || '')
+    email = sanitizeInput(email || '').toLowerCase()
+    phone = sanitizeInput(phone || '')
+    subject = sanitizeInput(subject || '')
+    message = sanitizeInput(message || '')
 
     // Validate required fields
-    if (!name || !email || !phone || !subject || !message) {
+    const errors: string[] = []
+
+    if (!name || name.length < 2) {
+      errors.push('Name must be at least 2 characters')
+    }
+    if (name.length > 100) {
+      errors.push('Name must be less than 100 characters')
+    }
+
+    if (!email || !isValidEmail(email)) {
+      errors.push('Please provide a valid email address')
+    }
+
+    if (!phone || !isValidPhone(phone)) {
+      errors.push('Please provide a valid phone number (9-15 digits)')
+    }
+
+    if (!subject) {
+      errors.push('Subject is required')
+    }
+
+    if (!message || message.length < 10) {
+      errors.push('Message must be at least 10 characters')
+    }
+    if (message.length > 2000) {
+      errors.push('Message must be less than 2000 characters')
+    }
+
+    if (errors.length > 0) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Validation failed', details: errors },
         { status: 400 }
       )
     }
@@ -24,39 +127,65 @@ export async function POST(request: NextRequest) {
       message,
       timestamp: new Date().toISOString(),
       source: 'contact-form',
+      ip: ip === 'unknown' ? undefined : ip, // Don't store if unknown
+      userAgent: request.headers.get('user-agent') || undefined,
     }
 
-    // Save to JSON file (for development)
-    // In production, you would save to a database
-    const dataDir = path.join(process.cwd(), 'data')
-    const leadsFile = path.join(dataDir, 'leads.json')
-
-    // Ensure data directory exists
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true })
+    // Try to save to Firebase first, fallback to JSON file
+    let savedToFirebase = false
+    if (adminDb) {
+      try {
+        await adminDb.collection('leads').add(leadData)
+        savedToFirebase = true
+        console.log('Lead saved to Firestore')
+      } catch (firebaseError) {
+        console.error('Firebase save failed, falling back to JSON:', firebaseError)
+      }
     }
 
-    // Read existing leads or create new array
-    let leads = []
-    if (fs.existsSync(leadsFile)) {
-      const fileContent = fs.readFileSync(leadsFile, 'utf-8')
-      leads = JSON.parse(fileContent)
+    // Fallback: Save to JSON file (for development or if Firebase fails)
+    if (!savedToFirebase) {
+      const dataDir = path.join(process.cwd(), 'data')
+      const leadsFile = path.join(dataDir, 'leads.json')
+
+      // Ensure data directory exists
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true })
+      }
+
+      // Read existing leads or create new array
+      let leads = []
+      if (fs.existsSync(leadsFile)) {
+        try {
+          const fileContent = fs.readFileSync(leadsFile, 'utf-8')
+          leads = JSON.parse(fileContent)
+        } catch (parseError) {
+          console.error('Error parsing leads.json:', parseError)
+          leads = []
+        }
+      }
+
+      // Add new lead
+      leads.push(leadData)
+
+      // Write back to file
+      fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
+      console.log('Lead saved to JSON file')
     }
-
-    // Add new lead
-    leads.push(leadData)
-
-    // Write back to file
-    fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
-
-    // In production, you might also want to:
-    // - Send email notification
-    // - Save to database
-    // - Send to CRM system
 
     return NextResponse.json(
-      { success: true, message: 'Lead saved successfully' },
-      { status: 200 }
+      { 
+        success: true, 
+        message: 'Lead saved successfully',
+        storage: savedToFirebase ? 'firebase' : 'json'
+      },
+      { 
+        status: 200,
+        headers: {
+          'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
+          'X-RateLimit-Remaining': String(rateLimit.remaining),
+        }
+      }
     )
   } catch (error) {
     console.error('Error processing lead:', error)

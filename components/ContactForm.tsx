@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useRef } from 'react'
 import { Send, Loader2, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -20,6 +20,23 @@ interface FormErrors {
   message?: string
 }
 
+// Phone number formatting helper
+const formatPhoneNumber = (value: string): string => {
+  // Remove all non-digit characters
+  const digits = value.replace(/\D/g, '')
+  
+  // Format based on length
+  if (digits.length <= 3) return digits
+  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`
+  if (digits.length <= 9) return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
+  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9, 12)}`
+}
+
+// Input sanitization helper
+const sanitizeInput = (input: string): string => {
+  return input.trim().replace(/[<>]/g, '')
+}
+
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -32,32 +49,54 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const statusMessageRef = useRef<HTMLDivElement>(null)
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
 
-    if (!formData.name.trim()) {
+    // Name validation
+    const nameTrimmed = formData.name.trim()
+    if (!nameTrimmed) {
       newErrors.name = 'Name is required'
+    } else if (nameTrimmed.length < 2) {
+      newErrors.name = 'Name must be at least 2 characters'
+    } else if (nameTrimmed.length > 100) {
+      newErrors.name = 'Name must be less than 100 characters'
     }
 
-    if (!formData.email.trim()) {
+    // Email validation
+    const emailTrimmed = formData.email.trim()
+    if (!emailTrimmed) {
       newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
       newErrors.email = 'Please enter a valid email address'
+    } else if (emailTrimmed.length > 255) {
+      newErrors.email = 'Email must be less than 255 characters'
     }
 
+    // Phone validation
+    const phoneDigits = formData.phone.replace(/\D/g, '')
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required'
+    } else if (phoneDigits.length < 9) {
+      newErrors.phone = 'Phone number must be at least 9 digits'
+    } else if (phoneDigits.length > 15) {
+      newErrors.phone = 'Phone number must be less than 15 digits'
     }
 
+    // Subject validation
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required'
     }
 
-    if (!formData.message.trim()) {
+    // Message validation
+    const messageTrimmed = formData.message.trim()
+    if (!messageTrimmed) {
       newErrors.message = 'Message is required'
-    } else if (formData.message.trim().length < 10) {
+    } else if (messageTrimmed.length < 10) {
       newErrors.message = 'Message must be at least 10 characters long'
+    } else if (messageTrimmed.length > 2000) {
+      newErrors.message = 'Message must be less than 2000 characters'
     }
 
     setErrors(newErrors)
@@ -93,10 +132,20 @@ export default function ContactForm() {
           subject: '',
           message: '',
         })
+        setErrors({})
+        // Focus on status message for screen readers
+        if (statusMessageRef.current) {
+          statusMessageRef.current.focus()
+        }
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000)
       } else {
+        const errorData = await response.json().catch(() => ({}))
         setSubmitStatus('error')
+        // Focus on status message for screen readers
+        if (statusMessageRef.current) {
+          statusMessageRef.current.focus()
+        }
       }
     } catch (error) {
       console.error('Error submitting form:', error)
@@ -108,7 +157,14 @@ export default function ContactForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    let processedValue = sanitizeInput(value)
+    
+    // Format phone number as user types
+    if (name === 'phone') {
+      processedValue = formatPhoneNumber(value)
+    }
+    
+    setFormData((prev) => ({ ...prev, [name]: processedValue }))
     // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }))
@@ -126,7 +182,7 @@ export default function ContactForm() {
       {/* Name Field */}
       <div>
         <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-          Full Name <span className="text-red-500">*</span>
+          Full Name <span className="text-red-500" aria-label="required">*</span>
         </label>
         <input
           type="text"
@@ -134,18 +190,27 @@ export default function ContactForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          autoComplete="name"
+          aria-required="true"
+          aria-invalid={errors.name ? 'true' : 'false'}
+          aria-describedby={errors.name ? 'name-error' : undefined}
+          maxLength={100}
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.name ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
           placeholder="Enter your full name"
         />
-        {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+        {errors.name && (
+          <p id="name-error" className="mt-1 text-sm text-red-500" role="alert">
+            {errors.name}
+          </p>
+        )}
       </div>
 
       {/* Email Field */}
       <div>
         <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-          Email Address <span className="text-red-500">*</span>
+          Email Address <span className="text-red-500" aria-label="required">*</span>
         </label>
         <input
           type="email"
@@ -153,18 +218,27 @@ export default function ContactForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          autoComplete="email"
+          aria-required="true"
+          aria-invalid={errors.email ? 'true' : 'false'}
+          aria-describedby={errors.email ? 'email-error' : undefined}
+          maxLength={255}
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.email ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
           placeholder="your.email@example.com"
         />
-        {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+        {errors.email && (
+          <p id="email-error" className="mt-1 text-sm text-red-500" role="alert">
+            {errors.email}
+          </p>
+        )}
       </div>
 
       {/* Phone Field */}
       <div>
         <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-          Phone Number <span className="text-red-500">*</span>
+          Phone Number <span className="text-red-500" aria-label="required">*</span>
         </label>
         <input
           type="tel"
@@ -172,24 +246,36 @@ export default function ContactForm() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          autoComplete="tel"
+          aria-required="true"
+          aria-invalid={errors.phone ? 'true' : 'false'}
+          aria-describedby={errors.phone ? 'phone-error' : undefined}
+          maxLength={20}
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.phone ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
           placeholder="+256 700 000 000"
         />
-        {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+        {errors.phone && (
+          <p id="phone-error" className="mt-1 text-sm text-red-500" role="alert">
+            {errors.phone}
+          </p>
+        )}
       </div>
 
       {/* Subject Field */}
       <div>
         <label htmlFor="subject" className="block text-sm font-semibold text-gray-900 mb-2">
-          Subject <span className="text-red-500">*</span>
+          Subject <span className="text-red-500" aria-label="required">*</span>
         </label>
         <select
           id="subject"
           name="subject"
           value={formData.subject}
           onChange={handleChange}
+          aria-required="true"
+          aria-invalid={errors.subject ? 'true' : 'false'}
+          aria-describedby={errors.subject ? 'subject-error' : undefined}
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.subject ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
@@ -205,13 +291,17 @@ export default function ContactForm() {
           <option value="ngo-support">NGO Tech Support</option>
           <option value="other">Other Inquiry</option>
         </select>
-        {errors.subject && <p className="mt-1 text-sm text-red-500">{errors.subject}</p>}
+        {errors.subject && (
+          <p id="subject-error" className="mt-1 text-sm text-red-500" role="alert">
+            {errors.subject}
+          </p>
+        )}
       </div>
 
       {/* Message Field */}
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-          Message <span className="text-red-500">*</span>
+          Message <span className="text-red-500" aria-label="required">*</span>
         </label>
         <textarea
           id="message"
@@ -219,12 +309,26 @@ export default function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           rows={6}
+          aria-required="true"
+          aria-invalid={errors.message ? 'true' : 'false'}
+          aria-describedby={errors.message ? 'message-error' : undefined}
+          maxLength={2000}
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition resize-none ${
             errors.message ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
           placeholder="Tell us about your project requirements..."
         />
-        {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+        <div className="mt-1 flex justify-between items-center">
+          {errors.message ? (
+            <p id="message-error" className="text-sm text-red-500" role="alert">
+              {errors.message}
+            </p>
+          ) : (
+            <span className="text-sm text-gray-500">
+              {formData.message.length}/2000 characters
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Submit Button */}
@@ -256,13 +360,26 @@ export default function ContactForm() {
       </motion.button>
 
       {/* Success/Error Messages */}
+      <div
+        ref={statusMessageRef}
+        tabIndex={-1}
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {submitStatus === 'success' && 'Form submitted successfully'}
+        {submitStatus === 'error' && 'Form submission failed'}
+      </div>
+
       {submitStatus === 'success' && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
+          role="alert"
+          aria-live="polite"
           className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm"
         >
-          Thank you! Your message has been sent successfully. We'll get back to you soon.
+          <strong>Success!</strong> Thank you! Your message has been sent successfully. We'll get back to you soon.
         </motion.div>
       )}
 
@@ -270,9 +387,11 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
+          role="alert"
+          aria-live="assertive"
           className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm"
         >
-          Oops! Something went wrong. Please try again or contact us directly via WhatsApp.
+          <strong>Error!</strong> Oops! Something went wrong. Please try again or contact us directly via WhatsApp.
         </motion.div>
       )}
     </motion.form>
