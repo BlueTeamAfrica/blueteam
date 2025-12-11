@@ -4,7 +4,6 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
-import RelatedServicesMobile from '@/components/RelatedServicesMobile'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 
@@ -53,7 +52,7 @@ export default function EcommercePage() {
 
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row gap-8">
-          <aside className="lg:w-1/4 flex-shrink-0">
+          <aside className="hidden lg:block lg:w-1/4 flex-shrink-0">
             <div className="lg:sticky lg:top-24">
               <ServiceSidebar />
             </div>
@@ -213,22 +212,16 @@ export default function EcommercePage() {
           </div>
         </div>
       </div>
+
+      {/* Our Services - Mobile Only (Bottom) */}
+      <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
+        <ServiceSidebar />
+      </div>
     
       
       {/* Psylo Links for SEO */}
       <PsyloLinks />
 
-      {/* Related Services Mobile */}
-      <RelatedServicesMobile services={[
-        { name: "Web Design", href: "/services/web-design" },
-        { name: "Website Development", href: "/services/website-development" },
-        { name: "Mobile Apps", href: "/services/mobile-apps" },
-        { name: "E-Commerce", href: "/services/ecommerce" },
-        { name: "ERP Systems", href: "/services/erp" },
-        { name: "CRM Platforms", href: "/services/crm" },
-        { name: "Cloud Hosting", href: "/services/hosting" },
-        { name: "Cybersecurity", href: "/services/cybersecurity" },
-      ]} />
 </>
   )
 }
