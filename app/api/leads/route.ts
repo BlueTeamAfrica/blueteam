@@ -9,12 +9,13 @@ const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
 const RATE_LIMIT_MAX = 5 // Max 5 submissions per hour per IP
 
 // Input sanitization
+// Note: We preserve spaces (0x20) but remove control characters and HTML tags
 function sanitizeInput(input: string): string {
   if (typeof input !== 'string') return ''
   return input
     .trim()
     .replace(/[<>]/g, '') // Remove potential HTML tags
-    .replace(/[\x00-\x1F\x7F]/g, '') // Remove control characters
+    .replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F]/g, '') // Remove control characters but keep space (0x20), tab (0x09), newline (0x0A), carriage return (0x0D)
     .slice(0, 2000) // Max length
 }
 
@@ -144,33 +145,42 @@ export async function POST(request: NextRequest) {
     }
 
     // Fallback: Save to JSON file (for development or if Firebase fails)
+    // Note: File system writes may not work in production (e.g., Vercel)
+    // This is a development fallback only
     if (!savedToFirebase) {
-      const dataDir = path.join(process.cwd(), 'data')
-      const leadsFile = path.join(dataDir, 'leads.json')
+      try {
+        const dataDir = path.join(process.cwd(), 'data')
+        const leadsFile = path.join(dataDir, 'leads.json')
 
-      // Ensure data directory exists
-      if (!fs.existsSync(dataDir)) {
-        fs.mkdirSync(dataDir, { recursive: true })
-      }
-
-      // Read existing leads or create new array
-      let leads = []
-      if (fs.existsSync(leadsFile)) {
-        try {
-          const fileContent = fs.readFileSync(leadsFile, 'utf-8')
-          leads = JSON.parse(fileContent)
-        } catch (parseError) {
-          console.error('Error parsing leads.json:', parseError)
-          leads = []
+        // Ensure data directory exists
+        if (!fs.existsSync(dataDir)) {
+          fs.mkdirSync(dataDir, { recursive: true })
         }
+
+        // Read existing leads or create new array
+        let leads = []
+        if (fs.existsSync(leadsFile)) {
+          try {
+            const fileContent = fs.readFileSync(leadsFile, 'utf-8')
+            leads = JSON.parse(fileContent)
+          } catch (parseError) {
+            console.error('Error parsing leads.json:', parseError)
+            leads = []
+          }
+        }
+
+        // Add new lead
+        leads.push(leadData)
+
+        // Write back to file
+        fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
+        console.log('Lead saved to JSON file')
+      } catch (fileError) {
+        // File system might not be available in production
+        console.error('Failed to save to JSON file (this is normal in production):', fileError)
+        // Don't fail the request - at least we tried to save
+        // In production, Firebase should be configured
       }
-
-      // Add new lead
-      leads.push(leadData)
-
-      // Write back to file
-      fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
-      console.log('Lead saved to JSON file')
     }
 
     return NextResponse.json(
@@ -189,8 +199,17 @@ export async function POST(request: NextRequest) {
     )
   } catch (error) {
     console.error('Error processing lead:', error)
+    
+    // Provide more detailed error information in development
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? `Internal server error: ${error instanceof Error ? error.message : String(error)}`
+      : 'Internal server error. Please try again later or contact us directly.'
+    
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined
+      },
       { status: 500 }
     )
   }

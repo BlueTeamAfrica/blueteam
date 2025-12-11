@@ -33,8 +33,13 @@ const formatPhoneNumber = (value: string): string => {
 }
 
 // Input sanitization helper
+// Preserves spaces and normal characters, only removes HTML tags and control characters
 const sanitizeInput = (input: string): string => {
-  return input.trim().replace(/[<>]/g, '')
+  if (!input || typeof input !== 'string') return ''
+  return input
+    .trim()
+    .replace(/[<>]/g, '') // Remove HTML tags
+    .replace(/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F]/g, '') // Remove control characters but keep space, tab, newline, carriage return
 }
 
 export default function ContactForm() {
@@ -114,13 +119,22 @@ export default function ContactForm() {
     setSubmitStatus('idle')
 
     try {
+      // Sanitize data before submitting
+      const sanitizedData = {
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        phone: sanitizeInput(formData.phone),
+        subject: sanitizeInput(formData.subject),
+        message: sanitizeInput(formData.message),
+      }
+
       // Submit to API endpoint
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(sanitizedData),
       })
 
       if (response.ok) {
@@ -140,16 +154,36 @@ export default function ContactForm() {
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000)
       } else {
-        const errorData = await response.json().catch(() => ({}))
+        // Try to get error details from response
+        let errorMessage = 'Something went wrong. Please try again or contact us directly via WhatsApp.'
+        try {
+          const errorData = await response.json()
+          if (errorData.error) {
+            errorMessage = errorData.error
+          }
+          if (errorData.details && Array.isArray(errorData.details)) {
+            // If validation errors, show them
+            console.error('Validation errors:', errorData.details)
+          }
+        } catch (parseError) {
+          // If response is not JSON, use default message
+          console.error('Error parsing error response:', parseError)
+        }
+        
         setSubmitStatus('error')
         // Focus on status message for screen readers
         if (statusMessageRef.current) {
           statusMessageRef.current.focus()
         }
+        console.error('Form submission failed:', response.status, errorMessage)
       }
     } catch (error) {
       console.error('Error submitting form:', error)
       setSubmitStatus('error')
+      // Focus on status message for screen readers
+      if (statusMessageRef.current) {
+        statusMessageRef.current.focus()
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -157,12 +191,14 @@ export default function ContactForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    let processedValue = sanitizeInput(value)
+    let processedValue = value
     
-    // Format phone number as user types
+    // Format phone number as user types (only for phone field)
     if (name === 'phone') {
       processedValue = formatPhoneNumber(value)
     }
+    // Don't sanitize other fields on change - allow normal typing including spaces
+    // Sanitization will happen on submit
     
     setFormData((prev) => ({ ...prev, [name]: processedValue }))
     // Clear error when user starts typing
