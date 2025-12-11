@@ -31,9 +31,18 @@ export default function AboutPage() {
         />
 
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/about/about-team-01.webp')" }}>
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative w-full overflow-hidden">
+        <div className="relative w-full" style={{ clipPath: 'inset(15% 0 12% 0)' }}>
+          <Image
+            src="/images/about/about-team-01.webp"
+            alt="Blue Team Africa Team"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+            priority
+            sizes="100vw"
+          />
+        </div>
       </section>
 
       {/* Who We Are */}
