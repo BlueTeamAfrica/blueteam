@@ -128,9 +128,29 @@ export default function Header() {
         style={{ backgroundColor: 'var(--color-primary, #2563EB)' }} 
         className="w-full text-white fixed top-0 left-0 right-0 z-[60]"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-1.5 flex items-center justify-end">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-1.5 flex items-center justify-between md:justify-end">
+          {/* Social Media Icons - Mobile Only (Left Side) */}
+          <div className="flex items-center gap-2 md:hidden">
+            {socialLinks.map((s) => {
+              const Icon = s.icon
+              return (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-md transition-all duration-200 text-white hover:opacity-80"
+                  aria-label={s.label}
+                >
+                  <Icon size={16} />
+                </a>
+              )
+            })}
+          </div>
+
+          {/* Contact Info - Right Side */}
           <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
-            <a href="tel:+256765508131" className="font-semibold hover:underline whitespace-nowrap">
+            <a href="tel:+256765508131" className="font-semibold hover:underline whitespace-nowrap hidden md:inline">
               +256 765 508 131
             </a>
             <span className="text-white/60 hidden sm:inline">|</span>
