@@ -123,26 +123,34 @@ export default function Header() {
 
   return (
     <>
+      {/* Top Info Bar - Fixed at the very top, always visible */}
+      <div 
+        style={{ backgroundColor: 'var(--color-primary, #2563EB)' }} 
+        className="w-full text-white fixed top-0 left-0 right-0 z-[60]"
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-1.5 flex items-center justify-end">
+          <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
+            <a href="tel:+256765508131" className="font-semibold hover:underline whitespace-nowrap">
+              +256 765 508 131
+            </a>
+            <span className="text-white/60 hidden sm:inline">|</span>
+            <a href="tel:+250798973375" className="font-semibold hover:underline whitespace-nowrap">
+              +250 798 973 375
+            </a>
+            <a href="mailto:contact@blueteamafrica.com" className="hidden lg:inline-block font-semibold hover:underline ml-2">
+              contact@blueteamafrica.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Header - Sticky below the fixed blue bar */}
       <header
-        className={`w-full sticky top-0 left-0 right-0 z-50 transition-shadow duration-300 bg-white/95 backdrop-blur-sm border-b ${
+        className={`w-full sticky top-[38px] md:top-[42px] left-0 right-0 z-50 transition-shadow duration-300 bg-white/95 backdrop-blur-sm border-b ${
           scrolled ? 'shadow-xl border-gray-200' : 'shadow-sm border-transparent'
         }`}
         role="banner"
       >
-        {/* Top Info Bar (reduced padding) */}
-        <div style={{ backgroundColor: 'var(--color-primary, #2563EB)' }} className="w-full text-white">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-1 flex items-center">
-            <div className="flex-1" />
-            <div className="flex items-center gap-4 text-sm">
-              <a href="tel:+256765508131" className="font-semibold hover:underline">
-                +256 765 508 131
-              </a>
-              <a href="mailto:contact@blueteamafrica.com" className="hidden sm:inline-block font-semibold hover:underline">
-                contact@blueteamafrica.com
-              </a>
-            </div>
-          </div>
-        </div>
 
         {/* Main Navigation Row (reduced padding) */}
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-1">

@@ -173,6 +173,13 @@ export default function Footer() {
                 <span>+256 765 508 131</span>
               </a>
               <a
+                href="tel:+250798973375"
+                className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm group"
+              >
+                <Phone className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
+                <span>+250 798 973 375</span>
+              </a>
+              <a
                 href="mailto:contact@blueteamafrica.com"
                 className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm group"
               >
