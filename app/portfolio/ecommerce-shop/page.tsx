@@ -2,15 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataEcommerceShop } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
-export const metadata = {
-  title: 'E-commerce Platform - Case Study',
-  description: 'Case study: Full-featured online store with mobile money integration and inventory management.',
-}
+export const metadata = metadataEcommerceShop
 
 export default function EcommerceShopCaseStudy() {
   return (
     <>
+      <PortfolioSchema projectName="E-commerce Shop" projectSlug="ecommerce-shop" />
       <InteriorHeader
         title="E-commerce Platform"
         breadcrumb={[

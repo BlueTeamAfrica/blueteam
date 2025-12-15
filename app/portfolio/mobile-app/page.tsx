@@ -2,15 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataMobileApp } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
-export const metadata = {
-  title: 'Healthcare Mobile App - Case Study',
-  description: 'Case study: Native mobile application for patient records and appointment scheduling.',
-}
+export const metadata = metadataMobileApp
 
 export default function MobileAppCaseStudy() {
   return (
     <>
+      <PortfolioSchema projectName="Mobile App" projectSlug="mobile-app" />
       <InteriorHeader
         title="Healthcare Mobile App"
         breadcrumb={[

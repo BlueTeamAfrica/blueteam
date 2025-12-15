@@ -4,17 +4,15 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'Website Hosting Uganda — Secure, Fast & Reliable Hosting',
-  description: 'Reliable cloud hosting with 99.9% uptime, SSL, backups and strong security. Perfect for NGOs and businesses.',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/hosting',
-  },
-}
+import { metadataHosting } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataHosting
 
 export default function HostingPage() {
   return (
     <>
+      <ServiceSchema serviceName="Hosting" serviceSlug="hosting" />
       <InteriorHeader
         title="Cloud & Web Hosting"
         breadcrumb={[

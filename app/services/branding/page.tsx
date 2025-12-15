@@ -4,14 +4,15 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'Branding & Logo Design',
-  description: 'Professional branding and logo design services. Create a memorable brand identity that resonates with your audience in East Africa.',
-}
+import { metadataBranding } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataBranding
 
 export default function BrandingPage() {
   return (
     <>
+      <ServiceSchema serviceName="Branding" serviceSlug="branding" />
       <InteriorHeader
         title="Branding & Logo Design"
         breadcrumb={[

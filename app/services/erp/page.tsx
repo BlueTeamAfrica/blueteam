@@ -6,18 +6,16 @@ import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
+import { metadataERP } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
 
 export const metadata: Metadata = {
-  title: 'ERP Solutions Uganda — ERPNext Setup, Customization & Support',
-  description: 'Implement ERPNext for finance, HR, procurement and logistics. ERP for NGOs and enterprises.',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/erp',
-  },
+  ...metadataERP,
   keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
   openGraph: {
     title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',
     description: 'Modern, scalable, and secure ERP systems powered by ERPNext for organizations across East Africa.',
-    url: 'https://www.blueteamafrica.com/services/erp',
+    url: 'https://blueteamafrica.com/services/erp',
     siteName: 'Blue Team Africa',
     images: [
       {
@@ -41,6 +39,7 @@ export const metadata: Metadata = {
 export default function ERPPage() {
   return (
     <>
+      <ServiceSchema serviceName="ERP" serviceSlug="erp" />
       <InteriorHeader
         title="ERP Solutions for NGOs, Companies & Humanitarian Organizations"
         breadcrumb={[

@@ -6,18 +6,16 @@ import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
+import { metadataEcommerce } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
 
 export const metadata: Metadata = {
-  title: 'E-Commerce Development Uganda — Sell Online Easily',
-  description: 'Custom e-commerce websites with secure payments, inventory control and mobile-friendly UX for East Africa.',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/ecommerce',
-  },
+  ...metadataEcommerce,
   keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
   openGraph: {
     title: 'E-commerce Solutions for Businesses in East Africa',
     description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation.',
-    url: 'https://www.blueteamafrica.com/services/ecommerce',
+    url: 'https://blueteamafrica.com/services/ecommerce',
     siteName: 'Blue Team Africa',
     images: [
       {
@@ -41,6 +39,7 @@ export const metadata: Metadata = {
 export default function EcommercePage() {
   return (
     <>
+      <ServiceSchema serviceName="E-commerce" serviceSlug="ecommerce" />
       <InteriorHeader
         title="E-commerce Solutions for Businesses in East Africa"
         breadcrumb={[

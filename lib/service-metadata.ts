@@ -1,0 +1,109 @@
+import type { Metadata } from 'next'
+
+// 1. Web Design
+export const metadataWebDesign: Metadata = {
+  title: 'Web Design in Kigali, Rwanda | Blue Team Africa',
+  description: 'Professional web design services for NGOs and businesses in Kigali and East Africa. Fast, reliable, and SEO-optimized.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/web-design',
+  },
+}
+
+// 2. Website Development
+export const metadataWebsiteDevelopment: Metadata = {
+  title: 'Website Development in Kigali, Rwanda | Blue Team Africa',
+  description: 'Custom website development for NGOs and businesses in Kigali and East Africa. High-quality, reliable, and secure.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/website-development',
+  },
+}
+
+// 3. Hosting
+export const metadataHosting: Metadata = {
+  title: 'Web Hosting in Kigali, Rwanda | Blue Team Africa',
+  description: 'Reliable and fast web hosting services for organizations and businesses in Kigali and East Africa.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/hosting',
+  },
+}
+
+// 4. Mobile Apps
+export const metadataMobileApps: Metadata = {
+  title: 'Mobile App Development in Kigali, Rwanda | Blue Team Africa',
+  description: 'Professional mobile app development services for NGOs and businesses in Kigali and East Africa. Fast, secure, and user-friendly.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/mobile-apps',
+  },
+}
+
+// 5. ERP
+export const metadataERP: Metadata = {
+  title: 'ERP Solutions in Kigali, Rwanda | Blue Team Africa',
+  description: 'Enterprise Resource Planning (ERP) systems for NGOs and businesses in Kigali and East Africa. Efficient and scalable.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/erp',
+  },
+}
+
+// 6. CRM
+export const metadataCRM: Metadata = {
+  title: 'CRM Systems in Kigali, Rwanda | Blue Team Africa',
+  description: 'Customer Relationship Management (CRM) systems for NGOs and businesses in Kigali and East Africa. Organized and efficient.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/crm',
+  },
+}
+
+// 7. Cybersecurity
+export const metadataCybersecurity: Metadata = {
+  title: 'Cybersecurity Services in Kigali, Rwanda | Blue Team Africa',
+  description: 'Protect your organization with cybersecurity solutions in Kigali and East Africa. Safe, secure, and reliable.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/cybersecurity',
+  },
+}
+
+// 8. E-commerce
+export const metadataEcommerce: Metadata = {
+  title: 'E-commerce Solutions in Kigali, Rwanda | Blue Team Africa',
+  description: 'Build and optimize e-commerce platforms for NGOs and businesses in Kigali and East Africa. Fast, secure, and scalable.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/ecommerce',
+  },
+}
+
+// 9. Custom Systems
+export const metadataCustomSystems: Metadata = {
+  title: 'Custom Software Systems in Kigali, Rwanda | Blue Team Africa',
+  description: 'Tailor-made software systems for NGOs and businesses in Kigali and East Africa. Efficient, reliable, and scalable.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/custom-systems',
+  },
+}
+
+// 10. Maintenance
+export const metadataMaintenance: Metadata = {
+  title: 'Website & System Maintenance in Kigali, Rwanda | Blue Team Africa',
+  description: 'Reliable maintenance services for websites and software systems in Kigali and East Africa. Fast, professional, and secure.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/maintenance',
+  },
+}
+
+// 11. Branding
+export const metadataBranding: Metadata = {
+  title: 'Branding Services in Kigali, Rwanda | Blue Team Africa',
+  description: 'Professional branding services for NGOs and businesses in Kigali and East Africa. Creative, consistent, and impactful.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/branding',
+  },
+}
+
+// 12. UI/UX
+export const metadataUIUX: Metadata = {
+  title: 'UI/UX Design in Kigali, Rwanda | Blue Team Africa',
+  description: 'User interface and user experience design services for NGOs and businesses in Kigali and East Africa. Functional, beautiful, and user-friendly.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/services/ui-ux',
+  },
+}

@@ -2,15 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataNgoPortal } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
-export const metadata = {
-  title: 'NGO Management Portal - Case Study',
-  description: 'Case study: Comprehensive platform for managing programs, beneficiaries, and donor relations.',
-}
+export const metadata = metadataNgoPortal
 
 export default function NGOPortalCaseStudy() {
   return (
     <>
+      <PortfolioSchema projectName="NGO Portal" projectSlug="ngo-portal" />
       <InteriorHeader
         title="NGO Management Portal"
         breadcrumb={[

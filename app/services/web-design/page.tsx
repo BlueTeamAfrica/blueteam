@@ -6,17 +6,15 @@ import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'Website Design Uganda — Modern, Fast & SEO-Ready Sites',
-  description: 'High-performance website design crafted for speed, SEO and conversion. Serving NGOs, SMEs, and enterprises across East Africa.',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/website-design',
-  },
-}
+import { metadataWebDesign } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataWebDesign
 
 export default function WebDesignPage() {
   return (
     <>
+      <ServiceSchema serviceName="Web Design" serviceSlug="web-design" />
       <InteriorHeader
         title="Web Design"
         breadcrumb={[

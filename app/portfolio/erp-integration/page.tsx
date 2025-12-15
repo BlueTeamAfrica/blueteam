@@ -2,15 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataErpIntegration } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
-export const metadata = {
-  title: 'Enterprise ERP Integration - Case Study',
-  description: 'Case study: Custom ERP system integration for manufacturing company across multiple locations.',
-}
+export const metadata = metadataErpIntegration
 
 export default function ERPIntegrationCaseStudy() {
   return (
     <>
+      <PortfolioSchema projectName="ERP Integration" projectSlug="erp-integration" />
       <InteriorHeader
         title="Enterprise ERP Integration"
         breadcrumb={[

@@ -1,15 +1,24 @@
 'use client'
 
 import Script from 'next/script'
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 
 interface GoogleAnalyticsProps {
-  gaId?: string
+  gaId: string
 }
 
 export default function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
-  if (!gaId) {
-    return null
-  }
+  const pathname = usePathname()
+
+  // Track page views on route changes (Next.js App Router)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', gaId, {
+        page_path: pathname,
+      })
+    }
+  }, [pathname, gaId])
 
   return (
     <>

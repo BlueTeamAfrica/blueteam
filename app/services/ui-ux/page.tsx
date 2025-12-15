@@ -4,14 +4,15 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'UI/UX Design',
-  description: 'User interface and user experience design services. Create intuitive, beautiful digital experiences for your users.',
-}
+import { metadataUIUX } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataUIUX
 
 export default function UIUXPage() {
   return (
     <>
+      <ServiceSchema serviceName="UI/UX" serviceSlug="ui-ux" />
       <InteriorHeader
         title="UI/UX Design"
         breadcrumb={[

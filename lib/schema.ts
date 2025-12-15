@@ -184,3 +184,100 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
   };
 }
 
+// Function to generate service JSON-LD (optimized for Kigali & East Africa)
+export function getServiceSchema(serviceName: string, serviceSlug: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": serviceName,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Blue Team Africa",
+      "url": "https://blueteamafrica.com",
+      "logo": "https://blueteamafrica.com/images/logo/logo.webp"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Kigali, Rwanda"
+    },
+    "url": `https://blueteamafrica.com/services/${serviceSlug}`,
+    "description": `Professional ${serviceName} services for NGOs and businesses in Kigali and East Africa.`
+  };
+}
+
+// List of services
+export const services = [
+  { name: 'Web Design', slug: 'web-design' },
+  { name: 'Website Development', slug: 'website-development' },
+  { name: 'Hosting', slug: 'hosting' },
+  { name: 'Mobile Apps', slug: 'mobile-apps' },
+  { name: 'ERP', slug: 'erp' },
+  { name: 'CRM', slug: 'crm' },
+  { name: 'Cybersecurity', slug: 'cybersecurity' },
+  { name: 'E-commerce', slug: 'ecommerce' },
+  { name: 'Custom Systems', slug: 'custom-systems' },
+  { name: 'Maintenance', slug: 'maintenance' },
+  { name: 'Branding', slug: 'branding' },
+  { name: 'UI/UX', slug: 'ui-ux' }
+];
+
+// Function to generate portfolio JSON-LD
+export function getPortfolioSchema(projectName: string, projectSlug: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": projectName,
+    "url": `https://blueteamafrica.com/portfolio/${projectSlug}`,
+    "author": {
+      "@type": "Organization",
+      "name": "Blue Team Africa"
+    },
+    "description": `Case study of ${projectName} showcasing web, software, or digital solutions for NGOs and businesses in Kigali and East Africa.`,
+    "keywords": ["Kigali", "East Africa", "NGO", "business", "software", "web", "mobile"]
+  };
+}
+
+// List of portfolio projects
+export const portfolioProjects = [
+  { name: 'CSLO Sudan', slug: 'cslo-sudan' },
+  { name: 'NGO Portal', slug: 'ngo-portal' },
+  { name: 'ERP Integration', slug: 'erp-integration' },
+  { name: 'E-commerce Shop', slug: 'ecommerce-shop' },
+  { name: 'Mobile App', slug: 'mobile-app' },
+  { name: 'CRM System', slug: 'crm-system' },
+  { name: 'Cloud Migration', slug: 'cloud-migration' }
+];
+
+// Function to generate blog JSON-LD
+export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished: string, dateModified?: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": blogTitle,
+    "url": `https://blueteamafrica.com/blog/${blogSlug}`,
+    "author": {
+      "@type": "Organization",
+      "name": "Blue Team Africa"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Blue Team Africa",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blueteamafrica.com/images/logo/logo.webp"
+      }
+    },
+    "datePublished": datePublished,
+    "dateModified": dateModified || datePublished,
+    "description": `Blog post: ${blogTitle}, relevant to NGOs and businesses in Kigali and East Africa.`,
+    "keywords": ["Kigali", "East Africa", "NGO", "business", "technology", "web", "mobile", "ERP", "CRM"]
+  };
+}
+
+// List of blog posts
+export const blogs = [
+  { title: 'How to Choose the Right Website for Your NGO', slug: 'how-to-choose-the-right-website-for-your-ngo', date: '2024-01-15' },
+  { title: 'Why Hosting Speed Matters in Africa', slug: 'why-hosting-speed-matters-in-africa', date: '2024-01-10' },
+  { title: 'ERP for African SMEs: A Complete Guide', slug: 'erp-for-african-smes-a-complete-guide', date: '2024-01-05' }
+];
+

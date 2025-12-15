@@ -5,13 +5,11 @@ import ServiceSidebar from "@/components/ServiceSidebar";
 import SectionWrapper from "@/components/SectionWrapper";
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import Link from "next/link";
+import { metadataWebsiteDevelopment } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
 
 export const metadata: Metadata = {
-  title: "Website Development Uganda — Custom Sites for NGOs & Businesses",
-  description: "Secure, scalable website development with strong UX and full SEO optimization. Tailored for NGOs and growing companies.",
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/website-development',
-  },
+  ...metadataWebsiteDevelopment,
   keywords: [
     "website development Uganda",
     "web development East Africa",
@@ -34,6 +32,7 @@ export const metadata: Metadata = {
 export default function WebsiteDevelopmentPage() {
   return (
     <>
+      <ServiceSchema serviceName="Website Development" serviceSlug="website-development" />
       <InteriorHeader
         title="Website Development Services"
         breadcrumb={[

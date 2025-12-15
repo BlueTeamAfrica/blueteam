@@ -4,17 +4,15 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'CRM Solutions Uganda — Customer Management & Automation',
-  description: 'Frappe-based CRM for lead tracking, sales automation and client communication.',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/crm',
-  },
-}
+import { metadataCRM } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataCRM
 
 export default function CRMPage() {
   return (
     <>
+      <ServiceSchema serviceName="CRM" serviceSlug="crm" />
       <InteriorHeader
         title="CRM Solutions"
         breadcrumb={[

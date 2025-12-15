@@ -6,15 +6,16 @@ import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
+import { metadataMobileApps } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
 
 export const metadata: Metadata = {
-  title: 'Mobile App Development Services | Blue Team Africa',
-  description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups — built to work reliably in low-connectivity and high-risk environments across Sudan, Uganda, Kenya and Rwanda.',
+  ...metadataMobileApps,
   keywords: 'mobile app development, mobile app development Uganda, mobile app development Kenya, Flutter development, React Native development, offline mobile apps, NGO mobile apps East Africa',
   openGraph: {
     title: 'Mobile App Development Services in East Africa',
     description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups built for low-connectivity environments.',
-    url: 'https://www.blueteamafrica.com/services/mobile-apps',
+    url: 'https://blueteamafrica.com/services/mobile-apps',
     siteName: 'Blue Team Africa',
     images: [
       {
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
 export default function MobileAppsPage() {
   return (
     <>
+      <ServiceSchema serviceName="Mobile Apps" serviceSlug="mobile-apps" />
       <InteriorHeader
         title="Mobile App Development"
         breadcrumb={[

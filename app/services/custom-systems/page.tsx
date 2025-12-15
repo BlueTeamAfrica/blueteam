@@ -4,14 +4,15 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'Custom Software Development',
-  description: 'Tailored software solutions built specifically for your business needs. Custom applications and systems for East African businesses.',
-}
+import { metadataCustomSystems } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataCustomSystems
 
 export default function CustomSystemsPage() {
   return (
     <>
+      <ServiceSchema serviceName="Custom Systems" serviceSlug="custom-systems" />
       <InteriorHeader
         title="Custom Software Development"
         breadcrumb={[

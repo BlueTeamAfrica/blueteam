@@ -8,13 +8,11 @@ import FAQSection from '@/components/FAQSection'
 import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 import type { FAQ } from '@/lib/faqs'
+import { metadataCybersecurity } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
 
 export const metadata: Metadata = {
-  title: 'Cybersecurity Solutions Uganda — Protect Your Systems & Data',
-  description: 'Penetration testing, endpoint protection, audits and monitoring to secure your organization from advanced threats.',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/services/cybersecurity',
-  },
+  ...metadataCybersecurity,
   keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
   openGraph: {
     title: 'Cybersecurity Solutions for East African Businesses & NGOs',
@@ -40,34 +38,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Service Schema for JSON-LD
-function ServiceSchema() {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Cybersecurity Solutions',
-    description: 'Comprehensive cybersecurity services including penetration testing, security audits, incident response, and secure operations for businesses and NGOs across East Africa.',
-    provider: {
-      '@type': 'Organization',
-      name: 'Blue Team Africa',
-      url: 'https://www.blueteamafrica.com',
-    },
-    areaServed: ['Uganda', 'Sudan', 'Kenya', 'Rwanda', 'South Sudan'],
-    serviceType: 'Cybersecurity Services',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'UGX',
-      availability: 'https://schema.org/InStock',
-    },
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
-}
 
 // Custom FAQs for Cybersecurity
 const cybersecurityFAQs: FAQ[] = [
@@ -131,7 +101,7 @@ function FAQSchema() {
 export default function CybersecurityPage() {
   return (
     <>
-      <ServiceSchema />
+      <ServiceSchema serviceName="Cybersecurity" serviceSlug="cybersecurity" />
       <FAQSchema />
       
       <InteriorHeader

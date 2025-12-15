@@ -2,15 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataCrmSystem } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
-export const metadata = {
-  title: 'Sales CRM Platform - Case Study',
-  description: 'Case study: Customer relationship management system with automated workflows and analytics.',
-}
+export const metadata = metadataCrmSystem
 
 export default function CRMSystemCaseStudy() {
   return (
     <>
+      <PortfolioSchema projectName="CRM System" projectSlug="crm-system" />
       <InteriorHeader
         title="Sales CRM Platform"
         breadcrumb={[

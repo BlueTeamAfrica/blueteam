@@ -4,14 +4,15 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import PsyloLinks from '@/components/seo/PsyloLinks'
-export const metadata = {
-  title: 'IT Maintenance & Support',
-  description: 'Ongoing IT maintenance and technical support services. Keep your systems running smoothly with expert assistance.',
-}
+import { metadataMaintenance } from '@/lib/service-metadata'
+import ServiceSchema from '@/components/ServiceSchema'
+
+export const metadata = metadataMaintenance
 
 export default function MaintenancePage() {
   return (
     <>
+      <ServiceSchema serviceName="Maintenance" serviceSlug="maintenance" />
       <InteriorHeader
         title="IT Maintenance & Support"
         breadcrumb={[

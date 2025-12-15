@@ -2,15 +2,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataCloudMigration } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
-export const metadata = {
-  title: 'Cloud Migration Project - Case Study',
-  description: 'Case study: Complete infrastructure migration to cloud with zero downtime.',
-}
+export const metadata = metadataCloudMigration
 
 export default function CloudMigrationCaseStudy() {
   return (
     <>
+      <PortfolioSchema projectName="Cloud Migration" projectSlug="cloud-migration" />
       <InteriorHeader
         title="Cloud Migration Project"
         breadcrumb={[

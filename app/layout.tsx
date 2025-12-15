@@ -35,13 +35,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID
+  // GA4 Tracking ID - can be overridden with NEXT_PUBLIC_GA_ID env variable
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
 
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
         <WebSiteSchema />
-        {gaId && <GoogleAnalytics gaId={gaId} />}
+        <GoogleAnalytics gaId={gaId} />
         {/* Preload hero image for better LCP - Next.js Image priority prop handles this automatically */}
         <Header />
         <main>{children}</main>

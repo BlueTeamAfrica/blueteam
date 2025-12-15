@@ -3,10 +3,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import { metadataCsloSudan } from '@/lib/portfolio-metadata'
+import PortfolioSchema from '@/components/PortfolioSchema'
 
 export const metadata: Metadata = {
-  title: 'ERP & CRM Digital Transformation for CSLO Sudan | Blue Team Africa',
-  description: 'How Blue Team Africa implemented a full ERPNext and Frappe CRM solution for CSLO Sudan—automating programs, strengthening accountability, securing data, and enabling mobile field reporting from conflict-affected areas.',
+  ...metadataCsloSudan,
   keywords: 'ERPNext Sudan, CRM Sudan, NGO ERP system, humanitarian data management Sudan, CSLO Sudan ERP, East Africa technology solutions',
   openGraph: {
     title: 'ERP & CRM Implementation for CSLO Sudan',
@@ -82,6 +83,7 @@ export default function CSLOSudanCaseStudy() {
     <>
       {/* JSON-LD Schema */}
       <CaseStudySchema />
+      <PortfolioSchema projectName="CSLO Sudan" projectSlug="cslo-sudan" />
 
       <InteriorHeader
         title="ERP & CRM Digital Transformation for CSLO Sudan"

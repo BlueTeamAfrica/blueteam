@@ -24,16 +24,18 @@ export async function generateMetadata({
     }
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blueteamafrica.com'
+
   return {
     title: `${service.title} | Blue Team Africa`,
     description: service.description,
     alternates: {
-      canonical: `https://www.blueteamafrica.com/services/${service.slug}`,
+      canonical: `${baseUrl}/services/${service.slug}`,
     },
     openGraph: {
       title: `${service.title} | Blue Team Africa`,
       description: service.description,
-      url: `https://www.blueteamafrica.com/services/${service.slug}`,
+      url: `${baseUrl}/services/${service.slug}`,
     },
   }
 }

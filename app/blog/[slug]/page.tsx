@@ -3,6 +3,9 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
+import type { Metadata } from 'next'
+import { blogMetadataMap } from '@/lib/blog-metadata'
+import BlogSchema from '@/components/BlogSchema'
 
 const blogPosts: Record<string, any> = {
   'how-to-choose-the-right-website-for-your-ngo': {
@@ -141,23 +144,41 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug]
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const post = blogPosts[slug]
   
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: 'Post Not Found | Blue Team Africa',
+      description: 'The blog post you are looking for does not exist.',
     }
   }
 
+  // Use shared metadata if available, otherwise fallback to post data
+  const sharedMetadata = blogMetadataMap[slug]
+  
+  if (sharedMetadata) {
+    return sharedMetadata
+  }
+
+  // Fallback to post data if no shared metadata exists
   return {
-    title: post.title,
+    title: `${post.title} | Blue Team Africa`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://blueteamafrica.com/blog/${slug}`,
+    },
   }
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug]
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = blogPosts[slug]
 
   if (!post) {
     notFound()
@@ -165,6 +186,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
+      <BlogSchema 
+        blogTitle={post.title} 
+        blogSlug={slug} 
+        datePublished={post.date}
+      />
       <InteriorHeader
         title={post.title}
         breadcrumb={[
@@ -206,12 +232,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">More Articles</h2>
           <div className="flex flex-wrap gap-4">
             {Object.entries(blogPosts)
-              .filter(([slug]) => slug !== params.slug)
+              .filter(([postSlug]) => postSlug !== slug)
               .slice(0, 2)
-              .map(([slug, relatedPost]) => (
+              .map(([postSlug, relatedPost]) => (
                 <Link
-                  key={slug}
-                  href={`/blog/${slug}`}
+                  key={postSlug}
+                  href={`/blog/${postSlug}`}
                   className="text-primary hover:text-primary-dark font-medium"
                 >
                   {relatedPost.title} →
