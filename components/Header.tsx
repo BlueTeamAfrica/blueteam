@@ -115,10 +115,11 @@ export default function Header() {
   ]
 
   const socialLinks = [
-    { label: 'Facebook', href: 'https://facebook.com/blueteamafrica', icon: Facebook, color: '#1877F2' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/company/blueteamafrica', icon: Linkedin, color: '#0A66C2' },
-    { label: 'Instagram', href: 'https://instagram.com/blueteamafrica', icon: Instagram, color: '#E4405F' },
-    { label: 'YouTube', href: 'https://youtube.com/@blueteamafrica', icon: Youtube, color: '#FF0000' },
+    { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585128246041', icon: Facebook, color: '#1877F2' },
+    { label: 'X (Twitter)', href: 'https://x.com/BLUETEAMAFRICA', icon: X, color: '#000000' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/blue-team-africa/', icon: Linkedin, color: '#0A66C2' },
+    { label: 'Instagram', href: 'https://www.instagram.com/blueteamafrica/', icon: Instagram, color: '#E4405F' },
+    { label: 'YouTube', href: 'https://youtube.com/@BLUETEAMAFRICA', icon: Youtube, color: '#FF0000' },
   ]
 
   return (

@@ -7,11 +7,11 @@ export default function OrganizationSchema() {
     url: 'https://www.blueteamafrica.com',
     logo: 'https://www.blueteamafrica.com/logo.png',
     sameAs: [
-      'https://facebook.com/blueteamafrica',
-      'https://twitter.com/blueteamafrica',
-      'https://linkedin.com/company/blueteamafrica',
-      'https://instagram.com/blueteamafrica',
-      'https://youtube.com/@blueteamafrica',
+      'https://www.facebook.com/profile.php?id=61585128246041',
+      'https://x.com/BLUETEAMAFRICA',
+      'https://www.linkedin.com/in/blue-team-africa/',
+      'https://www.instagram.com/blueteamafrica/',
+      'https://youtube.com/@BLUETEAMAFRICA',
     ],
     contactPoint: [
       {

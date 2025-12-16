@@ -94,7 +94,7 @@ export default function ServicesPage() {
                 name: 'Blue Team Africa',
                 url: 'https://www.blueteamafrica.com',
                 logo: 'https://www.blueteamafrica.com/logo.png',
-                sameAs: ['https://www.linkedin.com/company/blueteamafrica'],
+                sameAs: ['https://www.linkedin.com/in/blue-team-africa/'],
                 contactPoint: [
                   {
                     '@type': 'ContactPoint',

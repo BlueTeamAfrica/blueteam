@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
+import { Phone, Mail, MapPin, Facebook, X, Linkedin, Instagram, Youtube } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -40,27 +40,27 @@ export default function Footer() {
   const socialLinks = [
     { 
       label: 'Facebook', 
-      href: 'https://facebook.com/blueteamafrica', 
+      href: 'https://www.facebook.com/profile.php?id=61585128246041', 
       icon: Facebook 
     },
     { 
-      label: 'Twitter', 
-      href: 'https://twitter.com/blueteamafrica', 
-      icon: Twitter 
+      label: 'X (Twitter)', 
+      href: 'https://x.com/BLUETEAMAFRICA', 
+      icon: X 
     },
     { 
       label: 'LinkedIn', 
-      href: 'https://linkedin.com/company/blueteamafrica', 
+      href: 'https://www.linkedin.com/in/blue-team-africa/', 
       icon: Linkedin 
     },
     { 
       label: 'Instagram', 
-      href: 'https://instagram.com/blueteamafrica', 
+      href: 'https://www.instagram.com/blueteamafrica/', 
       icon: Instagram 
     },
     { 
       label: 'YouTube', 
-      href: 'https://youtube.com/@blueteamafrica', 
+      href: 'https://youtube.com/@BLUETEAMAFRICA', 
       icon: Youtube 
     },
   ]
