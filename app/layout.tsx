@@ -4,16 +4,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WebSiteSchema from '@/components/WebSiteSchema'
-import dynamic from 'next/dynamic'
-
-// Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
-const WhatsAppFloat = dynamic(() => import('@/components/WhatsAppFloat'), {
-  ssr: false, // Only load on client side
-})
-
-const GoogleAnalytics = dynamic(() => import('@/components/GoogleAnalytics'), {
-  ssr: false, // Load analytics after page is interactive
-})
+import ClientComponents from '@/components/ClientComponents'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -50,12 +41,11 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
         <WebSiteSchema />
-        <GoogleAnalytics gaId={gaId} />
+        <ClientComponents gaId={gaId} />
         {/* Preload hero image for better LCP - Next.js Image priority prop handles this automatically */}
         <Header />
         <main>{children}</main>
         <Footer />
-        <WhatsAppFloat />
       </body>
     </html>
   )

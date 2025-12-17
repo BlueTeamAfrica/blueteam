@@ -7,13 +7,10 @@ import HeroSection from '@/components/hero/Hero'
 import dynamic from 'next/dynamic'
 
 // Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
-const PsyloLinks = dynamic(() => import('@/components/seo/PsyloLinks'), {
-  ssr: false, // SEO links can load after initial render
-})
+// These will still be code-split and loaded lazily, improving initial bundle size
+const PsyloLinks = dynamic(() => import('@/components/seo/PsyloLinks'))
 
-const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'), {
-  ssr: false, // Mobile-specific component, load on client
-})
+const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'))
 
 export const metadata: Metadata = {
   title: 'BlueTeam Africa — Web Design, Website Development & Digital Solutions',
