@@ -4,8 +4,16 @@ import Link from 'next/link'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'
-import PsyloLinks from '@/components/seo/PsyloLinks'
-import MobileMoveOurServices from '@/components/MobileMoveOurServices'
+import dynamic from 'next/dynamic'
+
+// Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
+const PsyloLinks = dynamic(() => import('@/components/seo/PsyloLinks'), {
+  ssr: false, // SEO links can load after initial render
+})
+
+const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'), {
+  ssr: false, // Mobile-specific component, load on client
+})
 
 export const metadata: Metadata = {
   title: 'BlueTeam Africa — Web Design, Website Development & Digital Solutions',
@@ -139,6 +147,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-semibold">Web Design (SEO-Ready Websites)</h3>
@@ -159,6 +168,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-semibold">Website Development (Fast, Secure, Custom)</h3>
@@ -179,6 +189,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-semibold">Cyber Security Services</h3>
@@ -199,6 +210,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-semibold">Mobile App Development (NGO Field Data Applications)</h3>
@@ -219,6 +231,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-semibold">ERP & CRM Systems for NGOs (Powered by ERPNext)</h3>
@@ -239,6 +252,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-semibold">Digital Marketing</h3>
@@ -447,56 +461,112 @@ export default function Home() {
               {/* ERPNext */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/erpnext/0089FF" alt="ERPNext" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/erpnext/0089FF" 
+                    alt="ERPNext" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">ERPNext</span>
               </div>
               {/* Frappe */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/frappe/0089FF" alt="Frappe" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/frappe/0089FF" 
+                    alt="Frappe" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">Frappe</span>
               </div>
               {/* React */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/react/61DAFB" 
+                    alt="React" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">React</span>
               </div>
               {/* Next.js */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/nextdotjs/000000" 
+                    alt="Next.js" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">Next.js</span>
               </div>
               {/* Flutter */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/flutter/02569B" 
+                    alt="Flutter" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">Flutter</span>
               </div>
               {/* Firebase */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/firebase/FFCA28" 
+                    alt="Firebase" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">Firebase</span>
               </div>
               {/* Vercel */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/vercel/000000" 
+                    alt="Vercel" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">Vercel</span>
               </div>
               {/* Tailwind CSS */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" className="w-12 h-12" />
+                  <Image 
+                    src="https://cdn.simpleicons.org/tailwindcss/06B6D4" 
+                    alt="Tailwind CSS" 
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-xs text-gray-600 font-medium">Tailwind</span>
               </div>
@@ -520,6 +590,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-4">
@@ -541,6 +612,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-4">
@@ -562,6 +634,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-4">

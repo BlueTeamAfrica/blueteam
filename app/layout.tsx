@@ -3,9 +3,17 @@ import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import WhatsAppFloat from '@/components/WhatsAppFloat'
 import WebSiteSchema from '@/components/WebSiteSchema'
-import GoogleAnalytics from '@/components/GoogleAnalytics'
+import dynamic from 'next/dynamic'
+
+// Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
+const WhatsAppFloat = dynamic(() => import('@/components/WhatsAppFloat'), {
+  ssr: false, // Only load on client side
+})
+
+const GoogleAnalytics = dynamic(() => import('@/components/GoogleAnalytics'), {
+  ssr: false, // Load analytics after page is interactive
+})
 
 const inter = Inter({
   subsets: ['latin'],
