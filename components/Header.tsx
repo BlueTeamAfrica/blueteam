@@ -184,7 +184,7 @@ export default function Header() {
                   alt="Blue Team Africa Logo"
                   width={40}
                   height={40}
-                  className="object-contain"
+                  className="object-contain logo-blue"
                   priority
                 />
               </div>
@@ -391,7 +391,7 @@ export default function Header() {
                       alt="Blue Team Africa Logo"
                       width={40}
                       height={40}
-                      className="object-contain"
+                      className="object-contain logo-blue"
                       priority
                     />
                   </div>

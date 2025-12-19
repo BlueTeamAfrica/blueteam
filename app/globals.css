@@ -134,6 +134,11 @@ html {
   color: var(--color-primary);
 }
 
+/* Logo filter to match primary blue color (#1982c4) */
+.logo-blue {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2873%) hue-rotate(194deg) brightness(104%) contrast(97%);
+}
+
 .text-muted {
   color: var(--color-muted);
 }

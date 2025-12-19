@@ -80,7 +80,7 @@ export default function Footer() {
                   alt="Blue Team Africa Logo"
                   width={48}
                   height={48}
-                  className="object-contain"
+                  className="object-contain logo-blue"
                   priority
                 />
               </div>
