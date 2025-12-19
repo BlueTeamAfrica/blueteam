@@ -13,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/faq',
   ]
 
+  // Location pages
+  const locations = [
+    '/locations/rwanda',
+  ]
+
   // Service pages - All actual service pages
   const services = [
     'web-design',
@@ -56,6 +61,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: route === '' ? 'weekly' : 'monthly',
       priority: route === '' ? 1 : 0.8,
+    })
+  })
+
+  // Add location pages
+  locations.forEach((location) => {
+    sitemapEntries.push({
+      url: `${baseUrl}${location}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
     })
   })
 
