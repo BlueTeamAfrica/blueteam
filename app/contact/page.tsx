@@ -174,12 +174,12 @@ export default function ContactPage() {
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">WhatsApp</h4>
                         <p className="text-gray-600 mb-2">Chat with us instantly</p>
                         <a
-                          href="https://wa.me/256765508131"
+                          href="https://wa.me/250798973375"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline font-medium"
                         >
-                          +256 765 508 131 →
+                          +250 798 973 375 →
                         </a>
                       </div>
                     </div>
@@ -210,10 +210,10 @@ export default function ContactPage() {
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">Phone</h4>
                         <p className="text-gray-600 mb-2">Call us directly</p>
                         <a
-                          href="tel:+256765508131"
+                          href="tel:+250798973375"
                           className="text-primary hover:underline font-medium"
                         >
-                          +256 765 508 131 →
+                          +250 798 973 375 →
                         </a>
                       </div>
                     </div>
@@ -227,7 +227,7 @@ export default function ContactPage() {
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">Emergency NGO Support</h4>
                         <p className="text-gray-600 mb-2">24/7 critical support</p>
                         <a
-                          href="https://wa.me/256765508131?text=Emergency%20NGO%20Support%20Request"
+                          href="https://wa.me/250798973375?text=Emergency%20NGO%20Support%20Request"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-red-600 hover:underline font-medium"
@@ -376,7 +376,7 @@ export default function ContactPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://wa.me/256765508131"
+              href="https://wa.me/250798973375"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary-dark transition"
