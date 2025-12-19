@@ -40,11 +40,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <head>
-        {/* Preconnect to Google Fonts for faster font loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
         <WebSiteSchema />
         <ClientComponents gaId={gaId} />
