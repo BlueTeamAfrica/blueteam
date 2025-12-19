@@ -109,7 +109,7 @@ export default function RwandaLocationPage() {
       <section className="relative w-full bg-gradient-to-br from-primary/10 via-primary/5 to-gray-50 py-16 md:py-24 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="fade-in-up">
+            <div className="fade-up">
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900 leading-tight">
                 Website, Mobile App Development & Cybersecurity in Rwanda
               </h1>
@@ -141,7 +141,7 @@ export default function RwandaLocationPage() {
 
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         {/* Section 1: Rwanda Digital Overview */}
-        <section className="mb-16 fade-in-up" aria-labelledby="rwanda-overview">
+        <section className="mb-16 fade-up" aria-labelledby="rwanda-overview">
           <h2 id="rwanda-overview" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
             Digital Solutions for NGOs and Businesses in Rwanda
           </h2>
@@ -159,7 +159,7 @@ export default function RwandaLocationPage() {
         </section>
 
         {/* Section 2: Kigali Focus - CRITICAL */}
-        <section className="mb-16 bg-gray-50 rounded-2xl p-8 md:p-10 fade-in-up" aria-labelledby="kigali-focus">
+        <section className="mb-16 bg-gray-50 rounded-2xl p-8 md:p-10 fade-up" aria-labelledby="kigali-focus">
           <h2 id="kigali-focus" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
             Serving Organizations and NGOs in Kigali
           </h2>
@@ -177,7 +177,7 @@ export default function RwandaLocationPage() {
         </section>
 
         {/* Section 3: Services in Rwanda - Card Layout */}
-        <section className="mb-16 fade-in-up" aria-labelledby="services-rwanda">
+        <section className="mb-16 fade-up" aria-labelledby="services-rwanda">
           <h2 id="services-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
             Our Services in Rwanda
           </h2>
@@ -185,7 +185,7 @@ export default function RwandaLocationPage() {
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {/* Website Design */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-up delay-1">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <Globe className="w-6 h-6 text-primary" />
               </div>
@@ -204,7 +204,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Website Development */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-up delay-2">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <Code className="w-6 h-6 text-primary" />
               </div>
@@ -223,7 +223,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Mobile App Development */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-up delay-3">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <Smartphone className="w-6 h-6 text-primary" />
               </div>
@@ -242,7 +242,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Cybersecurity */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-up">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="w-6 h-6 text-primary" />
               </div>
@@ -264,7 +264,7 @@ export default function RwandaLocationPage() {
           {/* Detailed Service Descriptions (Keep all SEO content) */}
           <div className="space-y-12 mt-12">
             {/* Website Design & Development */}
-            <div className="fade-in-up">
+            <div>
               <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-4 text-gray-900">
                 Website Design & Development
               </h3>
@@ -293,7 +293,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Mobile Applications & Mobile App Development */}
-            <div className="fade-in-up">
+            <div>
               <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-4 text-gray-900">
                 Mobile Applications & Mobile App Development
               </h3>
@@ -316,7 +316,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Cybersecurity Services */}
-            <div className="fade-in-up">
+            <div>
               <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-4 text-gray-900">
                 Cybersecurity Services
               </h3>
@@ -341,7 +341,7 @@ export default function RwandaLocationPage() {
         </section>
 
         {/* Trust & Credibility Section */}
-        <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-12 fade-in-up" aria-labelledby="trust-section">
+        <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-12 fade-up" aria-labelledby="trust-section">
           <div className="max-w-4xl mx-auto text-center">
             <h2 id="trust-section" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
               Trusted by NGOs and Organizations in Rwanda
@@ -379,7 +379,7 @@ export default function RwandaLocationPage() {
         </section>
 
         {/* Section 4: Why Blue Team Africa in Rwanda */}
-        <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-in-up" aria-labelledby="why-blue-team">
+        <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-up" aria-labelledby="why-blue-team">
           <h2 id="why-blue-team" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
             Why Blue Team Africa in Rwanda
           </h2>
@@ -400,7 +400,7 @@ export default function RwandaLocationPage() {
         </section>
 
         {/* Section 5: Enhanced CTA */}
-        <section className="text-center bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white fade-in-up shadow-2xl" aria-labelledby="cta-rwanda">
+        <section className="text-center bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white fade-in shadow-2xl" aria-labelledby="cta-rwanda">
           <h2 id="cta-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-white">
             Start Your Website or Mobile App Project in Rwanda Today
           </h2>

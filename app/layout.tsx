@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
+import './styles/animations.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WebSiteSchema from '@/components/WebSiteSchema'

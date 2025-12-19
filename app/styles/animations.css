@@ -1,0 +1,59 @@
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-in both;
+  }
+
+  .delay-1 {
+    animation-delay: 0.15s;
+  }
+
+  .delay-2 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-3 {
+    animation-delay: 0.45s;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile safety - prevent jank on low-end devices */
+.fade-up,
+.fade-in {
+  will-change: opacity, transform;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
