@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import { generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema'
+import { Globe, Smartphone, Shield, Code } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Website, Mobile App Development & Cybersecurity in Rwanda | Blue Team Africa',
@@ -103,9 +105,43 @@ export default function RwandaLocationPage() {
         ]}
       />
 
+      {/* Hero Section */}
+      <section className="relative w-full bg-gradient-to-br from-primary/10 via-primary/5 to-gray-50 py-16 md:py-24 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="fade-in-up">
+              <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900 leading-tight">
+                Website, Mobile App Development & Cybersecurity in Rwanda
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
+                Professional digital solutions for NGOs and businesses in Rwanda. Serving organizations in Kigali and nationwide with website design, mobile applications, and cybersecurity services.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                Start Your Project in Rwanda
+              </Link>
+            </div>
+            <div className="fade-in">
+              <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/locations/rwanda-hero.webp"
+                  alt="Digital solutions for NGOs and businesses in Rwanda and Kigali"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         {/* Section 1: Rwanda Digital Overview */}
-        <section className="mb-16" aria-labelledby="rwanda-overview">
+        <section className="mb-16 fade-in-up" aria-labelledby="rwanda-overview">
           <h2 id="rwanda-overview" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
             Digital Solutions for NGOs and Businesses in Rwanda
           </h2>
@@ -123,7 +159,7 @@ export default function RwandaLocationPage() {
         </section>
 
         {/* Section 2: Kigali Focus - CRITICAL */}
-        <section className="mb-16 bg-gray-50 rounded-2xl p-8 md:p-10" aria-labelledby="kigali-focus">
+        <section className="mb-16 bg-gray-50 rounded-2xl p-8 md:p-10 fade-in-up" aria-labelledby="kigali-focus">
           <h2 id="kigali-focus" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
             Serving Organizations and NGOs in Kigali
           </h2>
@@ -140,15 +176,95 @@ export default function RwandaLocationPage() {
           </div>
         </section>
 
-        {/* Section 3: Services in Rwanda */}
-        <section className="mb-16" aria-labelledby="services-rwanda">
+        {/* Section 3: Services in Rwanda - Card Layout */}
+        <section className="mb-16 fade-in-up" aria-labelledby="services-rwanda">
           <h2 id="services-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
             Our Services in Rwanda
           </h2>
 
-          <div className="space-y-12">
+          {/* Services Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Website Design */}
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <Globe className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">
+                Website Design
+              </h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                Professional website design services tailored for NGOs and businesses in Rwanda. Modern, mobile-first websites that effectively communicate your mission.
+              </p>
+              <Link
+                href="/services/web-design"
+                className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center"
+              >
+                Learn more →
+              </Link>
+            </div>
+
+            {/* Website Development */}
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <Code className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">
+                Website Development
+              </h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                Custom website development with fast loading times, secure hosting, and seamless user experiences across all devices.
+              </p>
+              <Link
+                href="/services/website-development"
+                className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center"
+              >
+                Learn more →
+              </Link>
+            </div>
+
+            {/* Mobile App Development */}
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <Smartphone className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">
+                Mobile App Development
+              </h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                Custom mobile applications for NGOs and businesses. Offline-capable apps that work even in areas with limited connectivity.
+              </p>
+              <Link
+                href="/services/mobile-apps"
+                className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center"
+              >
+                Learn more →
+              </Link>
+            </div>
+
+            {/* Cybersecurity */}
+            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 fade-in-up">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <Shield className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">
+                Cybersecurity
+              </h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                Comprehensive cybersecurity services including security audits, penetration testing, and secure hosting solutions.
+              </p>
+              <Link
+                href="/services/cybersecurity"
+                className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center"
+              >
+                Learn more →
+              </Link>
+            </div>
+          </div>
+
+          {/* Detailed Service Descriptions (Keep all SEO content) */}
+          <div className="space-y-12 mt-12">
             {/* Website Design & Development */}
-            <div>
+            <div className="fade-in-up">
               <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-4 text-gray-900">
                 Website Design & Development
               </h3>
@@ -177,7 +293,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Mobile Applications & Mobile App Development */}
-            <div>
+            <div className="fade-in-up">
               <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-4 text-gray-900">
                 Mobile Applications & Mobile App Development
               </h3>
@@ -200,7 +316,7 @@ export default function RwandaLocationPage() {
             </div>
 
             {/* Cybersecurity Services */}
-            <div>
+            <div className="fade-in-up">
               <h3 className="text-2xl md:text-3xl font-heading font-semibold mb-4 text-gray-900">
                 Cybersecurity Services
               </h3>
@@ -224,8 +340,46 @@ export default function RwandaLocationPage() {
           </div>
         </section>
 
+        {/* Trust & Credibility Section */}
+        <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-12 fade-in-up" aria-labelledby="trust-section">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 id="trust-section" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+              Trusted by NGOs and Organizations in Rwanda
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 mt-10">
+              <div>
+                <div className="text-4xl font-bold text-primary mb-2">5+</div>
+                <p className="text-gray-700 font-semibold">Years of Experience</p>
+                <p className="text-sm text-gray-600 mt-2">Serving East African organizations</p>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-primary mb-2">50+</div>
+                <p className="text-gray-700 font-semibold">NGO Projects</p>
+                <p className="text-sm text-gray-600 mt-2">Specialized humanitarian focus</p>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-primary mb-2">4</div>
+                <p className="text-gray-700 font-semibold">Countries Served</p>
+                <p className="text-sm text-gray-600 mt-2">Uganda, Kenya, Rwanda, Sudan</p>
+              </div>
+            </div>
+            <div className="mt-10">
+              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
+                <Image
+                  src="/images/locations/rwanda-trust.webp"
+                  alt="NGO and business collaboration in Rwanda"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Section 4: Why Blue Team Africa in Rwanda */}
-        <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200" aria-labelledby="why-blue-team">
+        <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-in-up" aria-labelledby="why-blue-team">
           <h2 id="why-blue-team" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
             Why Blue Team Africa in Rwanda
           </h2>
@@ -245,24 +399,24 @@ export default function RwandaLocationPage() {
           </div>
         </section>
 
-        {/* Section 5: CTA */}
-        <section className="text-center bg-primary/5 rounded-2xl p-8 md:p-12" aria-labelledby="cta-rwanda">
-          <h2 id="cta-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-gray-900">
-            Start Your Digital Project in Rwanda
+        {/* Section 5: Enhanced CTA */}
+        <section className="text-center bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white fade-in-up shadow-2xl" aria-labelledby="cta-rwanda">
+          <h2 id="cta-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-white">
+            Start Your Website or Mobile App Project in Rwanda Today
           </h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Whether you're an NGO looking to improve your digital presence, a business expanding online, or an institution requiring secure infrastructure, we're here to help. Let's discuss how we can support your mission in Rwanda.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition font-semibold"
+              className="inline-block px-8 py-4 bg-white text-primary rounded-lg hover:bg-gray-100 transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Contact Us
             </Link>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary/5 transition font-semibold"
+              className="inline-block px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-all font-semibold"
             >
               Request a Quote
             </Link>
