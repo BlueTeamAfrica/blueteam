@@ -264,6 +264,26 @@ export default function Home() {
         </div>
       </section>
 
+        {/* Serving Rwanda & East Africa - Contextual Regional Link */}
+        <section className="py-12 bg-white" aria-labelledby="rwanda-regional">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="location-link">
+              <h3 id="rwanda-regional" className="text-2xl font-heading font-semibold mb-3 text-gray-900">
+                Serving Rwanda & East Africa
+              </h3>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                We provide website design, mobile app development, and cybersecurity services to NGOs and businesses in Rwanda, including Kigali.
+              </p>
+              <Link
+                href="/locations/rwanda"
+                className="text-primary font-semibold hover:text-primary-dark hover:underline inline-flex items-center"
+              >
+                Explore our services in Rwanda →
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* WHY CHOOSE BLUE TEAM AFRICA */}
         <section className="py-20 bg-white" aria-labelledby="why-trust-heading">
           <div className="max-w-6xl mx-auto px-6">

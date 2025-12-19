@@ -360,6 +360,20 @@ html {
   background-size: 200% 200%;
 }
 
+/* Location link section styling - minimal, mobile-first */
+.location-link {
+  padding: 1.5rem;
+  border-left: 3px solid var(--color-primary, #2563EB);
+  background: rgba(37, 99, 235, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+@media (max-width: 640px) {
+  .location-link {
+    padding: 1.25rem;
+  }
+}
+
 /* Mobile Typography Fix — Ensures headings > body text */
 @media (max-width: 640px) {
   h1,
