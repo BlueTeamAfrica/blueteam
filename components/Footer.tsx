@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Mail, MapPin, Facebook, X, Linkedin, Instagram, Youtube } from 'lucide-react'
 
 export default function Footer() {
@@ -73,8 +74,15 @@ export default function Footer() {
           {/* Column 1: Company Info with Logo & Tagline */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4 hover:opacity-90 transition-opacity">
-              <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center font-heading font-bold text-lg shadow-lg">
-                BT
+              <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center relative shadow-lg">
+                <Image
+                  src="/images/logo/logo.png"
+                  alt="Blue Team Africa Logo"
+                  width={48}
+                  height={48}
+                  className="object-contain"
+                  priority
+                />
               </div>
               <span className="text-xl font-heading font-semibold">
                 Blue Team Africa
