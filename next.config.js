@@ -5,6 +5,15 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Compiler options for modern JavaScript (reduces legacy polyfills)
+  compiler: {
+    // Remove console.log in production
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
+  // SWC minification targets modern browsers (respects .browserslistrc)
+  swcMinify: true,
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -49,10 +58,6 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin'
-          },
-          {
-            key: 'Link',
-            value: '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin',
           },
         ],
       },
