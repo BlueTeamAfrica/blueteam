@@ -96,6 +96,69 @@ export default function RwandaLocationPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(cybersecurityServiceSchema) }}
       />
 
+      {/* LocalBusiness Schema for Rwanda - Google Business Profile Ready */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Blue Team Africa",
+            "url": "https://www.blueteamafrica.com/locations/rwanda",
+            "logo": "https://www.blueteamafrica.com/images/logo.png",
+            "image": "https://www.blueteamafrica.com/images/locations/rwanda-hero.webp",
+            "description": "Blue Team Africa provides website design, mobile app development, and cybersecurity services for NGOs and businesses in Rwanda, including Kigali.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "RW",
+              "addressRegion": "Kigali City",
+              "addressLocality": "Kigali"
+            },
+            "areaServed": [
+              {
+                "@type": "Country",
+                "name": "Rwanda"
+              },
+              {
+                "@type": "City",
+                "name": "Kigali"
+              }
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/blue-team-africa/",
+              "https://x.com/BLUETEAMAFRICA"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Technology Services in Rwanda",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Website Design in Rwanda"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Mobile App Development in Rwanda"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Cybersecurity Services in Rwanda"
+                  }
+                }
+              ]
+            }
+          })
+        }}
+      />
+
       <InteriorHeader
         title="Website, Mobile App Development & Cybersecurity in Rwanda"
         breadcrumb={[
