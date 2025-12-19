@@ -60,9 +60,10 @@ export default function HeroSection() {
           alt="Blue Team Africa web and software solutions"
           fill
           priority
+          fetchPriority="high"
           className="object-cover"
           sizes="100vw"
-          quality={90}
+          quality={75}
         />
       </div>
 

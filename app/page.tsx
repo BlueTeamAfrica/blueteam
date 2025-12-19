@@ -19,10 +19,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.blueteamafrica.com/',
   },
-  other: {
-    // Preload hero image for better LCP performance
-    'preload-hero': '/images/hero/hero-gradient-01.webp',
-  },
   openGraph: {
     title: 'BlueTeam Africa — Web Design & Digital Solutions',
     description: 'High-quality website design, hosting, SEO, and development services across East Africa.',

@@ -10,15 +10,9 @@ interface GoogleAnalyticsProps {
 
 export default function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
   const pathname = usePathname()
-  const [strategy, setStrategy] = useState<'afterInteractive' | 'lazyOnload'>('afterInteractive')
-
-  // Detect mobile and defer GA4 loading for mobile to improve INP
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isMobile = window.innerWidth < 768
-      setStrategy(isMobile ? 'lazyOnload' : 'afterInteractive')
-    }
-  }, [])
+  // Use lazyOnload for all devices to reduce initial JS payload and improve LCP/INP
+  // Analytics can load after page is fully interactive
+  const strategy = 'lazyOnload' as const
 
   // Track page views on route changes (Next.js App Router)
   useEffect(() => {
