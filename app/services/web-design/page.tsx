@@ -54,7 +54,7 @@ export default function WebDesignPage() {
             At Blue Team Africa, we create stunning, functional websites tailored to your business needs. 
             From responsive design to full-stack development, we build digital experiences that convert visitors 
             into customers. Our team combines creative design with cutting-edge technology to deliver websites 
-            that perform beautifully across all devices.
+            that perform beautifully across all devices. We provide professional <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">website design services to NGOs and businesses across Rwanda</Link>, including Kigali, helping organizations scale digitally.
           </p>
         </div>
       </SectionWrapper>

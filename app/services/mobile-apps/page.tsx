@@ -80,7 +80,7 @@ export default function MobileAppsPage() {
                     Secure, Offline-First Mobile Apps for East Africa
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-                    Secure, offline-first mobile apps for NGOs, enterprises and startups — built to work reliably in low-connectivity and high-risk environments across Sudan 🇸🇩, Uganda 🇺🇬, Kenya 🇰🇪 and Rwanda 🇷🇼.
+                    Secure, offline-first mobile apps for NGOs, enterprises and startups — built to work reliably in low-connectivity and high-risk environments across Sudan 🇸🇩, Uganda 🇺🇬, Kenya 🇰🇪 and Rwanda 🇷🇼. Our <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">mobile app development solutions in Kigali and throughout Rwanda</Link> are designed for NGOs, startups, and SMEs seeking secure and scalable apps.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a

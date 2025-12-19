@@ -143,7 +143,7 @@ export default function CybersecurityPage() {
                   Secure Today. Operate Confidently Tomorrow.
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Cyber threats in East Africa continue to rise — from website attacks to NGO data breaches targeting sensitive beneficiary information. At Blue Team Africa, we deliver robust cybersecurity solutions trusted by businesses, NGOs, humanitarian organizations, fintechs, and education providers.
+                  Cyber threats in East Africa continue to rise — from website attacks to NGO data breaches targeting sensitive beneficiary information. At Blue Team Africa, we deliver robust <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">cybersecurity solutions for organizations in Rwanda</Link>, including businesses and NGOs in Kigali, helping protect critical digital infrastructure across the region.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Our security systems are designed for:
