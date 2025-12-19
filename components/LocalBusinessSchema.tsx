@@ -1,9 +1,32 @@
 interface LocalBusinessSchemaProps {
-  location?: 'Uganda' | 'Sudan'
+  location?: 'Uganda' | 'Sudan' | 'Rwanda'
 }
 
-export default function LocalBusinessSchema({ location = 'Uganda' }: LocalBusinessSchemaProps) {
-  const isUganda = location === 'Uganda'
+export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusinessSchemaProps) {
+  const getLocationData = () => {
+    switch (location) {
+      case 'Rwanda':
+        return {
+          addressCountry: 'RW',
+          addressLocality: 'Kigali',
+          addressRegion: 'Kigali City',
+        }
+      case 'Sudan':
+        return {
+          addressCountry: 'SD',
+          addressLocality: 'Khartoum',
+          addressRegion: 'Khartoum State',
+        }
+      default: // Uganda
+        return {
+          addressCountry: 'UG',
+          addressLocality: 'Kampala',
+          addressRegion: 'Central Region',
+        }
+    }
+  }
+  
+  const locationData = getLocationData()
   
   const localBusinessSchema = {
     '@context': 'https://schema.org',
@@ -15,9 +38,9 @@ export default function LocalBusinessSchema({ location = 'Uganda' }: LocalBusine
     email: 'contact@blueteamafrica.com',
     address: {
       '@type': 'PostalAddress',
-      addressCountry: isUganda ? 'UG' : 'SD',
-      addressLocality: isUganda ? 'Kampala' : 'Khartoum',
-      addressRegion: isUganda ? 'Central Region' : 'Khartoum State',
+      addressCountry: locationData.addressCountry,
+      addressLocality: locationData.addressLocality,
+      addressRegion: locationData.addressRegion,
     },
     priceRange: '$$',
     areaServed: [

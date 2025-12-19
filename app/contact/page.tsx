@@ -31,8 +31,7 @@ export default function ContactPage() {
     <>
       {/* JSON-LD Schemas */}
       <ContactPageSchema />
-      <LocalBusinessSchema location="Uganda" />
-      <LocalBusinessSchema location="Sudan" />
+      <LocalBusinessSchema location="Rwanda" />
       <OrganizationSchema />
 
       <main className="bg-white text-gray-800">
@@ -249,7 +248,7 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
-                        <p className="text-gray-600">Kampala, Uganda</p>
+                        <p className="text-gray-600">Kigali, Rwanda</p>
                         <p className="text-gray-600">Serving: Uganda, Sudan, Kenya, Rwanda</p>
                       </div>
                     </div>
