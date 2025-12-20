@@ -9,7 +9,7 @@ export default function OrganizationSchema() {
     sameAs: [
       'https://www.facebook.com/profile.php?id=61585128246041',
       'https://x.com/BLUETEAMAFRICA',
-      'https://www.linkedin.com/in/blue-team-africa/',
+      'https://www.linkedin.com/company/blue-team-africa',
       'https://www.instagram.com/blueteamafrica/',
       'https://youtube.com/@BLUETEAMAFRICA',
     ],

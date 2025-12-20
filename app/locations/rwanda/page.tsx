@@ -125,7 +125,7 @@ export default function RwandaLocationPage() {
               }
             ],
             "sameAs": [
-              "https://www.linkedin.com/in/blue-team-africa/",
+              "https://www.linkedin.com/company/blue-team-africa",
               "https://x.com/BLUETEAMAFRICA"
             ],
             "hasOfferCatalog": {

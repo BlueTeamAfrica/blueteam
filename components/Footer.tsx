@@ -50,7 +50,7 @@ export default function Footer() {
     },
     { 
       label: 'LinkedIn', 
-      href: 'https://www.linkedin.com/in/blue-team-africa/', 
+      href: 'https://www.linkedin.com/company/blue-team-africa', 
       icon: Linkedin 
     },
     { 
