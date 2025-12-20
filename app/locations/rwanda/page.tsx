@@ -512,6 +512,47 @@ export default function RwandaLocationPage() {
           </div>
         </section>
 
+        {/* Trust Signals Section */}
+        <section className="mb-16 fade-up" aria-labelledby="trust-signals">
+          <h2 id="trust-signals" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Trusted by Organizations in Rwanda and East Africa
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed mb-6">
+            <p className="mb-4">
+              Blue Team Africa works with NGOs, startups, and growing organizations across Rwanda and East Africa. Our experience includes supporting humanitarian organizations, digital platforms, and internal systems used by teams operating in challenging environments.
+            </p>
+            <p>
+              We focus on long-term partnerships, secure systems, and solutions that scale as organizations grow.
+            </p>
+          </div>
+          <ul className="space-y-3 mb-6">
+            <li className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+              <p className="text-gray-700">Experience working with NGOs and humanitarian organizations</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+              <p className="text-gray-700">Projects supporting teams in Rwanda and East Africa</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+              <p className="text-gray-700">Secure, performance-focused development approach</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+              <p className="text-gray-700">Remote-first collaboration with local context understanding</p>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center text-primary font-semibold hover:text-primary-dark hover:underline"
+            >
+              View selected projects in our portfolio →
+            </Link>
+          </div>
+        </section>
+
         {/* Trust & Credibility Section */}
         <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-12 fade-up" aria-labelledby="trust-section">
           <div className="max-w-4xl mx-auto text-center">
