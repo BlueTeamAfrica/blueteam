@@ -12,8 +12,7 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
-  // SWC minification targets modern browsers (respects .browserslistrc)
-  swcMinify: true,
+  // Note: SWC minification is enabled by default in Next.js 13+ (no need for swcMinify option)
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
