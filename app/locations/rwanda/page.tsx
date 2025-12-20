@@ -159,6 +159,59 @@ export default function RwandaLocationPage() {
         }}
       />
 
+      {/* FAQPage Schema for Rwanda */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Do you provide website design services in Kigali, Rwanda?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Blue Team Africa provides professional website design services in Kigali and across Rwanda for NGOs, startups, and businesses, focusing on performance, security, and scalability."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you offer mobile app development services in Rwanda?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We develop custom Android and iOS mobile applications for organizations in Rwanda, including NGOs and SMEs, tailored to local user needs and infrastructure."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can NGOs in Rwanda work with Blue Team Africa remotely?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. We work with NGOs and organizations across Rwanda using secure remote collaboration, while maintaining local context and regional experience in East Africa."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you provide cybersecurity services for organizations in Rwanda?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. We offer cybersecurity solutions for organizations in Rwanda, including system hardening, secure hosting, data protection, and ongoing technical support."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much does website design cost in Rwanda?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Website design costs in Rwanda depend on project scope and requirements. We offer flexible solutions suitable for NGOs, startups, and growing businesses operating in Rwanda."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
       <InteriorHeader
         title="Website, Mobile App Development & Cybersecurity in Rwanda"
         breadcrumb={[
@@ -400,6 +453,59 @@ export default function RwandaLocationPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mb-16 fade-up" aria-labelledby="faq-rwanda">
+          <h2 id="faq-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
+            Frequently Asked Questions About Our Services in Rwanda
+          </h2>
+          <div className="space-y-6">
+            <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <summary className="font-heading font-semibold cursor-pointer text-gray-900 text-lg mb-2">
+                Do you provide website design services in Kigali, Rwanda?
+              </summary>
+              <p className="mt-4 text-gray-700 leading-relaxed">
+                Yes. Blue Team Africa provides professional website design services in Kigali and across Rwanda for NGOs, startups, and businesses, focusing on performance, security, and scalability.
+              </p>
+            </details>
+
+            <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <summary className="font-heading font-semibold cursor-pointer text-gray-900 text-lg mb-2">
+                Do you offer mobile app development services in Rwanda?
+              </summary>
+              <p className="mt-4 text-gray-700 leading-relaxed">
+                We develop custom Android and iOS mobile applications for organizations in Rwanda, including NGOs and SMEs, tailored to local user needs and infrastructure.
+              </p>
+            </details>
+
+            <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <summary className="font-heading font-semibold cursor-pointer text-gray-900 text-lg mb-2">
+                Can NGOs in Rwanda work with Blue Team Africa remotely?
+              </summary>
+              <p className="mt-4 text-gray-700 leading-relaxed">
+                Absolutely. We work with NGOs and organizations across Rwanda using secure remote collaboration, while maintaining local context and regional experience in East Africa.
+              </p>
+            </details>
+
+            <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <summary className="font-heading font-semibold cursor-pointer text-gray-900 text-lg mb-2">
+                Do you provide cybersecurity services for organizations in Rwanda?
+              </summary>
+              <p className="mt-4 text-gray-700 leading-relaxed">
+                Yes. We offer cybersecurity solutions for organizations in Rwanda, including system hardening, secure hosting, data protection, and ongoing technical support.
+              </p>
+            </details>
+
+            <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <summary className="font-heading font-semibold cursor-pointer text-gray-900 text-lg mb-2">
+                How much does website design cost in Rwanda?
+              </summary>
+              <p className="mt-4 text-gray-700 leading-relaxed">
+                Website design costs in Rwanda depend on project scope and requirements. We offer flexible solutions suitable for NGOs, startups, and growing businesses operating in Rwanda.
+              </p>
+            </details>
           </div>
         </section>
 
