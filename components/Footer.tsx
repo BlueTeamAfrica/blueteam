@@ -223,7 +223,7 @@ export default function Footer() {
                 width={180}
                 height={50}
                 loading="lazy"
-                className="opacity-90 hover:opacity-100 transition h-auto"
+                className="opacity-90 hover:opacity-100 transition"
               />
             </a>
           </div>
