@@ -28,7 +28,7 @@ export default function MobileMoveOurServices() {
     const rwandaSection = document.querySelector('[data-rwanda-section]');
 
     function moveAfterRwanda() {
-      if (!top || stateRef.current.moved || !rwandaSection) return;
+      if (!top || stateRef.current.moved || !rwandaSection || !rwandaSection.parentNode) return;
 
       // Save original position
       stateRef.current.topOriginalParent = top.parentNode;
@@ -44,15 +44,14 @@ export default function MobileMoveOurServices() {
       }
 
       // Insert services section after Rwanda section
-      if (rwandaSection && rwandaSection.parentNode) {
-        // Insert after the Rwanda section
-        if (rwandaSection.nextSibling) {
-          rwandaSection.parentNode.insertBefore(top, rwandaSection.nextSibling);
-        } else {
-          rwandaSection.parentNode.appendChild(top);
-        }
-        stateRef.current.moved = true;
+      // Insert after the Rwanda section
+      if (rwandaSection.nextSibling) {
+        rwandaSection.parentNode.insertBefore(top, rwandaSection.nextSibling);
+      } else {
+        rwandaSection.parentNode.appendChild(top);
       }
+      // Set moved flag only after successful move (prevents duplicate attempts on resize)
+      stateRef.current.moved = true;
     }
 
     function revertToTop() {

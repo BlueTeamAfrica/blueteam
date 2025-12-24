@@ -73,7 +73,7 @@ export default function HeroSection() {
       {/* Text */}
       <div className="relative z-10 max-w-3xl px-6 text-center">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-        Your Digital Transformation Partner
+        High-Performance Web Design & Development for Businesses in Rwanda
         </h1>
 
         <p className="text-lg md:text-xl opacity-90">

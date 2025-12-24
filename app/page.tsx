@@ -13,7 +13,7 @@ const PsyloLinks = dynamic(() => import('@/components/seo/PsyloLinks'))
 const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'))
 
 export const metadata: Metadata = {
-  title: 'BlueTeam Africa — Web Design, Website Development & Digital Solutions',
+  title: 'Blue Team Africa | Web Design & Development Company in Rwanda',
   description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
   robots: 'index, follow',
   alternates: {

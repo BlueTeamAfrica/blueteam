@@ -6,7 +6,7 @@ import { generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema
 import { Globe, Smartphone, Shield, Code } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Website Design, Mobile App Development & Cybersecurity Company in Rwanda | Blue Team Africa',
+  title: 'Technology Solutions Provider in Rwanda | Blue Team Africa',
   description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
   robots: 'index, follow',
   alternates: {
@@ -213,7 +213,7 @@ export default function RwandaLocationPage() {
       />
 
       <InteriorHeader
-        title="Website Design, Mobile App Development & Cybersecurity Company in Rwanda"
+        title="Serving Organizations Across Rwanda"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Locations', href: '#' },
@@ -227,7 +227,7 @@ export default function RwandaLocationPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="fade-up">
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900 leading-tight">
-                Website Design, Mobile App Development & Cybersecurity Company in Rwanda
+                Serving Organizations Across Rwanda
               </h1>
               <p className="text-lg md:text-xl text-gray-700 mb-4 leading-relaxed">
                 Blue Team Africa is a technology company providing professional website design, mobile app development, and cybersecurity services in Rwanda. We work with NGOs, startups, and businesses in Kigali and across Rwanda to build secure, scalable, and high-performance digital solutions. With strong experience supporting organizations in East Africa, we help our clients grow online through modern websites, custom mobile applications, and reliable technology systems tailored to local needs.
