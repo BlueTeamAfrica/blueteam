@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 // 1. Web Design
 export const metadataWebDesign: Metadata = {
-  title: 'Web Design in Kigali, Rwanda | Blue Team Africa',
-  description: 'Professional web design services for NGOs and businesses in Kigali and East Africa. Fast, reliable, and SEO-optimized.',
+  title: 'Professional Web Design Services | Blue Team Africa',
+  description: 'Professional web design services for NGOs and businesses. Fast, reliable, and SEO-optimized websites that convert.',
   alternates: {
     canonical: 'https://blueteamafrica.com/services/web-design',
   },
