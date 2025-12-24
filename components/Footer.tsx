@@ -15,6 +15,7 @@ export default function Footer() {
 
   const servicesLinks = [
     { label: 'Web Design', href: '/services/web-design' },
+    { label: 'Web Design in Rwanda', href: '/web-design-rwanda' },
     { label: 'Mobile App Development', href: '/services/mobile-apps' },
     { label: 'Cloud & Web Hosting', href: '/services/hosting' },
     { label: 'ERP Systems', href: '/services/erp' },
@@ -231,6 +232,7 @@ export default function Footer() {
 
         {/* Bottom Bar: Legal Links & Copyright */}
         <div className="border-t border-gray-800 pt-8">
+          <p className="text-gray-400 text-sm text-center mb-4">Serving businesses and NGOs across Rwanda.</p>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <p className="text-gray-400 text-sm text-center md:text-left">

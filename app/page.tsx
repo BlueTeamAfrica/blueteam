@@ -75,6 +75,9 @@ export default function Home() {
         {/* FEATURED CASE STUDY - CSLO Sudan */}
         <section className="py-20 bg-white" aria-labelledby="case-study-heading">
           <div className="max-w-6xl mx-auto px-6">
+            <p className="text-center text-gray-600 mb-6">
+              Looking for a reliable <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web design services in Rwanda</Link>? Explore our local web design services.
+            </p>
             <h2 id="case-study-heading" className="text-3xl font-heading font-semibold text-center mb-8">
               Digital Transformation for CSLO Sudan
             </h2>
