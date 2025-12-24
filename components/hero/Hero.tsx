@@ -72,7 +72,7 @@ export default function HeroSection() {
 
       {/* Text */}
       <div className="relative z-10 max-w-3xl px-6 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
+        <h1 className="text-3xl md:text-4xl font-medium leading-snug mb-4">
         High-Performance Web Design & Development for Businesses in Rwanda
         </h1>
 
