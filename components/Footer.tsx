@@ -206,6 +206,29 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Trust / Recognition Section */}
+        <div className="border-t border-gray-800 pt-8 pb-6">
+          <p className="text-gray-400 text-sm text-center mb-4">Trusted by industry research platforms</p>
+          <div className="flex justify-center">
+            <a
+              href="https://www.goodfirms.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GoodFirms verified digital solutions company in East Africa"
+              className="inline-block"
+            >
+              <img
+                src="/images/Goodfirms-newlogo-kit/PNG/gf-logo-horizontal-light.png"
+                alt="GoodFirms verified digital solutions company in East Africa"
+                width={180}
+                height={50}
+                loading="lazy"
+                className="opacity-90 hover:opacity-100 transition h-auto"
+              />
+            </a>
+          </div>
+        </div>
+
         {/* Bottom Bar: Legal Links & Copyright */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">

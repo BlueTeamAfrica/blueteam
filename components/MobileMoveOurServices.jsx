@@ -24,15 +24,11 @@ export default function MobileMoveOurServices() {
     // Find bottom "Our Services" section if it exists (optional)
     const bottom = document.querySelector('[data-our-services="bottom"]');
 
-    // Find container
-    const container =
-      document.querySelector("[data-bottom-container]") ||
-      document.querySelector("main") ||
-      document.querySelector(".page-content") ||
-      document.body;
+    // Find the Rwanda section to insert services after it
+    const rwandaSection = document.querySelector('[data-rwanda-section]');
 
-    function moveToBottom() {
-      if (!top || stateRef.current.moved) return;
+    function moveAfterRwanda() {
+      if (!top || stateRef.current.moved || !rwandaSection) return;
 
       // Save original position
       stateRef.current.topOriginalParent = top.parentNode;
@@ -47,9 +43,14 @@ export default function MobileMoveOurServices() {
         bottom.parentNode.removeChild(bottom);
       }
 
-      // Move top to bottom container
-      if (container) {
-        container.appendChild(top);
+      // Insert services section after Rwanda section
+      if (rwandaSection && rwandaSection.parentNode) {
+        // Insert after the Rwanda section
+        if (rwandaSection.nextSibling) {
+          rwandaSection.parentNode.insertBefore(top, rwandaSection.nextSibling);
+        } else {
+          rwandaSection.parentNode.appendChild(top);
+        }
         stateRef.current.moved = true;
       }
     }
@@ -104,7 +105,7 @@ export default function MobileMoveOurServices() {
       const isMobile = window.innerWidth <= MOBILE_MAX;
       
       if (isMobile) {
-        moveToBottom();
+        moveAfterRwanda();
       } else {
         revertToTop();
       }

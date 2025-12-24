@@ -261,7 +261,7 @@ export default function Home() {
       </section>
 
         {/* Serving Rwanda & East Africa - Contextual Regional Link */}
-        <section className="py-12 bg-white" aria-labelledby="rwanda-regional">
+        <section data-rwanda-section className="py-12 bg-white" aria-labelledby="rwanda-regional">
           <div className="max-w-6xl mx-auto px-6">
             <div className="location-link">
               <h3 id="rwanda-regional" className="text-2xl font-heading font-semibold mb-3 text-gray-900">
