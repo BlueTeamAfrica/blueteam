@@ -16,6 +16,7 @@ export default function Footer() {
   const servicesLinks = [
     { label: 'Web Design', href: '/services/web-design' },
     { label: 'Web Design in Rwanda', href: '/web-design-rwanda' },
+    { label: 'Web Development in Rwanda', href: '/web-development-rwanda' },
     { label: 'Mobile App Development', href: '/services/mobile-apps' },
     { label: 'Cloud & Web Hosting', href: '/services/hosting' },
     { label: 'ERP Systems', href: '/services/erp' },

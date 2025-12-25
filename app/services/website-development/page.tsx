@@ -11,20 +11,20 @@ import ServiceSchema from '@/components/ServiceSchema'
 export const metadata: Metadata = {
   ...metadataWebsiteDevelopment,
   keywords: [
-    "website development Uganda",
-    "web development East Africa",
+    "website development",
+    "web development",
     "custom web applications",
     "NGO website development",
-    "business website development Kenya",
+    "business website development",
     "e-commerce development",
-    "web application development Sudan",
-    "website development services Rwanda",
+    "web application development",
     "scalable web development",
-    "secure website development"
+    "secure website development",
+    "full-stack development"
   ],
   openGraph: {
-    title: "Professional Website Development Services in Uganda & East Africa",
-    description: "Fast, secure, and scalable website development for businesses and NGOs across East Africa.",
+    title: "Professional Web Development Services",
+    description: "Fast, secure, and scalable website development for businesses and NGOs. Custom web applications, backend systems, and enterprise solutions.",
     images: ["/images/hero/hero-og-01.webp"],
   },
 };
@@ -34,7 +34,7 @@ export default function WebsiteDevelopmentPage() {
     <>
       <ServiceSchema serviceName="Website Development" serviceSlug="website-development" />
       <InteriorHeader
-        title="Website Development Services"
+        title="Web Development Services"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -71,7 +71,7 @@ export default function WebsiteDevelopmentPage() {
                 At Blue Team Africa, we develop fast, secure, and scalable websites that help businesses, NGOs, and organizations grow online. Whether you need a custom-built system, a dynamic website integrated with your internal workflows, or a fully optimized business platform — our development team delivers reliable, modern, and SEO-ready solutions.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed mt-4">
-                From corporate websites to NGO management platforms, our builds are designed to perform under real conditions in Uganda, Sudan, Kenya, and across East Africa. We provide comprehensive <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">website development services in Rwanda</Link>, serving organizations in Kigali and nationwide with custom solutions tailored to local needs.
+                From corporate websites to NGO management platforms, our builds are designed to perform under real conditions across East Africa. For organizations in Rwanda, we provide comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">Web Development Company in Rwanda</Link> services with custom solutions tailored to local needs.
               </p>
             </SectionWrapper>
 
@@ -128,7 +128,7 @@ export default function WebsiteDevelopmentPage() {
                     1. Business & Corporate Websites
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    High-performance websites built for companies in Uganda, Sudan, Kenya, and Rwanda. Optimized for search engines and tailored to your brand.
+                    High-performance websites built for companies across East Africa. Optimized for search engines and tailored to your brand.
                   </p>
                 </div>
 
@@ -244,7 +244,7 @@ export default function WebsiteDevelopmentPage() {
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Website development in Uganda</span>
+                    <span>Custom web application development</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>

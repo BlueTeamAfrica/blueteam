@@ -5,8 +5,8 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { Code, Database, Zap, Shield, GitBranch, Server, Cloud } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Web Development Services in Rwanda | Blue Team Africa',
-  description: 'Professional web development services for businesses and NGOs in Rwanda. Custom backend systems, API integrations, database solutions, and scalable web applications built for Kigali and across Rwanda.',
+  title: 'Web Development Company in Rwanda | Blue Team Africa',
+  description: 'Web development company in Rwanda providing professional web development services for businesses and NGOs. Custom backend systems, API integrations, database solutions, and scalable web applications built for Kigali and across Rwanda.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://www.blueteamafrica.com/web-development-rwanda',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     'scalable web development Rwanda',
   ],
   openGraph: {
-    title: 'Web Development Services in Rwanda | Blue Team Africa',
-    description: 'Professional web development services for businesses and NGOs in Rwanda. Custom backend systems, API integrations, and scalable web applications.',
+    title: 'Web Development Company in Rwanda | Blue Team Africa',
+    description: 'Web development company in Rwanda providing professional web development services for businesses and NGOs. Custom backend systems, API integrations, and scalable web applications.',
     url: 'https://www.blueteamafrica.com/web-development-rwanda',
     type: 'website',
   },
@@ -33,7 +33,7 @@ export default function WebDevelopmentRwandaPage() {
   return (
     <>
       <InteriorHeader
-        title="Professional Web Development Services for Organizations in Rwanda"
+        title="Web Development Company in Rwanda"
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Web Development Rwanda' },
@@ -46,7 +46,7 @@ export default function WebDevelopmentRwandaPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="fade-up">
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900 leading-tight">
-                Professional Web Development Services for Organizations in Rwanda
+                Web Development Company in Rwanda
               </h1>
               <p className="text-lg md:text-xl text-gray-700 mb-4 leading-relaxed">
                 We build custom web applications, backend systems, and scalable platforms for businesses and NGOs across Rwanda. Our web development services focus on technical excellence, performance optimization, and secure infrastructure tailored to Rwanda's digital ecosystem.

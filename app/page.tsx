@@ -13,7 +13,7 @@ const PsyloLinks = dynamic(() => import('@/components/seo/PsyloLinks'))
 const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'))
 
 export const metadata: Metadata = {
-  title: 'Blue Team Africa | Web Design & Development Company in Rwanda',
+  title: 'Blue Team Africa | Web Design & Development Company',
   description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
   robots: 'index, follow',
   alternates: {
@@ -271,7 +271,7 @@ export default function Home() {
                 Serving Rwanda & East Africa
               </h3>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                We provide website design, mobile app development, and cybersecurity services to NGOs and businesses in Rwanda, including Kigali.
+                We provide website design, mobile app development, and cybersecurity services to NGOs and businesses in Rwanda, including Kigali. For organizations seeking <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web development services in Rwanda</Link>, we offer custom backend systems, API integrations, and scalable web applications.
               </p>
               <Link
                 href="/locations/rwanda"
