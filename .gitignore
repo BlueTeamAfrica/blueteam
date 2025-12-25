@@ -49,3 +49,4 @@ public/images/ChatGPT_Atlas.dmg
 !package-lock.json
 !tsconfig.json
 !next.config.js
+!vercel.json
