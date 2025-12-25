@@ -30,8 +30,50 @@ export const metadata: Metadata = {
 }
 
 export default function WebDevelopmentRwandaPage() {
+  const professionalServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://www.blueteamafrica.com/web-development-rwanda#business",
+    "name": "Blue Team Africa – Web Development Company in Rwanda",
+    "alternateName": "Blue Team for Digital Solutions",
+    "url": "https://www.blueteamafrica.com/web-development-rwanda",
+    "logo": "https://www.blueteamafrica.com/logo.png",
+    "image": "https://www.blueteamafrica.com/og-image.png",
+    "telephone": "+250798973375",
+    "email": "contact@blueteamafrica.com",
+    "priceRange": "$$",
+    "description": "Professional web development company in Rwanda providing custom website development, backend systems, and scalable digital solutions for businesses and NGOs.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RW",
+      "addressRegion": "Kigali City",
+      "addressLocality": "Kigali"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Rwanda"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/blue-team-africa",
+      "https://www.facebook.com/profile.php?id=61585128246041",
+      "https://www.instagram.com/blueteamafrica/",
+      "https://x.com/BLUETEAMAFRICA"
+    ],
+    "serviceType": [
+      "Web Development",
+      "Website Development",
+      "Backend Development",
+      "Custom Software Development"
+    ]
+  }
+
   return (
     <>
+      {/* JSON-LD Schema for ProfessionalService */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+      />
       <InteriorHeader
         title="Web Development Company in Rwanda"
         breadcrumb={[
