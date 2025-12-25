@@ -67,12 +67,56 @@ export default function WebDevelopmentRwandaPage() {
     ]
   }
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you provide web development services in Rwanda?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Blue Team Africa offers professional web development services in Rwanda, including custom websites, backend systems, and scalable digital solutions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What technologies do you use for web development?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We work with modern web technologies including React, Next.js, Firebase, and secure backend systems to build reliable and scalable platforms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you develop custom systems for NGOs and businesses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We develop custom web applications, dashboards, and internal systems for NGOs and businesses operating in Rwanda."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer ongoing support after development?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We provide ongoing technical support, maintenance, and system improvements after project delivery based on client needs."
+        }
+      }
+    ]
+  }
+
   return (
     <>
       {/* JSON-LD Schema for ProfessionalService */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+      />
+      {/* JSON-LD Schema for FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <InteriorHeader
         title="Web Development Company in Rwanda"

@@ -29,8 +29,52 @@ export const metadata: Metadata = {
 }
 
 export default function WebDesignRwandaPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you offer professional web design services in Rwanda?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Blue Team Africa provides professional web design services in Rwanda for businesses, NGOs, and startups, focusing on performance, usability, and SEO."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does web design cost in Rwanda?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Web design costs in Rwanda depend on project scope, features, and complexity. Blue Team Africa offers flexible pricing tailored to business and NGO needs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you design websites for NGOs and organizations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We specialize in web design for NGOs and organizations in Rwanda, including informational websites, program portals, and donation-ready platforms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will my website be mobile-friendly and SEO optimized?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All websites we design are mobile-friendly, fast-loading, and built with SEO best practices to ensure strong visibility in search results."
+        }
+      }
+    ]
+  }
+
   return (
     <>
+      {/* JSON-LD Schema for FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <InteriorHeader
         title="Professional Web Design Services for Businesses in Rwanda"
         breadcrumb={[
