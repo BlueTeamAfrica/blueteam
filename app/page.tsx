@@ -59,10 +59,48 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+  const professionalServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://www.blueteamafrica.com/#localbusiness",
+    "name": "Blue Team Africa",
+    "legalName": "Blue Team Ltd.",
+    "url": "https://www.blueteamafrica.com",
+    "logo": "https://www.blueteamafrica.com/logo.png",
+    "image": "https://www.blueteamafrica.com/og-image.png",
+    "telephone": "+250798973375",
+    "email": "contact@blueteamafrica.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RW"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Rwanda"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/blue-team-africa",
+      "https://about.me/blueteamafrica"
+    ],
+    "description": "Blue Team Africa is a Rwanda-based web design and web development company delivering high-performance, SEO-driven digital solutions for businesses and NGOs.",
+    "foundingDate": "2023-09-16",
+    "serviceType": [
+      "Web Design",
+      "Web Development",
+      "Website Hosting",
+      "CRM Systems",
+      "ERP Systems"
+    ]
+  }
+
   return (
     <>
       {/* JSON-LD Schemas */}
       <OrganizationSchema />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+      />
       <HomepageFAQSchema />
 
       {/* Mobile Move Our Services Component */}
