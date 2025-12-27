@@ -6,6 +6,7 @@
   --color-primary: #1982c4;
   --color-primary-dark: #14699a;
   --color-primary-light: #4da3d9;
+  --color-primary-text: #0d5a8a; /* Darker shade for better contrast on white */
   --color-secondary: #D97706;
   --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
@@ -19,6 +20,32 @@
   --primary-dark: var(--color-primary-dark);
   --secondary: var(--color-muted);
   --accent: #0ea5e9;
+}
+
+/* Ensure links with primary color have sufficient contrast (WCAG AA compliant) */
+a.text-primary {
+  color: var(--color-primary-text, #0d5a8a) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a.text-primary:hover {
+  color: var(--color-primary-dark, #14699a) !important;
+  text-decoration-thickness: 2px;
+}
+
+/* Ensure links are distinguishable even without color */
+a:not([class*="bg-"]) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Buttons and CTAs don't need underline */
+a[class*="bg-"],
+button[class*="bg-"],
+.btn-primary,
+.btn-secondary {
+  text-decoration: none !important;
 }
 
 html, body {

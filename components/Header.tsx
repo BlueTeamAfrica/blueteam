@@ -151,11 +151,11 @@ export default function Header() {
 
           {/* Contact Info - Right Side */}
           <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
-            <a href="tel:+256765508131" className="font-semibold hover:underline whitespace-nowrap hidden md:inline">
+            <a href="tel:+256765508131" className="font-semibold hover:underline whitespace-nowrap hidden md:inline text-white" style={{ color: '#ffffff' }}>
               +256 765 508 131
             </a>
             <span className="text-white/60 hidden sm:inline">|</span>
-            <a href="tel:+250798973375" className="font-semibold hover:underline whitespace-nowrap">
+            <a href="tel:+250798973375" className="font-semibold hover:underline whitespace-nowrap text-white" style={{ color: '#ffffff' }}>
               +250 798 973 375
             </a>
             <a href="mailto:contact@blueteamafrica.com" className="hidden lg:inline-block font-semibold hover:underline ml-2">

@@ -1,9 +1,6 @@
-# Modern browsers only - reduces legacy JavaScript polyfills
-# Targets browsers that support ES2020+ features
-last 2 Chrome versions
-last 2 Firefox versions
-last 2 Safari versions
-last 2 Edge versions
+# Target modern browsers to reduce polyfills
+> 0.5%
+last 2 versions
+Firefox ESR
 not dead
 not IE 11
-

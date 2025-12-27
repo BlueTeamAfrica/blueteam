@@ -51,6 +51,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+      <head>
+        {/* Preconnect to external domains for faster loading */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
         <WebSiteSchema />
         <ClientComponents gaId={gaId} />
