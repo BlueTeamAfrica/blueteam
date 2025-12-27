@@ -10,6 +10,14 @@ export const metadata = {
 
 const blogPosts = [
   {
+    slug: 'choosing-a-web-design-company-in-rwanda-what-businesses-should-know',
+    title: 'Choosing a Web Design Company in Rwanda: What Businesses Should Know',
+    excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
+    date: '2024-12-20',
+    category: 'Web Design',
+    image: '/images/blog/blog-thumbnail-01.webp',
+  },
+  {
     slug: 'how-to-choose-the-right-website-for-your-ngo',
     title: 'How to Choose the Right Website for Your NGO',
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',

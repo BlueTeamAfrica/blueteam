@@ -27,9 +27,19 @@ export const metadataErpGuide: Metadata = {
   },
 }
 
+// 4. Choosing a Web Design Company in Rwanda: What Businesses Should Know
+export const metadataChoosingWebDesignRwanda: Metadata = {
+  title: 'Choosing a Web Design Company in Rwanda: What Businesses Should Know | Blue Team Africa',
+  description: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/blog/choosing-a-web-design-company-in-rwanda-what-businesses-should-know',
+  },
+}
+
 // Metadata mapping by slug
 export const blogMetadataMap: Record<string, Metadata> = {
   'how-to-choose-the-right-website-for-your-ngo': metadataHowToChooseWebsite,
   'why-hosting-speed-matters-in-africa': metadataHostingSpeed,
   'erp-for-african-smes-a-complete-guide': metadataErpGuide,
+  'choosing-a-web-design-company-in-rwanda-what-businesses-should-know': metadataChoosingWebDesignRwanda,
 }
