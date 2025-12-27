@@ -4,7 +4,7 @@ try:
     import os
     
     # Create 512x512 image with blue background
-    img = Image.new('RGB', (512, 512), color='#2563EB')
+    img = Image.new('RGB', (512, 512), color='#1982c4')
     draw = ImageDraw.Draw(img)
     
     # Try to use a bold font, fallback to default

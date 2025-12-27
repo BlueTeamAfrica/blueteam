@@ -12,7 +12,7 @@
 
 ### ✅ Design System Updates:
 1. **globals.css** - Added Poppins (headings) & Inter (body) fonts, new color variables
-2. **tailwind.config.ts** - Updated colors to match new design (primary: #2563EB, secondary: #D97706)
+2. **tailwind.config.ts** - Updated colors to match new design (primary: #1982c4, secondary: #D97706)
 3. **next.config.js** - Already optimized (webpack cache disabled for disk space)
 
 ### ✅ Pages Updated:
@@ -38,7 +38,7 @@ All images now have:
 ## 🎨 New Design Features:
 
 ### Color Palette:
-- **Primary**: #2563EB (Blue)
+- **Primary**: #1982c4 (Blue)
 - **Primary Dark**: #1E40AF
 - **Primary Light**: #60A5FA
 - **Secondary**: #D97706 (Orange)

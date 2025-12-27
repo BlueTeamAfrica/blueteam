@@ -126,7 +126,7 @@ export default function Header() {
     <>
       {/* Top Info Bar - Fixed at the very top, always visible */}
       <div 
-        style={{ backgroundColor: 'var(--color-primary, #2563EB)' }} 
+        style={{ backgroundColor: 'var(--color-primary, #1982c4)' }} 
         className="w-full text-white fixed top-0 left-0 right-0 z-[60]"
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-1.5 flex items-center justify-between md:justify-end">
@@ -178,7 +178,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 flex-shrink-0 h-10">
-              <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#2563EB)] text-white flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white flex items-center justify-center font-bold">
                 BT
               </div>
               <span className="font-semibold text-gray-900">Blue Team Africa</span>
@@ -189,7 +189,7 @@ export default function Header() {
               <nav className="hidden md:flex items-center gap-6 text-sm font-medium" aria-label="Main navigation">
                 <Link
                   href="/"
-                  className={`py-1 px-1 ${isActive('/') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#2563EB)]'}`}
+                  className={`py-1 px-1 ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
                 >
                   Home
                 </Link>
@@ -201,7 +201,7 @@ export default function Header() {
                       setAboutOpen(!aboutOpen)
                       setServicesOpen(false)
                     }}
-                    className={`flex items-center gap-1 py-1 px-1 ${isActive('/about') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#2563EB)]'}`}
+                    className={`flex items-center gap-1 py-1 px-1 ${isActive('/about') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
                     aria-haspopup="true"
                     aria-expanded={aboutOpen}
                   >
@@ -223,7 +223,7 @@ export default function Header() {
                           <Link
                             key={i}
                             href={l.href}
-                            className={`block px-3 py-2 text-sm rounded hover:bg-gray-50 ${isActive(l.href) ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700'}`}
+                            className={`block px-3 py-2 text-sm rounded hover:bg-gray-50 ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
                             onClick={() => setAboutOpen(false)}
                           >
                             {l.name}
@@ -241,7 +241,7 @@ export default function Header() {
                       setServicesOpen(!servicesOpen)
                       setAboutOpen(false)
                     }}
-                    className={`flex items-center gap-1 py-1 px-1 ${isActive('/services') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#2563EB)]'}`}
+                    className={`flex items-center gap-1 py-1 px-1 ${isActive('/services') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
                     aria-haspopup="true"
                     aria-expanded={servicesOpen}
                   >
@@ -268,7 +268,7 @@ export default function Header() {
                                   <li key={idx}>
                                     <Link
                                       href={it.href}
-                                      className={`block px-2 py-1 rounded hover:bg-gray-50 text-sm ${isActive(it.href) ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700'}`}
+                                      className={`block px-2 py-1 rounded hover:bg-gray-50 text-sm ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
                                       onClick={() => setServicesOpen(false)}
                                     >
                                       {it.name}
@@ -284,17 +284,17 @@ export default function Header() {
                   </AnimatePresence>
                 </div>
 
-                <Link href="/portfolio" className={`py-1 px-1 ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#2563EB)]'}`}>
+                <Link href="/portfolio" className={`py-1 px-1 ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
                   Portfolio
                 </Link>
-                <Link href="/blog" className={`py-1 px-1 ${isActive('/blog') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#2563EB)]'}`}>
+                <Link href="/blog" className={`py-1 px-1 ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
                   Blog
                 </Link>
 
                 {/* Contact inline as part of nav */}
                 <Link
                   href="/contact"
-                  className="ml-2 inline-flex items-center gap-2 px-3 py-1 bg-[color:var(--color-primary,#2563EB)] text-white rounded-full text-sm font-semibold shadow-sm hover:bg-[color:var(--color-primary,#2563EB)]/90 transition"
+                  className="ml-2 inline-flex items-center gap-2 px-3 py-1 bg-[color:var(--color-primary,#1982c4)] text-white rounded-full text-sm font-semibold shadow-sm hover:bg-[color:var(--color-primary,#1982c4)]/90 transition"
                 >
                   Contact
                 </Link>
@@ -378,7 +378,7 @@ export default function Header() {
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-                  <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#2563EB)] text-white flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white flex items-center justify-center font-bold">
                     BT
                   </div>
                   <span className="font-semibold text-gray-900">Blue Team Africa</span>
@@ -395,7 +395,7 @@ export default function Header() {
               <nav className="space-y-4">
                 <Link
                   href="/"
-                  className={`block py-2 px-3 rounded-md ${isActive('/') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                  className={`block py-2 px-3 rounded-md ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   Home
@@ -404,7 +404,7 @@ export default function Header() {
                 <div>
                   <button
                     onClick={() => setAboutOpen(!aboutOpen)}
-                    className={`w-full flex items-center justify-between py-2 px-3 rounded-md ${isActive('/about') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                    className={`w-full flex items-center justify-between py-2 px-3 rounded-md ${isActive('/about') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   >
                     About
                     <ChevronDown size={16} className={`transition-transform ${aboutOpen ? 'rotate-180' : 'rotate-0'}`} />
@@ -422,7 +422,7 @@ export default function Header() {
                             <Link
                               key={i}
                               href={l.href}
-                              className={`block py-2 px-3 rounded-md text-sm ${isActive(l.href) ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
+                              className={`block py-2 px-3 rounded-md text-sm ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
                               onClick={() => {
                                 setMobileOpen(false)
                                 setAboutOpen(false)
@@ -440,7 +440,7 @@ export default function Header() {
                 <div>
                   <button
                     onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`w-full flex items-center justify-between py-2 px-3 rounded-md ${isActive('/services') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                    className={`w-full flex items-center justify-between py-2 px-3 rounded-md ${isActive('/services') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   >
                     Services
                     <ChevronDown size={16} className={`transition-transform ${servicesOpen ? 'rotate-180' : 'rotate-0'}`} />
@@ -463,7 +463,7 @@ export default function Header() {
                                 <Link
                                   key={idx}
                                   href={it.href}
-                                  className={`block py-2 px-3 rounded-md text-sm ${isActive(it.href) ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
+                                  className={`block py-2 px-3 rounded-md text-sm ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
                                   onClick={() => {
                                     setMobileOpen(false)
                                     setServicesOpen(false)
@@ -482,7 +482,7 @@ export default function Header() {
 
                 <Link
                   href="/portfolio"
-                  className={`block py-2 px-3 rounded-md ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                  className={`block py-2 px-3 rounded-md ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   Portfolio
@@ -490,7 +490,7 @@ export default function Header() {
 
                 <Link
                   href="/blog"
-                  className={`block py-2 px-3 rounded-md ${isActive('/blog') ? 'text-[color:var(--color-primary,#2563EB)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                  className={`block py-2 px-3 rounded-md ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   Blog
@@ -498,7 +498,7 @@ export default function Header() {
 
                 <Link
                   href="/contact"
-                  className="block py-2 px-3 rounded-md bg-[color:var(--color-primary,#2563EB)] text-white font-semibold text-center hover:bg-[color:var(--color-primary,#2563EB)]/90 transition"
+                  className="block py-2 px-3 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white font-semibold text-center hover:bg-[color:var(--color-primary,#1982c4)]/90 transition"
                   onClick={() => setMobileOpen(false)}
                 >
                   Contact

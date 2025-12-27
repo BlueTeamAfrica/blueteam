@@ -120,7 +120,7 @@ Total animation time: ~0.9s
 ### Underline
 - Fixed width: 90px
 - Height: 6px (thick, Oracom-style)
-- Color: `#2563EB` (blue-600)
+- Color: `#1982c4` (blue-600)
 - Rounded corners
 - Centered below title
 
@@ -134,7 +134,7 @@ Total animation time: ~0.9s
 ## Customization
 
 ### Change Underline Color
-Update the `bg-[#2563EB]` class to match your brand:
+Update the `bg-[#1982c4]` class to match your brand:
 ```tsx
 className="h-[6px] bg-primary rounded-full mx-auto mt-4"
 ```
@@ -160,7 +160,7 @@ Replace the fixed width animation:
   initial={{ scaleX: 0 }}
   animate={{ scaleX: 1 }}
   transition={{ duration: 0.6, delay: 0.3 }}
-  className="h-[6px] bg-[#2563EB] rounded-full mx-auto mt-4 w-24"
+  className="h-[6px] bg-[#1982c4] rounded-full mx-auto mt-4 w-24"
   style={{ transformOrigin: 'center' }}
 />
 ```
@@ -240,7 +240,7 @@ transition={{
 ## Notes
 
 - The component uses `framer-motion` which is already in your dependencies
-- Blue color `#2563EB` matches Tailwind's `blue-600`
+- Blue color `#1982c4` matches Tailwind's `blue-600`
 - Animations run once on mount (no re-triggers)
 - Breadcrumb items without `href` are rendered as plain text (current page)
 

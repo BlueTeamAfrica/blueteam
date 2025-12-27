@@ -85,7 +85,7 @@ blueteamafrica/
 
 ## 🎨 Brand Colors
 
-- **Primary (Blue):** `#2563EB`
+- **Primary (Blue):** `#1982c4`
 - **Secondary (Amber/Gold):** `#D97706`
 - **Background:** `#F8FAFC`
 - **Dark:** `#0F172A`
