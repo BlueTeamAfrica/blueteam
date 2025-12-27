@@ -28,6 +28,16 @@ export const metadata: Metadata = {
   },
   description: 'Blue Team Africa - Professional web design, hosting, and enterprise systems for East Africa.',
   metadataBase: new URL('https://www.blueteamafrica.com'),
+  icons: {
+    icon: [
+      { url: '/images/logo/logo.png', sizes: 'any' },
+      { url: '/images/logo/logo.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/images/logo/logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/images/logo/logo.png',
+  },
 }
 
 export default function RootLayout({

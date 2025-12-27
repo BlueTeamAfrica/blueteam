@@ -272,6 +272,244 @@ export default function WebDesignRwandaPage() {
           </div>
         </section>
 
+        {/* Industries We Serve in Rwanda */}
+        <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-up" aria-labelledby="industries-rwanda">
+          <h2 id="industries-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Industries We Serve in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-4">
+              Blue Team Africa provides web design services to organizations across multiple sectors in Rwanda, each with distinct digital communication needs and objectives.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Non-Governmental Organizations</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  NGOs operating in Rwanda require websites that effectively communicate their mission, showcase program impact, and facilitate donor engagement. We design platforms that highlight humanitarian work, program outcomes, and organizational transparency.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Program portfolio and impact reporting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Donor engagement and fundraising platforms</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Multi-language support for international audiences</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Businesses and Enterprises</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Businesses in Rwanda need professional websites that establish credibility, showcase products and services, and generate leads. We create conversion-focused designs that drive customer engagement and support business growth.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Service showcase and portfolio presentation</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Lead generation and contact optimization</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>E-commerce and online sales integration</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Educational Institutions</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Schools, universities, and training organizations in Rwanda benefit from websites that provide information to students, parents, and stakeholders while showcasing academic programs and achievements.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Program and course information systems</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Student portal integration capabilities</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>News and event management features</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Healthcare Organizations</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Healthcare providers and medical facilities in Rwanda need websites that build trust, provide essential information, and enable patient engagement while maintaining privacy and compliance standards.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Service information and facility details</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Appointment booking system integration</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Health information and resource libraries</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Web Design Process */}
+        <section className="mb-16 fade-up" aria-labelledby="design-process">
+          <h2 id="design-process" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Our Web Design Process for Organizations in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-6">
+              We follow a structured design process that ensures your website meets your organization's goals while delivering an exceptional user experience for your audience in Rwanda and beyond.
+            </p>
+            <div className="space-y-6">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">1. Discovery and Planning</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We begin by understanding your organization's goals, target audience, and unique requirements. This phase includes stakeholder interviews, competitive analysis, and technical requirements gathering to inform the design strategy.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Stakeholder consultation and goal definition</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Audience research and user persona development</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Content audit and information architecture planning</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">2. Design and Prototyping</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Our design team creates visual mockups and interactive prototypes that bring your website concept to life. We focus on user experience, visual hierarchy, and conversion optimization throughout the design phase.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Wireframe development and layout planning</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Visual design and brand integration</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Interactive prototype creation and user testing</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">3. Development and Implementation</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Once designs are approved, we build your website using modern web technologies, ensuring fast performance, mobile responsiveness, and SEO optimization. We conduct thorough testing across devices and browsers.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Responsive frontend development</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Performance optimization and speed testing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Cross-browser and device compatibility testing</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">4. Launch and Optimization</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We manage the launch process, including content migration, final testing, and go-live coordination. After launch, we monitor performance and make optimizations based on user behavior and analytics data.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Pre-launch quality assurance and testing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Deployment and DNS configuration</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Post-launch monitoring and performance optimization</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Related Services */}
+        <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-10 fade-up" aria-labelledby="related-services">
+          <h2 id="related-services" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Related Services for Organizations in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-6">
+              Beyond web design, Blue Team Africa offers complementary services that help organizations in Rwanda build comprehensive digital solutions.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Website Development</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  For organizations requiring advanced functionality, custom features, or complex integrations, our <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services in Rwanda</Link> provide the technical foundation needed for sophisticated digital platforms.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Includes backend systems, API development, database integration, and scalable architecture.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Branding and UI/UX Design</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Comprehensive branding services that extend beyond web design, including logo creation, brand identity development, and user interface design that creates cohesive visual experiences.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Ensures consistent brand representation across all digital touchpoints.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Hosting and Maintenance</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Reliable hosting solutions optimized for performance in Rwanda, along with ongoing maintenance, security updates, and technical support to keep your website running smoothly.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Includes regular backups, security monitoring, and performance optimization.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">E-commerce Development</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  For businesses looking to sell products or services online, we build e-commerce platforms with payment integration, inventory management, and order processing capabilities.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Supports local payment methods and mobile money integration for Rwanda.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Working with Organizations in Rwanda */}
         <section className="mb-16 fade-up" aria-labelledby="working-rwanda">
           <h2 id="working-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">

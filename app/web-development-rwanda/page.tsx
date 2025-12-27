@@ -413,6 +413,244 @@ export default function WebDevelopmentRwandaPage() {
           </div>
         </section>
 
+        {/* Industries We Serve in Rwanda */}
+        <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-up" aria-labelledby="industries-rwanda">
+          <h2 id="industries-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Industries We Serve in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-4">
+              Our web development services support organizations across various sectors in Rwanda, each requiring specialized technical solutions and system architectures.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Humanitarian and Development Organizations</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  NGOs and humanitarian organizations in Rwanda need secure, scalable systems for program management, beneficiary tracking, and donor reporting. We build platforms that handle sensitive data while maintaining accessibility for field teams.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Program management and reporting systems</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Beneficiary database and tracking platforms</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Mobile app integration for field data collection</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Financial Services and Fintech</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Financial institutions and fintech companies in Rwanda require robust, secure web applications with payment processing, transaction management, and compliance features. We build systems that meet regulatory requirements while delivering excellent user experiences.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Payment gateway integration and processing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Transaction management and reporting systems</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Secure authentication and authorization systems</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Healthcare and Medical Services</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Healthcare providers in Rwanda need web applications that manage patient information, appointments, and medical records while maintaining strict privacy and security standards. We develop HIPAA-compliant systems tailored to healthcare workflows.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Patient management and appointment systems</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Medical record management platforms</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Telemedicine and remote consultation tools</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Education and E-Learning</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Educational institutions and e-learning platforms in Rwanda require web applications that support course delivery, student management, and administrative functions. We build scalable learning management systems and student portals.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Learning management system development</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Student portal and enrollment systems</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Content delivery and assessment platforms</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Development Process */}
+        <section className="mb-16 fade-up" aria-labelledby="development-process">
+          <h2 id="development-process" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Our Web Development Process for Organizations in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-6">
+              We follow an agile development methodology that ensures transparency, flexibility, and continuous delivery of value throughout the project lifecycle for organizations in Rwanda.
+            </p>
+            <div className="space-y-6">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">1. Requirements Analysis and Planning</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We conduct detailed requirements gathering sessions to understand your organization's technical needs, operational workflows, and integration requirements. This phase includes system architecture design and technology stack selection.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Stakeholder interviews and workflow analysis</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Technical requirements documentation</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>System architecture and technology selection</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">2. Development and Iteration</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Our development team builds your application using modern frameworks and best practices. We work in sprints, delivering functional increments regularly and incorporating feedback throughout the development process.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Agile sprint planning and execution</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Regular code reviews and quality assurance</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Continuous integration and automated testing</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">3. Testing and Quality Assurance</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We conduct comprehensive testing including unit tests, integration tests, security audits, and performance testing. We ensure your application works reliably under real-world conditions in Rwanda's digital environment.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Automated and manual testing procedures</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Security vulnerability scanning and remediation</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Performance testing and optimization</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">4. Deployment and Support</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We manage the deployment process, including server configuration, database migration, and go-live coordination. After launch, we provide ongoing support, monitoring, and iterative improvements based on user feedback and system performance.
+                </p>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Production deployment and configuration</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Team training and documentation delivery</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    <span>Ongoing maintenance and feature development</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Related Services */}
+        <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-10 fade-up" aria-labelledby="related-services">
+          <h2 id="related-services" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Related Services for Organizations in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-6">
+              Our web development services integrate seamlessly with other digital solutions we provide to organizations in Rwanda, creating comprehensive technology ecosystems.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">ERP and CRM Systems</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  For organizations requiring comprehensive business management, we integrate web applications with ERP and CRM systems that streamline operations, manage customer relationships, and automate workflows.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Includes ERPNext integration, custom CRM development, and workflow automation.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Mobile App Development</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We develop mobile applications that integrate with web platforms, enabling field teams to collect data, access information, and synchronize with central systems even in areas with limited connectivity.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Native and cross-platform apps with offline capabilities and real-time sync.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Cybersecurity Services</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We provide comprehensive security services including security audits, penetration testing, and secure hosting to protect web applications and sensitive organizational data.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Includes vulnerability assessments, security hardening, and ongoing threat monitoring.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Cloud Hosting and Infrastructure</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  We deploy and manage cloud infrastructure optimized for performance in Rwanda, including scalable hosting, database management, and content delivery network configuration.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  Ensures high availability, fast load times, and reliable uptime for organizations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Blue Team Africa */}
         <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-up" aria-labelledby="why-choose">
           <h2 id="why-choose" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
