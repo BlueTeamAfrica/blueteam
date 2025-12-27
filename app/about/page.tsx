@@ -186,7 +186,6 @@ export default function AboutPage() {
             We support organizations across Rwanda with professional <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">web design services in Rwanda</Link> and comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development solutions for businesses and NGOs</Link>. Our team combines technical expertise with regional knowledge to deliver digital solutions that work for Rwandan organizations.
           </p>
         </div>
-        </div>
       </section>
 
       {/* CTA */}
