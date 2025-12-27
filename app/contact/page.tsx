@@ -353,6 +353,12 @@ export default function ContactPage() {
             </ul>
           </div>
         </div>
+        
+        <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+          <p className="text-gray-700 leading-relaxed">
+            For organizations in Rwanda seeking local digital solutions, we provide specialized <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">website design services in Rwanda</Link> and custom <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services for businesses and NGOs operating in Rwanda</Link>. Contact us to discuss your project requirements.
+          </p>
+        </div>
 
             <div className="text-center">
               <Link

@@ -244,7 +244,7 @@ export default function ServicesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 items-center">
           <div className="sm:col-span-2">
             <h3 className="text-xl font-bold">Why choose Blue Team Africa?</h3>
-            <p className="mt-2 text-slate-600">Local teams, fast delivery, and systems built for NGOs and enterprises.</p>
+            <p className="mt-2 text-slate-600">Local teams, fast delivery, and systems built for NGOs and enterprises. We work with organizations across East Africa, providing <Link href="/web-design-rwanda" className="text-blue-600 hover:text-blue-700 hover:underline">professional web design services in Rwanda</Link> and <Link href="/web-development-rwanda" className="text-blue-600 hover:text-blue-700 hover:underline">comprehensive web development solutions for businesses in Rwanda</Link>.</p>
           </div>
 
           <FeatureItem title="Fast Delivery" desc="Lean teams and rapid iterations." />
