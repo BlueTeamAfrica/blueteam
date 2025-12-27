@@ -190,6 +190,21 @@ export default function WebDevelopmentRwandaPage() {
           </div>
         </section>
 
+        {/* Web Development for Businesses in Rwanda */}
+        <section className="mb-16 fade-up" aria-labelledby="web-development-businesses-rwanda">
+          <h2 id="web-development-businesses-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
+            Web Development for Businesses in Rwanda
+          </h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <p className="mb-4">
+              We provide professional web development services for businesses and organizations across Rwanda, including Kigali and surrounding regions. Our development work focuses on performance, security, and scalability — helping NGOs, startups, and growing companies build reliable digital platforms that support real operational needs.
+            </p>
+            <p>
+              From custom websites to web applications and backend systems, our team understands the technical and compliance requirements common in Rwanda-based projects. We work closely with clients to deliver development solutions that integrate smoothly with existing tools, support future growth, and align with local business environments. We also provide <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web design services in Rwanda</Link> for organizations that need both visual design and technical development capabilities.
+            </p>
+          </div>
+        </section>
+
         {/* Technical Capabilities and Development Stack */}
         <section className="mb-16 bg-gray-50 rounded-2xl p-8 md:p-10 fade-up" aria-labelledby="technical-capabilities">
           <h2 id="technical-capabilities" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
