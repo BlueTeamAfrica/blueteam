@@ -2,9 +2,10 @@ const sharp = require('sharp');
 const fs = require('fs');
 
 // Create a 512x512 blue square with white BT text using SVG
+// Using site's default primary color #1982c4 (same as header)
 const svg = `
 <svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" fill="#2563EB" rx="32"/>
+  <rect width="512" height="512" fill="#1982c4" rx="32"/>
   <text x="256" y="320" font-family="Arial, sans-serif" font-size="280" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">BT</text>
 </svg>
 `;
