@@ -12,13 +12,6 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
-  // Target modern browsers to reduce polyfills
-  experimental: {
-    // Use modern output for smaller bundles
-    outputFileTracingIncludes: {
-      '/**': ['./node_modules/**/*'],
-    },
-  },
   // Transpile only what's necessary for modern browsers
   transpilePackages: [],
   // Note: SWC minification is enabled by default in Next.js 13+ (no need for swcMinify option)
