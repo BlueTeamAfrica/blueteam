@@ -151,14 +151,14 @@ export default function Header() {
 
           {/* Contact Info - Right Side */}
           <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
-            <a href="tel:+256765508131" className="font-semibold hover:underline whitespace-nowrap hidden md:inline text-white" style={{ color: '#ffffff' }}>
+            <a href="tel:+256765508131" className="font-semibold no-underline whitespace-nowrap hidden md:inline text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
               +256 765 508 131
             </a>
             <span className="text-white/60 hidden sm:inline">|</span>
-            <a href="tel:+250798973375" className="font-semibold hover:underline whitespace-nowrap text-white" style={{ color: '#ffffff' }}>
+            <a href="tel:+250798973375" className="font-semibold no-underline whitespace-nowrap text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
               +250 798 973 375
             </a>
-            <a href="mailto:contact@blueteamafrica.com" className="hidden lg:inline-block font-semibold hover:underline ml-2">
+            <a href="mailto:contact@blueteamafrica.com" className="hidden lg:inline-block font-semibold no-underline ml-2 text-white hover:opacity-80 transition-opacity">
               contact@blueteamafrica.com
             </a>
           </div>
@@ -177,7 +177,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-1">
           <div className="flex items-center gap-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0 h-10">
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0 h-10 no-underline">
               <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white flex items-center justify-center font-bold">
                 BT
               </div>
@@ -189,7 +189,7 @@ export default function Header() {
               <nav className="hidden md:flex items-center gap-6 text-sm font-medium" aria-label="Main navigation">
                 <Link
                   href="/"
-                  className={`py-1 px-1 ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
+                  className={`py-1 px-1 no-underline ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
                 >
                   Home
                 </Link>
@@ -201,7 +201,7 @@ export default function Header() {
                       setAboutOpen(!aboutOpen)
                       setServicesOpen(false)
                     }}
-                    className={`flex items-center gap-1 py-1 px-1 ${isActive('/about') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
+                    className={`flex items-center gap-1 py-1 px-1 no-underline ${isActive('/about') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
                     aria-haspopup="true"
                     aria-expanded={aboutOpen}
                   >
@@ -223,7 +223,7 @@ export default function Header() {
                           <Link
                             key={i}
                             href={l.href}
-                            className={`block px-3 py-2 text-sm rounded hover:bg-gray-50 ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
+                            className={`block px-3 py-2 text-sm rounded hover:bg-gray-50 no-underline ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
                             onClick={() => setAboutOpen(false)}
                           >
                             {l.name}
@@ -241,7 +241,7 @@ export default function Header() {
                       setServicesOpen(!servicesOpen)
                       setAboutOpen(false)
                     }}
-                    className={`flex items-center gap-1 py-1 px-1 ${isActive('/services') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
+                    className={`flex items-center gap-1 py-1 px-1 no-underline ${isActive('/services') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
                     aria-haspopup="true"
                     aria-expanded={servicesOpen}
                   >
@@ -268,7 +268,7 @@ export default function Header() {
                                   <li key={idx}>
                                     <Link
                                       href={it.href}
-                                      className={`block px-2 py-1 rounded hover:bg-gray-50 text-sm ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
+                                      className={`block px-2 py-1 rounded hover:bg-gray-50 text-sm no-underline ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
                                       onClick={() => setServicesOpen(false)}
                                     >
                                       {it.name}
@@ -284,17 +284,17 @@ export default function Header() {
                   </AnimatePresence>
                 </div>
 
-                <Link href="/portfolio" className={`py-1 px-1 ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
+                <Link href="/portfolio" className={`py-1 px-1 no-underline ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
                   Portfolio
                 </Link>
-                <Link href="/blog" className={`py-1 px-1 ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
+                <Link href="/blog" className={`py-1 px-1 no-underline ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
                   Blog
                 </Link>
 
                 {/* Contact inline as part of nav */}
                 <Link
                   href="/contact"
-                  className="ml-2 inline-flex items-center gap-2 px-3 py-1 bg-[color:var(--color-primary,#1982c4)] text-white rounded-full text-sm font-semibold shadow-sm hover:bg-[color:var(--color-primary,#1982c4)]/90 transition"
+                  className="ml-2 inline-flex items-center gap-2 px-3 py-1 bg-[color:var(--color-primary,#1982c4)] text-white rounded-full text-sm font-semibold shadow-sm hover:bg-[color:var(--color-primary,#1982c4)]/90 transition no-underline"
                 >
                   Contact
                 </Link>
@@ -377,7 +377,7 @@ export default function Header() {
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+                <Link href="/" className="flex items-center gap-3 no-underline" onClick={() => setMobileOpen(false)}>
                   <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white flex items-center justify-center font-bold">
                     BT
                   </div>
@@ -395,7 +395,7 @@ export default function Header() {
               <nav className="space-y-4">
                 <Link
                   href="/"
-                  className={`block py-2 px-3 rounded-md ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                  className={`block py-2 px-3 rounded-md no-underline ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   Home
@@ -422,7 +422,7 @@ export default function Header() {
                             <Link
                               key={i}
                               href={l.href}
-                              className={`block py-2 px-3 rounded-md text-sm ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
+                              className={`block py-2 px-3 rounded-md text-sm no-underline ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
                               onClick={() => {
                                 setMobileOpen(false)
                                 setAboutOpen(false)
@@ -463,7 +463,7 @@ export default function Header() {
                                 <Link
                                   key={idx}
                                   href={it.href}
-                                  className={`block py-2 px-3 rounded-md text-sm ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
+                                  className={`block py-2 px-3 rounded-md text-sm no-underline ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
                                   onClick={() => {
                                     setMobileOpen(false)
                                     setServicesOpen(false)
@@ -482,7 +482,7 @@ export default function Header() {
 
                 <Link
                   href="/portfolio"
-                  className={`block py-2 px-3 rounded-md ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                  className={`block py-2 px-3 rounded-md no-underline ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   Portfolio
@@ -490,7 +490,7 @@ export default function Header() {
 
                 <Link
                   href="/blog"
-                  className={`block py-2 px-3 rounded-md ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                  className={`block py-2 px-3 rounded-md no-underline ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   Blog
@@ -498,7 +498,7 @@ export default function Header() {
 
                 <Link
                   href="/contact"
-                  className="block py-2 px-3 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white font-semibold text-center hover:bg-[color:var(--color-primary,#1982c4)]/90 transition"
+                  className="block py-2 px-3 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white font-semibold text-center hover:bg-[color:var(--color-primary,#1982c4)]/90 transition no-underline"
                   onClick={() => setMobileOpen(false)}
                 >
                   Contact
