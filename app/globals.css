@@ -48,6 +48,18 @@ button[class*="bg-"],
   text-decoration: none !important;
 }
 
+/* Remove underlines from header navigation only (header + upper header) */
+header a,
+header nav a,
+aside[role="dialog"] a {
+  text-decoration: none !important;
+}
+
+/* Top header bar links (fixed blue bar at top) - target by inline style attribute */
+div[style*="backgroundColor: var(--color-primary"] a {
+  text-decoration: none !important;
+}
+
 html, body {
   height: 100%;
 }
