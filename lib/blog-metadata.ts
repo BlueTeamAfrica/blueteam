@@ -36,10 +36,20 @@ export const metadataChoosingWebDesignRwanda: Metadata = {
   },
 }
 
+// 5. Web Development Companies in Rwanda: What to Look For (2026)
+export const metadataWebDevelopmentCompaniesRwanda: Metadata = {
+  title: 'Web Development Companies in Rwanda: What to Look For (2026)',
+  description: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/blog/web-development-companies-in-rwanda-what-to-look-for-2026',
+  },
+}
+
 // Metadata mapping by slug
 export const blogMetadataMap: Record<string, Metadata> = {
   'how-to-choose-the-right-website-for-your-ngo': metadataHowToChooseWebsite,
   'why-hosting-speed-matters-in-africa': metadataHostingSpeed,
   'erp-for-african-smes-a-complete-guide': metadataErpGuide,
   'choosing-a-web-design-company-in-rwanda-what-businesses-should-know': metadataChoosingWebDesignRwanda,
+  'web-development-companies-in-rwanda-what-to-look-for-2026': metadataWebDevelopmentCompaniesRwanda,
 }

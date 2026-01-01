@@ -10,6 +10,14 @@ export const metadata = {
 
 const blogPosts = [
   {
+    slug: 'web-development-companies-in-rwanda-what-to-look-for-2026',
+    title: 'Web Development Companies in Rwanda: What to Look For in 2026',
+    excerpt: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
+    date: '2025-01-20',
+    category: 'Web Development',
+    image: '/images/blog/blog-thumbnail-01.webp',
+  },
+  {
     slug: 'choosing-a-web-design-company-in-rwanda-what-businesses-should-know',
     title: 'Choosing a Web Design Company in Rwanda: What Businesses Should Know',
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
