@@ -5,8 +5,8 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { Code, Database, Zap, Shield, GitBranch, Server, Cloud } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Web Development Company in Rwanda | Blue Team Africa',
-  description: 'Web development company in Rwanda providing professional web development services for businesses and NGOs. Custom backend systems, API integrations, database solutions, and scalable web applications built for Kigali and across Rwanda.',
+  title: 'Web Development Company in Rwanda | Scalable Business Systems',
+  description: 'Reliable web development services in Rwanda for companies and NGOs. Scalable systems built for performance and growth.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://www.blueteamafrica.com/web-development-rwanda',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     'scalable web development Rwanda',
   ],
   openGraph: {
-    title: 'Web Development Company in Rwanda | Blue Team Africa',
-    description: 'Web development company in Rwanda providing professional web development services for businesses and NGOs. Custom backend systems, API integrations, and scalable web applications.',
+    title: 'Web Development Company in Rwanda | Scalable Business Systems',
+    description: 'Reliable web development services in Rwanda for companies and NGOs. Scalable systems built for performance and growth.',
     url: 'https://www.blueteamafrica.com/web-development-rwanda',
     type: 'website',
   },

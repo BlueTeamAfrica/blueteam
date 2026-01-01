@@ -5,8 +5,8 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Web Design Services in Rwanda | Blue Team Africa',
-  description: 'Professional web design services for businesses and NGOs in Rwanda. Modern, mobile-first websites optimized for performance and conversions in Kigali and across Rwanda.',
+  title: 'Web Design Company in Rwanda | High-Performance Websites',
+  description: 'Professional web design services in Rwanda for businesses and NGOs. We build fast, secure, and SEO-ready websites.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://www.blueteamafrica.com/web-design-rwanda',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     'business website design Rwanda',
   ],
   openGraph: {
-    title: 'Web Design Services in Rwanda | Blue Team Africa',
-    description: 'Professional web design services for businesses and NGOs in Rwanda. Modern, mobile-first websites optimized for performance and conversions.',
+    title: 'Web Design Company in Rwanda | High-Performance Websites',
+    description: 'Professional web design services in Rwanda for businesses and NGOs. We build fast, secure, and SEO-ready websites.',
     url: 'https://www.blueteamafrica.com/web-design-rwanda',
     type: 'website',
   },
