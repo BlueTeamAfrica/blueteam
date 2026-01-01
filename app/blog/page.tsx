@@ -23,7 +23,7 @@ const blogPosts = [
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
     date: '2024-12-20',
     category: 'Web Design',
-    image: '/images/blog/blog-thumbnail-01.webp',
+    image: '/images/blog/blog-thumbnail-04.webp',
   },
   {
     slug: 'how-to-choose-the-right-website-for-your-ngo',
@@ -31,7 +31,7 @@ const blogPosts = [
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
     category: 'Web Development',
-    image: '/images/blog/blog-thumbnail-01.webp',
+    image: '/images/blog/blog-thumbnail-05.webp',
   },
   {
     slug: 'why-hosting-speed-matters-in-africa',

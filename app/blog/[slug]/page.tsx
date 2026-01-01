@@ -13,7 +13,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
     category: 'Web Development',
-    image: '/images/blog/blog-thumbnail-01.webp',
+    image: '/images/blog/blog-thumbnail-05.webp',
     content: `
       <p>Choosing the right website for your NGO is crucial for effectively reaching your audience, engaging donors, and managing your programs. With so many options available, it can be overwhelming to determine which solution best fits your organization's needs and budget.</p>
       
@@ -141,7 +141,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
     date: '2024-12-20',
     category: 'Web Design',
-    image: '/images/blog/blog-thumbnail-01.webp',
+    image: '/images/blog/blog-thumbnail-04.webp',
     content: `
       <p>For businesses operating in Rwanda, having a professional website has become essential for establishing credibility, reaching customers, and competing in the digital marketplace. However, selecting the right web design company can be challenging, especially when you're trying to balance quality, cost, and local understanding.</p>
       
