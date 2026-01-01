@@ -13,7 +13,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
     category: 'Web Development',
-    image: '/images/blog/blog-thumbnail-05.webp',
+    image: '/blog/choosing-website-for-ngo.webp',
     content: `
       <p>Choosing the right website for your NGO is crucial for effectively reaching your audience, engaging donors, and managing your programs. With so many options available, it can be overwhelming to determine which solution best fits your organization's needs and budget.</p>
       
@@ -50,7 +50,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'Understanding the importance of fast hosting speeds for African businesses and how it impacts user experience and conversions.',
     date: '2024-01-10',
     category: 'Hosting',
-    image: '/images/blog/blog-thumbnail-02.webp',
+    image: '/blog/hosting-speed-matters-africa.webp',
     content: `
       <p>Website speed is critical for businesses everywhere, but in Africa, it takes on even greater significance due to unique infrastructure challenges and user behavior patterns. Slow-loading websites don't just frustrate users—they directly impact your bottom line.</p>
       
@@ -88,7 +88,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'Everything small and medium enterprises in Africa need to know about implementing ERP systems to streamline operations.',
     date: '2024-01-05',
     category: 'ERP Systems',
-    image: '/images/blog/blog-thumbnail-03.webp',
+    image: '/blog/erp-african-smes-guide.webp',
     content: `
       <p>Enterprise Resource Planning (ERP) systems are no longer reserved for large corporations. Small and medium enterprises (SMEs) across Africa are discovering that ERP solutions can transform their operations, improve efficiency, and enable growth.</p>
       
@@ -141,7 +141,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
     date: '2024-12-20',
     category: 'Web Design',
-    image: '/images/blog/blog-thumbnail-04.webp',
+    image: '/blog/choosing-web-design-company-rwanda.webp',
     content: `
       <p>For businesses operating in Rwanda, having a professional website has become essential for establishing credibility, reaching customers, and competing in the digital marketplace. However, selecting the right web design company can be challenging, especially when you're trying to balance quality, cost, and local understanding.</p>
       
@@ -191,7 +191,7 @@ const blogPosts: Record<string, any> = {
     excerpt: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
     date: '2025-01-20',
     category: 'Web Development',
-    image: '/images/blog/blog-thumbnail-01.webp',
+    image: '/blog/web-development-companies-rwanda-2026.webp',
     content: `
       <p>As businesses and NGOs in Rwanda continue to expand their digital presence in 2026, selecting the right web development partner has become increasingly important. The landscape of web development services in Rwanda has evolved, with organizations requiring solutions that balance technical quality, local understanding, and scalability.</p>
       
@@ -311,9 +311,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <Image
               src={post.image}
               alt={post.title}
-              fill
-              className="object-cover"
-              sizes="100vw"
+              width={1200}
+              height={630}
+              className="object-cover w-full h-full"
+              priority
             />
           </div>
         </div>

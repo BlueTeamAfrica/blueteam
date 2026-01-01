@@ -15,7 +15,7 @@ const blogPosts = [
     excerpt: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
     date: '2025-01-20',
     category: 'Web Development',
-    image: '/images/blog/blog-thumbnail-01.webp',
+    image: '/blog/web-development-companies-rwanda-2026.webp',
   },
   {
     slug: 'choosing-a-web-design-company-in-rwanda-what-businesses-should-know',
@@ -23,7 +23,7 @@ const blogPosts = [
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
     date: '2024-12-20',
     category: 'Web Design',
-    image: '/images/blog/blog-thumbnail-04.webp',
+    image: '/blog/choosing-web-design-company-rwanda.webp',
   },
   {
     slug: 'how-to-choose-the-right-website-for-your-ngo',
@@ -31,7 +31,7 @@ const blogPosts = [
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
     category: 'Web Development',
-    image: '/images/blog/blog-thumbnail-05.webp',
+    image: '/blog/choosing-website-for-ngo.webp',
   },
   {
     slug: 'why-hosting-speed-matters-in-africa',
@@ -39,7 +39,7 @@ const blogPosts = [
     excerpt: 'Understanding the importance of fast hosting speeds for African businesses and how it impacts user experience and conversions.',
     date: '2024-01-10',
     category: 'Hosting',
-    image: '/images/blog/blog-thumbnail-02.webp',
+    image: '/blog/hosting-speed-matters-africa.webp',
   },
   {
     slug: 'erp-for-african-smes-a-complete-guide',
@@ -47,7 +47,7 @@ const blogPosts = [
     excerpt: 'Everything small and medium enterprises in Africa need to know about implementing ERP systems to streamline operations.',
     date: '2024-01-05',
     category: 'ERP Systems',
-    image: '/images/blog/blog-thumbnail-03.webp',
+    image: '/blog/erp-african-smes-guide.webp',
   },
 ]
 
@@ -76,9 +76,9 @@ export default function BlogPage() {
                   <Image
                     src={post.image}
                     alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    width={400}
+                    height={256}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-6">
