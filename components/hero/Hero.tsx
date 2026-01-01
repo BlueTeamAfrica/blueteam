@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 
 // Dynamically import framer-motion only for desktop to reduce mobile JS payload
@@ -77,7 +78,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl opacity-90">
-          Web design, mobile apps, cloud hosting, cybersecurity & full-stack enterprise solutions — built for East Africa and beyond.
+          Web design, mobile apps, cloud hosting, cybersecurity & full-stack enterprise solutions — built for East Africa and beyond. We offer <Link href="/web-design-rwanda" className="underline hover:text-orange-300 transition-colors">professional web design services in Rwanda</Link> tailored for businesses and NGOs.
         </p>
 
         {/* Rotating Services - Use CSS animation on mobile, Framer Motion on desktop */}

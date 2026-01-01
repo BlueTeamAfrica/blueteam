@@ -254,7 +254,7 @@ export default function WebDesignRwandaPage() {
                 We use cutting-edge web technologies and best practices to build websites that are fast, secure, and scalable. Your website will be built to grow with your business.
               </p>
               <p className="text-gray-700 leading-relaxed mt-3">
-                For projects that require advanced functionality, integrations, or scalable systems, we also provide <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">custom web development services in Rwanda</Link> tailored to complex business and NGO needs.
+                For projects that require advanced functionality, integrations, or scalable systems, we also provide <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">custom web development solutions in Rwanda</Link> tailored to complex business and NGO needs.
               </p>
             </div>
             <div>

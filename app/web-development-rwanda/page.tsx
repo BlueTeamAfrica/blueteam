@@ -200,7 +200,7 @@ export default function WebDevelopmentRwandaPage() {
               We provide professional web development services for businesses and organizations across Rwanda, including Kigali and surrounding regions. Our development work focuses on performance, security, and scalability — helping NGOs, startups, and growing companies build reliable digital platforms that support real operational needs.
             </p>
             <p>
-              From custom websites to web applications and backend systems, our team understands the technical and compliance requirements common in Rwanda-based projects. We work closely with clients to deliver development solutions that integrate smoothly with existing tools, support future growth, and align with local business environments. We also provide <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web design services in Rwanda</Link> for organizations that need both visual design and technical development capabilities.
+              From custom websites to web applications and backend systems, our team understands the technical and compliance requirements common in Rwanda-based projects. We work closely with clients to deliver development solutions that integrate smoothly with existing tools, support future growth, and align with local business environments. We also provide <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">website design services in Rwanda</Link> for organizations that need both visual design and technical development capabilities.
             </p>
           </div>
         </section>

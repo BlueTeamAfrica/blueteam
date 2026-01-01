@@ -51,7 +51,7 @@ export default function HostingPage() {
                 Your website's performance starts with reliable hosting. Blue Team Africa provides enterprise-grade 
                 cloud hosting and domain services designed to keep your business online. With secure infrastructure, 
                 automatic backups, and expert support, we ensure your digital presence stays accessible to your customers 
-                around the clock.
+                around the clock. For organizations in Rwanda, we also offer comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services in Rwanda</Link> to build custom applications and scalable digital platforms.
               </p>
             </section>
 

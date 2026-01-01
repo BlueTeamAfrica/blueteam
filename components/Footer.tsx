@@ -233,7 +233,7 @@ export default function Footer() {
 
         {/* Bottom Bar: Legal Links & Copyright */}
         <div className="border-t border-gray-800 pt-8">
-          <p className="text-gray-400 text-sm text-center mb-4">Serving businesses and NGOs across Rwanda.</p>
+          <p className="text-gray-400 text-sm text-center mb-4">Serving businesses and NGOs across Rwanda. Explore our <Link href="/web-development-rwanda" className="text-gray-300 hover:text-white transition-colors underline">Web Development in Rwanda</Link> services.</p>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <p className="text-gray-400 text-sm text-center md:text-left">
