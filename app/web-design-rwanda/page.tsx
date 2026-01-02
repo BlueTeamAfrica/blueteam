@@ -5,8 +5,8 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Web Design Company in Rwanda | High-Performance Websites',
-  description: 'Professional web design services in Rwanda for businesses and NGOs. We build fast, secure, and SEO-ready websites.',
+  title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
+  description: 'Looking for a reliable web design company in Rwanda? We design fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://www.blueteamafrica.com/web-design-rwanda',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     'business website design Rwanda',
   ],
   openGraph: {
-    title: 'Web Design Company in Rwanda | High-Performance Websites',
-    description: 'Professional web design services in Rwanda for businesses and NGOs. We build fast, secure, and SEO-ready websites.',
+    title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
+    description: 'Reliable web design company in Rwanda. We build fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
     url: 'https://www.blueteamafrica.com/web-design-rwanda',
     type: 'website',
   },
@@ -35,34 +35,34 @@ export default function WebDesignRwandaPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Do you offer professional web design services in Rwanda?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Blue Team Africa provides professional web design services in Rwanda for businesses, NGOs, and startups, focusing on performance, usability, and SEO."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "How much does web design cost in Rwanda?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Web design costs in Rwanda depend on project scope, features, and complexity. Blue Team Africa offers flexible pricing tailored to business and NGO needs."
+          "text": "Web design costs in Rwanda depend on project scope, features, and complexity. Blue Team Africa offers flexible pricing tailored to business and NGO needs, with transparent packages starting from RWF 350,000."
         }
       },
       {
         "@type": "Question",
-        "name": "Do you design websites for NGOs and organizations?",
+        "name": "How long does it take to build a website?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. We specialize in web design for NGOs and organizations in Rwanda, including informational websites, program portals, and donation-ready platforms."
+          "text": "Website development timelines vary based on project complexity. A standard 5-page website typically takes 2-4 weeks, while more complex sites with custom features may take 6-8 weeks. We provide clear timelines during project planning."
         }
       },
       {
         "@type": "Question",
-        "name": "Will my website be mobile-friendly and SEO optimized?",
+        "name": "Do you work with NGOs and international organizations?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "All websites we design are mobile-friendly, fast-loading, and built with SEO best practices to ensure strong visibility in search results."
+          "text": "Yes. We specialize in web design for NGOs and international organizations operating in Rwanda, including informational websites, program portals, donation platforms, and multi-language sites for global audiences."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you redesign an existing website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We offer website redesign services to modernize existing sites, improve performance, enhance user experience, and update content management systems while preserving your brand identity and SEO value."
         }
       }
     ]
@@ -91,6 +91,9 @@ export default function WebDesignRwandaPage() {
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900 leading-tight">
                 Professional Web Design Services for Businesses in Rwanda
               </h1>
+              <p className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed font-medium">
+                Trusted by NGOs, startups, and growing companies across Rwanda. Clear pricing. Fast delivery. No hidden costs.
+              </p>
               <p className="text-lg md:text-xl text-gray-700 mb-4 leading-relaxed">
                 We create modern, high-performance websites for businesses and NGOs across Rwanda. Our web design services combine beautiful design with technical excellence, ensuring your website not only looks great but also drives results for your organization.
               </p>
@@ -647,6 +650,39 @@ export default function WebDesignRwandaPage() {
             >
               Learn more about our services in Rwanda →
             </Link>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mb-16 fade-up" aria-labelledby="faq-section">
+          <h2 id="faq-section" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">How much does web design cost in Rwanda?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Web design costs in Rwanda depend on project scope, features, and complexity. Blue Team Africa offers flexible pricing tailored to business and NGO needs, with transparent packages starting from RWF 350,000.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">How long does it take to build a website?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Website development timelines vary based on project complexity. A standard 5-page website typically takes 2-4 weeks, while more complex sites with custom features may take 6-8 weeks. We provide clear timelines during project planning.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Do you work with NGOs and international organizations?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Yes. We specialize in web design for NGOs and international organizations operating in Rwanda, including informational websites, program portals, donation platforms, and multi-language sites for global audiences.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Can you redesign an existing website?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Yes. We offer website redesign services to modernize existing sites, improve performance, enhance user experience, and update content management systems while preserving your brand identity and SEO value.
+              </p>
+            </div>
           </div>
         </section>
 

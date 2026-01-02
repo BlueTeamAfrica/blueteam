@@ -5,8 +5,8 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { Code, Database, Zap, Shield, GitBranch, Server, Cloud } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Web Development Company in Rwanda | Scalable Business Systems',
-  description: 'Reliable web development services in Rwanda for companies and NGOs. Scalable systems built for performance and growth.',
+  title: 'Web Development Company in Rwanda | Scalable, Secure & Custom Solutions',
+  description: 'Work with a trusted web development company in Rwanda delivering secure, scalable, and custom-built solutions for businesses and NGOs. Talk to our team today.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://www.blueteamafrica.com/web-development-rwanda',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     'scalable web development Rwanda',
   ],
   openGraph: {
-    title: 'Web Development Company in Rwanda | Scalable Business Systems',
-    description: 'Reliable web development services in Rwanda for companies and NGOs. Scalable systems built for performance and growth.',
+    title: 'Web Development Company in Rwanda | Scalable, Secure & Custom Solutions',
+    description: 'Trusted web development company in Rwanda. We deliver secure, scalable, custom solutions for businesses and NGOs. Talk to our team today.',
     url: 'https://www.blueteamafrica.com/web-development-rwanda',
     type: 'website',
   },
@@ -73,26 +73,26 @@ export default function WebDevelopmentRwandaPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Do you provide web development services in Rwanda?",
+        "name": "What types of web applications do you build?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Blue Team Africa offers professional web development services in Rwanda, including custom websites, backend systems, and scalable digital solutions."
+          "text": "We build a wide range of web applications including custom business platforms, NGO management systems, e-commerce solutions, dashboards, CRM integrations, API-driven applications, and scalable cloud-based systems for organizations in Rwanda."
         }
       },
       {
         "@type": "Question",
-        "name": "What technologies do you use for web development?",
+        "name": "Do you provide custom software development?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We work with modern web technologies including React, Next.js, Firebase, and secure backend systems to build reliable and scalable platforms."
+          "text": "Yes. We provide full-stack custom software development services, building tailored solutions from the ground up to meet specific business requirements, including backend systems, APIs, databases, and frontend interfaces."
         }
       },
       {
         "@type": "Question",
-        "name": "Can you develop custom systems for NGOs and businesses?",
+        "name": "Is your development scalable and secure?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. We develop custom web applications, dashboards, and internal systems for NGOs and businesses operating in Rwanda."
+          "text": "Yes. All our web development follows security best practices and is built with scalability in mind. We use modern frameworks, implement secure authentication, regular security updates, and architecture designed to grow with your business needs."
         }
       },
       {
@@ -100,7 +100,7 @@ export default function WebDevelopmentRwandaPage() {
         "name": "Do you offer ongoing support after development?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We provide ongoing technical support, maintenance, and system improvements after project delivery based on client needs."
+          "text": "Yes. We provide ongoing technical support, maintenance, security updates, and system improvements after project delivery. Support packages are tailored to client needs, ensuring your application continues to perform optimally."
         }
       }
     ]
@@ -134,6 +134,9 @@ export default function WebDevelopmentRwandaPage() {
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gray-900 leading-tight">
                 Web Development Company in Rwanda
               </h1>
+              <p className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed font-medium">
+                Trusted by NGOs, startups, and growing companies across Rwanda. Clear pricing. Fast delivery. No hidden costs.
+              </p>
               <p className="text-lg md:text-xl text-gray-700 mb-4 leading-relaxed">
                 We build custom web applications, backend systems, and scalable platforms for businesses and NGOs across Rwanda. Our web development services focus on technical excellence, performance optimization, and secure infrastructure tailored to Rwanda's digital ecosystem.
               </p>
@@ -721,6 +724,39 @@ export default function WebDevelopmentRwandaPage() {
               >
                 Learn more about our services in Rwanda →
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mb-16 fade-up" aria-labelledby="faq-section">
+          <h2 id="faq-section" className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-gray-900">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">What types of web applications do you build?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                We build a wide range of web applications including custom business platforms, NGO management systems, e-commerce solutions, dashboards, CRM integrations, API-driven applications, and scalable cloud-based systems for organizations in Rwanda.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Do you provide custom software development?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Yes. We provide full-stack custom software development services, building tailored solutions from the ground up to meet specific business requirements, including backend systems, APIs, databases, and frontend interfaces.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Is your development scalable and secure?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Yes. All our web development follows security best practices and is built with scalability in mind. We use modern frameworks, implement secure authentication, regular security updates, and architecture designed to grow with your business needs.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">Do you offer ongoing support after development?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Yes. We provide ongoing technical support, maintenance, security updates, and system improvements after project delivery. Support packages are tailored to client needs, ensuring your application continues to perform optimally.
+              </p>
             </div>
           </div>
         </section>
