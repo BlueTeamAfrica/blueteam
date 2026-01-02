@@ -536,6 +536,120 @@ export default function WebDesignRwandaPage() {
           </div>
         </section>
 
+        {/* Pricing Section */}
+        <section className="mb-16 fade-up" aria-labelledby="pricing-rwanda">
+          <h2 id="pricing-rwanda" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-gray-900">
+            Affordable Web Design & Hosting Packages in Rwanda
+          </h2>
+          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            Transparent pricing for businesses, startups, and NGOs operating in Rwanda.
+          </p>
+          <div className="pricing-grid">
+            {/* Starter */}
+            <div className="pricing-card">
+              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Starter</h3>
+              <p className="price text-3xl font-bold mb-6 text-primary">RWF 350,000</p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>5-page professional website</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Mobile-responsive design</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Free .rw or .com domain (1 year)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Business email (5 accounts)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Basic SEO setup</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>1 year secure hosting</span>
+                </li>
+              </ul>
+              <p className="note text-sm text-gray-600 italic">Best for small businesses & personal brands</p>
+            </div>
+
+            {/* Business */}
+            <div className="pricing-card featured">
+              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Business</h3>
+              <p className="price text-3xl font-bold mb-6 text-primary">RWF 750,000</p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Up to 12 pages</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Custom UI/UX design</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Unlimited business emails</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Advanced SEO optimization</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Fast NVMe hosting</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Free SSL & CDN</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>WhatsApp & contact form integration</span>
+                </li>
+              </ul>
+              <p className="note text-sm text-gray-600 italic">Most popular for growing companies in Rwanda</p>
+            </div>
+
+            {/* Enterprise */}
+            <div className="pricing-card">
+              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Enterprise</h3>
+              <p className="price text-3xl font-bold mb-6 text-primary">Custom Quote</p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Unlimited pages</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Web apps / dashboards</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>ERP / CRM integration</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>High-performance cloud hosting</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Dedicated support</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Security hardening</span>
+                </li>
+              </ul>
+              <p className="note text-sm text-gray-600 italic">For NGOs, institutions & large organizations</p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="text-center bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white fade-in shadow-2xl" aria-labelledby="cta-section">
           <h2 id="cta-section" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-white">
