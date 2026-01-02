@@ -29,7 +29,7 @@ export const metadataErpGuide: Metadata = {
 
 // 4. Choosing a Web Design Company in Rwanda: What Businesses Should Know
 export const metadataChoosingWebDesignRwanda: Metadata = {
-  title: 'Choosing a Web Design Company in Rwanda: What Businesses Should Know | Blue Team Africa',
+  title: 'Choosing a Web Design Partner: A Guide for Rwandan Businesses | Blue Team Africa',
   description: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
   alternates: {
     canonical: 'https://blueteamafrica.com/blog/choosing-a-web-design-company-in-rwanda-what-businesses-should-know',

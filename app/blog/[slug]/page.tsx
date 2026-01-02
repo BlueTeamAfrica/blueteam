@@ -137,7 +137,7 @@ const blogPosts: Record<string, any> = {
     `,
   },
   'choosing-a-web-design-company-in-rwanda-what-businesses-should-know': {
-    title: 'Choosing a Web Design Company in Rwanda: What Businesses Should Know',
+    title: 'Choosing a Web Design Partner: A Guide for Rwandan Businesses',
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
     date: '2024-12-20',
     category: 'Web Design',

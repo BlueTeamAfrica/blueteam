@@ -71,7 +71,7 @@ export default function WebsiteDevelopmentPage() {
                 At Blue Team Africa, we develop fast, secure, and scalable websites that help businesses, NGOs, and organizations grow online. Whether you need a custom-built system, a dynamic website integrated with your internal workflows, or a fully optimized business platform — our development team delivers reliable, modern, and SEO-ready solutions.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed mt-4">
-                From corporate websites to NGO management platforms, our builds are designed to perform under real conditions across East Africa. For organizations in Rwanda, we provide comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">Web Development Company in Rwanda</Link> services with custom solutions tailored to local needs.
+                From corporate websites to NGO management platforms, our builds are designed to perform under real conditions across East Africa. For organizations in Rwanda, we provide comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services in Rwanda</Link> with custom solutions tailored to local needs.
               </p>
             </SectionWrapper>
 

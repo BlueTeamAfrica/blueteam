@@ -57,7 +57,7 @@ export default function WebDesignPage() {
             that perform beautifully across all devices.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
-            For businesses in Rwanda looking for local web design expertise, visit our <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">Web Design Company in Rwanda</Link> page.
+            For businesses in Rwanda looking for local web design expertise, visit our <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web design services in Rwanda</Link> page.
           </p>
         </div>
       </SectionWrapper>
