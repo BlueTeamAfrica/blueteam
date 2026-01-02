@@ -129,6 +129,112 @@ export default function WebDesignUgandaPage() {
       </section>
 
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
+        {/* Pricing Section */}
+        <section className="mb-16 fade-up" aria-labelledby="pricing-uganda">
+          <h2 id="pricing-uganda" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-gray-900">
+            Web Design & Hosting Packages in Uganda
+          </h2>
+          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            Cost-effective website solutions tailored for Ugandan businesses.
+          </p>
+          <div className="pricing-grid">
+            {/* Starter */}
+            <div className="pricing-card">
+              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Starter</h3>
+              <p className="price text-3xl font-bold mb-6 text-primary">UGX 950,000</p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>5-page website</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Mobile-friendly design</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Free domain (.ug or .com)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>5 professional email accounts</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Basic SEO</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>1 year hosting</span>
+                </li>
+              </ul>
+              <p className="note text-sm text-gray-600 italic">Ideal for startups and small businesses</p>
+            </div>
+
+            {/* Business */}
+            <div className="pricing-card featured">
+              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Business</h3>
+              <p className="price text-3xl font-bold mb-6 text-primary">UGX 2,200,000</p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Up to 12 pages</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Custom branding & UI</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Unlimited emails</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Advanced SEO</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>High-speed hosting</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Lead capture forms</span>
+                </li>
+              </ul>
+              <p className="note text-sm text-gray-600 italic">Best value for established businesses</p>
+            </div>
+
+            {/* Enterprise */}
+            <div className="pricing-card">
+              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Enterprise</h3>
+              <p className="price text-3xl font-bold mb-6 text-primary">Custom Quote</p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Custom software solutions</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>ERP / CRM systems</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Cloud & VPS hosting</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Security & backups</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  <span>Ongoing technical support</span>
+                </li>
+              </ul>
+              <p className="note text-sm text-gray-600 italic">For NGOs & enterprise clients in Uganda</p>
+            </div>
+          </div>
+        </section>
+
         {/* Why Web Design Matters in Uganda */}
         <section className="mb-16 fade-up" aria-labelledby="why-web-design">
           <h2 id="why-web-design" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
@@ -265,112 +371,6 @@ export default function WebDesignUgandaPage() {
               <p className="text-gray-700 leading-relaxed">
                 Beyond design and development, we provide ongoing support, maintenance, and optimization to ensure your website continues to perform well as your organization grows.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section className="mb-16 fade-up" aria-labelledby="pricing-uganda">
-          <h2 id="pricing-uganda" className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-gray-900">
-            Web Design & Hosting Packages in Uganda
-          </h2>
-          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            Cost-effective website solutions tailored for Ugandan businesses.
-          </p>
-          <div className="pricing-grid">
-            {/* Starter */}
-            <div className="pricing-card">
-              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Starter</h3>
-              <p className="price text-3xl font-bold mb-6 text-primary">UGX 950,000</p>
-              <ul className="space-y-3 mb-6 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>5-page website</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Mobile-friendly design</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Free domain (.ug or .com)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>5 professional email accounts</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Basic SEO</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>1 year hosting</span>
-                </li>
-              </ul>
-              <p className="note text-sm text-gray-600 italic">Ideal for startups and small businesses</p>
-            </div>
-
-            {/* Business */}
-            <div className="pricing-card featured">
-              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Business</h3>
-              <p className="price text-3xl font-bold mb-6 text-primary">UGX 2,200,000</p>
-              <ul className="space-y-3 mb-6 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Up to 12 pages</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Custom branding & UI</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Unlimited emails</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Advanced SEO</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>High-speed hosting</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Lead capture forms</span>
-                </li>
-              </ul>
-              <p className="note text-sm text-gray-600 italic">Best value for established businesses</p>
-            </div>
-
-            {/* Enterprise */}
-            <div className="pricing-card">
-              <h3 className="text-2xl font-heading font-semibold mb-4 text-gray-900">Enterprise</h3>
-              <p className="price text-3xl font-bold mb-6 text-primary">Custom Quote</p>
-              <ul className="space-y-3 mb-6 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Custom software solutions</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>ERP / CRM systems</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Cloud & VPS hosting</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Security & backups</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">•</span>
-                  <span>Ongoing technical support</span>
-                </li>
-              </ul>
-              <p className="note text-sm text-gray-600 italic">For NGOs & enterprise clients in Uganda</p>
             </div>
           </div>
         </section>
