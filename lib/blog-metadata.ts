@@ -45,6 +45,15 @@ export const metadataWebDevelopmentCompaniesRwanda: Metadata = {
   },
 }
 
+// 6. Website Design Cost in Rwanda (2026 Guide)
+export const metadataWebDesignCostRwanda: Metadata = {
+  title: 'Website Design Cost in Rwanda (2026 Guide)',
+  description: 'Complete guide to website design costs in Rwanda for 2026. Understand pricing factors and what to expect when investing in a professional website.',
+  alternates: {
+    canonical: 'https://blueteamafrica.com/blog/web-design-cost-in-rwanda-2026',
+  },
+}
+
 // Metadata mapping by slug
 export const blogMetadataMap: Record<string, Metadata> = {
   'how-to-choose-the-right-website-for-your-ngo': metadataHowToChooseWebsite,
@@ -52,4 +61,5 @@ export const blogMetadataMap: Record<string, Metadata> = {
   'erp-for-african-smes-a-complete-guide': metadataErpGuide,
   'choosing-a-web-design-company-in-rwanda-what-businesses-should-know': metadataChoosingWebDesignRwanda,
   'web-development-companies-in-rwanda-what-to-look-for-2026': metadataWebDevelopmentCompaniesRwanda,
+  'web-design-cost-in-rwanda-2026': metadataWebDesignCostRwanda,
 }
