@@ -643,6 +643,9 @@ export default function WebDesignRwandaPage() {
             <p>
               Our remote-first approach allows us to collaborate effectively with organizations throughout Rwanda while maintaining a deep understanding of the local context and market dynamics. We combine technical expertise with regional knowledge to deliver web design solutions that work for Rwandan businesses and organizations.
             </p>
+            <p className="mt-4">
+              For detailed information about <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">website design cost in Rwanda</Link>, including pricing factors and package options, visit our comprehensive guide.
+            </p>
           </div>
           <div className="mt-8">
             <Link

@@ -167,8 +167,11 @@ export default function Home() {
             <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-4">
               Our Core Digital Services
             </h2>
-            <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+            <p className="text-center text-gray-600 max-w-2xl mx-auto mb-4">
               We combine design, engineering, and cybersecurity to deliver complete digital solutions.
+            </p>
+            <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+              Learn more about <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">how much website design costs in Rwanda</Link> in our comprehensive pricing guide.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
