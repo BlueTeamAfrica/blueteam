@@ -15,7 +15,7 @@ const blogPosts = [
     excerpt: 'Complete guide to website design costs in Rwanda for 2026. Understand pricing factors, package options, and what to expect when investing in a professional website.',
     date: '2026-01-22',
     category: 'Web Design',
-    image: '/blog/web-design-cost-rwanda-2026.webp',
+    image: '/blog/blog-thumbnail-06.webp',
   },
   {
     slug: 'web-development-companies-in-rwanda-what-to-look-for-2026',
