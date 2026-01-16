@@ -6,7 +6,7 @@ import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucid
 
 export const metadata: Metadata = {
   title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
-  description: 'Looking for a reliable web design company in Rwanda? We design fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
+  description: 'Professional web design company in Rwanda delivering fast, secure, and SEO-ready websites for businesses and NGOs. Get a custom quote today.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://www.blueteamafrica.com/web-design-rwanda',
@@ -81,6 +81,7 @@ export default function WebDesignRwandaPage() {
           { label: 'Home', href: '/' },
           { label: 'Web Design Rwanda' },
         ]}
+        headingLevel="h2"
       />
 
       {/* Hero Section */}
