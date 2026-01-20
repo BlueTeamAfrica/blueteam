@@ -180,6 +180,14 @@ export default function BestWebDesignCompaniesRwandaPage() {
               <p>Whether you require a simple business website or a complex platform with custom functionality, taking time to understand different providers' capabilities and approaches helps ensure you select a partner that aligns with your organization's goals and requirements.</p>
               
               <p>Remember that a website is a long-term investment that affects how your organization is perceived and how effectively you can reach your audience. Selecting the right design partner is an important decision that deserves careful consideration of both immediate needs and future growth plans.</p>
+              
+              {/* About the Author */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <p className="text-gray-700 leading-relaxed">
+                  <strong>About the Author</strong><br />
+                  This article was prepared by the team at Blue Team Africa, a Rwanda-focused web design and development company serving businesses and NGOs across East Africa.
+                </p>
+              </div>
             </div>
           </div>
         </article>

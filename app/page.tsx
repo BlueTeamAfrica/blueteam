@@ -333,8 +333,11 @@ export default function Home() {
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
               Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, operating from Uganda, our mission is to provide reliable, affordable, and secure digital solutions for organizations across East Africa.
             </p>
-            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
               We specialize in building systems for NGOs, companies, startups, and institutions that operate in difficult environments — where reliability, security, and performance are not optional.
+            </p>
+            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+              Blue Team Africa is a Rwanda-based digital solutions company providing web design and web development services for businesses and NGOs across East Africa. Founded in 2023, the company focuses on performance-driven websites, scalable systems, and long-term search visibility rather than template-based solutions.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">

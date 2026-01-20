@@ -461,6 +461,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
             </>
           )}
+          
+          {/* About the Author */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <p className="text-gray-700 leading-relaxed">
+              <strong>About the Author</strong><br />
+              This article was prepared by the team at Blue Team Africa, a Rwanda-focused web design and development company serving businesses and NGOs across East Africa.
+            </p>
+          </div>
         </div>
       </article>
 
