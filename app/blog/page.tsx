@@ -10,6 +10,14 @@ export const metadata = {
 
 const blogPosts = [
   {
+    slug: 'best-web-design-companies-in-rwanda',
+    title: 'Best Web Design Companies in Rwanda',
+    excerpt: 'A comparison of leading web design companies in Rwanda and how to choose the right partner for your business or NGO.',
+    date: '2026-01-16',
+    category: 'Web Design',
+    image: '/blog/choosing-web-design-company-rwanda.webp',
+  },
+  {
     slug: 'web-design-cost-in-rwanda-2026',
     title: 'Website Design Cost in Rwanda (2026 Guide)',
     excerpt: 'Complete guide to website design costs in Rwanda for 2026. Understand pricing factors, package options, and what to expect when investing in a professional website.',
