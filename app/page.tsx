@@ -521,9 +521,9 @@ export default function Home() {
               {/* ERPNext */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/erpnext/0089FF" 
-                    alt="ERPNext" 
+                  <img
+                    src="https://cdn.simpleicons.org/erpnext/0089FF"
+                    alt="ERPNext"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -535,9 +535,9 @@ export default function Home() {
               {/* Frappe */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/frappe/0089FF" 
-                    alt="Frappe" 
+                  <img
+                    src="https://cdn.simpleicons.org/frappe/0089FF"
+                    alt="Frappe"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -549,9 +549,9 @@ export default function Home() {
               {/* React */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/react/61DAFB" 
-                    alt="React" 
+                  <img
+                    src="https://cdn.simpleicons.org/react/61DAFB"
+                    alt="React"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -563,9 +563,9 @@ export default function Home() {
               {/* Next.js */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/nextdotjs/000000" 
-                    alt="Next.js" 
+                  <img
+                    src="https://cdn.simpleicons.org/nextdotjs/000000"
+                    alt="Next.js"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -577,9 +577,9 @@ export default function Home() {
               {/* Flutter */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/flutter/02569B" 
-                    alt="Flutter" 
+                  <img
+                    src="https://cdn.simpleicons.org/flutter/02569B"
+                    alt="Flutter"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -591,9 +591,9 @@ export default function Home() {
               {/* Firebase */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/firebase/FFCA28" 
-                    alt="Firebase" 
+                  <img
+                    src="https://cdn.simpleicons.org/firebase/FFCA28"
+                    alt="Firebase"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -605,9 +605,9 @@ export default function Home() {
               {/* Vercel */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/vercel/000000" 
-                    alt="Vercel" 
+                  <img
+                    src="https://cdn.simpleicons.org/vercel/000000"
+                    alt="Vercel"
                     width={48}
                     height={48}
                     className="w-12 h-12"
@@ -619,9 +619,9 @@ export default function Home() {
               {/* Tailwind CSS */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
                 <div className="w-20 h-12 flex items-center justify-center">
-                  <Image 
-                    src="https://cdn.simpleicons.org/tailwindcss/06B6D4" 
-                    alt="Tailwind CSS" 
+                  <img
+                    src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
+                    alt="Tailwind CSS"
                     width={48}
                     height={48}
                     className="w-12 h-12"
