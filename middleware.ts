@@ -1,25 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone();
-  const host = req.headers.get("host") || "";
-
-  const isPortalDomain = host.startsWith("portal.");
-
-  // If portal domain, force all traffic to /portal
-  if (isPortalDomain) {
-    if (!url.pathname.startsWith("/portal")) {
-      url.pathname = `/portal${url.pathname === "/" ? "" : url.pathname}`;
-      return NextResponse.rewrite(url);
-    }
-  }
-
-  // If NOT portal domain, block /portal access
-  if (!isPortalDomain && url.pathname.startsWith("/portal")) {
-    url.pathname = "/";
-    return NextResponse.redirect(url);
-  }
-
+/**
+ * Root app middleware (marketing site).
+ * Portal routes live in the separate blueteam-portal app; portal-domain routing
+ * is handled by deployment (e.g. portal subdomain → portal app). No rewrite/block here.
+ */
+export function middleware(_req: NextRequest) {
   return NextResponse.next();
 }
 
