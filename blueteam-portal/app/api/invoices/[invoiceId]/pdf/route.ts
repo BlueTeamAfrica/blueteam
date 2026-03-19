@@ -54,6 +54,10 @@ export async function GET(
     if (mem.status !== "active") {
       return NextResponse.json({ error: "Not authorized" }, { status: 403 });
     }
+    const allowedRoles = ["owner", "admin", "client"];
+    if (!allowedRoles.includes(mem.role ?? "")) {
+      return NextResponse.json({ error: "Not authorized" }, { status: 403 });
+    }
 
     const invRef = db.collection("tenants").doc(tenantId).collection("invoices").doc(invoiceId);
     const invSnap = await invRef.get();

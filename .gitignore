@@ -41,6 +41,11 @@ yarn-error.log*
 next-env.d.ts
 public/images/ChatGPT_Atlas.dmg
 
+# Local/sensitive files (tokens, passwords, personal docs)
+blueteam-portal/App_Pass.pdf
+blueteam-portal/GitHub token.rtf
+blueteam-portal/app.rtf
+
 # Firebase service account keys (NEVER commit these!)
 *firebase-adminsdk*.json
 *-firebase-adminsdk*.json
