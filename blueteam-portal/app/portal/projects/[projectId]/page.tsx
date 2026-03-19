@@ -1,0 +1,487 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { doc, getDoc, Timestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { useAuth } from "@/lib/authContext";
+import { useTenant } from "@/lib/tenantContext";
+
+type ProjectData = {
+  id: string;
+  name?: string;
+  clientId?: string;
+  clientName?: string;
+  status?: string;
+  priority?: string;
+  description?: string;
+  startDate?: Timestamp | null;
+  dueDate?: Timestamp | null;
+  updatedAt?: Timestamp | null;
+  createdAt?: Timestamp | null;
+  projectOwner?: string;
+  progress?: number;
+  phase?: string;
+  stagingUrl?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+  milestones?: Array<{
+    id?: string;
+    title: string;
+    status?: "pending" | "in progress" | "completed";
+    dueDate?: string;
+    notes?: string;
+  }>;
+  updates?: Array<{
+    id?: string;
+    text?: string;
+    createdAt?: Timestamp | { toDate?: () => Date };
+  }>;
+  deliverables?: Array<{
+    id?: string;
+    name: string;
+    url?: string;
+    category?: string;
+    uploadedAt?: Timestamp | { toDate?: () => Date };
+    uploadedBy?: string;
+    description?: string;
+  }>;
+};
+
+function formatDate(ts: Timestamp | { toDate?: () => Date } | null | undefined): string {
+  if (!ts) return "—";
+  if (typeof (ts as Timestamp).toDate === "function") return (ts as Timestamp).toDate().toLocaleDateString();
+  if (typeof (ts as { toDate?: () => Date }).toDate === "function") return (ts as { toDate: () => Date }).toDate().toLocaleDateString();
+  return "—";
+}
+
+function formatDateTime(ts: Timestamp | { toDate?: () => Date } | null | undefined): string {
+  if (!ts) return "—";
+  let d: Date;
+  if (typeof (ts as Timestamp).toDate === "function") d = (ts as Timestamp).toDate();
+  else if (typeof (ts as { toDate?: () => Date }).toDate === "function") d = (ts as { toDate: () => Date }).toDate();
+  else return "—";
+  return d.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+}
+
+export default function ProjectDetailPage() {
+  const params = useParams();
+  const projectId = params?.projectId as string | undefined;
+  const { user, loading: authLoading } = useAuth();
+  const { tenant } = useTenant();
+  const [project, setProject] = useState<ProjectData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    const tenantId = tenant?.id;
+    if (!user || !tenantId || !projectId) {
+      setLoading(false);
+      if (user && tenantId && !projectId) setNotFound(true);
+      return;
+    }
+
+    const tid = tenantId as string;
+    const pid = projectId as string;
+
+    async function load() {
+      setLoading(true);
+      setNotFound(false);
+      try {
+        const ref = doc(db, "tenants", tid, "projects", pid);
+        const snap = await getDoc(ref);
+        if (!snap.exists()) {
+          setNotFound(true);
+          setProject(null);
+          return;
+        }
+        const d = snap.data() as Record<string, unknown>;
+        setProject({
+          id: snap.id,
+          name: d.name as string | undefined,
+          clientId: d.clientId as string | undefined,
+          clientName: d.clientName as string | undefined,
+          status: d.status as string | undefined,
+          priority: d.priority as string | undefined,
+          description: d.description as string | undefined,
+          startDate: d.startDate as Timestamp | null | undefined,
+          dueDate: d.dueDate as Timestamp | null | undefined,
+          updatedAt: d.updatedAt as Timestamp | null | undefined,
+          createdAt: d.createdAt as Timestamp | null | undefined,
+          projectOwner: d.projectOwner as string | undefined,
+          progress: typeof d.progress === "number" ? d.progress : undefined,
+          phase: d.phase as string | undefined,
+          stagingUrl: d.stagingUrl as string | undefined,
+          liveUrl: d.liveUrl as string | undefined,
+          repoUrl: d.repoUrl as string | undefined,
+          milestones: Array.isArray(d.milestones) ? d.milestones as ProjectData["milestones"] : undefined,
+          updates: Array.isArray(d.updates) ? d.updates as ProjectData["updates"] : undefined,
+          deliverables: Array.isArray(d.deliverables) ? d.deliverables as ProjectData["deliverables"] : undefined,
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    load();
+  }, [user, tenant?.id, projectId]);
+
+  if (authLoading) return <p className="text-[#0F172A]">Loading…</p>;
+  if (!user) return <p className="text-[#0F172A]">Please log in</p>;
+  if (!tenant) return <p className="text-[#0F172A]">Loading tenant…</p>;
+  if (loading && !project) return <p className="text-[#0F172A]">Loading project…</p>;
+  if (notFound || !project) {
+    return (
+      <div className="max-w-full min-w-0 space-y-4">
+        <Link href="/portal/projects" className="text-[#4F46E5] hover:underline text-sm">← Back to projects</Link>
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center">
+          <p className="text-slate-600">Project not found.</p>
+          <Link href="/portal/projects" className="mt-4 inline-block text-[#4F46E5] font-medium hover:underline">Back to projects</Link>
+        </div>
+      </div>
+    );
+  }
+
+  // At this point project is guaranteed to exist
+  const safeProject: ProjectData = project;
+
+  const statusLower = (safeProject.status ?? "").toLowerCase();
+  const statusBadge =
+    statusLower === "active"
+      ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+      : statusLower === "completed"
+        ? "bg-slate-100 text-slate-700 border-slate-200"
+        : statusLower === "on hold" || statusLower === "paused"
+          ? "bg-amber-100 text-amber-800 border-amber-200"
+          : "bg-slate-100 text-slate-600 border-slate-200";
+
+  const lastUpdated = safeProject.updatedAt ?? safeProject.createdAt;
+  const progressValue =
+    safeProject.progress != null && !Number.isNaN(safeProject.progress)
+      ? Math.max(0, Math.min(100, safeProject.progress))
+      : 0;
+  const milestones = safeProject.milestones ?? [];
+  const updates = safeProject.updates ?? [];
+  const deliverables = safeProject.deliverables ?? [];
+
+  return (
+    <div className="max-w-full min-w-0 space-y-6 md:space-y-8">
+      <Link href="/portal/projects" className="text-[#4F46E5] hover:underline text-sm inline-block">← Back to projects</Link>
+
+      {/* Project header */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-[#0F172A] text-xl sm:text-2xl font-semibold break-words">{safeProject.name ?? "Unnamed project"}</h1>
+            {safeProject.clientName && (
+              <p className="text-slate-600 mt-1 break-words">Client: {safeProject.clientName}</p>
+            )}
+            <div className="flex flex-wrap gap-2 mt-2">
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusBadge}`}>
+                {safeProject.status ?? "—"}
+              </span>
+              {safeProject.priority && (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  {safeProject.priority}
+                </span>
+              )}
+            </div>
+            {safeProject.description && (
+              <p className="text-slate-600 text-sm mt-3 break-words max-w-2xl">{safeProject.description}</p>
+            )}
+            {lastUpdated && (
+              <p className="text-xs text-slate-400 mt-2">Last updated: {formatDateTime(lastUpdated)}</p>
+            )}
+          </div>
+          {/* Quick actions */}
+          <div className="flex flex-wrap gap-2 shrink-0">
+            <button
+              type="button"
+              disabled
+              className="px-3 py-2 rounded-lg border border-dashed border-slate-300 text-slate-400 text-sm font-medium bg-slate-50 cursor-not-allowed"
+              title="Edit project is coming soon."
+            >
+              Edit project
+            </button>
+            <button
+              type="button"
+              disabled
+              className="px-3 py-2 rounded-lg border border-dashed border-slate-300 text-slate-400 text-sm font-medium bg-slate-50 cursor-not-allowed"
+              title="Status updates are coming soon."
+            >
+              Mark status
+            </button>
+            <Link
+              href={`/portal/clients${project.clientId ? `?highlight=${project.clientId}` : ""}`}
+              className="px-3 py-2 rounded-lg border border-slate-300 text-slate-800 text-sm font-medium hover:bg-slate-50"
+            >
+              Go to client
+            </Link>
+            <Link
+              href={`/portal/support?${new URLSearchParams({
+                new: "1",
+                projectId: safeProject.id,
+                projectName: safeProject.name ?? "",
+                clientId: safeProject.clientId ?? "",
+                clientName: safeProject.clientName ?? "",
+                subject: safeProject.name ? `Project: ${safeProject.name} — Support request` : "Project support request",
+              }).toString()}`}
+              className="px-3 py-2 rounded-lg border border-slate-300 text-slate-800 text-sm font-medium hover:bg-slate-50"
+            >
+              Open support ticket
+            </Link>
+            <Link
+              href="/portal/invoices"
+              className="px-3 py-2 rounded-lg border border-slate-300 text-slate-800 text-sm font-medium hover:bg-slate-50"
+            >
+              Create invoice
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Overview */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5">
+        <h2 className="text-[#0F172A] text-base font-semibold mb-3">Overview</h2>
+        <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+          <div>
+            <dt className="text-slate-500">Start date</dt>
+            <dd className="font-medium text-[#0F172A] mt-0.5">{formatDate(safeProject.startDate)}</dd>
+          </div>
+          <div>
+            <dt className="text-slate-500">Due date</dt>
+            <dd className="font-medium text-[#0F172A] mt-0.5">{formatDate(safeProject.dueDate)}</dd>
+          </div>
+          <div>
+            <dt className="text-slate-500">Project owner</dt>
+            <dd className="font-medium text-[#0F172A] mt-0.5">{safeProject.projectOwner ?? "—"}</dd>
+          </div>
+          <div>
+            <dt className="text-slate-500">Progress</dt>
+            <dd className="font-medium text-[#0F172A] mt-0.5">
+              {safeProject.progress != null ? `${safeProject.progress}%` : "—"}
+            </dd>
+          </div>
+        </dl>
+        {safeProject.phase && (
+          <p className="text-sm text-slate-600 mt-3">
+            <span className="text-slate-500">Current phase:</span> {safeProject.phase}
+          </p>
+        )}
+      </section>
+
+      {/* Progress */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5">
+        <h2 className="text-[#0F172A] text-base font-semibold mb-3">Progress</h2>
+        <p className="text-sm text-slate-600 mb-2">
+          Overall project completion based on your internal tracking.
+        </p>
+        <div className="flex items-center gap-3">
+          <div className="flex-1 min-w-0 h-2 rounded-full bg-slate-100 overflow-hidden">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 transition-all"
+              style={{ width: `${progressValue}%` }}
+            />
+          </div>
+          <span className="text-sm font-semibold text-[#0F172A] whitespace-nowrap">
+            {progressValue}%
+          </span>
+        </div>
+        {project.progress == null && (
+          <p className="text-xs text-slate-400 mt-2">
+            No progress value set yet. Consider storing a{" "}
+            <span className="font-mono">progress: number</span> (0–100) field on this project.
+          </p>
+        )}
+      </section>
+
+      {/* Milestones */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5">
+        <h2 className="text-[#0F172A] text-base font-semibold mb-3">Milestones</h2>
+        {milestones.length > 0 ? (
+          <ul className="space-y-3">
+            {milestones.map((m, i) => {
+              const s = (m.status ?? "pending").toLowerCase();
+              const statusCls =
+                s === "completed"
+                  ? "bg-emerald-100 text-emerald-800"
+                  : s === "in progress"
+                    ? "bg-blue-100 text-blue-800"
+                    : "bg-slate-100 text-slate-600";
+              return (
+                <li key={m.id ?? i} className="flex flex-col gap-1 p-3 rounded-lg border border-slate-200 bg-slate-50/50">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="font-medium text-[#0F172A]">{m.title}</span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${statusCls}`}>{m.status ?? "Pending"}</span>
+                  </div>
+                  {m.dueDate && <p className="text-xs text-slate-500">Due: {m.dueDate}</p>}
+                  {m.notes && <p className="text-sm text-slate-600 mt-1 break-words">{m.notes}</p>}
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <div className="py-8 text-center rounded-lg border border-dashed border-slate-200 bg-slate-50/50">
+            <p className="text-slate-500 text-sm">No milestones yet.</p>
+            <p className="text-slate-400 text-xs mt-1">Add milestones to track project phases.</p>
+          </div>
+        )}
+      </section>
+
+      {/* Updates / activity */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5">
+        <h2 className="text-[#0F172A] text-base font-semibold mb-3">Updates &amp; activity</h2>
+        {updates.length > 0 ? (
+          <ul className="space-y-3">
+            {updates.map((u, i) => (
+              <li key={u.id ?? i} className="flex flex-col gap-1 p-3 rounded-lg border border-slate-200 bg-slate-50/50 text-sm">
+                {u.text && <p className="text-[#0F172A] break-words">{u.text}</p>}
+                {u.createdAt && (
+                  <p className="text-xs text-slate-500">
+                    {typeof (u.createdAt as { toDate?: () => Date }).toDate === "function"
+                      ? (u.createdAt as { toDate: () => Date }).toDate().toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })
+                      : "—"}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="py-8 text-center rounded-lg border border-dashed border-slate-200 bg-slate-50/50">
+            <p className="text-slate-500 text-sm">No updates yet.</p>
+            <p className="text-slate-400 text-xs mt-1">Project created {formatDateTime(safeProject.createdAt)}</p>
+          </div>
+        )}
+      </section>
+
+      {/* Links / deliverables */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5">
+        <h2 className="text-[#0F172A] text-base font-semibold mb-3">Links &amp; deliverables</h2>
+        <div className="space-y-2 text-sm">
+          {safeProject.stagingUrl ? (
+            <div>
+              <span className="text-slate-500">Staging:</span>{" "}
+              <a href={safeProject.stagingUrl} target="_blank" rel="noopener noreferrer" className="text-[#4F46E5] hover:underline break-all">
+                {safeProject.stagingUrl}
+              </a>
+            </div>
+          ) : null}
+          {safeProject.liveUrl ? (
+            <div>
+              <span className="text-slate-500">Live:</span>{" "}
+              <a href={safeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="text-[#4F46E5] hover:underline break-all">
+                {safeProject.liveUrl}
+              </a>
+            </div>
+          ) : null}
+          {safeProject.repoUrl ? (
+            <div>
+              <span className="text-slate-500">Repository:</span>{" "}
+              <a href={safeProject.repoUrl} target="_blank" rel="noopener noreferrer" className="text-[#4F46E5] hover:underline break-all">
+                {safeProject.repoUrl}
+              </a>
+            </div>
+          ) : null}
+        </div>
+        {!safeProject.stagingUrl && !safeProject.liveUrl && !safeProject.repoUrl && (
+          <div className="py-8 text-center rounded-lg border border-dashed border-slate-200 bg-slate-50/50 mt-2">
+            <p className="text-slate-500 text-sm">No links added yet.</p>
+            <p className="text-slate-400 text-xs mt-1">Add staging, live, or repo URLs when ready.</p>
+          </div>
+        )}
+      </section>
+
+      {/* Deliverables / files */}
+      <section className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+          <h2 className="text-[#0F172A] text-base font-semibold">Deliverables</h2>
+          <button
+            type="button"
+            disabled
+            className="inline-flex items-center justify-center px-3 py-2 rounded-lg border border-dashed border-slate-300 text-xs sm:text-sm text-slate-500 bg-slate-50 cursor-not-allowed"
+            title="File upload will be configured with storage in a future update."
+          >
+            Upload file (coming soon)
+          </button>
+        </div>
+        {deliverables.length > 0 ? (
+          <ul className="space-y-3 text-sm">
+            {deliverables.map((file, index) => {
+              const uploadedAt =
+                file.uploadedAt &&
+                typeof (file.uploadedAt as { toDate?: () => Date }).toDate === "function"
+                  ? (file.uploadedAt as { toDate: () => Date }).toDate()
+                  : undefined;
+              return (
+                <li
+                  key={file.id ?? index}
+                  className="flex flex-col gap-2 p-3 rounded-lg border border-slate-200 bg-slate-50/50"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="font-medium text-[#0F172A] break-words">
+                        {file.name || "Untitled file"}
+                      </p>
+                      <p className="text-xs text-slate-500 mt-0.5 flex flex-wrap gap-1">
+                        {file.category && (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-800 text-slate-100 text-[11px] uppercase tracking-wide">
+                            {file.category}
+                          </span>
+                        )}
+                        {file.uploadedBy && (
+                          <span className="text-slate-500">
+                            Uploaded by <span className="font-medium">{file.uploadedBy}</span>
+                          </span>
+                        )}
+                        {uploadedAt && (
+                          <span className="text-slate-500">
+                            · {uploadedAt.toLocaleDateString(undefined, { dateStyle: "medium" })}
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                    <div className="shrink-0">
+                      {file.url ? (
+                        <a
+                          href={file.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-3 py-1.5 rounded-lg bg-[#4F46E5] text-white text-xs sm:text-sm font-medium hover:bg-indigo-600 transition-colors"
+                        >
+                          Download
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          disabled
+                          className="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 text-xs sm:text-sm text-slate-400 cursor-not-allowed bg-slate-50"
+                          title="No download URL set yet."
+                        >
+                          Download unavailable
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  {file.description && (
+                    <p className="text-xs text-slate-600 break-words">{file.description}</p>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <div className="py-8 text-center rounded-lg border border-dashed border-slate-200 bg-slate-50/50">
+            <p className="text-slate-500 text-sm">
+              No deliverable files have been added to this project yet.
+            </p>
+            <p className="text-slate-400 text-xs mt-1 max-w-md mx-auto">
+              Project handoff documents, design assets, reports, and other client-facing files will
+              appear here once you start attaching deliverables to this workspace.
+            </p>
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}

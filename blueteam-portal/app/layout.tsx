@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { AuthProvider } from "@/lib/authContext";
+import { UserProfileProvider } from "@/lib/userProfileContext";
+import { TenantProvider } from "@/lib/tenantContext";
 
 export const metadata: Metadata = {
   title: "Blue Team Portal",
@@ -13,7 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="overflow-x-hidden">
+        <AuthProvider>
+          <UserProfileProvider>
+            <TenantProvider>
+              {children}
+            </TenantProvider>
+          </UserProfileProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
