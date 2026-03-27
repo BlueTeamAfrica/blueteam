@@ -15,6 +15,11 @@ type Service = {
   description?: string;
   notes?: string;
   startDate?: Timestamp | null;
+  billingType?: "one_time" | "recurring" | string;
+  price?: number;
+  currency?: string;
+  interval?: "monthly" | "yearly" | string;
+  nextBillingDate?: Timestamp | null;
   // Optional health fields (Service Health Dashboard V1)
   health?: string; // "healthy" | "warning" | "critical" | "waiting_client" | "paused"
   healthNote?: string;
@@ -267,6 +272,37 @@ export default function ClientServiceDetailPage() {
             <p className="mt-1 text-[#0F172A]">{formatDateTime(service.updatedAt)}</p>
           </div>
         </div>
+      </div>
+
+      <div className="mt-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 max-w-full">
+        <h2 className="text-[#0F172A] font-semibold">Billing</h2>
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="text-xs text-slate-500">Billing type</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{service.billingType ?? "—"}</p>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="text-xs text-slate-500">Price</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">
+              {typeof service.price === "number"
+                ? `${service.currency ?? "USD"} ${service.price.toLocaleString()}`
+                : "—"}
+            </p>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="text-xs text-slate-500">Interval</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{service.interval ?? "—"}</p>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="text-xs text-slate-500">Next billing date</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">
+              {formatDate(service.nextBillingDate ?? null)}
+            </p>
+          </div>
+        </div>
+        <p className="mt-3 text-xs text-slate-500">
+          Billing is managed by Blueteam; contact support if you need changes.
+        </p>
       </div>
 
       <div className="mt-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 max-w-full">

@@ -174,7 +174,9 @@ export default function PortalServicesPage() {
   const [formNotes, setFormNotes] = useState<string>("");
   const [formBillingType, setFormBillingType] = useState<BillingType>("one_time");
   const [formPrice, setFormPrice] = useState<string>("");
+  const [formCurrency, setFormCurrency] = useState<string>("USD");
   const [formInterval, setFormInterval] = useState<BillingInterval>("monthly");
+  const [formNextBillingDate, setFormNextBillingDate] = useState<string>("");
 
   async function loadAll() {
     const tenantId = tenant?.id;
@@ -329,6 +331,10 @@ export default function PortalServicesPage() {
           setCreateError("Please provide a valid recurring price (0 or more).");
           return;
         }
+        if (!formCurrency.trim()) {
+          setCreateError("Please provide a currency (e.g. USD).");
+          return;
+        }
       } else if (priceNumber != null && (Number.isNaN(priceNumber) || priceNumber < 0)) {
         setCreateError("Please provide a valid price (0 or more).");
         return;
@@ -350,7 +356,9 @@ export default function PortalServicesPage() {
         notes: formNotes.trim() || "",
         billingType,
         price: priceNumber ?? undefined,
+        currency: formCurrency.trim() || undefined,
         interval: billingType === "recurring" ? interval : undefined,
+        nextBillingDate: undefined,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       };
@@ -358,6 +366,7 @@ export default function PortalServicesPage() {
       // Strip optional undefined values (Firestore rejects undefined fields)
       if (!renewal) delete payload.renewalDate;
       if (priceNumber == null) delete payload.price;
+      if (!formCurrency.trim()) delete payload.currency;
       if (billingType !== "recurring") delete payload.interval;
       if (!selectedProject) {
         delete payload.projectId;
@@ -378,13 +387,19 @@ export default function PortalServicesPage() {
       );
 
       if (billingType === "recurring") {
-        const nextBillingDate = computeNextBillingDate(start, interval);
+        const nextBillingDate = formNextBillingDate
+          ? new Date(formNextBillingDate)
+          : computeNextBillingDate(start, interval);
+        if (Number.isNaN(nextBillingDate.getTime())) {
+          setCreateError("Please provide a valid next billing date.");
+          return;
+        }
         const sub = await addDoc(collection(db, "tenants", tenant.id, "subscriptions"), {
           clientId: formClientId,
           clientName: selectedClient.name ?? selectedClient.email ?? selectedClient.id,
           name: categoryOpt.label,
           price: priceNumber ?? 0,
-          currency: "USD",
+          currency: formCurrency.trim() || "USD",
           interval,
           status: "active",
           startDate: Timestamp.fromDate(start),
@@ -397,6 +412,7 @@ export default function PortalServicesPage() {
 
         await updateDoc(doc(db, "tenants", tenant.id, "services", created.id), {
           subscriptionId: sub.id,
+          nextBillingDate: Timestamp.fromDate(nextBillingDate),
           updatedAt: serverTimestamp(),
         });
       }
@@ -408,7 +424,9 @@ export default function PortalServicesPage() {
       setFormProjectId("");
       setFormBillingType("one_time");
       setFormPrice("");
+      setFormCurrency("USD");
       setFormInterval("monthly");
+      setFormNextBillingDate("");
       router.replace("/portal/services");
       await loadAll();
 
@@ -629,6 +647,20 @@ export default function PortalServicesPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-[#0F172A] mb-1">
+                    Currency {formBillingType === "recurring" ? "*" : "(optional)"}
+                  </label>
+                  <input
+                    type="text"
+                    value={formCurrency}
+                    onChange={(e) => setFormCurrency(e.target.value.toUpperCase())}
+                    required={formBillingType === "recurring"}
+                    placeholder="USD"
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] placeholder:text-slate-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#0F172A] mb-1">
                     Interval {formBillingType === "recurring" ? "*" : "(n/a)"}
                   </label>
                   <select
@@ -651,6 +683,22 @@ export default function PortalServicesPage() {
                     required
                     className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#0F172A] mb-1">
+                    Next billing date {formBillingType === "recurring" ? "(optional)" : "(n/a)"}
+                  </label>
+                  <input
+                    type="date"
+                    value={formNextBillingDate}
+                    onChange={(e) => setFormNextBillingDate(e.target.value)}
+                    disabled={formBillingType !== "recurring"}
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] disabled:bg-slate-50 disabled:text-slate-400"
+                  />
+                  <p className="mt-1 text-xs text-slate-500">
+                    Leave blank to auto-calculate from start date and interval.
+                  </p>
                 </div>
 
                 <div>

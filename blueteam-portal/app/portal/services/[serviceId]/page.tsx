@@ -3,10 +3,21 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { doc, getDoc, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
+
+type BillingType = "one_time" | "recurring";
+type BillingInterval = "monthly" | "yearly";
 
 type Service = {
   name?: string;
@@ -15,6 +26,11 @@ type Service = {
   description?: string;
   notes?: string;
   startDate?: Timestamp | null;
+  billingType?: BillingType | string;
+  price?: number;
+  currency?: string;
+  interval?: BillingInterval | string;
+  nextBillingDate?: Timestamp | null;
   // Optional health fields (Service Health Dashboard V1)
   health?: string; // "healthy" | "warning" | "critical" | "waiting_client" | "paused"
   healthNote?: string;
@@ -137,6 +153,31 @@ function formatDateInputValue(ts?: Timestamp | null) {
   return `${yyyy}-${mm}-${dd}`;
 }
 
+function addMonthsSafe(base: Date, months: number) {
+  const year = base.getFullYear();
+  const month = base.getMonth();
+  const day = base.getDate();
+  const target = new Date(year, month + months, 1, 12, 0, 0, 0);
+  const lastDay = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+  target.setDate(Math.min(day, lastDay));
+  return target;
+}
+
+function addYearsSafe(base: Date, years: number) {
+  const target = new Date(base);
+  target.setFullYear(base.getFullYear() + years);
+  if (base.getMonth() === 1 && base.getDate() === 29 && target.getMonth() !== 1) {
+    target.setMonth(1);
+    target.setDate(28);
+  }
+  return target;
+}
+
+function computeNextBillingDate(startDate: Date, interval: BillingInterval) {
+  if (interval === "yearly") return addYearsSafe(startDate, 1);
+  return addMonthsSafe(startDate, 1);
+}
+
 export default function PortalServiceDetailPage() {
   const { user } = useAuth();
   const { tenant, role } = useTenant();
@@ -157,6 +198,17 @@ export default function PortalServiceDetailPage() {
   const [operationalSummary, setOperationalSummary] = useState<string>("");
   const [healthUpdateLoading, setHealthUpdateLoading] = useState<boolean>(false);
   const [healthUpdateError, setHealthUpdateError] = useState<string | null>(null);
+
+  // Billing editing state (portal admins/owners only)
+  const canEditBilling = role === "admin" || role === "owner";
+  const [billingType, setBillingType] = useState<BillingType>("one_time");
+  const [billingPrice, setBillingPrice] = useState<string>("");
+  const [billingCurrency, setBillingCurrency] = useState<string>("USD");
+  const [billingInterval, setBillingInterval] = useState<BillingInterval>("monthly");
+  const [billingStartDate, setBillingStartDate] = useState<string>("");
+  const [billingNextDate, setBillingNextDate] = useState<string>("");
+  const [billingUpdateLoading, setBillingUpdateLoading] = useState<boolean>(false);
+  const [billingUpdateError, setBillingUpdateError] = useState<string | null>(null);
 
   useEffect(() => {
     const tid = tenant?.id;
@@ -199,6 +251,19 @@ export default function PortalServiceDetailPage() {
     setOperationalSummary(service.operationalSummary ?? "");
   }, [service, canEditHealth]);
 
+  useEffect(() => {
+    if (!service) return;
+    if (!canEditBilling) return;
+    const bt = (service.billingType ?? "one_time") as BillingType;
+    setBillingType(bt === "recurring" ? "recurring" : "one_time");
+    setBillingPrice(typeof service.price === "number" ? String(service.price) : "");
+    setBillingCurrency((service.currency ?? "USD").toUpperCase());
+    const iv = (service.interval ?? "monthly") as BillingInterval;
+    setBillingInterval(iv === "yearly" ? "yearly" : "monthly");
+    setBillingStartDate(formatDateInputValue(service.startDate ?? null));
+    setBillingNextDate(formatDateInputValue(service.nextBillingDate ?? null));
+  }, [service, canEditBilling]);
+
   async function handleUpdateHealth(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setHealthUpdateLoading(true);
@@ -234,6 +299,113 @@ export default function PortalServiceDetailPage() {
       setHealthUpdateError(msg);
     } finally {
       setHealthUpdateLoading(false);
+    }
+  }
+
+  async function handleUpdateBilling(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setBillingUpdateLoading(true);
+    setBillingUpdateError(null);
+    try {
+      const tid = tenant?.id;
+      const sid = serviceId;
+      if (!tid || !sid) {
+        setBillingUpdateError("Missing tenant/service id.");
+        return;
+      }
+      const start = billingStartDate ? new Date(billingStartDate) : null;
+      if (!start || Number.isNaN(start.getTime())) {
+        setBillingUpdateError("Please provide a valid start date.");
+        return;
+      }
+
+      const priceNumber = billingPrice.trim() === "" ? null : Number.parseFloat(billingPrice);
+      if (billingType === "recurring") {
+        if (priceNumber == null || Number.isNaN(priceNumber) || priceNumber < 0) {
+          setBillingUpdateError("Please provide a valid recurring price (0 or more).");
+          return;
+        }
+        if (!billingCurrency.trim()) {
+          setBillingUpdateError("Please provide a currency (e.g. USD).");
+          return;
+        }
+      } else if (priceNumber != null && (Number.isNaN(priceNumber) || priceNumber < 0)) {
+        setBillingUpdateError("Please provide a valid price (0 or more).");
+        return;
+      }
+
+      const nextDate =
+        billingType === "recurring"
+          ? billingNextDate
+            ? new Date(billingNextDate)
+            : computeNextBillingDate(start, billingInterval)
+          : null;
+      if (nextDate && Number.isNaN(nextDate.getTime())) {
+        setBillingUpdateError("Please provide a valid next billing date.");
+        return;
+      }
+
+      const svcRef = doc(db, "tenants", tid, "services", sid);
+
+      await updateDoc(svcRef, {
+        billingType,
+        price: priceNumber ?? null,
+        currency: billingCurrency.trim() ? billingCurrency.trim().toUpperCase() : null,
+        interval: billingType === "recurring" ? billingInterval : null,
+        startDate: Timestamp.fromDate(start),
+        nextBillingDate: nextDate ? Timestamp.fromDate(nextDate) : null,
+        updatedAt: serverTimestamp(),
+      });
+
+      if (billingType === "recurring") {
+        const svcSnap = await getDoc(svcRef);
+        const freshService = svcSnap.exists() ? (svcSnap.data() as Service) : undefined;
+        const existingSubId = freshService?.subscriptionId;
+        const effectiveNext = nextDate ?? computeNextBillingDate(start, billingInterval);
+        const currency = billingCurrency.trim() ? billingCurrency.trim().toUpperCase() : "USD";
+        const name = freshService?.name ?? "Service subscription";
+
+        if (existingSubId) {
+          await updateDoc(doc(db, "tenants", tid, "subscriptions", existingSubId), {
+            serviceId: sid,
+            clientId: freshService?.clientId ?? null,
+            clientName: freshService?.clientName ?? null,
+            name,
+            price: priceNumber ?? 0,
+            currency,
+            interval: billingInterval,
+            status: "active",
+            startDate: Timestamp.fromDate(start),
+            nextBillingDate: Timestamp.fromDate(effectiveNext),
+            updatedAt: serverTimestamp(),
+          });
+        } else {
+          const createdSub = await addDoc(collection(db, "tenants", tid, "subscriptions"), {
+            serviceId: sid,
+            clientId: freshService?.clientId ?? null,
+            clientName: freshService?.clientName ?? null,
+            name,
+            price: priceNumber ?? 0,
+            currency,
+            interval: billingInterval,
+            status: "active",
+            startDate: Timestamp.fromDate(start),
+            nextBillingDate: Timestamp.fromDate(effectiveNext),
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+            source: "service",
+          });
+          await updateDoc(svcRef, { subscriptionId: createdSub.id, updatedAt: serverTimestamp() });
+        }
+      }
+
+      const snap = await getDoc(svcRef);
+      if (snap.exists()) setService(snap.data() as Service);
+    } catch (err) {
+      const msg = (err as { message?: string }).message ?? "Failed to update billing.";
+      setBillingUpdateError(msg);
+    } finally {
+      setBillingUpdateLoading(false);
     }
   }
 
@@ -496,6 +668,150 @@ export default function PortalServiceDetailPage() {
                       className="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-500 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {healthUpdateLoading ? "Updating..." : "Update health"}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            ) : null}
+          </div>
+
+          <div className="mt-6">
+            <h3 className="text-[#0F172A] font-semibold">Billing</h3>
+            <div className="mt-3 bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs text-slate-500">Billing type</p>
+                  <p className="text-sm text-[#0F172A] font-medium break-words">
+                    {service.billingType ?? "—"}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Price</p>
+                  <p className="text-sm text-[#0F172A] font-medium break-words">
+                    {typeof service.price === "number"
+                      ? `${service.currency ?? "USD"} ${service.price.toLocaleString()}`
+                      : "—"}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Interval</p>
+                  <p className="text-sm text-[#0F172A] font-medium break-words">{service.interval ?? "—"}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Next billing date</p>
+                  <p className="text-sm text-[#0F172A] font-medium break-words">
+                    {formatDate(service.nextBillingDate ?? null)}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 text-xs text-slate-500 break-words">
+                Linked subscription:{" "}
+                <span className="font-medium text-slate-700">{service.subscriptionId ?? "—"}</span>
+              </div>
+            </div>
+
+            {canEditBilling ? (
+              <form onSubmit={handleUpdateBilling} className="mt-4">
+                {billingUpdateError ? (
+                  <div className="mb-3 bg-rose-50 border border-rose-200 rounded-xl p-3">
+                    <p className="text-rose-700 text-sm break-words">{billingUpdateError}</p>
+                  </div>
+                ) : null}
+
+                <div className="bg-white rounded-xl border border-slate-200 p-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600">Billing type</label>
+                      <select
+                        value={billingType}
+                        onChange={(e) => setBillingType(e.target.value as BillingType)}
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                      >
+                        <option value="one_time">One-time</option>
+                        <option value="recurring">Recurring</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600">
+                        Price {billingType === "recurring" ? "*" : "(optional)"}
+                      </label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={billingPrice}
+                        onChange={(e) => setBillingPrice(e.target.value)}
+                        required={billingType === "recurring"}
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                        placeholder="0.00"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600">
+                        Currency {billingType === "recurring" ? "*" : "(optional)"}
+                      </label>
+                      <input
+                        type="text"
+                        value={billingCurrency}
+                        onChange={(e) => setBillingCurrency(e.target.value.toUpperCase())}
+                        required={billingType === "recurring"}
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                        placeholder="USD"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600">
+                        Interval {billingType === "recurring" ? "*" : "(n/a)"}
+                      </label>
+                      <select
+                        value={billingInterval}
+                        onChange={(e) => setBillingInterval(e.target.value as BillingInterval)}
+                        disabled={billingType !== "recurring"}
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200 disabled:bg-slate-50 disabled:text-slate-400"
+                      >
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600">Start date *</label>
+                      <input
+                        type="date"
+                        value={billingStartDate}
+                        onChange={(e) => setBillingStartDate(e.target.value)}
+                        required
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600">
+                        Next billing date {billingType === "recurring" ? "(optional)" : "(n/a)"}
+                      </label>
+                      <input
+                        type="date"
+                        value={billingNextDate}
+                        onChange={(e) => setBillingNextDate(e.target.value)}
+                        disabled={billingType !== "recurring"}
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200 disabled:bg-slate-50 disabled:text-slate-400"
+                      />
+                      <p className="mt-1 text-xs text-slate-500">
+                        Leave blank to auto-calculate from start date and interval.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-end gap-3">
+                    <button
+                      type="submit"
+                      disabled={billingUpdateLoading}
+                      className="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-500 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {billingUpdateLoading ? "Saving..." : "Save billing"}
                     </button>
                   </div>
                 </div>
