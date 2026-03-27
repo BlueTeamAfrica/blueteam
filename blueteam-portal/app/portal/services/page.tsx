@@ -3,13 +3,23 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { addDoc, collection, getDocs, serverTimestamp, Timestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  serverTimestamp,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
 import { MANAGED_SERVICE_CATEGORIES } from "@/lib/managedServiceCategories";
 
 type ServiceStatus = "active" | "paused" | "pending" | "cancelled" | "retired";
+type BillingType = "one_time" | "recurring";
+type BillingInterval = "monthly" | "yearly";
 
 type Service = {
   id: string;
@@ -36,6 +46,33 @@ function formatDate(ts?: Timestamp) {
   } catch {
     return "—";
   }
+}
+
+function addMonthsSafe(base: Date, months: number) {
+  const year = base.getFullYear();
+  const month = base.getMonth();
+  const day = base.getDate();
+
+  const target = new Date(year, month + months, 1, 12, 0, 0, 0);
+  const lastDay = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+  target.setDate(Math.min(day, lastDay));
+  return target;
+}
+
+function addYearsSafe(base: Date, years: number) {
+  const target = new Date(base);
+  target.setFullYear(base.getFullYear() + years);
+
+  if (base.getMonth() === 1 && base.getDate() === 29 && target.getMonth() !== 1) {
+    target.setMonth(1);
+    target.setDate(28);
+  }
+  return target;
+}
+
+function computeNextBillingDate(startDate: Date, interval: BillingInterval) {
+  if (interval === "yearly") return addYearsSafe(startDate, 1);
+  return addMonthsSafe(startDate, 1);
 }
 
 function StatusBadge({ status }: { status?: string }) {
@@ -135,6 +172,9 @@ export default function PortalServicesPage() {
   const [formStartDate, setFormStartDate] = useState<string>(() => getTodayIso());
   const [formRenewalDate, setFormRenewalDate] = useState<string>("");
   const [formNotes, setFormNotes] = useState<string>("");
+  const [formBillingType, setFormBillingType] = useState<BillingType>("one_time");
+  const [formPrice, setFormPrice] = useState<string>("");
+  const [formInterval, setFormInterval] = useState<BillingInterval>("monthly");
 
   async function loadAll() {
     const tenantId = tenant?.id;
@@ -281,11 +321,25 @@ export default function PortalServicesPage() {
         return;
       }
 
+      const billingType: BillingType = formBillingType;
+      const interval: BillingInterval = formInterval;
+      const priceNumber = formPrice.trim() === "" ? null : Number.parseFloat(formPrice);
+      if (billingType === "recurring") {
+        if (priceNumber == null || Number.isNaN(priceNumber) || priceNumber < 0) {
+          setCreateError("Please provide a valid recurring price (0 or more).");
+          return;
+        }
+      } else if (priceNumber != null && (Number.isNaN(priceNumber) || priceNumber < 0)) {
+        setCreateError("Please provide a valid price (0 or more).");
+        return;
+      }
+
       const selectedProject = formProjectId
         ? projects.find((p) => p.id === formProjectId)
         : undefined;
 
       const payload: Record<string, unknown> = {
+        name: categoryOpt.label,
         clientId: formClientId,
         clientName: selectedClient.name ?? selectedClient.email ?? selectedClient.id,
         category: categoryOpt.value,
@@ -294,12 +348,17 @@ export default function PortalServicesPage() {
         startDate: Timestamp.fromDate(start),
         renewalDate: renewal ? Timestamp.fromDate(renewal) : undefined,
         notes: formNotes.trim() || "",
+        billingType,
+        price: priceNumber ?? undefined,
+        interval: billingType === "recurring" ? interval : undefined,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       };
 
       // Strip optional undefined values (Firestore rejects undefined fields)
       if (!renewal) delete payload.renewalDate;
+      if (priceNumber == null) delete payload.price;
+      if (billingType !== "recurring") delete payload.interval;
       if (!selectedProject) {
         delete payload.projectId;
         delete payload.projectName;
@@ -318,11 +377,38 @@ export default function PortalServicesPage() {
         payload
       );
 
+      if (billingType === "recurring") {
+        const nextBillingDate = computeNextBillingDate(start, interval);
+        const sub = await addDoc(collection(db, "tenants", tenant.id, "subscriptions"), {
+          clientId: formClientId,
+          clientName: selectedClient.name ?? selectedClient.email ?? selectedClient.id,
+          name: categoryOpt.label,
+          price: priceNumber ?? 0,
+          currency: "USD",
+          interval,
+          status: "active",
+          startDate: Timestamp.fromDate(start),
+          nextBillingDate: Timestamp.fromDate(nextBillingDate),
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+          source: "service",
+          serviceId: created.id,
+        });
+
+        await updateDoc(doc(db, "tenants", tenant.id, "services", created.id), {
+          subscriptionId: sub.id,
+          updatedAt: serverTimestamp(),
+        });
+      }
+
       // Redirect + refresh.
       setShowCreate(false);
       setFormNotes("");
       setFormRenewalDate("");
       setFormProjectId("");
+      setFormBillingType("one_time");
+      setFormPrice("");
+      setFormInterval("monthly");
       router.replace("/portal/services");
       await loadAll();
 
@@ -507,6 +593,52 @@ export default function PortalServicesPage() {
                         {p.name ?? p.id}
                       </option>
                     ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#0F172A] mb-1">Billing type</label>
+                  <select
+                    value={formBillingType}
+                    onChange={(e) => setFormBillingType(e.target.value as BillingType)}
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
+                  >
+                    <option value="one_time">One-time</option>
+                    <option value="recurring">Recurring</option>
+                  </select>
+                  <p className="mt-1 text-xs text-slate-500">
+                    Recurring services create a subscription and will be picked up by invoice generation.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#0F172A] mb-1">
+                    Price {formBillingType === "recurring" ? "*" : "(optional)"}
+                  </label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formPrice}
+                    onChange={(e) => setFormPrice(e.target.value)}
+                    required={formBillingType === "recurring"}
+                    placeholder="0.00"
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] placeholder:text-slate-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#0F172A] mb-1">
+                    Interval {formBillingType === "recurring" ? "*" : "(n/a)"}
+                  </label>
+                  <select
+                    value={formInterval}
+                    onChange={(e) => setFormInterval(e.target.value as BillingInterval)}
+                    disabled={formBillingType !== "recurring"}
+                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] disabled:bg-slate-50 disabled:text-slate-400"
+                  >
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
                   </select>
                 </div>
 
