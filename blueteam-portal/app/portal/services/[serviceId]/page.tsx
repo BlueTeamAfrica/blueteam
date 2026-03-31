@@ -16,8 +16,9 @@ import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
 
-type BillingType = "one_time" | "recurring";
+type BillingType = "none" | "one_time" | "recurring";
 type BillingInterval = "monthly" | "yearly";
+type SubStatus = "active" | "paused" | "cancelled" | string;
 
 type Service = {
   name?: string;
@@ -178,6 +179,32 @@ function computeNextBillingDate(startDate: Date, interval: BillingInterval) {
   return addMonthsSafe(startDate, 1);
 }
 
+function getBillingTypeLabel(v?: string) {
+  const s = (v ?? "").toLowerCase();
+  if (s === "none") return "Not billable";
+  if (s === "one_time") return "One-time";
+  if (s === "recurring") return "Recurring";
+  return v ? v : "—";
+}
+
+function subscriptionStatusBadge(status?: SubStatus) {
+  const s = (status ?? "").toLowerCase();
+  const cls =
+    s === "active"
+      ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+      : s === "paused"
+        ? "bg-amber-50 text-amber-700 border-amber-200"
+        : s
+          ? "bg-slate-50 text-slate-700 border-slate-200"
+          : "bg-slate-50 text-slate-600 border-slate-200";
+  const label = s === "active" ? "Active" : s === "paused" ? "Paused" : s ? s : "—";
+  return (
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${cls}`}>
+      {label}
+    </span>
+  );
+}
+
 export default function PortalServiceDetailPage() {
   const { user } = useAuth();
   const { tenant, role } = useTenant();
@@ -201,7 +228,7 @@ export default function PortalServiceDetailPage() {
 
   // Billing editing state (portal admins/owners only)
   const canEditBilling = role === "admin" || role === "owner";
-  const [billingType, setBillingType] = useState<BillingType>("one_time");
+  const [billingType, setBillingType] = useState<BillingType>("none");
   const [billingPrice, setBillingPrice] = useState<string>("");
   const [billingCurrency, setBillingCurrency] = useState<string>("USD");
   const [billingInterval, setBillingInterval] = useState<BillingInterval>("monthly");
@@ -209,6 +236,7 @@ export default function PortalServiceDetailPage() {
   const [billingNextDate, setBillingNextDate] = useState<string>("");
   const [billingUpdateLoading, setBillingUpdateLoading] = useState<boolean>(false);
   const [billingUpdateError, setBillingUpdateError] = useState<string | null>(null);
+  const [linkedSub, setLinkedSub] = useState<{ id: string; status?: SubStatus; name?: string } | null>(null);
 
   useEffect(() => {
     const tid = tenant?.id;
@@ -242,6 +270,37 @@ export default function PortalServiceDetailPage() {
   }, [user, tenant?.id, serviceId]);
 
   useEffect(() => {
+    const tid = tenant?.id;
+    const subId = service?.subscriptionId;
+    if (!user || !tid || !subId) {
+      setLinkedSub(null);
+      return;
+    }
+    const tenantId = tid as string;
+    const subscriptionId = subId as string;
+    let alive = true;
+    async function loadSub() {
+      try {
+        const snap = await getDoc(doc(db, "tenants", tenantId, "subscriptions", subscriptionId));
+        if (!alive) return;
+        if (!snap.exists()) {
+          setLinkedSub({ id: subscriptionId, status: "missing" });
+          return;
+        }
+        const data = snap.data() as { status?: SubStatus; name?: string };
+        setLinkedSub({ id: snap.id, status: data.status, name: data.name });
+      } catch {
+        if (!alive) return;
+        setLinkedSub({ id: subscriptionId, status: "unknown" });
+      }
+    }
+    loadSub();
+    return () => {
+      alive = false;
+    };
+  }, [service?.subscriptionId, tenant?.id, user]);
+
+  useEffect(() => {
     if (!service) return;
     if (!canEditHealth) return;
     setHealthStatus(normalizeHealth(service.health ?? "") || "healthy");
@@ -255,7 +314,9 @@ export default function PortalServiceDetailPage() {
     if (!service) return;
     if (!canEditBilling) return;
     const bt = (service.billingType ?? "one_time") as BillingType;
-    setBillingType(bt === "recurring" ? "recurring" : "one_time");
+    if (bt === "recurring") setBillingType("recurring");
+    else if (bt === "one_time") setBillingType("one_time");
+    else setBillingType("none");
     setBillingPrice(typeof service.price === "number" ? String(service.price) : "");
     setBillingCurrency((service.currency ?? "USD").toUpperCase());
     const iv = (service.interval ?? "monthly") as BillingInterval;
@@ -319,6 +380,7 @@ export default function PortalServiceDetailPage() {
         return;
       }
 
+      const prevSubscriptionId = service?.subscriptionId ?? null;
       const priceNumber = billingPrice.trim() === "" ? null : Number.parseFloat(billingPrice);
       if (billingType === "recurring") {
         if (priceNumber == null || Number.isNaN(priceNumber) || priceNumber < 0) {
@@ -329,6 +391,8 @@ export default function PortalServiceDetailPage() {
           setBillingUpdateError("Please provide a currency (e.g. USD).");
           return;
         }
+      } else if (billingType === "none") {
+        // Not billable: ignore price/currency/interval/next date.
       } else if (priceNumber != null && (Number.isNaN(priceNumber) || priceNumber < 0)) {
         setBillingUpdateError("Please provide a valid price (0 or more).");
         return;
@@ -349,11 +413,17 @@ export default function PortalServiceDetailPage() {
 
       await updateDoc(svcRef, {
         billingType,
-        price: priceNumber ?? null,
-        currency: billingCurrency.trim() ? billingCurrency.trim().toUpperCase() : null,
+        price: billingType === "none" ? null : priceNumber ?? null,
+        currency:
+          billingType === "none"
+            ? null
+            : billingCurrency.trim()
+              ? billingCurrency.trim().toUpperCase()
+              : null,
         interval: billingType === "recurring" ? billingInterval : null,
         startDate: Timestamp.fromDate(start),
-        nextBillingDate: nextDate ? Timestamp.fromDate(nextDate) : null,
+        nextBillingDate: billingType === "recurring" && nextDate ? Timestamp.fromDate(nextDate) : null,
+        subscriptionId: billingType === "recurring" ? (service?.subscriptionId ?? null) : null,
         updatedAt: serverTimestamp(),
       });
 
@@ -397,6 +467,13 @@ export default function PortalServiceDetailPage() {
           });
           await updateDoc(svcRef, { subscriptionId: createdSub.id, updatedAt: serverTimestamp() });
         }
+      } else if (prevSubscriptionId) {
+        // Downgrade from recurring to one_time/none: pause the old subscription and unlink.
+        await updateDoc(doc(db, "tenants", tid, "subscriptions", prevSubscriptionId), {
+          status: "paused",
+          updatedAt: serverTimestamp(),
+        });
+        await updateDoc(svcRef, { subscriptionId: null, updatedAt: serverTimestamp() });
       }
 
       const snap = await getDoc(svcRef);
@@ -557,17 +634,22 @@ export default function PortalServiceDetailPage() {
 
           <div className="mt-6">
             <h3 className="text-[#0F172A] font-semibold">Health</h3>
-            <div className="mt-3 bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="mt-1 text-xs text-slate-500 max-w-2xl">
+              Operational status for this service. Updates here are visible to your team; clients see a read-only summary on their portal.
+            </p>
+            <div className="mt-3 bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-100 max-w-full overflow-hidden">
               <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Status</span>
                 <HealthBadge health={service.health} />
-                {service.healthNote ? (
-                  <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-slate-700">
-                    {service.healthNote}
-                  </span>
-                ) : null}
               </div>
 
-              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="sm:col-span-2">
+                  <p className="text-xs text-slate-500">Health note</p>
+                  <p className="mt-1 text-sm text-[#0F172A] whitespace-pre-wrap break-words">
+                    {service.healthNote?.trim() ? service.healthNote : "—"}
+                  </p>
+                </div>
                 <div>
                   <p className="text-xs text-slate-500">Last checked</p>
                   <p className="text-sm text-[#0F172A] font-medium break-words">
@@ -585,7 +667,7 @@ export default function PortalServiceDetailPage() {
                 </div>
               </div>
 
-              <div className="mt-3">
+              <div className="mt-3 pt-3 border-t border-slate-200/80">
                 <p className="text-xs text-slate-500">Operational summary</p>
                 <p className="mt-1 text-sm text-slate-700 whitespace-pre-wrap break-words">
                   {service.operationalSummary ?? "—"}
@@ -620,6 +702,9 @@ export default function PortalServiceDetailPage() {
 
                     <div className="sm:col-span-2">
                       <label className="block text-xs font-medium text-slate-600">Health note (optional)</label>
+                      <p className="mt-0.5 text-[11px] text-slate-500">
+                        Short context for your team (and optionally shown to clients). Saving sets <span className="font-medium">Last checked</span> to now.
+                      </p>
                       <textarea
                         value={healthNote}
                         onChange={(e) => setHealthNote(e.target.value)}
@@ -682,16 +767,18 @@ export default function PortalServiceDetailPage() {
                 <div>
                   <p className="text-xs text-slate-500">Billing type</p>
                   <p className="text-sm text-[#0F172A] font-medium break-words">
-                    {service.billingType ?? "—"}
+                    {getBillingTypeLabel(service.billingType)}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Price</p>
                   <p className="text-sm text-[#0F172A] font-medium break-words">
-                    {typeof service.price === "number"
-                      ? `${service.currency ?? "USD"} ${service.price.toLocaleString()}`
-                      : "—"}
+                    {typeof service.price === "number" ? `${service.price.toLocaleString()}` : "—"}
                   </p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Currency</p>
+                  <p className="text-sm text-[#0F172A] font-medium break-words">{service.currency ?? "—"}</p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Interval</p>
@@ -703,11 +790,25 @@ export default function PortalServiceDetailPage() {
                     {formatDate(service.nextBillingDate ?? null)}
                   </p>
                 </div>
+                <div>
+                  <p className="text-xs text-slate-500">Subscription status</p>
+                  <div className="mt-1">{subscriptionStatusBadge(linkedSub?.status)}</div>
+                </div>
               </div>
               <div className="mt-3 text-xs text-slate-500 break-words">
                 Linked subscription:{" "}
-                <span className="font-medium text-slate-700">{service.subscriptionId ?? "—"}</span>
+                <span className="font-medium text-slate-700">{linkedSub?.name ?? service.subscriptionId ?? "—"}</span>
               </div>
+              {service.subscriptionId ? (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Link
+                    href="/portal/subscriptions"
+                    className="inline-flex px-3 py-2 rounded-lg bg-white border border-slate-200 text-[#0F172A] text-sm font-medium hover:bg-slate-50 transition-colors"
+                  >
+                    View subscription
+                  </Link>
+                </div>
+              ) : null}
             </div>
 
             {canEditBilling ? (
@@ -727,6 +828,7 @@ export default function PortalServiceDetailPage() {
                         onChange={(e) => setBillingType(e.target.value as BillingType)}
                         className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
                       >
+                        <option value="none">Not billable</option>
                         <option value="one_time">One-time</option>
                         <option value="recurring">Recurring</option>
                       </select>
@@ -743,6 +845,7 @@ export default function PortalServiceDetailPage() {
                         value={billingPrice}
                         onChange={(e) => setBillingPrice(e.target.value)}
                         required={billingType === "recurring"}
+                        disabled={billingType === "none"}
                         className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
                         placeholder="0.00"
                       />
@@ -757,6 +860,7 @@ export default function PortalServiceDetailPage() {
                         value={billingCurrency}
                         onChange={(e) => setBillingCurrency(e.target.value.toUpperCase())}
                         required={billingType === "recurring"}
+                        disabled={billingType === "none"}
                         className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
                         placeholder="USD"
                       />

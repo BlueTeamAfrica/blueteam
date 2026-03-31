@@ -35,6 +35,7 @@ type Service = {
   projectName?: string;
   updatedAt?: Timestamp;
   createdAt?: Timestamp;
+  subscriptionId?: string;
 };
 
 function formatDateTime(ts?: Timestamp | null) {
@@ -117,6 +118,14 @@ function HealthBadge({ health }: { health?: string }) {
   );
 }
 
+function getBillingTypeLabel(v?: string) {
+  const s = (v ?? "").toLowerCase();
+  if (s === "none") return "Not billable";
+  if (s === "one_time") return "One-time";
+  if (s === "recurring") return "Recurring";
+  return v ? v : "—";
+}
+
 export default function ClientServiceDetailPage() {
   const { user } = useAuth();
   const { tenant, role, clientId } = useTenant();
@@ -127,6 +136,7 @@ export default function ClientServiceDetailPage() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [subStatus, setSubStatus] = useState<string | null>(null);
 
   useEffect(() => {
     const tid = tenant?.id;
@@ -164,6 +174,37 @@ export default function ClientServiceDetailPage() {
 
     load();
   }, [user, tenant?.id, role, clientId, serviceId]);
+
+  useEffect(() => {
+    const tid = tenant?.id;
+    const subId = service?.subscriptionId;
+    if (!user || !tid || role !== "client" || !clientId || !subId) {
+      setSubStatus(null);
+      return;
+    }
+    const tenantId = tid as string;
+    const subscriptionId = subId as string;
+    let alive = true;
+    async function loadSub() {
+      try {
+        const snap = await getDoc(doc(db, "tenants", tenantId, "subscriptions", subscriptionId));
+        if (!alive) return;
+        if (!snap.exists()) {
+          setSubStatus("—");
+          return;
+        }
+        const data = snap.data() as { status?: string };
+        setSubStatus(data.status ?? "—");
+      } catch {
+        if (!alive) return;
+        setSubStatus("—");
+      }
+    }
+    loadSub();
+    return () => {
+      alive = false;
+    };
+  }, [service?.subscriptionId, tenant?.id, user, role, clientId]);
 
   const supportHref = useMemo(() => {
     const subject = service?.name ? `Service: ${service.name} — Support request` : "Service support request";
@@ -279,15 +320,21 @@ export default function ClientServiceDetailPage() {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
             <p className="text-xs text-slate-500">Billing type</p>
-            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{service.billingType ?? "—"}</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">
+              {getBillingTypeLabel(service.billingType)}
+            </p>
           </div>
           <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
             <p className="text-xs text-slate-500">Price</p>
             <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">
               {typeof service.price === "number"
-                ? `${service.currency ?? "USD"} ${service.price.toLocaleString()}`
+                ? `${service.price.toLocaleString()}`
                 : "—"}
             </p>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="text-xs text-slate-500">Currency</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{service.currency ?? "—"}</p>
           </div>
           <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
             <p className="text-xs text-slate-500">Interval</p>
@@ -299,46 +346,58 @@ export default function ClientServiceDetailPage() {
               {formatDate(service.nextBillingDate ?? null)}
             </p>
           </div>
+          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p className="text-xs text-slate-500">Subscription status</p>
+            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{subStatus ?? "—"}</p>
+          </div>
         </div>
         <p className="mt-3 text-xs text-slate-500">
-          Billing is managed by Blueteam; contact support if you need changes.
+          Billing is managed by Blueteam. If anything looks incorrect, open a support ticket and we’ll fix it.
         </p>
       </div>
 
-      <div className="mt-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 max-w-full">
-        <h2 className="text-[#0F172A] font-semibold">Health</h2>
+      <div className="mt-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 max-w-full overflow-hidden">
+        <h2 className="text-[#0F172A] font-semibold">Service health</h2>
+        <p className="mt-1 text-xs text-slate-500 max-w-2xl">
+          This is how Blueteam currently sees this service: status, what we are doing next, and any important notes. Contact us if something does not match what you expect.
+        </p>
 
-        <div className="mt-3 flex flex-wrap items-center gap-2">
-          <HealthBadge health={service.health} />
-          {service.healthNote ? (
-            <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-slate-700">
-              {service.healthNote}
-            </span>
-          ) : null}
-        </div>
+        <div className="mt-4 bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-100">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Status</span>
+            <HealthBadge health={service.health} />
+          </div>
 
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-            <p className="text-xs text-slate-500">Last checked</p>
-            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">
-              {formatDateTime(service.lastCheckedAt ?? service.updatedAt ?? service.createdAt)}
+          <div className="mt-4">
+            <p className="text-xs text-slate-500">Note from Blueteam</p>
+            <p className="mt-1 text-sm text-[#0F172A] whitespace-pre-wrap break-words">
+              {service.healthNote?.trim() ? service.healthNote : "—"}
             </p>
           </div>
 
-          <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-            <p className="text-xs text-slate-500">Next action</p>
-            <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{service.nextAction ?? "—"}</p>
-            <p className="text-xs text-slate-500 mt-2">
-              Due: {formatDate(service.nextActionDue ?? null)}
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white/80 rounded-xl p-4 border border-slate-100/80">
+              <p className="text-xs text-slate-500">Last checked</p>
+              <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">
+                {formatDateTime(service.lastCheckedAt ?? service.updatedAt ?? service.createdAt)}
+              </p>
+            </div>
+
+            <div className="bg-white/80 rounded-xl p-4 border border-slate-100/80">
+              <p className="text-xs text-slate-500">Next action</p>
+              <p className="mt-1 text-sm text-[#0F172A] font-medium break-words">{service.nextAction ?? "—"}</p>
+              <p className="text-xs text-slate-500 mt-2">
+                Due: {formatDate(service.nextActionDue ?? null)}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-slate-200/80">
+            <p className="text-xs text-slate-500">Operational summary</p>
+            <p className="mt-2 text-sm text-slate-700 whitespace-pre-wrap break-words">
+              {service.operationalSummary ?? "—"}
             </p>
           </div>
-        </div>
-
-        <div className="mt-4 bg-slate-50 rounded-xl p-4 border border-slate-100">
-          <p className="text-xs text-slate-500">Operational summary</p>
-          <p className="mt-2 text-sm text-slate-700 whitespace-pre-wrap break-words">
-            {service.operationalSummary ?? "—"}
-          </p>
         </div>
       </div>
     </div>

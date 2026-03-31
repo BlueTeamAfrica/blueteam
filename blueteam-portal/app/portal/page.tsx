@@ -2,10 +2,25 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where, orderBy, limit } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  Timestamp,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
+import {
+  bucketServiceHealthForCounts,
+  getServiceHealthLabel,
+  healthPreviewPriority,
+  isAttentionServiceHealth,
+  normalizeServiceHealth,
+} from "@/lib/serviceHealth";
 
 type Kpis = {
   totalClients: number;
@@ -18,7 +33,7 @@ type Kpis = {
 
 type RecentActivityItem = {
   id: string;
-  type: "invoice" | "project" | "subscription";
+  type: "invoice" | "project" | "subscription" | "service";
   title: string;
   subtitle?: string;
   dateLabel: string;
@@ -26,11 +41,76 @@ type RecentActivityItem = {
   timestamp?: Date;
 };
 
+function getBillingTypeLabel(v?: string) {
+  const s = (v ?? "").toLowerCase();
+  if (s === "none") return "Not billable";
+  if (s === "one_time") return "One-time";
+  if (s === "recurring") return "Recurring";
+  return v ? v : "—";
+}
+
+type ServicePreviewRow = {
+  id: string;
+  name: string;
+  clientName: string;
+  health: string;
+  healthNote?: string;
+  nextAction?: string;
+  nextActionDueLabel: string;
+};
+
+type ServiceHealthOverview = {
+  counts: {
+    healthy: number;
+    warning: number;
+    critical: number;
+    waiting_client: number;
+    paused: number;
+  };
+  preview: ServicePreviewRow[];
+  hasAnyAttention: boolean;
+  totalServices: number;
+};
+
+function formatServiceDue(ts?: Timestamp | null) {
+  if (!ts) return "—";
+  try {
+    if (typeof ts.toDate === "function") {
+      return ts.toDate().toLocaleDateString(undefined, { dateStyle: "medium" });
+    }
+  } catch {
+    /* ignore */
+  }
+  return "—";
+}
+
+function HealthOverviewBadge({ health }: { health?: string }) {
+  const h = normalizeServiceHealth(health);
+  const styles =
+    h === "healthy"
+      ? "bg-emerald-100 text-emerald-800"
+      : h === "warning"
+        ? "bg-amber-100 text-amber-800"
+        : h === "critical"
+          ? "bg-rose-100 text-rose-800"
+          : h === "waiting_client"
+            ? "bg-indigo-100 text-indigo-800"
+            : h === "paused"
+              ? "bg-slate-200 text-slate-700"
+              : "bg-slate-100 text-slate-600";
+  return (
+    <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold ${styles}`}>
+      {getServiceHealthLabel(health)}
+    </span>
+  );
+}
+
 export default function PortalPage() {
   const { user } = useAuth();
   const { tenant, loading: tenantLoading, error: tenantError } = useTenant();
   const [kpis, setKpis] = useState<Kpis | null>(null);
   const [recentActivity, setRecentActivity] = useState<RecentActivityItem[]>([]);
+  const [serviceHealthOverview, setServiceHealthOverview] = useState<ServiceHealthOverview | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -102,8 +182,8 @@ export default function PortalPage() {
           }
         });
 
-        // Recent activity: mix of latest invoices, subscriptions, projects
-        const [recentInvoicesSnap, recentSubsSnap, recentProjectsSnap] = await Promise.all([
+        // Recent activity: mix of latest invoices, subscriptions, projects, services
+        const [recentInvoicesSnap, recentSubsSnap, recentProjectsSnap, recentServicesSnap] = await Promise.all([
           getDocs(
             query(
               collection(db, "tenants", tenantId as string, "invoices"),
@@ -114,7 +194,7 @@ export default function PortalPage() {
           getDocs(
             query(
               collection(db, "tenants", tenantId as string, "subscriptions"),
-              orderBy("createdAt", "desc"),
+              orderBy("updatedAt", "desc"),
               limit(5)
             )
           ),
@@ -125,9 +205,27 @@ export default function PortalPage() {
               limit(5)
             )
           ),
+          getDocs(
+            query(
+              collection(db, "tenants", tenantId as string, "services"),
+              orderBy("updatedAt", "desc"),
+              limit(8)
+            )
+          ),
         ]);
 
         const activity: RecentActivityItem[] = [];
+
+        // Build a lightweight subscriptionId -> service mapping for better labels
+        const serviceBySubId = new Map<string, { serviceName: string; billingType?: string }>();
+        recentServicesSnap.forEach((doc) => {
+          const data = doc.data() as { name?: string; subscriptionId?: string; billingType?: string };
+          if (!data.subscriptionId) return;
+          serviceBySubId.set(data.subscriptionId, {
+            serviceName: data.name ?? "Service",
+            billingType: data.billingType,
+          });
+        });
 
         recentInvoicesSnap.forEach((doc) => {
           const data = doc.data() as {
@@ -137,17 +235,21 @@ export default function PortalPage() {
             amount?: number;
             currency?: string;
             status?: string;
+            subscriptionId?: string;
           };
           const createdAt =
             data.createdAt && typeof data.createdAt.toDate === "function"
               ? data.createdAt.toDate()
               : undefined;
+          const service = data.subscriptionId ? serviceBySubId.get(data.subscriptionId) : undefined;
           activity.push({
             id: doc.id,
             type: "invoice",
-            title: data.invoiceNumber
-              ? `Invoice ${data.invoiceNumber} generated`
-              : "Invoice generated",
+            title: service
+              ? `Invoice generated for service "${service.serviceName}"`
+              : data.invoiceNumber
+                ? `Invoice ${data.invoiceNumber} generated`
+                : "Invoice generated",
             subtitle: data.clientName
               ? `${data.clientName}${
                   typeof data.amount === "number"
@@ -168,22 +270,33 @@ export default function PortalPage() {
             name?: string;
             clientName?: string;
             createdAt?: { toDate?: () => Date };
+            updatedAt?: { toDate?: () => Date };
             status?: string;
           };
-          const createdAt =
-            data.createdAt && typeof data.createdAt.toDate === "function"
-              ? data.createdAt.toDate()
-              : undefined;
+          const updatedAt =
+            data.updatedAt && typeof data.updatedAt.toDate === "function"
+              ? data.updatedAt.toDate()
+              : data.createdAt && typeof data.createdAt.toDate === "function"
+                ? data.createdAt.toDate()
+                : undefined;
+          const service = serviceBySubId.get(doc.id);
+          const status = (data.status ?? "").toLowerCase();
           activity.push({
             id: doc.id,
             type: "subscription",
-            title: data.name ? `Subscription "${data.name}" updated` : "Subscription updated",
+            title: service
+              ? status === "paused"
+                ? `Subscription paused for service "${service.serviceName}"`
+                : `Subscription updated for service "${service.serviceName}"`
+              : data.name
+                ? `Subscription "${data.name}" updated`
+                : "Subscription updated",
             subtitle: data.clientName ?? undefined,
-            dateLabel: createdAt
-              ? createdAt.toLocaleDateString(undefined, { month: "short", day: "numeric" })
+            dateLabel: updatedAt
+              ? updatedAt.toLocaleDateString(undefined, { month: "short", day: "numeric" })
               : "—",
             icon: "🔁",
-            timestamp: createdAt,
+            timestamp: updatedAt,
           });
         });
 
@@ -211,6 +324,77 @@ export default function PortalPage() {
           });
         });
 
+        recentServicesSnap.forEach((doc) => {
+          const data = doc.data() as {
+            name?: string;
+            clientName?: string;
+            createdAt?: { toDate?: () => Date };
+            updatedAt?: { toDate?: () => Date };
+            billingType?: string;
+            subscriptionId?: string;
+          };
+          const createdAt =
+            data.createdAt && typeof data.createdAt.toDate === "function"
+              ? data.createdAt.toDate()
+              : undefined;
+          const updatedAt =
+            data.updatedAt && typeof data.updatedAt.toDate === "function"
+              ? data.updatedAt.toDate()
+              : createdAt;
+
+          // Core events (lightweight, based on available fields)
+          if (createdAt) {
+            activity.push({
+              id: `${doc.id}_created`,
+              type: "service",
+              title: data.name ? `Service "${data.name}" created` : "Service created",
+              subtitle: data.clientName ? `Client: ${data.clientName}` : undefined,
+              dateLabel: createdAt.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+              icon: "🛠️",
+              timestamp: createdAt,
+            });
+          }
+
+          if (updatedAt && createdAt && updatedAt.getTime() - createdAt.getTime() > 2 * 60 * 1000) {
+            activity.push({
+              id: `${doc.id}_updated`,
+              type: "service",
+              title: data.name ? `Service "${data.name}" updated` : "Service updated",
+              subtitle: data.clientName ? `Client: ${data.clientName}` : undefined,
+              dateLabel: updatedAt.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+              icon: "🧾",
+              timestamp: updatedAt,
+            });
+          }
+
+          const bt = (data.billingType ?? "").toLowerCase();
+          if (updatedAt && bt === "recurring") {
+            activity.push({
+              id: `${doc.id}_recurring`,
+              type: "service",
+              title: data.name ? `Service "${data.name}" set to Recurring` : "Service set to Recurring",
+              subtitle: data.clientName ? `Client: ${data.clientName}` : undefined,
+              dateLabel: updatedAt.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+              icon: "💳",
+              timestamp: updatedAt,
+            });
+          }
+
+          if (updatedAt && data.subscriptionId && bt === "recurring") {
+            activity.push({
+              id: `${doc.id}_sub_linked`,
+              type: "service",
+              title: data.name
+                ? `Subscription created for service "${data.name}"`
+                : "Subscription created for service",
+              subtitle: data.clientName ? `Client: ${data.clientName}` : undefined,
+              dateLabel: updatedAt.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+              icon: "🔗",
+              timestamp: updatedAt,
+            });
+          }
+        });
+
         // Sort mixed activity by recency and limit
         const sortedActivity = activity
           .slice()
@@ -221,6 +405,63 @@ export default function PortalPage() {
           })
           .slice(0, 15);
 
+        const servicesSnap = await getDocs(collection(db, "tenants", tenantId as string, "services"));
+        const counts = {
+          healthy: 0,
+          warning: 0,
+          critical: 0,
+          waiting_client: 0,
+          paused: 0,
+        };
+        type RowSort = ServicePreviewRow & { _due: number; _prio: number };
+        const sortRows: RowSort[] = [];
+
+        servicesSnap.forEach((d) => {
+          const data = d.data() as {
+            name?: string;
+            clientName?: string;
+            health?: string;
+            healthNote?: string;
+            nextAction?: string;
+            nextActionDue?: Timestamp | null;
+          };
+          const bucket = bucketServiceHealthForCounts(data.health);
+          counts[bucket] += 1;
+
+          let dueMs = Infinity;
+          const due = data.nextActionDue;
+          if (due && typeof due.toDate === "function") {
+            try {
+              dueMs = due.toDate().getTime();
+            } catch {
+              dueMs = Infinity;
+            }
+          }
+
+          sortRows.push({
+            id: d.id,
+            name: data.name?.trim() ? data.name.trim() : "Untitled service",
+            clientName: data.clientName?.trim() ? data.clientName.trim() : "—",
+            health: data.health ?? "",
+            healthNote: data.healthNote?.trim() ? data.healthNote.trim() : undefined,
+            nextAction: data.nextAction?.trim() ? data.nextAction.trim() : undefined,
+            nextActionDueLabel: formatServiceDue(data.nextActionDue ?? null),
+            _due: dueMs,
+            _prio: healthPreviewPriority(data.health),
+          });
+        });
+
+        const hasAnyAttention = sortRows.some((r) => isAttentionServiceHealth(r.health));
+
+        sortRows.sort((a, b) => {
+          if (b._prio !== a._prio) return b._prio - a._prio;
+          if (a._due !== b._due) return a._due - b._due;
+          return a.name.localeCompare(b.name);
+        });
+
+        const previewLimit = hasAnyAttention ? 5 : 3;
+        const preview: ServicePreviewRow[] = sortRows.slice(0, previewLimit).map(({ _due, _prio, ...rest }) => rest);
+
         setKpis({
           totalClients,
           totalProjects,
@@ -230,6 +471,12 @@ export default function PortalPage() {
           unpaidInvoiceValue,
         });
         setRecentActivity(sortedActivity);
+        setServiceHealthOverview({
+          counts,
+          preview,
+          hasAnyAttention,
+          totalServices: sortRows.length,
+        });
       } finally {
         setLoading(false);
       }
@@ -334,6 +581,153 @@ export default function PortalPage() {
           </div>
         )}
       </section>
+
+      {/* Service Health Overview — operational layer */}
+      {kpis && serviceHealthOverview && (
+        <section className="rounded-2xl border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 shadow-sm overflow-hidden max-w-full">
+          <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-slate-200/80 bg-slate-900/[0.04] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+              <h2 className="text-[#0F172A] text-lg font-semibold tracking-tight">Service Health Overview</h2>
+              <p className="text-xs text-slate-600 mt-0.5 max-w-xl">
+                Live snapshot of managed-service health. Services without an explicit status count as{" "}
+                <span className="font-medium text-slate-700">Healthy</span>.
+              </p>
+            </div>
+            <Link
+              href="/portal/services"
+              className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 transition-colors shrink-0"
+            >
+              Open Services
+            </Link>
+          </div>
+
+          <div className="p-4 sm:p-6 space-y-5">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3">
+              {(
+                [
+                  ["healthy", "Healthy", "emerald"],
+                  ["warning", "Warning", "amber"],
+                  ["critical", "Critical", "rose"],
+                  ["waiting_client", "Waiting on Client", "indigo"],
+                  ["paused", "Paused", "slate"],
+                ] as const
+              ).map(([key, label, tone]) => {
+                const n = serviceHealthOverview.counts[key];
+                const ring =
+                  tone === "emerald"
+                    ? "ring-emerald-200/80 bg-emerald-50/90"
+                    : tone === "amber"
+                      ? "ring-amber-200/80 bg-amber-50/90"
+                      : tone === "rose"
+                        ? "ring-rose-200/80 bg-rose-50/90"
+                        : tone === "indigo"
+                          ? "ring-indigo-200/80 bg-indigo-50/90"
+                          : "ring-slate-200/80 bg-slate-50/90";
+                return (
+                  <div
+                    key={key}
+                    className={`rounded-xl border border-white/60 px-3 py-3 sm:py-4 shadow-sm ring-1 ${ring} min-w-0`}
+                  >
+                    <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-slate-600 truncate">
+                      {label}
+                    </p>
+                    <p className="mt-1 text-2xl sm:text-3xl font-bold tabular-nums text-[#0F172A]">{n}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm p-4 sm:p-5 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+                <div>
+                  <h3 className="text-sm font-semibold text-[#0F172A]">Service preview</h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    {serviceHealthOverview.hasAnyAttention
+                      ? "Prioritized: Critical → Warning → Waiting on Client → Healthy. Up to 5 services."
+                      : "No urgent issues — showing up to 3 healthy services with optional notes."}
+                  </p>
+                </div>
+                <Link
+                  href="/portal/services"
+                  className="text-xs font-medium text-indigo-600 hover:text-indigo-500 hover:underline shrink-0"
+                >
+                  Full list on Services →
+                </Link>
+              </div>
+
+              {serviceHealthOverview.totalServices === 0 ? (
+                <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50/90 px-4 py-5 text-center">
+                  <p className="text-sm font-medium text-slate-700">No services yet</p>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Add managed services to see health and next actions here.
+                  </p>
+                  <Link
+                    href="/portal/services"
+                    className="inline-block mt-3 text-xs font-semibold text-indigo-600 hover:underline"
+                  >
+                    Go to Services
+                  </Link>
+                </div>
+              ) : serviceHealthOverview.preview.length === 0 ? (
+                <p className="text-sm text-slate-500">No preview rows to show.</p>
+              ) : (
+                <ul className="divide-y divide-slate-100 border border-slate-100 rounded-lg overflow-hidden bg-white">
+                  {serviceHealthOverview.preview.map((row) => (
+                    <li key={row.id} className="px-3 py-2.5 sm:px-4 sm:py-3">
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="min-w-0 flex-1 space-y-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <Link
+                              href={`/portal/services/${row.id}`}
+                              className="text-sm font-semibold text-indigo-700 hover:text-indigo-600 hover:underline break-words"
+                            >
+                              {row.name}
+                            </Link>
+                            <HealthOverviewBadge health={row.health} />
+                          </div>
+                          <p className="text-[11px] text-slate-500">
+                            Client: <span className="text-slate-700 font-medium">{row.clientName}</span>
+                          </p>
+                          {row.healthNote ? (
+                            <p className="text-[11px] text-slate-600 italic leading-snug break-words">
+                              {row.healthNote}
+                            </p>
+                          ) : null}
+                        </div>
+                        {(row.nextAction || row.nextActionDueLabel !== "—") && (
+                          <div className="text-left sm:text-right shrink-0 min-w-0 sm:max-w-[45%]">
+                            {row.nextAction ? (
+                              <>
+                                <p className="text-[10px] uppercase tracking-wide text-slate-500">Next action</p>
+                                <p className="text-xs font-medium text-[#0F172A] break-words">{row.nextAction}</p>
+                              </>
+                            ) : null}
+                            {row.nextActionDueLabel !== "—" ? (
+                              <p className="text-[11px] text-slate-500 mt-1">
+                                Due{" "}
+                                <span className="font-medium text-slate-700">{row.nextActionDueLabel}</span>
+                              </p>
+                            ) : null}
+                          </div>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {!serviceHealthOverview.hasAnyAttention && serviceHealthOverview.totalServices > 0 ? (
+                <div className="mt-4 rounded-xl border border-emerald-200/80 bg-emerald-50/90 px-4 py-3 sm:px-5 sm:py-4">
+                  <p className="text-sm font-semibold text-emerald-900">All services are healthy. You&apos;re in control.</p>
+                  <p className="text-xs text-emerald-800/90 mt-1">
+                    Nothing is in Warning, Critical, or Waiting on Client right now.
+                  </p>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Two-column area: unpaid invoices + activity */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
