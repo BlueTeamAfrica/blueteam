@@ -192,6 +192,7 @@ export default function ClientDashboardPage() {
 
     const tid = tenantId as string;
     const cid = clientIdStr as string;
+    const uid = user.uid;
 
     async function load() {
       setLoading(true);
@@ -199,6 +200,24 @@ export default function ClientDashboardPage() {
       setLoadFailure(null);
 
       const ctx = { tenantId: tid, clientId: cid };
+
+      let clientIdOnUserDoc: string | undefined;
+      try {
+        const userProfileSnap = await getDoc(doc(db, "users", uid));
+        clientIdOnUserDoc = userProfileSnap.data()?.clientId as string | undefined;
+        console.log("CLIENT_DASHBOARD: user_vs_query_clientId (services use this filter)", {
+          uid,
+          usersDocPath: `users/${uid}`,
+          clientIdOnUserDoc,
+          clientIdUsedInQueries: cid,
+          exactMatch: clientIdOnUserDoc === cid,
+        });
+      } catch (userReadErr) {
+        console.warn("CLIENT_DASHBOARD: could not read users/{uid} for clientId cross-check", {
+          uid,
+          error: userReadErr,
+        });
+      }
 
       const fail = (consoleLabel: string, section: string, err: unknown) => {
         const { code, message } = readFirebaseError(err);
@@ -292,7 +311,11 @@ export default function ClientDashboardPage() {
 
       let allServicesForHealth: Awaited<ReturnType<typeof getDocs>>;
       try {
-        console.log("CLIENT_DASHBOARD: running services query (health summary)", ctx);
+        console.log("CLIENT_DASHBOARD: running services query (health summary)", {
+          ...ctx,
+          collectionPath: `tenants/${tid}/services`,
+          filter: { field: "clientId", op: "==", value: cid },
+        });
         allServicesForHealth = await getDocs(
           query(collection(db, "tenants", tid, "services"), where("clientId", "==", cid))
         );
@@ -300,6 +323,32 @@ export default function ClientDashboardPage() {
         fail("CLIENT_DASHBOARD: services query failed", "services_health", err);
         setLoading(false);
         return;
+      }
+
+      const serviceDocSummaries = allServicesForHealth.docs.map((d) => {
+        const raw = d.data() as { clientId?: unknown; name?: unknown };
+        return {
+          docId: d.id,
+          clientIdOnDoc: raw.clientId,
+          name: raw.name,
+        };
+      });
+      console.log("CLIENT_DASHBOARD: services_health Firestore snapshot", {
+        tenantId: tid,
+        clientIdFilter: cid,
+        docsReturned: allServicesForHealth.size,
+        documents: serviceDocSummaries,
+      });
+      if (allServicesForHealth.size === 0) {
+        console.warn(
+          "CLIENT_DASHBOARD: services_health_zero_docs — compare users/{uid}.clientId to each service's clientId in tenants/{tenantId}/services. Rules only return docs where resource.data.clientId == users/{uid}.clientId.",
+          {
+            uid,
+            usersPathClientId: clientIdOnUserDoc,
+            queryFilterClientId: cid,
+            servicesCollection: `tenants/${tid}/services`,
+          }
+        );
       }
 
       const counts = {
