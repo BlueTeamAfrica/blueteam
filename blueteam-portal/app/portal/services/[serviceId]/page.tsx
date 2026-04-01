@@ -17,6 +17,9 @@ import { db } from "@/lib/firebase";
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
 import { isCanonicalClientId } from "@/lib/canonicalClientId";
+import { getManagedServiceCategoryLabel, getManagedServiceDisplayName } from "@/lib/serviceDisplayName";
+import { PORTAL_SELECT_CLASS, PORTAL_SELECT_LABEL_CLASS } from "@/lib/portalSelectStyles";
+import { SelectArrowWrap } from "@/components/portal/SelectArrowWrap";
 
 type BillingType = "none" | "one_time" | "recurring";
 type BillingInterval = "monthly" | "yearly";
@@ -43,6 +46,7 @@ type Service = {
   operationalSummary?: string;
   tier?: string;
   renewalDate?: Timestamp;
+  categoryLabel?: string;
   clientId?: string;
   clientName?: string;
   projectId?: string;
@@ -89,12 +93,14 @@ function StatusBadge({ status }: { status?: string }) {
   );
 }
 
-function CategoryBadge({ category }: { category?: string }) {
-  if (!category) return <span className="text-slate-500">—</span>;
+function ServiceCategoryLine({ category, categoryLabel }: { category?: string; categoryLabel?: string }) {
+  const line = getManagedServiceCategoryLabel(category, categoryLabel);
+  if (!line) return null;
   return (
-    <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 capitalize">
-      {category}
-    </span>
+    <p className="text-sm text-slate-600 font-medium mt-1 break-words">
+      <span className="text-slate-400 font-normal">Category · </span>
+      {line}
+    </p>
   );
 }
 
@@ -577,8 +583,23 @@ export default function PortalServiceDetailPage() {
     }
   }
 
+  const serviceDisplayTitle = service
+    ? getManagedServiceDisplayName({
+        name: service.name,
+        category: service.category,
+        categoryLabel: service.categoryLabel,
+      })
+    : "";
+  const serviceCategoryLine = service
+    ? getManagedServiceCategoryLabel(service.category, service.categoryLabel)
+    : "";
+  const showCategoryUnderTitle =
+    Boolean(serviceCategoryLine) && serviceCategoryLine !== serviceDisplayTitle;
+
   const supportHref = useMemo(() => {
-    const subject = service?.name ? `Service: ${service.name} — Support request` : "Service support request";
+    const subject = serviceDisplayTitle
+      ? `Service: ${serviceDisplayTitle} — Support request`
+      : "Service support request";
     const descriptionParts: string[] = [];
     if (serviceId) descriptionParts.push(`Service ID: ${serviceId}`);
     if (service?.clientName) descriptionParts.push(`Client: ${service.clientName}`);
@@ -594,7 +615,7 @@ export default function PortalServiceDetailPage() {
     if (service?.projectId) qp.set("projectId", service.projectId);
     if (service?.projectName) qp.set("projectName", service.projectName);
     return `/portal/support?${qp.toString()}`;
-  }, [service?.name, service?.clientId, service?.clientName, service?.projectId, service?.projectName, serviceId]);
+  }, [serviceDisplayTitle, service, serviceId]);
 
   if (!user) return <p className="text-[#0F172A]">Please log in</p>;
   if (!tenant) return <p className="text-[#0F172A]">Loading tenant…</p>;
@@ -623,14 +644,16 @@ export default function PortalServiceDetailPage() {
       <div className="mt-3 md:mt-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 max-w-full">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div className="min-w-0">
-            <h1 className="text-[#0F172A] text-xl sm:text-2xl font-semibold break-words">
-              {service.name ?? "Service"}
+            <h1 className="text-[#0F172A] text-xl sm:text-2xl font-semibold break-words tracking-tight">
+              {serviceDisplayTitle}
             </h1>
-            <div className="mt-2 flex flex-wrap gap-2">
+            {showCategoryUnderTitle ? (
+              <ServiceCategoryLine category={service.category} categoryLabel={service.categoryLabel} />
+            ) : null}
+            <div className="mt-3 flex flex-wrap items-center gap-2">
               <StatusBadge status={service.status} />
-              <CategoryBadge category={service.category} />
               {service.tier ? (
-                <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">
+                <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100">
                   Tier: {service.tier}
                 </span>
               ) : null}
@@ -645,22 +668,22 @@ export default function PortalServiceDetailPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2 shrink-0">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 shrink-0 w-full md:w-auto">
             <Link
               href={supportHref}
-              className="px-3 py-2 rounded-lg bg-[#4F46E5] text-white text-sm font-medium hover:bg-indigo-600 transition-colors"
+              className="inline-flex justify-center items-center px-4 py-2.5 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 transition-colors shadow-sm"
             >
               Open support ticket
             </Link>
             <Link
               href="/portal/invoices"
-              className="px-3 py-2 rounded-lg border border-slate-200 bg-white text-[#0F172A] text-sm font-medium hover:bg-slate-50 transition-colors"
+              className="inline-flex justify-center items-center px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-[#0F172A] text-sm font-medium hover:bg-slate-50 transition-colors"
             >
               Invoices
             </Link>
             <Link
               href="/portal/subscriptions"
-              className="px-3 py-2 rounded-lg border border-slate-200 bg-white text-[#0F172A] text-sm font-medium hover:bg-slate-50 transition-colors"
+              className="inline-flex justify-center items-center px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-[#0F172A] text-sm font-medium hover:bg-slate-50 transition-colors"
             >
               Subscriptions
             </Link>
@@ -695,23 +718,25 @@ export default function PortalServiceDetailPage() {
           {tenantClients.length === 0 ? (
             <p className="mt-3 text-xs text-amber-800">Add a client under Portal → Clients, then return here to link.</p>
           ) : (
-            <form onSubmit={handleSaveClientLinkage} className="mt-4 flex flex-col sm:flex-row sm:items-end gap-3">
-              <div className="flex-1 min-w-0">
-                <label htmlFor="repair-client" className="block text-xs font-medium text-amber-950 mb-1">
+            <form onSubmit={handleSaveClientLinkage} className="mt-4 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:items-end sm:gap-3">
+              <div className="space-y-1 flex-1 min-w-0">
+                <label htmlFor="repair-client" className={PORTAL_SELECT_LABEL_CLASS}>
                   Link to client
                 </label>
-                <select
-                  id="repair-client"
-                  value={repairClientId}
-                  onChange={(e) => setRepairClientId(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-amber-200/80 bg-white text-[#0F172A] text-sm"
-                >
-                  {tenantClients.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name ?? c.email ?? c.id}
-                    </option>
-                  ))}
-                </select>
+                <SelectArrowWrap>
+                  <select
+                    id="repair-client"
+                    value={repairClientId}
+                    onChange={(e) => setRepairClientId(e.target.value)}
+                    className={PORTAL_SELECT_CLASS}
+                  >
+                    {tenantClients.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name ?? c.email ?? c.id}
+                      </option>
+                    ))}
+                  </select>
+                </SelectArrowWrap>
               </div>
               <button
                 type="submit"
@@ -782,8 +807,9 @@ export default function PortalServiceDetailPage() {
 
           <div className="mt-6">
             <h3 className="text-[#0F172A] font-semibold">Health</h3>
-            <p className="mt-1 text-xs text-slate-500 max-w-2xl">
-              Operational status for this service. Updates here are visible to your team; clients see a read-only summary on their portal.
+            <p className="mt-1 text-xs text-slate-600 max-w-2xl leading-relaxed">
+              Status your team maintains for this engagement. Clients see a simplified, reassuring view in their portal
+              — keep notes clear and actionable.
             </p>
             <div className="mt-3 bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-100 max-w-full overflow-hidden">
               <div className="flex flex-wrap items-center gap-2">
@@ -833,19 +859,21 @@ export default function PortalServiceDetailPage() {
 
                 <div className="bg-white rounded-xl border border-slate-200 p-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="sm:col-span-2">
-                      <label className="block text-xs font-medium text-slate-600">Health status</label>
-                      <select
-                        value={healthStatus}
-                        onChange={(e) => setHealthStatus(e.target.value)}
-                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
-                      >
-                        <option value="healthy">Healthy</option>
-                        <option value="warning">Warning</option>
-                        <option value="critical">Critical</option>
-                        <option value="waiting_client">Waiting on Client</option>
-                        <option value="paused">Paused</option>
-                      </select>
+                    <div className="sm:col-span-2 space-y-1">
+                      <label className={PORTAL_SELECT_LABEL_CLASS}>Health status</label>
+                      <SelectArrowWrap>
+                        <select
+                          value={healthStatus}
+                          onChange={(e) => setHealthStatus(e.target.value)}
+                          className={PORTAL_SELECT_CLASS}
+                        >
+                          <option value="healthy">Healthy</option>
+                          <option value="warning">Warning</option>
+                          <option value="critical">Critical</option>
+                          <option value="waiting_client">Waiting on Client</option>
+                          <option value="paused">Paused</option>
+                        </select>
+                      </SelectArrowWrap>
                     </div>
 
                     <div className="sm:col-span-2">
@@ -969,17 +997,19 @@ export default function PortalServiceDetailPage() {
 
                 <div className="bg-white rounded-xl border border-slate-200 p-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-slate-600">Billing type</label>
-                      <select
-                        value={billingType}
-                        onChange={(e) => setBillingType(e.target.value as BillingType)}
-                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200"
-                      >
-                        <option value="none">Not billable</option>
-                        <option value="one_time">One-time</option>
-                        <option value="recurring">Recurring</option>
-                      </select>
+                    <div className="space-y-1">
+                      <label className={PORTAL_SELECT_LABEL_CLASS}>Billing type</label>
+                      <SelectArrowWrap>
+                        <select
+                          value={billingType}
+                          onChange={(e) => setBillingType(e.target.value as BillingType)}
+                          className={PORTAL_SELECT_CLASS}
+                        >
+                          <option value="none">Not billable</option>
+                          <option value="one_time">One-time</option>
+                          <option value="recurring">Recurring</option>
+                        </select>
+                      </SelectArrowWrap>
                     </div>
 
                     <div>
@@ -1014,19 +1044,21 @@ export default function PortalServiceDetailPage() {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-medium text-slate-600">
+                    <div className="space-y-1">
+                      <label className={PORTAL_SELECT_LABEL_CLASS}>
                         Interval {billingType === "recurring" ? "*" : "(n/a)"}
                       </label>
-                      <select
-                        value={billingInterval}
-                        onChange={(e) => setBillingInterval(e.target.value as BillingInterval)}
-                        disabled={billingType !== "recurring"}
-                        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-indigo-200 disabled:bg-slate-50 disabled:text-slate-400"
-                      >
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
-                      </select>
+                      <SelectArrowWrap>
+                        <select
+                          value={billingInterval}
+                          onChange={(e) => setBillingInterval(e.target.value as BillingInterval)}
+                          disabled={billingType !== "recurring"}
+                          className={PORTAL_SELECT_CLASS}
+                        >
+                          <option value="monthly">Monthly</option>
+                          <option value="yearly">Yearly</option>
+                        </select>
+                      </SelectArrowWrap>
                     </div>
 
                     <div>

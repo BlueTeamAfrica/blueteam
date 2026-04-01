@@ -24,6 +24,8 @@ async function updateSubscriptionStatus(
 }
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
+import { PORTAL_SELECT_CLASS, PORTAL_SELECT_LABEL_CLASS } from "@/lib/portalSelectStyles";
+import { SelectArrowWrap } from "@/components/portal/SelectArrowWrap";
 
 type Client = { id: string; name?: string; email?: string; status?: string };
 type Subscription = {
@@ -238,16 +240,18 @@ export default function SubscriptionsPage() {
                 className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] placeholder:text-slate-400"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-[#0F172A] mb-1">Interval *</label>
-              <select
-                value={formInterval}
-                onChange={(e) => setFormInterval(e.target.value as "monthly" | "yearly")}
-                className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-              >
-                <option value="monthly">Monthly</option>
-                <option value="yearly">Yearly</option>
-              </select>
+            <div className="space-y-1">
+              <label className={PORTAL_SELECT_LABEL_CLASS}>Interval *</label>
+              <SelectArrowWrap>
+                <select
+                  value={formInterval}
+                  onChange={(e) => setFormInterval(e.target.value as "monthly" | "yearly")}
+                  className={PORTAL_SELECT_CLASS}
+                >
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </SelectArrowWrap>
             </div>
             <div>
               <label className="block text-sm font-medium text-[#0F172A] mb-1">Start Date *</label>
@@ -285,7 +289,132 @@ export default function SubscriptionsPage() {
           <p className="text-slate-400 text-sm mt-1">Click {"\"Add Subscription\""} to create your first subscription.</p>
         </div>
       ) : (
-        <div className="mt-4 md:mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden max-w-full">
+        <>
+          <div className="mt-4 md:mt-6 md:hidden space-y-3">
+            {subscriptions.map((sub) => (
+              <div
+                key={sub.id}
+                className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-[#0F172A] break-words">{sub.name?.trim() || "Subscription"}</p>
+                    <p className="text-sm text-slate-600 mt-0.5">{getClientName(sub)}</p>
+                  </div>
+                  <span
+                    className={`shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold ${
+                      sub.status === "active"
+                        ? "bg-emerald-100 text-emerald-800"
+                        : sub.status === "paused"
+                          ? "bg-amber-100 text-amber-800"
+                          : "bg-slate-200 text-slate-600"
+                    }`}
+                  >
+                    {sub.status ?? "—"}
+                  </span>
+                </div>
+                <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <dt className="text-xs text-slate-500">Price</dt>
+                    <dd className="font-medium text-[#0F172A]">
+                      {sub.price != null ? `${sub.currency ?? "USD"} ${sub.price.toLocaleString()}` : "—"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-slate-500">Interval</dt>
+                    <dd className="font-medium text-[#0F172A] capitalize">{sub.interval ?? "—"}</dd>
+                  </div>
+                  <div className="col-span-2">
+                    <dt className="text-xs text-slate-500">Next billing</dt>
+                    <dd className="font-medium text-[#0F172A]">{formatDate(sub.nextBillingDate)}</dd>
+                  </div>
+                </dl>
+                <div className="mt-3 flex flex-wrap gap-2 justify-end">
+                  {sub.status === "active" && (
+                    <>
+                      <button
+                        type="button"
+                        disabled={updatingId === sub.id}
+                        className="px-3 py-2 rounded-lg border border-slate-200 text-sm font-medium text-[#0F172A] hover:bg-slate-50 disabled:opacity-50"
+                        onClick={async () => {
+                          setUpdatingId(sub.id);
+                          try {
+                            await updateSubscriptionStatus(tenant!.id, sub.id, "paused");
+                            await loadData();
+                          } finally {
+                            setUpdatingId(null);
+                          }
+                        }}
+                      >
+                        {updatingId === sub.id ? "…" : "Pause"}
+                      </button>
+                      <button
+                        type="button"
+                        disabled={updatingId === sub.id}
+                        className="px-3 py-2 rounded-lg bg-rose-600 text-white text-sm font-semibold hover:bg-rose-700 disabled:opacity-50"
+                        onClick={async () => {
+                          if (confirm("Cancel this subscription? This cannot be undone.")) {
+                            setUpdatingId(sub.id);
+                            try {
+                              await updateSubscriptionStatus(tenant!.id, sub.id, "cancelled");
+                              await loadData();
+                            } finally {
+                              setUpdatingId(null);
+                            }
+                          }
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  )}
+                  {sub.status === "paused" && (
+                    <>
+                      <button
+                        type="button"
+                        disabled={updatingId === sub.id}
+                        className="px-3 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-500 disabled:opacity-50"
+                        onClick={async () => {
+                          setUpdatingId(sub.id);
+                          try {
+                            await updateSubscriptionStatus(tenant!.id, sub.id, "active");
+                            await loadData();
+                          } finally {
+                            setUpdatingId(null);
+                          }
+                        }}
+                      >
+                        Resume
+                      </button>
+                      <button
+                        type="button"
+                        disabled={updatingId === sub.id}
+                        className="px-3 py-2 rounded-lg border border-slate-200 text-sm font-medium text-[#0F172A] hover:bg-slate-50 disabled:opacity-50"
+                        onClick={async () => {
+                          if (confirm("Cancel this subscription? This cannot be undone.")) {
+                            setUpdatingId(sub.id);
+                            try {
+                              await updateSubscriptionStatus(tenant!.id, sub.id, "cancelled");
+                              await loadData();
+                            } finally {
+                              setUpdatingId(null);
+                            }
+                          }
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  )}
+                  {sub.status === "cancelled" && (
+                    <span className="text-sm text-slate-500 py-2">Cancelled</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+        <div className="mt-4 md:mt-6 hidden md:block bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden max-w-full">
           <div className="w-full overflow-x-auto">
             <table className="min-w-[900px] w-full border-collapse">
             <thead>
@@ -413,6 +542,7 @@ export default function SubscriptionsPage() {
             </table>
           </div>
         </div>
+        </>
       )}
     </div>
   );

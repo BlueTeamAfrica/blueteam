@@ -17,6 +17,9 @@ import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
 import { MANAGED_SERVICE_CATEGORIES } from "@/lib/managedServiceCategories";
 import { isCanonicalClientId } from "@/lib/canonicalClientId";
+import { getManagedServiceCategoryLabel, getManagedServiceDisplayName } from "@/lib/serviceDisplayName";
+import { PORTAL_SELECT_CLASS, PORTAL_SELECT_LABEL_CLASS } from "@/lib/portalSelectStyles";
+import { SelectArrowWrap } from "@/components/portal/SelectArrowWrap";
 
 type ServiceStatus = "active" | "paused" | "pending" | "cancelled" | "retired";
 type BillingType = "none" | "one_time" | "recurring";
@@ -30,6 +33,9 @@ type Service = {
   projectId?: string;
   projectName?: string;
   category?: string;
+  categoryLabel?: string;
+  displayName: string;
+  categoryDisplay: string;
   tier?: string;
   status?: ServiceStatus | string;
   renewalDate?: Timestamp;
@@ -111,13 +117,14 @@ function StatusBadge({ status }: { status?: string }) {
   );
 }
 
-function CategoryBadge({ category }: { category?: string }) {
-  if (!category) return <span className="text-slate-500">—</span>;
+function CategoryBadge({ category, labelOverride }: { category?: string; labelOverride?: string }) {
+  const label =
+    labelOverride?.trim() ||
+    (category ? getManagedServiceCategoryLabel(category, undefined) : "");
+  if (!label) return <span className="text-slate-500">—</span>;
 
-  const normalized = normalizeCategory(category);
-  const label = MANAGED_SERVICE_CATEGORIES.find((o) => o.value === normalized)?.label ?? category;
   return (
-    <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700 capitalize">
+    <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
       {label}
     </span>
   );
@@ -214,7 +221,21 @@ export default function PortalServicesPage() {
       );
       setServices(
         svcSnap.docs.map((d) => {
-          const data = d.data();
+          const data = d.data() as {
+            name?: string;
+            clientId?: string;
+            clientName?: string;
+            projectId?: string;
+            projectName?: string;
+            category?: string;
+            categoryLabel?: string;
+            tier?: string;
+            plan?: string;
+            status?: string;
+            renewalDate?: Timestamp;
+            notes?: string;
+            updatedAt?: Timestamp;
+          };
           return {
             id: d.id,
             name: data.name,
@@ -223,6 +244,13 @@ export default function PortalServicesPage() {
             projectId: data.projectId,
             projectName: data.projectName,
             category: data.category,
+            categoryLabel: data.categoryLabel,
+            displayName: getManagedServiceDisplayName({
+              name: data.name,
+              category: data.category,
+              categoryLabel: data.categoryLabel,
+            }),
+            categoryDisplay: getManagedServiceCategoryLabel(data.category, data.categoryLabel),
             tier: data.tier ?? data.plan,
             status: data.status,
             renewalDate: data.renewalDate,
@@ -494,50 +522,56 @@ export default function PortalServicesPage() {
       )}
 
       <div className="mt-4 bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5 max-w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div>
-            <label className="block text-xs font-medium text-slate-600 mb-1">Status</label>
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] capitalize"
-            >
-              {statusOptions.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
+        <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:gap-3">
+          <div className="space-y-1 sm:flex-1 min-w-0">
+            <label className={PORTAL_SELECT_LABEL_CLASS}>Status</label>
+            <SelectArrowWrap>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className={`${PORTAL_SELECT_CLASS} capitalize`}
+              >
+                {statusOptions.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            </SelectArrowWrap>
           </div>
-          <div>
-            <label className="block text-xs font-medium text-slate-600 mb-1">Category</label>
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] capitalize"
-            >
-              <option value="all">All</option>
-              {MANAGED_SERVICE_CATEGORIES.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+          <div className="space-y-1 sm:flex-1 min-w-0">
+            <label className={PORTAL_SELECT_LABEL_CLASS}>Category</label>
+            <SelectArrowWrap>
+              <select
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className={`${PORTAL_SELECT_CLASS} capitalize`}
+              >
+                <option value="all">All</option>
+                {MANAGED_SERVICE_CATEGORIES.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </SelectArrowWrap>
           </div>
-          <div>
-            <label className="block text-xs font-medium text-slate-600 mb-1">Client</label>
-            <select
-              value={clientFilter}
-              onChange={(e) => setClientFilter(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-            >
-              <option value="all">All</option>
-              {clients.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name ?? c.email ?? c.id}
-                </option>
-              ))}
-            </select>
+          <div className="space-y-1 sm:flex-1 min-w-0">
+            <label className={PORTAL_SELECT_LABEL_CLASS}>Client</label>
+            <SelectArrowWrap>
+              <select
+                value={clientFilter}
+                onChange={(e) => setClientFilter(e.target.value)}
+                className={PORTAL_SELECT_CLASS}
+              >
+                <option value="all">All</option>
+                {clients.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name ?? c.email ?? c.id}
+                  </option>
+                ))}
+              </select>
+            </SelectArrowWrap>
           </div>
         </div>
       </div>
@@ -576,90 +610,100 @@ export default function PortalServicesPage() {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-[#0F172A] mb-1">Client *</label>
-                  <select
-                    value={formClientId}
-                    onChange={(e) => setFormClientId(e.target.value)}
-                    required
-                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-                  >
-                    <option value="" disabled>
-                      Select client
-                    </option>
-                    {clients.map((c) => (
-                      <option key={c.id} value={c.id}>
-                        {c.name ?? c.email ?? c.id}
+                <div className="space-y-1">
+                  <label className={PORTAL_SELECT_LABEL_CLASS}>Client *</label>
+                  <SelectArrowWrap>
+                    <select
+                      value={formClientId}
+                      onChange={(e) => setFormClientId(e.target.value)}
+                      required
+                      className={PORTAL_SELECT_CLASS}
+                    >
+                      <option value="" disabled>
+                        Select client
                       </option>
-                    ))}
-                  </select>
-                  <p className="mt-1 text-[11px] text-slate-500 leading-snug">
+                      {clients.map((c) => (
+                        <option key={c.id} value={c.id}>
+                          {c.name ?? c.email ?? c.id}
+                        </option>
+                      ))}
+                    </select>
+                  </SelectArrowWrap>
+                  <p className="pt-1 text-[11px] text-slate-500 leading-snug">
                     Stored as <span className="font-mono text-slate-600">clientId</span> on the service. Use the same id
                     as <span className="font-mono text-slate-600">users/&lt;uid&gt;.clientId</span> for that client&apos;s
                     portal login.
                   </p>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#0F172A] mb-1">Service category *</label>
-                  <select
-                    value={formCategory}
-                    onChange={(e) => setFormCategory(e.target.value)}
-                    required
-                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-                  >
-                    {MANAGED_SERVICE_CATEGORIES.map((o) => (
-                      <option key={o.value} value={o.value}>
-                        {o.label}
-                      </option>
-                    ))}
-                  </select>
+                <div className="space-y-1">
+                  <label className={PORTAL_SELECT_LABEL_CLASS}>Service category *</label>
+                  <SelectArrowWrap>
+                    <select
+                      value={formCategory}
+                      onChange={(e) => setFormCategory(e.target.value)}
+                      required
+                      className={PORTAL_SELECT_CLASS}
+                    >
+                      {MANAGED_SERVICE_CATEGORIES.map((o) => (
+                        <option key={o.value} value={o.value}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                  </SelectArrowWrap>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#0F172A] mb-1">Status *</label>
-                  <select
-                    value={formStatus}
-                    onChange={(e) => setFormStatus(e.target.value)}
-                    required
-                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-                  >
-                    <option value="active">Active</option>
-                    <option value="pending">Pending Setup</option>
-                    <option value="paused">Paused</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                  </select>
+                <div className="space-y-1">
+                  <label className={PORTAL_SELECT_LABEL_CLASS}>Status *</label>
+                  <SelectArrowWrap>
+                    <select
+                      value={formStatus}
+                      onChange={(e) => setFormStatus(e.target.value)}
+                      required
+                      className={PORTAL_SELECT_CLASS}
+                    >
+                      <option value="active">Active</option>
+                      <option value="pending">Pending Setup</option>
+                      <option value="paused">Paused</option>
+                      <option value="completed">Completed</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </SelectArrowWrap>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#0F172A] mb-1">Project (optional)</label>
-                  <select
-                    value={formProjectId}
-                    onChange={(e) => setFormProjectId(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-                  >
-                    <option value="">None</option>
-                    {projects.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {p.name ?? p.id}
-                      </option>
-                    ))}
-                  </select>
+                <div className="space-y-1">
+                  <label className={PORTAL_SELECT_LABEL_CLASS}>Project (optional)</label>
+                  <SelectArrowWrap>
+                    <select
+                      value={formProjectId}
+                      onChange={(e) => setFormProjectId(e.target.value)}
+                      className={PORTAL_SELECT_CLASS}
+                    >
+                      <option value="">None</option>
+                      {projects.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.name ?? p.id}
+                        </option>
+                      ))}
+                    </select>
+                  </SelectArrowWrap>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#0F172A] mb-1">Billing type</label>
-                  <select
-                    value={formBillingType}
-                    onChange={(e) => setFormBillingType(e.target.value as BillingType)}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A]"
-                  >
-                    <option value="none">Not billable</option>
-                    <option value="one_time">One-time</option>
-                    <option value="recurring">Recurring</option>
-                  </select>
-                  <p className="mt-1 text-xs text-slate-500">
+                <div className="space-y-1">
+                  <label className={PORTAL_SELECT_LABEL_CLASS}>Billing type</label>
+                  <SelectArrowWrap>
+                    <select
+                      value={formBillingType}
+                      onChange={(e) => setFormBillingType(e.target.value as BillingType)}
+                      className={PORTAL_SELECT_CLASS}
+                    >
+                      <option value="none">Not billable</option>
+                      <option value="one_time">One-time</option>
+                      <option value="recurring">Recurring</option>
+                    </select>
+                  </SelectArrowWrap>
+                  <p className="pt-1 text-xs text-slate-500">
                     Recurring services create a subscription and will be picked up by invoice generation.
                   </p>
                 </div>
@@ -696,19 +740,21 @@ export default function PortalServicesPage() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-[#0F172A] mb-1">
+                <div className="space-y-1">
+                  <label className={PORTAL_SELECT_LABEL_CLASS}>
                     Interval {formBillingType === "recurring" ? "*" : "(n/a)"}
                   </label>
-                  <select
-                    value={formInterval}
-                    onChange={(e) => setFormInterval(e.target.value as BillingInterval)}
-                    disabled={formBillingType !== "recurring"}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] disabled:bg-slate-50 disabled:text-slate-400"
-                  >
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                  </select>
+                  <SelectArrowWrap>
+                    <select
+                      value={formInterval}
+                      onChange={(e) => setFormInterval(e.target.value as BillingInterval)}
+                      disabled={formBillingType !== "recurring"}
+                      className={PORTAL_SELECT_CLASS}
+                    >
+                      <option value="monthly">Monthly</option>
+                      <option value="yearly">Yearly</option>
+                    </select>
+                  </SelectArrowWrap>
                 </div>
 
                 <div>
@@ -790,7 +836,58 @@ export default function PortalServicesPage() {
           </p>
         </div>
       ) : (
-        <div className="mt-4 md:mt-6 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden max-w-full">
+        <>
+          <div className="mt-4 md:mt-6 md:hidden space-y-3">
+            {filtered.map((s) => {
+              const clientLabel =
+                s.clientName ?? (s.clientId ? clientLabelById.get(s.clientId) : undefined) ?? "—";
+              const projectLabel =
+                s.projectName ?? (s.projectId ? projectLabelById.get(s.projectId) : undefined) ?? "—";
+              const clientLinkBroken =
+                Boolean(s.clientName?.trim()) && !isCanonicalClientId(s.clientId);
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => router.push(`/portal/services/${s.id}`)}
+                  className="w-full text-left rounded-xl border border-slate-200 bg-white p-4 shadow-sm active:bg-slate-50 transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-[#0F172A] break-words">{s.displayName}</p>
+                      {s.categoryDisplay ? (
+                        <p className="text-xs text-slate-500 mt-0.5">{s.categoryDisplay}</p>
+                      ) : null}
+                    </div>
+                    <StatusBadge status={s.status} />
+                  </div>
+                  <dl className="mt-3 grid grid-cols-1 gap-2 text-sm">
+                    <div className="flex justify-between gap-2 text-slate-600">
+                      <dt className="text-slate-500 shrink-0">Client</dt>
+                      <dd className="font-medium text-[#0F172A] text-right break-words">{clientLabel}</dd>
+                    </div>
+                    <div className="flex justify-between gap-2 text-slate-600">
+                      <dt className="text-slate-500 shrink-0">Renewal</dt>
+                      <dd className="text-[#0F172A]">{formatDate(s.renewalDate)}</dd>
+                    </div>
+                    <div className="flex justify-between gap-2 text-slate-600">
+                      <dt className="text-slate-500 shrink-0">Project</dt>
+                      <dd className="text-[#0F172A] text-right break-words">{projectLabel}</dd>
+                    </div>
+                  </dl>
+                  {clientLinkBroken || (!isCanonicalClientId(s.clientId) && !clientLinkBroken) ? (
+                    <p className="text-[11px] text-amber-800 mt-2 leading-snug">
+                      {clientLinkBroken
+                        ? "Client name without clientId — open to fix."
+                        : "Missing clientId — client portal won’t list this service."}
+                    </p>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
+
+        <div className="mt-4 md:mt-6 hidden md:block bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden max-w-full">
           <div className="w-full overflow-x-auto">
             <table className="min-w-[1050px] w-full border-collapse">
               <thead>
@@ -825,8 +922,11 @@ export default function PortalServicesPage() {
                     >
                       <td className="py-3 px-4 text-[#0F172A] font-medium">
                         <Link href={`/portal/services/${s.id}`} className="text-indigo-600 hover:underline focus:outline-none" onClick={(e) => e.stopPropagation()}>
-                          {s.name ?? "—"}
+                          {s.displayName}
                         </Link>
+                        {s.categoryDisplay ? (
+                          <div className="text-xs text-slate-500 mt-0.5 break-words">{s.categoryDisplay}</div>
+                        ) : null}
                         {s.tier ? (
                           <div className="text-xs text-slate-500 mt-0.5 break-words">Tier: {s.tier}</div>
                         ) : null}
@@ -848,7 +948,7 @@ export default function PortalServicesPage() {
                         <StatusBadge status={s.status} />
                       </td>
                       <td className="py-3 px-4">
-                        <CategoryBadge category={s.category} />
+                        <CategoryBadge category={s.category} labelOverride={s.categoryDisplay} />
                       </td>
                       <td className="py-3 px-4 text-[#0F172A]">{formatDate(s.renewalDate)}</td>
                       <td className="py-3 px-4 text-[#0F172A]">{projectLabel}</td>
@@ -859,6 +959,7 @@ export default function PortalServicesPage() {
             </table>
           </div>
         </div>
+        </>
       )}
     </div>
   );
