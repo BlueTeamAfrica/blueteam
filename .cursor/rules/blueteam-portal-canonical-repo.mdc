@@ -1,0 +1,26 @@
+---
+description: Portal app — canonical repo is BlueTeamAfrica/blueteam-portal; commit and push there
+globs: blueteam-portal/**/*
+alwaysApply: false
+---
+
+# Blue Team portal — canonical GitHub repo
+
+The SaaS portal’s **source of truth on GitHub** is **[BlueTeamAfrica/blueteam-portal](https://github.com/BlueTeamAfrica/blueteam-portal.git)** (`https://github.com/BlueTeamAfrica/blueteam-portal.git`), not the `blueteam` monorepo alone.
+
+## When changing files under `blueteam-portal/`
+
+1. **After edits**, mirror this folder into the standalone clone (if not editing there already), then **commit and push** from that clone so `origin` on **blueteam-portal** is updated.
+2. **Local clone path** (expected): `~/Documents/blueteam-portal` — same tree as this `blueteam-portal/` directory; use `rsync` excluding `.git`, `node_modules`, `.next`, `.env.local`, or work directly in that folder.
+3. Do **not** treat a push to **BlueTeamAfrica/blueteam** only as sufficient for portal delivery unless the user explicitly says so.
+
+## Commands (from machine root)
+
+```bash
+rsync -av --delete \
+  --exclude='.git' --exclude='node_modules' --exclude='.next' --exclude='.env.local' \
+  ./blueteamafrica/blueteam-portal/ ~/Documents/blueteam-portal/
+cd ~/Documents/blueteam-portal && git add -A && git status && git commit -m "..." && git push origin main
+```
+
+Adjust the source path if the monorepo lives elsewhere.
