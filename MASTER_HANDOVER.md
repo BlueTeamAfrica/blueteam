@@ -20,7 +20,7 @@
 |---|---------|-----------|-------------|----------|-------|--------|--------|
 | 1 | **blueteamafrica** (marketing site) | `~/Documents/blueteamafrica/` | `BlueTeamAfrica/blueteam` | `https://www.blueteamafrica.com` (**CERTAIN**) | Next.js 16, React 18, Tailwind, Firebase Admin (leads) | Vercel (**CERTAIN**) | Active — production |
 | 2 | **blueteam-portal** (client SaaS portal) | `~/Documents/blueteam-portal/` (canonical) + `~/Documents/blueteamafrica/blueteam-portal/` (monorepo copy) | `BlueTeamAfrica/blueteam-portal` | `https://portal.blueteamafrica.com` (**CERTAIN** from env) | Next.js 14, React 18, Tailwind, Firebase, nodemailer, react-pdf | Vercel (**INFERRED**) | Active — production |
-| 3 | **secure-reporter-app** (reporter mobile) | `~/Documents/secure-reporter-shared/secure-reporter-app/` | `BlueTeamForAfrica/secure-reporter-app` | N/A — mobile app | Expo ~54, React Native 0.81, Expo Router 6, TypeScript, Firestore REST, Supabase Storage | EAS build → APK/App Store (**UNKNOWN** if published) | Active — pre-production QA |
+| 3 | **secure-reporter-app** (reporter mobile) | `~/Documents/secure-reporter-shared/secure-reporter-app/` | `BlueTeamAfrica/secure-reporter-app` (transferred from `BlueTeamForAfrica` on 2026-07-03) | N/A — mobile app | Expo ~54, React Native 0.81, Expo Router 6, TypeScript, Firestore REST, Supabase Storage | EAS build → APK/App Store (**UNKNOWN** if published) | Active — pre-production QA |
 | 4 | **secure-reporter-dashboard** (Secure Desk) | `~/Documents/secure-reporter-shared/secure-reporter-dashboard/` | `BlueTeamAfrica/blueteam-secure-desk` | **UNKNOWN** custom domain; Vercel preview known | Next.js (App Router), Firebase Admin, Supabase service role, docx | Vercel (**CERTAIN**) | Active — production debugging |
 | 5 | **SudanFacts / Atar** (editorial brand) | No separate codebase — config layer inside secure-reporter-dashboard | N/A | `new.sudanfacts.org` (WordPress, separate) | WordPress (public site); `factsd` workspace config (dashboard) | WordPress hosting (**UNKNOWN**) | Config active; WordPress status **UNKNOWN** |
 | 6 | **Ikseer** | `~/Documents/Ikseer/` (PDFs/DOCX archive only) | None | None | No codebase | N/A | Archive only — no active dev |
@@ -72,8 +72,11 @@
 
 | Org | Projects |
 |-----|---------|
-| `BlueTeamAfrica` | blueteam, blueteam-portal, blueteam-secure-desk |
-| `BlueTeamForAfrica` | secure-reporter-app |
+| `BlueTeamAfrica` | blueteam, blueteam-portal, blueteam-secure-desk, secure-reporter-app |
+
+All BlueTeamAfrica-related repos now consolidated under one org. `BlueTeamForAfrica` (personal
+account, display name "SudanFacts") formerly held secure-reporter-app — transferred 2026-07-03.
+That account is being retired; do not create new repos under it.
 
 ---
 
