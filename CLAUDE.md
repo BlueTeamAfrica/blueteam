@@ -11,80 +11,64 @@ Public marketing and services showcase site for BlueteamAfrica.com — brand pre
 - Hosting: Vercel
 
 ## Relation to other projects
-- Monorepo root — `blueteam-portal/` exists as a subdirectory here but is a fully separate
-  app with its own `package.json`, deploy target, and **separate Firebase project**
-  (`blueteam-portal`, not shared with this one). Canonical portal clone lives at
-  `~/Documents/blueteam-portal/` — sync there before pushing portal changes, never push
-  portal changes from this monorepo copy.
-- No dependency on `secure-reporter-*` codebases
+- Monorepo root — `blueteam-portal/` subdirectory is a fully separate app with its own
+  package.json, deploy target, and SEPARATE Firebase project (`blueteam-portal`, NOT shared).
+  Canonical portal clone: `~/Documents/blueteam-portal/`.
+- secure-reporter-app lives under `BlueTeamAfrica` org (transferred 2026-07-03 from a
+  personal account, BlueTeamForAfrica, now deleted). Has its own Firebase project,
+  `sudanfcts-reporting` — see incident note below, this project's credentials were
+  mixed up with that one.
+- Vercel: this project's team is `blueteamafricas-projects` (note the "s" — easy to
+  confuse with the similarly-named `blueteams-projects`, a different, mostly-empty team
+  under a different account). Confirm `.vercel/project.json` orgId matches
+  `team_QRM7drbhAg7GGhINd7WdJbmA` before trusting any `vercel env`/`vercel logs` output —
+  a CLI scope mismatch caused a full day of misdiagnosis on 2026-07-07.
 
 ## Firebase Admin config
-- Env var: `FIREBASE_SERVICE_ACCOUNT_KEY` (full JSON), or `GOOGLE_APPLICATION_CREDENTIALS`
-  — NOT `FIREBASE_CLIENT_EMAIL`/`FIREBASE_PRIVATE_KEY` (that two-var pattern is the
-  portal's, not this project's — verify against `lib/firebase-admin.ts` before assuming
-  either format, in case this changes).
-- As of 2026-07-03 audit: confirmed absent from local `.env.local`. As of same-day check,
-  `vercel env ls production` returned zero environment variables set at all — not just
-  Admin credentials, nothing. Production is running on hardcoded defaults.
+- Env var: `FIREBASE_SERVICE_ACCOUNT_KEY` (full JSON) — NOT FIREBASE_CLIENT_EMAIL/
+  FIREBASE_PRIVATE_KEY (that pattern belongs to the portal).
+- **RESOLVED 2026-07-07**: this key was set correctly in Vercel prod, but contained the
+  wrong service account — one belonging to `sudanfcts-reporting` (Secure Reporter's
+  Firebase project), not `blueteamafrica`. Every contact form write since the key was
+  first set (~208 days, since ~Dec 2025) authenticated successfully but failed with
+  `PERMISSION_DENIED` on the actual Firestore write, silently falling back to a JSON file
+  that doesn't persist on Vercel. Every submission in that window was lost. Key was
+  regenerated from the correct `blueteamafrica` Firebase project and replaced. Verified
+  fixed: a real document (test-verify-final@example.com) landed in the `leads` collection
+  in Firebase Console 2026-07-07.
+- If this breaks again, check the `client_email` field inside the JSON value first —
+  don't assume the var being "set" means it's the right credential.
 
 ## Open threads
-- [ ] Contact form → Firestore in production: Admin SDK credentials missing in Vercel prod
-  (confirmed empty env list 2026-07-03). Handler falls back silently and previously
-  returned `success: true` regardless. Part 2 (logging/response-flag fix) has been
-  implemented in app/api/leads/route.ts. Part 1 (actually setting
-  FIREBASE_SERVICE_ACCOUNT_KEY + NEXT_PUBLIC_FIREBASE_* vars in Vercel) still pending as
-  of this writing — confirm current status before assuming either is done.
-- [ ] `firestore.rules.temp` — confirmed as `allow write: if true` (open write hole).
-  Confirmed unused by any code/config. Should be deleted; confirm it has been before
-  assuming it's gone.
-- [ ] Uncommitted deletions of multiple `.md` report files were staged on `main` as of
-  2026-07-03 audit — confirm intentional and committed, or still pending.
-- [ ] `BlueTeamForAfrica` (github.com/BlueTeamForAfrica, display name SudanFacts) has
-  commit history on this repo and on blueteam-portal, contradicting the "no dependency on
-  secure-reporter-*" line above. Check Settings → Collaborators on both repos to confirm
-  whether this access is intentional; revoke if not.
+- [ ] No confirmation mechanism (email/webhook) exists for contact form submissions yet.
+- [ ] Check whether `sudanfcts-reporting` project is missing a working service account
+  key of its own, given its key was apparently pasted into this project's env vars
+  instead — the mix-up may be mirrored on that side.
+- [ ] Portal-pattern vars (FIREBASE_ADMIN_CLIENT_EMAIL, FIREBASE_ADMIN_PROJECT_ID,
+  FIREBASE_ADMIN_PRIVATE_KEY, CRON_SECRET, SMTP_*) are present in this project's Vercel
+  env (added ~147 days ago) but appear to belong to blueteam-portal per its own docs —
+  unclear if unused cruft or actually referenced somewhere. Not yet audited.
 
 ## Key conventions
-- Contact form submission should write to Firestore and (eventually) trigger admin
-  confirmation — as of 2026-07-03 audit, no confirmation mechanism exists at all (no
-  email, no webhook, no nodemailer in this project). Don't assume this is built.
-- app/api/leads/route.ts switches between Firestore and JSON fallback based on whether
-  adminDb initializes — NOT an environment (NODE_ENV) check. A working prod env can still
-  fall back if Admin creds are wrong; local dev could hit real Firestore if creds happen
-  to be present locally.
-- On Vercel, the filesystem is ephemeral/read-only outside /tmp — a JSON fallback write on
-  Vercel does not persist. As of the Part 2 fix, Vercel-detected fallback skips the
-  filesystem and logs [LEADS_LOST] instead.
-- No sensitive data collected via contact form; Firestore rules on `leads` are
-  write-blocked from client entirely (Admin SDK bypasses rules) — confirmed in
-  firestore.rules as of 2026-07-03.
-- SEO and performance matter — avoid heavy client-side JS on public pages
-
-## Service pages
-12 directories under app/services/ (plus a [slug] catch-all): branding, crm,
-custom-systems, cybersecurity, ecommerce, erp, hosting, maintenance, mobile-apps, ui-ux,
-web-design, website-development.
+- app/api/leads/route.ts switches Firestore vs. fallback based on whether the write
+  succeeds — NOT a NODE_ENV check, and NOT just whether adminDb initializes (a service
+  account can initialize successfully with wrong-project credentials and still fail on
+  the actual write with PERMISSION_DENIED — this was the actual 2026-07-07 root cause).
+- Vercel's filesystem is ephemeral outside /tmp — a JSON fallback write there does not
+  persist. Fallback path logs [LEADS_LOST] and returns storage: "degraded" (fix committed
+  2026-07-07, commit 58d9fbb) rather than silently claiming success.
+- No sensitive data collected via contact form; Firestore rules block all client read/write
+  on `leads` — Admin SDK bypasses rules, that's the only intended write path.
+- SEO and performance matter — avoid heavy client-side JS on public pages.
 
 ## Do not touch
 - Public-facing page layouts unless explicitly scoped
-- Firebase config keys — verify they are in environment variables, never hardcoded
+- Firebase config keys — env vars only, never hardcoded
 - `blueteam-portal/` subdirectory unless explicitly switching context to that project
 
 ## Session start checklist
-1. Read this file
-2. Read MASTER_HANDOVER.md
-3. Confirm which open thread you are working on before writing any code
-4. If this file and MASTER_HANDOVER.md disagree, verify against actual code/config before
-   trusting either — this file has drifted from reality before without being caught for
-   months.
-
-## Corrections log
-- 2026-07-03 — Prior version claimed blueteamafrica "shares Firebase project with
-  blueteam-portal." Disproven by direct code audit (lib/firebase.ts hardcoded fallback
-  'blueteamafrica'; portal env shows blueteam-portal.firebaseapp.com). Separate projects.
-- 2026-07-03 — Prior version omitted the actual Admin SDK env var name entirely and had no
-  record of the production credentials being missing. Added above.
-- 2026-07-03 — Prior version listed no service directory names. 12 confirmed via
-  filesystem listing; added above.
-- 2026-07-03 — This file was found uncommitted with no git history — it had existed on
-  disk but was never checked into version control. Committing it now for the first time.
+1. Read this file, then MASTER_HANDOVER.md in the repo
+2. Verify claims against actual code/config before acting on them — this project's docs
+   and Vercel/GitHub account setup drifted silently for months in ways that took a full
+   session to untangle on 2026-07-03/07. Don't assume "it's been working" means it has.
+3. Confirm which open thread is being worked before writing any code

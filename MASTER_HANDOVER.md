@@ -39,7 +39,7 @@
 
 | Firebase project | Used by | Auth | Firestore | Admin SDK method |
 |-----------------|---------|------|-----------|-----------------|
-| **blueteamafrica marketing** | `blueteamafrica` leads API | Not used | `leads` collection (production) | `FIREBASE_SERVICE_ACCOUNT_KEY` (JSON) or `GOOGLE_APPLICATION_CREDENTIALS` — **confirmed absent from local `.env.local`; unconfirmed in Vercel prod as of 2026-07-03 audit** |
+| **blueteamafrica marketing** | `blueteamafrica` leads API | Not used | `leads` collection (production) | `FIREBASE_SERVICE_ACCOUNT_KEY` (JSON) — **RESOLVED 2026-07-07**: key was present in Vercel prod but belonged to `sudanfcts-reporting` (wrong project), causing `PERMISSION_DENIED` on every write for ~208 days. Regenerated from correct `blueteamafrica` project and replaced. Verified working. |
 | **blueteam-portal** | `blueteam-portal` | Email/Password | `tenants/{tenantId}/…` multi-tenant | `FIREBASE_CLIENT_EMAIL` + `FIREBASE_PRIVATE_KEY` (**CERTAIN** from CLAUDE.md) |
 | **sudanfcts-reporting** (**CERTAIN** from dashboard CLAUDE.md) | `secure-reporter-app` + `secure-reporter-dashboard` | Email/Password (admin accounts only for dashboard; app uses unauthenticated Firestore REST writes) | `submissions`, `adminUsers`, `users` | `FIREBASE_SERVICE_ACCOUNT_BASE64` (preferred) or legacy PEM trio |
 
@@ -144,7 +144,7 @@ Pulled from each project's CLAUDE.md as of 2026-06-09. Status markers: `[ ]` ope
 
 | # | Thread | Certainty |
 |---|--------|-----------|
-| 1 | `[ ]` Contact form Firestore write in production — 2026-07-03 audit found `FIREBASE_SERVICE_ACCOUNT_KEY` missing locally and unconfirmed in Vercel; handler silently falls back to `data/leads.json` and still returns `success: true`. Leads likely being lost with no visible failure. Fix in progress. | CERTAIN (code audit) |
+| 1 | `[x]` **RESOLVED 2026-07-07** — Contact form Firestore write was silently failing for ~208 days. Root cause: `FIREBASE_SERVICE_ACCOUNT_KEY` held a service account from `sudanfcts-reporting` (Secure Reporter's Firebase project), not `blueteamafrica`. Admin SDK authenticated fine but got `PERMISSION_DENIED` on the actual write. Key regenerated from the correct project, replaced in Vercel. Verified: real document landed in `leads` collection in Firebase Console. Fallback path now returns `storage: "degraded"` instead of silently claiming success (commit 58d9fbb). | RESOLVED |
 | 2 | `[ ]` Verify no image 404s on production (`public/images/`) | INFERRED from historical docs |
 | 3 | `[ ]` `firestore.rules.temp` exists alongside `firestore.rules` — undetermined if stale or mid-change | CERTAIN file exists, UNKNOWN purpose |
 | 4 | `[ ]` Uncommitted deletions of multiple `.md` report files staged on `main` as of 2026-07-03 audit — confirm intentional before `git add -A` | CERTAIN (git status) |
@@ -162,7 +162,7 @@ Ordered by operational risk (production breakage) → user-facing functionality 
 | **3** | secure-reporter-app | Device QA matrix (all security flows) | App is pre-production; cannot ship without verifying decoy PIN, panic, purge on real device |
 | **4** | blueteam-portal | Resolve invoice create permission for `owner` role | Blocks billing operations for the company's own managed-service clients |
 | **5** | secure-reporter-app | APK size audit + screenshot blocking + remove debug logs | Pre-shipping hygiene; safety-critical (screenshot blocking) |
-| **6** | blueteamafrica | Fix contact form Firestore write (missing Admin SDK creds) + silent-failure fallback logic | Confirmed by code audit: leads likely being lost in production with no visible failure; revenue impact |
+| **6** | blueteamafrica | ~~Fix contact form Firestore write~~ **RESOLVED 2026-07-07** — wrong-project service account (`sudanfcts-reporting` key in `blueteamafrica` env), not missing creds. Key replaced, fallback logic hardened. | Fixed — verify `client_email` matches `blueteamafrica` project if key is ever rotated |
 | **7** | secure-reporter-dashboard | RTL/Arabic — fix sidebar width bug + translate ItemCard flag strings | Required for Arabic-speaking users; known open bugs |
 | **8** | blueteam-portal | `firestore.rules` sync with billing plan after any changes | Prevents silent permission drift on plan changes |
 | **9** | secure-reporter-app | EAS production build pipeline | Required before any APK distribution |
