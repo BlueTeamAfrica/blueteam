@@ -3,7 +3,6 @@ import Image from "next/image";
 import InteriorHeader from "@/components/InteriorHeader";
 import ServiceSidebar from "@/components/ServiceSidebar";
 import SectionWrapper from "@/components/SectionWrapper";
-import PsyloLinks from '@/components/seo/PsyloLinks'
 import Link from "next/link";
 import { metadataWebsiteDevelopment } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'

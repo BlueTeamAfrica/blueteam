@@ -8,7 +8,6 @@ import dynamic from 'next/dynamic'
 
 // Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
 // These will still be code-split and loaded lazily, improving initial bundle size
-const PsyloLinks = dynamic(() => import('@/components/seo/PsyloLinks'))
 
 const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'))
 
@@ -820,8 +819,6 @@ export default function Home() {
       </section>
       </div>
       
-      {/* Psylo Links for SEO */}
-      <PsyloLinks />
     </>
   )
 }

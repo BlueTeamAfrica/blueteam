@@ -4,7 +4,6 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
-import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 import { metadataMobileApps } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
@@ -271,8 +270,6 @@ export default function MobileAppsPage() {
         <ServiceSidebar />
       </div>
       
-      {/* Psylo Links for SEO */}
-      <PsyloLinks />
 
     </>
   )

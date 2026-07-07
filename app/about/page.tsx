@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
-import PsyloLinks from '@/components/seo/PsyloLinks'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = {
@@ -132,7 +131,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Services Overview (SEO + Psylo Linking) */}
       <section className="py-20 container mx-auto px-6 max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
           What We Specialize In
@@ -205,8 +203,6 @@ export default function AboutPage() {
         </Link>
       </section>
 
-      {/* Psylo Links for SEO */}
-      <PsyloLinks />
       </main>
     </>
   )
