@@ -388,7 +388,7 @@ export async function generateMetadata({
     title: `${post.title} | Blue Team Africa`,
     description: post.excerpt,
     alternates: {
-      canonical: `https://blueteamafrica.com/blog/${slug}`,
+      canonical: `https://www.blueteamafrica.com/blog/${slug}`,
     },
   }
 }

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Mobile App Development Services in East Africa',
     description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups built for low-connectivity environments.',
-    url: 'https://blueteamafrica.com/services/mobile-apps',
+    url: 'https://www.blueteamafrica.com/services/mobile-apps',
     siteName: 'Blue Team Africa',
     images: [
       {

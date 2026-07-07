@@ -4,13 +4,13 @@ export default function ContactPageSchema() {
     '@type': 'ContactPage',
     name: 'Contact Us | Blue Team Africa',
     description: 'Get in touch with Blue Team Africa for web design, website development, cybersecurity, ERP solutions, and NGO tech support in Uganda, Sudan, Kenya, and Rwanda.',
-    url: 'https://blueteamafrica.com/contact',
+    url: 'https://www.blueteamafrica.com/contact',
     mainEntity: {
       '@type': 'Organization',
       name: 'Blue Team Africa',
       telephone: '+254119402737',
       email: 'contact@blueteamafrica.com',
-      url: 'https://blueteamafrica.com',
+      url: 'https://www.blueteamafrica.com',
       address: {
         '@type': 'PostalAddress',
         addressCountry: 'UG',

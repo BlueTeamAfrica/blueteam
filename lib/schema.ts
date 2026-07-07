@@ -193,14 +193,14 @@ export function getServiceSchema(serviceName: string, serviceSlug: string) {
     "provider": {
       "@type": "LocalBusiness",
       "name": "Blue Team Africa",
-      "url": "https://blueteamafrica.com",
-      "logo": "https://blueteamafrica.com/images/logo/logo.webp"
+      "url": "https://www.blueteamafrica.com",
+      "logo": "https://www.blueteamafrica.com/images/logo/logo.webp"
     },
     "areaServed": {
       "@type": "Place",
       "name": "Kigali, Rwanda"
     },
-    "url": `https://blueteamafrica.com/services/${serviceSlug}`,
+    "url": `https://www.blueteamafrica.com/services/${serviceSlug}`,
     "description": `Professional ${serviceName} services for NGOs and businesses in Kigali and East Africa.`
   };
 }
@@ -227,7 +227,7 @@ export function getPortfolioSchema(projectName: string, projectSlug: string) {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": projectName,
-    "url": `https://blueteamafrica.com/portfolio/${projectSlug}`,
+    "url": `https://www.blueteamafrica.com/portfolio/${projectSlug}`,
     "author": {
       "@type": "Organization",
       "name": "Blue Team Africa"
@@ -254,7 +254,7 @@ export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": blogTitle,
-    "url": `https://blueteamafrica.com/blog/${blogSlug}`,
+    "url": `https://www.blueteamafrica.com/blog/${blogSlug}`,
     "author": {
       "@type": "Organization",
       "name": "Blue Team Africa"
@@ -264,7 +264,7 @@ export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished
       "name": "Blue Team Africa",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://blueteamafrica.com/images/logo/logo.webp"
+        "url": "https://www.blueteamafrica.com/images/logo/logo.webp"
       }
     },
     "datePublished": datePublished,

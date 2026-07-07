@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'E-commerce Solutions for Businesses in East Africa',
     description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation.',
-    url: 'https://blueteamafrica.com/services/ecommerce',
+    url: 'https://www.blueteamafrica.com/services/ecommerce',
     siteName: 'Blue Team Africa',
     images: [
       {

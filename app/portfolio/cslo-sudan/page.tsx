@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ERP & CRM Implementation for CSLO Sudan',
     description: 'Blue Team Africa deployed a modern ERPNext + CRM platform for CSLO Sudan, including mobile field reporting and secure multi-program dashboards.',
-    url: 'https://blueteamafrica.com/portfolio/cslo-sudan',
+    url: 'https://www.blueteamafrica.com/portfolio/cslo-sudan',
     siteName: 'Blue Team Africa',
     images: [
       {

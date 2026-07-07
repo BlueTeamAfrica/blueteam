@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',
     description: 'Modern, scalable, and secure ERP systems powered by ERPNext for organizations across East Africa.',
-    url: 'https://blueteamafrica.com/services/erp',
+    url: 'https://www.blueteamafrica.com/services/erp',
     siteName: 'Blue Team Africa',
     images: [
       {

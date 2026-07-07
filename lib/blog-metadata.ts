@@ -5,7 +5,7 @@ export const metadataHowToChooseWebsite: Metadata = {
   title: 'How to Choose the Right Website for Your NGO | Blue Team Africa',
   description: 'A practical guide for NGOs in Kigali and East Africa to select the best website for their needs and impact.',
   alternates: {
-    canonical: 'https://blueteamafrica.com/blog/how-to-choose-the-right-website-for-your-ngo',
+    canonical: 'https://www.blueteamafrica.com/blog/how-to-choose-the-right-website-for-your-ngo',
   },
 }
 
@@ -14,7 +14,7 @@ export const metadataHostingSpeed: Metadata = {
   title: 'Why Hosting Speed Matters in Africa | Blue Team Africa',
   description: 'Insights on web hosting performance for NGOs and businesses in Kigali and East Africa. Speed matters for success.',
   alternates: {
-    canonical: 'https://blueteamafrica.com/blog/why-hosting-speed-matters-in-africa',
+    canonical: 'https://www.blueteamafrica.com/blog/why-hosting-speed-matters-in-africa',
   },
 }
 
@@ -23,7 +23,7 @@ export const metadataErpGuide: Metadata = {
   title: 'ERP for African SMEs: A Complete Guide | Blue Team Africa',
   description: 'Comprehensive guide on ERP systems for SMEs in Kigali and East Africa. Boost efficiency and business growth.',
   alternates: {
-    canonical: 'https://blueteamafrica.com/blog/erp-for-african-smes-a-complete-guide',
+    canonical: 'https://www.blueteamafrica.com/blog/erp-for-african-smes-a-complete-guide',
   },
 }
 
@@ -32,7 +32,7 @@ export const metadataChoosingWebDesignRwanda: Metadata = {
   title: 'Choosing a Web Design Partner: A Guide for Rwandan Businesses | Blue Team Africa',
   description: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
   alternates: {
-    canonical: 'https://blueteamafrica.com/blog/choosing-a-web-design-company-in-rwanda-what-businesses-should-know',
+    canonical: 'https://www.blueteamafrica.com/blog/choosing-a-web-design-company-in-rwanda-what-businesses-should-know',
   },
 }
 
@@ -41,7 +41,7 @@ export const metadataWebDevelopmentCompaniesRwanda: Metadata = {
   title: 'Web Development Companies in Rwanda: What to Look For (2026)',
   description: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
   alternates: {
-    canonical: 'https://blueteamafrica.com/blog/web-development-companies-in-rwanda-what-to-look-for-2026',
+    canonical: 'https://www.blueteamafrica.com/blog/web-development-companies-in-rwanda-what-to-look-for-2026',
   },
 }
 
@@ -50,7 +50,7 @@ export const metadataWebDesignCostRwanda: Metadata = {
   title: 'Website Design Cost in Rwanda (2026 Guide)',
   description: 'Complete guide to website design costs in Rwanda for 2026. Understand pricing factors and what to expect when investing in a professional website.',
   alternates: {
-    canonical: 'https://blueteamafrica.com/blog/web-design-cost-in-rwanda-2026',
+    canonical: 'https://www.blueteamafrica.com/blog/web-design-cost-in-rwanda-2026',
   },
 }
 
