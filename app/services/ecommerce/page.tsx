@@ -4,7 +4,6 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
-import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 import { metadataEcommerce } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
@@ -219,7 +218,6 @@ export default function EcommercePage() {
     
       
       {/* Psylo Links for SEO */}
-      <PsyloLinks />
 
 </>
   )

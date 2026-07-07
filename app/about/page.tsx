@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
-import PsyloLinks from '@/components/seo/PsyloLinks'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = {
@@ -206,7 +205,6 @@ export default function AboutPage() {
       </section>
 
       {/* Psylo Links for SEO */}
-      <PsyloLinks />
       </main>
     </>
   )
