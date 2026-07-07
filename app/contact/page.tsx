@@ -6,6 +6,7 @@ import SectionWrapper from '@/components/SectionWrapper'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import ContactPageSchema from '@/components/ContactPageSchema'
 import LocalBusinessSchema from '@/components/LocalBusinessSchema'
+import PsyloLinks from '@/components/seo/PsyloLinks'
 import ContactForm from '@/components/ContactForm'
 import type { Metadata } from 'next'
 
@@ -400,6 +401,7 @@ export default function ContactPage() {
         </section>
 
         {/* Psylo Links for SEO */}
+        <PsyloLinks />
       </main>
     </>
   )

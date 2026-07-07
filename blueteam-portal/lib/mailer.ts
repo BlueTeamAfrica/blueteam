@@ -14,58 +14,6 @@ const transporter = nodemailer.createTransport({
   auth: { user, pass },
 });
 
-function portalBaseUrl() {
-  return (
-    process.env.NEXT_PUBLIC_PORTAL_URL ||
-    process.env.PORTAL_BASE_URL ||
-    "https://portal.blueteamafrica.com"
-  ).replace(/\/$/, "");
-}
-
-/**
- * Base URL for absolute links in **client-facing** emails (invoices, services, support).
- * Strips a trailing `/portal` path segment from the configured URL so paths resolve to
- * `/client/...` at the app root. If `PORTAL_BASE_URL` is `https://host/portal`, using
- * `portalBaseUrl()` would yield `https://host/portal/client/services/...`, which lands
- * in the staff area; this helper yields `https://host/client/services/...` instead.
- */
-function clientFacingEmailBaseUrl() {
-  const raw = (
-    process.env.NEXT_PUBLIC_PORTAL_URL ||
-    process.env.PORTAL_BASE_URL ||
-    "https://portal.blueteamafrica.com"
-  ).trim();
-  try {
-    const u = new URL(raw);
-    const path = u.pathname.replace(/\/portal\/?$/i, "").replace(/\/+$/, "");
-    const base = `${u.origin}${path}`;
-    return base.replace(/\/+$/, "") || u.origin;
-  } catch {
-    let s = raw.replace(/\/+$/, "");
-    s = s.replace(/\/portal\/?$/i, "");
-    return s.replace(/\/+$/, "") || "https://portal.blueteamafrica.com";
-  }
-}
-
-/** Client portal URL for one invoice (sign-in required; PDF via Download on page, not a raw API URL). */
-export function getClientInvoicePortalUrl(invoiceId: string) {
-  const base = clientFacingEmailBaseUrl();
-  return `${base}/client/invoices/${encodeURIComponent(invoiceId)}`;
-}
-
-export function getClientServicePortalUrl(serviceId: string) {
-  const base = clientFacingEmailBaseUrl();
-  return `${base}/client/services/${encodeURIComponent(serviceId)}`;
-}
-
-export function getClientSupportTicketPortalUrl(ticketId: string) {
-  const base = clientFacingEmailBaseUrl();
-  return `${base}/client/support/${encodeURIComponent(ticketId)}`;
-}
-
-const portalSignInHint =
-  "Sign in to the client portal if prompted — links open in your browser, not the raw PDF API.";
-
 export async function sendAdminInvoiceEmail({
   to,
   tenantName,
@@ -82,7 +30,12 @@ export async function sendAdminInvoiceEmail({
   // Verify SMTP connection (prints useful errors if blocked)
   await transporter.verify();
 
-  const loginUrl = `${portalBaseUrl()}/login`;
+  const portalBase =
+    (process.env.NEXT_PUBLIC_PORTAL_URL ||
+      process.env.PORTAL_BASE_URL ||
+      "https://portal.blueteamafrica.com").replace(/\/$/, "");
+
+  const loginUrl = `${portalBase}/login`;
 
   console.log("EMAIL DEBUG:", { to, subject: "Invoices Generated", loginUrl, hasHtml: true });
 
@@ -148,16 +101,19 @@ export async function sendClientInvoicesEmail({
 }) {
   await transporter.verify();
 
-  const base = portalBaseUrl();
-  const clientInvoicesUrl = `${base}/client/invoices`;
-  const invoicePortalUrl = (invoiceId: string) => getClientInvoicePortalUrl(invoiceId);
+  // Set PORTAL_BASE_URL in Vercel Production (e.g. https://portal.blueteamafrica.com) for correct links
+  const base = (process.env.PORTAL_BASE_URL || "https://portal.blueteamafrica.com").replace(
+    /\/$/,
+    ""
+  );
+  const pdfUrl = (id: string) => `${base}/api/invoices/${id}/pdf`;
 
   const subject = `New invoice(s) available – ${tenantName}`;
 
   const lines = items
     .map(
       (i) =>
-        `- ${i.invoiceLabel} | ${i.currency} ${i.amount} | Due: ${i.dueDate}\n  View in portal: ${invoicePortalUrl(i.invoiceId)}`
+        `- ${i.invoiceLabel} | ${i.currency} ${i.amount} | Due: ${i.dueDate}\n  PDF: <${pdfUrl(i.invoiceId)}>`
     )
     .join("\n");
 
@@ -165,16 +121,15 @@ export async function sendClientInvoicesEmail({
     `Hello ${clientName},\n\n` +
     `New invoice(s) have been generated for you by ${tenantName}:\n\n` +
     `${lines}\n\n` +
-    `Sign in to the client portal to open your invoices and download PDFs (PDF download requires you to be logged in).\n` +
-    `All invoices: ${clientInvoicesUrl}\n\n` +
+    `Please login to the client portal to view details.\n\n` +
     `— Blue Team Portal\n`;
 
   const htmlItems = items
     .map(
       (i) => `
   <li style="margin-bottom:10px;">
-    <div><strong>${escapeHtml(i.invoiceLabel)}</strong> — ${escapeHtml(String(i.currency))} ${escapeHtml(String(i.amount))} — Due: ${escapeHtml(i.dueDate)}</div>
-    <div><a href="${invoicePortalUrl(i.invoiceId)}">View invoice in portal</a> <span style="color:#64748b;font-size:12px;">(sign in to download PDF)</span></div>
+    <div><strong>${i.invoiceLabel}</strong> — ${i.currency} ${i.amount} — Due: ${i.dueDate}</div>
+    <div><a href="${pdfUrl(i.invoiceId)}">Download PDF</a></div>
   </li>
 `
     )
@@ -188,15 +143,11 @@ export async function sendClientInvoicesEmail({
     text,
     html: `
   <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-    <p>Hello ${escapeHtml(clientName)},</p>
-    <p>New invoice(s) have been generated for you by ${escapeHtml(tenantName)}:</p>
+    <p>Hello ${clientName},</p>
+    <p>New invoice(s) have been generated for you by ${tenantName}:</p>
     <ul>${htmlItems}</ul>
     <p>
-      <a href="${clientInvoicesUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Open My Invoices</a>
-    </p>
-    <p style="font-size:13px;color:#64748b;">PDFs are available after you sign in — use Download PDF on the invoice row.</p>
-    <p>
-      <a href="${base}/login">Sign in to the portal</a>
+      <a href="${base}/login">Login to the portal</a>
     </p>
   </div>
 `,
@@ -205,88 +156,12 @@ export async function sendClientInvoicesEmail({
   return info;
 }
 
-/** Single new invoice — same portal link pattern as batch new-invoice email. */
-export async function sendInvoiceCreatedEmail({
-  to,
-  clientName,
-  tenantName,
-  invoiceId,
-  invoiceLabel,
-  amount,
-  currency,
-  dueDateLabel,
-}: {
-  to: string;
-  clientName: string;
-  tenantName: string;
-  invoiceId: string;
-  invoiceLabel: string;
-  amount: number;
-  currency: string;
-  dueDateLabel: string;
-}) {
-  return sendClientInvoicesEmail({
-    to,
-    clientName,
-    tenantName,
-    items: [{ invoiceId, invoiceLabel, amount, currency, dueDate: dueDateLabel }],
-  });
-}
-
-export async function sendInvoiceUpdatedEmail({
-  to,
-  clientName,
-  tenantName,
-  invoiceId,
-  invoiceLabel,
-}: {
-  to: string;
-  clientName: string;
-  tenantName: string;
-  invoiceId: string;
-  invoiceLabel: string;
-}) {
-  await transporter.verify();
-  const thisInvoiceUrl = getClientInvoicePortalUrl(invoiceId);
-  const invoicesUrl = `${portalBaseUrl()}/client/invoices`;
-  const subject = `Invoice updated — ${tenantName}`;
-  const text = [
-    `Hello ${clientName},`,
-    ``,
-    `An invoice has been updated and may have a new amount, due date, line items, or notes:`,
-    ``,
-    `Invoice: ${invoiceLabel}`,
-    ``,
-    `Please review it in the client portal:`,
-    thisInvoiceUrl,
-    ``,
-    `All invoices: ${invoicesUrl}`,
-    ``,
-    `— ${tenantName}`,
-  ].join("\n");
-
-  const info = await transporter.sendMail({
-    from: `"Blue Team Portal" <${user}>`,
-    replyTo: user ?? undefined,
-    to,
-    subject,
-    text,
-    html: `
-  <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
-    <p>Hello ${escapeHtml(clientName)},</p>
-    <p><strong>An invoice has been updated.</strong> Please review the latest details in the portal (amount, due date, line items, or notes may have changed).</p>
-    <p style="padding:10px 12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:14px;"><strong>${escapeHtml(invoiceLabel)}</strong></p>
-    <p>
-      <a href="${thisInvoiceUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Review invoice</a>
-    </p>
-    <p style="font-size: 13px; color: #64748b;">${escapeHtml(portalSignInHint)}</p>
-    <p style="font-size: 13px;">
-      <a href="${invoicesUrl}" style="color:#4f46e5;">View all invoices</a>
-    </p>
-    <p style="font-size: 12px; color: #64748b;">${escapeHtml(tenantName)}</p>
-  </div>`,
-  });
-  return info;
+function portalBaseUrl() {
+  return (
+    process.env.NEXT_PUBLIC_PORTAL_URL ||
+    process.env.PORTAL_BASE_URL ||
+    "https://portal.blueteamafrica.com"
+  ).replace(/\/$/, "");
 }
 
 /** overdue_invoice — client portal automation */
@@ -294,7 +169,6 @@ export async function sendClientOverdueInvoiceEmail({
   to,
   clientName,
   tenantName,
-  invoiceId,
   invoiceNumber,
   amountLabel,
   dueDateLabel,
@@ -302,7 +176,6 @@ export async function sendClientOverdueInvoiceEmail({
   to: string;
   clientName: string;
   tenantName: string;
-  invoiceId: string;
   invoiceNumber: string;
   amountLabel: string;
   dueDateLabel: string;
@@ -310,7 +183,6 @@ export async function sendClientOverdueInvoiceEmail({
   await transporter.verify();
   const base = portalBaseUrl();
   const invoicesUrl = `${base}/client/invoices`;
-  const thisInvoiceUrl = getClientInvoicePortalUrl(invoiceId);
   const subject = `Invoice overdue — ${tenantName}`;
   const text = [
     `Hello ${clientName},`,
@@ -321,10 +193,8 @@ export async function sendClientOverdueInvoiceEmail({
     `Amount: ${amountLabel}`,
     `Due date: ${dueDateLabel}`,
     ``,
-    `Open this invoice in the client portal (sign in to download PDF):`,
-    thisInvoiceUrl,
-    ``,
-    `All invoices: ${invoicesUrl}`,
+    `View your invoices in the client portal:`,
+    invoicesUrl,
     ``,
     `— ${tenantName}`,
   ].join("\n");
@@ -345,11 +215,7 @@ export async function sendClientOverdueInvoiceEmail({
       <tr><td style="padding: 4px 12px 4px 0; color: #64748b;">Due date</td><td style="padding: 4px 0;">${escapeHtml(dueDateLabel)}</td></tr>
     </table>
     <p>
-      <a href="${thisInvoiceUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Open invoice</a>
-    </p>
-    <p style="font-size: 13px; color: #64748b;">${escapeHtml(portalSignInHint)} Use <strong>Download PDF</strong> on the invoice page.</p>
-    <p style="font-size: 13px;">
-      <a href="${invoicesUrl}" style="color:#4f46e5;">View all invoices</a>
+      <a href="${invoicesUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Open invoices</a>
     </p>
     <p style="font-size: 12px; color: #64748b;">${escapeHtml(tenantName)}</p>
   </div>`,
@@ -376,23 +242,21 @@ export async function sendClientServiceWaitingEmail({
   serviceUrl: string;
 }) {
   await transporter.verify();
-  const subject = `Action needed: ${serviceName}`;
-  const noteShort = healthNote.trim().slice(0, 400);
-  const actionShort = nextAction.trim().slice(0, 300);
+  const subject = `Action needed — ${serviceName}`;
+  const noteBlock = healthNote.trim()
+    ? `\n\nNote from the team:\n${healthNote}`
+    : "";
+  const actionBlock = nextAction.trim() ? `\n\nNext step: ${nextAction}` : "";
   const text = [
     `Hello ${clientName},`,
     ``,
-    `${tenantName} needs a quick update on: ${serviceName}.`,
-    actionShort ? `Next step: ${actionShort}` : "",
-    noteShort ? `Note: ${noteShort}` : "",
+    `We need your input on: ${serviceName}.${actionBlock}${noteBlock}`,
     ``,
-    `Open in your client portal:`,
+    `Open the service in your client portal:`,
     serviceUrl,
     ``,
     `— ${tenantName}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  ].join("\n");
 
   const info = await transporter.sendMail({
     from: `"Blue Team Portal" <${user}>`,
@@ -403,13 +267,12 @@ export async function sendClientServiceWaitingEmail({
     html: `
   <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
     <p>Hello ${escapeHtml(clientName)},</p>
-    <p><strong>${escapeHtml(tenantName)}</strong> needs an update on <strong>${escapeHtml(serviceName)}</strong>.</p>
-    ${actionShort ? `<p style="margin:0 0 8px;"><strong>Next step:</strong> ${escapeHtml(actionShort)}</p>` : ""}
-    ${noteShort ? `<p style="margin:0 0 12px;padding:10px 12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:14px;">${escapeHtml(noteShort)}</p>` : ""}
+    <p><strong>We need your input</strong> on <strong>${escapeHtml(serviceName)}</strong>.</p>
+    ${nextAction.trim() ? `<p><strong>Next step:</strong> ${escapeHtml(nextAction)}</p>` : ""}
+    ${healthNote.trim() ? `<p style="margin-top:12px;padding:12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;"><strong>Note:</strong> ${escapeHtml(healthNote)}</p>` : ""}
     <p>
-      <a href="${serviceUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Open in portal</a>
+      <a href="${serviceUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">View service</a>
     </p>
-    <p style="font-size: 12px; color: #64748b;">${escapeHtml(portalSignInHint)}</p>
     <p style="font-size: 12px; color: #64748b;">${escapeHtml(tenantName)}</p>
   </div>`,
   });
@@ -431,14 +294,15 @@ export async function sendClientSupportReplyWaitingEmail({
   ticketUrl: string;
 }) {
   await transporter.verify();
-  const subject = `Reply needed — support`;
-  const subjShort = ticketSubject.trim().slice(0, 120) || "Support ticket";
+  const subject = `Reply needed — support ticket`;
   const text = [
     `Hello ${clientName},`,
     ``,
-    `We're waiting for your reply on: ${subjShort}`,
+    `We're waiting on your reply for this support ticket:`,
     ``,
-    `Reply in the client portal:`,
+    `${ticketSubject}`,
+    ``,
+    `Open the ticket:`,
     ticketUrl,
     ``,
     `— ${tenantName}`,
@@ -453,12 +317,11 @@ export async function sendClientSupportReplyWaitingEmail({
     html: `
   <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
     <p>Hello ${escapeHtml(clientName)},</p>
-    <p>We're waiting for your <strong>reply</strong> on this ticket:</p>
-    <p style="padding:10px 12px;background:#f0f9ff;border-radius:8px;border:1px solid #bae6fd;font-size:14px;"><strong>${escapeHtml(subjShort)}</strong></p>
+    <p><strong>We're waiting on your reply</strong> for this support ticket:</p>
+    <p style="padding:12px;background:#f0f9ff;border-radius:8px;border:1px solid #bae6fd;"><strong>${escapeHtml(ticketSubject)}</strong></p>
     <p>
-      <a href="${ticketUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Reply in portal</a>
+      <a href="${ticketUrl}" style="display:inline-block;padding:10px 16px;background:#4f46e5;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Open ticket</a>
     </p>
-    <p style="font-size: 12px; color: #64748b;">${escapeHtml(portalSignInHint)}</p>
     <p style="font-size: 12px; color: #64748b;">${escapeHtml(tenantName)}</p>
   </div>`,
   });

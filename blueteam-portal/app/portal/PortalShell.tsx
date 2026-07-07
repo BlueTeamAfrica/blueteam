@@ -6,8 +6,6 @@ import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useTenant } from "@/lib/tenantContext";
-import NotificationBell from "@/components/notifications/NotificationBell";
-import { useNotificationUnreadCount } from "@/hooks/useNotificationUnreadCount";
 
 const nav = [
   { href: "/portal", label: "Dashboard" },
@@ -17,17 +15,14 @@ const nav = [
   { href: "/portal/invoices", label: "Invoices" },
   { href: "/portal/subscriptions", label: "Subscriptions" },
   { href: "/portal/support", label: "Support" },
-  { href: "/portal/notifications", label: "Notifications" },
 ];
 
 function NavLinks({
   pathname,
   onNavigate,
-  notificationCount,
 }: {
   pathname: string;
   onNavigate?: () => void;
-  notificationCount: number;
 }) {
   return (
     <>
@@ -42,14 +37,7 @@ function NavLinks({
               : "text-[#0F172A] hover:bg-slate-100"
           }`}
         >
-          <span className="inline-flex items-center gap-2 min-w-0">
-            <span className="truncate">{item.label}</span>
-            {item.href === "/portal/notifications" && notificationCount > 0 ? (
-              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold bg-rose-50 text-rose-800 border border-rose-200">
-                {notificationCount > 9 ? "9+" : notificationCount}
-              </span>
-            ) : null}
-          </span>
+          {item.label}
         </Link>
       ))}
     </>
@@ -61,8 +49,7 @@ const DRAWER_WIDTH_CLASS = "w-[82vw] max-w-[320px]";
 export default function PortalShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { tenant, role, clientId } = useTenant();
-  const notificationCount = useNotificationUnreadCount(tenant?.id, role, clientId);
+  const { tenant } = useTenant();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
@@ -95,23 +82,13 @@ export default function PortalShell({ children }: { children: React.ReactNode })
           </button>
           <span className="text-[#0F172A] font-semibold truncate">Blue Team Portal</span>
         </div>
-        <div className="flex items-center gap-1 shrink-0">
-          {tenant?.id ? (
-            <NotificationBell
-              tenantId={tenant.id}
-              role={role}
-              clientId={clientId}
-              listPath="/portal/notifications"
-            />
-          ) : null}
-          <button
-            type="button"
-            onClick={() => signOut(auth).then(() => router.replace("/login"))}
-            className="text-sm text-slate-500 hover:text-[#0F172A] shrink-0"
-          >
-            Sign out
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => signOut(auth).then(() => router.replace("/login"))}
+          className="text-sm text-slate-500 hover:text-[#0F172A] shrink-0"
+        >
+          Sign out
+        </button>
       </header>
 
       {/* Mobile drawer overlay */}
@@ -142,11 +119,7 @@ export default function PortalShell({ children }: { children: React.ReactNode })
               </button>
             </div>
             <nav className="p-3 space-y-1 overflow-y-auto min-h-0 flex-1">
-              <NavLinks
-                pathname={pathname}
-                onNavigate={() => setDrawerOpen(false)}
-                notificationCount={notificationCount}
-              />
+              <NavLinks pathname={pathname} onNavigate={() => setDrawerOpen(false)} />
             </nav>
           </aside>
         </>
@@ -158,7 +131,7 @@ export default function PortalShell({ children }: { children: React.ReactNode })
           <h2 className="text-[#0F172A] font-semibold break-words">Blue Team Portal</h2>
         </div>
         <nav className="p-3 space-y-1">
-          <NavLinks pathname={pathname} notificationCount={notificationCount} />
+          <NavLinks pathname={pathname} />
         </nav>
       </aside>
 
@@ -167,23 +140,13 @@ export default function PortalShell({ children }: { children: React.ReactNode })
         {/* Desktop header (tenant + sign out) */}
         <header className="hidden md:flex h-14 bg-white border-b border-slate-200 items-center justify-between px-6 shrink-0">
           <span className="text-[#0F172A] text-sm truncate break-words">{tenant?.name ?? "Tenant"}</span>
-          <div className="flex items-center gap-1">
-            {tenant?.id ? (
-              <NotificationBell
-                tenantId={tenant.id}
-                role={role}
-                clientId={clientId}
-                listPath="/portal/notifications"
-              />
-            ) : null}
-            <button
-              type="button"
-              onClick={() => signOut(auth).then(() => router.replace("/login"))}
-              className="text-sm text-slate-500 hover:text-[#0F172A] shrink-0"
-            >
-              Sign out
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => signOut(auth).then(() => router.replace("/login"))}
+            className="text-sm text-slate-500 hover:text-[#0F172A] shrink-0"
+          >
+            Sign out
+          </button>
         </header>
         <main className="relative z-0 flex-1 w-full min-w-0 max-w-full px-3 py-3 sm:px-4 sm:py-4 md:px-8 overflow-x-hidden overflow-y-auto">
           {children}

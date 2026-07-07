@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
+import PsyloLinks from '@/components/seo/PsyloLinks'
 import { metadataUIUX } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 
@@ -154,6 +155,7 @@ export default function UIUXPage() {
       </div>
 
       {/* Psylo Links for SEO */}
+      <PsyloLinks />
 
 </>
   )

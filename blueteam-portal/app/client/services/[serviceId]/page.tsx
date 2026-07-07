@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { doc, getDoc, Timestamp } from "firebase/firestore";
@@ -31,14 +31,6 @@ type Service = {
   renewalDate?: Timestamp;
   clientId?: string;
   clientName?: string;
-  clientActionRequired?: boolean;
-  clientActionStatus?: "pending" | "resolved" | string;
-  clientActionMessage?: string | null;
-  clientActionRequestedAt?: Timestamp | null;
-  clientActionResolvedAt?: Timestamp | null;
-  clientActionResponse?: string | null;
-  clientActionRespondedAt?: Timestamp | null;
-  clientActionRespondedByUid?: string | null;
   projectId?: string;
   projectName?: string;
   updatedAt?: Timestamp;
@@ -134,29 +126,6 @@ function getBillingTypeLabel(v?: string) {
   return v ? v : "—";
 }
 
-function canAccessClientServiceArea(role: string | undefined, clientId: string | undefined): boolean {
-  const r = (role ?? "").toLowerCase();
-  if (r === "owner" || r === "admin") return true;
-  if (r === "client" && clientId?.trim()) return true;
-  return false;
-}
-
-/** Matches POST /api/client/services/.../respond: client must match service; staff same tenant. */
-function canSubmitServiceClientResponse(
-  role: string | undefined,
-  clientId: string | undefined,
-  service: Service
-): boolean {
-  const r = (role ?? "").toLowerCase();
-  if (r === "owner" || r === "admin") return true;
-  if (r === "client") {
-    const u = (clientId ?? "").trim();
-    const s = (service.clientId ?? "").trim();
-    return Boolean(u && s && u === s);
-  }
-  return true;
-}
-
 export default function ClientServiceDetailPage() {
   const { user } = useAuth();
   const { tenant, role, clientId } = useTenant();
@@ -168,14 +137,10 @@ export default function ClientServiceDetailPage() {
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [subStatus, setSubStatus] = useState<string | null>(null);
-  const [responseText, setResponseText] = useState("");
-  const [respondLoading, setRespondLoading] = useState(false);
-  const [respondError, setRespondError] = useState<string | null>(null);
-  const [respondSuccess, setRespondSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     const tid = tenant?.id;
-    if (!user || !tid || !serviceId || !canAccessClientServiceArea(role, clientId)) {
+    if (!user || !tid || role !== "client" || !clientId || !serviceId) {
       setLoading(false);
       return;
     }
@@ -193,12 +158,10 @@ export default function ClientServiceDetailPage() {
           return;
         }
         const data = snap.data() as Service;
-        if ((role ?? "").toLowerCase() === "client") {
-          if ((data.clientId ?? "") !== clientId) {
-            setNotFound(true);
-            setService(null);
-            return;
-          }
+        if ((data.clientId ?? "") !== clientId) {
+          setNotFound(true);
+          setService(null);
+          return;
         }
         setService(data);
       } catch (e) {
@@ -213,22 +176,9 @@ export default function ClientServiceDetailPage() {
   }, [user, tenant?.id, role, clientId, serviceId]);
 
   useEffect(() => {
-    setRespondSuccess(null);
-    setRespondError(null);
-    setResponseText("");
-  }, [serviceId]);
-
-  useEffect(() => {
-    const pending =
-      service?.clientActionRequired === true &&
-      String(service?.clientActionStatus ?? "").toLowerCase() === "pending";
-    if (pending) setRespondSuccess(null);
-  }, [service?.clientActionRequired, service?.clientActionStatus]);
-
-  useEffect(() => {
     const tid = tenant?.id;
     const subId = service?.subscriptionId;
-    if (!user || !tid || !subId || !canAccessClientServiceArea(role, clientId)) {
+    if (!user || !tid || role !== "client" || !clientId || !subId) {
       setSubStatus(null);
       return;
     }
@@ -272,72 +222,9 @@ export default function ClientServiceDetailPage() {
     return `/client/support?${qp.toString()}`;
   }, [service?.name, service?.projectId, service?.projectName, serviceId]);
 
-  async function handleRespondToRequest(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const tid = tenant?.id;
-    if (!user || !tid || !serviceId || !responseText.trim()) return;
-    if (service && !canSubmitServiceClientResponse(role, clientId, service)) {
-      setRespondError("You do not have permission to respond to this request.");
-      return;
-    }
-    setRespondLoading(true);
-    setRespondError(null);
-    setRespondSuccess(null);
-    try {
-      const token = await user.getIdToken();
-      console.log("Submitting response...", { serviceId, tenantId: tid, role });
-      const res = await fetch(`/api/client/services/${encodeURIComponent(serviceId)}/respond`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ tenantId: tid, message: responseText }),
-      });
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        debug?: { role?: string | null };
-      };
-      if (!res.ok) {
-        const r = (role ?? "").toLowerCase();
-        const debugRole = String(data.debug?.role ?? "").toLowerCase();
-        const staffPortal =
-          r === "owner" || r === "admin" || debugRole === "owner" || debugRole === "admin";
-        const clientForbidden = "You do not have permission to respond to this request.";
-        let errMsg =
-          data.error ??
-          (res.status === 403
-            ? staffPortal
-              ? "Could not submit your response. Please try again."
-              : clientForbidden
-            : "Could not send your response.");
-        if (res.status === 403 && staffPortal && errMsg === clientForbidden) {
-          errMsg = "Could not submit your response. Please try again.";
-        }
-        setRespondError(errMsg);
-        return;
-      }
-      setRespondSuccess("Thanks — your team has been notified.");
-      setResponseText("");
-      const ref = doc(db, "tenants", tid, "services", serviceId);
-      const snap = await getDoc(ref);
-      if (snap.exists()) setService(snap.data() as Service);
-    } catch (err) {
-      setRespondError((err as { message?: string }).message ?? "Could not send your response.");
-    } finally {
-      setRespondLoading(false);
-    }
-  }
-
   if (!user) return <p className="text-[#0F172A]">Please log in</p>;
   if (!tenant) return <p className="text-[#0F172A]">Loading tenant…</p>;
-  if (!canAccessClientServiceArea(role, clientId)) {
-    return (
-      <p className="text-[#0F172A] text-sm">
-        You do not have permission to view this page.
-      </p>
-    );
-  }
+  if (role !== "client" || !clientId) return <p className="text-[#0F172A]">Access denied.</p>;
   if (loading) return <p className="text-[#0F172A]">Loading service…</p>;
   if (notFound) {
     return (
@@ -356,24 +243,14 @@ export default function ClientServiceDetailPage() {
 
   const healthNormalized = normalizeHealth(service.health ?? "");
   const isWaitingClient = healthNormalized === "waiting_client";
-  const structuredInputPending =
-    service.clientActionRequired === true &&
-    String(service.clientActionStatus ?? "").toLowerCase() === "pending";
   const summaryText = (service.operationalSummary ?? service.description ?? "").trim() || "—";
 
   const nextActionText = service.nextAction?.trim() ?? "";
-  const instructionBody =
-    structuredInputPending && service.clientActionMessage?.trim()
-      ? service.clientActionMessage.trim()
-      : null;
-
-  const nextPrimaryLine = structuredInputPending
-    ? instructionBody ?? (nextActionText ? `We need ${nextActionText} from you` : "We need your input to continue")
-    : isWaitingClient
-      ? nextActionText
-        ? `We need ${nextActionText} from you`
-        : "We need your input to continue"
-      : nextActionText || "No next step scheduled";
+  const nextPrimaryLine = isWaitingClient
+    ? nextActionText
+      ? `We need ${nextActionText} from you`
+      : "We need your input to continue"
+    : nextActionText || "No next step scheduled";
 
   const nextDueFormatted = service.nextActionDue ? formatDate(service.nextActionDue ?? null) : null;
   const billingTypeLower = (service.billingType ?? "").toLowerCase();
@@ -423,16 +300,6 @@ export default function ClientServiceDetailPage() {
         </div>
       )}
 
-      {respondSuccess ? (
-        <div
-          className="mt-4 bg-white rounded-xl shadow-sm border border-emerald-200 p-4"
-          role="status"
-          aria-live="polite"
-        >
-          <p className="text-emerald-900 text-sm font-medium break-words">{respondSuccess}</p>
-        </div>
-      ) : null}
-
       <div className="mt-4 space-y-4 md:space-y-6">
         {/* Overview */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 max-w-full min-w-0">
@@ -455,98 +322,20 @@ export default function ClientServiceDetailPage() {
           <p className="mt-3 text-slate-600 text-sm break-words">{summaryText}</p>
         </div>
 
-        {structuredInputPending || isWaitingClient ? (
-          <div
-            className={`rounded-2xl p-4 md:p-5 border ${
-              structuredInputPending
-                ? "bg-amber-50 border-amber-200"
-                : "bg-indigo-50 border-indigo-100"
-            }`}
-          >
+        {isWaitingClient ? (
+          <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 md:p-5">
             <div className="flex items-start gap-3">
               <div
-                className={`shrink-0 flex h-10 w-10 items-center justify-center rounded-xl text-lg ${
-                  structuredInputPending ? "bg-amber-500/15 text-amber-950" : "bg-indigo-600/10 text-indigo-900"
-                }`}
+                className="shrink-0 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600/10 text-indigo-900"
                 aria-hidden
               >
                 ⚠️
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[#0F172A] font-extrabold text-sm sm:text-base break-words">
-                  {structuredInputPending ? "Your input is required" : "Action needed from you"}
-                </p>
-                {instructionBody ? (
-                  <p className="mt-2 text-sm text-[#0F172A]/90 whitespace-pre-wrap break-words leading-relaxed">
-                    {instructionBody}
-                  </p>
-                ) : (
-                  <p
-                    className={`mt-1 text-sm break-words ${
-                      structuredInputPending ? "text-amber-950/85" : "text-indigo-900/80"
-                    }`}
-                  >
-                    {nextPrimaryLine}
-                  </p>
-                )}
-                {structuredInputPending && service.clientActionRequestedAt ? (
-                  <p className="mt-2 text-[11px] text-slate-600">
-                    Requested {formatDateTime(service.clientActionRequestedAt)}
-                  </p>
-                ) : null}
-                {structuredInputPending ? (
-                  <p className="mt-3 text-xs text-slate-700">
-                    Submit your response below to continue this service.
-                  </p>
-                ) : (
-                  <p className="mt-3 text-xs text-slate-700">
-                    Reply via{" "}
-                    <Link href="/client/support" className="font-semibold text-indigo-700 hover:underline">
-                      support
-                    </Link>{" "}
-                    or your usual contact so we can continue this service.
-                  </p>
-                )}
+                <p className="text-[#0F172A] font-extrabold text-sm sm:text-base break-words">Action needed from you</p>
+                <p className="mt-1 text-sm text-indigo-900/80 break-words">{nextPrimaryLine}</p>
               </div>
             </div>
-          </div>
-        ) : null}
-
-        {structuredInputPending ? (
-          <div className="bg-white rounded-2xl shadow-sm border border-amber-200 p-5 md:p-6 max-w-full min-w-0">
-            <h2 className="text-[#0F172A] text-lg font-semibold break-words">Respond to this request</h2>
-            <p className="mt-1 text-xs text-slate-600 max-w-2xl leading-relaxed">
-              Type your answer or the information requested above. Your team is notified in the portal when you submit.
-            </p>
-            <form onSubmit={handleRespondToRequest} className="mt-4 space-y-3">
-              {respondError ? (
-                <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800 break-words">
-                  {respondError}
-                </div>
-              ) : null}
-              <label htmlFor="client-service-response" className="sr-only">
-                Your response
-              </label>
-              <textarea
-                id="client-service-response"
-                value={responseText}
-                onChange={(e) => setResponseText(e.target.value)}
-                rows={5}
-                required
-                disabled={respondLoading}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-[#0F172A] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-200 disabled:opacity-60"
-                placeholder="Your response…"
-              />
-              <div className="flex justify-end">
-                <button
-                  type="submit"
-                  disabled={respondLoading || !responseText.trim()}
-                  className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-amber-700 text-white text-sm font-semibold hover:bg-amber-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {respondLoading ? "Sending…" : "Submit response"}
-                </button>
-              </div>
-            </form>
           </div>
         ) : null}
 
@@ -593,17 +382,9 @@ export default function ClientServiceDetailPage() {
             <p className="mt-1 text-sm sm:text-base font-semibold text-[#0F172A] break-words">{nextPrimaryLine}</p>
             <p className="mt-2 text-xs text-slate-500">{nextDueLine}</p>
           </div>
-          {structuredInputPending || isWaitingClient ? (
-            <p
-              className={`mt-3 text-xs rounded-xl p-3 border ${
-                structuredInputPending
-                  ? "text-amber-950/90 bg-amber-50 border-amber-100"
-                  : "text-indigo-800/80 bg-indigo-50 border-indigo-100"
-              }`}
-            >
-              {structuredInputPending
-                ? "Submit your response using the form on this page so your team can proceed."
-                : "Reply to this so we can move the service forward."}
+          {isWaitingClient ? (
+            <p className="mt-3 text-xs text-indigo-800/80 bg-indigo-50 border border-indigo-100 rounded-xl p-3">
+              Reply to this so we can move the service forward.
             </p>
           ) : null}
         </div>
@@ -682,3 +463,4 @@ export default function ClientServiceDetailPage() {
     </div>
   );
 }
+

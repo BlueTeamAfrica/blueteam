@@ -45,9 +45,6 @@ export function TenantProvider({ children }: { children: React.ReactNode }) {
     async function loadTenant() {
       setLoading(true);
       setError(null);
-      // Avoid stale role/tenantId pairing: tenant doc can update before userTenants role is fetched.
-      setRole(undefined);
-      setClientId(undefined);
       try {
         const userSnap = await getDoc(doc(db, "users", uid));
         const userData = userSnap.data();
@@ -80,7 +77,7 @@ export function TenantProvider({ children }: { children: React.ReactNode }) {
           const mapId = `${uid}_${tenantIdFromUser}`;
           const utSnap = await getDoc(doc(db, "userTenants", mapId));
           const ut = utSnap.data() as { role?: string; clientId?: string } | undefined;
-          setRole(ut?.role ?? userRole);
+          setRole(ut?.role);
           setClientId(ut?.clientId);
           return;
         }

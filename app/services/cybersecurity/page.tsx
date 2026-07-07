@@ -5,6 +5,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import FAQSection from '@/components/FAQSection'
+import PsyloLinks from '@/components/seo/PsyloLinks'
 import type { Metadata } from 'next'
 import type { FAQ } from '@/lib/faqs'
 import { metadataCybersecurity } from '@/lib/service-metadata'
@@ -564,6 +565,7 @@ export default function CybersecurityPage() {
       </div>
       
       {/* Psylo Links for SEO */}
+      <PsyloLinks />
 
     </>
   )

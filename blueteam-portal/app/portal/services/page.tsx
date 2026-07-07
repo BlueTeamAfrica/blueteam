@@ -285,15 +285,6 @@ export default function PortalServicesPage() {
     if (!formCategory && MANAGED_SERVICE_CATEGORIES[0]?.value) setFormCategory(MANAGED_SERVICE_CATEGORIES[0].value);
   }, [showCreate]); // intentionally not depending on form fields
 
-  useEffect(() => {
-    if (!showCreate) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [showCreate]);
-
   // Keep selected client aligned with loaded clients list (canonical id = clients/{docId}).
   useEffect(() => {
     if (!showCreate || clients.length === 0) return;
@@ -409,20 +400,6 @@ export default function PortalServicesPage() {
         return;
       }
 
-      const currencyTrim = formCurrency.trim();
-
-      let nextBillingTs: Timestamp | null = null;
-      if (billingType === "recurring") {
-        const nextBillingDate = formNextBillingDate
-          ? new Date(formNextBillingDate)
-          : computeNextBillingDate(start, interval);
-        if (Number.isNaN(nextBillingDate.getTime())) {
-          setCreateError("Please provide a valid next billing date.");
-          return;
-        }
-        nextBillingTs = Timestamp.fromDate(nextBillingDate);
-      }
-
       const payload: Record<string, unknown> = {
         name: categoryOpt.label,
         clientId: canonicalClientId,
@@ -431,32 +408,34 @@ export default function PortalServicesPage() {
         categoryLabel: categoryOpt.label,
         status: formStatus,
         startDate: Timestamp.fromDate(start),
+        renewalDate: renewal ? Timestamp.fromDate(renewal) : undefined,
         notes: formNotes.trim() || "",
         billingType,
+        price: priceNumber ?? undefined,
+        currency: formCurrency.trim() || undefined,
+        interval: billingType === "recurring" ? interval : undefined,
+        nextBillingDate: undefined,
         subscriptionId: null,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       };
 
-      if (renewal) {
-        payload.renewalDate = Timestamp.fromDate(renewal);
-      }
-      if (priceNumber != null && !Number.isNaN(priceNumber)) {
-        payload.price = priceNumber;
-      }
-      if (currencyTrim) {
-        payload.currency = currencyTrim.toUpperCase();
-      }
-      if (billingType === "recurring") {
-        payload.interval = interval;
-        if (nextBillingTs) {
-          payload.nextBillingDate = nextBillingTs;
-        }
-      }
-      if (selectedProject) {
-        const pname = selectedProject.name?.trim();
+      // Strip optional undefined values (Firestore rejects undefined fields)
+      if (!renewal) delete payload.renewalDate;
+      if (priceNumber == null) delete payload.price;
+      if (!formCurrency.trim()) delete payload.currency;
+      if (billingType !== "recurring") delete payload.interval;
+      if (!selectedProject) {
+        delete payload.projectId;
+        delete payload.projectName;
+      } else {
         payload.projectId = selectedProject.id;
-        payload.projectName = pname || selectedProject.id;
+        payload.projectName = selectedProject.name ?? selectedProject.id;
+      }
+
+      // NOTE: we intentionally omit projectId/projectName unless selected.
+      if (!payload.projectId && selectedProject) {
+        payload.projectId = selectedProject.id;
       }
 
       const created = await addDoc(
@@ -464,17 +443,24 @@ export default function PortalServicesPage() {
         payload
       );
 
-      if (billingType === "recurring" && nextBillingTs) {
+      if (billingType === "recurring") {
+        const nextBillingDate = formNextBillingDate
+          ? new Date(formNextBillingDate)
+          : computeNextBillingDate(start, interval);
+        if (Number.isNaN(nextBillingDate.getTime())) {
+          setCreateError("Please provide a valid next billing date.");
+          return;
+        }
         const sub = await addDoc(collection(db, "tenants", tenant.id, "subscriptions"), {
           clientId: canonicalClientId,
           clientName: selectedClient.name ?? selectedClient.email ?? selectedClient.id,
           name: categoryOpt.label,
           price: priceNumber ?? 0,
-          currency: currencyTrim.toUpperCase() || "USD",
+          currency: formCurrency.trim() || "USD",
           interval,
           status: "active",
           startDate: Timestamp.fromDate(start),
-          nextBillingDate: nextBillingTs,
+          nextBillingDate: Timestamp.fromDate(nextBillingDate),
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
           source: "service",
@@ -483,6 +469,7 @@ export default function PortalServicesPage() {
 
         await updateDoc(doc(db, "tenants", tenant.id, "services", created.id), {
           subscriptionId: sub.id,
+          nextBillingDate: Timestamp.fromDate(nextBillingDate),
           updatedAt: serverTimestamp(),
         });
       }
@@ -591,12 +578,12 @@ export default function PortalServicesPage() {
 
       {showCreate && (
         <div
-          className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-2 sm:p-3"
+          className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-3"
           role="dialog"
           aria-modal="true"
         >
-          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-3xl overflow-hidden max-h-[90vh] flex flex-col min-h-0">
-            <div className="p-5 md:p-6 border-b border-slate-200 flex items-start justify-between gap-3 flex-none">
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-3xl overflow-hidden">
+            <div className="p-5 md:p-6 border-b border-slate-200 flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <h2 className="text-[#0F172A] text-lg font-semibold break-words">Add Service</h2>
                 <p className="text-slate-500 text-sm mt-1 break-words">
@@ -615,18 +602,14 @@ export default function PortalServicesPage() {
               </button>
             </div>
 
-            <form
-              onSubmit={handleCreateService}
-              className="flex flex-col p-5 md:p-6 overflow-hidden min-h-0"
-            >
-              <div className="flex-1 overflow-y-auto min-h-0 space-y-4 pr-1">
-                {createError && (
-                  <div className="bg-rose-50 border border-rose-200 rounded-xl p-3">
-                    <p className="text-rose-700 text-sm break-words">{createError}</p>
-                  </div>
-                )}
+            <form onSubmit={handleCreateService} className="p-5 md:p-6 space-y-4">
+              {createError && (
+                <div className="bg-rose-50 border border-rose-200 rounded-xl p-3">
+                  <p className="text-rose-700 text-sm break-words">{createError}</p>
+                </div>
+              )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className={PORTAL_SELECT_LABEL_CLASS}>Client *</label>
                   <SelectArrowWrap>
@@ -821,11 +804,9 @@ export default function PortalServicesPage() {
                   placeholder="Add internal notes / scope / handoff details..."
                   className="w-full px-3 py-2 rounded-lg border border-slate-200 text-[#0F172A] placeholder:text-slate-400"
                 />
-                </div>
-
               </div>
 
-              <div className="flex flex-wrap gap-2 justify-end pt-1 border-t border-slate-200 bg-white">
+              <div className="flex flex-wrap gap-2 justify-end pt-1">
                 <button
                   type="button"
                   onClick={() => setShowCreate(false)}

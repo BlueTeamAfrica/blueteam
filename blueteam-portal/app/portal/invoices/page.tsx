@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import { collection, getDocs, doc, getDoc, Timestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { collection, getDocs, addDoc, doc, updateDoc, serverTimestamp, Timestamp } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { useAuth } from "@/lib/authContext";
 import { useTenant } from "@/lib/tenantContext";
-import { getBillingPlanIdFromTenant } from "@/lib/tenantBillingPlan";
 import { PORTAL_SELECT_CLASS, PORTAL_SELECT_LABEL_CLASS } from "@/lib/portalSelectStyles";
 import { SelectArrowWrap } from "@/components/portal/SelectArrowWrap";
 
@@ -24,14 +22,9 @@ type Invoice = {
   source?: string;
 };
 
-function isAdminOrOwnerRole(role: string | undefined): boolean {
-  const r = (role ?? "").trim().toLowerCase();
-  return r === "admin" || r === "owner";
-}
-
 export default function InvoicesPage() {
   const { user } = useAuth();
-  const { tenant, role, loading: tenantCtxLoading } = useTenant();
+  const { tenant } = useTenant();
   const [clients, setClients] = useState<Client[]>([]);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [loading, setLoading] = useState(true);
@@ -44,7 +37,6 @@ export default function InvoicesPage() {
   const [formDueDate, setFormDueDate] = useState("");
   const [formNotes, setFormNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [formError, setFormError] = useState<string | null>(null);
 
   // Status update loading
   const [updatingId, setUpdatingId] = useState<string | null>(null);
@@ -75,154 +67,6 @@ export default function InvoicesPage() {
   } | null>(null);
 
   const [sendingTestEmail, setSendingTestEmail] = useState(false);
-
-  /** Same document Firestore rules use: userTenants/{uid}_{tenantId}.role */
-  const [membershipRoleFromUt, setMembershipRoleFromUt] = useState<string | undefined>(undefined);
-  const isAdminOrOwner =
-    isAdminOrOwnerRole(role) || isAdminOrOwnerRole(membershipRoleFromUt);
-  const [invoiceCreateAllowed, setInvoiceCreateAllowed] = useState(false);
-  const [invoicePermResolved, setInvoicePermResolved] = useState(false);
-  /** Plan-side flag: missing doc or canInvoices !== false (same idea as firestore tenantPlanAllowsInvoiceCreate). */
-  const [resolvedCanInvoices, setResolvedCanInvoices] = useState<boolean | null>(null);
-
-  const billingPlanId = useMemo(() => getBillingPlanIdFromTenant(tenant), [tenant]);
-
-  useEffect(() => {
-    if (!tenant?.id || !user?.uid) {
-      setMembershipRoleFromUt(undefined);
-      setInvoiceCreateAllowed(false);
-      setInvoicePermResolved(false);
-      setResolvedCanInvoices(null);
-      return;
-    }
-    if (tenantCtxLoading) {
-      return;
-    }
-
-    let alive = true;
-    setInvoicePermResolved(false);
-
-    const uid = user.uid;
-    const tid = tenant.id;
-    const planId = billingPlanId;
-
-    (async () => {
-      try {
-        const utPath = `${uid}_${tid}`;
-        const [userSnap, utSnap, permSnap] = await Promise.all([
-          getDoc(doc(db, "users", uid)),
-          getDoc(doc(db, "userTenants", utPath)),
-          getDoc(doc(db, "tenants", tid, "planPermissions", planId)),
-        ]);
-
-        const userDocRole = userSnap.exists() ? userSnap.data()?.role : undefined;
-        const utRoleRaw = utSnap.exists() ? utSnap.data()?.role : undefined;
-        const utRole = typeof utRoleRaw === "string" ? utRoleRaw : undefined;
-        const permData = permSnap.exists() ? permSnap.data() : null;
-        const canInvoicesResolved = !permSnap.exists() || permData?.canInvoices !== false;
-        const isAdminCtx = isAdminOrOwnerRole(role);
-        const isAdminUt = isAdminOrOwnerRole(utRole);
-        const isAdminCombined = isAdminCtx || isAdminUt;
-
-        if (alive) {
-          setMembershipRoleFromUt(utRole);
-        }
-
-        const allowCreateFromSnapshot =
-          !tenantCtxLoading && isAdminCombined && canInvoicesResolved;
-
-        console.info("[portal/invoices][perm] create permission snapshot (client reads)", {
-          currentAuthUid: auth.currentUser?.uid ?? null,
-          currentAuthEmail: auth.currentUser?.email ?? null,
-          tenantIdFromContext: tid,
-          roleFromUsersDoc: userDocRole ?? null,
-          roleFromUserTenantsDoc: utRole ?? null,
-          planPermissionsObject: permSnap.exists() ? { ...(permData ?? {}) } : null,
-          resolvedCanInvoices: canInvoicesResolved,
-          allowCreateInvoice_uiFromSnapshot: allowCreateFromSnapshot,
-          uiRenderingGate: {
-            tenantCtxLoading,
-            roleFromTenantContext: role ?? null,
-            isAdminFromContext: isAdminCtx,
-            isAdminFromUserTenantsRead: isAdminUt,
-            isAdminCombined: isAdminCombined,
-            addButtonFormula:
-              "!tenantCtxLoading && isAdminOrOwner(role||membershipUt) && invoicePermResolved && invoiceCreateAllowed",
-          },
-          firestoreCreateRule:
-            "(hasTenantAccess(tenantId)||hasTenantAccessLegacy()) && isAdminOrOwner(tenantId) && tenantPlanAllowsInvoiceCreate(tenantId) — no API for manual addDoc",
-          _paths: {
-            usersDoc: `users/${uid}`,
-            userTenantsDoc: `userTenants/${utPath}`,
-            planPermissionsDoc: `tenants/${tid}/planPermissions/${planId}`,
-          },
-        });
-
-        if (!alive) return;
-
-        setResolvedCanInvoices(canInvoicesResolved);
-
-        if (!isAdminCombined) {
-          setInvoiceCreateAllowed(false);
-          setInvoicePermResolved(true);
-          return;
-        }
-
-        setInvoiceCreateAllowed(canInvoicesResolved);
-        setInvoicePermResolved(true);
-      } catch (e) {
-        console.warn(
-          "[portal/invoices][perm] permission snapshot read failed — failing open for Add Invoice UI; Firestore rules still enforce create",
-          {
-            currentAuthUid: auth.currentUser?.uid ?? null,
-            currentAuthEmail: auth.currentUser?.email ?? null,
-            tenantIdFromContext: tid,
-            roleFromUsersDoc: null,
-            roleFromUserTenantsDoc: null,
-            planPermissionsObject: null,
-            resolvedCanInvoices: null,
-            allowCreateInvoice_uiFromSnapshot: true,
-            error: e,
-          }
-        );
-        if (alive) {
-          setResolvedCanInvoices(null);
-          setInvoiceCreateAllowed(true);
-          setInvoicePermResolved(true);
-        }
-      }
-    })();
-
-    return () => {
-      alive = false;
-    };
-  }, [tenant, tenant?.id, user?.uid, billingPlanId, role, tenantCtxLoading]);
-
-  const canUseAddInvoice =
-    !tenantCtxLoading && isAdminOrOwner && invoicePermResolved && invoiceCreateAllowed;
-
-  const createChainTraceRef = useRef<Record<string, unknown>>({});
-  createChainTraceRef.current = {
-    currentAuthUid: auth.currentUser?.uid ?? null,
-    currentAuthEmail: auth.currentUser?.email ?? null,
-    tenantIdFromContext: tenant?.id ?? null,
-    ui_rendering_gate_factors: {
-      tenantCtxLoading,
-      roleFromTenantContext: role ?? null,
-      membershipRoleFromUserTenants: membershipRoleFromUt ?? null,
-      isAdminOrOwnerCombined: isAdminOrOwner,
-      invoicePermResolved,
-      invoiceCreateAllowedFromPlan: invoiceCreateAllowed,
-      resolvedCanInvoices,
-    },
-    formSubmitGate_allowCreateInvoice: canUseAddInvoice,
-    backendPath: "POST /api/invoices (server Firestore + client email + in-app notifications)",
-  };
-
-  useEffect(() => {
-    if (!invoicePermResolved) return;
-    if (!canUseAddInvoice) setShowForm(false);
-  }, [invoicePermResolved, canUseAddInvoice]);
 
   async function loadData() {
     if (!tenant?.id) return;
@@ -282,74 +126,28 @@ export default function InvoicesPage() {
 
   async function handleAddInvoice(e: React.FormEvent) {
     e.preventDefault();
-    if (!tenant?.id || !user) return;
+    if (!tenant?.id) return;
+    if (!formClientId || !formAmount || !formDueDate) return;
 
-    if (!canUseAddInvoice) {
-      setFormError("Only admins can create invoices. If you are an admin, your plan may not include invoicing.");
-      return;
-    }
-
-    setFormError(null);
-
-    if (!formClientId.trim() || !formAmount.trim() || !formDueDate) {
-      setFormError("Please select a client, amount, and due date.");
-      return;
-    }
-
-    const amountNum = Number.parseFloat(formAmount);
-    if (!Number.isFinite(amountNum) || amountNum < 0) {
-      setFormError("Please enter a valid amount (0 or more).");
-      return;
-    }
-
-    const selectedClient = clients.find((c) => c.id === formClientId.trim());
-    if (!selectedClient) {
-      setFormError("Selected client is no longer in the list. Refresh and try again.");
-      return;
-    }
-    const clientName =
-      selectedClient.name?.trim() || selectedClient.email?.trim() || selectedClient.id;
-
-    const due = new Date(formDueDate);
-    if (Number.isNaN(due.getTime())) {
-      setFormError("Please enter a valid due date.");
-      return;
-    }
+    const selectedClient = clients.find((c) => c.id === formClientId);
+    const clientName = selectedClient?.name ?? selectedClient?.email ?? "";
 
     setSubmitting(true);
     try {
       const invoiceCount = invoices.length + 1;
       const invoiceNumber = `INV-${String(invoiceCount).padStart(4, "0")}`;
 
-      console.info("[portal/invoices][perm] POST /api/invoices (server creates + notifies)", {
-        ...createChainTraceRef.current,
-        formSubmitGatePassed: canUseAddInvoice,
+      await addDoc(collection(db, "tenants", tenant.id, "invoices"), {
+        invoiceNumber,
+        clientId: formClientId,
+        clientName,
+        amount: parseFloat(formAmount),
+        currency: formCurrency,
+        status: "unpaid",
+        dueDate: Timestamp.fromDate(new Date(formDueDate)),
+        notes: formNotes.trim() || null,
+        createdAt: serverTimestamp(),
       });
-
-      const token = await user.getIdToken();
-      const res = await fetch("/api/invoices", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          tenantId: tenant.id,
-          clientId: formClientId.trim(),
-          clientName,
-          amount: amountNum,
-          currency: formCurrency.trim().toUpperCase() || "USD",
-          status: "unpaid",
-          dueDate: due.toISOString(),
-          notes: formNotes.trim() ? formNotes.trim() : null,
-          invoiceNumber,
-          source: "manual",
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(typeof data.error === "string" ? data.error : "Could not create invoice");
-      }
 
       // Reset form
       setFormClientId("");
@@ -361,21 +159,6 @@ export default function InvoicesPage() {
 
       // Refresh list
       await loadData();
-    } catch (err) {
-      const code = err && typeof err === "object" && "code" in err ? String((err as { code?: string }).code) : "";
-      const message = err instanceof Error ? err.message : String(err);
-      console.error("[portal/invoices][perm] create invoice API failed", {
-        code,
-        message,
-        ...createChainTraceRef.current,
-        formSubmitGateWas: canUseAddInvoice,
-        err,
-      });
-      setFormError(
-        code === "permission-denied" || message.toLowerCase().includes("not authorized")
-          ? "You don’t have permission to create invoices (check role and plan), or invoicing is disabled for your plan."
-          : `Could not create invoice: ${message}`
-      );
     } finally {
       setSubmitting(false);
     }
@@ -489,24 +272,13 @@ export default function InvoicesPage() {
   }
 
   async function handleToggleStatus(inv: Invoice) {
-    if (!tenant?.id || !user) return;
+    if (!tenant?.id) return;
     const newStatus = inv.status === "paid" ? "unpaid" : "paid";
     setUpdatingId(inv.id);
     try {
-      const token = await user.getIdToken();
-      const res = await fetch(`/api/invoices/${encodeURIComponent(inv.id)}`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ tenantId: tenant.id, status: newStatus }),
+      await updateDoc(doc(db, "tenants", tenant.id, "invoices", inv.id), {
+        status: newStatus,
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        alert(typeof data.error === "string" ? data.error : "Could not update status");
-        return;
-      }
       await loadData();
     } finally {
       setUpdatingId(null);
@@ -601,15 +373,8 @@ export default function InvoicesPage() {
   }
 
   if (!user) return <p className="text-[#0F172A]">Please log in</p>;
-  if (tenantCtxLoading || !tenant) return <p className="text-[#0F172A]">Loading tenant…</p>;
+  if (!tenant) return <p className="text-[#0F172A]">Loading tenant…</p>;
   if (loading) return <p className="text-[#0F172A]">Loading invoices…</p>;
-
-  const emptyInvoicesHint = (() => {
-    if (!invoicePermResolved) return "Invoices you add or generate will appear here.";
-    if (!isAdminOrOwner) return "Only admins can create invoices.";
-    if (!invoiceCreateAllowed) return "Manual invoicing is not included in your current plan.";
-    return "Click \"Add Invoice\" to create your first invoice.";
-  })();
 
   return (
     <div className="max-w-full min-w-0">
@@ -635,31 +400,21 @@ export default function InvoicesPage() {
             </button>
             <p className="text-xs text-slate-500 mt-0.5">Use for SMTP testing</p>
           </div>
-          {canUseAddInvoice ? (
-            <button
-              type="button"
-              onClick={() => {
-                setFormError(null);
-                setShowForm((v) => !v);
-              }}
-              className="px-3 py-2 sm:px-4 rounded-lg bg-[#4F46E5] text-white text-sm font-medium hover:bg-indigo-600 transition-colors whitespace-nowrap"
-            >
-              ➕ Add Invoice
-            </button>
-          ) : null}
+          <button
+            type="button"
+            onClick={() => setShowForm((v) => !v)}
+            className="px-3 py-2 sm:px-4 rounded-lg bg-[#4F46E5] text-white text-sm font-medium hover:bg-indigo-600 transition-colors whitespace-nowrap"
+          >
+            ➕ Add Invoice
+          </button>
         </div>
       </div>
 
-      {showForm && canUseAddInvoice ? (
+      {showForm && (
         <form
           onSubmit={handleAddInvoice}
           className="mt-4 md:mt-6 bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 space-y-4 max-w-full"
         >
-          {formError ? (
-            <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800" role="alert">
-              {formError}
-            </div>
-          ) : null}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className={PORTAL_SELECT_LABEL_CLASS}>Client *</label>
@@ -745,7 +500,7 @@ export default function InvoicesPage() {
             </button>
           </div>
         </form>
-      ) : null}
+      )}
 
       {invoices.length > 0 ? (
         <>
@@ -781,14 +536,6 @@ export default function InvoicesPage() {
                   )}
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {isAdminOrOwner ? (
-                    <Link
-                      href={`/portal/invoices/${inv.id}/edit`}
-                      className="flex-1 min-w-[120px] text-center px-3 py-2 rounded-lg border border-slate-200 text-sm font-medium text-[#0F172A] hover:bg-slate-50"
-                    >
-                      Edit
-                    </Link>
-                  ) : null}
                   <button
                     type="button"
                     disabled={downloadingPdfId === inv.id}
@@ -824,7 +571,7 @@ export default function InvoicesPage() {
               <th className="text-right py-3 px-4 text-sm font-medium text-[#0F172A]">Amount</th>
               <th className="text-left py-3 px-4 text-sm font-medium text-[#0F172A]">Due Date</th>
               <th className="text-left py-3 px-4 text-sm font-medium text-[#0F172A]">Status</th>
-              <th className="text-right py-3 px-4 text-sm font-medium text-[#0F172A]">Actions</th>
+              <th className="text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -854,34 +601,27 @@ export default function InvoicesPage() {
                 <td className="py-3 px-4">
                   <StatusBadge status={inv.status} />
                 </td>
-                <td className="text-right py-3 px-4">
-                  <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
-                    {isAdminOrOwner ? (
-                      <Link href={`/portal/invoices/${inv.id}/edit`} className="text-sm text-slate-700 hover:underline">
-                        Edit
-                      </Link>
-                    ) : null}
-                    <button
-                      type="button"
-                      disabled={downloadingPdfId === inv.id}
-                      className="text-sm text-blue-600 hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
-                      onClick={() => downloadPdf(inv)}
-                    >
-                      {downloadingPdfId === inv.id ? "Downloading…" : "Download PDF"}
-                    </button>
-                    <button
-                      type="button"
-                      disabled={updatingId === inv.id}
-                      onClick={() => handleToggleStatus(inv)}
-                      className="text-sm text-[#4F46E5] hover:underline disabled:opacity-50"
-                    >
-                      {updatingId === inv.id
-                        ? "Updating…"
-                        : inv.status === "paid"
-                          ? "Mark Unpaid"
-                          : "Mark Paid"}
-                    </button>
-                  </div>
+                <td className="text-right">
+                  <button
+                    type="button"
+                    disabled={downloadingPdfId === inv.id}
+                    className="text-blue-600 hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={() => downloadPdf(inv)}
+                  >
+                    {downloadingPdfId === inv.id ? "Downloading…" : "Download PDF"}
+                  </button>
+                  <button
+                    type="button"
+                    disabled={updatingId === inv.id}
+                    onClick={() => handleToggleStatus(inv)}
+                    className="ml-2 text-sm text-[#4F46E5] hover:underline disabled:opacity-50"
+                  >
+                    {updatingId === inv.id
+                      ? "Updating…"
+                      : inv.status === "paid"
+                        ? "Mark Unpaid"
+                        : "Mark Paid"}
+                  </button>
                 </td>
               </tr>
             ))}
@@ -894,7 +634,7 @@ export default function InvoicesPage() {
       {invoices.length === 0 && (
         <div className="mt-4 md:mt-6 bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-12 text-center max-w-full">
           <p className="text-slate-500 text-lg">No invoices yet</p>
-          <p className="text-slate-400 text-sm mt-1">{emptyInvoicesHint}</p>
+          <p className="text-slate-400 text-sm mt-1">Click {"\"Add Invoice\""} to create your first invoice.</p>
         </div>
       )}
 
