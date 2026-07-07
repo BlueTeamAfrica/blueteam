@@ -16,7 +16,7 @@ export default function OrganizationSchema() {
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: '+256765508131',
+        telephone: '+254119402737',
         email: 'contact@blueteamafrica.com',
         contactType: 'customer support',
         areaServed: ['UG', 'KE', 'RW', 'SD'],

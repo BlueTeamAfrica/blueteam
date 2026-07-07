@@ -168,11 +168,11 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <a
-                href="tel:+256765508131"
+                href="tel:+254119402737"
                 className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm group"
               >
                 <Phone className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
-                <span>+256 765 508 131</span>
+                <span>+254 119 402 737</span>
               </a>
               <a
                 href="tel:+250798973375"
@@ -189,7 +189,7 @@ export default function Footer() {
                 <span className="break-all">contact@blueteamafrica.com</span>
               </a>
               <a
-                href="https://wa.me/256765508131"
+                href="https://wa.me/254119402737"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-lg hover:bg-[#20BA5A] transition-colors text-sm font-medium mt-2"

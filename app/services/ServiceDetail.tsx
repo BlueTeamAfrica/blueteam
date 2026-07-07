@@ -39,7 +39,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                 {service.cta.text}
               </Link>
               <a
-                href="https://wa.me/256765508131"
+                href="https://wa.me/254119402737"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-2xl border border-slate-200 text-slate-700 bg-white shadow-sm hover:bg-slate-50"
@@ -80,7 +80,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
               <div className="rounded-2xl border border-slate-100 p-6 bg-white">
                 <h4 className="font-semibold text-slate-900 mb-3">Want a quick chat?</h4>
                 <a
-                  href="https://wa.me/256765508131"
+                  href="https://wa.me/254119402737"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 inline-block text-sm text-blue-600 hover:text-blue-700 font-medium"

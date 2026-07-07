@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
       <p className="mt-3">
         <strong>Blue Team Ltd.</strong><br />
         Email: contact@blueteamafrica.com<br />
-        Phone: +250 798 973 375 / +256 765 508 131
+        Phone: +250 798 973 375 / +254 119 402 737
       </p>
     </div>
   )

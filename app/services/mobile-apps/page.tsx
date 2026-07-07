@@ -84,7 +84,7 @@ export default function MobileAppsPage() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
-                      href="https://wa.me/256765508131?text=Hello!%20I%20would%20like%20to%20start%20a%20mobile%20app%20project."
+                      href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20start%20a%20mobile%20app%20project."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition"
@@ -252,7 +252,7 @@ export default function MobileAppsPage() {
                   Let's design and deploy a secure, offline-capable mobile solution for your team.
                 </p>
                 <a
-                  href="https://wa.me/256765508131?text=Hello!%20I%20would%20like%20to%20start%20a%20mobile%20app%20project."
+                  href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20start%20a%20mobile%20app%20project."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition shadow-lg"

@@ -98,7 +98,7 @@ export default function ServicesPage() {
                 contactPoint: [
                   {
                     '@type': 'ContactPoint',
-                    telephone: '+256765508131',
+                    telephone: '+254119402737',
                     contactType: 'sales',
                     areaServed: ['UG', 'KE', 'RW', 'SD'],
                   },
@@ -152,7 +152,7 @@ export default function ServicesPage() {
                 </a>
 
                 <a
-                  href="https://wa.me/256765508131"
+                  href="https://wa.me/254119402737"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-5 py-3 rounded-2xl border border-slate-200 text-slate-700 bg-white shadow-sm hover:bg-slate-50"
@@ -328,7 +328,7 @@ export default function ServicesPage() {
       <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 sm:hidden z-50">
         <div className="flex gap-3 items-center bg-white rounded-full p-2 shadow-lg border border-slate-200">
           <a
-            href="https://wa.me/256765508131"
+            href="https://wa.me/254119402737"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"

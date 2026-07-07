@@ -151,8 +151,8 @@ export default function Header() {
 
           {/* Contact Info - Right Side */}
           <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
-            <a href="tel:+256765508131" className="font-semibold no-underline whitespace-nowrap hidden md:inline text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
-              +256 765 508 131
+            <a href="tel:+254119402737" className="font-semibold no-underline whitespace-nowrap hidden md:inline text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
+              +254 119 402 737
             </a>
             <span className="text-white/60 hidden sm:inline">|</span>
             <a href="tel:+250798973375" className="font-semibold no-underline whitespace-nowrap text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
@@ -304,7 +304,7 @@ export default function Header() {
             {/* Right area (desktop): WhatsApp + social */}
             <div className="hidden md:flex items-center gap-3 flex-shrink-0">
               <a
-                href="https://wa.me/256765508131"
+                href="https://wa.me/254119402737"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2 rounded-md flex items-center justify-center transition hover:scale-105"
@@ -507,7 +507,7 @@ export default function Header() {
                 <div className="pt-4 border-t border-gray-200">
                   <div className="flex items-center gap-3 mb-4">
                     <a
-                      href="https://wa.me/256765508131"
+                      href="https://wa.me/254119402737"
                       target="_blank"
                       rel="noreferrer"
                       className="p-2 rounded-md flex items-center justify-center transition hover:scale-105"

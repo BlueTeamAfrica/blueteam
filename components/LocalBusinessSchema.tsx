@@ -34,7 +34,7 @@ export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusine
     name: 'Blue Team Africa',
     description: 'Leading web design, website development, cybersecurity, ERP solutions, and NGO tech support in East Africa.',
     url: 'https://blueteamafrica.com',
-    telephone: '+256765508131',
+    telephone: '+254119402737',
     email: 'contact@blueteamafrica.com',
     address: {
       '@type': 'PostalAddress',

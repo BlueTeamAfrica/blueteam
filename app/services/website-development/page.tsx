@@ -328,10 +328,10 @@ export default function WebsiteDevelopmentPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                   <a
-                    href="tel:+256765508131"
+                    href="tel:+254119402737"
                     className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
                   >
-                    📞 +256 765 508 131
+                    📞 +254 119 402 737
                   </a>
                   <a
                     href="mailto:contact@blueteamafrica.com"

@@ -7,7 +7,7 @@ export default function WhatsAppFloat() {
 
   // WhatsApp URL that opens a new chat with the phone number
   // This will open WhatsApp app on mobile or WhatsApp Web on desktop
-  const whatsappUrl = 'https://wa.me/256765508131?text=Hello%2C%20I%27d%20like%20to%20chat%20about%20your%20services'
+  const whatsappUrl = 'https://wa.me/254119402737?text=Hello%2C%20I%27d%20like%20to%20chat%20about%20your%20services'
 
   return (
     <a
@@ -17,7 +17,7 @@ export default function WhatsAppFloat() {
       className="fixed bottom-5 right-5 z-50 bg-[#25D366] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-[#20BA5A] transition-all duration-300 hover:scale-110 group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      aria-label="Chat with Blue Team Africa on WhatsApp +256 765 508 131"
+      aria-label="Chat with Blue Team Africa on WhatsApp +254 119 402 737"
     >
       <svg
         className="w-8 h-8 text-white"

@@ -8,7 +8,7 @@ export default function ContactPageSchema() {
     mainEntity: {
       '@type': 'Organization',
       name: 'Blue Team Africa',
-      telephone: '+256765508131',
+      telephone: '+254119402737',
       email: 'contact@blueteamafrica.com',
       url: 'https://blueteamafrica.com',
       address: {

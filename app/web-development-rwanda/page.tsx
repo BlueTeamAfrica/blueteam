@@ -777,7 +777,7 @@ export default function WebDevelopmentRwandaPage() {
               Start Your Development Project
             </Link>
             <a
-              href="https://wa.me/256765508131"
+              href="https://wa.me/254119402737"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-all font-semibold"

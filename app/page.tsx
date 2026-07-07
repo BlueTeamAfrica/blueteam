@@ -797,7 +797,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <a
-                href="https://wa.me/256765508131"
+                href="https://wa.me/254119402737"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition font-semibold"

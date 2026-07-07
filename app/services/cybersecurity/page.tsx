@@ -535,7 +535,7 @@ export default function CybersecurityPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
-                    href="https://wa.me/256765508131?text=Hello!%20I%20would%20like%20to%20request%20a%20security%20assessment."
+                    href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20request%20a%20security%20assessment."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition shadow-lg"
@@ -544,13 +544,13 @@ export default function CybersecurityPage() {
                     Request a Security Assessment
                   </a>
                   <a
-                    href="https://wa.me/256765508131"
+                    href="https://wa.me/254119402737"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary/10 transition"
                   >
                     <MessageCircle size={20} />
-                    WhatsApp: +256 765 508 131
+                    WhatsApp: +254 119 402 737
                   </a>
                 </div>
               </div>

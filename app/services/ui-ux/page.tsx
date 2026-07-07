@@ -126,7 +126,7 @@ export default function UIUXPage() {
                 <p className="text-primary-100 mb-6">Let's discuss your UI/UX needs and get a free quote today.</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
-                    href="https://wa.me/256765508131"
+                    href="https://wa.me/254119402737"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"

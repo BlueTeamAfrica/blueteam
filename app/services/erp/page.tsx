@@ -294,7 +294,7 @@ export default function ERPPage() {
                   Let's help your organization automate operations, improve reporting, and gain full visibility across teams.
                 </p>
                 <a
-                  href="https://wa.me/256765508131?text=Hello!%20I%20would%20like%20to%20discuss%20ERP%20solutions%20for%20my%20organization."
+                  href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20discuss%20ERP%20solutions%20for%20my%20organization."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition shadow-lg"
