@@ -3,6 +3,12 @@ import fs from 'fs'
 import path from 'path'
 import { adminDb } from '@/lib/firebase-admin'
 
+// NOTE: Vercel serverless containers have a read-only filesystem at process.cwd().
+// The JSON fallback below writes to /tmp (writable, but ephemeral per-container).
+// Leads written there are lost when the container is recycled — they are NOT persisted.
+// The JSON fallback exists solely to prevent a hard crash in local dev.
+// In production, FIREBASE_SERVICE_ACCOUNT_KEY must be set in Vercel env vars.
+
 // Rate limiting: Simple in-memory store (use Redis in production)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
@@ -132,84 +138,81 @@ export async function POST(request: NextRequest) {
       userAgent: request.headers.get('user-agent') || undefined,
     }
 
-    // Try to save to Firebase first, fallback to JSON file
+    // Try to save to Firestore via Admin SDK
     let savedToFirebase = false
     let firebaseError: Error | null = null
-    
+    let adminUnavailable = false
+
     if (adminDb) {
       try {
         await adminDb.collection('leads').add(leadData)
         savedToFirebase = true
-        console.log('✅ Lead saved to Firestore successfully')
+        console.log('[LEADS] Saved to Firestore successfully')
       } catch (error) {
         firebaseError = error instanceof Error ? error : new Error(String(error))
-        console.error('❌ Firebase save failed:', {
+        console.error('[LEADS_FIRESTORE_ERROR] Write to Firestore failed — lead NOT persisted to primary store:', {
           message: firebaseError.message,
+          code: (error as Record<string, unknown>)?.code,
           stack: firebaseError.stack,
-          error: error
         })
       }
     } else {
-      console.warn('⚠️ Firebase Admin DB is not initialized. Check Firebase credentials.')
-      console.warn('Available env vars:', {
-            hasProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-            hasServiceAccountKey: !!process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
-            hasGoogleAppCreds: !!process.env.GOOGLE_APPLICATION_CREDENTIALS,
-          })
+      adminUnavailable = true
+      console.error(
+        '[LEADS_ADMIN_UNAVAILABLE] Firebase Admin DB is not initialized — FIREBASE_SERVICE_ACCOUNT_KEY is missing or failed to parse.',
+        {
+          hasProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+          hasServiceAccountKey: !!process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
+          hasGoogleAppCreds: !!process.env.GOOGLE_APPLICATION_CREDENTIALS,
+        }
+      )
     }
 
-    // Fallback: Save to JSON file (for development or if Firebase fails)
-    // Note: File system writes may not work in production (e.g., Vercel)
-    // This is a development fallback only
+    // Fallback: attempt a local JSON write for dev environments only.
+    // On Vercel, process.cwd() is read-only; /tmp is writable but ephemeral per-container.
+    // Either way, data written here will NOT survive a container recycle — it is not a
+    // reliable backup. The only purpose is to preserve data in local dev.
     if (!savedToFirebase) {
-      try {
-        const dataDir = path.join(process.cwd(), 'data')
-        const leadsFile = path.join(dataDir, 'leads.json')
-
-        // Ensure data directory exists
-        if (!fs.existsSync(dataDir)) {
-          fs.mkdirSync(dataDir, { recursive: true })
-        }
-
-        // Read existing leads or create new array
-        let leads = []
-        if (fs.existsSync(leadsFile)) {
-          try {
-            const fileContent = fs.readFileSync(leadsFile, 'utf-8')
-            leads = JSON.parse(fileContent)
-          } catch (parseError) {
-            console.error('Error parsing leads.json:', parseError)
-            leads = []
+      const isVercel = !!process.env.VERCEL
+      if (isVercel) {
+        console.error(
+          '[LEADS_LOST] Running on Vercel with no Firestore write — lead data is being discarded.',
+          'Set FIREBASE_SERVICE_ACCOUNT_KEY in Vercel env vars to fix this.',
+          { leadEmail: leadData.email, leadName: leadData.name, timestamp: leadData.timestamp }
+        )
+      } else {
+        // Local dev: write to data/leads.json
+        try {
+          const dataDir = path.join(process.cwd(), 'data')
+          const leadsFile = path.join(dataDir, 'leads.json')
+          if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true })
+          let leads: unknown[] = []
+          if (fs.existsSync(leadsFile)) {
+            try { leads = JSON.parse(fs.readFileSync(leadsFile, 'utf-8')) } catch { leads = [] }
           }
+          leads.push(leadData)
+          fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
+          console.log('[LEADS] Saved to local data/leads.json (dev fallback)')
+        } catch (fileError) {
+          console.error('[LEADS_FILESYSTEM_ERROR] Failed to write local fallback leads.json:', fileError)
         }
-
-        // Add new lead
-        leads.push(leadData)
-
-        // Write back to file
-        fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
-        console.log('Lead saved to JSON file')
-      } catch (fileError) {
-        // File system might not be available in production
-        console.error('Failed to save to JSON file (this is normal in production):', fileError)
-        // Don't fail the request - at least we tried to save
-        // In production, Firebase should be configured
       }
     }
 
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'Lead saved successfully',
-        storage: savedToFirebase ? 'firebase' : 'json',
-        firebaseError: firebaseError ? (process.env.NODE_ENV === 'development' ? firebaseError.message : undefined) : undefined
+        storage: savedToFirebase ? 'firebase' : 'degraded',
+        ...(adminUnavailable && { adminUnavailable: true }),
+        ...(firebaseError && process.env.NODE_ENV === 'development' && { firebaseError: firebaseError.message }),
       },
-      { 
+      {
         status: 200,
         headers: {
           'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
           'X-RateLimit-Remaining': String(rateLimit.remaining),
-        }
+        },
       }
     )
   } catch (error) {
