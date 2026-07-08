@@ -7,6 +7,56 @@ import Link from "next/link";
 import { metadataWebsiteDevelopment } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const websiteDevelopmentFAQs: FAQ[] = [
+  {
+    question: 'What types of websites and systems do you build?',
+    answer: 'We build corporate and organizational websites, NGO platforms, client and staff portals, content management systems, and web applications that replace manual processes. From straightforward marketing sites to complex multi-role portals, our builds are designed to perform under real conditions across East Africa.',
+  },
+  {
+    question: 'What technology stack do you use, and why does it matter?',
+    answer: 'We build primarily on Next.js and React, which deliver fast-loading, SEO-friendly sites that scale well. For content-managed sites we integrate CMS platforms like Sanity or Contentful. The stack choice means your website is maintainable by any competent developer, not locked to a proprietary builder.',
+  },
+  {
+    question: 'How long does a website development project take?',
+    answer: 'Straightforward websites typically take three to six weeks. Web applications with user authentication, dashboards, or database integrations run eight to sixteen weeks depending on complexity. We provide a timeline estimate after scoping, with milestones agreed before development begins.',
+  },
+  {
+    question: 'Do you handle everything — design, development, and launch?',
+    answer: 'Yes. We manage the full delivery: UI/UX design, front-end and back-end development, hosting setup, domain configuration, and post-launch testing. For organizations that already have a design, we can work from provided assets. For those starting from scratch, design and development are coordinated internally.',
+  },
+  {
+    question: 'Can you build platforms for NGOs with donor reporting or beneficiary management features?',
+    answer: 'Yes — this is work we do regularly. We have built portals for humanitarian organizations that include secure beneficiary registration, donor-facing reporting dashboards, multilingual interfaces, and offline-capable data entry. We understand the compliance and data-sensitivity requirements that NGO platforms carry.',
+  },
+  {
+    question: 'What is included in handover, and do you offer ongoing maintenance?',
+    answer: 'Handover includes the deployed site or application, codebase access, documentation, and a walkthrough session. We offer ongoing maintenance plans covering security updates, dependency management, performance monitoring, and content changes — so the system stays current without requiring your team to manage the technical details.',
+  },
+]
+
+function WebsiteDevelopmentFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: websiteDevelopmentFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata: Metadata = {
   ...metadataWebsiteDevelopment,
@@ -37,6 +87,7 @@ export default function WebsiteDevelopmentPage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'Professional Web Development Services', url: 'https://www.blueteamafrica.com/services/website-development' },
       ]} />
+      <WebsiteDevelopmentFAQSchema />
       <ServiceSchema serviceName="Website Development" serviceSlug="website-development" />
       <InteriorHeader
         title="Web Development Services"
@@ -320,6 +371,11 @@ export default function WebsiteDevelopmentPage() {
                   <p className="text-sm text-gray-600">ERPNext and enterprise solutions</p>
                 </Link>
               </div>
+            </SectionWrapper>
+
+            {/* FAQ Section */}
+            <SectionWrapper bgColor="white">
+              <FAQSection customFAQs={websiteDevelopmentFAQs} />
             </SectionWrapper>
 
             {/* Call to Action */}

@@ -6,6 +6,56 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataMaintenance } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const maintenanceFAQs: FAQ[] = [
+  {
+    question: 'What does an IT maintenance plan cover?',
+    answer: 'Depending on the plan tier: CMS and plugin/framework updates, security patch application, uptime monitoring with alerts, monthly backup verification, performance checks, and a set number of content or minor configuration changes per month. We document everything applied so you have a clear audit trail.',
+  },
+  {
+    question: 'How quickly do you respond to a reported issue?',
+    answer: 'Response times depend on your support tier, with priority plans responding faster to critical issues than standard plans — exact response-time commitments are confirmed in your support agreement. All active maintenance clients have a direct contact channel — WhatsApp or email — rather than a generic ticket queue.',
+  },
+  {
+    question: 'Do you do proactive monitoring, or only respond when something breaks?',
+    answer: 'Both. Proactive monitoring is a core part of what separates a maintenance plan from ad-hoc support. We run continuous uptime checks, receive alerts before users notice an outage, and apply security patches on a scheduled basis rather than waiting for a vulnerability to be exploited.',
+  },
+  {
+    question: 'Can you maintain a system your team did not build?',
+    answer: 'Yes, with an onboarding audit first. We assess the codebase, server configuration, and dependency state before taking on maintenance responsibility. If there are outstanding security issues or outdated dependencies, we flag these and resolve them as part of the onboarding scope.',
+  },
+  {
+    question: 'Is maintenance available for ERP systems, not just websites?',
+    answer: 'Yes. We maintain ERPNext installations, custom applications, mobile app backends, and websites. Organizations running multiple systems we built often consolidate under a single maintenance agreement that covers all of them.',
+  },
+  {
+    question: 'What happens if our site or system is hacked or goes down outside business hours?',
+    answer: 'Priority maintenance plans include emergency response outside standard hours. For organizations with critical operational systems — particularly NGOs with live field operations — we recommend confirming emergency coverage during onboarding. We also recommend pairing maintenance with our cybersecurity monitoring for early threat detection.',
+  },
+]
+
+function MaintenanceFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: maintenanceFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata = metadataMaintenance
 
@@ -18,6 +68,7 @@ export default function MaintenancePage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
+      <MaintenanceFAQSchema />
       <ServiceSchema serviceName="Maintenance" serviceSlug="maintenance" />
       <InteriorHeader
         title="IT Maintenance & Support"
@@ -123,6 +174,11 @@ export default function MaintenancePage() {
                   Web Design →
                 </Link>
               </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="mb-12">
+              <FAQSection customFAQs={maintenanceFAQs} />
             </section>
 
             {/* CTA Strip */}

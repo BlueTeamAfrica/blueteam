@@ -6,6 +6,56 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataHosting } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const hostingFAQs: FAQ[] = [
+  {
+    question: 'What does your hosting service actually include?',
+    answer: 'Our hosting packages cover server provisioning and configuration, SSL certificate setup and renewal, daily automated backups, uptime monitoring, CDN configuration for faster delivery across East Africa, and basic security hardening. We manage the infrastructure so your team does not need a sysadmin on staff.',
+  },
+  {
+    question: 'Where are your servers located, and does that affect speed in East Africa?',
+    answer: 'We use cloud infrastructure with regional options including providers with points of presence in Africa, which reduces latency for users in Uganda, Kenya, Rwanda, and Sudan compared to servers located exclusively in Europe or the US. For most projects we also configure a CDN layer so static assets are served from the nearest edge node regardless of origin server location.',
+  },
+  {
+    question: 'What uptime guarantee do you offer?',
+    answer: 'Our infrastructure targets 99.9% uptime. For production systems — particularly ERP platforms or e-commerce stores where downtime has direct operational or revenue impact — we can discuss higher-availability configurations with redundant infrastructure.',
+  },
+  {
+    question: 'Can you host our existing website or system, not just ones you built?',
+    answer: 'Yes. We migrate and host sites and applications we did not build, provided they run on a supported stack (typically Node.js, PHP, or Python-based applications). We assess compatibility during scoping and handle the migration with minimal downtime.',
+  },
+  {
+    question: 'How do you handle security at the hosting level?',
+    answer: 'Standard hardening includes firewall configuration, SSH key-only access, automated security patching, and encrypted backups stored off-server. For organizations with higher risk profiles — particularly NGOs handling sensitive beneficiary or field data — we can layer in additional monitoring through our cybersecurity service.',
+  },
+  {
+    question: 'Is hosting bundled with other services or priced separately?',
+    answer: 'Hosting is available as a standalone service or bundled with website development, ERP, or custom systems projects. Pricing depends on resource requirements — storage, traffic volume, number of domains, and whether a managed database is needed. Contact us for a quote once you know what you need to run.',
+  },
+]
+
+function HostingFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: hostingFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata = metadataHosting
 
@@ -18,6 +68,7 @@ export default function HostingPage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
+      <HostingFAQSchema />
       <ServiceSchema serviceName="Hosting" serviceSlug="hosting" />
       <InteriorHeader
         title="Cloud & Web Hosting"
@@ -123,6 +174,11 @@ export default function HostingPage() {
                   IT Maintenance & Support →
                 </Link>
               </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="mb-12">
+              <FAQSection customFAQs={hostingFAQs} />
             </section>
 
             {/* CTA Strip */}

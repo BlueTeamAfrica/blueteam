@@ -8,6 +8,56 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataWebDesign } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const webDesignFAQs: FAQ[] = [
+  {
+    question: 'What types of websites do you design?',
+    answer: 'We design corporate and marketing websites, NGO and humanitarian organization sites, landing pages, portfolio sites, and content-heavy informational sites. For businesses that need e-commerce functionality, that is handled through our dedicated e-commerce service, which integrates directly with web design.',
+  },
+  {
+    question: 'How much does a website design project cost?',
+    answer: 'Pricing depends on the number of pages, design complexity, and whether custom features like animations or e-commerce are needed. We provide a detailed, no-obligation quote after a short discovery call — reach out via WhatsApp or our contact form for pricing specific to your project.',
+  },
+  {
+    question: 'Is the website SEO-ready from day one?',
+    answer: 'Yes. SEO fundamentals are built into every project: semantic HTML structure, meta titles and descriptions, canonical URLs, structured data (JSON-LD), performance-optimized images, and mobile-responsive layouts. We also configure your sitemap and robots.txt correctly on delivery.',
+  },
+  {
+    question: 'How is your web design different from a website builder like Wix or Squarespace?',
+    answer: 'Builder platforms lock you into their infrastructure and impose limits on performance, custom code, and ownership. We build on frameworks like Next.js, giving you a fully custom codebase you own, faster load times, and the flexibility to scale. We also handle hosting separately so you are not tied to one vendor.',
+  },
+  {
+    question: 'Do you design websites for NGOs operating in East Africa?',
+    answer: 'We have significant experience with NGOs across Sudan, Uganda, Kenya, and Rwanda, including humanitarian organizations with multilingual needs, donor-facing reporting pages, and strict data-handling requirements. We understand what these organizations need and can work within NGO budget realities.',
+  },
+  {
+    question: 'What happens after launch — do you offer maintenance?',
+    answer: 'We offer maintenance and support plans that cover security updates, content changes, performance monitoring, and technical fixes. For organizations that want ongoing hosting alongside maintenance, we bundle both through our hosting and maintenance services.',
+  },
+]
+
+function WebDesignFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: webDesignFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata = metadataWebDesign
 
@@ -19,6 +69,7 @@ export default function WebDesignPage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'Professional Web Design Services', url: 'https://www.blueteamafrica.com/services/web-design' },
       ]} />
+      <WebDesignFAQSchema />
       <ServiceSchema serviceName="Web Design" serviceSlug="web-design" />
       <InteriorHeader
         title="Professional Web Design Services"
@@ -135,6 +186,11 @@ export default function WebDesignPage() {
             </Link>
           </div>
         </div>
+      </SectionWrapper>
+
+      {/* FAQ Section */}
+      <SectionWrapper bgColor="white">
+        <FAQSection customFAQs={webDesignFAQs} />
       </SectionWrapper>
 
       {/* CTA Strip */}

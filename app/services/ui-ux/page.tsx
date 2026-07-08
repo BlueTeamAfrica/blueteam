@@ -6,6 +6,56 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataUIUX } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const uiuxFAQs: FAQ[] = [
+  {
+    question: 'What is the difference between UI design and UX design, and do you do both?',
+    answer: 'UX (user experience) design covers the structure and logic of how a product works — user journeys, information architecture, wireframes, and usability testing. UI (user interface) design covers how it looks — visual hierarchy, colour, typography, and interactive states. We do both as an integrated process, because separating them produces visually polished products that are confusing to use, or logically sound products that look unfinished.',
+  },
+  {
+    question: 'At what point in a project should UI/UX design happen?',
+    answer: 'Before development, always. Design that starts after engineering begins is either ignored or causes expensive rework. We run the design phase first: research and wireframes, then visual design and prototype, then hand-off to development with annotated specs. For projects where we also build the product, design and development are internally coordinated from the start.',
+  },
+  {
+    question: 'Do you conduct user research, and what does that involve?',
+    answer: 'For projects where the end user population is knowable — beneficiaries of an NGO platform, staff of a specific organization, customers in a defined market — we conduct lightweight user research: interviews, task observation, or usability testing on early prototypes. For smaller projects, we apply documented heuristics and patterns from comparable products rather than primary research.',
+  },
+  {
+    question: 'How do you approach design for users in East Africa with varied device and connectivity constraints?',
+    answer: 'Our default design standard assumes a mid-range Android device on a mobile data connection, not a high-end phone on broadband. That means conservative asset sizes, simplified interaction patterns that work on smaller screens, and interfaces that degrade gracefully on slow connections. We test on real devices, not just browser simulators.',
+  },
+  {
+    question: 'Can you redesign an existing product rather than design from scratch?',
+    answer: 'Yes, and this is often the more cost-effective path. We audit the existing interface — identifying usability failures, inconsistent patterns, and accessibility gaps — then redesign systematically rather than rebuilding arbitrarily. The audit report alone is useful even if redesign is phased.',
+  },
+  {
+    question: 'How does UI/UX design connect to your other services?',
+    answer: 'UI/UX design feeds directly into web design, mobile app development, and custom systems projects. For clients working across multiple surfaces — a public website, a staff portal, a mobile app — we establish a shared design system so all three feel like one product rather than three unrelated tools.',
+  },
+]
+
+function UIUXFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: uiuxFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata = metadataUIUX
 
@@ -18,6 +68,7 @@ export default function UIUXPage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
+      <UIUXFAQSchema />
       <ServiceSchema serviceName="UI/UX" serviceSlug="ui-ux" />
       <InteriorHeader
         title="UI/UX Design"
@@ -123,6 +174,11 @@ export default function UIUXPage() {
                   Branding & Logo Design →
                 </Link>
               </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="mb-12">
+              <FAQSection customFAQs={uiuxFAQs} />
             </section>
 
             {/* CTA Strip */}

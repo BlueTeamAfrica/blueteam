@@ -8,6 +8,56 @@ import type { Metadata } from 'next'
 import { metadataERP } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const erpFAQs: FAQ[] = [
+  {
+    question: 'Which ERP platform do you implement?',
+    answer: 'We specialise in ERPNext, an open-source enterprise platform built on the Frappe framework. It covers finance, HR, procurement, inventory, project management, and donor reporting in one system. Because it is open-source, there are no per-user licence fees — you own and control the installation.',
+  },
+  {
+    question: 'How long does ERP implementation take?',
+    answer: 'For most organizations, implementation runs eight to sixteen weeks. This covers discovery and requirements mapping, system configuration, custom module development, data migration, staff training, and go-live support. Complex multi-site or multi-currency deployments sit at the longer end of that range.',
+  },
+  {
+    question: 'Can you build NGO-specific modules — donor reporting, grant tracking, M&E?',
+    answer: 'Yes. This is a core part of what we do. We have implemented donor reporting dashboards, grant budget tracking, beneficiary management, and monitoring and evaluation (M&E) modules for humanitarian organizations working in Sudan, Uganda, and the wider East Africa region. These are custom modules built on top of the standard ERPNext core.',
+  },
+  {
+    question: 'How does ERP connect with field operations in low-connectivity environments?',
+    answer: 'We pair ERP systems with a dedicated mobile app that works offline. Field staff collect assessments, beneficiary records, and incident reports on the device, then sync automatically when connectivity is restored. All submitted data flows directly into the ERP for real-time dashboards and program oversight — no manual re-entry.',
+  },
+  {
+    question: 'Does the ERP include cybersecurity and access controls?',
+    answer: 'Role-based access control is standard in ERPNext and we configure it carefully during implementation — each user sees only the data and functions their role requires. We also apply server-level hardening, encrypted backups, and can integrate the system with our cybersecurity monitoring services for organizations that handle sensitive or confidential data.',
+  },
+  {
+    question: 'What ongoing support is provided after go-live?',
+    answer: 'We offer tiered maintenance and support plans covering system updates, bug resolution, user additions, and module adjustments as your organization evolves. Training for new staff and report customization are included in most support agreements.',
+  },
+]
+
+function ERPFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: erpFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata: Metadata = {
   ...metadataERP,
@@ -44,6 +94,7 @@ export default function ERPPage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'ERP Solutions', url: 'https://www.blueteamafrica.com/services/erp' },
       ]} />
+      <ERPFAQSchema />
       <ServiceSchema serviceName="ERP" serviceSlug="erp" />
       <InteriorHeader
         title="ERP Solutions for NGOs, Companies & Humanitarian Organizations"
@@ -289,6 +340,11 @@ export default function ERPPage() {
                   <p>From implementation to training and ongoing <Link href="/services/maintenance" className="text-primary hover:underline">maintenance</Link>, we're here to ensure your ERP system continues to serve your organization effectively.</p>
                 </div>
               </div>
+            </SectionWrapper>
+
+            {/* FAQ Section */}
+            <SectionWrapper bgColor="white">
+              <FAQSection customFAQs={erpFAQs} />
             </SectionWrapper>
 
             {/* CTA Section */}

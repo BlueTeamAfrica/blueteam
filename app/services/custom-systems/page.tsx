@@ -6,6 +6,56 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataCustomSystems } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import FAQSection from '@/components/FAQSection'
+import type { FAQ } from '@/lib/faqs'
+
+const customSystemsFAQs: FAQ[] = [
+  {
+    question: 'What counts as a "custom system" — how is it different from a website or an ERP?',
+    answer: 'A custom system is purpose-built software that does not map neatly to a standard product. Examples we have built: internal staff management dashboards, beneficiary registration and tracking databases, procurement approval portals, field data collection tools, and reporting systems that pull from multiple data sources. If off-the-shelf software does not fit how you work, a custom system likely does.',
+  },
+  {
+    question: 'How do you scope a custom development project?',
+    answer: 'We start with a requirements workshop where we map your current process — what data flows in, what decisions get made, what outputs you need. From that we produce a functional specification and a fixed scope before any development begins. This prevents scope creep and gives you a clear cost and timeline before committing.',
+  },
+  {
+    question: 'Can a custom system integrate with our existing tools — ERP, mobile app, website?',
+    answer: 'Yes, and this is often the point. We build custom systems with open APIs so they can exchange data with ERPNext, mobile apps we develop, your website, or third-party tools like Google Workspace or payment gateways. We have built systems that sit as a coordination layer across several existing platforms.',
+  },
+  {
+    question: 'Who owns the code when the project is complete?',
+    answer: 'You do, entirely. We hand over the full source code, deployment configuration, and technical documentation. We do not retain licensing rights over anything we build for you.',
+  },
+  {
+    question: 'How long does custom software development take?',
+    answer: 'Scope determines timeline. Focused internal tools — a dashboard, a single-process workflow app — typically take six to ten weeks. Larger systems with multiple user roles, complex data models, or third-party integrations run twelve to twenty weeks. We provide a firm estimate after the requirements workshop.',
+  },
+  {
+    question: 'Do you provide training and ongoing maintenance after delivery?',
+    answer: 'Yes. Handover includes documentation and at minimum one training session for administrators and end users. We offer ongoing maintenance contracts for bug fixes, feature additions, and server management — particularly important for systems handling live operational data.',
+  },
+]
+
+function CustomSystemsFAQSchema() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: customSystemsFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  )
+}
 
 export const metadata = metadataCustomSystems
 
@@ -18,6 +68,7 @@ export default function CustomSystemsPage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
+      <CustomSystemsFAQSchema />
       <ServiceSchema serviceName="Custom Systems" serviceSlug="custom-systems" />
       <InteriorHeader
         title="Custom Software Development"
@@ -123,6 +174,11 @@ export default function CustomSystemsPage() {
                   Mobile App Development →
                 </Link>
               </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="mb-12">
+              <FAQSection customFAQs={customSystemsFAQs} />
             </section>
 
             {/* CTA Strip */}
