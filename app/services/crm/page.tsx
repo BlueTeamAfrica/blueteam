@@ -5,12 +5,19 @@ import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataCRM } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataCRM
 
 export default function CRMPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+    { name: 'CRM Solutions', url: 'https://www.blueteamafrica.com/services/crm' },
+  ]
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema serviceName="CRM" serviceSlug="crm" />
       <InteriorHeader
         title="CRM Solutions"

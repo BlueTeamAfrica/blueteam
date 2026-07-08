@@ -5,12 +5,19 @@ import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataMaintenance } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataMaintenance
 
 export default function MaintenancePage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+    { name: 'IT Maintenance & Support', url: 'https://www.blueteamafrica.com/services/maintenance' },
+  ]
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema serviceName="Maintenance" serviceSlug="maintenance" />
       <InteriorHeader
         title="IT Maintenance & Support"

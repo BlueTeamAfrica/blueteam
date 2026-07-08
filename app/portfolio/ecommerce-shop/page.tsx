@@ -4,12 +4,18 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataEcommerceShop } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataEcommerceShop
 
 export default function EcommerceShopCaseStudy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'E-commerce Platform', url: 'https://www.blueteamafrica.com/portfolio/ecommerce-shop' },
+      ]} />
       <PortfolioSchema projectName="E-commerce Shop" projectSlug="ecommerce-shop" />
       <InteriorHeader
         title="E-commerce Platform"

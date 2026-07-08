@@ -5,12 +5,19 @@ import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataCustomSystems } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataCustomSystems
 
 export default function CustomSystemsPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+    { name: 'Custom Software Development', url: 'https://www.blueteamafrica.com/services/custom-systems' },
+  ]
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema serviceName="Custom Systems" serviceSlug="custom-systems" />
       <InteriorHeader
         title="Custom Software Development"

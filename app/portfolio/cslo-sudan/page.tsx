@@ -5,6 +5,7 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataCsloSudan } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   ...metadataCsloSudan,
@@ -83,6 +84,11 @@ export default function CSLOSudanCaseStudy() {
     <>
       {/* JSON-LD Schema */}
       <CaseStudySchema />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'ERP & CRM Implementation for CSLO Sudan', url: 'https://www.blueteamafrica.com/portfolio/cslo-sudan' },
+      ]} />
       <PortfolioSchema projectName="CSLO Sudan" projectSlug="cslo-sudan" />
 
       <InteriorHeader

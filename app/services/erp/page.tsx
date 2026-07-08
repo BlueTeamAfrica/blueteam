@@ -7,6 +7,7 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
 import { metadataERP } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   ...metadataERP,
@@ -38,6 +39,11 @@ export const metadata: Metadata = {
 export default function ERPPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'ERP Solutions', url: 'https://www.blueteamafrica.com/services/erp' },
+      ]} />
       <ServiceSchema serviceName="ERP" serviceSlug="erp" />
       <InteriorHeader
         title="ERP Solutions for NGOs, Companies & Humanitarian Organizations"

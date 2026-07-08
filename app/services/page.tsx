@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import ServiceCard from './ServiceCard'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: 'Services — Blue Team Africa',
@@ -79,7 +80,13 @@ const caseStudies = [
 ]
 
 export default function ServicesPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+  ]
   return (
+    <>
+    <BreadcrumbSchema items={breadcrumbItems} />
     <main className="min-h-screen bg-white text-slate-900">
       {/* JSON-LD: Organization + FAQ for SEO (server-rendered in head would be better; included here to ensure presence) */}
       <script
@@ -350,6 +357,7 @@ export default function ServicesPage() {
         <div className="max-w-6xl mx-auto px-6 py-10 text-slate-500 text-sm">© {new Date().getFullYear()} Blue Team Africa</div>
       </footer>
     </main>
+    </>
   )
 }
 

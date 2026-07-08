@@ -5,12 +5,19 @@ import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataUIUX } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataUIUX
 
 export default function UIUXPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+    { name: 'UI/UX Design', url: 'https://www.blueteamafrica.com/services/ui-ux' },
+  ]
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema serviceName="UI/UX" serviceSlug="ui-ux" />
       <InteriorHeader
         title="UI/UX Design"

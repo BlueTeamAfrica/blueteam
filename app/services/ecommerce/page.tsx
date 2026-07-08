@@ -7,6 +7,7 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
 import { metadataEcommerce } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   ...metadataEcommerce,
@@ -38,6 +39,11 @@ export const metadata: Metadata = {
 export default function EcommercePage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'E-commerce Solutions', url: 'https://www.blueteamafrica.com/services/ecommerce' },
+      ]} />
       <ServiceSchema serviceName="E-commerce" serviceSlug="ecommerce" />
       <InteriorHeader
         title="E-commerce Solutions for Businesses in East Africa"

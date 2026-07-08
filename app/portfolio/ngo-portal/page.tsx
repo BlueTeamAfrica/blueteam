@@ -4,12 +4,18 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataNgoPortal } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataNgoPortal
 
 export default function NGOPortalCaseStudy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'NGO Management Portal', url: 'https://www.blueteamafrica.com/portfolio/ngo-portal' },
+      ]} />
       <PortfolioSchema projectName="NGO Portal" projectSlug="ngo-portal" />
       <InteriorHeader
         title="NGO Management Portal"

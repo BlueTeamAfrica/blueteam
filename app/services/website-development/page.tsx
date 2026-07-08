@@ -6,6 +6,7 @@ import SectionWrapper from "@/components/SectionWrapper";
 import Link from "next/link";
 import { metadataWebsiteDevelopment } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   ...metadataWebsiteDevelopment,
@@ -31,6 +32,11 @@ export const metadata: Metadata = {
 export default function WebsiteDevelopmentPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Professional Web Development Services', url: 'https://www.blueteamafrica.com/services/website-development' },
+      ]} />
       <ServiceSchema serviceName="Website Development" serviceSlug="website-development" />
       <InteriorHeader
         title="Web Development Services"

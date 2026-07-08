@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 import type { FAQ } from '@/lib/faqs'
 import { metadataCybersecurity } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   ...metadataCybersecurity,
@@ -100,6 +101,11 @@ function FAQSchema() {
 export default function CybersecurityPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Cybersecurity Solutions', url: 'https://www.blueteamafrica.com/services/cybersecurity' },
+      ]} />
       <ServiceSchema serviceName="Cybersecurity" serviceSlug="cybersecurity" />
       <FAQSchema />
       

@@ -4,12 +4,18 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataErpIntegration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataErpIntegration
 
 export default function ERPIntegrationCaseStudy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'Enterprise ERP Integration', url: 'https://www.blueteamafrica.com/portfolio/erp-integration' },
+      ]} />
       <PortfolioSchema projectName="ERP Integration" projectSlug="erp-integration" />
       <InteriorHeader
         title="Enterprise ERP Integration"

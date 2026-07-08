@@ -7,6 +7,7 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
 import { metadataMobileApps } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   ...metadataMobileApps,
@@ -38,6 +39,11 @@ export const metadata: Metadata = {
 export default function MobileAppsPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Mobile App Development Services', url: 'https://www.blueteamafrica.com/services/mobile-apps' },
+      ]} />
       <ServiceSchema serviceName="Mobile Apps" serviceSlug="mobile-apps" />
       <InteriorHeader
         title="Mobile App Development"

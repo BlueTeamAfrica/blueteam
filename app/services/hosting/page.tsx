@@ -5,12 +5,19 @@ import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import { metadataHosting } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataHosting
 
 export default function HostingPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+    { name: 'Cloud & Web Hosting', url: 'https://www.blueteamafrica.com/services/hosting' },
+  ]
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema serviceName="Hosting" serviceSlug="hosting" />
       <InteriorHeader
         title="Cloud & Web Hosting"

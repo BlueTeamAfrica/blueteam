@@ -7,12 +7,18 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 
 import { metadataWebDesign } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataWebDesign
 
 export default function WebDesignPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Professional Web Design Services', url: 'https://www.blueteamafrica.com/services/web-design' },
+      ]} />
       <ServiceSchema serviceName="Web Design" serviceSlug="web-design" />
       <InteriorHeader
         title="Professional Web Design Services"

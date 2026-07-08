@@ -4,12 +4,18 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataCloudMigration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataCloudMigration
 
 export default function CloudMigrationCaseStudy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'Cloud Migration Project', url: 'https://www.blueteamafrica.com/portfolio/cloud-migration' },
+      ]} />
       <PortfolioSchema projectName="Cloud Migration" projectSlug="cloud-migration" />
       <InteriorHeader
         title="Cloud Migration Project"

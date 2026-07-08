@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = {
   title: 'Portfolio',
@@ -61,8 +62,13 @@ const portfolioItems = [
 ]
 
 export default function PortfolioPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+    { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+  ]
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <InteriorHeader
         title="Our Portfolio"
         breadcrumb={[

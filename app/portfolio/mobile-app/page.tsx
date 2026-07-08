@@ -4,12 +4,18 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataMobileApp } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataMobileApp
 
 export default function MobileAppCaseStudy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'Healthcare Mobile App', url: 'https://www.blueteamafrica.com/portfolio/mobile-app' },
+      ]} />
       <PortfolioSchema projectName="Mobile App" projectSlug="mobile-app" />
       <InteriorHeader
         title="Healthcare Mobile App"

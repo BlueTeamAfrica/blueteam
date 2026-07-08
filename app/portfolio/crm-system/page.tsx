@@ -4,12 +4,18 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import { metadataCrmSystem } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
 export const metadata = metadataCrmSystem
 
 export default function CRMSystemCaseStudy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
+        { name: 'Sales CRM Platform', url: 'https://www.blueteamafrica.com/portfolio/crm-system' },
+      ]} />
       <PortfolioSchema projectName="CRM System" projectSlug="crm-system" />
       <InteriorHeader
         title="Sales CRM Platform"
