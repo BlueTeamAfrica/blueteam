@@ -193,9 +193,17 @@ export default function ERPPage() {
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
                   We implemented a complete ERP system for a Sudanese humanitarian organization operating in conflict-affected regions. The system centralized field data, procurement, HR operations, and donor reporting into one secure platform—reducing admin time by 40% and improving field visibility.
                 </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
                   The ERP platform is fully integrated with a <strong><Link href="/services/mobile-apps" className="text-primary hover:underline">mobile data-collection app</Link></strong> allowing field teams to gather assessments, beneficiary records, and incident reports even in low-connectivity zones. All data syncs directly to the ERP database for real-time dashboards and program oversight.
                 </p>
+                <div className="flex flex-wrap gap-4 mt-2">
+                  <Link href="/portfolio/cslo-sudan" className="text-primary hover:text-primary-dark font-medium">
+                    Full case study: ERP &amp; CRM for CSLO Sudan →
+                  </Link>
+                  <Link href="/portfolio/erp-integration" className="text-primary hover:text-primary-dark font-medium">
+                    Case study: Enterprise ERP Integration →
+                  </Link>
+                </div>
               </div>
             </SectionWrapper>
 

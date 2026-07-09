@@ -149,7 +149,7 @@ export default function MobileAppsPage() {
                       Start Your App Project
                     </a>
                     <Link
-                      href="/portfolio"
+                      href="/portfolio/mobile-app"
                       className="inline-flex items-center gap-2 border-2 border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
                     >
                       View Mobile Projects

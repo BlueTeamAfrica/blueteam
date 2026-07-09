@@ -174,6 +174,12 @@ export default function CRMPage() {
                   Custom Software Development →
                 </Link>
               </div>
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <p className="text-sm text-gray-600 mb-3">See our work</p>
+                <Link href="/portfolio/crm-system" className="text-primary hover:text-primary-dark font-medium">
+                  Case Study: Sales CRM Platform →
+                </Link>
+              </div>
             </section>
 
             {/* FAQ Section */}

@@ -135,7 +135,7 @@ export default function EcommercePage() {
                       Start Your Store
                     </a>
                     <Link
-                      href="/portfolio"
+                      href="/portfolio/ecommerce-shop"
                       className="inline-flex items-center gap-2 border-2 border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
                     >
                       View E‑commerce Work

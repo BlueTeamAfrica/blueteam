@@ -174,6 +174,17 @@ export default function CustomSystemsPage() {
                   Mobile App Development →
                 </Link>
               </div>
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <p className="text-sm text-gray-600 mb-3">See our work</p>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/portfolio/ngo-portal" className="text-primary hover:text-primary-dark font-medium">
+                    Case Study: NGO Management Portal →
+                  </Link>
+                  <Link href="/portfolio/crm-system" className="text-primary hover:text-primary-dark font-medium">
+                    Case Study: Sales CRM Platform →
+                  </Link>
+                </div>
+              </div>
             </section>
 
             {/* FAQ Section */}

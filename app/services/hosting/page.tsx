@@ -171,7 +171,13 @@ export default function HostingPage() {
                   Cybersecurity →
                 </Link>
                 <Link href="/services/maintenance" className="text-primary hover:text-primary-dark font-medium">
-                  IT Maintenance & Support →
+                  IT Maintenance &amp; Support →
+                </Link>
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <p className="text-sm text-gray-600 mb-3">See our work</p>
+                <Link href="/portfolio/cloud-migration" className="text-primary hover:text-primary-dark font-medium">
+                  Case Study: Cloud Migration Project →
                 </Link>
               </div>
             </section>
