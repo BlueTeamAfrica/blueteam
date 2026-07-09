@@ -24,7 +24,7 @@ export async function generateMetadata({
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blueteamafrica.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.blueteamafrica.com'
 
   return {
     title: `${service.title} | Blue Team Africa`,

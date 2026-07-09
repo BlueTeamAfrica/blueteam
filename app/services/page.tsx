@@ -36,28 +36,28 @@ export const services = [
     icon: '/icons/hosting.svg',
   },
   {
-    id: 'erp-crm',
-    title: 'ERP & CRM',
+    id: 'erp',
+    title: 'ERP Systems',
     excerpt:
-      'ERPNext / Odoo implementations and CRM integrations tailored to NGOs and small enterprises in East Africa.',
-    href: '/services/erp-crm',
+      'ERPNext implementations for finance, procurement, HR, and program management in NGOs and enterprises.',
+    href: '/services/erp',
     icon: '/icons/erp.svg',
   },
   {
-    id: 'm-and-e',
-    title: 'M&E & Reporting',
+    id: 'crm',
+    title: 'CRM Solutions',
     excerpt:
-      'Monitoring & evaluation systems, dashboards, and automated reporting to make decisions faster and clearer.',
-    href: '/services/monitoring-evaluation',
-    icon: '/icons/analytics.svg',
+      'Customer relationship management systems to track leads, manage pipelines, and support your sales team.',
+    href: '/services/crm',
+    icon: '/icons/erp.svg',
   },
   {
-    id: 'proposal-writing',
-    title: 'Proposal Writing',
+    id: 'ecommerce',
+    title: 'E-commerce Solutions',
     excerpt:
-      'Grant and project proposal support — technical writing aligned with donor requirements across the region.',
-    href: '/services/proposal-writing',
-    icon: '/icons/proposal.svg',
+      'Mobile-first online stores with mobile money integration, inventory sync, and payment gateway support.',
+    href: '/services/ecommerce',
+    icon: '/icons/web-design.svg',
   },
 ]
 
@@ -211,18 +211,18 @@ export default function ServicesPage() {
           <CategoryCard
             title="Business Systems"
             items={[
-              { label: 'ERP & CRM', href: '/services/erp-crm' },
-              { label: 'HRM & Payroll', href: '/services/hrm' },
-              { label: 'Inventory & POS', href: '/services/inventory-pos' },
+              { label: 'ERP Systems', href: '/services/erp' },
+              { label: 'CRM Solutions', href: '/services/crm' },
+              { label: 'Custom Software', href: '/services/custom-systems' },
             ]}
           />
 
           <CategoryCard
-            title="NGO & Data"
+            title="Digital & Security"
             items={[
-              { label: 'M&E & Reporting', href: '/services/monitoring-evaluation' },
-              { label: 'Proposal Writing', href: '/services/proposal-writing' },
-              { label: 'Custom Integrations', href: '/services/integrations' },
+              { label: 'E-commerce', href: '/services/ecommerce' },
+              { label: 'Cybersecurity', href: '/services/cybersecurity' },
+              { label: 'UI/UX Design', href: '/services/ui-ux' },
             ]}
           />
         </div>

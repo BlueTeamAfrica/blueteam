@@ -70,8 +70,13 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/services/erp-crm" className="text-slate-700 hover:text-blue-600 text-sm">
-                      ERP & CRM
+                    <Link href="/services/erp" className="text-slate-700 hover:text-blue-600 text-sm">
+                      ERP Systems
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/crm" className="text-slate-700 hover:text-blue-600 text-sm">
+                      CRM Solutions
                     </Link>
                   </li>
                 </ul>

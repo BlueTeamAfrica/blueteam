@@ -46,15 +46,5 @@ export const allServices: Service[] = [
     bullets: ['Automated backups', 'Monitoring & alerts', 'Security updates'],
     cta: { text: 'Discuss hosting options', href: '/contact' },
   },
-  {
-    slug: 'integrations',
-    id: 'integrations',
-    title: 'System Integrations',
-    hero: 'Connect your systems seamlessly.',
-    description:
-      'We integrate your existing systems with new platforms, APIs, and services to create a unified workflow.',
-    bullets: ['API integrations', 'Data synchronization', 'Workflow automation'],
-    cta: { text: 'Discuss integration needs', href: '/contact' },
-  },
 ]
 

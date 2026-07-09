@@ -18,9 +18,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   'web-design': Palette,
   'mobile-apps': Smartphone,
   'hosting': Server,
-  'erp-crm': Database,
-  'm-and-e': BarChart3,
-  'proposal-writing': FileText,
+  'erp': Database,
+  'crm': Database,
+  'ecommerce': BarChart3,
 }
 
 export default function ServiceCard({ service }: ServiceCardProps) {
