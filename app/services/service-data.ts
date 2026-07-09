@@ -47,36 +47,6 @@ export const allServices: Service[] = [
     cta: { text: 'Discuss hosting options', href: '/contact' },
   },
   {
-    slug: 'erp-crm',
-    id: 'erp-crm',
-    title: 'ERP & CRM',
-    hero: 'ERPNext and Odoo implementations tailored to NGOs and SMEs.',
-    description:
-      'We configure and customize ERP and CRM systems for finance, procurement, HR, and program management, with training and support.',
-    bullets: ['Finance & procurement', 'HR & payroll', 'Custom workflows'],
-    cta: { text: 'Request ERP consultation', href: '/contact' },
-  },
-  {
-    slug: 'monitoring-evaluation',
-    id: 'm-and-e',
-    title: 'M&E & Reporting',
-    hero: 'Monitoring, evaluation and reporting tools for program teams.',
-    description:
-      'Dashboards, mobile data capture, and automated reports to reduce manual work and improve decision-making.',
-    bullets: ['Realtime dashboards', 'Mobile data capture', 'Automated reports'],
-    cta: { text: 'Talk to an M&E specialist', href: '/contact' },
-  },
-  {
-    slug: 'proposal-writing',
-    id: 'proposal-writing',
-    title: 'Proposal Writing',
-    hero: 'Grant and project proposal writing aligned with donor requirements.',
-    description:
-      'Technical writing, theory of change, budgets and donor-aligned proposals for NGOs and social enterprises.',
-    bullets: ['Donor-aligned proposals', 'Logical frameworks', 'Budget templates'],
-    cta: { text: 'Request a proposal quote', href: '/contact' },
-  },
-  {
     slug: 'integrations',
     id: 'integrations',
     title: 'System Integrations',
@@ -85,26 +55,6 @@ export const allServices: Service[] = [
       'We integrate your existing systems with new platforms, APIs, and services to create a unified workflow.',
     bullets: ['API integrations', 'Data synchronization', 'Workflow automation'],
     cta: { text: 'Discuss integration needs', href: '/contact' },
-  },
-  {
-    slug: 'inventory-pos',
-    id: 'inventory-pos',
-    title: 'Inventory & POS Systems',
-    hero: 'Complete retail & warehouse management systems.',
-    description:
-      'Point of sale and inventory management systems for retail stores, warehouses, and distribution centers.',
-    bullets: ['POS terminals', 'Inventory tracking', 'Sales reporting'],
-    cta: { text: 'Get a POS quote', href: '/contact' },
-  },
-  {
-    slug: 'hrm',
-    id: 'hrm',
-    title: 'HRM Systems',
-    hero: 'Human resource management systems for your organization.',
-    description:
-      'Complete HR management including employee records, payroll, attendance, leave management, and performance tracking.',
-    bullets: ['Employee management', 'Payroll processing', 'Attendance tracking'],
-    cta: { text: 'Request HRM consultation', href: '/contact' },
   },
 ]
 
