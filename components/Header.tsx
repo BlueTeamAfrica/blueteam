@@ -178,9 +178,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 flex-shrink-0 h-10 no-underline">
-              <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white flex items-center justify-center font-bold">
-                BT
-              </div>
+              <Image src="/images/logo/logo-icon.png" alt="Blue Team Africa" width={40} height={40} className="rounded-md" />
               <span className="font-semibold text-gray-900">Blue Team Africa</span>
             </Link>
 
@@ -378,9 +376,7 @@ export default function Header() {
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <Link href="/" className="flex items-center gap-3 no-underline" onClick={() => setMobileOpen(false)}>
-                  <div className="w-10 h-10 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white flex items-center justify-center font-bold">
-                    BT
-                  </div>
+                  <Image src="/images/logo/logo-icon.png" alt="Blue Team Africa" width={40} height={40} className="rounded-md" />
                   <span className="font-semibold text-gray-900">Blue Team Africa</span>
                 </Link>
                 <button
