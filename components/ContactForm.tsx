@@ -138,6 +138,7 @@ export default function ContactForm() {
       })
 
       if (response.ok) {
+        const data = await response.json()
         setSubmitStatus('success')
         setFormData({
           name: '',
@@ -150,6 +151,14 @@ export default function ContactForm() {
         // Focus on status message for screen readers
         if (statusMessageRef.current) {
           statusMessageRef.current.focus()
+        }
+        // Fire GA4 form_submit only when the lead actually reached Firestore.
+        // storage: 'degraded' means the write failed silently — don't count as a conversion.
+        if (data.storage !== 'degraded' && typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'form_submit', {
+            form_name: 'contact',
+            form_subject: sanitizedData.subject,
+          })
         }
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000)
