@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 import { adminDb } from '@/lib/firebase-admin'
+import { notifyNewLead } from '@/lib/notify-lead'
 
 // NOTE: Vercel serverless containers have a read-only filesystem at process.cwd().
 // The JSON fallback below writes to /tmp (writable, but ephemeral per-container).
@@ -145,9 +146,17 @@ export async function POST(request: NextRequest) {
 
     if (adminDb) {
       try {
-        await adminDb.collection('leads').add(leadData)
+        const docRef = await adminDb.collection('leads').add(leadData)
         savedToFirebase = true
         console.log('[LEADS] Saved to Firestore successfully')
+
+        // Send staff notification — failure must not affect the user response
+        try {
+          await notifyNewLead({ ...leadData, leadId: docRef.id })
+          console.log('[LEADS_NOTIFY] Staff notification sent')
+        } catch (emailErr) {
+          console.error('[EMAIL_NOTIFY_FAILED] Staff notification failed — lead is safely stored in Firestore:', emailErr)
+        }
       } catch (error) {
         firebaseError = error instanceof Error ? error : new Error(String(error))
         console.error('[LEADS_FIRESTORE_ERROR] Write to Firestore failed — lead NOT persisted to primary store:', {
