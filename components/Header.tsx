@@ -164,7 +164,7 @@ export default function Header() {
 
       {/* ── Main header ────────────────────────────────────────────────── */}
       <header
-        className={`w-full sticky top-[38px] md:top-[42px] left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b transition-shadow duration-300 ${
+        className={`w-full sticky top-[39px] md:top-[32px] left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b transition-shadow duration-300 ${
           scrolled ? 'shadow-xl border-gray-200' : 'shadow-sm border-transparent'
         }`}
         role="banner"
@@ -248,10 +248,10 @@ export default function Header() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
               className="fixed inset-x-0 top-0 z-[45] bg-white shadow-2xl overflow-y-auto"
-              style={{ paddingTop: 'calc(38px + 80px)', maxHeight: '100dvh' }}
+              style={{ paddingTop: 'calc(39px + 81px)', maxHeight: '100dvh' }}
             >
-              {/* md: paddingTop accounts for 42px top-bar + 80px header */}
-              <style>{`@media(min-width:768px){#mega-menu-panel{padding-top:calc(42px + 80px)}}`}</style>
+              {/* md: paddingTop accounts for 32px top-bar + 81px header */}
+              <style>{`@media(min-width:768px){#mega-menu-panel{padding-top:calc(32px + 81px)}}`}</style>
 
               <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 pb-14">
 
