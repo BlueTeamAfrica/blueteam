@@ -177,9 +177,8 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-1">
           <div className="flex items-center gap-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0 h-10 no-underline">
-              <Image src="/images/logo/logo-icon.png" alt="Blue Team Africa" width={40} height={40} className="rounded-md" />
-              <span className="font-semibold text-gray-900">Blue Team Africa</span>
+            <Link href="/" className="flex items-center flex-shrink-0 h-10 no-underline">
+              <Image src="/images/logo/logo-lockup.png" alt="Blue Team Africa" width={186} height={80} className="h-10 w-auto" />
             </Link>
 
             {/* Center nav (desktop) */}
@@ -375,9 +374,8 @@ export default function Header() {
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <Link href="/" className="flex items-center gap-3 no-underline" onClick={() => setMobileOpen(false)}>
-                  <Image src="/images/logo/logo-icon.png" alt="Blue Team Africa" width={40} height={40} className="rounded-md" />
-                  <span className="font-semibold text-gray-900">Blue Team Africa</span>
+                <Link href="/" className="flex items-center no-underline" onClick={() => setMobileOpen(false)}>
+                  <Image src="/images/logo/logo-lockup.png" alt="Blue Team Africa" width={149} height={64} className="h-8 w-auto" />
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}

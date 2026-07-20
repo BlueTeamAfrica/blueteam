@@ -75,11 +75,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
           {/* Column 1: Company Info with Logo & Tagline */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-4 hover:opacity-90 transition-opacity">
-              <Image src="/images/logo/logo-icon.png" alt="Blue Team Africa" width={48} height={48} className="rounded-lg" />
-              <span className="text-xl font-heading font-semibold">
-                Blue Team Africa
-              </span>
+            <Link href="/" className="flex items-center mb-4 hover:opacity-90 transition-opacity">
+              <Image src="/images/logo/logo-lockup.png" alt="Blue Team Africa" width={186} height={80} className="h-12 w-auto" />
             </Link>
             <p className="text-gray-400 mb-4 leading-relaxed text-sm">
               Blue Team Africa provides high-performance web design, hosting, branding, and digital solutions for NGOs, companies, and startups across East Africa. Built with precision, powered by purpose.
