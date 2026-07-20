@@ -4,133 +4,130 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
-  Phone,
-  Mail,
-  ChevronDown,
   Menu,
   X,
   Facebook,
   Linkedin,
   Instagram,
   Youtube,
+  ArrowRight,
 } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+
+// ── Nav data ────────────────────────────────────────────────────────────────
+
+const services = [
+  { name: 'Web Design',             href: '/services/web-design',          desc: 'Custom, fast-loading websites built for African connectivity' },
+  { name: 'Website Development',    href: '/services/website-development', desc: 'Full-stack builds on Next.js, React, and WordPress' },
+  { name: 'ERP Systems',            href: '/services/erp',                 desc: 'Inventory, accounting, and operations in one system' },
+  { name: 'CRM Solutions',          href: '/services/crm',                 desc: 'Manage leads, clients, and relationships in one place' },
+  { name: 'Mobile App Development', href: '/services/mobile-apps',         desc: 'iOS and Android apps for your team or your customers' },
+  { name: 'Cloud & Web Hosting',    href: '/services/hosting',             desc: 'Secure, reliable hosting built for East Africa' },
+  { name: 'Cybersecurity',          href: '/services/cybersecurity',       desc: 'Protect your systems, your data, and your reputation' },
+  { name: 'E-commerce Development', href: '/services/ecommerce',           desc: 'Sell online, with mobile money integration built in' },
+  { name: 'UI/UX Design',           href: '/services/ui-ux',               desc: 'Interfaces people actually want to use' },
+]
+
+const aboutLinks = [
+  { name: 'About Us',    href: '/about',   desc: 'Who we are and why we do this work' },
+  { name: 'Our Team',    href: '/team',    desc: 'The people building your project' },
+  { name: 'Our Mission', href: '/mission', desc: "Technology built for East Africa's real conditions" },
+  { name: 'Our Process', href: '/process', desc: 'How a project actually goes from idea to launch' },
+]
+
+const resourceLinks = [
+  { name: 'Blog', href: '/blog', desc: 'Guides on web design, ERP, hosting, and more for East African teams' },
+  { name: 'FAQ',  href: '/faq',  desc: 'Straight answers to the questions we get most' },
+]
+
+const socialLinks = [
+  { label: 'Facebook',    href: 'https://www.facebook.com/profile.php?id=61585128246041', icon: Facebook, color: '#1877F2' },
+  { label: 'X (Twitter)', href: 'https://x.com/BLUETEAMAFRICA',                          icon: X,         color: '#000000' },
+  { label: 'LinkedIn',    href: 'https://www.linkedin.com/company/blue-team-africa',      icon: Linkedin,  color: '#0A66C2' },
+  { label: 'Instagram',   href: 'https://www.instagram.com/blueteamafrica/',              icon: Instagram, color: '#E4405F' },
+  { label: 'YouTube',     href: 'https://youtube.com/@BLUETEAMAFRICA',                    icon: Youtube,   color: '#FF0000' },
+]
+
+const WHATSAPP = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M20.52 3.48A11.86 11.86 0 0012 .04C6.01.04.98 5.07.98 11.06c0 1.95.51 3.86 1.48 5.52L.03 24l7.7-2.02a11.02 11.02 0 004.28.86h.01c6 0 11.03-4.03 11.03-10.02 0-2.68-1.05-5.2-2.53-6.84zM12 21.02c-1.5 0-2.98-.4-4.24-1.12l-.3-.17-4.56 1.2 1.2-4.56-.18-.31A8.86 8.86 0 013.08 11.06c0-4.9 4.03-8.89 8.92-8.89 4.9 0 8.92 3.99 8.92 8.89 0 4.9-4.03 8.89-8.92 8.89z" />
+    <path d="M16.02 13.1c-.2-.1-1.1-.6-1.3-.6-.2-.1-.4-.1-.6.1l-.6.6c-.1.1-.4.1-.7 0-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.4-1.8-.1-.3 0-.5.1-.7l.7-1.8c.1-.3 0-.5-.1-.6-.3-.3-.8-.7-1.2-1-.4-.3-1-.1-1.4.1-.5.3-1.7 1.2-1.7 3.1 0 1.8 1.2 3.8 2.6 5.1 1.4 1.3 3.1 2.2 4.9 2.5.7.1 1.4.1 2.1.1 1.3 0 3.2-.6 4-2.4.4-.9.4-1.9.3-2.2 0-.2 0-.4-.2-.5-.1-.2-.9-.5-1.1-.6z" />
+  </svg>
+)
+
+// ── Section heading ──────────────────────────────────────────────────────────
+
+function PanelSection({ label }: { label: string }) {
+  return (
+    <p className="text-[11px] font-bold uppercase tracking-widest text-[color:var(--color-primary,#1982c4)] mb-4 border-b border-gray-100 pb-2">
+      {label}
+    </p>
+  )
+}
+
+// ── Nav link with description ────────────────────────────────────────────────
+
+function NavItem({
+  name, href, desc, onClick,
+}: { name: string; href: string; desc: string; onClick: () => void }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="group block no-underline rounded-lg px-3 py-2.5 -mx-3 hover:bg-gray-50 transition-colors"
+    >
+      <span className="block text-sm font-semibold text-gray-900 group-hover:text-[color:var(--color-primary,#1982c4)] transition-colors">
+        {name}
+      </span>
+      <span className="block text-xs text-gray-500 mt-0.5 leading-relaxed">
+        {desc}
+      </span>
+    </Link>
+  )
+}
+
+// ── Main component ───────────────────────────────────────────────────────────
 
 export default function Header() {
   const pathname = usePathname()
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const [aboutOpen, setAboutOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled]  = useState(false)
 
-  const mobilePanelRef = useRef<HTMLDivElement | null>(null)
-  const servicesDropdownRef = useRef<HTMLDivElement | null>(null)
-  const aboutDropdownRef = useRef<HTMLDivElement | null>(null)
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
 
+  // Shadow on scroll
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close on ESC
+  // Close on Escape
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setMobileOpen(false)
-        setServicesOpen(false)
-        setAboutOpen(false)
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeMenu() }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [closeMenu])
 
-  // Click outside dropdowns to close (desktop)
+  // Lock body scroll while panel is open
   useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      const t = e.target as Node
-      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(t)) {
-        setServicesOpen(false)
-      }
-      if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(t)) {
-        setAboutOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', onClick)
-    return () => document.removeEventListener('mousedown', onClick)
-  }, [])
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
-  // Prevent body scroll when mobile menu open
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [mobileOpen])
-
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
-    return pathname?.startsWith(href)
-  }
-
-  const serviceColumns = [
-    {
-      label: 'Development',
-      items: [
-        { name: 'Web Design', href: '/services/web-design' },
-        { name: 'Website Development', href: '/services/website-development' },
-        { name: 'Mobile App Development', href: '/services/mobile-apps' },
-        { name: 'E-commerce Development', href: '/services/ecommerce' },
-      ],
-    },
-    {
-      label: 'Enterprise Systems',
-      items: [
-        { name: 'ERP Systems', href: '/services/erp' },
-        { name: 'CRM Solutions', href: '/services/crm' },
-        { name: 'Custom Systems', href: '/services/custom-systems' },
-      ],
-    },
-    {
-      label: 'Infrastructure & Design',
-      items: [
-        { name: 'Cloud & Web Hosting', href: '/services/hosting' },
-        { name: 'Cybersecurity', href: '/services/cybersecurity' },
-        { name: 'UI/UX Design', href: '/services/ui-ux' },
-        { name: 'Branding', href: '/services/branding' },
-      ],
-    },
-  ]
-
-  const aboutLinks = [
-    { name: 'Who We Are', href: '/about' },
-    { name: 'Our Team', href: '/team' },
-    { name: 'Our Process', href: '/process' },
-  ]
-
-  const socialLinks = [
-    { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585128246041', icon: Facebook, color: '#1877F2' },
-    { label: 'X (Twitter)', href: 'https://x.com/BLUETEAMAFRICA', icon: X, color: '#000000' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/blue-team-africa', icon: Linkedin, color: '#0A66C2' },
-    { label: 'Instagram', href: 'https://www.instagram.com/blueteamafrica/', icon: Instagram, color: '#E4405F' },
-    { label: 'YouTube', href: 'https://youtube.com/@BLUETEAMAFRICA', icon: Youtube, color: '#FF0000' },
-  ]
+  // Close on route change
+  useEffect(() => { closeMenu() }, [pathname, closeMenu])
 
   return (
     <>
-      {/* Top Info Bar - Fixed at the very top, always visible */}
-      <div 
-        style={{ backgroundColor: 'var(--color-primary, #1982c4)' }} 
+      {/* ── Top info bar ───────────────────────────────────────────────── */}
+      <div
+        style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
         className="w-full text-white fixed top-0 left-0 right-0 z-[60]"
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-1.5 flex items-center justify-between md:justify-end">
-          {/* Social Media Icons - Mobile Only (Left Side) */}
+          {/* Social icons — mobile left */}
           <div className="flex items-center gap-2 md:hidden">
             {socialLinks.map((s) => {
               const Icon = s.icon
@@ -140,22 +137,22 @@ export default function Header() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-1.5 rounded-md transition-all duration-200 text-white hover:opacity-80"
+                  className="p-1.5 rounded-md text-white hover:opacity-80 transition-opacity"
                   aria-label={s.label}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                 </a>
               )
             })}
           </div>
 
-          {/* Contact Info - Right Side */}
+          {/* Contact info — right */}
           <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
-            <a href="tel:+254119402737" className="font-semibold no-underline whitespace-nowrap hidden md:inline text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
+            <a href="tel:+254119402737" className="font-semibold no-underline whitespace-nowrap hidden md:inline text-white hover:opacity-80 transition-opacity">
               +254 119 402 737
             </a>
             <span className="text-white/60 hidden sm:inline">|</span>
-            <a href="tel:+250798973375" className="font-semibold no-underline whitespace-nowrap text-white hover:opacity-80 transition-opacity" style={{ color: '#ffffff' }}>
+            <a href="tel:+250798973375" className="font-semibold no-underline whitespace-nowrap text-white hover:opacity-80 transition-opacity">
               +250 798 973 375
             </a>
             <a href="mailto:contact@blueteamafrica.com" className="hidden lg:inline-block font-semibold no-underline ml-2 text-white hover:opacity-80 transition-opacity">
@@ -165,371 +162,187 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Header - Sticky below the fixed blue bar */}
+      {/* ── Main header ────────────────────────────────────────────────── */}
       <header
-        className={`w-full sticky top-[38px] md:top-[42px] left-0 right-0 z-50 transition-shadow duration-300 bg-white/95 backdrop-blur-sm border-b ${
+        className={`w-full sticky top-[38px] md:top-[42px] left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b transition-shadow duration-300 ${
           scrolled ? 'shadow-xl border-gray-200' : 'shadow-sm border-transparent'
         }`}
         role="banner"
       >
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
 
-        {/* Main Navigation Row (reduced padding) */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-1">
-          <div className="flex items-center gap-4">
-            {/* Logo */}
-            <Link href="/" className="flex items-center flex-shrink-0 h-14 no-underline">
-              <Image src="/images/logo/logo-lockup.png" alt="Blue Team Africa" width={186} height={80} className="h-14 w-auto" />
+          {/* Logo */}
+          <Link href="/" className="flex items-center flex-shrink-0 h-16 no-underline" aria-label="Blue Team Africa — home">
+            <Image
+              src="/images/logo/logo-lockup.png"
+              alt="Blue Team Africa"
+              width={210}
+              height={90}
+              className="h-16 w-auto"
+              priority
+            />
+          </Link>
+
+          {/* Right: Contact + Menu trigger */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
+              style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
+            >
+              Contact
             </Link>
 
-            {/* Center nav (desktop) */}
-            <div className="flex-1 flex justify-center">
-              <nav className="hidden md:flex items-center gap-6 text-sm font-medium" aria-label="Main navigation">
-                <Link
-                  href="/"
-                  className={`py-1 px-1 no-underline ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
-                >
-                  Home
-                </Link>
-
-                {/* About dropdown */}
-                <div className="relative">
-                  <button
-                    onClick={() => {
-                      setAboutOpen(!aboutOpen)
-                      setServicesOpen(false)
-                    }}
-                    className={`flex items-center gap-1 py-1 px-1 no-underline ${isActive('/about') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
-                    aria-haspopup="true"
-                    aria-expanded={aboutOpen}
-                  >
-                    About
-                    <ChevronDown size={14} className={`transition-transform ${aboutOpen ? 'rotate-180' : 'rotate-0'}`} />
-                  </button>
-
-                  <AnimatePresence>
-                    {aboutOpen && (
-                      <motion.div
-                        ref={aboutDropdownRef}
-                        initial={{ opacity: 0, y: -6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -6 }}
-                        transition={{ duration: 0.18 }}
-                        className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 p-3 z-60"
-                      >
-                        {aboutLinks.map((l, i) => (
-                          <Link
-                            key={i}
-                            href={l.href}
-                            className={`block px-3 py-2 text-sm rounded hover:bg-gray-50 no-underline ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
-                            onClick={() => setAboutOpen(false)}
-                          >
-                            {l.name}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                {/* Services mega dropdown */}
-                <div className="relative">
-                  <button
-                    onClick={() => {
-                      setServicesOpen(!servicesOpen)
-                      setAboutOpen(false)
-                    }}
-                    className={`flex items-center gap-1 py-1 px-1 no-underline ${isActive('/services') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}
-                    aria-haspopup="true"
-                    aria-expanded={servicesOpen}
-                  >
-                    Services
-                    <ChevronDown size={14} className={`transition-transform ${servicesOpen ? 'rotate-180' : 'rotate-0'}`} />
-                  </button>
-
-                  <AnimatePresence>
-                    {servicesOpen && (
-                      <motion.div
-                        ref={servicesDropdownRef}
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.18 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[880px] max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-2xl border border-gray-100 p-6 z-60"
-                      >
-                        <div className="grid grid-cols-3 gap-6">
-                          {serviceColumns.map((col, i) => (
-                            <div key={i}>
-                              <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">{col.label}</p>
-                              <ul className="space-y-1">
-                                {col.items.map((it, idx) => (
-                                  <li key={idx}>
-                                    <Link
-                                      href={it.href}
-                                      className={`block px-2 py-1 rounded hover:bg-gray-50 text-sm no-underline ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700'}`}
-                                      onClick={() => setServicesOpen(false)}
-                                    >
-                                      {it.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <Link href="/portfolio" className={`py-1 px-1 no-underline ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
-                  Portfolio
-                </Link>
-                <Link href="/blog" className={`py-1 px-1 no-underline ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold' : 'text-gray-700 hover:text-[color:var(--color-primary,#1982c4)]'}`}>
-                  Blog
-                </Link>
-
-                {/* Contact inline as part of nav */}
-                <Link
-                  href="/contact"
-                  className="ml-2 inline-flex items-center gap-2 px-3 py-1 bg-[color:var(--color-primary,#1982c4)] text-white rounded-full text-sm font-semibold shadow-sm hover:bg-[color:var(--color-primary,#1982c4)]/90 transition no-underline"
-                >
-                  Contact
-                </Link>
-              </nav>
-            </div>
-
-            {/* Right area (desktop): WhatsApp + social */}
-            <div className="hidden md:flex items-center gap-3 flex-shrink-0">
-              <a
-                href="https://wa.me/254119402737"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-md flex items-center justify-center transition hover:scale-105"
-                aria-label="WhatsApp"
-                title="Chat on WhatsApp"
-                style={{ color: '#25D366' }}
-              >
-                {/* WhatsApp inline svg (keeps same green color) */}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M20.52 3.48A11.86 11.86 0 0012 .04C6.01.04.98 5.07.98 11.06c0 1.95.51 3.86 1.48 5.52L.03 24l7.7-2.02a11.02 11.02 0 004.28.86h.01c6 0 11.03-4.03 11.03-10.02 0-2.68-1.05-5.2-2.53-6.84zM12 21.02c-1.5 0-2.98-.4-4.24-1.12l-.3-.17-4.56 1.2 1.2-4.56-.18-.31A8.86 8.86 0 013.08 11.06c0-4.9 4.03-8.89 8.92-8.89 4.9 0 8.92 3.99 8.92 8.89 0 4.9-4.03 8.89-8.92 8.89z" />
-                  <path d="M16.02 13.1c-.2-.1-1.1-.6-1.3-.6-.2-.1-.4-.1-.6.1l-.6.6c-.1.1-.4.1-.7 0-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.4-1.8-.1-.3 0-.5.1-.7l.7-1.8c.1-.3 0-.5-.1-.6-.3-.3-.8-.7-1.2-1-.4-.3-1-.1-1.4.1-.5.3-1.7 1.2-1.7 3.1 0 1.8 1.2 3.8 2.6 5.1 1.4 1.3 3.1 2.2 4.9 2.5.7.1 1.4.1 2.1.1 1.3 0 3.2-.6 4-2.4.4-.9.4-1.9.3-2.2 0-.2 0-.4-.2-.5-.1-.2-.9-.5-1.1-.6z" />
-                </svg>
-              </a>
-
-              <div className="flex items-center gap-2">
-                {socialLinks.map((s) => {
-                  const Icon = s.icon
-                  return (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-md transition-all duration-200 text-gray-600"
-                      aria-label={s.label}
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement
-                        el.style.color = s.color
-                        el.style.backgroundColor = `${s.color}15`
-                      }}
-                      onMouseLeave={(e) => {
-                        const el = e.currentTarget as HTMLElement
-                        el.style.color = ''
-                        el.style.backgroundColor = ''
-                      }}
-                    >
-                      <Icon size={18} />
-                    </a>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
-              aria-label="Toggle menu"
-              aria-expanded={mobileOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={menuOpen}
+              aria-controls="mega-menu-panel"
+              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-gray-800"
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              <AnimatePresence mode="wait" initial={false}>
+                {menuOpen ? (
+                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                    <X size={20} />
+                  </motion.span>
+                ) : (
+                  <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                    <Menu size={20} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              <span className="text-sm font-medium hidden sm:inline select-none">Menu</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile menu */}
+      {/* ── Mega-menu panel ────────────────────────────────────────────── */}
       <AnimatePresence>
-        {mobileOpen && (
-          <motion.aside
-            ref={mobilePanelRef}
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed top-[90px] bottom-0 left-0 w-80 max-w-[85vw] bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation menu"
-          >
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-6">
-                <Link href="/" className="flex items-center no-underline" onClick={() => setMobileOpen(false)}>
-                  <Image src="/images/logo/logo-lockup.png" alt="Blue Team Africa" width={149} height={64} className="h-10 w-auto" />
-                </Link>
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-md text-gray-700 hover:bg-gray-100"
-                  aria-label="Close menu"
-                >
-                  <X size={24} />
-                </button>
-              </div>
+        {menuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/40"
+              aria-hidden="true"
+              onClick={closeMenu}
+            />
 
-              <nav className="space-y-4">
-                <Link
-                  href="/"
-                  className={`block py-2 px-3 rounded-md no-underline ${isActive('/') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Home
-                </Link>
+            {/* Panel — sits between the backdrop (z-40) and the header (z-50) */}
+            <motion.div
+              key="panel"
+              id="mega-menu-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="fixed inset-x-0 top-0 z-[45] bg-white shadow-2xl overflow-y-auto"
+              style={{ paddingTop: 'calc(38px + 80px)', maxHeight: '100dvh' }}
+            >
+              {/* md: paddingTop accounts for 42px top-bar + 80px header */}
+              <style>{`@media(min-width:768px){#mega-menu-panel{padding-top:calc(42px + 80px)}}`}</style>
 
-                <div>
-                  <button
-                    onClick={() => setAboutOpen(!aboutOpen)}
-                    className={`w-full flex items-center justify-between py-2 px-3 rounded-md ${isActive('/about') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+              <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 pb-14">
+
+                {/* ── SERVICES ── */}
+                <section className="mb-10">
+                  <PanelSection label="Services" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1">
+                    {services.map((s) => (
+                      <NavItem key={s.href} {...s} onClick={closeMenu} />
+                    ))}
+                  </div>
+                </section>
+
+                {/* ── PORTFOLIO ── */}
+                <section className="mb-10">
+                  <PanelSection label="Portfolio" />
+                  <Link
+                    href="/portfolio"
+                    onClick={closeMenu}
+                    className="group inline-flex items-center gap-2 no-underline text-gray-800 hover:text-[color:var(--color-primary,#1982c4)] transition-colors"
                   >
-                    About
-                    <ChevronDown size={16} className={`transition-transform ${aboutOpen ? 'rotate-180' : 'rotate-0'}`} />
-                  </button>
-                  <AnimatePresence>
-                    {aboutOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pl-4 space-y-2 mt-2">
-                          {aboutLinks.map((l, i) => (
-                            <Link
-                              key={i}
-                              href={l.href}
-                              className={`block py-2 px-3 rounded-md text-sm no-underline ${isActive(l.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
-                              onClick={() => {
-                                setMobileOpen(false)
-                                setAboutOpen(false)
-                              }}
-                            >
-                              {l.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    <span className="text-sm font-medium">See the real problems we&apos;ve solved for real clients</span>
+                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </section>
+
+                {/* ── ABOUT + RESOURCES ── */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+                  <section>
+                    <PanelSection label="About" />
+                    <div className="space-y-1">
+                      {aboutLinks.map((l) => (
+                        <NavItem key={l.href} {...l} onClick={closeMenu} />
+                      ))}
+                    </div>
+                  </section>
+
+                  <section>
+                    <PanelSection label="Resources" />
+                    <div className="space-y-1">
+                      {resourceLinks.map((l) => (
+                        <NavItem key={l.href} {...l} onClick={closeMenu} />
+                      ))}
+                    </div>
+                  </section>
                 </div>
 
-                <div>
-                  <button
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`w-full flex items-center justify-between py-2 px-3 rounded-md ${isActive('/services') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
-                  >
-                    Services
-                    <ChevronDown size={16} className={`transition-transform ${servicesOpen ? 'rotate-180' : 'rotate-0'}`} />
-                  </button>
-                  <AnimatePresence>
-                    {servicesOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pl-4 space-y-2 mt-2">
-                          {serviceColumns.map((col, colIdx) => (
-                            <div key={colIdx} className="mb-4">
-                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">
-                                {col.label}
-                              </p>
-                              {col.items.map((it, idx) => (
-                                <Link
-                                  key={idx}
-                                  href={it.href}
-                                  className={`block py-2 px-3 rounded-md text-sm no-underline ${isActive(it.href) ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}
-                                  onClick={() => {
-                                    setMobileOpen(false)
-                                    setServicesOpen(false)
-                                  }}
-                                >
-                                  {it.name}
-                                </Link>
-                              ))}
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <Link
-                  href="/portfolio"
-                  className={`block py-2 px-3 rounded-md no-underline ${isActive('/portfolio') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Portfolio
-                </Link>
-
-                <Link
-                  href="/blog"
-                  className={`block py-2 px-3 rounded-md no-underline ${isActive('/blog') ? 'text-[color:var(--color-primary,#1982c4)] font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Blog
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="block py-2 px-3 rounded-md bg-[color:var(--color-primary,#1982c4)] text-white font-semibold text-center hover:bg-[color:var(--color-primary,#1982c4)]/90 transition no-underline"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Contact
-                </Link>
-
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="flex items-center gap-3 mb-4">
+                {/* ── Bottom bar ── */}
+                <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  {/* Social icons */}
+                  <div className="flex items-center gap-1">
                     <a
                       href="https://wa.me/254119402737"
                       target="_blank"
                       rel="noreferrer"
-                      className="p-2 rounded-md flex items-center justify-center transition hover:scale-105"
+                      className="p-2 rounded-md text-gray-500 hover:text-[#25D366] transition-colors"
                       aria-label="WhatsApp"
-                      style={{ color: '#25D366' }}
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M20.52 3.48A11.86 11.86 0 0012 .04C6.01.04.98 5.07.98 11.06c0 1.95.51 3.86 1.48 5.52L.03 24l7.7-2.02a11.02 11.02 0 004.28.86h.01c6 0 11.03-4.03 11.03-10.02 0-2.68-1.05-5.2-2.53-6.84zM12 21.02c-1.5 0-2.98-.4-4.24-1.12l-.3-.17-4.56 1.2 1.2-4.56-.18-.31A8.86 8.86 0 013.08 11.06c0-4.9 4.03-8.89 8.92-8.89 4.9 0 8.92 3.99 8.92 8.89 0 4.9-4.03 8.89-8.92 8.89z" />
-                        <path d="M16.02 13.1c-.2-.1-1.1-.6-1.3-.6-.2-.1-.4-.1-.6.1l-.6.6c-.1.1-.4.1-.7 0-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.4-1.8-.1-.3 0-.5.1-.7l.7-1.8c.1-.3 0-.5-.1-.6-.3-.3-.8-.7-1.2-1-.4-.3-1-.1-1.4.1-.5.3-1.7 1.2-1.7 3.1 0 1.8 1.2 3.8 2.6 5.1 1.4 1.3 3.1 2.2 4.9 2.5.7.1 1.4.1 2.1.1 1.3 0 3.2-.6 4-2.4.4-.9.4-1.9.3-2.2 0-.2 0-.4-.2-.5-.1-.2-.9-.5-1.1-.6z" />
-                      </svg>
+                      {WHATSAPP}
                     </a>
                     {socialLinks.map((s) => {
                       const Icon = s.icon
                       return (
-                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="p-2 rounded-md text-gray-600 hover:opacity-90" style={{ transition: 'all .12s' }}>
+                        <a
+                          key={s.label}
+                          href={s.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-md text-gray-500 hover:opacity-90 transition-colors"
+                          aria-label={s.label}
+                          style={{ ['--hover' as string]: s.color }}
+                          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = s.color }}
+                          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '' }}
+                        >
                           <Icon size={18} />
                         </a>
                       )
                     })}
                   </div>
 
-                  <div className="mt-6 text-xs text-gray-500">
-                    © {new Date().getFullYear()} Blue Team Africa
-                  </div>
+                  {/* Repeated Contact button */}
+                  <Link
+                    href="/contact"
+                    onClick={closeMenu}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
+                    style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
+                  >
+                    Get in touch
+                    <ArrowRight size={14} />
+                  </Link>
                 </div>
-              </nav>
-            </div>
-          </motion.aside>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
