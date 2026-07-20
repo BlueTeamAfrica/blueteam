@@ -169,30 +169,10 @@ export default function Header() {
         }`}
         role="banner"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 grid grid-cols-[1fr_auto_1fr] items-center">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0 h-16 no-underline" aria-label="Blue Team Africa — home">
-            <Image
-              src="/images/logo/logo-lockup.png"
-              alt="Blue Team Africa"
-              width={210}
-              height={90}
-              className="h-16 w-auto"
-              priority
-            />
-          </Link>
-
-          {/* Right: Contact + Menu trigger */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
-              style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
-            >
-              Contact
-            </Link>
-
+          {/* Left: Menu trigger */}
+          <div className="flex items-center">
             <button
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
@@ -213,6 +193,29 @@ export default function Header() {
               </AnimatePresence>
               <span className="text-sm font-medium hidden sm:inline select-none">Menu</span>
             </button>
+          </div>
+
+          {/* Center: Logo — true center via grid */}
+          <Link href="/" className="flex items-center h-16 no-underline" aria-label="Blue Team Africa — home">
+            <Image
+              src="/images/logo/logo-lockup.png"
+              alt="Blue Team Africa"
+              width={210}
+              height={90}
+              className="h-16 w-auto"
+              priority
+            />
+          </Link>
+
+          {/* Right: Contact button */}
+          <div className="flex items-center justify-end">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
+              style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
+            >
+              Contact
+            </Link>
           </div>
         </div>
       </header>

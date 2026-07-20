@@ -61,7 +61,7 @@ export default function RootLayout({
         <ClientComponents gaId={gaId} />
         {/* Preload hero image for better LCP - Next.js Image priority prop handles this automatically */}
         <Header />
-        <main>{children}</main>
+        <main className="pt-[38px] md:pt-[42px]">{children}</main>
         <Footer />
       </body>
     </html>
