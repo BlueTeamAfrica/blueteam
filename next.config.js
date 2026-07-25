@@ -37,6 +37,15 @@ const nextConfig = {
   // SWC minification is enabled by default in Next.js 16+
   // Performance optimizations
   poweredByHeader: false,
+  async redirects() {
+    return [
+      { source: '/erp-crm',               destination: '/services/erp', permanent: true },
+      { source: '/hrm',                   destination: '/services/erp', permanent: true },
+      { source: '/inventory-pos',         destination: '/services/erp', permanent: true },
+      { source: '/monitoring-evaluation', destination: '/services',     permanent: true },
+      { source: '/proposal-writing',      destination: '/contact',      permanent: true },
+    ]
+  },
   // Headers for security and performance
   async headers() {
     return [
