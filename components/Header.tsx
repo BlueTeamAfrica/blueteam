@@ -13,7 +13,11 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
+
+// Deferred: framer-motion (116K) is split into its own chunk and fetched after
+// mount, not on the initial page load. ssr:false — the panel is never SSR'd.
+const HeaderAnimations = dynamic(() => import('./HeaderAnimations'), { ssr: false })
 
 // ── Nav data ────────────────────────────────────────────────────────────────
 
@@ -87,14 +91,149 @@ function NavItem({
   )
 }
 
+// ── Panel interior ───────────────────────────────────────────────────────────
+// Shared by both HeaderAnimations (animated) and StaticMenuPanel (plain fallback),
+// passed as children so neither component duplicates this markup.
+
+function PanelContent({ closeMenu }: { closeMenu: () => void }) {
+  return (
+    <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 pb-14">
+
+      {/* ── SERVICES ── */}
+      <section className="mb-10">
+        <PanelSection label="Services" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1">
+          {services.map((s) => (
+            <NavItem key={s.href} {...s} onClick={closeMenu} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── PORTFOLIO ── */}
+      <section className="mb-10">
+        <PanelSection label="Portfolio" />
+        <Link
+          href="/portfolio"
+          onClick={closeMenu}
+          className="group inline-flex items-center gap-2 no-underline text-gray-800 hover:text-[color:var(--color-primary,#1982c4)] transition-colors"
+        >
+          <span className="text-sm font-medium">See the real problems we&apos;ve solved for real clients</span>
+          <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </section>
+
+      {/* ── ABOUT + RESOURCES ── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+        <section>
+          <PanelSection label="About" />
+          <div className="space-y-1">
+            {aboutLinks.map((l) => (
+              <NavItem key={l.href} {...l} onClick={closeMenu} />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <PanelSection label="Resources" />
+          <div className="space-y-1">
+            {resourceLinks.map((l) => (
+              <NavItem key={l.href} {...l} onClick={closeMenu} />
+            ))}
+          </div>
+        </section>
+      </div>
+
+      {/* ── Bottom bar ── */}
+      <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        {/* Social icons */}
+        <div className="flex items-center gap-1">
+          <a
+            href="https://wa.me/254119402737"
+            target="_blank"
+            rel="noreferrer"
+            className="p-2 rounded-md text-gray-500 hover:text-[#25D366] transition-colors"
+            aria-label="WhatsApp"
+          >
+            {WHATSAPP}
+          </a>
+          {socialLinks.map((s) => {
+            const Icon = s.icon
+            return (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md text-gray-500 hover:opacity-90 transition-colors"
+                aria-label={s.label}
+                style={{ ['--hover' as string]: s.color }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = s.color }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '' }}
+              >
+                <Icon size={18} />
+              </a>
+            )
+          })}
+        </div>
+
+        {/* Repeated Contact button */}
+        <Link
+          href="/contact"
+          onClick={closeMenu}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
+          style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
+        >
+          Get in touch
+          <ArrowRight size={14} />
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+// ── Static menu fallback ─────────────────────────────────────────────────────
+// Rendered only if menuOpen becomes true before HeaderAnimations has loaded
+// (i.e. within the first ~100ms on a very slow connection). Identical structure
+// to the animated version — same z-indices, same panel content — just no motion.
+
+function StaticMenuPanel({ closeMenu }: { closeMenu: () => void }) {
+  return (
+    <>
+      <div
+        className="fixed inset-0 z-40 bg-black/40"
+        aria-hidden="true"
+        onClick={closeMenu}
+      />
+      <div
+        id="mega-menu-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        className="fixed inset-x-0 top-0 z-[45] bg-white shadow-2xl overflow-y-auto"
+        style={{ paddingTop: 'calc(39px + 81px)', maxHeight: '100dvh' }}
+      >
+        <style>{`@media(min-width:768px){#mega-menu-panel{padding-top:calc(32px + 81px)}}`}</style>
+        <PanelContent closeMenu={closeMenu} />
+      </div>
+    </>
+  )
+}
+
 // ── Main component ───────────────────────────────────────────────────────────
 
 export default function Header() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled]  = useState(false)
+  const [isAnimationsLoaded, setIsAnimationsLoaded] = useState(false)
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
+
+  // Prefetch framer-motion chunk immediately on mount so it's cached before
+  // the user reaches for the menu button.
+  useEffect(() => {
+    import('./HeaderAnimations').then(() => setIsAnimationsLoaded(true))
+  }, [])
 
   // Shadow on scroll
   useEffect(() => {
@@ -180,17 +319,28 @@ export default function Header() {
               aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-gray-800"
             >
-              <AnimatePresence mode="wait" initial={false}>
-                {menuOpen ? (
-                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                    <X size={20} />
-                  </motion.span>
-                ) : (
-                  <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                    <Menu size={20} />
-                  </motion.span>
-                )}
-              </AnimatePresence>
+              {/* CSS transition replaces the framer-motion icon crossfade (Site A).
+                  Replicates the same rotate+opacity effect at the same 150ms duration. */}
+              <span className="relative w-5 h-5 flex items-center justify-center" aria-hidden="true">
+                <span
+                  className="absolute inset-0 flex items-center justify-center transition-all duration-150"
+                  style={{
+                    opacity: menuOpen ? 1 : 0,
+                    transform: `rotate(${menuOpen ? 0 : -90}deg)`,
+                  }}
+                >
+                  <X size={20} />
+                </span>
+                <span
+                  className="absolute inset-0 flex items-center justify-center transition-all duration-150"
+                  style={{
+                    opacity: menuOpen ? 0 : 1,
+                    transform: `rotate(${menuOpen ? 90 : 0}deg)`,
+                  }}
+                >
+                  <Menu size={20} />
+                </span>
+              </span>
               <span className="text-sm font-medium hidden sm:inline select-none">Menu</span>
             </button>
           </div>
@@ -221,133 +371,16 @@ export default function Header() {
       </header>
 
       {/* ── Mega-menu panel ────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              key="backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/40"
-              aria-hidden="true"
-              onClick={closeMenu}
-            />
-
-            {/* Panel — sits between the backdrop (z-40) and the header (z-50) */}
-            <motion.div
-              key="panel"
-              id="mega-menu-panel"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="fixed inset-x-0 top-0 z-[45] bg-white shadow-2xl overflow-y-auto"
-              style={{ paddingTop: 'calc(39px + 81px)', maxHeight: '100dvh' }}
-            >
-              {/* md: paddingTop accounts for 32px top-bar + 81px header */}
-              <style>{`@media(min-width:768px){#mega-menu-panel{padding-top:calc(32px + 81px)}}`}</style>
-
-              <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 pb-14">
-
-                {/* ── SERVICES ── */}
-                <section className="mb-10">
-                  <PanelSection label="Services" />
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1">
-                    {services.map((s) => (
-                      <NavItem key={s.href} {...s} onClick={closeMenu} />
-                    ))}
-                  </div>
-                </section>
-
-                {/* ── PORTFOLIO ── */}
-                <section className="mb-10">
-                  <PanelSection label="Portfolio" />
-                  <Link
-                    href="/portfolio"
-                    onClick={closeMenu}
-                    className="group inline-flex items-center gap-2 no-underline text-gray-800 hover:text-[color:var(--color-primary,#1982c4)] transition-colors"
-                  >
-                    <span className="text-sm font-medium">See the real problems we&apos;ve solved for real clients</span>
-                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </section>
-
-                {/* ── ABOUT + RESOURCES ── */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-                  <section>
-                    <PanelSection label="About" />
-                    <div className="space-y-1">
-                      {aboutLinks.map((l) => (
-                        <NavItem key={l.href} {...l} onClick={closeMenu} />
-                      ))}
-                    </div>
-                  </section>
-
-                  <section>
-                    <PanelSection label="Resources" />
-                    <div className="space-y-1">
-                      {resourceLinks.map((l) => (
-                        <NavItem key={l.href} {...l} onClick={closeMenu} />
-                      ))}
-                    </div>
-                  </section>
-                </div>
-
-                {/* ── Bottom bar ── */}
-                <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  {/* Social icons */}
-                  <div className="flex items-center gap-1">
-                    <a
-                      href="https://wa.me/254119402737"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-md text-gray-500 hover:text-[#25D366] transition-colors"
-                      aria-label="WhatsApp"
-                    >
-                      {WHATSAPP}
-                    </a>
-                    {socialLinks.map((s) => {
-                      const Icon = s.icon
-                      return (
-                        <a
-                          key={s.label}
-                          href={s.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-md text-gray-500 hover:opacity-90 transition-colors"
-                          aria-label={s.label}
-                          style={{ ['--hover' as string]: s.color }}
-                          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = s.color }}
-                          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '' }}
-                        >
-                          <Icon size={18} />
-                        </a>
-                      )
-                    })}
-                  </div>
-
-                  {/* Repeated Contact button */}
-                  <Link
-                    href="/contact"
-                    onClick={closeMenu}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
-                    style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
-                  >
-                    Get in touch
-                    <ArrowRight size={14} />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Animated path: HeaderAnimations is loaded (the normal case after prefetch) */}
+      {isAnimationsLoaded && (
+        <HeaderAnimations menuOpen={menuOpen} closeMenu={closeMenu}>
+          <PanelContent closeMenu={closeMenu} />
+        </HeaderAnimations>
+      )}
+      {/* Static fallback: only if menuOpen before the prefetch resolves (~100ms window) */}
+      {!isAnimationsLoaded && menuOpen && (
+        <StaticMenuPanel closeMenu={closeMenu} />
+      )}
     </>
   )
 }
