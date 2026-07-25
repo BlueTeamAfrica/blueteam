@@ -5,6 +5,7 @@ import InteriorPageLayout from '@/components/InteriorPageLayout'
 export const metadata = {
   title: 'Frequently Asked Questions',
   description: 'Common questions about our services, pricing, and processes.',
+  alternates: { canonical: 'https://www.blueteamafrica.com/faq' },
 }
 
 export default function FAQPage() {
