@@ -12,9 +12,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
+  const { locale, slug } = await params
   const service = allServices.find((s) => s.slug === slug)
 
   if (!service) {
@@ -24,18 +24,18 @@ export async function generateMetadata({
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.blueteamafrica.com'
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.blueteamafrica.com'
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `${base}${lp}/services/${service.slug}`
 
   return {
     title: `${service.title} | Blue Team Africa`,
     description: service.description,
-    alternates: {
-      canonical: `${baseUrl}/services/${service.slug}`,
-    },
+    alternates: { canonical },
     openGraph: {
       title: `${service.title} | Blue Team Africa`,
       description: service.description,
-      url: `${baseUrl}/services/${service.slug}`,
+      url: canonical,
     },
   }
 }

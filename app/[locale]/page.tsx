@@ -11,50 +11,60 @@ import dynamic from 'next/dynamic'
 
 const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'))
 
-export const metadata: Metadata = {
-  title: 'Blue Team Africa | Web Design & Development Company',
-  description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
-  robots: 'index, follow',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/',
-  },
-  openGraph: {
-    title: 'BlueTeam Africa — Web Design & Digital Solutions',
-    description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
-    url: 'https://www.blueteamafrica.com/',
-    siteName: 'Blue Team Africa',
-    type: 'website',
-    images: [
-      {
-        url: '/images/hero/hero-og-01.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Blue Team Africa — Web Design, Website Development & Digital Solutions',
-      },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const base = 'https://www.blueteamafrica.com'
+  const canonical = locale === 'en' ? `${base}/` : `${base}/${locale}`
+
+  return {
+    title: 'Blue Team Africa | Web Design & Development Company',
+    description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
+    robots: 'index, follow',
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: 'BlueTeam Africa — Web Design & Digital Solutions',
+      description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
+      url: canonical,
+      siteName: 'Blue Team Africa',
+      type: 'website',
+      images: [
+        {
+          url: '/images/hero/hero-og-01.webp',
+          width: 1200,
+          height: 630,
+          alt: 'Blue Team Africa — Web Design, Website Development & Digital Solutions',
+        },
+      ],
+      locale: locale === 'ar' ? 'ar_001' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'BlueTeam Africa — Web Design & Digital Solutions',
+      description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
+      images: ['/images/hero/hero-og-01.webp'],
+    },
+    keywords: [
+      'web design',
+      'website design',
+      'website development',
+      'web development',
+      'digital solutions',
+      'hosting',
+      'SEO',
+      'NGO',
+      'Uganda',
+      'Kenya',
+      'East Africa',
+      'web design company',
+      'website development company',
     ],
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'BlueTeam Africa — Web Design & Digital Solutions',
-    description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
-    images: ['/images/hero/hero-og-01.webp'],
-  },
-  keywords: [
-    'web design',
-    'website design',
-    'website development',
-    'web development',
-    'digital solutions',
-    'hosting',
-    'SEO',
-    'NGO',
-    'Uganda',
-    'Kenya',
-    'East Africa',
-    'web design company',
-    'website development company',
-  ],
+  }
 }
 
 export default function Home() {

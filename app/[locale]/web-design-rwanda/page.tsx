@@ -46,28 +46,36 @@ function WebDesignRwandaFAQSchema() {
   )
 }
 
-export const metadata: Metadata = {
-  title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
-  description: 'Professional web design company in Rwanda delivering fast, secure, and SEO-ready websites for businesses and NGOs. Get a custom quote today.',
-  robots: 'index, follow',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/web-design-rwanda',
-  },
-  keywords: [
-    'web design Rwanda',
-    'website design Rwanda',
-    'web design Kigali',
-    'website design Kigali',
-    'professional web design Rwanda',
-    'responsive web design Rwanda',
-    'business website design Rwanda',
-  ],
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const base = 'https://www.blueteamafrica.com'
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `${base}${lp}/web-design-rwanda`
+  return {
     title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
-    description: 'Reliable web design company in Rwanda. We build fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
-    url: 'https://www.blueteamafrica.com/web-design-rwanda',
-    type: 'website',
-  },
+    description: 'Professional web design company in Rwanda delivering fast, secure, and SEO-ready websites for businesses and NGOs. Get a custom quote today.',
+    robots: 'index, follow',
+    alternates: { canonical },
+    keywords: [
+      'web design Rwanda',
+      'website design Rwanda',
+      'web design Kigali',
+      'website design Kigali',
+      'professional web design Rwanda',
+      'responsive web design Rwanda',
+      'business website design Rwanda',
+    ],
+    openGraph: {
+      title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
+      description: 'Reliable web design company in Rwanda. We build fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
+      url: canonical,
+      type: 'website',
+    },
+  }
 }
 
 export default function WebDesignRwandaPage() {

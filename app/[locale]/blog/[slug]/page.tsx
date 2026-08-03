@@ -364,11 +364,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
+  const { locale, slug } = await params
   const post = blogPosts[slug]
-  
+  const base = 'https://www.blueteamafrica.com'
+  const lp = locale === 'en' ? '' : `/${locale}`
+
   if (!post) {
     return {
       title: 'Post Not Found | Blue Team Africa',
@@ -376,20 +378,18 @@ export async function generateMetadata({
     }
   }
 
-  // Use shared metadata if available, otherwise fallback to post data
   const sharedMetadata = blogMetadataMap[slug]
-  
   if (sharedMetadata) {
-    return sharedMetadata
+    return {
+      ...sharedMetadata,
+      alternates: { canonical: `${base}${lp}/blog/${slug}` },
+    }
   }
 
-  // Fallback to post data if no shared metadata exists
   return {
     title: `${post.title} | Blue Team Africa`,
     description: post.excerpt,
-    alternates: {
-      canonical: `https://www.blueteamafrica.com/blog/${slug}`,
-    },
+    alternates: { canonical: `${base}${lp}/blog/${slug}` },
   }
 }
 

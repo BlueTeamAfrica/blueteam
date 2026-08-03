@@ -5,32 +5,40 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema'
 import { Globe, Smartphone, Shield, Code } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: 'Technology Solutions Provider in Rwanda | Blue Team Africa',
-  description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
-  robots: 'index, follow',
-  alternates: {
-    canonical: 'https://www.blueteamafrica.com/locations/rwanda',
-  },
-  keywords: [
-    'website design Rwanda',
-    'website development Rwanda',
-    'mobile applications Rwanda',
-    'mobile app development Rwanda',
-    'cybersecurity services Rwanda',
-    'web design Kigali',
-    'website development Kigali',
-    'mobile apps Kigali',
-    'cybersecurity Kigali',
-    'NGO website Rwanda',
-    'business website Rwanda',
-  ],
-  openGraph: {
-    title: 'Website Design, Mobile App Development & Cybersecurity Company in Rwanda | Blue Team Africa',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const base = 'https://www.blueteamafrica.com'
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `${base}${lp}/locations/rwanda`
+  return {
+    title: 'Technology Solutions Provider in Rwanda | Blue Team Africa',
     description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
-    url: 'https://www.blueteamafrica.com/locations/rwanda',
-    type: 'website',
-  },
+    robots: 'index, follow',
+    alternates: { canonical },
+    keywords: [
+      'website design Rwanda',
+      'website development Rwanda',
+      'mobile applications Rwanda',
+      'mobile app development Rwanda',
+      'cybersecurity services Rwanda',
+      'web design Kigali',
+      'website development Kigali',
+      'mobile apps Kigali',
+      'cybersecurity Kigali',
+      'NGO website Rwanda',
+      'business website Rwanda',
+    ],
+    openGraph: {
+      title: 'Website Design, Mobile App Development & Cybersecurity Company in Rwanda | Blue Team Africa',
+      description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
+      url: canonical,
+      type: 'website',
+    },
+  }
 }
 
 // Generate JSON-LD schemas
