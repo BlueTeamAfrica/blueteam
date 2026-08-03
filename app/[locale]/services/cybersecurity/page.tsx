@@ -11,31 +11,41 @@ import { metadataCybersecurity } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 
-export const metadata: Metadata = {
-  ...metadataCybersecurity,
-  keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
-  openGraph: {
-    title: 'Cybersecurity Solutions for East African Businesses & NGOs',
-    description: 'Enterprise-grade cybersecurity solutions including penetration testing, security audits, and secure operations for organizations across East Africa.',
-        url: 'https://www.blueteamafrica.com/services/cybersecurity',
-        siteName: 'Blue Team Africa',
-        images: [
-          {
-            url: '/images/services/cybersecurity/services-cybersecurity-hero-01.webp',
-            width: 1200,
-            height: 630,
-            alt: 'Cybersecurity Solutions for East Africa',
-          },
-        ],
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Cybersecurity Solutions | Blue Team Africa',
-    description: 'Protect your digital infrastructure with expert cybersecurity solutions for East Africa.',
-    images: ['/images/services/cybersecurity/services-cybersecurity-hero-01.webp'],
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/cybersecurity`
+  return {
+    ...metadataCybersecurity,
+    keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
+    alternates: { canonical },
+    openGraph: {
+      title: 'Cybersecurity Solutions for East African Businesses & NGOs',
+      description: 'Enterprise-grade cybersecurity solutions including penetration testing, security audits, and secure operations for organizations across East Africa.',
+      url: canonical,
+      siteName: 'Blue Team Africa',
+      images: [
+        {
+          url: '/images/services/cybersecurity/services-cybersecurity-hero-01.webp',
+          width: 1200,
+          height: 630,
+          alt: 'Cybersecurity Solutions for East Africa',
+        },
+      ],
+      type: 'website',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Cybersecurity Solutions | Blue Team Africa',
+      description: 'Protect your digital infrastructure with expert cybersecurity solutions for East Africa.',
+      images: ['/images/services/cybersecurity/services-cybersecurity-hero-01.webp'],
+    },
+  }
 }
 
 

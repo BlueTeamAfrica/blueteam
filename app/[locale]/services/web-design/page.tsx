@@ -5,6 +5,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 
+import type { Metadata } from 'next'
 import { metadataWebDesign } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
@@ -59,7 +60,19 @@ function WebDesignFAQSchema() {
   )
 }
 
-export const metadata = metadataWebDesign
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/web-design`
+  return {
+    ...metadataWebDesign,
+    alternates: { canonical },
+  }
+}
 
 export default function WebDesignPage() {
   return (

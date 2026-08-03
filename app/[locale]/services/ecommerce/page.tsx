@@ -59,31 +59,41 @@ function EcommerceFAQSchema() {
   )
 }
 
-export const metadata: Metadata = {
-  ...metadataEcommerce,
-  keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
-  openGraph: {
-    title: 'E-commerce Solutions for Businesses in East Africa',
-    description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation.',
-    url: 'https://www.blueteamafrica.com/services/ecommerce',
-    siteName: 'Blue Team Africa',
-    images: [
-      {
-        url: '/images/services/ecommerce/services-ecommerce-hero-01.webp',
-        width: 1200,
-        height: 630,
-        alt: 'E-commerce Solutions for East Africa',
-      },
-    ],
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'E-commerce Solutions | Blue Team Africa',
-    description: 'Build e-commerce platforms that convert and scale across East Africa.',
-    images: ['/images/services/ecommerce/services-ecommerce-hero-01.webp'],
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/ecommerce`
+  return {
+    ...metadataEcommerce,
+    keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
+    alternates: { canonical },
+    openGraph: {
+      title: 'E-commerce Solutions for Businesses in East Africa',
+      description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation.',
+      url: canonical,
+      siteName: 'Blue Team Africa',
+      images: [
+        {
+          url: '/images/services/ecommerce/services-ecommerce-hero-01.webp',
+          width: 1200,
+          height: 630,
+          alt: 'E-commerce Solutions for East Africa',
+        },
+      ],
+      type: 'website',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'E-commerce Solutions | Blue Team Africa',
+      description: 'Build e-commerce platforms that convert and scale across East Africa.',
+      images: ['/images/services/ecommerce/services-ecommerce-hero-01.webp'],
+    },
+  }
 }
 
 export default function EcommercePage() {

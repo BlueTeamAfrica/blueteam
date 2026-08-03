@@ -58,26 +58,37 @@ function WebsiteDevelopmentFAQSchema() {
   )
 }
 
-export const metadata: Metadata = {
-  ...metadataWebsiteDevelopment,
-  keywords: [
-    "website development",
-    "web development",
-    "custom web applications",
-    "NGO website development",
-    "business website development",
-    "e-commerce development",
-    "web application development",
-    "scalable web development",
-    "secure website development",
-    "full-stack development"
-  ],
-  openGraph: {
-    title: "Professional Web Development Services",
-    description: "Fast, secure, and scalable website development for businesses and NGOs. Custom web applications, backend systems, and enterprise solutions.",
-    images: ["/images/hero/hero-og-01.webp"],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/website-development`
+  return {
+    ...metadataWebsiteDevelopment,
+    keywords: [
+      'website development',
+      'web development',
+      'custom web applications',
+      'NGO website development',
+      'business website development',
+      'e-commerce development',
+      'web application development',
+      'scalable web development',
+      'secure website development',
+      'full-stack development',
+    ],
+    alternates: { canonical },
+    openGraph: {
+      title: 'Professional Web Development Services',
+      description: 'Fast, secure, and scalable website development for businesses and NGOs. Custom web applications, backend systems, and enterprise solutions.',
+      url: canonical,
+      images: ['/images/hero/hero-og-01.webp'],
+    },
+  }
+}
 
 export default function WebsiteDevelopmentPage() {
   return (

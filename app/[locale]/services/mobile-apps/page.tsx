@@ -59,31 +59,41 @@ function MobileAppsFAQSchema() {
   )
 }
 
-export const metadata: Metadata = {
-  ...metadataMobileApps,
-  keywords: 'mobile app development, mobile app development Uganda, mobile app development Kenya, Flutter development, React Native development, offline mobile apps, NGO mobile apps East Africa',
-  openGraph: {
-    title: 'Mobile App Development Services in East Africa',
-    description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups built for low-connectivity environments.',
-    url: 'https://www.blueteamafrica.com/services/mobile-apps',
-    siteName: 'Blue Team Africa',
-    images: [
-      {
-        url: '/images/services/mobile-apps/services-mobileapps-mobile-apps-hero-01.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Mobile App Development Services',
-      },
-    ],
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Mobile App Development Services | Blue Team Africa',
-    description: 'Build secure, offline-capable mobile solutions for your team.',
-    images: ['/images/services/mobile-apps/services-mobileapps-mobile-apps-hero-01.webp'],
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/mobile-apps`
+  return {
+    ...metadataMobileApps,
+    keywords: 'mobile app development, mobile app development Uganda, mobile app development Kenya, Flutter development, React Native development, offline mobile apps, NGO mobile apps East Africa',
+    alternates: { canonical },
+    openGraph: {
+      title: 'Mobile App Development Services in East Africa',
+      description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups built for low-connectivity environments.',
+      url: canonical,
+      siteName: 'Blue Team Africa',
+      images: [
+        {
+          url: '/images/services/mobile-apps/services-mobileapps-mobile-apps-hero-01.webp',
+          width: 1200,
+          height: 630,
+          alt: 'Mobile App Development Services',
+        },
+      ],
+      type: 'website',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Mobile App Development Services | Blue Team Africa',
+      description: 'Build secure, offline-capable mobile solutions for your team.',
+      images: ['/images/services/mobile-apps/services-mobileapps-mobile-apps-hero-01.webp'],
+    },
+  }
 }
 
 export default function MobileAppsPage() {

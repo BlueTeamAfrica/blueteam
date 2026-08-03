@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import ServiceSidebar from '@/components/ServiceSidebar'
+import type { Metadata } from 'next'
 import { metadataMaintenance } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
@@ -57,7 +58,19 @@ function MaintenanceFAQSchema() {
   )
 }
 
-export const metadata = metadataMaintenance
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/maintenance`
+  return {
+    ...metadataMaintenance,
+    alternates: { canonical },
+  }
+}
 
 export default function MaintenancePage() {
   const breadcrumbItems = [

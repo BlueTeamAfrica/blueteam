@@ -59,31 +59,41 @@ function ERPFAQSchema() {
   )
 }
 
-export const metadata: Metadata = {
-  ...metadataERP,
-  keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
-  openGraph: {
-    title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',
-    description: 'Modern, scalable, and secure ERP systems powered by ERPNext for organizations across East Africa.',
-    url: 'https://www.blueteamafrica.com/services/erp',
-    siteName: 'Blue Team Africa',
-    images: [
-      {
-        url: '/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp',
-        width: 1200,
-        height: 630,
-        alt: 'ERP Solutions for NGOs and Companies',
-      },
-    ],
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ERP Solutions | Blue Team Africa',
-    description: 'Streamline operations with ERPNext-powered ERP systems for NGOs and companies.',
-    images: ['/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp'],
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const lp = locale === 'en' ? '' : `/${locale}`
+  const canonical = `https://www.blueteamafrica.com${lp}/services/erp`
+  return {
+    ...metadataERP,
+    keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
+    alternates: { canonical },
+    openGraph: {
+      title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',
+      description: 'Modern, scalable, and secure ERP systems powered by ERPNext for organizations across East Africa.',
+      url: canonical,
+      siteName: 'Blue Team Africa',
+      images: [
+        {
+          url: '/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp',
+          width: 1200,
+          height: 630,
+          alt: 'ERP Solutions for NGOs and Companies',
+        },
+      ],
+      type: 'website',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'ERP Solutions | Blue Team Africa',
+      description: 'Streamline operations with ERPNext-powered ERP systems for NGOs and companies.',
+      images: ['/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp'],
+    },
+  }
 }
 
 export default function ERPPage() {
