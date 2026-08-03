@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Ltr } from '@/components/Ltr'
 import dynamic from 'next/dynamic'
 
@@ -20,31 +21,31 @@ import dynamic from 'next/dynamic'
 // mount, not on the initial page load. ssr:false — the panel is never SSR'd.
 const HeaderAnimations = dynamic(() => import('./HeaderAnimations'), { ssr: false })
 
-// ── Nav data ────────────────────────────────────────────────────────────────
+// ── Static nav data (hrefs and icons only — labels come from translations) ──
 
-const services = [
-  { name: 'Web Design',             href: '/services/web-design',          desc: 'Custom, fast-loading websites built for African connectivity' },
-  { name: 'Website Development',    href: '/services/website-development', desc: 'Full-stack builds on Next.js, React, and WordPress' },
-  { name: 'ERP Systems',            href: '/services/erp',                 desc: 'Inventory, accounting, and operations in one system' },
-  { name: 'CRM Solutions',          href: '/services/crm',                 desc: 'Manage leads, clients, and relationships in one place' },
-  { name: 'Mobile App Development', href: '/services/mobile-apps',         desc: 'iOS and Android apps for your team or your customers' },
-  { name: 'Cloud & Web Hosting',    href: '/services/hosting',             desc: 'Secure, reliable hosting built for East Africa' },
-  { name: 'Cybersecurity',          href: '/services/cybersecurity',       desc: 'Protect your systems, your data, and your reputation' },
-  { name: 'E-commerce Development', href: '/services/ecommerce',           desc: 'Sell online, with mobile money integration built in' },
-  { name: 'UI/UX Design',           href: '/services/ui-ux',               desc: 'Interfaces people actually want to use' },
-]
+const serviceHrefs = [
+  { key: 'webDesign',          href: '/services/web-design' },
+  { key: 'websiteDevelopment', href: '/services/website-development' },
+  { key: 'erp',                href: '/services/erp' },
+  { key: 'crm',                href: '/services/crm' },
+  { key: 'mobileApps',         href: '/services/mobile-apps' },
+  { key: 'hosting',            href: '/services/hosting' },
+  { key: 'cybersecurity',      href: '/services/cybersecurity' },
+  { key: 'ecommerce',          href: '/services/ecommerce' },
+  { key: 'uiux',               href: '/services/ui-ux' },
+] as const
 
-const aboutLinks = [
-  { name: 'About Us',    href: '/about',   desc: 'Who we are and why we do this work' },
-  { name: 'Our Team',    href: '/team',    desc: 'The people building your project' },
-  { name: 'Our Mission', href: '/mission', desc: "Technology built for East Africa's real conditions" },
-  { name: 'Our Process', href: '/process', desc: 'How a project actually goes from idea to launch' },
-]
+const aboutHrefs = [
+  { key: 'aboutUs',  href: '/about' },
+  { key: 'team',     href: '/team' },
+  { key: 'mission',  href: '/mission' },
+  { key: 'process',  href: '/process' },
+] as const
 
-const resourceLinks = [
-  { name: 'Blog', href: '/blog', desc: 'Guides on web design, ERP, hosting, and more for East African teams' },
-  { name: 'FAQ',  href: '/faq',  desc: 'Straight answers to the questions we get most' },
-]
+const resourceHrefs = [
+  { key: 'blog', href: '/blog' },
+  { key: 'faq',  href: '/faq' },
+] as const
 
 const socialLinks = [
   { label: 'Facebook',    href: 'https://www.facebook.com/profile.php?id=61585128246041', icon: Facebook, color: '#1877F2' },
@@ -97,12 +98,32 @@ function NavItem({
 // passed as children so neither component duplicates this markup.
 
 function PanelContent({ closeMenu }: { closeMenu: () => void }) {
+  const t = useTranslations('Navigation')
+
+  const services = serviceHrefs.map(({ key, href }) => ({
+    href,
+    name: t(`services.${key}.name` as Parameters<typeof t>[0]),
+    desc: t(`services.${key}.desc` as Parameters<typeof t>[0]),
+  }))
+
+  const aboutItems = aboutHrefs.map(({ key, href }) => ({
+    href,
+    name: t(`about.${key}.name` as Parameters<typeof t>[0]),
+    desc: t(`about.${key}.desc` as Parameters<typeof t>[0]),
+  }))
+
+  const resourceItems = resourceHrefs.map(({ key, href }) => ({
+    href,
+    name: t(`resources.${key}.name` as Parameters<typeof t>[0]),
+    desc: t(`resources.${key}.desc` as Parameters<typeof t>[0]),
+  }))
+
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-10 py-8 pb-14">
 
       {/* ── SERVICES ── */}
       <section className="mb-10">
-        <PanelSection label="Services" />
+        <PanelSection label={t('sections.services')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1">
           {services.map((s) => (
             <NavItem key={s.href} {...s} onClick={closeMenu} />
@@ -112,32 +133,32 @@ function PanelContent({ closeMenu }: { closeMenu: () => void }) {
 
       {/* ── PORTFOLIO ── */}
       <section className="mb-10">
-        <PanelSection label="Portfolio" />
+        <PanelSection label={t('sections.portfolio')} />
         <Link
           href="/portfolio"
           onClick={closeMenu}
           className="group inline-flex items-center gap-2 no-underline text-gray-800 hover:text-[color:var(--color-primary,#1982c4)] transition-colors"
         >
-          <span className="text-sm font-medium">See the real problems we&apos;ve solved for real clients</span>
-          <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">{t('portfolioCta')}</span>
+          <ArrowRight size={15} className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform rtl:rotate-180" />
         </Link>
       </section>
 
       {/* ── ABOUT + RESOURCES ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
         <section>
-          <PanelSection label="About" />
+          <PanelSection label={t('sections.about')} />
           <div className="space-y-1">
-            {aboutLinks.map((l) => (
+            {aboutItems.map((l) => (
               <NavItem key={l.href} {...l} onClick={closeMenu} />
             ))}
           </div>
         </section>
 
         <section>
-          <PanelSection label="Resources" />
+          <PanelSection label={t('sections.resources')} />
           <div className="space-y-1">
-            {resourceLinks.map((l) => (
+            {resourceItems.map((l) => (
               <NavItem key={l.href} {...l} onClick={closeMenu} />
             ))}
           </div>
@@ -184,8 +205,8 @@ function PanelContent({ closeMenu }: { closeMenu: () => void }) {
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
           style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
         >
-          Get in touch
-          <ArrowRight size={14} />
+          {t('getInTouch')}
+          <ArrowRight size={14} className="rtl:rotate-180" />
         </Link>
       </div>
     </div>
@@ -223,6 +244,7 @@ function StaticMenuPanel({ closeMenu }: { closeMenu: () => void }) {
 // ── Main component ───────────────────────────────────────────────────────────
 
 export default function Header() {
+  const t = useTranslations('Navigation')
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled]  = useState(false)
@@ -342,7 +364,7 @@ export default function Header() {
                   <Menu size={20} />
                 </span>
               </span>
-              <span className="text-sm font-medium hidden sm:inline select-none">Menu</span>
+              <span className="text-sm font-medium hidden sm:inline select-none">{t('menu')}</span>
             </button>
           </div>
 
@@ -365,7 +387,7 @@ export default function Header() {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
               style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
             >
-              Contact
+              {t('contact')}
             </Link>
           </div>
         </div>

@@ -140,6 +140,39 @@
       "messageTooShort": "Message must be at least 10 characters long"
     }
   },
+  "Navigation": {
+    "menu": "Menu",
+    "contact": "Contact",
+    "getInTouch": "Get in touch",
+    "sections": {
+      "services": "Services",
+      "portfolio": "Portfolio",
+      "about": "About",
+      "resources": "Resources"
+    },
+    "portfolioCta": "See the real problems we've solved for real clients",
+    "services": {
+      "webDesign":          { "name": "Web Design",             "desc": "Custom, fast-loading websites built for African connectivity" },
+      "websiteDevelopment": { "name": "Website Development",    "desc": "Full-stack builds on Next.js, React, and WordPress" },
+      "erp":                { "name": "ERP Systems",            "desc": "Inventory, accounting, and operations in one system" },
+      "crm":                { "name": "CRM Solutions",          "desc": "Manage leads, clients, and relationships in one place" },
+      "mobileApps":         { "name": "Mobile App Development", "desc": "iOS and Android apps for your team or your customers" },
+      "hosting":            { "name": "Cloud & Web Hosting",    "desc": "Secure, reliable hosting built for East Africa" },
+      "cybersecurity":      { "name": "Cybersecurity",          "desc": "Protect your systems, your data, and your reputation" },
+      "ecommerce":          { "name": "E-commerce Development", "desc": "Sell online, with mobile money integration built in" },
+      "uiux":               { "name": "UI/UX Design",           "desc": "Interfaces people actually want to use" }
+    },
+    "about": {
+      "aboutUs":  { "name": "About Us",    "desc": "Learn about our story and mission" },
+      "team":     { "name": "Our Team",    "desc": "The people behind Blue Team Africa" },
+      "mission":  { "name": "Our Mission", "desc": "Our values and purpose" },
+      "process":  { "name": "Our Process", "desc": "How we deliver projects" }
+    },
+    "resources": {
+      "blog": { "name": "Blog", "desc": "Guides on web design, ERP, hosting, and more…" },
+      "faq":  { "name": "FAQ",  "desc": "Straight answers to the questions we get most" }
+    }
+  },
   "WebDesignPage": {
     "title": "Professional Web Design Services",
     "intro": "At Blue Team Africa, we build websites that do real work — generating leads, communicating mission, and converting visitors into customers or donors.",
