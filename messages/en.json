@@ -1,0 +1,175 @@
+{
+  "HomePage": {
+    "hero": {
+      "title": "High-Performance Web Design & Development for Businesses in Rwanda",
+      "subtitle": "Web design, mobile apps, cloud hosting, cybersecurity & full-stack enterprise solutions — built for East Africa and beyond.",
+      "ctaPrimary": "Start Your Project",
+      "ctaSecondary": "Explore Our Services"
+    },
+    "rotatingServices": {
+      "mobileApps": "Mobile Apps",
+      "stunningWebsites": "Stunning Websites",
+      "cloudHosting": "Cloud Hosting Solutions",
+      "cybersecurity": "Cybersecurity Defenses",
+      "aiChatbots": "AI-Powered Chatbots",
+      "enterpriseIT": "Enterprise IT Systems",
+      "erp": "ERP Systems",
+      "crm": "CRM Platforms",
+      "seo": "SEO Optimization",
+      "brandIdentity": "Brand Identity Design",
+      "socialMedia": "Social Media Growth",
+      "ecommerce": "E-Commerce Solutions",
+      "customSoftware": "Custom Business Software"
+    },
+    "csloSection": {
+      "title": "Real Impact: CSLO Sudan",
+      "body": "We rebuilt CSLO Sudan's entire digital infrastructure — ERP, CRM, donor reporting, and a mobile data collection app — after conflict disrupted their operations.",
+      "cta": "View Full Case Study"
+    },
+    "servicesSection": {
+      "title": "What We Build",
+      "subtitle": "End-to-end digital solutions for NGOs, businesses, and startups — from websites and apps to ERP systems and cybersecurity.",
+      "cta": "Learn More"
+    },
+    "rwandaSection": {
+      "title": "Web Design & Development in Rwanda",
+      "subtitle": "Based in Kigali, we build fast, SEO-optimized websites and digital infrastructure for businesses and NGOs operating across Rwanda and the Great Lakes region.",
+      "cta": "Explore Rwanda Services"
+    },
+    "whyChoose": {
+      "title": "Why Choose Blue Team Africa?",
+      "securityFirst": "Security-First",
+      "securityFirstBody": "Every solution is built with security at its core — from secure coding practices to cybersecurity audits.",
+      "builtForAfrica": "Built for Africa",
+      "builtForAfricaBody": "We understand the infrastructure realities of East Africa — variable connectivity, mobile-first users, and regional payment systems.",
+      "ngoExpertise": "NGO Expertise",
+      "ngoExpertiseBody": "We've built systems for humanitarian organizations operating in conflict zones — we understand the stakes."
+    },
+    "ngoSolutions": {
+      "title": "Digital Solutions for NGOs",
+      "subtitle": "From beneficiary management to donor reporting, we build the systems that power humanitarian operations in East Africa.",
+      "cta": "Request an NGO System Demo"
+    },
+    "process": {
+      "title": "How We Work",
+      "step1Title": "Discovery",
+      "step1Body": "We learn your goals, constraints, and context before writing a single line of code.",
+      "step2Title": "Design",
+      "step2Body": "Wireframes and prototypes first — visual polish after structure is confirmed.",
+      "step3Title": "Development",
+      "step3Body": "Clean, maintainable code built on proven frameworks.",
+      "step4Title": "Testing",
+      "step4Body": "Cross-device, cross-browser, and performance testing before any launch.",
+      "step5Title": "Support",
+      "step5Body": "Ongoing maintenance, monitoring, and improvements after delivery."
+    },
+    "portfolioPreview": {
+      "title": "Our Work",
+      "cta": "View All Case Studies"
+    },
+    "faqPreview": {
+      "title": "Common Questions",
+      "cta": "View All FAQs"
+    },
+    "bottomCTA": {
+      "title": "Ready to start your project?",
+      "subtitle": "Let's design your next digital solution — secure, fast, and built to scale.",
+      "ctaPrimary": "Get a Free Quote",
+      "ctaWhatsApp": "Contact Us on WhatsApp"
+    }
+  },
+  "ContactPage": {
+    "title": "Contact Us",
+    "subtitle": "Get in Touch with East Africa's Leading Digital Solutions Provider",
+    "formSectionTitle": "Send Us a Message",
+    "whyChooseTitle": "Why Choose Blue Team Africa",
+    "regionalExpertise": "Regional Expertise",
+    "regionalExpertiseBody": "NGO Specialization",
+    "responsiveTime": "Comprehensive Solutions",
+    "responsiveTimeBody": "Security-First Approach",
+    "provenResults": "Responsive Support",
+    "provenResultsBody": "Contact Information",
+    "supportTitle": "Quick Contact",
+    "supportBody": "Chat with us instantly",
+    "directContact": "Send us a message",
+    "whatsapp": "Call us directly",
+    "phone": "24/7 critical support",
+    "email": "Office Information",
+    "office": "Location: Kigali, Rwanda",
+    "officeAddress": "Serving: Uganda, Sudan, Kenya, Rwanda",
+    "hours": "Monday - Friday: 9:00 AM - 6:00 PM",
+    "hoursDetail": "Emergency NGO Support: 24/7",
+    "followUs": "Explore Our Services",
+    "bottomTitle": "Ready to Start Your Digital Transformation?",
+    "bottomSubtitle": "Chat on WhatsApp",
+    "bottomCta": "Learn More About Us",
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "emailAddress": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "phoneNumber": "Phone Number",
+      "phonePlaceholder": "+256 700 000 000",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectWebDesign": "Web Design Inquiry",
+      "subjectWebDev": "Website Development",
+      "subjectCyber": "Cybersecurity Services",
+      "subjectERP": "ERP Solutions",
+      "subjectCRM": "CRM Systems",
+      "subjectMobile": "Mobile App Development",
+      "subjectHosting": "Hosting & Maintenance",
+      "subjectNGO": "NGO Tech Support",
+      "subjectOther": "Other Inquiry",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project requirements...",
+      "submitButton": "Send Message",
+      "submitting": "Sending...",
+      "successTitle": "Message Sent!",
+      "successBody": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+      "errorBody": "Oops! Something went wrong. Please try again or contact us directly via WhatsApp."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameTooShort": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "phoneRequired": "Phone number is required",
+      "subjectRequired": "Subject is required",
+      "messageRequired": "Message is required",
+      "messageTooShort": "Message must be at least 10 characters long"
+    }
+  },
+  "WebDesignPage": {
+    "title": "Professional Web Design Services",
+    "intro": "At Blue Team Africa, we build websites that do real work — generating leads, communicating mission, and converting visitors into customers or donors.",
+    "responsiveDesign": "Responsive Design",
+    "responsiveDesignBody": "Your website looks and functions correctly on every device, from low-end Android phones to desktop browsers.",
+    "fastPerformance": "Fast Performance",
+    "fastPerformanceBody": "Server-rendered pages and optimized assets mean your site loads fast on variable connections.",
+    "seoReady": "SEO Optimized",
+    "seoReadyBody": "Structured data, semantic HTML, canonical URLs, and correct sitemap configuration are included in every build.",
+    "customDesign": "Types of Websites We Build",
+    "customDesignBody": "Corporate & Marketing Websites",
+    "secureHosting": "NGO & Humanitarian Organization Sites",
+    "secureHostingBody": "Landing Pages",
+    "cmsIntegration": "Portfolio & Case Study Sites",
+    "cmsIntegrationBody": "Content & Information Sites",
+    "servicesTitle": "Our Technology Stack",
+    "corporateSites": "How We Deliver a Web Design Project",
+    "corporateSitesBody": "Discovery",
+    "ngoWebsites": "Design",
+    "ngoWebsitesBody": "Development",
+    "ecommerceSites": "QA & Testing",
+    "ecommerceSitesBody": "Launch & Handover",
+    "portfolioSites": "Industries We Serve Across East Africa",
+    "portfolioSitesBody": "NGOs & Humanitarian Sector",
+    "rwandaTitle": "Startups & Growing Businesses",
+    "rwandaBody": "Professional Services Firms",
+    "industriesTitle": "Educational & Training Organizations",
+    "ngos": "View full portfolio",
+    "government": "Ready to Get Started?",
+    "education": "Let's discuss your project and get a free quote today.",
+    "fintech": ""
+  }
+}

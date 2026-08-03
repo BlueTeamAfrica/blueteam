@@ -55,3 +55,4 @@ blueteam-portal/app.rtf
 !tsconfig.json
 !next.config.js
 !vercel.json
+!messages/*.json
