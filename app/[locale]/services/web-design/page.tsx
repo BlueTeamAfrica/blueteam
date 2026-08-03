@@ -11,6 +11,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const webDesignFAQs: FAQ[] = [
   {
@@ -74,7 +75,9 @@ export async function generateMetadata({
   }
 }
 
-export default function WebDesignPage() {
+export default async function WebDesignPage() {
+  const t = await getTranslations('WebDesignPage')
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -85,7 +88,7 @@ export default function WebDesignPage() {
       <WebDesignFAQSchema />
       <ServiceSchema serviceName="Web Design" serviceSlug="web-design" />
       <InteriorHeader
-        title="Professional Web Design Services"
+        title={t('title')}
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -120,10 +123,7 @@ export default function WebDesignPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-3xl mx-auto px-6">
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  At Blue Team Africa, we build websites that do real work — generating leads, communicating
-                  mission, and converting visitors into customers or donors. From responsive design to
-                  full-stack delivery, we build digital experiences that perform across every device and
-                  every connection speed common in East Africa.
+                  {t('intro')}
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
                   For businesses in Rwanda looking for local web design expertise, visit our{' '}
@@ -147,24 +147,21 @@ export default function WebDesignPage() {
               <div className="max-w-6xl mx-auto px-6">
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Responsive Design</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('responsiveDesign')}</h3>
                     <p className="text-gray-600">
-                      Your website looks and functions correctly on every device, from low-end Android
-                      phones to desktop browsers — because that is the real range your visitors use.
+                      {t('responsiveDesignBody')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Fast Performance</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('fastPerformance')}</h3>
                     <p className="text-gray-600">
-                      Server-rendered pages and optimized assets mean your site loads fast on variable
-                      connections — not just on broadband in a city centre.
+                      {t('fastPerformanceBody')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">SEO Optimized</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('seoReady')}</h3>
                     <p className="text-gray-600">
-                      Structured data, semantic HTML, canonical URLs, and correct sitemap configuration
-                      are included in every build — not added later as an afterthought.
+                      {t('seoReadyBody')}
                     </p>
                   </div>
                 </div>
@@ -175,11 +172,11 @@ export default function WebDesignPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  Types of Websites We Build
+                  {t('customDesign')}
                 </h2>
                 <div className="space-y-8">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Corporate &amp; Marketing Websites</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('customDesignBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       The primary digital presence for a business — structured to communicate what you do,
                       who you serve, and why a prospect should contact you. We build sites that move visitors
@@ -189,7 +186,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">NGO &amp; Humanitarian Organization Sites</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('secureHosting')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       We have built digital platforms for NGOs operating across Sudan, Uganda, Kenya, and
                       Rwanda — organizations with specific requirements: donor-facing impact pages,
@@ -200,7 +197,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Landing Pages</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('secureHostingBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       A single-purpose page built around one conversion goal — a service inquiry, a campaign
                       sign-up, an event registration. We design landing pages that strip out distraction and
@@ -209,7 +206,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Portfolio &amp; Case Study Sites</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('cmsIntegration')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       For agencies, consultancies, and professional services firms that lead with their track
                       record. We structure these to let the work speak — clean presentation, fast image
@@ -217,7 +214,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Content &amp; Information Sites</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('cmsIntegrationBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Organizations that need to publish depth — program guides, resource libraries, policy
                       documents, training materials. We build these with a content architecture that scales:
@@ -233,7 +230,7 @@ export default function WebDesignPage() {
             <SectionWrapper bgColor="light">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-                  Our Technology Stack
+                  {t('servicesTitle')}
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-8">
                   We build on <strong>Next.js</strong> and <strong>React</strong>, deployed on globally
@@ -263,7 +260,7 @@ export default function WebDesignPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">No Vendor Lock-In</h3>
                     <p className="text-gray-700 leading-relaxed">
                       When your site is built on Wix, Squarespace, or a managed WordPress service, you are
-                      renting space in someone else's system. You cannot export the code, cannot move the
+                      renting space in someone else&apos;s system. You cannot export the code, cannot move the
                       infrastructure, and cannot change the economics. We hand over a full codebase — in a
                       standard open-source framework — that you own outright and can host anywhere.
                     </p>
@@ -285,11 +282,11 @@ export default function WebDesignPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  How We Deliver a Web Design Project
+                  {t('corporateSites')}
                 </h2>
                 <div className="space-y-6">
                   <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Discovery</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('corporateSitesBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       We start by understanding your organization, your users, and your goals — not with a
                       generic brief template, but with targeted questions about what success looks like and
@@ -298,7 +295,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Design</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ngoWebsites')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Wireframes come before visuals. We establish layout, hierarchy, and content flow in
                       low-fidelity first so that feedback is about structure and decisions — not colour
@@ -307,7 +304,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Development</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ngoWebsitesBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       We build in Next.js/React with a component-based approach: every repeating element is
                       built once and reused, so changes propagate consistently and the codebase stays
@@ -316,7 +313,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">QA &amp; Testing</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ecommerceSites')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Before delivery: cross-browser testing (Chrome, Firefox, Safari, Edge), mobile testing
                       at multiple screen sizes including low-end Android devices common in East Africa,
@@ -326,7 +323,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Launch &amp; Handover</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ecommerceSitesBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       We manage DNS cutover, SSL provisioning, and the go-live checklist. Handover includes
                       a documented site structure, credentials inventory, and a short recorded walkthrough so
@@ -342,11 +339,11 @@ export default function WebDesignPage() {
             <SectionWrapper bgColor="light">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  Industries We Serve Across East Africa
+                  {t('portfolioSites')}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">NGOs &amp; Humanitarian Sector</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('portfolioSitesBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       NGOs operating in Sudan, Uganda, Kenya, and Rwanda represent a significant part of our
                       client base. We understand the reporting cadences, donor communication requirements,
@@ -356,7 +353,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Startups &amp; Growing Businesses</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('rwandaTitle')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Early-stage companies that need a professional presence fast, without paying enterprise
                       prices or inheriting technical debt. We scope tightly for launch, build for future
@@ -365,7 +362,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Professional Services Firms</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('rwandaBody')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Law firms, consulting practices, accountancies, healthcare providers. Organizations
                       where trust is the product and the website is the first signal of credibility. We
@@ -374,7 +371,7 @@ export default function WebDesignPage() {
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Educational &amp; Training Organizations</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('industriesTitle')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Schools, universities, and vocational training providers that need to communicate
                       programs clearly to multiple audiences — students, parents, donors, and partners. We
@@ -423,7 +420,7 @@ export default function WebDesignPage() {
                   </div>
                 </div>
                 <Link href="/portfolio" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-semibold hover:underline">
-                  View full portfolio
+                  {t('ngos')}
                   <ArrowRight size={16} />
                 </Link>
               </div>
@@ -455,8 +452,8 @@ export default function WebDesignPage() {
             {/* CTA Strip */}
             <section className="py-12 bg-primary text-white">
               <div className="max-w-4xl mx-auto px-6 text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">Ready to Get Started?</h2>
-                <p className="text-primary-100 mb-6">Let&apos;s discuss your project and get a free quote today.</p>
+                <h2 className="text-2xl font-heading font-bold mb-4">{t('government')}</h2>
+                <p className="text-primary-100 mb-6">{t('education')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"

@@ -8,6 +8,7 @@ import ContactPageSchema from '@/components/ContactPageSchema'
 import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import ContactForm from '@/components/ContactForm'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Blue Team Africa - Web Design, Cybersecurity & ERP Solutions',
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
   ],
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations('ContactPage')
+
   return (
     <>
       {/* JSON-LD Schemas */}
@@ -35,7 +38,7 @@ export default function ContactPage() {
 
       <main className="bg-white text-gray-800">
         <InteriorHeader
-          title="Contact Us"
+          title={t('title')}
           breadcrumb={[
             { label: 'Home', href: '/' },
             { label: 'Contact' }
@@ -48,30 +51,30 @@ export default function ContactPage() {
             {/* Left Column: Text Content */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                Get in Touch with East Africa's Leading Digital Solutions Provider
+                {t('subtitle')}
               </h2>
-              
+
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                  Blue Team Africa specializes in <Link href="/services/web-design" className="text-primary hover:underline font-semibold">web design Uganda</Link>, 
-                  comprehensive <Link href="/services/website-development" className="text-primary hover:underline font-semibold">website development East Africa</Link>, 
-                  and enterprise <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">cybersecurity solutions</Link> for NGOs, 
-                  businesses, and organizations across Uganda, Sudan, Kenya, and Rwanda. Whether you need <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP solutions</Link>, 
+                  Blue Team Africa specializes in <Link href="/services/web-design" className="text-primary hover:underline font-semibold">web design Uganda</Link>,
+                  comprehensive <Link href="/services/website-development" className="text-primary hover:underline font-semibold">website development East Africa</Link>,
+                  and enterprise <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">cybersecurity solutions</Link> for NGOs,
+                  businesses, and organizations across Uganda, Sudan, Kenya, and Rwanda. Whether you need <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP solutions</Link>,
                   SEO optimization, or specialized <strong>Sudan NGO tech support</strong>, our team is ready to help you transform your digital infrastructure.
                 </p>
 
                 <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                  We understand the unique challenges faced by organizations operating in East Africa and conflict-affected regions. 
-                  Our expertise in building reliable systems for humanitarian organizations, combined with our technical excellence in 
-                  <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold"> mobile app development</Link>, 
-                  <Link href="/services/hosting" className="text-primary hover:underline font-semibold"> secure hosting</Link>, and 
-                  <Link href="/services/ecommerce" className="text-primary hover:underline font-semibold"> e-commerce platforms</Link>, 
+                  We understand the unique challenges faced by organizations operating in East Africa and conflict-affected regions.
+                  Our expertise in building reliable systems for humanitarian organizations, combined with our technical excellence in
+                  <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold"> mobile app development</Link>,
+                  <Link href="/services/hosting" className="text-primary hover:underline font-semibold"> secure hosting</Link>, and
+                  <Link href="/services/ecommerce" className="text-primary hover:underline font-semibold"> e-commerce platforms</Link>,
                   makes us a trusted partner for your digital transformation journey.
                 </p>
 
                 <p className="text-lg leading-relaxed mb-6 text-gray-700">
-                  Reach out to us today to discuss your project requirements, request a consultation, or learn more about how we can 
-                  support your organization's technology needs. Our team of <strong>SEO experts</strong> and digital solution specialists 
+                  Reach out to us today to discuss your project requirements, request a consultation, or learn more about how we can
+                  support your organization&apos;s technology needs. Our team of <strong>SEO experts</strong> and digital solution specialists
                   is available to assist you with everything from initial planning to ongoing maintenance and support.
                 </p>
               </div>
@@ -91,7 +94,7 @@ export default function ContactPage() {
             {/* Right Column: Contact Form */}
             <div className="lg:sticky lg:top-24">
               <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900">Send Us a Message</h3>
+                <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('formSectionTitle')}</h3>
                 <ContactForm />
               </div>
             </div>
@@ -102,14 +105,14 @@ export default function ContactPage() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-gray-900">
-              Why Choose Blue Team Africa
+              {t('whyChooseTitle')}
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="flex items-start gap-4">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">Regional Expertise</h3>
+                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('regionalExpertise')}</h3>
                   <p className="text-gray-700">Deep understanding of East African markets, infrastructure challenges, and NGO operational needs in Uganda, Sudan, Kenya, and Rwanda.</p>
                 </div>
               </div>
@@ -117,7 +120,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">NGO Specialization</h3>
+                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('regionalExpertiseBody')}</h3>
                   <p className="text-gray-700">Proven experience building ERP systems, mobile data collection apps, and secure infrastructure for humanitarian organizations working in challenging environments.</p>
                 </div>
               </div>
@@ -125,7 +128,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">Comprehensive Solutions</h3>
+                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('responsiveTime')}</h3>
                   <p className="text-gray-700">Full-service digital agency offering web design, development, cybersecurity, ERP/CRM systems, mobile apps, and ongoing support — all under one roof.</p>
                 </div>
               </div>
@@ -133,7 +136,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">Security-First Approach</h3>
+                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('responsiveTimeBody')}</h3>
                   <p className="text-gray-700">Enterprise-grade cybersecurity practices, secure hosting, data encryption, and compliance-focused solutions tailored for sensitive NGO operations.</p>
                 </div>
               </div>
@@ -141,7 +144,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4 md:col-span-2">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">Responsive Support</h3>
+                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('provenResults')}</h3>
                   <p className="text-gray-700">Fast response times, emergency NGO support line, and dedicated account management to ensure your technology needs are met promptly and efficiently.</p>
                 </div>
               </div>
@@ -153,7 +156,7 @@ export default function ContactPage() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-gray-900">
-              Contact Information
+              {t('provenResultsBody')}
             </h2>
 
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -161,8 +164,8 @@ export default function ContactPage() {
               <div className="space-y-8">
                 {/* Quick Contact Options */}
                 <div className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900">Quick Contact</h3>
-                  
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('supportTitle')}</h3>
+
                   <div className="space-y-6">
                     {/* WhatsApp */}
                     <div className="flex items-start gap-4">
@@ -171,7 +174,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">WhatsApp</h4>
-                        <p className="text-gray-600 mb-2">Chat with us instantly</p>
+                        <p className="text-gray-600 mb-2">{t('supportBody')}</p>
                         <a
                           href="https://wa.me/250798973375"
                           target="_blank"
@@ -190,7 +193,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">Email</h4>
-                        <p className="text-gray-600 mb-2">Send us a message</p>
+                        <p className="text-gray-600 mb-2">{t('directContact')}</p>
                         <a
                           href="mailto:contact@blueteamafrica.com"
                           className="text-primary hover:underline font-medium"
@@ -207,7 +210,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">Phone</h4>
-                        <p className="text-gray-600 mb-2">Call us directly</p>
+                        <p className="text-gray-600 mb-2">{t('whatsapp')}</p>
                         <a
                           href="tel:+250798973375"
                           className="text-primary hover:underline font-medium"
@@ -224,7 +227,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">Emergency NGO Support</h4>
-                        <p className="text-gray-600 mb-2">24/7 critical support</p>
+                        <p className="text-gray-600 mb-2">{t('phone')}</p>
                         <a
                           href="https://wa.me/250798973375?text=Emergency%20NGO%20Support%20Request"
                           target="_blank"
@@ -240,24 +243,24 @@ export default function ContactPage() {
 
                 {/* Office Info */}
                 <div className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900">Office Information</h3>
-                  
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('email')}</h3>
+
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
                       <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
-                        <p className="text-gray-600">Kigali, Rwanda</p>
-                        <p className="text-gray-600">Serving: Uganda, Sudan, Kenya, Rwanda</p>
+                        <p className="text-gray-600">{t('office')}</p>
+                        <p className="text-gray-600">{t('officeAddress')}</p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-4">
                       <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-            <div>
+                      <div>
                         <h4 className="font-semibold text-gray-900 mb-1">Business Hours</h4>
-                        <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                        <p className="text-gray-600">Emergency NGO Support: 24/7</p>
+                        <p className="text-gray-600">{t('hours')}</p>
+                        <p className="text-gray-600">{t('hoursDetail')}</p>
                       </div>
                     </div>
                   </div>
@@ -294,9 +297,9 @@ export default function ContactPage() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-900">
-              Explore Our Services
+              {t('followUs')}
             </h2>
-            
+
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div>
                 <h3 className="font-semibold text-xl mb-4 text-gray-900">Digital Services</h3>
@@ -335,7 +338,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">Security & Support</h3>
+                <h3 className="font-semibold text-xl mb-4 text-gray-900">Security &amp; Support</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/services/cybersecurity" className="text-primary hover:underline">Cybersecurity Solutions</Link>
@@ -344,20 +347,20 @@ export default function ContactPage() {
                     <Link href="/services/hosting" className="text-primary hover:underline">Website Hosting</Link>
                   </li>
                   <li>
-                    <Link href="/services/maintenance" className="text-primary hover:underline">Maintenance & Support</Link>
+                    <Link href="/services/maintenance" className="text-primary hover:underline">Maintenance &amp; Support</Link>
                   </li>
                   <li>
                     <Link href="/about" className="text-primary hover:underline">About Us</Link>
                   </li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-          <p className="text-gray-700 leading-relaxed">
-            For organizations in Rwanda seeking local digital solutions, we provide specialized <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">website design services in Rwanda</Link> and custom <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services for businesses and NGOs operating in Rwanda</Link>. Contact us to discuss your project requirements.
-          </p>
-        </div>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+              <p className="text-gray-700 leading-relaxed">
+                For organizations in Rwanda seeking local digital solutions, we provide specialized <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">website design services in Rwanda</Link> and custom <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services for businesses and NGOs operating in Rwanda</Link>. Contact us to discuss your project requirements.
+              </p>
+            </div>
 
             <div className="text-center">
               <Link
@@ -374,10 +377,10 @@ export default function ContactPage() {
         {/* CTA Section */}
         <section className="py-20 bg-[#F5F7FA]/80 backdrop-blur-md border-b border-gray-200 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-            Ready to Start Your Digital Transformation?
+            {t('bottomTitle')}
           </h2>
           <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto px-6 text-gray-700">
-            Let's discuss how we can help your organization achieve its technology goals with reliable, secure, and scalable solutions.
+            Let&apos;s discuss how we can help your organization achieve its technology goals with reliable, secure, and scalable solutions.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -387,20 +390,19 @@ export default function ContactPage() {
               className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('bottomSubtitle')}
             </a>
             <Link
               href="/about"
               className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition"
             >
-              Learn More About Us
+              {t('bottomCta')}
               <ArrowRight size={18} />
             </Link>
-      </div>
+          </div>
         </section>
 
       </main>
     </>
   )
 }
-

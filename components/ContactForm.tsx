@@ -3,6 +3,7 @@
 import { useState, FormEvent, useRef } from 'react'
 import { Send, Loader2, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 interface FormData {
   name: string
@@ -24,7 +25,7 @@ interface FormErrors {
 const formatPhoneNumber = (value: string): string => {
   // Remove all non-digit characters
   const digits = value.replace(/\D/g, '')
-  
+
   // Format based on length
   if (digits.length <= 3) return digits
   if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`
@@ -43,6 +44,8 @@ const sanitizeInput = (input: string): string => {
 }
 
 export default function ContactForm() {
+  const t = useTranslations('ContactPage')
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -62,9 +65,9 @@ export default function ContactForm() {
     // Name validation
     const nameTrimmed = formData.name.trim()
     if (!nameTrimmed) {
-      newErrors.name = 'Name is required'
+      newErrors.name = t('validation.nameRequired')
     } else if (nameTrimmed.length < 2) {
-      newErrors.name = 'Name must be at least 2 characters'
+      newErrors.name = t('validation.nameTooShort')
     } else if (nameTrimmed.length > 100) {
       newErrors.name = 'Name must be less than 100 characters'
     }
@@ -72,9 +75,9 @@ export default function ContactForm() {
     // Email validation
     const emailTrimmed = formData.email.trim()
     if (!emailTrimmed) {
-      newErrors.email = 'Email is required'
+      newErrors.email = t('validation.emailRequired')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
-      newErrors.email = 'Please enter a valid email address'
+      newErrors.email = t('validation.emailInvalid')
     } else if (emailTrimmed.length > 255) {
       newErrors.email = 'Email must be less than 255 characters'
     }
@@ -82,7 +85,7 @@ export default function ContactForm() {
     // Phone validation
     const phoneDigits = formData.phone.replace(/\D/g, '')
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required'
+      newErrors.phone = t('validation.phoneRequired')
     } else if (phoneDigits.length < 9) {
       newErrors.phone = 'Phone number must be at least 9 digits'
     } else if (phoneDigits.length > 15) {
@@ -91,15 +94,15 @@ export default function ContactForm() {
 
     // Subject validation
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required'
+      newErrors.subject = t('validation.subjectRequired')
     }
 
     // Message validation
     const messageTrimmed = formData.message.trim()
     if (!messageTrimmed) {
-      newErrors.message = 'Message is required'
+      newErrors.message = t('validation.messageRequired')
     } else if (messageTrimmed.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long'
+      newErrors.message = t('validation.messageTooShort')
     } else if (messageTrimmed.length > 2000) {
       newErrors.message = 'Message must be less than 2000 characters'
     }
@@ -164,7 +167,7 @@ export default function ContactForm() {
         setTimeout(() => setSubmitStatus('idle'), 5000)
       } else {
         // Try to get error details from response
-        let errorMessage = 'Something went wrong. Please try again or contact us directly via WhatsApp.'
+        let errorMessage = t('form.errorBody')
         try {
           const errorData = await response.json()
           if (errorData.error) {
@@ -178,7 +181,7 @@ export default function ContactForm() {
           // If response is not JSON, use default message
           console.error('Error parsing error response:', parseError)
         }
-        
+
         setSubmitStatus('error')
         // Focus on status message for screen readers
         if (statusMessageRef.current) {
@@ -201,14 +204,14 @@ export default function ContactForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     let processedValue = value
-    
+
     // Format phone number as user types (only for phone field)
     if (name === 'phone') {
       processedValue = formatPhoneNumber(value)
     }
     // Don't sanitize other fields on change - allow normal typing including spaces
     // Sanitization will happen on submit
-    
+
     setFormData((prev) => ({ ...prev, [name]: processedValue }))
     // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
@@ -227,7 +230,7 @@ export default function ContactForm() {
       {/* Name Field */}
       <div>
         <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-          Full Name <span className="text-red-500" aria-label="required">*</span>
+          {t('form.fullName')} <span className="text-red-500" aria-label="required">*</span>
         </label>
         <input
           type="text"
@@ -243,7 +246,7 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.name ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
-          placeholder="Enter your full name"
+          placeholder={t('form.fullNamePlaceholder')}
         />
         {errors.name && (
           <p id="name-error" className="mt-1 text-sm text-red-500" role="alert">
@@ -255,7 +258,7 @@ export default function ContactForm() {
       {/* Email Field */}
       <div>
         <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-          Email Address <span className="text-red-500" aria-label="required">*</span>
+          {t('form.emailAddress')} <span className="text-red-500" aria-label="required">*</span>
         </label>
         <input
           type="email"
@@ -271,7 +274,7 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.email ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
-          placeholder="your.email@example.com"
+          placeholder={t('form.emailPlaceholder')}
         />
         {errors.email && (
           <p id="email-error" className="mt-1 text-sm text-red-500" role="alert">
@@ -283,7 +286,7 @@ export default function ContactForm() {
       {/* Phone Field */}
       <div>
         <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-          Phone Number <span className="text-red-500" aria-label="required">*</span>
+          {t('form.phoneNumber')} <span className="text-red-500" aria-label="required">*</span>
         </label>
         <input
           type="tel"
@@ -299,7 +302,7 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
             errors.phone ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
-          placeholder="+256 700 000 000"
+          placeholder={t('form.phonePlaceholder')}
         />
         {errors.phone && (
           <p id="phone-error" className="mt-1 text-sm text-red-500" role="alert">
@@ -311,7 +314,7 @@ export default function ContactForm() {
       {/* Subject Field */}
       <div>
         <label htmlFor="subject" className="block text-sm font-semibold text-gray-900 mb-2">
-          Subject <span className="text-red-500" aria-label="required">*</span>
+          {t('form.subject')} <span className="text-red-500" aria-label="required">*</span>
         </label>
         <select
           id="subject"
@@ -325,16 +328,16 @@ export default function ContactForm() {
             errors.subject ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
         >
-          <option value="">Select a subject</option>
-          <option value="web-design">Web Design Inquiry</option>
-          <option value="website-development">Website Development</option>
-          <option value="cybersecurity">Cybersecurity Services</option>
-          <option value="erp-solutions">ERP Solutions</option>
-          <option value="crm-systems">CRM Systems</option>
-          <option value="mobile-apps">Mobile App Development</option>
-          <option value="hosting">Hosting & Maintenance</option>
-          <option value="ngo-support">NGO Tech Support</option>
-          <option value="other">Other Inquiry</option>
+          <option value="">{t('form.subjectPlaceholder')}</option>
+          <option value="web-design">{t('form.subjectWebDesign')}</option>
+          <option value="website-development">{t('form.subjectWebDev')}</option>
+          <option value="cybersecurity">{t('form.subjectCyber')}</option>
+          <option value="erp-solutions">{t('form.subjectERP')}</option>
+          <option value="crm-systems">{t('form.subjectCRM')}</option>
+          <option value="mobile-apps">{t('form.subjectMobile')}</option>
+          <option value="hosting">{t('form.subjectHosting')}</option>
+          <option value="ngo-support">{t('form.subjectNGO')}</option>
+          <option value="other">{t('form.subjectOther')}</option>
         </select>
         {errors.subject && (
           <p id="subject-error" className="mt-1 text-sm text-red-500" role="alert">
@@ -346,7 +349,7 @@ export default function ContactForm() {
       {/* Message Field */}
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-          Message <span className="text-red-500" aria-label="required">*</span>
+          {t('form.message')} <span className="text-red-500" aria-label="required">*</span>
         </label>
         <textarea
           id="message"
@@ -361,7 +364,7 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition resize-none ${
             errors.message ? 'border-red-500' : 'border-gray-300 focus:border-primary'
           }`}
-          placeholder="Tell us about your project requirements..."
+          placeholder={t('form.messagePlaceholder')}
         />
         <div className="mt-1 flex justify-between items-center">
           {errors.message ? (
@@ -389,17 +392,17 @@ export default function ContactForm() {
         {isSubmitting ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin" />
-            Sending...
+            {t('form.submitting')}
           </>
         ) : submitStatus === 'success' ? (
           <>
             <CheckCircle2 className="w-5 h-5" />
-            Message Sent!
+            {t('form.successTitle')}
           </>
         ) : (
           <>
             <Send className="w-5 h-5" />
-            Send Message
+            {t('form.submitButton')}
           </>
         )}
       </motion.button>
@@ -424,7 +427,7 @@ export default function ContactForm() {
           aria-live="polite"
           className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm"
         >
-          <strong>Success!</strong> Thank you! Your message has been sent successfully. We'll get back to you soon.
+          {t('form.successBody')}
         </motion.div>
       )}
 
@@ -436,10 +439,9 @@ export default function ContactForm() {
           aria-live="assertive"
           className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm"
         >
-          <strong>Error!</strong> Oops! Something went wrong. Please try again or contact us directly via WhatsApp.
+          {t('form.errorBody')}
         </motion.div>
       )}
     </motion.form>
   )
 }
-
