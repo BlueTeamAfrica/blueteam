@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Phone, Mail, MapPin, Facebook, X, Linkedin, Instagram, Youtube } from 'lucide-react'
+import { Ltr } from '@/components/Ltr'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -168,21 +169,21 @@ export default function Footer() {
                 className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm group"
               >
                 <Phone className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
-                <span>+254 119 402 737</span>
+                <Ltr>+254 119 402 737</Ltr>
               </a>
               <a
                 href="tel:+250798973375"
                 className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm group"
               >
                 <Phone className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
-                <span>+250 798 973 375</span>
+                <Ltr>+250 798 973 375</Ltr>
               </a>
               <a
                 href="mailto:contact@blueteamafrica.com"
                 className="flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm group"
               >
                 <Mail className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
-                <span className="break-all">contact@blueteamafrica.com</span>
+                <span className="break-all"><Ltr>contact@blueteamafrica.com</Ltr></span>
               </a>
               <a
                 href="https://wa.me/254119402737"

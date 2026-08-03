@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
+import { Ltr } from '@/components/Ltr'
 import dynamic from 'next/dynamic'
 
 // Deferred: framer-motion (116K) is split into its own chunk and fetched after
@@ -288,14 +289,14 @@ export default function Header() {
           {/* Contact info — right */}
           <div className="flex items-center gap-2 md:gap-3 text-xs md:text-sm flex-wrap justify-end">
             <a href="tel:+254119402737" className="font-semibold no-underline whitespace-nowrap hidden md:inline text-white hover:opacity-80 transition-opacity">
-              +254 119 402 737
+              <Ltr>+254 119 402 737</Ltr>
             </a>
             <span className="text-white/60 hidden sm:inline">|</span>
             <a href="tel:+250798973375" className="font-semibold no-underline whitespace-nowrap text-white hover:opacity-80 transition-opacity">
-              +250 798 973 375
+              <Ltr>+250 798 973 375</Ltr>
             </a>
             <a href="mailto:contact@blueteamafrica.com" className="hidden lg:inline-block font-semibold no-underline ml-2 text-white hover:opacity-80 transition-opacity">
-              contact@blueteamafrica.com
+              <Ltr>contact@blueteamafrica.com</Ltr>
             </a>
           </div>
         </div>

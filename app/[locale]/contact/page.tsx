@@ -9,6 +9,7 @@ import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import ContactForm from '@/components/ContactForm'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { Ltr } from '@/components/Ltr'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Blue Team Africa - Web Design, Cybersecurity & ERP Solutions',
@@ -181,7 +182,7 @@ export default async function ContactPage() {
                           rel="noopener noreferrer"
                           className="text-primary hover:underline font-medium"
                         >
-                          +250 798 973 375 →
+                          <Ltr>+250 798 973 375 →</Ltr>
                         </a>
                       </div>
                     </div>
@@ -198,7 +199,7 @@ export default async function ContactPage() {
                           href="mailto:contact@blueteamafrica.com"
                           className="text-primary hover:underline font-medium"
                         >
-                          contact@blueteamafrica.com →
+                          <Ltr>contact@blueteamafrica.com →</Ltr>
                         </a>
                       </div>
                     </div>
@@ -215,7 +216,7 @@ export default async function ContactPage() {
                           href="tel:+250798973375"
                           className="text-primary hover:underline font-medium"
                         >
-                          +250 798 973 375 →
+                          <Ltr>+250 798 973 375 →</Ltr>
                         </a>
                       </div>
                     </div>
