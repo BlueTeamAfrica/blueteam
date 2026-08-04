@@ -176,10 +176,10 @@ export default async function Home() {
         <section id="services" data-our-services="top" className="py-20 bg-gray-50" aria-labelledby="services-heading">
         <div className="max-w-6xl mx-auto px-6">
             <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-4">
-              Our Core Digital Services
+              {t('servicesSection.sectionTitle')}
             </h2>
             <p className="text-center text-gray-600 max-w-2xl mx-auto mb-4">
-              We combine design, engineering, and cybersecurity to deliver complete digital solutions.
+              {t('servicesSection.sectionSubtitle')}
             </p>
             <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
               Learn more about <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">how much website design costs in Rwanda</Link> in our comprehensive pricing guide.
@@ -198,12 +198,12 @@ export default async function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Web Design (SEO-Ready Websites)</h3>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.webDesign.title')}</h3>
                 <p className="mt-2 text-gray-600">
-                  Modern, mobile-first website design optimized for speed, ranking, and user experience.
+                  {t('servicesSection.cards.webDesign.desc')}
                 </p>
-                <Link href="/services/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')} →
+                <Link href="/services/web-design" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
 
@@ -219,12 +219,12 @@ export default async function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Website Development (Fast, Secure, Custom)</h3>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.webDev.title')}</h3>
                 <p className="mt-2 text-gray-600">
-                  Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow.
+                  {t('servicesSection.cards.webDev.desc')}
                 </p>
-                <Link href="/services/website-development" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')} →
+                <Link href="/services/website-development" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
 
@@ -240,12 +240,12 @@ export default async function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Cyber Security Services</h3>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.cyber.title')}</h3>
                 <p className="mt-2 text-gray-600">
-                  Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance.
+                  {t('servicesSection.cards.cyber.desc')}
                 </p>
-                <Link href="/services/cybersecurity" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')} →
+                <Link href="/services/cybersecurity" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
 
@@ -261,12 +261,12 @@ export default async function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Mobile App Development (NGO Field Data Applications)</h3>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.mobileApps.title')}</h3>
                 <p className="mt-2 text-gray-600">
-                  We build offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database.
+                  {t('servicesSection.cards.mobileApps.desc')}
                 </p>
-                <Link href="/services/mobile-apps" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')} →
+                <Link href="/services/mobile-apps" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
 
@@ -282,12 +282,12 @@ export default async function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">ERP & CRM Systems for NGOs (Powered by ERPNext)</h3>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.erp.title')}</h3>
                 <p className="mt-2 text-gray-600">
-                  End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking.
+                  {t('servicesSection.cards.erp.desc')}
                 </p>
-                <Link href="/services/erp" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')} →
+                <Link href="/services/erp" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
 
@@ -303,12 +303,12 @@ export default async function Home() {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-xl font-semibold">Digital Marketing</h3>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.marketing.title')}</h3>
                 <p className="mt-2 text-gray-600">
-                  SEO, content, analytics, social media management, and lead-generation funnels.
+                  {t('servicesSection.cards.marketing.desc')}
                 </p>
-                <Link href="/services/web-design" className="mt-4 inline-block text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')} →
+                <Link href="/services/web-design" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
             </div>

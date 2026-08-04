@@ -29,7 +29,17 @@
     "servicesSection": {
       "title": "What We Build",
       "subtitle": "End-to-end digital solutions for NGOs, businesses, and startups — from websites and apps to ERP systems and cybersecurity.",
-      "cta": "Learn More"
+      "cta": "Learn More",
+      "sectionTitle": "Our Core Digital Services",
+      "sectionSubtitle": "We combine design, engineering, and cybersecurity to deliver complete digital solutions.",
+      "cards": {
+        "webDesign":  { "title": "Web Design (SEO-Ready Websites)",                     "desc": "Modern, mobile-first website design optimized for speed, ranking, and user experience." },
+        "webDev":     { "title": "Website Development (Fast, Secure, Custom)",          "desc": "Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow." },
+        "cyber":      { "title": "Cyber Security Services",                              "desc": "Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance." },
+        "mobileApps": { "title": "Mobile App Development (NGO Field Data Applications)", "desc": "We build offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database." },
+        "erp":        { "title": "ERP & CRM Systems for NGOs (Powered by ERPNext)",     "desc": "End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking." },
+        "marketing":  { "title": "Digital Marketing",                                    "desc": "SEO, content, analytics, social media management, and lead-generation funnels." }
+      }
     },
     "rwandaSection": {
       "title": "Web Design & Development in Rwanda",
