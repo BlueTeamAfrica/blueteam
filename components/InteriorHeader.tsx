@@ -1,5 +1,6 @@
 "use client"
 
+import { Fragment } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 
@@ -41,19 +42,23 @@ export default function InteriorHeader({ title, breadcrumb, headingLevel = 'h1' 
         className="flex justify-center mt-6 text-sm text-gray-600 gap-1"
       >
         {breadcrumb.map((item, index) => (
-          <span key={index} className="flex items-center">
-            {item.href ? (
-              <Link href={item.href} className="hover:text-primary">
-                {item.label}
-              </Link>
-            ) : (
-              <span className="text-gray-900 font-medium">{item.label}</span>
-            )}
-
+          <Fragment key={index}>
+            <span className="flex items-center">
+              {item.href ? (
+                <Link href={item.href} className="hover:text-primary">
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="text-gray-900 font-medium">{item.label}</span>
+              )}
+            </span>
             {index < breadcrumb.length - 1 && (
-              <span className="mx-2 text-gray-400">›</span>
+              <>
+                <span aria-hidden="true" className="mx-2 text-gray-400 rtl:hidden">›</span>
+                <span aria-hidden="true" className="mx-2 text-gray-400 ltr:hidden">‹</span>
+              </>
             )}
-          </span>
+          </Fragment>
         ))}
       </motion.div>
     </div>

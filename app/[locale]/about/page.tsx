@@ -34,20 +34,19 @@ export default async function AboutPage() {
         <InteriorHeader
           title={t('title')}
           breadcrumb={[
-            { label: 'Home', href: '/' },
-            { label: 'About Us' }
+            { label: t('breadcrumbHome'), href: '/' },
+            { label: t('breadcrumbAbout') }
           ]}
         />
 
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative w-full" style={{ clipPath: 'inset(15% 0 12% 0)' }}>
+        <div className="relative w-full h-64 md:h-80">
           <Image
             src="/images/about/about-team-01.webp"
             alt="Blue Team Africa Team"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
+            fill
+            className="object-cover object-center"
             priority
             sizes="100vw"
           />
@@ -179,7 +178,14 @@ export default async function AboutPage() {
         </div>
         <div className="mt-8 text-gray-700 leading-relaxed">
           <p>
-            We support organizations across Rwanda with professional <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">web design services in Rwanda</Link> and comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development solutions for businesses and NGOs</Link>. Our team combines technical expertise with regional knowledge to deliver digital solutions that work for Rwandan organizations.
+            {t.rich('rwandaPara', {
+              webDesignLink: (chunks) => (
+                <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+              ),
+              webDevLink: (chunks) => (
+                <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+              ),
+            })}
           </p>
         </div>
       </section>
