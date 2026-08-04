@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export async function generateMetadata({
   params,
@@ -18,7 +19,9 @@ export async function generateMetadata({
   }
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const t = await getTranslations('AboutPage')
+
   const breadcrumbItems = [
     { name: 'Home', url: 'https://www.blueteamafrica.com/' },
     { name: 'About Us', url: 'https://www.blueteamafrica.com/about' },
@@ -29,7 +32,7 @@ export default function AboutPage() {
       <BreadcrumbSchema items={breadcrumbItems} />
       <main className="bg-white text-gray-800">
         <InteriorHeader
-          title="About Blue Team Africa"
+          title={t('title')}
           breadcrumb={[
             { label: 'Home', href: '/' },
             { label: 'About Us' }
@@ -56,31 +59,24 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              A Digital Team Built for East Africa & Humanitarian Work
+              {t('whoWeAreH2')}
             </h2>
             <p className="text-lg leading-relaxed mb-4">
-              Blue Team Africa is a technology company serving Uganda, Kenya,
-              Rwanda, and Sudan — empowering NGOs, businesses, and community-driven
-              organizations with modern digital solutions. Our work spans{" "}
-              <Link href="/services/web-design" className="text-primary hover:underline font-semibold">website design</Link>,{" "}
-              <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">mobile app development</Link>,{" "}
-              <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">cybersecurity solutions</Link>,{" "}
-              <Link href="/services/hosting" className="text-primary hover:underline font-semibold">website hosting</Link>,{" "}
-              <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP systems</Link>, and{" "}
-              <Link href="/services/crm" className="text-primary hover:underline font-semibold">CRM automation</Link>.
+              {t('whoWeArePara1Intro')}{" "}
+              <Link href="/services/web-design" className="text-primary hover:underline font-semibold">{t('linkWebDesign')}</Link>,{" "}
+              <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{t('linkMobileApps')}</Link>,{" "}
+              <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">{t('linkCybersecurity')}</Link>,{" "}
+              <Link href="/services/hosting" className="text-primary hover:underline font-semibold">{t('linkHosting')}</Link>,{" "}
+              <Link href="/services/erp" className="text-primary hover:underline font-semibold">{t('linkERP')}</Link>{t('listAndSeparator')}{" "}
+              <Link href="/services/crm" className="text-primary hover:underline font-semibold">{t('linkCRM')}</Link>.
             </p>
 
             <p className="text-lg leading-relaxed mb-4">
-              We operate with a mission-driven mindset, building reliable,
-              long-lasting systems that help organizations function with
-              efficiency, transparency, and data security — especially those
-              working in fragile environments.
+              {t('whoWeArePara2')}
             </p>
 
             <p className="text-lg leading-relaxed">
-              Our approach blends practical field experience, deep technical
-              knowledge, and strong regional understanding — making us a trusted
-              partner for organizations across East Africa.
+              {t('whoWeArePara3')}
             </p>
           </div>
 
@@ -112,26 +108,21 @@ export default function AboutPage() {
 
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Our Humanitarian Technology Work in Sudan
+                {t('sudanH2')}
               </h2>
               <p className="text-lg leading-relaxed mb-4">
-                One of our most impactful projects was partnering with a Sudanese
-                humanitarian organization to build a full{" "}
-                <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP system</Link>,{" "}
-                <strong>donor reporting dashboard</strong>, and{" "}
-                <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">mobile field data collection app</Link>.
+                {t('sudanPara1Intro')}{" "}
+                <Link href="/services/erp" className="text-primary hover:underline font-semibold">{t('sudanLinkERP')}</Link>,{" "}
+                <strong>{t('sudanDonor')}</strong>{t('listAndSeparator')}{" "}
+                <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{t('sudanLinkMobile')}</Link>.
               </p>
 
               <p className="text-lg leading-relaxed mb-4">
-                The system enabled transparent procurement, automated HR workflow,
-                real-time program insights, and secure communication across teams
-                working in high-risk regions.
+                {t('sudanPara2')}
               </p>
 
               <p className="text-lg leading-relaxed">
-                This experience shaped our signature approach: designing technology
-                that remains reliable even in conflict zones, rural areas, and
-                low-connectivity environments.
+                {t('sudanPara3')}
               </p>
             </div>
           </div>
@@ -140,48 +131,48 @@ export default function AboutPage() {
 
       <section className="py-20 container mx-auto px-6 max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
-          What We Specialize In
+          {t('specializeH2')}
         </h2>
 
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="font-semibold text-xl mb-2">Digital Services</h3>
+            <h3 className="font-semibold text-xl mb-2">{t('digitalServicesH3')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/web-design" className="text-primary hover:underline">Website Design</Link>
+                <Link href="/services/web-design" className="text-primary hover:underline">{t('gridWebDesign')}</Link>
               </li>
               <li>
-                <Link href="/services/website-development" className="text-primary hover:underline">Website Development</Link>
+                <Link href="/services/website-development" className="text-primary hover:underline">{t('gridWebDev')}</Link>
               </li>
               <li>
-                <Link href="/services/ecommerce" className="text-primary hover:underline">E-commerce Systems</Link>
+                <Link href="/services/ecommerce" className="text-primary hover:underline">{t('gridEcommerce')}</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-xl mb-2">Business Systems</h3>
+            <h3 className="font-semibold text-xl mb-2">{t('businessSystemsH3')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/erp" className="text-primary hover:underline">ERP Solutions</Link>
+                <Link href="/services/erp" className="text-primary hover:underline">{t('gridERP')}</Link>
               </li>
               <li>
-                <Link href="/services/crm" className="text-primary hover:underline">CRM Automation</Link>
+                <Link href="/services/crm" className="text-primary hover:underline">{t('gridCRM')}</Link>
               </li>
               <li>
-                <Link href="/services/mobile-apps" className="text-primary hover:underline">Mobile App Development</Link>
+                <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('gridMobile')}</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-xl mb-2">Security & Hosting</h3>
+            <h3 className="font-semibold text-xl mb-2">{t('securityHostingH3')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/cybersecurity" className="text-primary hover:underline">Cybersecurity Solutions</Link>
+                <Link href="/services/cybersecurity" className="text-primary hover:underline">{t('gridCybersecurity')}</Link>
               </li>
               <li>
-                <Link href="/services/maintenance" className="text-primary hover:underline">Hosting & Maintenance</Link>
+                <Link href="/services/maintenance" className="text-primary hover:underline">{t('gridHosting')}</Link>
               </li>
             </ul>
           </div>
@@ -196,17 +187,16 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-20 bg-[#F5F7FA]/80 backdrop-blur-md border-b border-gray-200 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-          Ready to Work with a Team That Understands Your Mission?
+          {t('ctaH2')}
         </h2>
         <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto px-6 text-gray-700">
-          Whether you're a business, NGO, or startup — we build technology that
-          supports your growth and impact.
+          {t('ctaBody')}
         </p>
-        <Link 
-          href="/contact" 
+        <Link
+          href="/contact"
           className="inline-block bg-primary text-white px-10 py-3 font-semibold rounded-lg shadow hover:bg-primary-dark transition"
         >
-          Contact Us
+          {t('ctaButton')}
         </Link>
       </section>
 
