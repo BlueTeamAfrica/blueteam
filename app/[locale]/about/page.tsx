@@ -41,12 +41,14 @@ export default async function AboutPage() {
 
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative w-full h-64 md:h-80">
+        {/* paddingTop 41% = 56.25% (16:9) × 0.73, matching the original clipPath inset(15% 0 12% 0) visible area */}
+        <div className="relative w-full" style={{ paddingTop: '41%' }}>
           <Image
             src="/images/about/about-team-01.webp"
             alt="Blue Team Africa Team"
             fill
-            className="object-cover object-center"
+            className="object-cover"
+            style={{ objectPosition: 'center 52%' }}
             priority
             sizes="100vw"
           />
