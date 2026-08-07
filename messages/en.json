@@ -33,12 +33,30 @@
       "sectionTitle": "Our Core Digital Services",
       "sectionSubtitle": "We combine design, engineering, and cybersecurity to deliver complete digital solutions.",
       "cards": {
-        "webDesign":  { "title": "Web Design (SEO-Ready Websites)",                     "desc": "Modern, mobile-first website design optimized for speed, ranking, and user experience." },
-        "webDev":     { "title": "Website Development (Fast, Secure, Custom)",          "desc": "Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow." },
-        "cyber":      { "title": "Cyber Security Services",                              "desc": "Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance." },
-        "mobileApps": { "title": "Mobile App Development (NGO Field Data Applications)", "desc": "We build offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database." },
-        "erp":        { "title": "ERP & CRM Systems for NGOs (Powered by ERPNext)",     "desc": "End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking." },
-        "marketing":  { "title": "Digital Marketing",                                    "desc": "SEO, content, analytics, social media management, and lead-generation funnels." }
+        "webDesign": {
+          "title": "Web Design (SEO-Ready Websites)",
+          "desc": "Modern, mobile-first website design optimized for speed, ranking, and user experience."
+        },
+        "webDev": {
+          "title": "Website Development (Fast, Secure, Custom)",
+          "desc": "Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow."
+        },
+        "cyber": {
+          "title": "Cyber Security Services",
+          "desc": "Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance."
+        },
+        "mobileApps": {
+          "title": "Mobile App Development (NGO Field Data Applications)",
+          "desc": "We build offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database."
+        },
+        "erp": {
+          "title": "ERP & CRM Systems for NGOs (Powered by ERPNext)",
+          "desc": "End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking."
+        },
+        "marketing": {
+          "title": "Digital Marketing",
+          "desc": "SEO, content, analytics, social media management, and lead-generation funnels."
+        }
       }
     },
     "rwandaSection": {
@@ -162,25 +180,70 @@
     },
     "portfolioCta": "See the real problems we've solved for real clients",
     "services": {
-      "webDesign":          { "name": "Web Design",             "desc": "Custom, fast-loading websites built for African connectivity" },
-      "websiteDevelopment": { "name": "Website Development",    "desc": "Full-stack builds on Next.js, React, and WordPress" },
-      "erp":                { "name": "ERP Systems",            "desc": "Inventory, accounting, and operations in one system" },
-      "crm":                { "name": "CRM Solutions",          "desc": "Manage leads, clients, and relationships in one place" },
-      "mobileApps":         { "name": "Mobile App Development", "desc": "iOS and Android apps for your team or your customers" },
-      "hosting":            { "name": "Cloud & Web Hosting",    "desc": "Secure, reliable hosting built for East Africa" },
-      "cybersecurity":      { "name": "Cybersecurity",          "desc": "Protect your systems, your data, and your reputation" },
-      "ecommerce":          { "name": "E-commerce Development", "desc": "Sell online, with mobile money integration built in" },
-      "uiux":               { "name": "UI/UX Design",           "desc": "Interfaces people actually want to use" }
+      "webDesign": {
+        "name": "Web Design",
+        "desc": "Custom, fast-loading websites built for African connectivity"
+      },
+      "websiteDevelopment": {
+        "name": "Website Development",
+        "desc": "Full-stack builds on Next.js, React, and WordPress"
+      },
+      "erp": {
+        "name": "ERP Systems",
+        "desc": "Inventory, accounting, and operations in one system"
+      },
+      "crm": {
+        "name": "CRM Solutions",
+        "desc": "Manage leads, clients, and relationships in one place"
+      },
+      "mobileApps": {
+        "name": "Mobile App Development",
+        "desc": "iOS and Android apps for your team or your customers"
+      },
+      "hosting": {
+        "name": "Cloud & Web Hosting",
+        "desc": "Secure, reliable hosting built for East Africa"
+      },
+      "cybersecurity": {
+        "name": "Cybersecurity",
+        "desc": "Protect your systems, your data, and your reputation"
+      },
+      "ecommerce": {
+        "name": "E-commerce Development",
+        "desc": "Sell online, with mobile money integration built in"
+      },
+      "uiux": {
+        "name": "UI/UX Design",
+        "desc": "Interfaces people actually want to use"
+      }
     },
     "about": {
-      "aboutUs":  { "name": "About Us",    "desc": "Learn about our story and mission" },
-      "team":     { "name": "Our Team",    "desc": "The people behind Blue Team Africa" },
-      "mission":  { "name": "Our Mission", "desc": "Our values and purpose" },
-      "process":  { "name": "Our Process", "desc": "How we deliver projects" }
+      "aboutUs": {
+        "name": "About Us",
+        "desc": "Learn about our story and mission"
+      },
+      "team": {
+        "name": "Our Team",
+        "desc": "The people behind Blue Team Africa"
+      },
+      "mission": {
+        "name": "Our Mission",
+        "desc": "Our values and purpose"
+      },
+      "process": {
+        "name": "Our Process",
+        "desc": "How we deliver projects"
+      }
     },
     "resources": {
-      "blog": { "name": "Blog", "desc": "Guides on web design, ERP, hosting, and more…" },
-      "faq":  { "name": "FAQ",  "desc": "Straight answers to the questions we get most" }
+      "blog": {
+        "name": "Blog",
+        "desc": "Guides on web design, ERP, hosting, and more…"
+      },
+      "faq": {
+        "name": "FAQ",
+        "desc": "Straight answers to the questions we get most"
+      }
     }
   },
   "AboutPage": {
@@ -300,6 +363,51 @@
     "ctaBody": "Let's discuss how we can help your organization.",
     "ctaWhatsApp": "Chat on WhatsApp",
     "ctaContact": "Get in Touch"
+  },
+  "ProcessPage": {
+    "title": "Our Process",
+    "subtitle": "A structured approach to delivering quality solutions",
+    "breadcrumbHome": "Home",
+    "breadcrumbAbout": "About",
+    "breadcrumbProcess": "Our Process",
+    "intro": "We follow a proven 6-step process designed to deliver exceptional results while keeping you informed and involved every step of the way. From initial discovery to ongoing support, our methodology ensures your project succeeds.",
+    "step01Title": "Discovery",
+    "step01Desc": "We begin by understanding your business, goals, and requirements. Through consultations and research, we identify challenges, opportunities, and the best path forward for your project.",
+    "step02Title": "Design",
+    "step02Desc": "Our design team creates wireframes, prototypes, and visual designs that align with your brand and user needs. We iterate based on your feedback until the design is perfect.",
+    "step03Title": "Development",
+    "step03Desc": "With approved designs, our developers build your solution using modern technologies and best practices. We follow agile methodologies, providing regular updates and demos throughout development.",
+    "step04Title": "Quality Assurance",
+    "step04Desc": "Our QA team thoroughly tests your solution across different devices, browsers, and scenarios. We ensure everything works as expected and meets quality standards before launch.",
+    "step05Title": "Deployment",
+    "step05Desc": "We handle the deployment process, ensuring smooth launch with minimal downtime. This includes server configuration, domain setup, SSL certificates, and initial go-live support.",
+    "step06Title": "Support",
+    "step06Desc": "After launch, we provide ongoing support including bug fixes, updates, monitoring, and enhancements. We're here to ensure your solution continues to serve your business effectively.",
+    "whyH2": "Why Our Process Works",
+    "whyClearCommTitle": "Clear Communication",
+    "whyClearCommBody": "Regular updates and demos ensure you're always informed about progress and can provide feedback when it matters most.",
+    "whyAgileTitle": "Flexible & Agile",
+    "whyAgileBody": "Our process adapts to your needs. We can adjust timelines, priorities, and approaches based on changing requirements.",
+    "whyQualityTitle": "Quality Focused",
+    "whyQualityBody": "Built-in quality checks at every stage ensure we deliver solutions that meet your standards and exceed expectations.",
+    "whyPartnershipTitle": "Long-Term Partnership",
+    "whyPartnershipBody": "Our process extends beyond launch with ongoing support, ensuring your solution evolves with your business needs.",
+    "timelineH2": "Typical Timeline",
+    "timelineIntro": "While every project is unique, here's a general timeline you can expect:",
+    "timelineDiscovery": "Discovery & Design: 2-4 weeks",
+    "timelineDev": "Development: 4-12 weeks (varies by project scope)",
+    "timelineQA": "QA & Testing: 1-2 weeks",
+    "timelineDeployment": "Deployment: 1 week",
+    "timelineSupport": "Support: Ongoing",
+    "timelineDisclaimer": "*Timelines are estimates and will be adjusted based on your specific project requirements.",
+    "learnMoreH2": "Learn More",
+    "linkOurStory": "Our Story",
+    "linkOurTeam": "Our Team",
+    "linkMissionValues": "Our Mission & Values",
+    "ctaH2": "Ready to Start Your Project?",
+    "ctaBody": "Let's discuss your needs and begin the discovery phase.",
+    "ctaWhatsApp": "Chat on WhatsApp",
+    "ctaGetStarted": "Get Started"
   },
   "WebDesignPage": {
     "title": "Professional Web Design Services",
