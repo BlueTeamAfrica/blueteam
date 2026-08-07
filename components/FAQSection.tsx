@@ -16,16 +16,18 @@ interface FAQSectionProps {
   description?: string
   bgColor?: 'white' | 'gray'
   customFAQs?: FAQ[]
+  viewAllLabel?: string
 }
 
-export default function FAQSection({ 
-  showAll = false, 
+export default function FAQSection({
+  showAll = false,
   maxItems = 6,
   showCTA = true,
   title = 'Frequently Asked Questions',
   description = 'Common questions about our services, pricing, and processes',
   bgColor = 'white',
-  customFAQs
+  customFAQs,
+  viewAllLabel = 'View All FAQs'
 }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -100,7 +102,7 @@ export default function FAQSection({
               href="/faq"
               className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-medium"
             >
-              View All FAQs
+              {viewAllLabel}
               <ArrowRight size={18} />
             </Link>
           </div>
