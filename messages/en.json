@@ -490,5 +490,19 @@
     "government": "Ready to Get Started?",
     "education": "Let's discuss your project and get a free quote today.",
     "fintech": ""
+  },
+  "ServiceSidebar": {
+    "title": "Our Services",
+    "webDesign": "Web Design",
+    "websiteDev": "Website Development",
+    "erpCrm": "ERP & CRM Systems",
+    "mobileApps": "Mobile App Development",
+    "hosting": "Hosting & Cloud Infrastructure",
+    "cybersecurity": "Cybersecurity",
+    "branding": "Branding & Visual Identity",
+    "uiux": "UI/UX Design",
+    "ecommerce": "E-commerce Development",
+    "customSystems": "Custom Systems",
+    "maintenance": "Maintenance & Support"
   }
 }

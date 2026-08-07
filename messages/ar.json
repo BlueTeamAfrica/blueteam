@@ -490,5 +490,19 @@
     "government": "هل أنت مستعد للبدء؟",
     "education": "لنتحدث عن مشروعك واحصل على عرض سعر مجاني اليوم.",
     "fintech": ""
+  },
+  "ServiceSidebar": {
+    "title": "خدماتنا",
+    "webDesign": "تصميم المواقع",
+    "websiteDev": "تطوير المواقع",
+    "erpCrm": "أنظمة ERP وCRM",
+    "mobileApps": "تطوير تطبيقات الجوال",
+    "hosting": "الاستضافة السحابية والإنترنت",
+    "cybersecurity": "الأمن السيبراني",
+    "branding": "الهوية التجارية والبصرية",
+    "uiux": "تصميم UI/UX",
+    "ecommerce": "تطوير التجارة الإلكترونية",
+    "customSystems": "الأنظمة المخصصة",
+    "maintenance": "الصيانة والدعم"
   }
 }
