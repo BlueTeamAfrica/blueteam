@@ -9,6 +9,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const brandingFAQs: FAQ[] = [
   {
@@ -72,23 +73,33 @@ export async function generateMetadata({
   }
 }
 
-export default function BrandingPage() {
-  const breadcrumbItems = [
-    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-    { name: 'Branding & Logo Design', url: 'https://www.blueteamafrica.com/services/branding' },
+export default async function BrandingPage() {
+  const t = await getTranslations('BrandingPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
   ]
+
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Branding & Logo Design', url: 'https://www.blueteamafrica.com/services/branding' },
+      ]} />
       <BrandingFAQSchema />
       <ServiceSchema serviceName="Branding" serviceSlug="branding" />
       <InteriorHeader
-        title="Branding & Logo Design"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'Branding' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbBranding') }
         ]}
       />
 
@@ -99,7 +110,7 @@ export default function BrandingPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -118,10 +129,7 @@ export default function BrandingPage() {
             {/* Intro */}
             <section className="mb-12">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Your brand is more than just a logo—it's the visual and emotional connection customers have with your business. 
-                Blue Team Africa creates comprehensive brand identities including logo design, color palettes, typography, and 
-                brand guidelines. We help businesses across East Africa establish a cohesive, professional brand that stands out 
-                and builds trust.
+                {t('intro')}
               </p>
             </section>
 
@@ -129,24 +137,21 @@ export default function BrandingPage() {
             <section className="mb-12">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Logo Design</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
                   <p className="text-gray-600">
-                    Unique, memorable logos that capture your brand essence and 
-                    work across all platforms and applications.
+                    {t('pillar1Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Brand Guidelines</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
                   <p className="text-gray-600">
-                    Comprehensive style guides ensure consistent brand application 
-                    across all marketing materials and touchpoints.
+                    {t('pillar2Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Visual Identity</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
                   <p className="text-gray-600">
-                    Complete visual systems including color palettes, typography, 
-                    and design elements that define your brand.
+                    {t('pillar3Body')}
                   </p>
                 </div>
               </div>
@@ -155,50 +160,55 @@ export default function BrandingPage() {
             {/* Why Choose Blue Team Africa */}
             <section className="mb-12">
               <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                Why Choose Blue Team Africa?
+                {t('whyTitle')}
               </h2>
               <div className="space-y-6 text-gray-700">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Strategic Approach</h3>
-                  <p>We start with understanding your business, audience, and market to create brands that truly represent who you are.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
+                  <p>{t('why1Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Cultural Understanding</h3>
-                  <p>Our team understands East African markets and creates brands that resonate with local audiences while maintaining global appeal.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
+                  <p>{t('why2Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Versatile Assets</h3>
-                  <p>Your brand identity works seamlessly across digital and print, from websites to business cards and everything in between.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
+                  <p>{t('why3Body')}</p>
                 </div>
               </div>
             </section>
 
             {/* Related Services */}
             <section className="mb-12 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
+              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
               <div className="flex flex-wrap gap-4">
                 <Link href="/services/web-design" className="text-primary hover:text-primary-dark font-medium">
-                  Web Design →
+                  {t('relatedWebDesign')} →
                 </Link>
                 <Link href="/services/ui-ux" className="text-primary hover:text-primary-dark font-medium">
-                  UI/UX Design →
+                  {t('relatedUIUX')} →
                 </Link>
                 <Link href="/services/ecommerce" className="text-primary hover:text-primary-dark font-medium">
-                  E-commerce Development →
+                  {t('relatedEcommerce')} →
                 </Link>
               </div>
             </section>
 
             {/* FAQ Section */}
             <section className="mb-12">
-              <FAQSection customFAQs={brandingFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </section>
 
             {/* CTA Strip */}
             <section className="p-8 bg-primary text-white rounded-lg">
               <div className="text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">Ready to Get Started?</h2>
-                <p className="text-primary-100 mb-6">Let's discuss your branding needs and get a free quote today.</p>
+                <h2 className="text-2xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
+                <p className="text-primary-100 mb-6">{t('ctaSubtitle')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"
@@ -207,13 +217,13 @@ export default function BrandingPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                   >
                     <MessageCircle size={20} />
-                    Chat on WhatsApp
+                    {t('ctaWhatsApp')}
                   </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
                   >
-                    Get a Quote
+                    {t('ctaGetQuote')}
                     <ArrowRight size={18} />
                   </Link>
                 </div>
@@ -222,14 +232,11 @@ export default function BrandingPage() {
           </div>
         </div>
       </div>
-    
-      
+
       {/* Our Services - Mobile Only (Bottom) */}
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-
-
-</>
+    </>
   )
 }
