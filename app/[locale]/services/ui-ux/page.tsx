@@ -9,6 +9,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const uiuxFAQs: FAQ[] = [
   {
@@ -72,23 +73,33 @@ export async function generateMetadata({
   }
 }
 
-export default function UIUXPage() {
-  const breadcrumbItems = [
-    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-    { name: 'UI/UX Design', url: 'https://www.blueteamafrica.com/services/ui-ux' },
+export default async function UIUXPage() {
+  const t = await getTranslations('UIUXPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
   ]
+
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'UI/UX Design', url: 'https://www.blueteamafrica.com/services/ui-ux' },
+      ]} />
       <UIUXFAQSchema />
       <ServiceSchema serviceName="UI/UX" serviceSlug="ui-ux" />
       <InteriorHeader
-        title="UI/UX Design"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'UI/UX' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbUiUx') }
         ]}
       />
 
@@ -99,7 +110,7 @@ export default function UIUXPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -118,10 +129,7 @@ export default function UIUXPage() {
             {/* Intro */}
             <section className="mb-12">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Great design is invisible—users notice when something works beautifully and intuitively. Blue Team Africa 
-                specializes in user interface (UI) and user experience (UX) design that puts your users first. Through 
-                research, wireframing, prototyping, and testing, we create digital experiences that are both beautiful 
-                and functional, driving engagement and conversion.
+                {t('intro')}
               </p>
             </section>
 
@@ -129,24 +137,21 @@ export default function UIUXPage() {
             <section className="mb-12">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">User Research</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
                   <p className="text-gray-600">
-                    Deep understanding of your users through interviews, surveys, and 
-                    analytics to inform design decisions.
+                    {t('pillar1Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Intuitive Interfaces</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
                   <p className="text-gray-600">
-                    Clean, organized layouts with clear navigation that guide users 
-                    naturally through your digital product.
+                    {t('pillar2Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Prototyping & Testing</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
                   <p className="text-gray-600">
-                    Interactive prototypes tested with real users to validate designs 
-                    before development begins.
+                    {t('pillar3Body')}
                   </p>
                 </div>
               </div>
@@ -155,50 +160,55 @@ export default function UIUXPage() {
             {/* Why Choose Blue Team Africa */}
             <section className="mb-12">
               <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                Why Choose Blue Team Africa?
+                {t('whyTitle')}
               </h2>
               <div className="space-y-6 text-gray-700">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">User-Centered Process</h3>
-                  <p>Every design decision is backed by user research and testing to ensure we're building what users actually need.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
+                  <p>{t('why1Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Modern Design Trends</h3>
-                  <p>We stay current with the latest UI/UX trends and best practices while maintaining timeless usability principles.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
+                  <p>{t('why2Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Collaborative Approach</h3>
-                  <p>We work closely with your team throughout the design process, ensuring the final product aligns with your vision.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
+                  <p>{t('why3Body')}</p>
                 </div>
               </div>
             </section>
 
             {/* Related Services */}
             <section className="mb-12 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
+              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
               <div className="flex flex-wrap gap-4">
                 <Link href="/services/web-design" className="text-primary hover:text-primary-dark font-medium">
-                  Web Design →
+                  {t('relatedWebDesign')} →
                 </Link>
                 <Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark font-medium">
-                  Mobile App Development →
+                  {t('relatedMobileApps')} →
                 </Link>
                 <Link href="/services/branding" className="text-primary hover:text-primary-dark font-medium">
-                  Branding & Logo Design →
+                  {t('relatedBranding')} →
                 </Link>
               </div>
             </section>
 
             {/* FAQ Section */}
             <section className="mb-12">
-              <FAQSection customFAQs={uiuxFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </section>
 
             {/* CTA Strip */}
             <section className="p-8 bg-primary text-white rounded-lg">
               <div className="text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">Ready to Get Started?</h2>
-                <p className="text-primary-100 mb-6">Let's discuss your UI/UX needs and get a free quote today.</p>
+                <h2 className="text-2xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
+                <p className="text-primary-100 mb-6">{t('ctaSubtitle')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"
@@ -207,13 +217,13 @@ export default function UIUXPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                   >
                     <MessageCircle size={20} />
-                    Chat on WhatsApp
+                    {t('ctaWhatsApp')}
                   </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
                   >
-                    Get a Quote
+                    {t('ctaGetQuote')}
                     <ArrowRight size={18} />
                   </Link>
                 </div>
@@ -222,14 +232,11 @@ export default function UIUXPage() {
           </div>
         </div>
       </div>
-    
-      
+
       {/* Our Services - Mobile Only (Bottom) */}
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-
-
-</>
+    </>
   )
 }
