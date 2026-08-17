@@ -9,6 +9,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const customSystemsFAQs: FAQ[] = [
   {
@@ -72,23 +73,33 @@ export async function generateMetadata({
   }
 }
 
-export default function CustomSystemsPage() {
-  const breadcrumbItems = [
-    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-    { name: 'Custom Software Development', url: 'https://www.blueteamafrica.com/services/custom-systems' },
+export default async function CustomSystemsPage() {
+  const t = await getTranslations('CustomSystemsPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
   ]
+
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Custom Software Development', url: 'https://www.blueteamafrica.com/services/custom-systems' },
+      ]} />
       <CustomSystemsFAQSchema />
       <ServiceSchema serviceName="Custom Systems" serviceSlug="custom-systems" />
       <InteriorHeader
-        title="Custom Software Development"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'Custom Systems' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbCustomSystems') }
         ]}
       />
 
@@ -99,7 +110,7 @@ export default function CustomSystemsPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -118,10 +129,7 @@ export default function CustomSystemsPage() {
             {/* Intro */}
             <section className="mb-12">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Off-the-shelf software often doesn't fit your unique business processes. Blue Team Africa develops 
-                custom software solutions tailored to your specific requirements. From internal tools and dashboards 
-                to complex enterprise applications, we build software that works the way your business works, 
-                improving efficiency and enabling growth.
+                {t('intro')}
               </p>
             </section>
 
@@ -129,24 +137,21 @@ export default function CustomSystemsPage() {
             <section className="mb-12">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Tailored Solutions</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
                   <p className="text-gray-600">
-                    Software designed around your workflows and business processes, 
-                    not the other way around.
+                    {t('pillar1Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Scalable Architecture</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
                   <p className="text-gray-600">
-                    Built with modern technologies that grow with your business, 
-                    from startups to enterprise scale.
+                    {t('pillar2Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Full Ownership</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
                   <p className="text-gray-600">
-                    You own the code and intellectual property, giving you complete 
-                    control over your software.
+                    {t('pillar3Body')}
                   </p>
                 </div>
               </div>
@@ -155,46 +160,46 @@ export default function CustomSystemsPage() {
             {/* Why Choose Blue Team Africa */}
             <section className="mb-12">
               <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                Why Choose Blue Team Africa?
+                {t('whyTitle')}
               </h2>
               <div className="space-y-6 text-gray-700">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Deep Understanding</h3>
-                  <p>We take time to understand your business, processes, and goals before writing a single line of code.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
+                  <p>{t('why1Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Agile Development</h3>
-                  <p>Iterative development with regular demos ensures the software evolves to match your exact needs.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
+                  <p>{t('why2Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Long-Term Partnership</h3>
-                  <p>We provide ongoing support, updates, and enhancements to keep your custom software relevant and useful.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
+                  <p>{t('why3Body')}</p>
                 </div>
               </div>
             </section>
 
             {/* Related Services */}
             <section className="mb-12 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
+              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
               <div className="flex flex-wrap gap-4">
                 <Link href="/services/erp" className="text-primary hover:text-primary-dark font-medium">
-                  ERP Systems →
+                  {t('relatedERP')} →
                 </Link>
                 <Link href="/services/crm" className="text-primary hover:text-primary-dark font-medium">
-                  CRM Solutions →
+                  {t('relatedCRM')} →
                 </Link>
                 <Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark font-medium">
-                  Mobile App Development →
+                  {t('relatedMobileApps')} →
                 </Link>
               </div>
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-sm text-gray-600 mb-3">See our work</p>
+                <p className="text-sm text-gray-600 mb-3">{t('seeOurWork')}</p>
                 <div className="flex flex-wrap gap-4">
                   <Link href="/portfolio/ngo-portal" className="text-primary hover:text-primary-dark font-medium">
-                    Case Study: NGO Management Portal →
+                    {t('caseStudy1Label')} →
                   </Link>
                   <Link href="/portfolio/crm-system" className="text-primary hover:text-primary-dark font-medium">
-                    Case Study: Sales CRM Platform →
+                    {t('caseStudy2Label')} →
                   </Link>
                 </div>
               </div>
@@ -202,14 +207,19 @@ export default function CustomSystemsPage() {
 
             {/* FAQ Section */}
             <section className="mb-12">
-              <FAQSection customFAQs={customSystemsFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </section>
 
             {/* CTA Strip */}
             <section className="p-8 bg-primary text-white rounded-lg">
               <div className="text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">Ready to Get Started?</h2>
-                <p className="text-primary-100 mb-6">Let's discuss your custom software needs and get a free quote today.</p>
+                <h2 className="text-2xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
+                <p className="text-primary-100 mb-6">{t('ctaSubtitle')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"
@@ -218,13 +228,13 @@ export default function CustomSystemsPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                   >
                     <MessageCircle size={20} />
-                    Chat on WhatsApp
+                    {t('ctaWhatsApp')}
                   </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
                   >
-                    Get a Quote
+                    {t('ctaGetQuote')}
                     <ArrowRight size={18} />
                   </Link>
                 </div>
@@ -233,14 +243,11 @@ export default function CustomSystemsPage() {
           </div>
         </div>
       </div>
-    
-      
+
       {/* Our Services - Mobile Only (Bottom) */}
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-
-
-</>
+    </>
   )
 }
