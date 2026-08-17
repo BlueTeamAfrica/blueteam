@@ -9,6 +9,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const hostingFAQs: FAQ[] = [
   {
@@ -72,23 +73,33 @@ export async function generateMetadata({
   }
 }
 
-export default function HostingPage() {
-  const breadcrumbItems = [
-    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-    { name: 'Cloud & Web Hosting', url: 'https://www.blueteamafrica.com/services/hosting' },
+export default async function HostingPage() {
+  const t = await getTranslations('HostingPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
   ]
+
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'Cloud & Web Hosting', url: 'https://www.blueteamafrica.com/services/hosting' },
+      ]} />
       <HostingFAQSchema />
       <ServiceSchema serviceName="Hosting" serviceSlug="hosting" />
       <InteriorHeader
-        title="Cloud & Web Hosting"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'Hosting' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbHosting') }
         ]}
       />
 
@@ -99,7 +110,7 @@ export default function HostingPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -118,10 +129,12 @@ export default function HostingPage() {
             {/* Intro */}
             <section className="mb-12">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Your website's performance starts with reliable hosting. Blue Team Africa provides enterprise-grade 
-                cloud hosting and domain services designed to keep your business online. With secure infrastructure, 
-                automatic backups, and expert support, we ensure your digital presence stays accessible to your customers 
-                around the clock. For organizations in Rwanda, we also offer comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services in Rwanda</Link> to build custom applications and scalable digital platforms.
+                {t('intro')}{' '}
+                {t('introRwandaPre')}{' '}
+                <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">
+                  {t('introLinkLabel')}
+                </Link>{' '}
+                {t('introRwandaPost')}
               </p>
             </section>
 
@@ -129,24 +142,21 @@ export default function HostingPage() {
             <section className="mb-12">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">99.9% Uptime</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
                   <p className="text-gray-600">
-                    Our infrastructure is built for reliability, ensuring your website stays online 
-                    when your customers need it most.
+                    {t('pillar1Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Secure & Fast</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
                   <p className="text-gray-600">
-                    Enterprise-level security with SSL certificates and fast CDN integration to 
-                    protect and accelerate your site.
+                    {t('pillar2Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">24/7 Support</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
                   <p className="text-gray-600">
-                    Our technical team is always available to help with any issues, ensuring 
-                    peace of mind for your business.
+                    {t('pillar3Body')}
                   </p>
                 </div>
               </div>
@@ -155,56 +165,61 @@ export default function HostingPage() {
             {/* Why Choose Blue Team Africa */}
             <section className="mb-12">
               <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                Why Choose Blue Team Africa?
+                {t('whyTitle')}
               </h2>
               <div className="space-y-6 text-gray-700">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Local Expertise</h3>
-                  <p>We understand the infrastructure needs of East African businesses and provide hosting optimized for regional connectivity.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
+                  <p>{t('why1Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Scalable Solutions</h3>
-                  <p>Start small and grow as your business expands. Our hosting scales seamlessly with your traffic and storage needs.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
+                  <p>{t('why2Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Automatic Backups</h3>
-                  <p>Regular automated backups ensure your data is safe and can be restored quickly in case of any issues.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
+                  <p>{t('why3Body')}</p>
                 </div>
               </div>
             </section>
 
             {/* Related Services */}
             <section className="mb-12 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
+              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
               <div className="flex flex-wrap gap-4">
                 <Link href="/services/web-design" className="text-primary hover:text-primary-dark font-medium">
-                  Web Design →
+                  {t('relatedWebDesign')} →
                 </Link>
                 <Link href="/services/cybersecurity" className="text-primary hover:text-primary-dark font-medium">
-                  Cybersecurity →
+                  {t('relatedCybersecurity')} →
                 </Link>
                 <Link href="/services/maintenance" className="text-primary hover:text-primary-dark font-medium">
-                  IT Maintenance &amp; Support →
+                  {t('relatedMaintenance')} →
                 </Link>
               </div>
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-sm text-gray-600 mb-3">See our work</p>
+                <p className="text-sm text-gray-600 mb-3">{t('seeOurWork')}</p>
                 <Link href="/portfolio/cloud-migration" className="text-primary hover:text-primary-dark font-medium">
-                  Case Study: Cloud Migration Project →
+                  {t('caseStudyLabel')} →
                 </Link>
               </div>
             </section>
 
             {/* FAQ Section */}
             <section className="mb-12">
-              <FAQSection customFAQs={hostingFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </section>
 
             {/* CTA Strip */}
             <section className="p-8 bg-primary text-white rounded-lg">
               <div className="text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">Ready to Get Started?</h2>
-                <p className="text-primary-100 mb-6">Let's discuss your hosting needs and get a free quote today.</p>
+                <h2 className="text-2xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
+                <p className="text-primary-100 mb-6">{t('ctaSubtitle')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"
@@ -213,13 +228,13 @@ export default function HostingPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                   >
                     <MessageCircle size={20} />
-                    Chat on WhatsApp
+                    {t('ctaWhatsApp')}
                   </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
                   >
-                    Get a Quote
+                    {t('ctaGetQuote')}
                     <ArrowRight size={18} />
                   </Link>
                 </div>
@@ -228,14 +243,11 @@ export default function HostingPage() {
           </div>
         </div>
       </div>
-    
-      
+
       {/* Our Services - Mobile Only (Bottom) */}
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-
-
-</>
+    </>
   )
 }
