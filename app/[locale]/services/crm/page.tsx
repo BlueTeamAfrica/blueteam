@@ -9,6 +9,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const crmFAQs: FAQ[] = [
   {
@@ -72,23 +73,33 @@ export async function generateMetadata({
   }
 }
 
-export default function CRMPage() {
-  const breadcrumbItems = [
-    { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-    { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-    { name: 'CRM Solutions', url: 'https://www.blueteamafrica.com/services/crm' },
+export default async function CRMPage() {
+  const t = await getTranslations('CrmPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
   ]
+
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
+        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
+        { name: 'CRM Solutions', url: 'https://www.blueteamafrica.com/services/crm' },
+      ]} />
       <CRMFAQSchema />
       <ServiceSchema serviceName="CRM" serviceSlug="crm" />
       <InteriorHeader
-        title="CRM Solutions"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'CRM Solutions' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbCrm') }
         ]}
       />
 
@@ -99,7 +110,7 @@ export default function CRMPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -118,10 +129,7 @@ export default function CRMPage() {
             {/* Intro */}
             <section className="mb-12">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Customer Relationship Management (CRM) systems help you manage interactions with current and 
-                potential customers more effectively. Blue Team Africa develops custom CRM solutions that automate 
-                sales processes, track customer interactions, and provide insights to improve customer satisfaction 
-                and drive revenue growth.
+                {t('intro')}
               </p>
             </section>
 
@@ -129,24 +137,21 @@ export default function CRMPage() {
             <section className="mb-12">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Lead Management</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
                   <p className="text-gray-600">
-                    Track and manage leads through the entire sales funnel, from initial 
-                    contact to closed deals, with automated workflows.
+                    {t('pillar1Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Customer Insights</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
                   <p className="text-gray-600">
-                    Centralized customer data provides a 360-degree view of each client, 
-                    helping you personalize interactions and improve satisfaction.
+                    {t('pillar2Body')}
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Sales Automation</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
                   <p className="text-gray-600">
-                    Automate repetitive tasks, follow-ups, and reporting to free up your 
-                    sales team to focus on building relationships and closing deals.
+                    {t('pillar3Body')}
                   </p>
                 </div>
               </div>
@@ -155,56 +160,61 @@ export default function CRMPage() {
             {/* Why Choose Blue Team Africa */}
             <section className="mb-12">
               <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                Why Choose Blue Team Africa?
+                {t('whyTitle')}
               </h2>
               <div className="space-y-6 text-gray-700">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Sales-Focused Design</h3>
-                  <p>Our CRM systems are built by sales professionals for sales teams, ensuring features that actually improve productivity.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
+                  <p>{t('why1Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Mobile Access</h3>
-                  <p>Access your CRM from anywhere with mobile-optimized interfaces that let your team manage relationships on the go.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
+                  <p>{t('why2Body')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Integration Ready</h3>
-                  <p>Seamlessly connect with your existing tools including email, calendar, and accounting software for a unified workflow.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
+                  <p>{t('why3Body')}</p>
                 </div>
               </div>
             </section>
 
             {/* Related Services */}
             <section className="mb-12 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">Related Services</h2>
+              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
               <div className="flex flex-wrap gap-4">
                 <Link href="/services/erp" className="text-primary hover:text-primary-dark font-medium">
-                  ERP Systems →
+                  {t('relatedERP')} →
                 </Link>
                 <Link href="/services/web-design" className="text-primary hover:text-primary-dark font-medium">
-                  Web Design →
+                  {t('relatedWebDesign')} →
                 </Link>
                 <Link href="/services/custom-systems" className="text-primary hover:text-primary-dark font-medium">
-                  Custom Software Development →
+                  {t('relatedCustomSystems')} →
                 </Link>
               </div>
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-sm text-gray-600 mb-3">See our work</p>
+                <p className="text-sm text-gray-600 mb-3">{t('seeOurWork')}</p>
                 <Link href="/portfolio/crm-system" className="text-primary hover:text-primary-dark font-medium">
-                  Case Study: Sales CRM Platform →
+                  {t('caseStudyLabel')} →
                 </Link>
               </div>
             </section>
 
             {/* FAQ Section */}
             <section className="mb-12">
-              <FAQSection customFAQs={crmFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </section>
 
             {/* CTA Strip */}
             <section className="p-8 bg-primary text-white rounded-lg">
               <div className="text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">Ready to Get Started?</h2>
-                <p className="text-primary-100 mb-6">Let's discuss your CRM needs and get a free quote today.</p>
+                <h2 className="text-2xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
+                <p className="text-primary-100 mb-6">{t('ctaSubtitle')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"
@@ -213,13 +223,13 @@ export default function CRMPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                   >
                     <MessageCircle size={20} />
-                    Chat on WhatsApp
+                    {t('ctaWhatsApp')}
                   </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
                   >
-                    Get a Quote
+                    {t('ctaGetQuote')}
                     <ArrowRight size={18} />
                   </Link>
                 </div>
@@ -228,14 +238,11 @@ export default function CRMPage() {
           </div>
         </div>
       </div>
-    
-      
+
       {/* Our Services - Mobile Only (Bottom) */}
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-
-
-</>
+    </>
   )
 }
