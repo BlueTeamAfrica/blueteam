@@ -10,6 +10,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const mobileAppsFAQs: FAQ[] = [
   {
@@ -96,7 +97,18 @@ export async function generateMetadata({
   }
 }
 
-export default function MobileAppsPage() {
+export default async function MobileAppsPage() {
+  const t = await getTranslations('MobileAppsPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
+  ]
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -107,11 +119,11 @@ export default function MobileAppsPage() {
       <MobileAppsFAQSchema />
       <ServiceSchema serviceName="Mobile Apps" serviceSlug="mobile-apps" />
       <InteriorHeader
-        title="Mobile App Development"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'Mobile Apps' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbMobileApps') }
         ]}
       />
 
@@ -122,7 +134,7 @@ export default function MobileAppsPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -143,10 +155,14 @@ export default function MobileAppsPage() {
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold leading-tight text-gray-900 mb-6">
-                    Secure, Offline-First Mobile Apps for East Africa
+                    {t('heroH2')}
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-                    Secure, offline-first mobile apps for NGOs, enterprises and startups — built to work reliably in low-connectivity and high-risk environments across Sudan 🇸🇩, Uganda 🇺🇬, Kenya 🇰🇪 and Rwanda 🇷🇼. Our <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">mobile app development solutions in Kigali and throughout Rwanda</Link> are designed for NGOs, startups, and SMEs seeking secure and scalable apps.
+                    {t('heroPre')}
+                    <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">
+                      {t('heroLinkLabel')}
+                    </Link>
+                    {t('heroPost')}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
@@ -156,13 +172,13 @@ export default function MobileAppsPage() {
                       className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition"
                     >
                       <MessageCircle size={20} />
-                      Start Your App Project
+                      {t('heroStartApp')}
                     </a>
                     <Link
                       href="/portfolio/mobile-app"
                       className="inline-flex items-center gap-2 border-2 border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
                     >
-                      View Mobile Projects
+                      {t('heroViewWork')}
                       <ArrowRight size={18} />
                     </Link>
                   </div>
@@ -187,16 +203,26 @@ export default function MobileAppsPage() {
             <SectionWrapper bgColor="light">
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
                 <div>
-                  <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Overview & Use Cases</h2>
+                  <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">{t('overviewTitle')}</h2>
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    We build custom Android and iOS applications and cross-platform solutions (Flutter / React Native) that focus on security, offline capability, and seamless integration with back-end systems like <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> and <Link href="/services/crm" className="text-primary hover:underline">Frappe CRM</Link>. Typical use-cases include field data collection, beneficiary registration, staff coordination, monitoring & evaluation, and mobile commerce.
+                    {t('overviewPre')}
+                    <Link href="/services/erp" className="text-primary hover:underline">{t('overviewLink1')}</Link>
+                    {t('overviewMid')}
+                    <Link href="/services/crm" className="text-primary hover:underline">{t('overviewLink2')}</Link>
+                    {t('overviewPost')}
                   </p>
                   <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                    <li>Offline-first field data collection apps (images, GPS, forms)</li>
-                    <li>Mobile dashboards for managers and donors</li>
-                    <li>Secure API integrations with <Link href="/services/erp" className="text-primary hover:underline">ERP</Link>/<Link href="/services/crm" className="text-primary hover:underline">CRM</Link> systems</li>
-                    <li>Multilingual apps (Arabic, English, Swahili)</li>
-                    <li>Low-bandwidth optimizations and progressive sync</li>
+                    <li>{t('overviewBullet1')}</li>
+                    <li>{t('overviewBullet2')}</li>
+                    <li>
+                      {t('overviewBullet3Pre')}
+                      <Link href="/services/erp" className="text-primary hover:underline">{t('overviewBullet3Link1')}</Link>
+                      {t('overviewBullet3Mid')}
+                      <Link href="/services/crm" className="text-primary hover:underline">{t('overviewBullet3Link2')}</Link>
+                      {t('overviewBullet3Post')}
+                    </li>
+                    <li>{t('overviewBullet4')}</li>
+                    <li>{t('overviewBullet5')}</li>
                   </ul>
                 </div>
                 <div className="flex justify-center">
@@ -216,45 +242,38 @@ export default function MobileAppsPage() {
             {/* Core Features */}
             <SectionWrapper bgColor="white">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 text-center mb-12">Core Features</h2>
+                <h2 className="text-3xl font-heading font-bold text-gray-900 text-center mb-12">{t('featuresTitle')}</h2>
                 <div className="grid md:grid-cols-2 gap-8">
-                  {[
-                    {
-                      title: "Offline Sync & Reliability",
-                      desc: "Collect data offline and automatically sync when the device regains connectivity.",
-                    },
-                    {
-                      title: "Secure Data Storage",
-                      desc: "Encrypted local storage + secure transport to the central database (HTTPS, TLS).",
-                    },
-                    {
-                      title: "Real-time Reporting",
-                      desc: "Live dashboards and alerts for program managers and donors.",
-                    },
-                    {
-                      title: "ERP & CRM Integration",
-                      desc: "Seamless API-based sync with ERPNext, Frappe CRM, or custom backends.",
-                    },
-                    {
-                      title: "Low-end Device Optimization",
-                      desc: "Performance tuned for older Android devices common in East Africa.",
-                    },
-                    {
-                      title: "User Access Control",
-                      desc: "Role-based access, audit logs, and secure authentication (Firebase/Auth providers).",
-                    },
-                  ].map((f, i) => (
-                    <div key={i} className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{f.title}</h3>
-                      {f.title === "ERP & CRM Integration" ? (
-                        <p className="text-gray-700">
-                          Seamless API-based sync with <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link>, <Link href="/services/crm" className="text-primary hover:underline">Frappe CRM</Link>, or custom backends.
-                        </p>
-                      ) : (
-                        <p className="text-gray-700">{f.desc}</p>
-                      )}
-                    </div>
-                  ))}
+                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('feature1Title')}</h3>
+                    <p className="text-gray-700">{t('feature1Desc')}</p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('feature2Title')}</h3>
+                    <p className="text-gray-700">{t('feature2Desc')}</p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('feature3Title')}</h3>
+                    <p className="text-gray-700">{t('feature3Desc')}</p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('feature4Title')}</h3>
+                    <p className="text-gray-700">
+                      {t('feature4Pre')}
+                      <Link href="/services/erp" className="text-primary hover:underline">{t('feature4Link1')}</Link>
+                      {t('feature4Mid')}
+                      <Link href="/services/crm" className="text-primary hover:underline">{t('feature4Link2')}</Link>
+                      {t('feature4Post')}
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('feature5Title')}</h3>
+                    <p className="text-gray-700">{t('feature5Desc')}</p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('feature6Title')}</h3>
+                    <p className="text-gray-700">{t('feature6Desc')}</p>
+                  </div>
                 </div>
               </div>
             </SectionWrapper>
@@ -263,13 +282,22 @@ export default function MobileAppsPage() {
             <SectionWrapper bgColor="highlight">
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div>
-                  <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Technology & Integrations</h2>
-                  <p className="text-gray-700 mb-6">We build using modern frameworks and tools focused on speed and reliability.</p>
+                  <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">{t('techTitle')}</h2>
+                  <p className="text-gray-700 mb-6">{t('techBody')}</p>
                   <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                    <li>Flutter / React Native / Native Android</li>
-                    <li>Firebase / Firestore for realtime sync</li>
-                    <li><Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> & <Link href="/services/crm" className="text-primary hover:underline">Frappe CRM</Link> API integrations</li>
-                    <li>Vercel / Cloudflare for backend <Link href="/services/hosting" className="text-primary hover:underline">hosting</Link> and edge functions</li>
+                    <li>{t('techBullet1')}</li>
+                    <li>{t('techBullet2')}</li>
+                    <li>
+                      <Link href="/services/erp" className="text-primary hover:underline">{t('techBullet3Link1')}</Link>
+                      {t('techBullet3Mid')}
+                      <Link href="/services/crm" className="text-primary hover:underline">{t('techBullet3Link2')}</Link>
+                      {t('techBullet3Post')}
+                    </li>
+                    <li>
+                      {t('techBullet4Pre')}
+                      <Link href="/services/hosting" className="text-primary hover:underline">{t('techBullet4LinkLabel')}</Link>
+                      {t('techBullet4Post')}
+                    </li>
                   </ul>
                 </div>
                 <div className="flex justify-center">
@@ -289,22 +317,22 @@ export default function MobileAppsPage() {
             {/* Case Study Teaser */}
             <SectionWrapper bgColor="white">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Case Study: CSLO Mobile Field App</h2>
+                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">{t('caseTitle')}</h2>
                 <p className="text-gray-700 leading-relaxed mb-8">
-                  We built a lightweight mobile app for CSLO that allowed field officers to capture beneficiary surveys, GPS coordinates, and incident reports offline — then sync to a secure ERPNext backend when online. The solution improved reporting accuracy and reduced data entry time by over 60%.
+                  {t('caseBody')}
                 </p>
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Problem</h3>
-                    <p className="text-gray-600">Field teams could not reliably send reports due to poor connectivity.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseProblemTitle')}</h3>
+                    <p className="text-gray-600">{t('caseProblemBody')}</p>
                   </div>
                   <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Solution</h3>
-                    <p className="text-gray-600">Offline-first Android app with secure sync and minimal bandwidth usage.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseSolutionTitle')}</h3>
+                    <p className="text-gray-600">{t('caseSolutionBody')}</p>
                   </div>
                   <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Impact</h3>
-                    <p className="text-gray-600">Reporting time reduced by 60%; data accuracy improved; faster donor reporting.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseImpactTitle')}</h3>
+                    <p className="text-gray-600">{t('caseImpactBody')}</p>
                   </div>
                 </div>
               </div>
@@ -312,15 +340,20 @@ export default function MobileAppsPage() {
 
             {/* FAQ Section */}
             <SectionWrapper bgColor="white">
-              <FAQSection customFAQs={mobileAppsFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </SectionWrapper>
 
             {/* CTA Section */}
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto text-center py-12 md:py-16 bg-primary text-white rounded-lg">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Ready to Build a Mobile App?</h2>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
                 <p className="text-white/90 max-w-2xl mx-auto mb-8 text-lg">
-                  Let's design and deploy a secure, offline-capable mobile solution for your team.
+                  {t('ctaSubtitle')}
                 </p>
                 <a
                   href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20start%20a%20mobile%20app%20project."
@@ -329,7 +362,7 @@ export default function MobileAppsPage() {
                   className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition shadow-lg"
                 >
                   <MessageCircle size={20} />
-                  Start Your Mobile App Project
+                  {t('ctaBtn')}
                 </a>
               </div>
             </SectionWrapper>
@@ -341,8 +374,6 @@ export default function MobileAppsPage() {
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-      
-
     </>
   )
 }
