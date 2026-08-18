@@ -10,6 +10,7 @@ import type { FAQ } from '@/lib/faqs'
 import { metadataCybersecurity } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export async function generateMetadata({
   params,
@@ -49,7 +50,7 @@ export async function generateMetadata({
 }
 
 
-// Custom FAQs for Cybersecurity
+// English FAQ array kept for JSON-LD schema only
 const cybersecurityFAQs: FAQ[] = [
   {
     question: 'How much do cybersecurity services cost?',
@@ -108,7 +109,20 @@ function FAQSchema() {
   )
 }
 
-export default function CybersecurityPage() {
+export default async function CybersecurityPage() {
+  const t = await getTranslations('CybersecurityPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
+    { question: t('faq7q'), answer: t('faq7a') },
+    { question: t('faq8q'), answer: t('faq8a') },
+  ]
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -118,13 +132,13 @@ export default function CybersecurityPage() {
       ]} />
       <ServiceSchema serviceName="Cybersecurity" serviceSlug="cybersecurity" />
       <FAQSchema />
-      
+
       <InteriorHeader
-        title="Trusted Cybersecurity Solutions for East African Businesses & NGOs"
+        title={t('interiorHeaderTitle')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'Cybersecurity' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbCybersecurity') }
         ]}
       />
 
@@ -135,7 +149,7 @@ export default function CybersecurityPage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Image */}
             <section className="mb-12">
@@ -155,38 +169,38 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6 text-center">
-                  Secure Today. Operate Confidently Tomorrow.
+                  {t('sec1H2')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Cyber threats in East Africa continue to rise — from website attacks to NGO data breaches targeting sensitive beneficiary information. At Blue Team Africa, we deliver robust <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">cybersecurity solutions for organizations in Rwanda</Link>, including businesses and NGOs in Kigali, helping protect critical digital infrastructure across the region.
+                  {t('sec1P1Pre')}<Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">{t('sec1P1LinkLabel')}</Link>{t('sec1P1Post')}
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Our security systems are designed for:
+                  {t('sec1P2')}
                 </p>
                 <ul className="space-y-3 text-gray-700 mb-6">
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>High-risk regions like Sudan and South Sudan</span>
+                    <span>{t('sec1Li1')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Remote NGO operations with limited connectivity</span>
+                    <span>{t('sec1Li2')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Websites handling beneficiary databases and sensitive data</span>
+                    <span>{t('sec1Li3')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>SMEs and startups scaling online services</span>
+                    <span>{t('sec1Li4')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Organizations storing sensitive financial and personal information</span>
+                    <span>{t('sec1Li5')}</span>
                   </li>
                 </ul>
                 <p className="text-gray-700 leading-relaxed">
-                  We keep your digital infrastructure safe so your team can focus on impact and growth.
+                  {t('sec1P3')}
                 </p>
               </div>
             </SectionWrapper>
@@ -195,79 +209,79 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="light">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-                  We Protect Your Entire Digital Ecosystem
+                  {t('sec2H2')}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                     <div className="flex items-center mb-3">
                       <Server className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">Websites & Hosting Environments</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card1H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      Secure your web presence with firewall protection, SSL encryption, and continuous monitoring.
+                      {t('sec2Card1P')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                     <div className="flex items-center mb-3">
                       <Database className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">Cloud Applications</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card2H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      Protect Firebase, Vercel, Google Cloud, and other cloud platforms from threats.
+                      {t('sec2Card2P')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                     <div className="flex items-center mb-3">
                       <Shield className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">NGO ERPs & CRMs</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card3H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      Secure ERPNext and custom CRM systems handling sensitive humanitarian data.
+                      {t('sec2Card3P')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                     <div className="flex items-center mb-3">
                       <Smartphone className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">Mobile Apps & APIs</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card4H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      End-to-end security for mobile applications and API endpoints.
+                      {t('sec2Card4P')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                     <div className="flex items-center mb-3">
                       <Users className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">Internal Staff Networks</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card5H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      Protect internal networks and devices from unauthorized access and malware.
+                      {t('sec2Card5P')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                     <div className="flex items-center mb-3">
                       <Database className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">User & Beneficiary Databases</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card6H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      Encrypt and secure sensitive databases containing personal and organizational data.
+                      {t('sec2Card6P')}
                     </p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 md:col-span-2">
                     <div className="flex items-center mb-3">
                       <Lock className="text-primary mr-3" size={24} />
-                      <h3 className="text-xl font-semibold text-gray-900">Email Systems & Communication Tools</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{t('sec2Card7H3')}</h3>
                     </div>
                     <p className="text-gray-600">
-                      Secure email communications and protect against phishing, spam, and email-based attacks.
+                      {t('sec2Card7P')}
                     </p>
                   </div>
                 </div>
                 <div className="mt-8 p-4 bg-[#EEF4FF] rounded-lg border border-primary/20">
                   <p className="text-gray-700">
                     <Link href="/services/website-development" className="text-primary hover:text-primary-dark font-medium underline">
-                      Learn more about our Website Development Services
+                      {t('sec2LinkLabel')}
                     </Link>{' '}
-                    for improved security integration.
+                    {t('sec2LinkPost')}
                   </p>
                 </div>
               </div>
@@ -277,16 +291,16 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-                  Comprehensive Cybersecurity Solutions
+                  {t('sec3H2')}
                 </h2>
                 <div className="space-y-6">
                   <div className="bg-[#F8F9FC] p-6 rounded-lg border border-gray-200">
                     <div className="flex items-start mb-3">
                       <Shield className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Website Security Hardening</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service1H3')}</h3>
                         <p className="text-gray-700">
-                          We secure your website against malware, defacement, brute-force attacks, and data theft. Includes firewall setup, continuous monitoring, and incident alerts.
+                          {t('sec3Service1P')}
                         </p>
                       </div>
                     </div>
@@ -295,9 +309,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <Search className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Penetration Testing (Pentest)</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service2H3')}</h3>
                         <p className="text-gray-700">
-                          Ethical hacking to expose vulnerabilities before attackers do. We simulate real-world attacks and provide detailed reports with actionable recommendations.
+                          {t('sec3Service2P')}
                         </p>
                       </div>
                     </div>
@@ -306,9 +320,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <AlertTriangle className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Cybersecurity Audits & Risk Assessments</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service3H3')}</h3>
                         <p className="text-gray-700">
-                          Professional evaluation of your systems with actionable reports. We assess your security posture, identify risks, and provide prioritized remediation plans.
+                          {t('sec3Service3P')}
                         </p>
                       </div>
                     </div>
@@ -317,9 +331,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <AlertTriangle className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Incident Response & Emergency Recovery</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service4H3')}</h3>
                         <p className="text-gray-700">
-                          Fast support when your organization experiences a breach or cyber attack. Our team responds immediately to contain threats, assess damage, and restore operations.
+                          {t('sec3Service4P')}
                         </p>
                       </div>
                     </div>
@@ -328,9 +342,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <Search className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Vulnerability Scanning</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service5H3')}</h3>
                         <p className="text-gray-700">
-                          Continuous scanning and patching for websites, networks, and cloud systems. Regular automated scans identify and prioritize security issues.
+                          {t('sec3Service5P')}
                         </p>
                       </div>
                     </div>
@@ -339,9 +353,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <Users className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Staff Cyber Awareness Training</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service6H3')}</h3>
                         <p className="text-gray-700">
-                          Human error causes over 70% of breaches — we train your team to prevent them. Customized training programs cover phishing, password security, and safe data handling.
+                          {t('sec3Service6P')}
                         </p>
                       </div>
                     </div>
@@ -350,9 +364,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <Lock className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Data Encryption & Secure Backups</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service7H3')}</h3>
                         <p className="text-gray-700">
-                          Protects your organization's sensitive data from loss or unauthorized access. Automated encrypted backups ensure business continuity.
+                          {t('sec3Service7P')}
                         </p>
                       </div>
                     </div>
@@ -361,9 +375,9 @@ export default function CybersecurityPage() {
                     <div className="flex items-start mb-3">
                       <Smartphone className="text-primary mr-3 flex-shrink-0 mt-1" size={24} />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Secure Mobile App Development & API Protection</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec3Service8H3')}</h3>
                         <p className="text-gray-700">
-                          End-to-end security for mission-critical NGO data collection apps. We secure mobile apps, APIs, and backend systems from vulnerabilities.
+                          {t('sec3Service8P')}
                         </p>
                       </div>
                     </div>
@@ -376,46 +390,46 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="highlight">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6 text-center">
-                  Security Built From Real Experience in Sudan & East Africa
+                  {t('sec4H2')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  Your experience rebuilding CSLO Sudan gives Blue Team Africa a unique advantage: we understand how humanitarian organizations operate under pressure.
+                  {t('sec4P1')}
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Our NGO-focused solutions include:
+                  {t('sec4P2')}
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-2">Secure ERPs & CRMs</h3>
-                    <p className="text-gray-600 text-sm">ERPNext + Frappe systems with multi-layer access controls and encrypted data storage.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">{t('sec4Card1H3')}</h3>
+                    <p className="text-gray-600 text-sm">{t('sec4Card1P')}</p>
                   </div>
                   <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-2">Protected Beneficiary Databases</h3>
-                    <p className="text-gray-600 text-sm">Secure storage and access controls for sensitive humanitarian data.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">{t('sec4Card2H3')}</h3>
+                    <p className="text-gray-600 text-sm">{t('sec4Card2P')}</p>
                   </div>
                   <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-2">Remote-Area Mobile Data Collection</h3>
-                    <p className="text-gray-600 text-sm">Offline-capable apps with secure sync for field staff operating in unstable regions.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">{t('sec4Card3H3')}</h3>
+                    <p className="text-gray-600 text-sm">{t('sec4Card3P')}</p>
                   </div>
                   <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-2">Multi-Layer Access Control</h3>
-                    <p className="text-gray-600 text-sm">Role-based permissions and authentication for staff at all levels.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">{t('sec4Card4H3')}</h3>
+                    <p className="text-gray-600 text-sm">{t('sec4Card4P')}</p>
                   </div>
                   <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-2">Automatic Backups</h3>
-                    <p className="text-gray-600 text-sm">Redundant backups for unstable regions with multiple recovery points.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">{t('sec4Card5H3')}</h3>
+                    <p className="text-gray-600 text-sm">{t('sec4Card5P')}</p>
                   </div>
                   <div className="bg-white p-5 rounded-lg shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-2">Field Tool Sync</h3>
-                    <p className="text-gray-600 text-sm">Offline-capable field tools synced securely to a central database.</p>
+                    <h3 className="font-semibold text-gray-900 mb-2">{t('sec4Card6H3')}</h3>
+                    <p className="text-gray-600 text-sm">{t('sec4Card6P')}</p>
                   </div>
                 </div>
                 <div className="p-4 bg-white rounded-lg border border-primary/20">
                   <p className="text-gray-700">
                     <Link href="/services/erp" className="text-primary hover:text-primary-dark font-medium underline">
-                      See how we build NGO Digital Solutions
+                      {t('sec4LinkLabel')}
                     </Link>{' '}
-                    with security-first architecture.
+                    {t('sec4LinkPost')}
                   </p>
                 </div>
               </div>
@@ -425,39 +439,39 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6 text-center">
-                  We Are Not Just a Tech Company — We Are Survivors & Builders
+                  {t('sec5H2')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  As a team of Sudanese professionals who fled conflict and rebuilt from the ground up, we understand one thing better than any competitor:
+                  {t('sec5P1')}
                 </p>
                 <p className="text-xl font-semibold text-gray-900 mb-8 text-center bg-[#EEF4FF] p-4 rounded-lg border border-primary/20">
-                  Your data is your lifeline. It must be protected.
+                  {t('sec5Pullquote')}
                 </p>
-                <h3 className="text-2xl font-heading font-semibold text-gray-900 mb-6">What Makes Us Different?</h3>
+                <h3 className="text-2xl font-heading font-semibold text-gray-900 mb-6">{t('sec5H3')}</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-[#F8F9FC] p-5 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Security-First Development Approach</h4>
-                    <p className="text-gray-600 text-sm">Security is built into every solution from the ground up, not added as an afterthought.</p>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('sec5Card1H4')}</h4>
+                    <p className="text-gray-600 text-sm">{t('sec5Card1P')}</p>
                   </div>
                   <div className="bg-[#F8F9FC] p-5 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Real Field Experience with NGOs</h4>
-                    <p className="text-gray-600 text-sm">We've built secure systems for humanitarian organizations operating in risky areas.</p>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('sec5Card2H4')}</h4>
+                    <p className="text-gray-600 text-sm">{t('sec5Card2P')}</p>
                   </div>
                   <div className="bg-[#F8F9FC] p-5 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">High-Level Technical Expertise</h4>
-                    <p className="text-gray-600 text-sm">ERPNext, cloud platforms, mobile apps — we secure the entire technology stack.</p>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('sec5Card3H4')}</h4>
+                    <p className="text-gray-600 text-sm">{t('sec5Card3P')}</p>
                   </div>
                   <div className="bg-[#F8F9FC] p-5 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Fast Response Time & Reliable Support</h4>
-                    <p className="text-gray-600 text-sm">24/7 incident response and ongoing support when you need it most.</p>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('sec5Card4H4')}</h4>
+                    <p className="text-gray-600 text-sm">{t('sec5Card4P')}</p>
                   </div>
                   <div className="bg-[#F8F9FC] p-5 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Transparent Pricing</h4>
-                    <p className="text-gray-600 text-sm">Clear, upfront pricing with no hidden costs. Tailored for East African budgets.</p>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('sec5Card5H4')}</h4>
+                    <p className="text-gray-600 text-sm">{t('sec5Card5P')}</p>
                   </div>
                   <div className="bg-[#F8F9FC] p-5 rounded-lg border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-2">Tailored Solutions</h4>
-                    <p className="text-gray-600 text-sm">Security solutions designed specifically for East African markets and challenges.</p>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('sec5Card6H4')}</h4>
+                    <p className="text-gray-600 text-sm">{t('sec5Card6P')}</p>
                   </div>
                 </div>
               </div>
@@ -467,7 +481,7 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="light">
               <div className="max-w-4xl mx-auto px-6">
                 <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">
-                  Our Cybersecurity Process
+                  {t('sec6H2')}
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start">
@@ -475,8 +489,8 @@ export default function CybersecurityPage() {
                       1
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Initial Consultation</h3>
-                      <p className="text-gray-700">We assess your current security posture, identify risks, and understand your unique requirements.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec6Step1H3')}</h3>
+                      <p className="text-gray-700">{t('sec6Step1P')}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -484,8 +498,8 @@ export default function CybersecurityPage() {
                       2
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Security Audit & Vulnerability Scan</h3>
-                      <p className="text-gray-700">Comprehensive assessment of your systems, networks, and applications to identify security gaps.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec6Step2H3')}</h3>
+                      <p className="text-gray-700">{t('sec6Step2P')}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -493,8 +507,8 @@ export default function CybersecurityPage() {
                       3
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Implementation & Hardening</h3>
-                      <p className="text-gray-700">We implement security measures, patch vulnerabilities, and harden your systems against threats.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec6Step3H3')}</h3>
+                      <p className="text-gray-700">{t('sec6Step3P')}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -502,8 +516,8 @@ export default function CybersecurityPage() {
                       4
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Monitoring & Alerts Setup</h3>
-                      <p className="text-gray-700">Continuous monitoring systems alert you to threats in real-time, enabling quick response.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec6Step4H3')}</h3>
+                      <p className="text-gray-700">{t('sec6Step4P')}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -511,8 +525,8 @@ export default function CybersecurityPage() {
                       5
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Staff Training (Optional)</h3>
-                      <p className="text-gray-700">Comprehensive cyber awareness training empowers your team to prevent security breaches.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec6Step5H3')}</h3>
+                      <p className="text-gray-700">{t('sec6Step5P')}</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -520,8 +534,8 @@ export default function CybersecurityPage() {
                       6
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Ongoing Protection Plan</h3>
-                      <p className="text-gray-700">Regular security updates, vulnerability scanning, and incident response support keep you protected.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('sec6Step6H3')}</h3>
+                      <p className="text-gray-700">{t('sec6Step6P')}</p>
                     </div>
                   </div>
                 </div>
@@ -530,12 +544,13 @@ export default function CybersecurityPage() {
 
             {/* Section 7 — FAQ */}
             <SectionWrapper bgColor="white">
-              <FAQSection 
-                customFAQs={cybersecurityFAQs}
+              <FAQSection
+                customFAQs={displayFAQs}
                 showAll={true}
                 showCTA={false}
-                title="Frequently Asked Questions"
-                description="Common questions about our cybersecurity services"
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
               />
             </SectionWrapper>
 
@@ -543,10 +558,10 @@ export default function CybersecurityPage() {
             <SectionWrapper bgColor="highlight">
               <div className="max-w-4xl mx-auto px-6 text-center">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  Ready to Secure Your Organization?
+                  {t('ctaTitle')}
                 </h2>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                  Protect your digital assets with expert support tailored for East African conditions. Our team understands the unique challenges you face and delivers security solutions that work in your environment.
+                  {t('ctaSubtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
@@ -556,7 +571,7 @@ export default function CybersecurityPage() {
                     className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition shadow-lg"
                   >
                     <MessageCircle size={20} />
-                    Request a Security Assessment
+                    {t('ctaWhatsApp')}
                   </a>
                   <a
                     href="https://wa.me/254119402737"
@@ -578,7 +593,7 @@ export default function CybersecurityPage() {
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-      
+
 
     </>
   )
