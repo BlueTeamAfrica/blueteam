@@ -10,6 +10,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const ecommerceFAQs: FAQ[] = [
   {
@@ -96,7 +97,18 @@ export async function generateMetadata({
   }
 }
 
-export default function EcommercePage() {
+export default async function EcommercePage() {
+  const t = await getTranslations('EcommercePage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
+  ]
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -107,11 +119,11 @@ export default function EcommercePage() {
       <EcommerceFAQSchema />
       <ServiceSchema serviceName="E-commerce" serviceSlug="ecommerce" />
       <InteriorHeader
-        title="E-commerce Solutions for Businesses in East Africa"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'E-commerce' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbEcommerce') }
         ]}
       />
 
@@ -122,17 +134,17 @@ export default function EcommercePage() {
               <ServiceSidebar />
             </div>
           </aside>
-          
+
           <div className="lg:w-3/4 flex-grow">
             {/* Hero Section with Two Columns */}
             <SectionWrapper bgColor="white">
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold leading-tight text-gray-900 mb-6">
-                    Launch Fast, Scale Secure, and Sell Everywhere
+                    {t('heroH2')}
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-                    From mobile-first stores to secure payment integrations and inventory automation — Blue Team builds e-commerce platforms that convert and scale across Uganda 🇺🇬, Kenya 🇰🇪, Rwanda 🇷🇼 and Sudan 🇸🇩.
+                    {t('heroBody')}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
@@ -142,13 +154,13 @@ export default function EcommercePage() {
                       className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition"
                     >
                       <MessageCircle size={20} />
-                      Start Your Store
+                      {t('heroStartStore')}
                     </a>
                     <Link
                       href="/portfolio/ecommerce-shop"
                       className="inline-flex items-center gap-2 border-2 border-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
                     >
-                      View E‑commerce Work
+                      {t('heroViewWork')}
                       <ArrowRight size={18} />
                     </Link>
                   </div>
@@ -173,31 +185,31 @@ export default function EcommercePage() {
             {/* E-commerce Services We Offer */}
             <SectionWrapper bgColor="light">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">E-commerce Services We Offer</h2>
+                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">{t('servicesTitle')}</h2>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Custom Online Stores</h3>
-                    <p className="text-gray-700">Tailored storefronts with product catalogs, collections, and fast checkout flows.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('service1Title')}</h3>
+                    <p className="text-gray-700">{t('service1Body')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Payment Integrations</h3>
-                    <p className="text-gray-700">Integrations with local payment providers, mobile money, and international gateways (Stripe/PayPal).</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('service2Title')}</h3>
+                    <p className="text-gray-700">{t('service2Body')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Inventory & Order Management</h3>
-                    <p className="text-gray-700">Automated inventory sync, order routing, and fulfillment workflows for multi‑location stores.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('service3Title')}</h3>
+                    <p className="text-gray-700">{t('service3Body')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Marketplace & B2B Portals</h3>
-                    <p className="text-gray-700">Multi-vendor marketplaces, wholesale portals, and partner dashboards.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('service4Title')}</h3>
+                    <p className="text-gray-700">{t('service4Body')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Mobile-First Commerce</h3>
-                    <p className="text-gray-700">Progressive web apps and responsive experiences optimized for mobile purchasing behavior in East Africa.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('service5Title')}</h3>
+                    <p className="text-gray-700">{t('service5Body')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Analytics & Growth</h3>
-                    <p className="text-gray-700">Conversion optimization, analytics setup, and SEO for product discoverability.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('service6Title')}</h3>
+                    <p className="text-gray-700">{t('service6Body')}</p>
                   </div>
                 </div>
               </div>
@@ -207,15 +219,15 @@ export default function EcommercePage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div>
-                  <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">Tech & Integrations</h2>
+                  <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">{t('techTitle')}</h2>
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    We build on modern stacks — Next.js/React, headless CMS, Stripe/M-Pesa, and scalable hosting on Vercel and Cloud providers. Our integrations allow automated order flows, accounting exports, and sync with ERP systems.
+                    {t('techBody')}
                   </p>
                   <ul className="list-disc ml-6 space-y-2 text-gray-700">
-                    <li>Headless commerce & static + dynamic hybrid sites</li>
-                    <li>Local payment gateway integration (mobile money)</li>
-                    <li>ERP & inventory synchronization (ERPNext / custom APIs)</li>
-                    <li>Performance-first architecture optimized for Africa</li>
+                    <li>{t('techBullet1')}</li>
+                    <li>{t('techBullet2')}</li>
+                    <li>{t('techBullet3')}</li>
+                    <li>{t('techBullet4')}</li>
                   </ul>
                 </div>
                 <div className="flex justify-center">
@@ -235,22 +247,22 @@ export default function EcommercePage() {
             {/* Case Study Teaser */}
             <SectionWrapper bgColor="highlight">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">E-commerce Case Study: Tooma House</h2>
+                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">{t('caseTitle')}</h2>
                 <p className="text-gray-700 leading-relaxed mb-8">
-                  We partnered with Tooma House to build a mobile-first marketplace selling local crafts. The platform improved online sales and enabled local artisans to ship across the region.
+                  {t('caseBody')}
                 </p>
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Problem</h3>
-                    <p className="text-gray-600">Local artisans had no centralized store and struggled to reach regional buyers.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseProblemTitle')}</h3>
+                    <p className="text-gray-600">{t('caseProblemBody')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Solution</h3>
-                    <p className="text-gray-600">Built a marketplace with mobile-optimized checkout, vendor dashboards, and M-Pesa integration.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseSolutionTitle')}</h3>
+                    <p className="text-gray-600">{t('caseSolutionBody')}</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Impact</h3>
-                    <p className="text-gray-600">Increased average monthly sales by 48% and reduced order processing time by 60%.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseImpactTitle')}</h3>
+                    <p className="text-gray-600">{t('caseImpactBody')}</p>
                   </div>
                 </div>
               </div>
@@ -258,15 +270,20 @@ export default function EcommercePage() {
 
             {/* FAQ Section */}
             <SectionWrapper bgColor="white">
-              <FAQSection customFAQs={ecommerceFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </SectionWrapper>
 
             {/* CTA Section */}
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto text-center py-12 md:py-16 bg-primary text-white rounded-lg">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Ready to Launch Your Online Store?</h2>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
                 <p className="text-white/90 max-w-2xl mx-auto mb-8 text-lg">
-                  From payments to logistics, we build e-commerce platforms that convert and scale across East Africa.
+                  {t('ctaSubtitle')}
                 </p>
                 <a
                   href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20start%20an%20e-commerce%20project."
@@ -275,7 +292,7 @@ export default function EcommercePage() {
                   className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition shadow-lg"
                 >
                   <MessageCircle size={20} />
-                  Start Your E-commerce Project
+                  {t('ctaBtn')}
                 </a>
               </div>
             </SectionWrapper>
@@ -287,9 +304,6 @@ export default function EcommercePage() {
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-    
-      
-
-</>
+    </>
   )
 }
