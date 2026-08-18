@@ -9,6 +9,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const websiteDevelopmentFAQs: FAQ[] = [
   {
@@ -90,7 +91,18 @@ export async function generateMetadata({
   }
 }
 
-export default function WebsiteDevelopmentPage() {
+export default async function WebsiteDevelopmentPage() {
+  const t = await getTranslations('WebsiteDevelopmentPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
+  ]
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -101,11 +113,11 @@ export default function WebsiteDevelopmentPage() {
       <WebsiteDevelopmentFAQSchema />
       <ServiceSchema serviceName="Website Development" serviceSlug="website-development" />
       <InteriorHeader
-        title="Web Development Services"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'Website Development' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbWebsiteDevelopment') }
         ]}
       />
 
@@ -135,124 +147,128 @@ export default function WebsiteDevelopmentPage() {
             {/* Introduction */}
             <SectionWrapper>
               <p className="text-lg text-gray-700 leading-relaxed">
-                At Blue Team Africa, we develop fast, secure, and scalable websites that help businesses, NGOs, and organizations grow online. Whether you need a custom-built system, a dynamic website integrated with your internal workflows, or a fully optimized business platform — our development team delivers reliable, modern, and SEO-ready solutions.
+                {t('introP1')}
               </p>
               <p className="text-lg text-gray-700 leading-relaxed mt-4">
-                From corporate websites to NGO management platforms, our builds are designed to perform under real conditions across East Africa. For organizations in Rwanda, we provide comprehensive <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services in Rwanda</Link> with custom solutions tailored to local needs.
+                {t('introPre')}
+                <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">
+                  {t('introLinkLabel')}
+                </Link>
+                {t('introPost')}
               </p>
             </SectionWrapper>
 
             {/* Why Website Development Matters */}
             <SectionWrapper>
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
-                Why Website Development Matters
+                {t('whyTitle')}
               </h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Most companies stop at "web design," but real success requires <strong>website development</strong> — the part that makes your site powerful, functional, automated, and secure.
+                {t('whyP1Pre')}<strong>{t('whyP1Bold')}</strong>{t('whyP1Post')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Our website development services focus on:
+                {t('whyP2')}
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span><strong>Speed optimization</strong> (Core Web Vitals)</span>
+                  <span><strong>{t('whyBullet1Bold')}</strong>{t('whyBullet1Rest')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span><strong>Secure backend systems</strong></span>
+                  <span><strong>{t('whyBullet2')}</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span><strong>Integrations</strong> with databases & APIs</span>
+                  <span><strong>{t('whyBullet3Bold')}</strong>{t('whyBullet3Rest')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span><strong>Scalable architecture</strong> for growth</span>
+                  <span><strong>{t('whyBullet4Bold')}</strong>{t('whyBullet4Rest')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span><strong>Mobile-first performance</strong></span>
+                  <span><strong>{t('whyBullet5')}</strong></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  <span><strong>SEO-ready code structure</strong></span>
+                  <span><strong>{t('whyBullet6')}</strong></span>
                 </li>
               </ul>
               <p className="text-gray-700 leading-relaxed mt-4">
-                This ensures your website doesn't just look good — it works flawlessly, loads fast, ranks high, and supports real business operations.
+                {t('whyConclusion')}
               </p>
             </SectionWrapper>
 
             {/* What We Build */}
             <SectionWrapper>
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
-                What We Build
+                {t('buildTitle')}
               </h2>
               <div className="space-y-6">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    1. Business & Corporate Websites
+                    {t('build1Title')}
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    High-performance websites built for companies across East Africa. Optimized for search engines and tailored to your brand.
+                    {t('build1Desc')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    2. NGO & Humanitarian Organization Websites
+                    {t('build2Title')}
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    We specialize in building digital platforms for NGOs operating across East Africa. This includes membership systems, reporting dashboards, data collection tools, and secure portals.
+                    {t('build2Desc')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    3. E-Commerce Websites
+                    {t('build3Title')}
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    Full online sales platforms with product management, payment integration, and inventory tracking.
+                    {t('build3Desc')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    4. Custom Web Applications
+                    {t('build4Title')}
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    If your operations are unique, we build software that matches your workflow — rather than forcing you to adapt.
+                    {t('build4Desc')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    5. Integrated Mobile + Web Systems
+                    {t('build5Title')}
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-3">
-                    For field teams, humanitarian missions, and sensitive operations. We can build:
+                    {t('build5Intro')}
                   </p>
                   <ul className="space-y-2 text-gray-700 ml-4">
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Mobile apps for data collection</span>
+                      <span>{t('build5Bullet1')}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Secure dashboards</span>
+                      <span>{t('build5Bullet2')}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Centralized cloud reporting</span>
+                      <span>{t('build5Bullet3')}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Offline-to-online sync</span>
+                      <span>{t('build5Bullet4')}</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-primary mr-2">•</span>
-                      <span>Multi-level access for staff</span>
+                      <span>{t('build5Bullet5')}</span>
                     </li>
                   </ul>
                 </div>
@@ -262,29 +278,29 @@ export default function WebsiteDevelopmentPage() {
             {/* Real Case Example */}
             <SectionWrapper bgColor="highlight">
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
-                Real Case Example
+                {t('caseTitle')}
               </h2>
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-gray-900">
-                  CSLO Sudan – ERP + CRM + Website Development
+                  {t('caseH3')}
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  During the Sudan crisis, CSLO struggled to manage members and humanitarian reports spread across different regions.
+                  {t('caseP1')}
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Blue Team Africa built a complete ERPNext-based system, CRM module, and a fully integrated website — enabling their team inside Sudan to securely store, track, and manage data even in risky areas.
+                  {t('caseP2')}
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  We also designed a complementary mobile app for data collectors in remote zones. All information syncs directly to the database for real-time reporting.
+                  {t('caseP3')}
                 </p>
                 <p className="text-gray-700 leading-relaxed font-semibold">
-                  👉 This proves our capability to build enterprise-level systems for real field conditions.
+                  {t('caseP4')}
                 </p>
                 <Link
                   href="/portfolio/cslo-sudan"
                   className="inline-block mt-4 text-primary hover:text-primary-dark font-semibold"
                 >
-                  View Full Case Study →
+                  {t('caseViewStudy')}
                 </Link>
               </div>
             </SectionWrapper>
@@ -292,56 +308,56 @@ export default function WebsiteDevelopmentPage() {
             {/* Why Choose Blue Team Africa */}
             <SectionWrapper>
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
-                Why Choose Blue Team Africa
+                {t('whyChooseTitle')}
               </h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                We are a Sudanese-founded team with firsthand experience navigating crisis environments. We operate in Uganda, serving clients across East Africa.
+                {t('whyChooseP1')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Our survival story pushes us to deliver high-quality work with absolute integrity. We build websites and systems that function reliably even under pressure — because we understand what "mission-critical" really means.
+                {t('whyChooseP2')}
               </p>
             </SectionWrapper>
 
             {/* Service Highlights */}
             <SectionWrapper>
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
-                Service Highlights
+                {t('highlightsTitle')}
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Custom web application development</span>
+                    <span>{t('highlight1')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Custom web applications</span>
+                    <span>{t('highlight2')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Fast & SEO-optimized websites</span>
+                    <span>{t('highlight3')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Secure database-driven platforms</span>
+                    <span>{t('highlight4')}</span>
                   </li>
                 </ul>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Humanitarian & NGO technology solutions</span>
+                    <span>{t('highlight5')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Mobile + website integration</span>
+                    <span>{t('highlight6')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>API & cloud system integrations</span>
+                    <span>{t('highlight7')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">✓</span>
-                    <span>Scalable hosting & maintenance packages</span>
+                    <span>{t('highlight8')}</span>
                   </li>
                 </ul>
               </div>
@@ -350,53 +366,58 @@ export default function WebsiteDevelopmentPage() {
             {/* Related Services */}
             <SectionWrapper>
               <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
-                Related Services
+                {t('relatedTitle')}
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <Link
                   href="/services/web-design"
                   className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-1">Website Design</h3>
-                  <p className="text-sm text-gray-600">UI/UX design and visual branding</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t('related1Title')}</h3>
+                  <p className="text-sm text-gray-600">{t('related1Desc')}</p>
                 </Link>
                 <Link
                   href="/services/mobile-apps"
                   className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-1">Mobile App Development</h3>
-                  <p className="text-sm text-gray-600">iOS and Android applications</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t('related2Title')}</h3>
+                  <p className="text-sm text-gray-600">{t('related2Desc')}</p>
                 </Link>
                 <Link
                   href="/services/cybersecurity"
                   className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-1">Cyber Security Services</h3>
-                  <p className="text-sm text-gray-600">Security audits and protection</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t('related3Title')}</h3>
+                  <p className="text-sm text-gray-600">{t('related3Desc')}</p>
                 </Link>
                 <Link
                   href="/services/erp"
                   className="block p-4 border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-1">ERP Systems for NGOs</h3>
-                  <p className="text-sm text-gray-600">ERPNext and enterprise solutions</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t('related4Title')}</h3>
+                  <p className="text-sm text-gray-600">{t('related4Desc')}</p>
                 </Link>
               </div>
             </SectionWrapper>
 
             {/* FAQ Section */}
             <SectionWrapper bgColor="white">
-              <FAQSection customFAQs={websiteDevelopmentFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </SectionWrapper>
 
             {/* Call to Action */}
             <SectionWrapper>
               <div className="text-center space-y-4 p-8 bg-gray-50 rounded-lg">
                 <h2 className="text-2xl font-bold text-gray-900">
-                  Ready to Build a Reliable Website or System for Your Organization?
+                  {t('ctaTitle')}
                 </h2>
                 <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto">
-                  Our team is here to support your mission with professional, secure, and scalable technology.
+                  {t('ctaSubtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                   <a
@@ -409,11 +430,11 @@ export default function WebsiteDevelopmentPage() {
                     href="mailto:contact@blueteamafrica.com"
                     className="inline-flex items-center px-6 py-3 bg-white text-primary font-semibold rounded-lg border-2 border-primary hover:bg-gray-50 transition-colors"
                   >
-                    📧 Get Started
+                    {t('ctaGetStarted')}
                   </a>
                 </div>
                 <p className="text-sm text-gray-600 pt-2">
-                  💬 WhatsApp chat available for quick inquiries
+                  {t('ctaWhatsAppNote')}
                 </p>
               </div>
             </SectionWrapper>
