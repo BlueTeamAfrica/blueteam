@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MessageCircle, ArrowRight } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
@@ -10,6 +10,7 @@ import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
+import { getTranslations } from 'next-intl/server'
 
 const erpFAQs: FAQ[] = [
   {
@@ -96,7 +97,18 @@ export async function generateMetadata({
   }
 }
 
-export default function ERPPage() {
+export default async function ERPPage() {
+  const t = await getTranslations('ErpPage')
+
+  const displayFAQs: FAQ[] = [
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+    { question: t('faq3q'), answer: t('faq3a') },
+    { question: t('faq4q'), answer: t('faq4a') },
+    { question: t('faq5q'), answer: t('faq5a') },
+    { question: t('faq6q'), answer: t('faq6a') },
+  ]
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -107,11 +119,11 @@ export default function ERPPage() {
       <ERPFAQSchema />
       <ServiceSchema serviceName="ERP" serviceSlug="erp" />
       <InteriorHeader
-        title="ERP Solutions for NGOs, Companies & Humanitarian Organizations"
+        title={t('title')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: 'ERP Solutions' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbServices'), href: '/services' },
+          { label: t('breadcrumbErp') }
         ]}
       />
 
@@ -138,58 +150,43 @@ export default function ERPPage() {
               </div>
             </section>
 
-            {/* Hero Section */}
+            {/* Hero Intro */}
             <SectionWrapper bgColor="white">
               <div className="max-w-5xl mx-auto">
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  Blue Team builds modern, scalable, and secure <strong>ERP systems powered by <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link></strong>—designed for NGOs, companies, and humanitarian organizations operating in complex environments. Streamline operations, automate workflows, and gain real-time visibility across your entire organization.
+                  {t('introPre')}
+                  <strong>
+                    <Link href="/services/erp" className="text-primary hover:underline">
+                      {t('introLinkLabel')}
+                    </Link>
+                  </strong>
+                  {t('introPost')}
                 </p>
               </div>
             </SectionWrapper>
 
-            {/* Why ERP Section */}
+            {/* Centralize / Why ERP Section */}
             <SectionWrapper bgColor="light">
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  Centralize Your Entire Organization in One Unified ERP System
+                  {t('whyTitle')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  Our ERP solutions replace scattered spreadsheets, manual reports, and disconnected workflows. With <strong><Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link></strong>, every department becomes fully connected—finance, HR, procurement, logistics, projects, and field operations.
+                  {t('whyBodyPre')}
+                  <strong>
+                    <Link href="/services/erp" className="text-primary hover:underline">
+                      {t('whyBodyLinkLabel')}
+                    </Link>
+                  </strong>
+                  {t('whyBodyPost')}
                 </p>
-
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800 text-lg">
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Finance & Accounting</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>HR & Payroll</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Procurement & Vendor Management</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Inventory & Supply Chain Operations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Fleet & Asset Management</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Donor Reporting & Grant Management</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Monitoring & Evaluation (M&E)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Project & Program Management</span>
-                  </li>
+                  {(['whyBullet1','whyBullet2','whyBullet3','whyBullet4','whyBullet5','whyBullet6','whyBullet7','whyBullet8'] as const).map((key) => (
+                    <li key={key} className="flex items-start">
+                      <span className="text-primary mr-3 font-bold">•</span>
+                      <span>{t(key)}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </SectionWrapper>
@@ -198,20 +195,26 @@ export default function ERPPage() {
             <SectionWrapper bgColor="highlight">
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  Real Use Case: ERP for Sudan-Based Humanitarian Operations
+                  {t('caseTitle')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  We implemented a complete ERP system for a Sudanese humanitarian organization operating in conflict-affected regions. The system centralized field data, procurement, HR operations, and donor reporting into one secure platform—reducing admin time by 40% and improving field visibility.
+                  {t('caseBody1')}
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  The ERP platform is fully integrated with a <strong><Link href="/services/mobile-apps" className="text-primary hover:underline">mobile data-collection app</Link></strong> allowing field teams to gather assessments, beneficiary records, and incident reports even in low-connectivity zones. All data syncs directly to the ERP database for real-time dashboards and program oversight.
+                  {t('caseBody2Pre')}
+                  <strong>
+                    <Link href="/services/mobile-apps" className="text-primary hover:underline">
+                      {t('caseBody2LinkLabel')}
+                    </Link>
+                  </strong>
+                  {t('caseBody2Post')}
                 </p>
                 <div className="flex flex-wrap gap-4 mt-2">
                   <Link href="/portfolio/cslo-sudan" className="text-primary hover:text-primary-dark font-medium">
-                    Full case study: ERP &amp; CRM for CSLO Sudan →
+                    {t('caseStudyLink1')} →
                   </Link>
                   <Link href="/portfolio/erp-integration" className="text-primary hover:text-primary-dark font-medium">
-                    Case study: Enterprise ERP Integration →
+                    {t('caseStudyLink2')} →
                   </Link>
                 </div>
               </div>
@@ -221,37 +224,25 @@ export default function ERPPage() {
             <SectionWrapper bgColor="white">
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  Mobile App + ERP Integration for Field Data
+                  {t('mobileTitle')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  Your ERP is more powerful when connected with a dedicated mobile application. Our integrated <Link href="/services/mobile-apps" className="text-primary hover:underline">mobile solutions</Link> allow your field staff to:
+                  {t('mobileBodyPre')}
+                  <Link href="/services/mobile-apps" className="text-primary hover:underline">
+                    {t('mobileBodyLinkLabel')}
+                  </Link>
+                  {t('mobileBodyPost')}
                 </p>
-
                 <ul className="space-y-4 text-gray-800 text-lg mb-8">
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Collect field reports and beneficiary data</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Capture images, GPS coordinates, and incident logs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Work offline and sync automatically once connected</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Access task lists, distribution records, and schedules</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Push updates directly to your operations dashboard</span>
-                  </li>
+                  {(['mobileBullet1','mobileBullet2','mobileBullet3','mobileBullet4','mobileBullet5'] as const).map((key) => (
+                    <li key={key} className="flex items-start">
+                      <span className="text-primary mr-3 font-bold">•</span>
+                      <span>{t(key)}</span>
+                    </li>
+                  ))}
                 </ul>
-
                 <p className="text-lg text-gray-700">
-                  All submitted data flows securely into your ERP for instant processing, reporting, and program decision-making.
+                  {t('mobileClosing')}
                 </p>
               </div>
             </SectionWrapper>
@@ -260,54 +251,72 @@ export default function ERPPage() {
             <SectionWrapper bgColor="light">
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  What You Get With Blue Team's ERP Solutions
+                  {t('featuresTitle')}
                 </h2>
-
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800 text-lg">
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Fully customized ERPNext implementation</span>
+                    <span>{t('feature1')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Secure <Link href="/services/hosting" className="text-primary hover:underline">hosting</Link> & infrastructure management</span>
+                    <span>
+                      {t('feature2Pre')}
+                      <Link href="/services/hosting" className="text-primary hover:underline">{t('feature2LinkLabel')}</Link>
+                      {t('feature2Post')}
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Custom modules for NGOs & humanitarian work</span>
+                    <span>{t('feature3')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Workflow automation for all departments</span>
+                    <span>{t('feature4')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Role-based access + advanced user permissions</span>
+                    <span>{t('feature5')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Real-time dashboards & donor reporting</span>
+                    <span>{t('feature6')}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>API integrations with <Link href="/services/web-design" className="text-primary hover:underline">websites</Link> & <Link href="/services/mobile-apps" className="text-primary hover:underline">mobile apps</Link></span>
+                    <span>
+                      {t('feature7Pre')}
+                      <Link href="/services/web-design" className="text-primary hover:underline">{t('feature7Link1')}</Link>
+                      {t('feature7Mid')}
+                      <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('feature7Link2')}</Link>
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>Ongoing <Link href="/services/maintenance" className="text-primary hover:underline">support</Link>, maintenance & training</span>
+                    <span>
+                      {t('feature8Pre')}
+                      <Link href="/services/maintenance" className="text-primary hover:underline">{t('feature8LinkLabel')}</Link>
+                      {t('feature8Post')}
+                    </span>
                   </li>
                 </ul>
               </div>
             </SectionWrapper>
 
-            {/* Related Services - Enhanced with Internal Links */}
+            {/* Related Services */}
             <SectionWrapper bgColor="white">
               <div className="max-w-5xl mx-auto">
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-gray-900 mb-6">
-                  Explore Related Services
+                  {t('relatedTitle')}
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Our ERP solutions work seamlessly with our other offerings such as <Link href="/services/web-design" className="text-primary hover:underline">web design</Link> (optimized for NGOs and organizations needing strong visibility), <Link href="/services/mobile-apps" className="text-primary hover:underline">mobile app development</Link> for integrated field operations, and <Link href="/services/cybersecurity" className="text-primary hover:underline">cybersecurity solutions</Link> to protect your digital infrastructure.
+                  {t('relatedBodyPre')}
+                  <Link href="/services/web-design" className="text-primary hover:underline">{t('relatedLink1')}</Link>
+                  {t('relatedMid1')}
+                  <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('relatedLink2')}</Link>
+                  {t('relatedMid2')}
+                  <Link href="/services/cybersecurity" className="text-primary hover:underline">{t('relatedLink3')}</Link>
+                  {t('relatedPost')}
                 </p>
               </div>
             </SectionWrapper>
@@ -316,25 +325,16 @@ export default function ERPPage() {
             <SectionWrapper bgColor="light">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Integrated Operations</h3>
-                  <p className="text-gray-600">
-                    Connect all departments—finance, inventory, HR, and sales—into a single, unified 
-                    system that provides real-time insights.
-                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
+                  <p className="text-gray-600">{t('pillar1Body')}</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Customizable Workflows</h3>
-                  <p className="text-gray-600">
-                    Tailored to your business processes with customizable modules that adapt to your 
-                    specific operational needs.
-                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
+                  <p className="text-gray-600">{t('pillar2Body')}</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Real-Time Reporting</h3>
-                  <p className="text-gray-600">
-                    Comprehensive dashboards and reports that give you instant visibility into your 
-                    business performance and help you make data-driven decisions.
-                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
+                  <p className="text-gray-600">{t('pillar3Body')}</p>
                 </div>
               </div>
             </SectionWrapper>
@@ -342,35 +342,54 @@ export default function ERPPage() {
             {/* Why Choose Blue Team Africa */}
             <SectionWrapper bgColor="white">
               <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                Why Choose Blue Team Africa?
+                {t('whyChooseTitle')}
               </h2>
               <div className="space-y-6 text-gray-700">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">ERPNext Specialists</h3>
-                  <p>Our team has deep expertise in <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> and <Link href="/services/crm" className="text-primary hover:underline">Frappe</Link> platforms, ensuring your system is implemented correctly and efficiently.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
+                  <p>
+                    {t('why1BodyPre')}
+                    <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link>
+                    {t('why1BodyMid')}
+                    <Link href="/services/crm" className="text-primary hover:underline">Frappe</Link>
+                    {t('why1BodyPost')}
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">NGO & Business Focus</h3>
-                  <p>We understand the unique needs of NGOs and businesses in East Africa, from donor reporting to local compliance requirements. Our <Link href="/services/mobile-apps" className="text-primary hover:underline">mobile app</Link> solutions integrate seamlessly with ERP systems for field operations.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
+                  <p>
+                    {t('why2BodyPre')}
+                    <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('why2BodyLinkLabel')}</Link>
+                    {t('why2BodyPost')}
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Ongoing Support</h3>
-                  <p>From implementation to training and ongoing <Link href="/services/maintenance" className="text-primary hover:underline">maintenance</Link>, we're here to ensure your ERP system continues to serve your organization effectively.</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
+                  <p>
+                    {t('why3BodyPre')}
+                    <Link href="/services/maintenance" className="text-primary hover:underline">{t('why3BodyLinkLabel')}</Link>
+                    {t('why3BodyPost')}
+                  </p>
                 </div>
               </div>
             </SectionWrapper>
 
             {/* FAQ Section */}
             <SectionWrapper bgColor="white">
-              <FAQSection customFAQs={erpFAQs} />
+              <FAQSection
+                customFAQs={displayFAQs}
+                title={t('faqTitle')}
+                description={t('faqDescription')}
+                viewAllLabel={t('faqViewAll')}
+              />
             </SectionWrapper>
 
             {/* CTA Section */}
             <SectionWrapper bgColor="white">
               <div className="max-w-4xl mx-auto text-center py-12 md:py-16 bg-primary text-white rounded-lg">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Ready to Build Your ERP System?</h2>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
                 <p className="text-white/90 max-w-2xl mx-auto mb-8 text-lg">
-                  Let's help your organization automate operations, improve reporting, and gain full visibility across teams.
+                  {t('ctaSubtitle')}
                 </p>
                 <a
                   href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20discuss%20ERP%20solutions%20for%20my%20organization."
@@ -379,7 +398,7 @@ export default function ERPPage() {
                   className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition shadow-lg"
                 >
                   <MessageCircle size={20} />
-                  Contact Us
+                  {t('ctaBtn')}
                 </a>
               </div>
             </SectionWrapper>
@@ -391,9 +410,6 @@ export default function ERPPage() {
       <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
         <ServiceSidebar />
       </div>
-    
-      
-
-</>
+    </>
   )
 }
