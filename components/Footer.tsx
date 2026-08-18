@@ -2,70 +2,77 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { Phone, Mail, MapPin, Facebook, X, Linkedin, Instagram, Youtube } from 'lucide-react'
 import { Ltr } from '@/components/Ltr'
 
 export default function Footer() {
+  const t = useTranslations('Footer')
   const currentYear = new Date().getFullYear()
 
   const aboutLinks = [
-    { label: 'About Us', href: '/about' },
-    { label: 'Our Team', href: '/team' },
-    { label: 'Our Mission', href: '/mission' },
-    { label: 'Our Process', href: '/process' },
+    { label: t('aboutUs'), href: '/about' },
+    { label: t('ourTeam'), href: '/team' },
+    { label: t('ourMission'), href: '/mission' },
+    { label: t('ourProcess'), href: '/process' },
   ]
 
   const servicesLinks = [
-    { label: 'Web Design', href: '/services/web-design' },
-    { label: 'Web Design in Rwanda', href: '/web-design-rwanda' },
-    { label: 'Web Development in Rwanda', href: '/web-development-rwanda' },
-    { label: 'Mobile App Development', href: '/services/mobile-apps' },
-    { label: 'Cloud & Web Hosting', href: '/services/hosting' },
-    { label: 'ERP Systems', href: '/services/erp' },
-    { label: 'CRM Solutions', href: '/services/crm' },
-    { label: 'Cybersecurity', href: '/services/cybersecurity' },
-    { label: 'E-commerce Development', href: '/services/ecommerce' },
-    { label: 'UI/UX Design', href: '/services/ui-ux' },
+    { label: t('webDesign'), href: '/services/web-design' },
+    { label: t('webDesignRwanda'), href: '/web-design-rwanda' },
+    { label: t('webDevelopmentRwanda'), href: '/web-development-rwanda' },
+    { label: t('mobileAppDev'), href: '/services/mobile-apps' },
+    { label: t('cloudHosting'), href: '/services/hosting' },
+    { label: t('erpSystems'), href: '/services/erp' },
+    { label: t('crmSolutions'), href: '/services/crm' },
+    { label: t('cybersecurity'), href: '/services/cybersecurity' },
+    { label: t('ecommerce'), href: '/services/ecommerce' },
+    { label: t('uiuxDesign'), href: '/services/ui-ux' },
   ]
 
   const quickLinks = [
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Contact', href: '/contact' },
+    { label: t('portfolio'), href: '/portfolio' },
+    { label: t('blog'), href: '/blog' },
+    { label: t('faq'), href: '/faq' },
+    { label: t('contact'), href: '/contact' },
   ]
 
   const legalLinks = [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-    { label: 'Cookie Policy', href: '/cookies' },
+    { label: t('privacyPolicy'), href: '/privacy' },
+    { label: t('termsOfService'), href: '/terms' },
+    { label: t('cookiePolicy'), href: '/cookies' },
   ]
 
   const socialLinks = [
-    { 
-      label: 'Facebook', 
-      href: 'https://www.facebook.com/profile.php?id=61585128246041', 
-      icon: Facebook 
+    {
+      label: 'Facebook',
+      ariaLabel: t('followFacebook'),
+      href: 'https://www.facebook.com/profile.php?id=61585128246041',
+      icon: Facebook,
     },
-    { 
-      label: 'X (Twitter)', 
-      href: 'https://x.com/BLUETEAMAFRICA', 
-      icon: X 
+    {
+      label: 'X (Twitter)',
+      ariaLabel: t('followTwitter'),
+      href: 'https://x.com/BLUETEAMAFRICA',
+      icon: X,
     },
-    { 
-      label: 'LinkedIn', 
-      href: 'https://www.linkedin.com/company/blue-team-africa', 
-      icon: Linkedin 
+    {
+      label: 'LinkedIn',
+      ariaLabel: t('followLinkedIn'),
+      href: 'https://www.linkedin.com/company/blue-team-africa',
+      icon: Linkedin,
     },
-    { 
-      label: 'Instagram', 
-      href: 'https://www.instagram.com/blueteamafrica/', 
-      icon: Instagram 
+    {
+      label: 'Instagram',
+      ariaLabel: t('followInstagram'),
+      href: 'https://www.instagram.com/blueteamafrica/',
+      icon: Instagram,
     },
-    { 
-      label: 'YouTube', 
-      href: 'https://youtube.com/@BLUETEAMAFRICA', 
-      icon: Youtube 
+    {
+      label: 'YouTube',
+      ariaLabel: t('followYouTube'),
+      href: 'https://youtube.com/@BLUETEAMAFRICA',
+      icon: Youtube,
     },
   ]
 
@@ -80,13 +87,13 @@ export default function Footer() {
               <Image src="/images/logo/logo-lockup.png" alt="Blue Team Africa" width={186} height={80} className="h-16 w-auto" />
             </Link>
             <p className="text-gray-400 mb-4 leading-relaxed text-sm">
-              Blue Team Africa provides high-performance web design, hosting, branding, and digital solutions for NGOs, companies, and startups across East Africa. Built with precision, powered by purpose.
+              {t('tagline')}
             </p>
-            
+
             {/* Location */}
             <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
               <MapPin className="w-4 h-4 flex-shrink-0" />
-              <span>Kigali, Rwanda</span>
+              <span>{t('location')}</span>
             </div>
 
             {/* Social Icons */}
@@ -100,10 +107,10 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-primary flex items-center justify-center transition-colors group"
-                    aria-label={`Follow us on ${social.label}`}
+                    aria-label={social.ariaLabel}
                   >
-                    <Icon 
-                      className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" 
+                    <Icon
+                      className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors"
                       aria-hidden="true"
                     />
                   </a>
@@ -114,7 +121,7 @@ export default function Footer() {
 
           {/* Column 2: About */}
           <div>
-            <h3 className="text-white font-semibold text-base mb-5">About</h3>
+            <h3 className="text-white font-semibold text-base mb-5">{t('aboutHeading')}</h3>
             <ul className="space-y-3">
               {aboutLinks.map((link) => (
                 <li key={link.href}>
@@ -131,7 +138,7 @@ export default function Footer() {
 
           {/* Column 3: Services */}
           <div>
-            <h3 className="text-white font-semibold text-base mb-5">Services</h3>
+            <h3 className="text-white font-semibold text-base mb-5">{t('servicesHeading')}</h3>
             <ul className="space-y-3">
               {servicesLinks.map((link) => (
                 <li key={link.href}>
@@ -148,7 +155,7 @@ export default function Footer() {
 
           {/* Column 4: Quick Links & Contact */}
           <div>
-            <h3 className="text-white font-semibold text-base mb-5">Quick Links</h3>
+            <h3 className="text-white font-semibold text-base mb-5">{t('quickLinksHeading')}</h3>
             <ul className="space-y-3 mb-6">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -199,7 +206,7 @@ export default function Footer() {
                 >
                   <path d="M21.7 4.3A11.9 11.9 0 0012 .1C5.5.1.6 5 .6 11.5c0 2.1.6 4.1 1.8 5.9L.1 24l6.8-1.8c1.6 1 3.6 1.6 5.6 1.6 6.5 0 11.4-4.9 11.4-11.4 0-3.1-1.2-6-3.2-8.1z" />
                 </svg>
-                Chat on WhatsApp
+                {t('chatWhatsApp')}
               </a>
             </div>
           </div>
@@ -207,7 +214,7 @@ export default function Footer() {
 
         {/* Trust / Recognition Section */}
         <div className="border-t border-gray-800 pt-8 pb-6">
-          <p className="text-gray-400 text-sm text-center mb-4">Trusted by industry research platforms</p>
+          <p className="text-gray-400 text-sm text-center mb-4">{t('trustedBy')}</p>
           <div className="flex justify-center">
             <a
               href="https://www.goodfirms.co/"
@@ -230,11 +237,17 @@ export default function Footer() {
 
         {/* Bottom Bar: Legal Links & Copyright */}
         <div className="border-t border-gray-800 pt-8">
-          <p className="text-gray-400 text-sm text-center mb-4">Serving businesses and NGOs across Rwanda. Explore our <Link href="/web-development-rwanda" className="text-gray-300 hover:text-white transition-colors underline">Web Development in Rwanda</Link> services.</p>
+          <p className="text-gray-400 text-sm text-center mb-4">
+            {t('servingPre')}
+            <Link href="/web-development-rwanda" className="text-gray-300 hover:text-white transition-colors underline">
+              {t('webDevLinkLabel')}
+            </Link>
+            {t('servingPost')}
+          </p>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <p className="text-gray-400 text-sm text-center md:text-left">
-              &copy; {currentYear} Blue Team Africa. All rights reserved.
+              {t('copyright', { year: currentYear })}
             </p>
 
             {/* Legal Links */}
