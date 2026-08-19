@@ -41,8 +41,8 @@ export default async function ContactPage() {
         <InteriorHeader
           title={t('title')}
           breadcrumb={[
-            { label: 'Home', href: '/' },
-            { label: 'Contact' }
+            { label: t('breadcrumbHome'), href: '/' },
+            { label: t('breadcrumbContact') }
           ]}
         />
 
@@ -57,26 +57,27 @@ export default async function ContactPage() {
 
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                  Blue Team Africa specializes in <Link href="/services/web-design" className="text-primary hover:underline font-semibold">web design Uganda</Link>,
-                  comprehensive <Link href="/services/website-development" className="text-primary hover:underline font-semibold">website development East Africa</Link>,
-                  and enterprise <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">cybersecurity solutions</Link> for NGOs,
-                  businesses, and organizations across Uganda, Sudan, Kenya, and Rwanda. Whether you need <Link href="/services/erp" className="text-primary hover:underline font-semibold">ERP solutions</Link>,
-                  SEO optimization, or specialized <strong>Sudan NGO tech support</strong>, our team is ready to help you transform your digital infrastructure.
+                  {t.rich('seoPara1', {
+                    webDesign: (chunks) => <Link href="/services/web-design" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    webDev: (chunks) => <Link href="/services/website-development" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    cyber: (chunks) => <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    erp: (chunks) => <Link href="/services/erp" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    strong: (chunks) => <strong>{chunks}</strong>,
+                  })}
                 </p>
 
                 <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                  We understand the unique challenges faced by organizations operating in East Africa and conflict-affected regions.
-                  Our expertise in building reliable systems for humanitarian organizations, combined with our technical excellence in
-                  <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold"> mobile app development</Link>,
-                  <Link href="/services/hosting" className="text-primary hover:underline font-semibold"> secure hosting</Link>, and
-                  <Link href="/services/ecommerce" className="text-primary hover:underline font-semibold"> e-commerce platforms</Link>,
-                  makes us a trusted partner for your digital transformation journey.
+                  {t.rich('seoPara2', {
+                    mobile: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    hosting: (chunks) => <Link href="/services/hosting" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    ecommerce: (chunks) => <Link href="/services/ecommerce" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                  })}
                 </p>
 
                 <p className="text-lg leading-relaxed mb-6 text-gray-700">
-                  Reach out to us today to discuss your project requirements, request a consultation, or learn more about how we can
-                  support your organization&apos;s technology needs. Our team of <strong>SEO experts</strong> and digital solution specialists
-                  is available to assist you with everything from initial planning to ongoing maintenance and support.
+                  {t.rich('seoPara3', {
+                    strong: (chunks) => <strong>{chunks}</strong>,
+                  })}
                 </p>
               </div>
 
