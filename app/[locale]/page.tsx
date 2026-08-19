@@ -182,7 +182,11 @@ export default async function Home() {
               {t('servicesSection.sectionSubtitle')}
             </p>
             <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-              Learn more about <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">how much website design costs in Rwanda</Link> in our comprehensive pricing guide.
+              {t.rich('servicesSection.pricingNote', {
+                pricingLink: (chunks) => (
+                  <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                ),
+              })}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
