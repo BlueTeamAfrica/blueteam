@@ -338,7 +338,7 @@ export default async function ServicesPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"
-            aria-label="Chat on WhatsApp"
+            aria-label={t('ctaWhatsApp')}
           >
             {t('mobileCtaWhatsapp')}
           </a>
