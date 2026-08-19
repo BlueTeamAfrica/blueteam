@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import ServiceCard from './ServiceCard'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Services — Blue Team Africa',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     'Web design, hosting, ERP/CRM, mobile apps and NGO solutions—SEO-first, performance-focused digital services for East Africa.',
 }
 
+// Kept exported for ServiceDetail.tsx — English only, not rendered directly
 export const services = [
   {
     id: 'web-design',
@@ -61,34 +63,39 @@ export const services = [
   },
 ]
 
-const caseStudies = [
-  {
-    title: 'CSLO Sudan — ERPNext Implementation',
-    excerpt: 'Custom ERP for field finance and logistics. Reduced monthly reporting time from 12 days to 2 days.',
-    href: '/portfolio/cslo-sudan',
-  },
-  {
-    title: 'NGO Management Portal',
-    excerpt: 'Comprehensive platform for managing programs, beneficiaries, and donor relations.',
-    href: '/portfolio/ngo-portal',
-  },
-  {
-    title: 'E-commerce Platform',
-    excerpt: 'Full-featured online store with mobile money integration and inventory management.',
-    href: '/portfolio/ecommerce-shop',
-  },
+const caseStudyHrefs = [
+  '/portfolio/cslo-sudan',
+  '/portfolio/ngo-portal',
+  '/portfolio/ecommerce-shop',
 ]
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const t = await getTranslations('ServicesPage')
+
   const breadcrumbItems = [
     { name: 'Home', url: 'https://www.blueteamafrica.com/' },
     { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
   ]
+
+  const translatedServices = [
+    { ...services[0], title: t('cardWebDesignTitle'), excerpt: t('cardWebDesignExcerpt') },
+    { ...services[1], title: t('cardMobileAppsTitle'), excerpt: t('cardMobileAppsExcerpt') },
+    { ...services[2], title: t('cardHostingTitle'), excerpt: t('cardHostingExcerpt') },
+    { ...services[3], title: t('cardErpTitle'), excerpt: t('cardErpExcerpt') },
+    { ...services[4], title: t('cardCrmTitle'), excerpt: t('cardCrmExcerpt') },
+    { ...services[5], title: t('cardEcommerceTitle'), excerpt: t('cardEcommerceExcerpt') },
+  ]
+
+  const caseStudies = [
+    { title: t('case1Title'), excerpt: t('case1Excerpt'), href: caseStudyHrefs[0] },
+    { title: t('case2Title'), excerpt: t('case2Excerpt'), href: caseStudyHrefs[1] },
+    { title: t('case3Title'), excerpt: t('case3Excerpt'), href: caseStudyHrefs[2] },
+  ]
+
   return (
     <>
     <BreadcrumbSchema items={breadcrumbItems} />
     <main className="min-h-screen bg-white text-slate-900">
-      {/* JSON-LD: Organization + FAQ for SEO (server-rendered in head would be better; included here to ensure presence) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -143,11 +150,10 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                Digital solutions for NGOs, startups & enterprises in East Africa
+                {t('heroTitle')}
               </h1>
               <p className="mt-4 text-lg sm:text-xl text-slate-600">
-                Fast, SEO-first websites, mobile apps, hosting and business systems built for
-                results — tailored to the needs of organizations across the region.
+                {t('heroSubtitle')}
               </p>
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -155,7 +161,7 @@ export default function ServicesPage() {
                   href="/contact"
                   className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-blue-600 text-white font-medium shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
-                  Get a Free Quote
+                  {t('ctaQuote')}
                 </a>
 
                 <a
@@ -164,20 +170,19 @@ export default function ServicesPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-5 py-3 rounded-2xl border border-slate-200 text-slate-700 bg-white shadow-sm hover:bg-slate-50"
                 >
-                  Chat on WhatsApp
+                  {t('ctaWhatsApp')}
                 </a>
               </div>
 
               <div className="mt-6 flex gap-4 text-sm text-slate-500">
-                <div>⭐ Trusted by NGOs & startups across East Africa</div>
+                <div>{t('trustBadge1')}</div>
                 <div className="hidden sm:block">•</div>
-                <div className="hidden sm:block">Fast turnarounds & local expertise</div>
+                <div className="hidden sm:block">{t('trustBadge2')}</div>
               </div>
             </div>
 
             <div className="order-first lg:order-last">
               <div className="relative w-full h-56 sm:h-64 lg:h-72 rounded-2xl overflow-hidden shadow">
-                {/* Decorative hero image: use an optimized image in production */}
                 <Image
                   src="/images/hero/hero-gradient-01.webp"
                   alt="Blue Team Africa services overview"
@@ -194,51 +199,51 @@ export default function ServicesPage() {
       {/* CATEGORIES */}
       <section className="max-w-6xl mx-auto px-6 py-10 lg:py-16">
         <header className="mb-8">
-          <h2 className="text-2xl font-bold">Service categories</h2>
-          <p className="mt-2 text-slate-600">Grouped by outcome so you can find the right service fast.</p>
+          <h2 className="text-2xl font-bold">{t('categoriesTitle')}</h2>
+          <p className="mt-2 text-slate-600">{t('categoriesSubtitle')}</p>
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <CategoryCard
-            title="Web & Mobile"
+            title={t('catWebMobile')}
             items={[
-              { label: 'Web Design & Development', href: '/services/web-design' },
-              { label: 'Mobile Apps', href: '/services/mobile-apps' },
-              { label: 'Hosting & Maintenance', href: '/services/hosting' },
+              { label: t('catItemWebDesign'), href: '/services/web-design' },
+              { label: t('catItemMobileApps'), href: '/services/mobile-apps' },
+              { label: t('catItemHosting'), href: '/services/hosting' },
             ]}
           />
 
           <CategoryCard
-            title="Business Systems"
+            title={t('catBusinessSystems')}
             items={[
-              { label: 'ERP Systems', href: '/services/erp' },
-              { label: 'CRM Solutions', href: '/services/crm' },
-              { label: 'Custom Software', href: '/services/custom-systems' },
+              { label: t('catItemErp'), href: '/services/erp' },
+              { label: t('catItemCrm'), href: '/services/crm' },
+              { label: t('catItemCustomSystems'), href: '/services/custom-systems' },
             ]}
           />
 
           <CategoryCard
-            title="Digital & Security"
+            title={t('catDigitalSecurity')}
             items={[
-              { label: 'E-commerce', href: '/services/ecommerce' },
-              { label: 'Cybersecurity', href: '/services/cybersecurity' },
-              { label: 'UI/UX Design', href: '/services/ui-ux' },
+              { label: t('catItemEcommerce'), href: '/services/ecommerce' },
+              { label: t('catItemCybersecurity'), href: '/services/cybersecurity' },
+              { label: t('catItemUiux'), href: '/services/ui-ux' },
             ]}
           />
         </div>
       </section>
 
-      {/* SERVICE CARDS */}
+      {/* SERVICE CARDS — desktop */}
       <div className="hidden sm:block">
         <section className="bg-slate-50">
           <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
             <header className="mb-8">
-              <h2 className="text-2xl font-bold">Our Services</h2>
-              <p className="mt-2 text-slate-600">Detailed offerings with focused outcomes and pathway to engagement.</p>
+              <h2 className="text-2xl font-bold">{t('servicesTitle')}</h2>
+              <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
             </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((s) => (
+              {translatedServices.map((s) => (
                 <ServiceCard key={s.id} service={s} />
               ))}
             </div>
@@ -250,13 +255,22 @@ export default function ServicesPage() {
       <section className="max-w-6xl mx-auto px-6 py-10 lg:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 items-center">
           <div className="sm:col-span-2">
-            <h3 className="text-xl font-bold">Why choose Blue Team Africa?</h3>
-            <p className="mt-2 text-slate-600">Local teams, fast delivery, and systems built for NGOs and enterprises. We work with organizations across East Africa, providing <Link href="/web-design-rwanda" className="text-blue-600 hover:text-blue-700 hover:underline">professional web design services in Rwanda</Link> and <Link href="/web-development-rwanda" className="text-blue-600 hover:text-blue-700 hover:underline">comprehensive web development solutions for businesses in Rwanda</Link>.</p>
+            <h3 className="text-xl font-bold">{t('whyTitle')}</h3>
+            <p className="mt-2 text-slate-600">
+              {t.rich('whyBody', {
+                rwandaDesign: (chunks) => (
+                  <Link href="/web-design-rwanda" className="text-blue-600 hover:text-blue-700 hover:underline">{chunks}</Link>
+                ),
+                rwandaDev: (chunks) => (
+                  <Link href="/web-development-rwanda" className="text-blue-600 hover:text-blue-700 hover:underline">{chunks}</Link>
+                ),
+              })}
+            </p>
           </div>
 
-          <FeatureItem title="Fast Delivery" desc="Lean teams and rapid iterations." />
-          <FeatureItem title="SEO-first" desc="Performance and content strategies that rank." />
-          <FeatureItem title="NGO-ready" desc="Experience with donor reporting and compliance." />
+          <FeatureItem title={t('featureDeliveryTitle')} desc={t('featureDeliveryDesc')} />
+          <FeatureItem title={t('featureSeoTitle')} desc={t('featureSeoDesc')} />
+          <FeatureItem title={t('featureNgoTitle')} desc={t('featureNgoDesc')} />
         </div>
       </section>
 
@@ -264,20 +278,20 @@ export default function ServicesPage() {
       <section className="bg-slate-50">
         <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
           <header className="mb-6">
-            <h2 className="text-2xl font-bold">Case studies</h2>
-            <p className="mt-2 text-slate-600">Real projects with measurable impact.</p>
+            <h2 className="text-2xl font-bold">{t('caseTitle')}</h2>
+            <p className="mt-2 text-slate-600">{t('caseSubtitle')}</p>
           </header>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {caseStudies.map((c) => (
               <a
-                key={c.title}
+                key={c.href}
                 href={c.href}
                 className="block rounded-2xl bg-white p-6 shadow-sm border border-slate-100 hover:shadow-md transition-transform transform-gpu hover:-translate-y-2"
               >
                 <h4 className="font-semibold">{c.title}</h4>
                 <p className="mt-2 text-sm text-slate-600">{c.excerpt}</p>
-                <div className="mt-4 text-sm text-blue-600">Read case study →</div>
+                <div className="mt-4 text-sm text-blue-600">{t('readCaseStudy')}</div>
               </a>
             ))}
           </div>
@@ -287,43 +301,28 @@ export default function ServicesPage() {
       {/* FAQ */}
       <section className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
         <header className="mb-6">
-          <h2 className="text-2xl font-bold">Frequently asked questions</h2>
+          <h2 className="text-2xl font-bold">{t('faqTitle')}</h2>
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <FaqItem
-            question="How long does a web design project take?"
-            answer="Projects typically take 3–8 weeks depending on scope. We'll provide a detailed timeline in the proposal."
-          />
-
-          <FaqItem
-            question="Do you offer hosting and maintenance?"
-            answer="Yes. We provide managed hosting, backups, security updates and optional SLAs for mission-critical services."
-          />
-
-          <FaqItem
-            question="Can you integrate ERP/CRM with mobile apps?"
-            answer="Yes. We design APIs and mobile data flows so mobile apps sync with your ERP/CRM securely and efficiently."
-          />
-
-          <FaqItem
-            question="Do you work across East Africa?"
-            answer="Yes. We work with clients in Uganda, Kenya, Rwanda, Sudan and more — remote or on-the-ground."
-          />
+          <FaqItem question={t('faq1Q')} answer={t('faq1A')} />
+          <FaqItem question={t('faq2Q')} answer={t('faq2A')} />
+          <FaqItem question={t('faq3Q')} answer={t('faq3A')} />
+          <FaqItem question={t('faq4Q')} answer={t('faq4A')} />
         </div>
       </section>
 
-      {/* MOBILE-ONLY Our Services */}
+      {/* SERVICE CARDS — mobile only */}
       <div className="block sm:hidden">
         <section className="bg-slate-50">
           <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
             <header className="mb-8">
-              <h2 className="text-2xl font-bold">Our Services</h2>
-              <p className="mt-2 text-slate-600">Detailed offerings with focused outcomes and pathway to engagement.</p>
+              <h2 className="text-2xl font-bold">{t('servicesTitle')}</h2>
+              <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
             </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((s) => (
+              {translatedServices.map((s) => (
                 <ServiceCard key={s.id} service={s} />
               ))}
             </div>
@@ -341,14 +340,14 @@ export default function ServicesPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"
             aria-label="Chat on WhatsApp"
           >
-            WhatsApp
+            {t('mobileCtaWhatsapp')}
           </a>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700"
             aria-label="Get a free quote"
           >
-            Get Quote
+            {t('mobileCtaQuote')}
           </a>
         </div>
       </div>
