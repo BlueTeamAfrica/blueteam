@@ -17,6 +17,10 @@ interface FAQSectionProps {
   bgColor?: 'white' | 'gray'
   customFAQs?: FAQ[]
   viewAllLabel?: string
+  ctaTitle?: string
+  ctaBody?: string
+  ctaWhatsApp?: string
+  ctaContact?: string
 }
 
 export default function FAQSection({
@@ -27,7 +31,11 @@ export default function FAQSection({
   description = 'Common questions about our services, pricing, and processes',
   bgColor = 'white',
   customFAQs,
-  viewAllLabel = 'View All FAQs'
+  viewAllLabel = 'View All FAQs',
+  ctaTitle = 'Still Have Questions?',
+  ctaBody = "We're here to help. Get in touch and we'll answer any questions you have.",
+  ctaWhatsApp = 'Chat on WhatsApp',
+  ctaContact = 'Contact Us'
 }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -62,11 +70,11 @@ export default function FAQSection({
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                className="w-full px-6 py-4 text-start flex items-center justify-between hover:bg-gray-50 transition-colors"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <span className="font-semibold text-gray-900 pr-4">
+                <span className="font-semibold text-gray-900 pe-4">
                   {faq.question}
                 </span>
                 <ChevronDown
@@ -103,7 +111,7 @@ export default function FAQSection({
               className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-medium"
             >
               {viewAllLabel}
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="rtl:rotate-180" />
             </Link>
           </div>
         )}
@@ -111,10 +119,10 @@ export default function FAQSection({
         {showCTA && showAll && (
           <div className="mt-12 bg-gray-50 rounded-lg p-8 text-center">
             <h3 className="text-xl font-heading font-bold text-gray-900 mb-4">
-              Still Have Questions?
+              {ctaTitle}
             </h3>
             <p className="text-gray-700 mb-6">
-              We're here to help. Get in touch and we'll answer any questions you have.
+              {ctaBody}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
@@ -124,14 +132,14 @@ export default function FAQSection({
                 className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
               >
                 <MessageCircle size={20} />
-                Chat on WhatsApp
+                {ctaWhatsApp}
               </a>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition"
               >
-                Contact Us
-                <ArrowRight size={18} />
+                {ctaContact}
+                <ArrowRight size={18} className="rtl:rotate-180" />
               </Link>
             </div>
           </div>
