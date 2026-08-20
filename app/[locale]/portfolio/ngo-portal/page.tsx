@@ -5,10 +5,13 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { metadataNgoPortal } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata = metadataNgoPortal
 
-export default function NGOPortalCaseStudy() {
+export default async function NGOPortalCaseStudy() {
+  const t = await getTranslations('CaseStudyNgoPortalPage')
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -18,11 +21,11 @@ export default function NGOPortalCaseStudy() {
       ]} />
       <PortfolioSchema projectName="NGO Portal" projectSlug="ngo-portal" />
       <InteriorHeader
-        title="NGO Management Portal"
+        title={t('pageTitle')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Portfolio', href: '/portfolio' },
-          { label: 'NGO Management Portal' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbPortfolio'), href: '/portfolio' },
+          { label: t('breadcrumbCurrent') }
         ]}
       />
 
@@ -46,25 +49,12 @@ export default function NGOPortalCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            The Problem
+            {t('problemTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              A regional NGO serving communities across East Africa was struggling with manual processes 
-              for managing their programs, beneficiaries, and donor relationships. Information was scattered 
-              across spreadsheets, emails, and paper files, making it difficult to track program progress, 
-              report to donors, and coordinate efforts across multiple locations.
-            </p>
-            <p>
-              The organization needed a centralized system to manage beneficiary data, program activities, 
-              donor communications, and generate reports efficiently. The solution had to be accessible 
-              to field staff in remote locations with limited internet connectivity, while also providing 
-              comprehensive analytics for headquarters.
-            </p>
-            <p>
-              Key challenges included data security, offline capability, multi-language support, and 
-              integration with existing donor management systems.
-            </p>
+            <p>{t('problemP1')}</p>
+            <p>{t('problemP2')}</p>
+            <p>{t('problemP3')}</p>
           </div>
         </div>
       </section>
@@ -73,30 +63,21 @@ export default function NGOPortalCaseStudy() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Our Solution
+            {t('solutionTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              We developed a comprehensive web-based management portal with offline-first architecture, 
-              allowing field staff to work without constant internet connectivity. The system includes 
-              modules for beneficiary management, program tracking, donor relations, and automated reporting.
-            </p>
-            <p>
-              Key features include:
-            </p>
+            <p>{t('solutionP1')}</p>
+            <p>{t('solutionP2')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Centralized database with role-based access control for security</li>
-              <li>Offline synchronization for field workers in remote locations</li>
-              <li>Multi-language support (English, Swahili, local dialects)</li>
-              <li>Automated donor reporting with customizable templates</li>
-              <li>Mobile-responsive design accessible on tablets and smartphones</li>
-              <li>Integration with email systems and donor management platforms</li>
-              <li>Real-time dashboards showing program progress and key metrics</li>
+              <li>{t('solutionBullet1')}</li>
+              <li>{t('solutionBullet2')}</li>
+              <li>{t('solutionBullet3')}</li>
+              <li>{t('solutionBullet4')}</li>
+              <li>{t('solutionBullet5')}</li>
+              <li>{t('solutionBullet6')}</li>
+              <li>{t('solutionBullet7')}</li>
             </ul>
-            <p>
-              The platform was built with modern web technologies, ensuring scalability and security 
-              while remaining user-friendly for staff with varying technical skills.
-            </p>
+            <p>{t('solutionP3')}</p>
           </div>
         </div>
       </section>
@@ -105,39 +86,26 @@ export default function NGOPortalCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Results
+            {t('resultsTitle')}
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">75%</div>
-              <p className="text-gray-700">Reduction in administrative time</p>
+              <p className="text-gray-700">{t('stat1Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">50%</div>
-              <p className="text-gray-700">Faster donor reporting</p>
+              <p className="text-gray-700">{t('stat2Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">3x</div>
-              <p className="text-gray-700">More programs tracked efficiently</p>
+              <p className="text-gray-700">{t('stat3Label')}</p>
             </div>
           </div>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              Since implementation, the NGO has experienced significant improvements in operational efficiency. 
-              Administrative tasks that previously took days now take hours, allowing staff to focus more on 
-              program delivery and community engagement.
-            </p>
-            <p>
-              The automated reporting system has reduced the time needed to prepare donor reports by 50%, 
-              and the real-time dashboards provide leadership with immediate insights into program performance 
-              across all locations.
-            </p>
-            <p>
-              Field staff can now manage beneficiary data and program activities even in areas with poor 
-              connectivity, with automatic synchronization when internet becomes available. The system has 
-              enabled the organization to expand their programs while maintaining quality data management 
-              and reporting standards.
-            </p>
+            <p>{t('resultsP1')}</p>
+            <p>{t('resultsP2')}</p>
+            <p>{t('resultsP3')}</p>
           </div>
         </div>
       </section>
@@ -146,10 +114,10 @@ export default function NGOPortalCaseStudy() {
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">
-            Ready to Start Your Project?
+            {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-6">
-            Let's discuss how we can help your organization with a custom solution.
+            {t('ctaBody')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -159,13 +127,13 @@ export default function NGOPortalCaseStudy() {
               className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('ctaWhatsApp')}
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
             >
-              Get a Quote
+              {t('ctaGetQuote')}
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -175,4 +143,3 @@ export default function NGOPortalCaseStudy() {
     </>
   )
 }
-

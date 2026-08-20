@@ -5,10 +5,13 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { metadataEcommerceShop } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata = metadataEcommerceShop
 
-export default function EcommerceShopCaseStudy() {
+export default async function EcommerceShopCaseStudy() {
+  const t = await getTranslations('CaseStudyEcommerceShopPage')
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -18,11 +21,11 @@ export default function EcommerceShopCaseStudy() {
       ]} />
       <PortfolioSchema projectName="E-commerce Shop" projectSlug="ecommerce-shop" />
       <InteriorHeader
-        title="E-commerce Platform"
+        title={t('pageTitle')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Portfolio', href: '/portfolio' },
-          { label: 'E-commerce Platform' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbPortfolio'), href: '/portfolio' },
+          { label: t('breadcrumbCurrent') }
         ]}
       />
 
@@ -46,26 +49,12 @@ export default function EcommerceShopCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            The Problem
+            {t('problemTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              A growing retail business wanted to expand beyond their physical store locations to 
-              reach customers across East Africa. They needed an e-commerce platform that could 
-              handle their diverse product catalog, integrate with local payment methods like mobile 
-              money, and manage inventory across multiple locations.
-            </p>
-            <p>
-              The existing manual order processing system couldn't scale, and the business was 
-              missing opportunities to serve customers who preferred online shopping. They needed 
-              a solution that would work seamlessly on mobile devices, since most of their target 
-              customers shop via smartphones.
-            </p>
-            <p>
-              Key requirements included support for mobile money payments (MTN, Airtel), real-time 
-              inventory tracking, order management, shipping integration, and a user-friendly shopping 
-              experience optimized for mobile devices.
-            </p>
+            <p>{t('problemP1')}</p>
+            <p>{t('problemP2')}</p>
+            <p>{t('problemP3')}</p>
           </div>
         </div>
       </section>
@@ -74,34 +63,24 @@ export default function EcommerceShopCaseStudy() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Our Solution
+            {t('solutionTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              We developed a custom e-commerce platform designed specifically for the East African 
-              market. The solution includes a mobile-optimized storefront, comprehensive admin panel, 
-              and integrations with popular payment gateways and shipping providers.
-            </p>
-            <p>
-              Key features include:
-            </p>
+            <p>{t('solutionP1')}</p>
+            <p>{t('solutionP2')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Responsive design optimized for mobile shopping experiences</li>
-              <li>Mobile money integration (MTN, Airtel, M-Pesa) for seamless payments</li>
-              <li>Real-time inventory management across multiple warehouse locations</li>
-              <li>Automated order processing and fulfillment workflows</li>
-              <li>Multi-currency support for regional customers</li>
-              <li>Customer account management with order history</li>
-              <li>Email notifications for orders, shipping updates, and promotions</li>
-              <li>Admin dashboard with sales analytics and reporting</li>
-              <li>SEO optimization to drive organic traffic</li>
-              <li>Integration with shipping providers for order tracking</li>
+              <li>{t('solutionBullet1')}</li>
+              <li>{t('solutionBullet2')}</li>
+              <li>{t('solutionBullet3')}</li>
+              <li>{t('solutionBullet4')}</li>
+              <li>{t('solutionBullet5')}</li>
+              <li>{t('solutionBullet6')}</li>
+              <li>{t('solutionBullet7')}</li>
+              <li>{t('solutionBullet8')}</li>
+              <li>{t('solutionBullet9')}</li>
+              <li>{t('solutionBullet10')}</li>
             </ul>
-            <p>
-              The platform was built with scalability in mind, ensuring it can handle growing traffic 
-              and product catalogs as the business expands. Security features protect customer data 
-              and payment information, building trust with online shoppers.
-            </p>
+            <p>{t('solutionP3')}</p>
           </div>
         </div>
       </section>
@@ -110,40 +89,26 @@ export default function EcommerceShopCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Results
+            {t('resultsTitle')}
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">5x</div>
-              <p className="text-gray-700">Increase in online sales</p>
+              <p className="text-gray-700">{t('stat1Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">80%</div>
-              <p className="text-gray-700">Mobile money payment adoption</p>
+              <p className="text-gray-700">{t('stat2Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">3x</div>
-              <p className="text-gray-700">Geographic reach expansion</p>
+              <p className="text-gray-700">{t('stat3Label')}</p>
             </div>
           </div>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              Within six months of launch, the e-commerce platform had achieved a 5x increase in 
-              online sales compared to previous manual order processing. The mobile-optimized design 
-              and mobile money integration made it easy for customers to shop and pay, resulting in 
-              higher conversion rates.
-            </p>
-            <p>
-              Mobile money payments quickly became the preferred payment method, with 80% of customers 
-              choosing this option over traditional card payments. This local payment integration was 
-              crucial for customer adoption in the East African market.
-            </p>
-            <p>
-              The online store enabled the business to reach customers in regions where they didn't 
-              have physical locations, expanding their geographic reach by 3x. Real-time inventory 
-              management eliminated overselling issues and improved customer satisfaction with accurate 
-              product availability information.
-            </p>
+            <p>{t('resultsP1')}</p>
+            <p>{t('resultsP2')}</p>
+            <p>{t('resultsP3')}</p>
           </div>
         </div>
       </section>
@@ -152,10 +117,10 @@ export default function EcommerceShopCaseStudy() {
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">
-            Ready to Start Your Project?
+            {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-6">
-            Let's discuss how we can help launch your e-commerce store.
+            {t('ctaBody')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -165,13 +130,13 @@ export default function EcommerceShopCaseStudy() {
               className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('ctaWhatsApp')}
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
             >
-              Get a Quote
+              {t('ctaGetQuote')}
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -181,4 +146,3 @@ export default function EcommerceShopCaseStudy() {
     </>
   )
 }
-

@@ -5,10 +5,13 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { metadataErpIntegration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata = metadataErpIntegration
 
-export default function ERPIntegrationCaseStudy() {
+export default async function ERPIntegrationCaseStudy() {
+  const t = await getTranslations('CaseStudyErpIntegrationPage')
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -18,11 +21,11 @@ export default function ERPIntegrationCaseStudy() {
       ]} />
       <PortfolioSchema projectName="ERP Integration" projectSlug="erp-integration" />
       <InteriorHeader
-        title="Enterprise ERP Integration"
+        title={t('pageTitle')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Portfolio', href: '/portfolio' },
-          { label: 'Enterprise ERP Integration' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbPortfolio'), href: '/portfolio' },
+          { label: t('breadcrumbCurrent') }
         ]}
       />
 
@@ -46,25 +49,12 @@ export default function ERPIntegrationCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            The Problem
+            {t('problemTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              A growing manufacturing company with operations across Uganda, Kenya, and Rwanda was 
-              struggling with disconnected systems and manual processes. Each location maintained 
-              separate inventory, sales, and financial records, making it impossible to get a unified 
-              view of the business.
-            </p>
-            <p>
-              The lack of integrated systems led to inventory discrepancies, delayed order processing, 
-              and inefficient resource allocation. Management couldn't make informed decisions because 
-              data was siloed and often outdated by the time it was consolidated.
-            </p>
-            <p>
-              The company needed a centralized ERP system that could integrate existing systems, 
-              streamline operations across all locations, and provide real-time visibility into 
-              inventory, sales, production, and financial performance.
-            </p>
+            <p>{t('problemP1')}</p>
+            <p>{t('problemP2')}</p>
+            <p>{t('problemP3')}</p>
           </div>
         </div>
       </section>
@@ -73,32 +63,22 @@ export default function ERPIntegrationCaseStudy() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Our Solution
+            {t('solutionTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              We designed and implemented a comprehensive ERP system that unified operations across 
-              all three locations. The solution integrated inventory management, sales, production, 
-              finance, and HR into a single platform accessible from anywhere.
-            </p>
-            <p>
-              Key components include:
-            </p>
+            <p>{t('solutionP1')}</p>
+            <p>{t('solutionP2')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Centralized inventory management with real-time tracking across locations</li>
-              <li>Automated sales order processing and fulfillment workflows</li>
-              <li>Production planning and scheduling modules</li>
-              <li>Integrated financial management with multi-currency support</li>
-              <li>HR management system for employee data and payroll</li>
-              <li>Business intelligence dashboards for management reporting</li>
-              <li>API integrations with existing third-party systems</li>
-              <li>Mobile access for managers on the go</li>
+              <li>{t('solutionBullet1')}</li>
+              <li>{t('solutionBullet2')}</li>
+              <li>{t('solutionBullet3')}</li>
+              <li>{t('solutionBullet4')}</li>
+              <li>{t('solutionBullet5')}</li>
+              <li>{t('solutionBullet6')}</li>
+              <li>{t('solutionBullet7')}</li>
+              <li>{t('solutionBullet8')}</li>
             </ul>
-            <p>
-              The system was deployed with minimal disruption to operations, with comprehensive 
-              training provided to staff at all levels. Data migration from legacy systems was 
-              handled carefully to ensure accuracy and continuity.
-            </p>
+            <p>{t('solutionP3')}</p>
           </div>
         </div>
       </section>
@@ -107,38 +87,26 @@ export default function ERPIntegrationCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Results
+            {t('resultsTitle')}
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">60%</div>
-              <p className="text-gray-700">Reduction in inventory discrepancies</p>
+              <p className="text-gray-700">{t('stat1Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">40%</div>
-              <p className="text-gray-700">Faster order processing</p>
+              <p className="text-gray-700">{t('stat2Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">30%</div>
-              <p className="text-gray-700">Cost savings in operations</p>
+              <p className="text-gray-700">{t('stat3Label')}</p>
             </div>
           </div>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              The ERP integration has transformed how the company operates. Real-time visibility 
-              across all locations has enabled better decision-making and resource allocation. 
-              Inventory discrepancies have dropped by 60%, reducing waste and optimizing stock levels.
-            </p>
-            <p>
-              Order processing is now 40% faster, with automated workflows eliminating manual bottlenecks. 
-              The unified system has enabled the company to respond more quickly to market demands and 
-              customer needs.
-            </p>
-            <p>
-              Overall operational costs have decreased by 30% through improved efficiency and reduced 
-              errors. The management team now has access to real-time dashboards showing key performance 
-              indicators, enabling proactive decision-making and strategic planning.
-            </p>
+            <p>{t('resultsP1')}</p>
+            <p>{t('resultsP2')}</p>
+            <p>{t('resultsP3')}</p>
           </div>
         </div>
       </section>
@@ -147,10 +115,10 @@ export default function ERPIntegrationCaseStudy() {
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">
-            Ready to Start Your Project?
+            {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-6">
-            Let's discuss how we can help streamline your operations with an ERP solution.
+            {t('ctaBody')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -160,13 +128,13 @@ export default function ERPIntegrationCaseStudy() {
               className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('ctaWhatsApp')}
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
             >
-              Get a Quote
+              {t('ctaGetQuote')}
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -176,4 +144,3 @@ export default function ERPIntegrationCaseStudy() {
     </>
   )
 }
-

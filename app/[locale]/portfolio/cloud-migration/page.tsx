@@ -5,10 +5,13 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { metadataCloudMigration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata = metadataCloudMigration
 
-export default function CloudMigrationCaseStudy() {
+export default async function CloudMigrationCaseStudy() {
+  const t = await getTranslations('CaseStudyCloudMigrationPage')
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -18,11 +21,11 @@ export default function CloudMigrationCaseStudy() {
       ]} />
       <PortfolioSchema projectName="Cloud Migration" projectSlug="cloud-migration" />
       <InteriorHeader
-        title="Cloud Migration Project"
+        title={t('pageTitle')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Portfolio', href: '/portfolio' },
-          { label: 'Cloud Migration Project' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbPortfolio'), href: '/portfolio' },
+          { label: t('breadcrumbCurrent') }
         ]}
       />
 
@@ -46,26 +49,12 @@ export default function CloudMigrationCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            The Problem
+            {t('problemTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              A growing technology company was operating on-premises servers that were becoming 
-              increasingly expensive to maintain and difficult to scale. Server failures caused 
-              downtime, manual backups were unreliable, and scaling required physical hardware 
-              procurement that took weeks.
-            </p>
-            <p>
-              The company needed to migrate to the cloud to improve reliability, enable automatic 
-              scaling, reduce costs, and eliminate the burden of hardware management. However, 
-              they couldn't afford downtime during the migration, as their applications served 
-              customers 24/7.
-            </p>
-            <p>
-              Key challenges included migrating multiple applications with complex dependencies, 
-              maintaining data integrity, ensuring zero downtime during migration, and training 
-              staff on new cloud infrastructure management.
-            </p>
+            <p>{t('problemP1')}</p>
+            <p>{t('problemP2')}</p>
+            <p>{t('problemP3')}</p>
           </div>
         </div>
       </section>
@@ -74,34 +63,24 @@ export default function CloudMigrationCaseStudy() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Our Solution
+            {t('solutionTitle')}
           </h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              We executed a phased cloud migration strategy using modern cloud infrastructure, 
-              ensuring zero downtime through careful planning and gradual cutover. Each application 
-              was migrated individually with thorough testing before going live.
-            </p>
-            <p>
-              Key components include:
-            </p>
+            <p>{t('solutionP1')}</p>
+            <p>{t('solutionP2')}</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Infrastructure assessment and migration planning</li>
-              <li>Cloud architecture design for scalability and reliability</li>
-              <li>Automated deployment pipelines for consistent environments</li>
-              <li>Database migration with minimal downtime using replication</li>
-              <li>Load balancing and auto-scaling configurations</li>
-              <li>Automated backup and disaster recovery solutions</li>
-              <li>Security hardening and compliance measures</li>
-              <li>Monitoring and alerting systems for proactive issue detection</li>
-              <li>Documentation and training for internal teams</li>
-              <li>Gradual cutover with rollback capabilities for each application</li>
+              <li>{t('solutionBullet1')}</li>
+              <li>{t('solutionBullet2')}</li>
+              <li>{t('solutionBullet3')}</li>
+              <li>{t('solutionBullet4')}</li>
+              <li>{t('solutionBullet5')}</li>
+              <li>{t('solutionBullet6')}</li>
+              <li>{t('solutionBullet7')}</li>
+              <li>{t('solutionBullet8')}</li>
+              <li>{t('solutionBullet9')}</li>
+              <li>{t('solutionBullet10')}</li>
             </ul>
-            <p>
-              We used a blue-green deployment strategy where new cloud infrastructure ran in parallel 
-              with existing systems, allowing for seamless switching after verification. Each phase 
-              was carefully tested to ensure no disruption to customer services.
-            </p>
+            <p>{t('solutionP3')}</p>
           </div>
         </div>
       </section>
@@ -110,39 +89,26 @@ export default function CloudMigrationCaseStudy() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-            Results
+            {t('resultsTitle')}
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">99.9%</div>
-              <p className="text-gray-700">Uptime achieved</p>
+              <p className="text-gray-700">{t('stat1Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">40%</div>
-              <p className="text-gray-700">Cost reduction</p>
+              <p className="text-gray-700">{t('stat2Label')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-primary mb-2">0</div>
-              <p className="text-gray-700">Downtime hours</p>
+              <p className="text-gray-700">{t('stat3Label')}</p>
             </div>
           </div>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              The cloud migration was completed successfully with zero downtime, thanks to careful 
-              planning and phased execution. All applications were migrated without any service 
-              interruption, and customers experienced no disruption during the transition.
-            </p>
-            <p>
-              Infrastructure costs decreased by 40% through optimized cloud resource usage and 
-              elimination of hardware maintenance expenses. Auto-scaling capabilities now handle 
-              traffic spikes automatically, eliminating the need for over-provisioned servers.
-            </p>
-            <p>
-              System reliability improved significantly, achieving 99.9% uptime through redundant 
-              infrastructure and automated failover. Automated backups and disaster recovery solutions 
-              provide peace of mind, with data replicated across multiple geographic regions. The 
-              company can now scale infrastructure up or down in minutes rather than weeks.
-            </p>
+            <p>{t('resultsP1')}</p>
+            <p>{t('resultsP2')}</p>
+            <p>{t('resultsP3')}</p>
           </div>
         </div>
       </section>
@@ -151,10 +117,10 @@ export default function CloudMigrationCaseStudy() {
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">
-            Ready to Start Your Project?
+            {t('ctaTitle')}
           </h2>
           <p className="text-gray-300 mb-6">
-            Let's discuss how we can help migrate your infrastructure to the cloud.
+            {t('ctaBody')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -164,13 +130,13 @@ export default function CloudMigrationCaseStudy() {
               className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('ctaWhatsApp')}
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
             >
-              Get a Quote
+              {t('ctaGetQuote')}
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -180,4 +146,3 @@ export default function CloudMigrationCaseStudy() {
     </>
   )
 }
-

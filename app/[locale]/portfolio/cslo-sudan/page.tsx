@@ -6,6 +6,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { metadataCsloSudan } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   ...metadataCsloSudan,
@@ -34,7 +35,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Case Study Schema Component (Server Component)
 function CaseStudySchema() {
   const schema = {
     '@context': 'https://schema.org',
@@ -79,10 +79,11 @@ function CaseStudySchema() {
   )
 }
 
-export default function CSLOSudanCaseStudy() {
+export default async function CSLOSudanCaseStudy() {
+  const t = await getTranslations('CaseStudyCsloSudanPage')
+
   return (
     <>
-      {/* JSON-LD Schema */}
       <CaseStudySchema />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://www.blueteamafrica.com/' },
@@ -92,11 +93,11 @@ export default function CSLOSudanCaseStudy() {
       <PortfolioSchema projectName="CSLO Sudan" projectSlug="cslo-sudan" />
 
       <InteriorHeader
-        title="ERP & CRM Digital Transformation for CSLO Sudan"
+        title={t('pageTitle')}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Portfolio', href: '/portfolio' },
-          { label: 'CSLO Sudan' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbPortfolio'), href: '/portfolio' },
+          { label: t('breadcrumbCurrent') }
         ]}
       />
 
@@ -121,32 +122,20 @@ export default function CSLOSudanCaseStudy() {
         <section className="py-16 bg-gray-50">
           <div className="max-w-3xl mx-auto px-6">
             <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-              The Challenge
+              {t('problemTitle')}
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
-              <p>
-                CSLO Sudan, a humanitarian organization operating in conflict-affected regions of Sudan, 
-                faced critical challenges in managing their programs, beneficiary data, and field operations. 
-                Manual processes, scattered data across spreadsheets and paper files, and the inability to 
-                collect real-time data from remote field locations were hindering their ability to deliver 
-                effective humanitarian assistance.
-              </p>
-              <p>
-                The organization needed a comprehensive digital solution that could:
-              </p>
+              <p>{t('problemP1')}</p>
+              <p>{t('problemP2')}</p>
               <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
-                <li>Manage multiple humanitarian programs across different regions</li>
-                <li>Enable field staff to collect and submit data from low-connectivity areas</li>
-                <li>Automate workflows for donor reporting and accountability</li>
-                <li>Secure sensitive beneficiary and program data</li>
-                <li>Provide real-time dashboards for program monitoring and evaluation</li>
-                <li>Integrate financial management, inventory, and CRM functionality</li>
+                <li>{t('problemBullet1')}</li>
+                <li>{t('problemBullet2')}</li>
+                <li>{t('problemBullet3')}</li>
+                <li>{t('problemBullet4')}</li>
+                <li>{t('problemBullet5')}</li>
+                <li>{t('problemBullet6')}</li>
               </ul>
-              <p>
-                Operating in Sudan's challenging context—with limited internet connectivity, security 
-                concerns, and the need for multilingual support—required a solution that was both 
-                robust and adaptable to field conditions.
-              </p>
+              <p>{t('problemP3')}</p>
             </div>
           </div>
         </section>
@@ -155,36 +144,40 @@ export default function CSLOSudanCaseStudy() {
         <section className="py-16 bg-white">
           <div className="max-w-3xl mx-auto px-6">
             <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-              Our Solution
+              {t('solutionTitle')}
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                Blue Team Africa delivered a complete digital transformation for CSLO Sudan, implementing 
-                a full ERPNext and Frappe CRM platform tailored for humanitarian operations. This project 
-                is part of our <Link href="/services/erp" className="text-primary hover:text-primary-dark underline">ERPNext Development</Link> and 
-                {' '}<Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark underline">Mobile App Solutions</Link> for NGOs across Africa.
+                {t.rich('solutionP1', {
+                  erpLink: (chunks) => (
+                    <Link href="/services/erp" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
+                  ),
+                  mobileLink: (chunks) => (
+                    <Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
+                  ),
+                })}
               </p>
-              <p>
-                The solution included:
-              </p>
+              <p>{t('solutionP2')}</p>
               <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
-                <li><strong>ERPNext Implementation:</strong> Complete enterprise resource planning system with modules for financial management, inventory, HR, and project management</li>
-                <li><strong>Frappe CRM Deployment:</strong> Customer relationship management system for managing donor relationships, communications, and engagement tracking</li>
-                <li><strong>Humanitarian Project Management:</strong> Custom modules for program planning, beneficiary tracking, and impact measurement</li>
-                <li><strong>Mobile Data Collection App:</strong> Offline-capable mobile application allowing field staff to collect and sync data even in low-connectivity areas</li>
-                <li><strong>Secure Database Integration:</strong> Robust security measures including encryption, role-based access control, and data backup systems</li>
-                <li><strong>Multi-program Dashboards:</strong> Real-time reporting dashboards for program managers, donors, and senior leadership</li>
-                <li><strong>Automated Workflows:</strong> Streamlined processes for donor reporting, financial reconciliation, and beneficiary registration</li>
-                <li><strong>Multilingual Support:</strong> Arabic and English language support for local and international stakeholders</li>
+                <li>{t.rich('solutionBullet1', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet2', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet3', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet4', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet5', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet6', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet7', { b: (chunks) => <strong>{chunks}</strong> })}</li>
+                <li>{t.rich('solutionBullet8', { b: (chunks) => <strong>{chunks}</strong> })}</li>
               </ul>
+              <p>{t('solutionP3')}</p>
               <p>
-                The platform was designed to work effectively in Sudan's challenging infrastructure environment, 
-                with offline capabilities, data compression for low-bandwidth connections, and mobile-first 
-                design for field operations.
-              </p>
-              <p>
-                Learn more about our <Link href="/services/erpnext-development" className="text-primary hover:text-primary-dark underline">ERPNext Development Services</Link> and 
-                {' '}<Link href="/services/crm-development" className="text-primary hover:text-primary-dark underline">CRM Development Solutions</Link>.
+                {t.rich('solutionP4', {
+                  erpDevLink: (chunks) => (
+                    <Link href="/services/erpnext-development" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
+                  ),
+                  crmLink: (chunks) => (
+                    <Link href="/services/crm-development" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
+                  ),
+                })}
               </p>
             </div>
           </div>
@@ -194,46 +187,27 @@ export default function CSLOSudanCaseStudy() {
         <section className="py-16 bg-gray-50">
           <div className="max-w-3xl mx-auto px-6">
             <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-              Results & Impact
+              {t('resultsTitle')}
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="text-3xl font-bold text-primary mb-2">70%</div>
-                <p className="text-gray-700">Reduction in manual data entry time</p>
+                <p className="text-gray-700">{t('stat1Label')}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="text-3xl font-bold text-primary mb-2">50%</div>
-                <p className="text-gray-700">Faster donor reporting and accountability</p>
+                <p className="text-gray-700">{t('stat2Label')}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <p className="text-gray-700">Data security and backup compliance</p>
+                <p className="text-gray-700">{t('stat3Label')}</p>
               </div>
             </div>
             <div className="space-y-4 text-gray-700 leading-relaxed">
-              <p>
-                The ERPNext and CRM implementation has transformed CSLO Sudan's operations, enabling 
-                real-time program monitoring, streamlined beneficiary management, and efficient donor 
-                reporting. Field staff can now collect data using mobile devices even in areas with 
-                limited connectivity, with automatic synchronization when connections are available.
-              </p>
-              <p>
-                Automated workflows have reduced manual data entry by 70%, freeing staff to focus on 
-                program delivery rather than administrative tasks. Donor reporting is now 50% faster, 
-                with standardized reports generated automatically from the system.
-              </p>
-              <p>
-                The secure database integration ensures all sensitive beneficiary and program data is 
-                protected with encryption, role-based access controls, and automated backups. Multi-program 
-                dashboards provide real-time visibility into program performance, enabling data-driven 
-                decision-making and improved accountability to donors and beneficiaries.
-              </p>
-              <p>
-                The mobile data collection app has proven particularly valuable in Sudan's challenging 
-                context, allowing field staff to work offline and sync data when connectivity is available. 
-                This capability has significantly improved data collection accuracy and timeliness in 
-                remote areas.
-              </p>
+              <p>{t('resultsP1')}</p>
+              <p>{t('resultsP2')}</p>
+              <p>{t('resultsP3')}</p>
+              <p>{t('resultsP4')}</p>
             </div>
           </div>
         </section>
@@ -243,31 +217,30 @@ export default function CSLOSudanCaseStudy() {
           <div className="max-w-3xl mx-auto px-6">
             <div className="bg-primary-50 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Related Services
+                {t('relatedTitle')}
               </h3>
               <p className="text-gray-700 mb-4">
-                This project showcases our expertise in ERP, CRM, and mobile app development for NGOs. 
-                Explore our related services:
+                {t('relatedBody')}
               </p>
               <ul className="space-y-2">
                 <li>
                   <Link href="/services/erp" className="text-primary hover:text-primary-dark underline">
-                    → ERPNext Development & Implementation
+                    {t('relatedLink1')}
                   </Link>
                 </li>
                 <li>
                   <Link href="/services/crm" className="text-primary hover:text-primary-dark underline">
-                    → CRM Solutions for NGOs
+                    {t('relatedLink2')}
                   </Link>
                 </li>
                 <li>
                   <Link href="/services/mobile-apps" className="text-primary hover:text-primary-dark underline">
-                    → Mobile App Development
+                    {t('relatedLink3')}
                   </Link>
                 </li>
                 <li>
                   <Link href="/about" className="text-primary hover:text-primary-dark underline">
-                    → About Blue Team Africa
+                    {t('relatedLink4')}
                   </Link>
                 </li>
               </ul>
@@ -279,68 +252,28 @@ export default function CSLOSudanCaseStudy() {
         <section id="faq" className="py-16 bg-gray-50">
           <div className="max-w-3xl mx-auto px-6">
             <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-              Frequently Asked Questions
+              {t('faqTitle')}
             </h2>
             <div className="space-y-8">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Why did CSLO Sudan choose ERPNext?
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  ERPNext offers flexibility, affordability, multilingual support, and the ability to run 
-                  offline or from low-connectivity regions—critical in Sudan's challenging infrastructure 
-                  environment. As an open-source platform, ERPNext provides the customization capabilities 
-                  needed for humanitarian operations while remaining cost-effective for NGOs.
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('faq1Q')}</h3>
+                <p className="text-gray-700 leading-relaxed">{t('faq1A')}</p>
               </div>
-
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Does Blue Team develop ERP systems for other NGOs?
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Yes. We provide ERP, CRM, mobile data collection apps, and digital transformation 
-                  solutions for NGOs across Sudan, Uganda, Kenya, Rwanda, and throughout East Africa. 
-                  Our team specializes in adapting enterprise systems for humanitarian operations, 
-                  ensuring they work effectively in challenging field conditions.
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('faq2Q')}</h3>
+                <p className="text-gray-700 leading-relaxed">{t('faq2A')}</p>
               </div>
-
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  How does the mobile data collection app work in low-connectivity areas?
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  The mobile app is designed with offline-first capabilities. Field staff can collect 
-                  data without internet connectivity, storing it locally on their devices. When connectivity 
-                  is available, the app automatically syncs data to the central ERPNext system. This 
-                  ensures continuous data collection even in remote or conflict-affected areas.
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('faq3Q')}</h3>
+                <p className="text-gray-700 leading-relaxed">{t('faq3A')}</p>
               </div>
-
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  What security measures are in place for sensitive humanitarian data?
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  The system includes multiple layers of security: encryption for data at rest and in 
-                  transit, role-based access controls to ensure staff only see data relevant to their 
-                  roles, regular automated backups, and compliance with data protection standards. All 
-                  sensitive beneficiary information is protected according to humanitarian data protection 
-                  principles.
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('faq4Q')}</h3>
+                <p className="text-gray-700 leading-relaxed">{t('faq4A')}</p>
               </div>
-
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  How long does an ERPNext implementation take for an NGO?
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Implementation timelines vary based on scope and complexity. A basic ERPNext setup 
-                  typically takes 4-8 weeks, while a full implementation with custom modules, mobile 
-                  apps, and training can take 12-16 weeks. We work closely with NGOs to ensure minimal 
-                  disruption to operations during implementation.
-                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('faq5Q')}</h3>
+                <p className="text-gray-700 leading-relaxed">{t('faq5A')}</p>
               </div>
             </div>
           </div>
@@ -350,10 +283,10 @@ export default function CSLOSudanCaseStudy() {
         <section className="py-16 bg-gray-900 text-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-2xl font-heading font-bold mb-4">
-              Ready to Transform Your NGO's Operations?
+              {t('ctaTitle')}
             </h2>
             <p className="text-gray-300 mb-6">
-              Let's discuss how we can help streamline your programs with ERP, CRM, and mobile solutions tailored for humanitarian operations.
+              {t('ctaBody')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
@@ -363,13 +296,13 @@ export default function CSLOSudanCaseStudy() {
                 className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
               >
                 <MessageCircle size={20} />
-                Chat on WhatsApp
+                {t('ctaWhatsApp')}
               </a>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
               >
-                Get a Quote
+                {t('ctaGetQuote')}
                 <ArrowRight size={18} />
               </Link>
             </div>
@@ -379,4 +312,3 @@ export default function CSLOSudanCaseStudy() {
     </>
   )
 }
-
