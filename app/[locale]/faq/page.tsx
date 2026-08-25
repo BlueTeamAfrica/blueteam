@@ -5,6 +5,7 @@ import FAQSchema from '@/components/FAQSchema'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -12,12 +13,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
   return {
     title: 'Frequently Asked Questions',
     description: 'Common questions about our services, pricing, and processes.',
-    alternates: { canonical: `${base}${lp}/faq` },
+    alternates: buildAlternates('/faq', locale),
   }
 }
 

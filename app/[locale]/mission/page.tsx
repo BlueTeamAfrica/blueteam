@@ -3,10 +3,20 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = {
-  title: 'Our Mission & Values',
-  description: "Blue Team Africa's mission, vision, and values - human-centered technology, peace, and accessibility for East Africa.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Our Mission & Values',
+    description: "Blue Team Africa's mission, vision, and values - human-centered technology, peace, and accessibility for East Africa.",
+    alternates: buildAlternates('/mission', locale),
+  }
 }
 
 export default async function MissionPage() {

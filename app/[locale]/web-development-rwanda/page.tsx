@@ -4,6 +4,7 @@ import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import { Code, Database, Zap, Shield, GitBranch, Server, Cloud } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -11,14 +12,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `${base}${lp}/web-development-rwanda`
+  const alternates = buildAlternates('/web-development-rwanda', locale)
   return {
     title: 'Web Development Company in Rwanda | Scalable, Secure & Custom Solutions',
     description: 'Work with a trusted web development company in Rwanda delivering secure, scalable, and custom-built solutions for businesses and NGOs. Talk to our team today.',
     robots: 'index, follow',
-    alternates: { canonical },
+    alternates,
     keywords: [
       'web development Rwanda',
       'website development Rwanda',
@@ -32,7 +31,7 @@ export async function generateMetadata({
     openGraph: {
       title: 'Web Development Company in Rwanda | Scalable, Secure & Custom Solutions',
       description: 'Trusted web development company in Rwanda. We deliver secure, scalable, custom solutions for businesses and NGOs. Talk to our team today.',
-      url: canonical,
+      url: alternates.canonical,
       type: 'website',
     },
   }

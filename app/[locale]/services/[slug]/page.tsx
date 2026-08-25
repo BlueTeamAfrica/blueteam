@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allServices } from '../service-data'
 import ServiceDetail from '../ServiceDetail'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateStaticParams() {
   return allServices.map((service) => ({
@@ -24,18 +25,16 @@ export async function generateMetadata({
     }
   }
 
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `${base}${lp}/services/${service.slug}`
+  const alternates = buildAlternates(`/services/${service.slug}`, locale)
 
   return {
     title: `${service.title} | Blue Team Africa`,
     description: service.description,
-    alternates: { canonical },
+    alternates,
     openGraph: {
       title: `${service.title} | Blue Team Africa`,
       description: service.description,
-      url: canonical,
+      url: alternates.canonical,
     },
   }
 }

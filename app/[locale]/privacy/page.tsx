@@ -1,8 +1,17 @@
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'Privacy Policy for Blue Team Ltd. - Learn how we collect, use, and protect your personal information.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Privacy Policy',
+    description: 'Privacy Policy for Blue Team Ltd. - Learn how we collect, use, and protect your personal information.',
+    alternates: buildAlternates('/privacy', locale),
+  }
 }
 
 export default function PrivacyPolicy() {

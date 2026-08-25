@@ -3,6 +3,7 @@ import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -10,12 +11,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
   return {
     title: 'About BlueTeam Africa — Web Design & Technology Experts in East Africa',
     description: 'BlueTeam Africa is a Sudanese-founded digital agency delivering world-class web design, hosting, mobile apps, and ICT solutions across East Africa.',
-    alternates: { canonical: `${base}${lp}/about` },
+    alternates: buildAlternates('/about', locale),
   }
 }
 

@@ -4,10 +4,20 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = {
-  title: 'Portfolio',
-  description: 'Explore our portfolio of successful projects - web design, mobile apps, ERP systems, and more for clients across East Africa.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Portfolio',
+    description: 'Explore our portfolio of successful projects - web design, mobile apps, ERP systems, and more for clients across East Africa.',
+    alternates: buildAlternates('/portfolio', locale),
+  }
 }
 
 const portfolioIds = [

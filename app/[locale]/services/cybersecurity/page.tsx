@@ -11,6 +11,7 @@ import { metadataCybersecurity } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -18,16 +19,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `https://www.blueteamafrica.com${lp}/services/cybersecurity`
+  const alternates = buildAlternates('/services/cybersecurity', locale)
   return {
     ...metadataCybersecurity,
     keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
-    alternates: { canonical },
+    alternates,
     openGraph: {
       title: 'Cybersecurity Solutions for East African Businesses & NGOs',
       description: 'Enterprise-grade cybersecurity solutions including penetration testing, security audits, and secure operations for organizations across East Africa.',
-      url: canonical,
+      url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
         {

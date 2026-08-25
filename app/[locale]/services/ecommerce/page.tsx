@@ -11,6 +11,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const ecommerceFAQs: FAQ[] = [
   {
@@ -66,16 +67,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `https://www.blueteamafrica.com${lp}/services/ecommerce`
+  const alternates = buildAlternates('/services/ecommerce', locale)
   return {
     ...metadataEcommerce,
     keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
-    alternates: { canonical },
+    alternates,
     openGraph: {
       title: 'E-commerce Solutions for Businesses in East Africa',
       description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation.',
-      url: canonical,
+      url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
         {

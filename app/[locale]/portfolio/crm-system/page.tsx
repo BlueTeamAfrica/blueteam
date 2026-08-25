@@ -6,8 +6,17 @@ import { metadataCrmSystem } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = metadataCrmSystem
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return { ...metadataCrmSystem, alternates: buildAlternates('/portfolio/crm-system', locale) }
+}
 
 export default async function CRMSystemCaseStudy() {
   const t = await getTranslations('CaseStudyCrmSystemPage')

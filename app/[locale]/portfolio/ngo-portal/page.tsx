@@ -6,8 +6,17 @@ import { metadataNgoPortal } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = metadataNgoPortal
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return { ...metadataNgoPortal, alternates: buildAlternates('/portfolio/ngo-portal', locale) }
+}
 
 export default async function NGOPortalCaseStudy() {
   const t = await getTranslations('CaseStudyNgoPortalPage')

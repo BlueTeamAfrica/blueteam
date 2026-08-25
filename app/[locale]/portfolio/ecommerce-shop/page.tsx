@@ -6,8 +6,17 @@ import { metadataEcommerceShop } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = metadataEcommerceShop
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return { ...metadataEcommerceShop, alternates: buildAlternates('/portfolio/ecommerce-shop', locale) }
+}
 
 export default async function EcommerceShopCaseStudy() {
   const t = await getTranslations('CaseStudyEcommerceShopPage')

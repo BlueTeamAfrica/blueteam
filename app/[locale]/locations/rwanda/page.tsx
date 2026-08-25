@@ -5,6 +5,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import { generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema'
 import { Globe, Smartphone, Shield, Code } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -12,14 +13,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `${base}${lp}/locations/rwanda`
+  const alternates = buildAlternates('/locations/rwanda', locale)
   return {
     title: 'Technology Solutions Provider in Rwanda | Blue Team Africa',
     description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
     robots: 'index, follow',
-    alternates: { canonical },
+    alternates,
     keywords: [
       'website design Rwanda',
       'website development Rwanda',
@@ -36,7 +35,7 @@ export async function generateMetadata({
     openGraph: {
       title: 'Website Design, Mobile App Development & Cybersecurity Company in Rwanda | Blue Team Africa',
       description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
-      url: canonical,
+      url: alternates.canonical,
       type: 'website',
     },
   }

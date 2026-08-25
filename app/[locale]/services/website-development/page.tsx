@@ -10,6 +10,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const websiteDevelopmentFAQs: FAQ[] = [
   {
@@ -65,8 +66,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `https://www.blueteamafrica.com${lp}/services/website-development`
+  const alternates = buildAlternates('/services/website-development', locale)
   return {
     ...metadataWebsiteDevelopment,
     keywords: [
@@ -81,11 +81,11 @@ export async function generateMetadata({
       'secure website development',
       'full-stack development',
     ],
-    alternates: { canonical },
+    alternates,
     openGraph: {
       title: 'Professional Web Development Services',
       description: 'Fast, secure, and scalable website development for businesses and NGOs. Custom web applications, backend systems, and enterprise solutions.',
-      url: canonical,
+      url: alternates.canonical,
       images: ['/images/hero/hero-og-01.webp'],
     },
   }

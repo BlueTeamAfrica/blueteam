@@ -1,8 +1,17 @@
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata: Metadata = {
-  title: 'Terms of Service',
-  description: 'Terms of Service for Blue Team Ltd. - Learn about the terms and conditions for using our website and services.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Terms of Service',
+    description: 'Terms of Service for Blue Team Ltd. - Learn about the terms and conditions for using our website and services.',
+    alternates: buildAlternates('/terms', locale),
+  }
 }
 
 export default function TermsOfService() {

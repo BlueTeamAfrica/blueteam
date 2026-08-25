@@ -10,6 +10,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const crmFAQs: FAQ[] = [
   {
@@ -65,11 +66,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `https://www.blueteamafrica.com${lp}/services/crm`
   return {
     ...metadataCRM,
-    alternates: { canonical },
+    alternates: buildAlternates('/services/crm', locale),
   }
 }
 

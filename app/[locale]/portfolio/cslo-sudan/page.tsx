@@ -7,32 +7,41 @@ import { metadataCsloSudan } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata: Metadata = {
-  ...metadataCsloSudan,
-  keywords: 'ERPNext Sudan, CRM Sudan, NGO ERP system, humanitarian data management Sudan, CSLO Sudan ERP, East Africa technology solutions',
-  openGraph: {
-    title: 'ERP & CRM Implementation for CSLO Sudan',
-    description: 'Blue Team Africa deployed a modern ERPNext + CRM platform for CSLO Sudan, including mobile field reporting and secure multi-program dashboards.',
-    url: 'https://www.blueteamafrica.com/portfolio/cslo-sudan',
-    siteName: 'Blue Team Africa',
-    images: [
-      {
-        url: '/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp',
-        width: 1200,
-        height: 630,
-        alt: 'CSLO Sudan ERPNext and CRM Implementation',
-      },
-    ],
-    type: 'article',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ERP & CRM Digital Transformation for CSLO Sudan',
-    description: 'A complete ERPNext + CRM digital transformation built for humanitarian operations in Sudan.',
-    images: ['/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp'],
-  },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    ...metadataCsloSudan,
+    keywords: 'ERPNext Sudan, CRM Sudan, NGO ERP system, humanitarian data management Sudan, CSLO Sudan ERP, East Africa technology solutions',
+    alternates: buildAlternates('/portfolio/cslo-sudan', locale),
+    openGraph: {
+      title: 'ERP & CRM Implementation for CSLO Sudan',
+      description: 'Blue Team Africa deployed a modern ERPNext + CRM platform for CSLO Sudan, including mobile field reporting and secure multi-program dashboards.',
+      url: 'https://www.blueteamafrica.com/portfolio/cslo-sudan',
+      siteName: 'Blue Team Africa',
+      images: [
+        {
+          url: '/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp',
+          width: 1200,
+          height: 630,
+          alt: 'CSLO Sudan ERPNext and CRM Implementation',
+        },
+      ],
+      type: 'article',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'ERP & CRM Digital Transformation for CSLO Sudan',
+      description: 'A complete ERPNext + CRM digital transformation built for humanitarian operations in Sudan.',
+      images: ['/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp'],
+    },
+  }
 }
 
 function CaseStudySchema() {

@@ -6,8 +6,17 @@ import { metadataCloudMigration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = metadataCloudMigration
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return { ...metadataCloudMigration, alternates: buildAlternates('/portfolio/cloud-migration', locale) }
+}
 
 export default async function CloudMigrationCaseStudy() {
   const t = await getTranslations('CaseStudyCloudMigrationPage')

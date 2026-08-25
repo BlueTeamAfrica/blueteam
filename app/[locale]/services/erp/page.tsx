@@ -11,6 +11,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const erpFAQs: FAQ[] = [
   {
@@ -66,16 +67,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `https://www.blueteamafrica.com${lp}/services/erp`
+  const alternates = buildAlternates('/services/erp', locale)
   return {
     ...metadataERP,
     keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
-    alternates: { canonical },
+    alternates,
     openGraph: {
       title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',
       description: 'Modern, scalable, and secure ERP systems powered by ERPNext for organizations across East Africa.',
-      url: canonical,
+      url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
         {

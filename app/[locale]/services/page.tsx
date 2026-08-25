@@ -4,11 +4,19 @@ import type { Metadata } from 'next'
 import ServiceCard from './ServiceCard'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata: Metadata = {
-  title: 'Services — Blue Team Africa',
-  description:
-    'Web design, hosting, ERP/CRM, mobile apps and NGO solutions—SEO-first, performance-focused digital services for East Africa.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Services — Blue Team Africa',
+    description: 'Web design, hosting, ERP/CRM, mobile apps and NGO solutions—SEO-first, performance-focused digital services for East Africa.',
+    alternates: buildAlternates('/services', locale),
+  }
 }
 
 // Kept exported for ServiceDetail.tsx — English only, not rendered directly

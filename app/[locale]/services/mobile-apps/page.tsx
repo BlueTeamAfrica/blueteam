@@ -11,6 +11,7 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const mobileAppsFAQs: FAQ[] = [
   {
@@ -66,16 +67,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `https://www.blueteamafrica.com${lp}/services/mobile-apps`
+  const alternates = buildAlternates('/services/mobile-apps', locale)
   return {
     ...metadataMobileApps,
     keywords: 'mobile app development, mobile app development Uganda, mobile app development Kenya, Flutter development, React Native development, offline mobile apps, NGO mobile apps East Africa',
-    alternates: { canonical },
+    alternates,
     openGraph: {
       title: 'Mobile App Development Services in East Africa',
       description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups built for low-connectivity environments.',
-      url: canonical,
+      url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
         {

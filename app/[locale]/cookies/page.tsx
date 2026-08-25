@@ -1,8 +1,17 @@
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata: Metadata = {
-  title: 'Cookies Policy',
-  description: 'Cookies Policy for Blue Team Ltd. - Learn how we use cookies and similar technologies on our website.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Cookies Policy',
+    description: 'Cookies Policy for Blue Team Ltd. - Learn how we use cookies and similar technologies on our website.',
+    alternates: buildAlternates('/cookies', locale),
+  }
 }
 
 export default function CookiesPolicy() {

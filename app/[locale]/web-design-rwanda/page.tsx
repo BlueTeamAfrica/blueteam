@@ -6,6 +6,7 @@ import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucid
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const webDesignRwandaFAQs: FAQ[] = [
   {
@@ -53,14 +54,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
-  const canonical = `${base}${lp}/web-design-rwanda`
+  const alternates = buildAlternates('/web-design-rwanda', locale)
   return {
     title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
     description: 'Professional web design company in Rwanda delivering fast, secure, and SEO-ready websites for businesses and NGOs. Get a custom quote today.',
     robots: 'index, follow',
-    alternates: { canonical },
+    alternates,
     keywords: [
       'web design Rwanda',
       'website design Rwanda',
@@ -73,7 +72,7 @@ export async function generateMetadata({
     openGraph: {
       title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
       description: 'Reliable web design company in Rwanda. We build fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
-      url: canonical,
+      url: alternates.canonical,
       type: 'website',
     },
   }

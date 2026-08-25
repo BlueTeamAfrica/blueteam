@@ -2,10 +2,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = {
-  title: 'Blog',
-  description: 'Insights, guides, and updates on web development, hosting, ERP systems, and technology solutions for East Africa.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Blog',
+    description: 'Insights, guides, and updates on web development, hosting, ERP systems, and technology solutions for East Africa.',
+    alternates: buildAlternates('/blog', locale),
+  }
 }
 
 const blogPosts = [

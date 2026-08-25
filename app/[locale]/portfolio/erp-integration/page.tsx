@@ -6,8 +6,17 @@ import { metadataErpIntegration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = metadataErpIntegration
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return { ...metadataErpIntegration, alternates: buildAlternates('/portfolio/erp-integration', locale) }
+}
 
 export default async function ERPIntegrationCaseStudy() {
   const t = await getTranslations('CaseStudyErpIntegrationPage')

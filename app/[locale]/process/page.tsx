@@ -3,10 +3,20 @@ import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata = {
-  title: 'Our Process',
-  description: "Blue Team Africa's 6-step development process: Discovery, Design, Development, QA, Deployment, and Support.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Our Process',
+    description: "Blue Team Africa's 6-step development process: Discovery, Design, Development, QA, Deployment, and Support.",
+    alternates: buildAlternates('/process', locale),
+  }
 }
 
 export default async function ProcessPage() {

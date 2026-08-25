@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -8,14 +9,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
   return {
     title: 'Best Web Design Companies in Rwanda (2026 Comparison Guide)',
     description: 'Looking for the best web design company in Rwanda? This guide compares top agencies based on experience, services, and suitability for businesses and NGOs.',
-    alternates: {
-      canonical: `${base}${lp}/blog/best-web-design-companies-in-rwanda`,
-    },
+    alternates: buildAlternates('/blog/best-web-design-companies-in-rwanda', locale),
   }
 }
 

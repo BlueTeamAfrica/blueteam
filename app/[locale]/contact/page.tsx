@@ -10,21 +10,30 @@ import ContactForm from '@/components/ContactForm'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Ltr } from '@/components/Ltr'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Blue Team Africa - Web Design, Cybersecurity & ERP Solutions',
-  description: 'Contact Blue Team Africa for web design Uganda, website development East Africa, SEO experts, cybersecurity, ERP solutions, and NGO tech support in Sudan, Uganda, Kenya & Rwanda.',
-  keywords: [
-    'web design Uganda',
-    'website development East Africa',
-    'SEO experts',
-    'Sudan NGO tech support',
-    'cybersecurity',
-    'ERP solutions',
-    'contact Blue Team Africa',
-    'NGO tech support Uganda',
-    'web design company Kampala',
-  ],
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Contact Us | Blue Team Africa - Web Design, Cybersecurity & ERP Solutions',
+    description: 'Contact Blue Team Africa for web design Uganda, website development East Africa, SEO experts, cybersecurity, ERP solutions, and NGO tech support in Sudan, Uganda, Kenya & Rwanda.',
+    keywords: [
+      'web design Uganda',
+      'website development East Africa',
+      'SEO experts',
+      'Sudan NGO tech support',
+      'cybersecurity',
+      'ERP solutions',
+      'contact Blue Team Africa',
+      'NGO tech support Uganda',
+      'web design company Kampala',
+    ],
+    alternates: buildAlternates('/contact', locale),
+  }
 }
 
 export default async function ContactPage() {

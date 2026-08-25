@@ -6,6 +6,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import type { Metadata } from 'next'
 import { blogMetadataMap } from '@/lib/blog-metadata'
 import BlogSchema from '@/components/BlogSchema'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 const blogPosts: Record<string, any> = {
   'how-to-choose-the-right-website-for-your-ngo': {
@@ -368,8 +369,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params
   const post = blogPosts[slug]
-  const base = 'https://www.blueteamafrica.com'
-  const lp = locale === 'en' ? '' : `/${locale}`
 
   if (!post) {
     return {
@@ -378,18 +377,19 @@ export async function generateMetadata({
     }
   }
 
+  const alternates = buildAlternates(`/blog/${slug}`, locale)
   const sharedMetadata = blogMetadataMap[slug]
   if (sharedMetadata) {
     return {
       ...sharedMetadata,
-      alternates: { canonical: `${base}${lp}/blog/${slug}` },
+      alternates,
     }
   }
 
   return {
     title: `${post.title} | Blue Team Africa`,
     description: post.excerpt,
-    alternates: { canonical: `${base}${lp}/blog/${slug}` },
+    alternates,
   }
 }
 

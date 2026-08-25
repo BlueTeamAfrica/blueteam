@@ -6,6 +6,7 @@ import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'
 import dynamic from 'next/dynamic'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata-helpers'
 
 // Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
 // These will still be code-split and loaded lazily, improving initial bundle size
@@ -18,20 +19,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  const base = 'https://www.blueteamafrica.com'
-  const canonical = locale === 'en' ? `${base}/` : `${base}/${locale}`
+  const alternates = buildAlternates('/', locale)
 
   return {
     title: 'Blue Team Africa | Web Design & Development Company',
     description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
     robots: 'index, follow',
-    alternates: {
-      canonical,
-    },
+    alternates,
     openGraph: {
       title: 'BlueTeam Africa — Web Design & Digital Solutions',
       description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
-      url: canonical,
+      url: alternates.canonical,
       siteName: 'Blue Team Africa',
       type: 'website',
       images: [
