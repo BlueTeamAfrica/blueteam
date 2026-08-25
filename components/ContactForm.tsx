@@ -69,7 +69,7 @@ export default function ContactForm() {
     } else if (nameTrimmed.length < 2) {
       newErrors.name = t('validation.nameTooShort')
     } else if (nameTrimmed.length > 100) {
-      newErrors.name = 'Name must be less than 100 characters'
+      newErrors.name = t('validation.nameTooLong')
     }
 
     // Email validation
@@ -79,7 +79,7 @@ export default function ContactForm() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
       newErrors.email = t('validation.emailInvalid')
     } else if (emailTrimmed.length > 255) {
-      newErrors.email = 'Email must be less than 255 characters'
+      newErrors.email = t('validation.emailTooLong')
     }
 
     // Phone validation
@@ -87,9 +87,9 @@ export default function ContactForm() {
     if (!formData.phone.trim()) {
       newErrors.phone = t('validation.phoneRequired')
     } else if (phoneDigits.length < 9) {
-      newErrors.phone = 'Phone number must be at least 9 digits'
+      newErrors.phone = t('validation.phoneTooShort')
     } else if (phoneDigits.length > 15) {
-      newErrors.phone = 'Phone number must be less than 15 digits'
+      newErrors.phone = t('validation.phoneTooLong')
     }
 
     // Subject validation
@@ -104,7 +104,7 @@ export default function ContactForm() {
     } else if (messageTrimmed.length < 10) {
       newErrors.message = t('validation.messageTooShort')
     } else if (messageTrimmed.length > 2000) {
-      newErrors.message = 'Message must be less than 2000 characters'
+      newErrors.message = t('validation.messageTooLong')
     }
 
     setErrors(newErrors)
@@ -373,7 +373,7 @@ export default function ContactForm() {
             </p>
           ) : (
             <span className="text-sm text-gray-500">
-              {formData.message.length}/2000 characters
+              {t('form.charCount', { count: formData.message.length })}
             </span>
           )}
         </div>

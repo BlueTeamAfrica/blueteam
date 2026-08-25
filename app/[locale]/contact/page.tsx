@@ -124,7 +124,7 @@ export default async function ContactPage() {
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('regionalExpertise')}</h3>
-                  <p className="text-gray-700">Deep understanding of East African markets, infrastructure challenges, and NGO operational needs in Uganda, Sudan, Kenya, and Rwanda.</p>
+                  <p className="text-gray-700">{t('regionalExpertiseText')}</p>
                 </div>
               </div>
 
@@ -132,7 +132,7 @@ export default async function ContactPage() {
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('regionalExpertiseBody')}</h3>
-                  <p className="text-gray-700">Proven experience building ERP systems, mobile data collection apps, and secure infrastructure for humanitarian organizations working in challenging environments.</p>
+                  <p className="text-gray-700">{t('ngoExpertiseText')}</p>
                 </div>
               </div>
 
@@ -140,7 +140,7 @@ export default async function ContactPage() {
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('responsiveTime')}</h3>
-                  <p className="text-gray-700">Full-service digital agency offering web design, development, cybersecurity, ERP/CRM systems, mobile apps, and ongoing support — all under one roof.</p>
+                  <p className="text-gray-700">{t('fullServiceText')}</p>
                 </div>
               </div>
 
@@ -148,7 +148,7 @@ export default async function ContactPage() {
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('responsiveTimeBody')}</h3>
-                  <p className="text-gray-700">Enterprise-grade cybersecurity practices, secure hosting, data encryption, and compliance-focused solutions tailored for sensitive NGO operations.</p>
+                  <p className="text-gray-700">{t('securityFirstText')}</p>
                 </div>
               </div>
 
@@ -156,7 +156,7 @@ export default async function ContactPage() {
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('provenResults')}</h3>
-                  <p className="text-gray-700">Fast response times, emergency NGO support line, and dedicated account management to ensure your technology needs are met promptly and efficiently.</p>
+                  <p className="text-gray-700">{t('provenResultsText')}</p>
                 </div>
               </div>
             </div>
@@ -184,7 +184,7 @@ export default async function ContactPage() {
                         <MessageCircle className="w-6 h-6 text-green-600" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">WhatsApp</h4>
+                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('whatsappLabel')}</h4>
                         <p className="text-gray-600 mb-2">{t('supportBody')}</p>
                         <a
                           href="https://wa.me/250798973375"
@@ -203,7 +203,7 @@ export default async function ContactPage() {
                         <Mail className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">Email</h4>
+                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('emailLabel')}</h4>
                         <p className="text-gray-600 mb-2">{t('directContact')}</p>
                         <a
                           href="mailto:contact@blueteamafrica.com"
@@ -220,7 +220,7 @@ export default async function ContactPage() {
                         <Phone className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">Phone</h4>
+                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('phoneLabel')}</h4>
                         <p className="text-gray-600 mb-2">{t('whatsapp')}</p>
                         <a
                           href="tel:+250798973375"
@@ -237,7 +237,7 @@ export default async function ContactPage() {
                         <AlertCircle className="w-6 h-6 text-red-600" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">Emergency NGO Support</h4>
+                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('emergencyNgoTitle')}</h4>
                         <p className="text-gray-600 mb-2">{t('phone')}</p>
                         <a
                           href="https://wa.me/250798973375?text=Emergency%20NGO%20Support%20Request"
@@ -245,7 +245,7 @@ export default async function ContactPage() {
                           rel="noopener noreferrer"
                           className="text-red-600 hover:underline font-medium"
                         >
-                          Get Emergency Support →
+                          {t('emergencyNgoLink')} →
                         </a>
                       </div>
                     </div>
@@ -260,7 +260,7 @@ export default async function ContactPage() {
                     <div className="flex items-start gap-4">
                       <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1">{t('locationLabel')}</h4>
                         <p className="text-gray-600">{t('office')}</p>
                         <p className="text-gray-600">{t('officeAddress')}</p>
                       </div>
@@ -269,7 +269,7 @@ export default async function ContactPage() {
                     <div className="flex items-start gap-4">
                       <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Business Hours</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1">{t('hoursLabel')}</h4>
                         <p className="text-gray-600">{t('hours')}</p>
                         <p className="text-gray-600">{t('hoursDetail')}</p>
                       </div>
@@ -313,55 +313,55 @@ export default async function ContactPage() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">Digital Services</h3>
+                <h3 className="font-semibold text-xl mb-4 text-gray-900">{t('linksDigitalTitle')}</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/services/web-design" className="text-primary hover:underline">Web Design</Link>
+                    <Link href="/services/web-design" className="text-primary hover:underline">{t('linksWebDesign')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/website-development" className="text-primary hover:underline">Website Development</Link>
+                    <Link href="/services/website-development" className="text-primary hover:underline">{t('linksWebDev')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/ecommerce" className="text-primary hover:underline">E-commerce Solutions</Link>
+                    <Link href="/services/ecommerce" className="text-primary hover:underline">{t('linksEcommerce')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/ui-ux" className="text-primary hover:underline">UI/UX Design</Link>
+                    <Link href="/services/ui-ux" className="text-primary hover:underline">{t('linksUIUX')}</Link>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">Business Systems</h3>
+                <h3 className="font-semibold text-xl mb-4 text-gray-900">{t('linksBusinessTitle')}</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/services/erp" className="text-primary hover:underline">ERP Solutions</Link>
+                    <Link href="/services/erp" className="text-primary hover:underline">{t('linksERP')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/crm" className="text-primary hover:underline">CRM Systems</Link>
+                    <Link href="/services/crm" className="text-primary hover:underline">{t('linksCRM')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/mobile-apps" className="text-primary hover:underline">Mobile App Development</Link>
+                    <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('linksMobile')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/custom-systems" className="text-primary hover:underline">Custom Systems</Link>
+                    <Link href="/services/custom-systems" className="text-primary hover:underline">{t('linksCustom')}</Link>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">Security &amp; Support</h3>
+                <h3 className="font-semibold text-xl mb-4 text-gray-900">{t('linksSecurityTitle')}</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/services/cybersecurity" className="text-primary hover:underline">Cybersecurity Solutions</Link>
+                    <Link href="/services/cybersecurity" className="text-primary hover:underline">{t('linksCyber')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/hosting" className="text-primary hover:underline">Website Hosting</Link>
+                    <Link href="/services/hosting" className="text-primary hover:underline">{t('linksHosting')}</Link>
                   </li>
                   <li>
-                    <Link href="/services/maintenance" className="text-primary hover:underline">Maintenance &amp; Support</Link>
+                    <Link href="/services/maintenance" className="text-primary hover:underline">{t('linksMaintenance')}</Link>
                   </li>
                   <li>
-                    <Link href="/about" className="text-primary hover:underline">About Us</Link>
+                    <Link href="/about" className="text-primary hover:underline">{t('linksAbout')}</Link>
                   </li>
                 </ul>
               </div>
@@ -369,7 +369,10 @@ export default async function ContactPage() {
 
             <div className="mt-8 p-6 bg-gray-50 rounded-lg">
               <p className="text-gray-700 leading-relaxed">
-                For organizations in Rwanda seeking local digital solutions, we provide specialized <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">website design services in Rwanda</Link> and custom <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">web development services for businesses and NGOs operating in Rwanda</Link>. Contact us to discuss your project requirements.
+                {t.rich('rwandaPara', {
+                  webDesign: (chunks) => <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>,
+                  webDev: (chunks) => <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>,
+                })}
               </p>
             </div>
 
@@ -379,7 +382,7 @@ export default async function ContactPage() {
                 className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
               >
                 <ArrowRight size={18} className="rotate-180" />
-                Back to Homepage
+                {t('backToHome')}
               </Link>
             </div>
           </div>
@@ -391,7 +394,7 @@ export default async function ContactPage() {
             {t('bottomTitle')}
           </h2>
           <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto px-6 text-gray-700">
-            Let&apos;s discuss how we can help your organization achieve its technology goals with reliable, secure, and scalable solutions.
+            {t('ctaBodyText')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
