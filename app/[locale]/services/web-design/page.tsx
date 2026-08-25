@@ -135,18 +135,18 @@ export default async function WebDesignPage() {
                   {t('intro')}
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  For businesses in Rwanda looking for local web design expertise, visit our{' '}
-                  <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">
-                    professional web design services in Rwanda
-                  </Link>{' '}
-                  page.
+                  {t.rich('rwandaIntroPara', {
+                    rwandaLink: (chunks) => (
+                      <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                    ),
+                  })}
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Not sure which type of website your organization needs? Read our guide on{' '}
-                  <Link href="/blog/how-to-choose-the-right-website-for-your-ngo" className="text-primary hover:text-primary-dark hover:underline">
-                    how to choose the right website for your NGO
-                  </Link>{' '}
-                  — it covers the questions to ask before you brief an agency.
+                  {t.rich('ngoGuidePara', {
+                    ngoGuideLink: (chunks) => (
+                      <Link href="/blog/how-to-choose-the-right-website-for-your-ngo" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                    ),
+                  })}
                 </p>
               </div>
             </SectionWrapper>

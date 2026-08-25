@@ -519,6 +519,8 @@
   "WebDesignPage": {
     "title": "Professional Web Design Services",
     "intro": "At Blue Team Africa, we build websites that do real work — generating leads, communicating mission, and converting visitors into customers or donors.",
+    "rwandaIntroPara": "For businesses in Rwanda looking for local web design expertise, visit our <rwandaLink>professional web design services in Rwanda</rwandaLink> page.",
+    "ngoGuidePara": "Not sure which type of website your organization needs? Read our guide on <ngoGuideLink>how to choose the right website for your NGO</ngoGuideLink> — it covers the questions to ask before you brief an agency.",
     "responsiveDesign": "Responsive Design",
     "responsiveDesignBody": "Your website looks and functions correctly on every device, from low-end Android phones to desktop browsers.",
     "fastPerformance": "Fast Performance",
