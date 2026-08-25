@@ -357,9 +357,10 @@ const blogPosts: Record<string, any> = {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(blogPosts).map((slug) => ({
-    slug: slug,
-  }))
+  const locales = ['en', 'ar']
+  return locales.flatMap((locale) =>
+    Object.keys(blogPosts).map((slug) => ({ locale, slug }))
+  )
 }
 
 export async function generateMetadata({
@@ -393,7 +394,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug } = await params
   const post = blogPosts[slug]
 
