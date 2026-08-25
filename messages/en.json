@@ -22,9 +22,15 @@
       "customSoftware": "Custom Business Software"
     },
     "csloSection": {
-      "title": "Real Impact: CSLO Sudan",
-      "body": "We rebuilt CSLO Sudan's entire digital infrastructure — ERP, CRM, donor reporting, and a mobile data collection app — after conflict disrupted their operations.",
-      "cta": "View Full Case Study"
+      "title": "Digital Transformation for CSLO Sudan",
+      "body": "Blue Team implemented a complete <erpLink>ERPNext</erpLink> + <crmLink>Frappe CRM</crmLink> system for CSLO Sudan, enabling real-time project tracking, automated reporting, secure data storage, and a custom <mobileLink>mobile app</mobileLink> for field officers working in crisis-affected areas.",
+      "cta": "View Full Case Study",
+      "intro": "Looking for a reliable <rwandaLink>professional web design services in Rwanda</rwandaLink>? Explore our local web design services.",
+      "bullet1": "Centralized beneficiaries, projects & inventory",
+      "bullet2": "Automated workflows and reporting dashboards",
+      "bullet3": "Mobile app for field data collection (even in low network zones)",
+      "bullet4": "Full integration with their website",
+      "bullet5": "100% secure cloud hosting"
     },
     "servicesSection": {
       "title": "What We Build",
@@ -62,49 +68,94 @@
     },
     "rwandaSection": {
       "title": "Web Design & Development in Rwanda",
-      "subtitle": "Based in Kigali, we build fast, SEO-optimized websites and digital infrastructure for businesses and NGOs operating across Rwanda and the Great Lakes region.",
+      "subtitle": "We provide website design, mobile app development, and cybersecurity services to NGOs and businesses in Rwanda, including Kigali. For organizations seeking <devLink>professional web development services in Rwanda</devLink>, we offer custom backend systems, API integrations, and scalable web applications.",
       "cta": "Explore Rwanda Services"
     },
     "whyChoose": {
-      "title": "Why Choose Blue Team Africa?",
+      "title": "A Digital Team Shaped by Real-World Challenges",
       "securityFirst": "Security-First",
       "securityFirstBody": "Every solution is built with security at its core — from secure coding practices to cybersecurity audits.",
       "builtForAfrica": "Built for Africa",
       "builtForAfricaBody": "We understand the infrastructure realities of East Africa — variable connectivity, mobile-first users, and regional payment systems.",
       "ngoExpertise": "NGO Expertise",
-      "ngoExpertiseBody": "We've built systems for humanitarian organizations operating in conflict zones — we understand the stakes."
+      "ngoExpertiseBody": "We've built systems for humanitarian organizations operating in conflict zones — we understand the stakes.",
+      "teamStory1": "Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, operating from Uganda, our mission is to provide reliable, affordable, and secure digital solutions for organizations across East Africa.",
+      "teamStory2": "We specialize in building systems for NGOs, companies, startups, and institutions that operate in difficult environments — where reliability, security, and performance are not optional.",
+      "teamStory3": "Blue Team Africa is a Rwanda-based digital solutions company providing web design and web development services for businesses and NGOs across East Africa. Founded in 2023, the company focuses on performance-driven websites, scalable systems, and long-term search visibility rather than template-based solutions.",
+      "scalableTech": "Scalable Technology",
+      "scalableTechBody": "Modern stack: Next.js, ERPNext, Flutter, Firebase, Linux."
     },
     "ngoSolutions": {
       "title": "Digital Solutions for NGOs",
       "subtitle": "From beneficiary management to donor reporting, we build the systems that power humanitarian operations in East Africa.",
-      "cta": "Request an NGO System Demo"
+      "cta": "Request an NGO System Demo",
+      "bullet1": "<erpLink>ERPNext</erpLink> NGO Modules (finance, HR, programs, logistics)",
+      "bullet2": "<crmLink>CRM systems</crmLink> for beneficiary & donor management",
+      "bullet3": "<mobileLink>Mobile apps</mobileLink> for field staff (offline data capture, automatic sync)",
+      "bullet4": "Secure cloud deployment",
+      "bullet5": "Training & continuous support"
     },
     "process": {
       "title": "How We Work",
       "step1Title": "Discovery",
-      "step1Body": "We learn your goals, constraints, and context before writing a single line of code.",
-      "step2Title": "Design",
-      "step2Body": "Wireframes and prototypes first — visual polish after structure is confirmed.",
+      "step1Body": "We analyze your operations, workflows and reporting needs.",
+      "step2Title": "Prototype",
+      "step2Body": "We design a clear system layout before development begins.",
       "step3Title": "Development",
-      "step3Body": "Clean, maintainable code built on proven frameworks.",
-      "step4Title": "Testing",
-      "step4Body": "Cross-device, cross-browser, and performance testing before any launch.",
+      "step3Body": "We build your website, app or ERP using clean, scalable architecture.",
+      "step4Title": "Deployment",
+      "step4Body": "We migrate data, configure hosting and train your team.",
       "step5Title": "Support",
-      "step5Body": "Ongoing maintenance, monitoring, and improvements after delivery."
+      "step5Body": "We monitor performance, updates and security—24/7."
     },
     "portfolioPreview": {
-      "title": "Our Work",
-      "cta": "View All Case Studies"
+      "title": "Selected Projects — Measurable Results",
+      "cta": "View All Case Studies",
+      "card1Title": "CSLO Sudan — ERP & CRM Digital Transformation",
+      "card1Desc": "Complete ERPNext + Frappe CRM system with mobile field reporting for humanitarian operations.",
+      "card1ReadMore": "Read case study →",
+      "card2Title": "NGO Portal — Website & CRM",
+      "card2Desc": "40% faster donor reporting.",
+      "card2ReadMore": "Read case study →",
+      "card3Title": "Retail eCommerce — Rapid Build",
+      "card3Desc": "2× online sales in 90 days.",
+      "card3ReadMore": "Read case study →"
     },
     "faqPreview": {
       "title": "Common Questions",
-      "cta": "View All FAQs"
+      "cta": "View All FAQs",
+      "q1": "How long does it take to design a website?",
+      "a1": "Most websites take 7–14 days depending on requirements.",
+      "q2": "Do you offer hosting and maintenance?",
+      "a2": "Yes — secure hosting, backups, monitoring, and updates.",
+      "q3": "Can you build systems for NGOs?",
+      "a3": "Yes. We build ERP, CRM, dashboards, and field-data apps.",
+      "q4": "How secure are your websites?",
+      "a4": "All websites include encryption, server hardening, and threat protection.",
+      "q5": "Can you migrate my old website?",
+      "a5": "Yes — we migrate from WordPress, Joomla, Wix, or custom systems.",
+      "contactCta": "Have more questions? Contact us →"
     },
     "bottomCTA": {
       "title": "Ready to start your project?",
       "subtitle": "Let's design your next digital solution — secure, fast, and built to scale.",
       "ctaPrimary": "Get a Free Quote",
       "ctaWhatsApp": "Contact Us on WhatsApp"
+    },
+    "regionalSection": {
+      "title": "Serving Organizations Across East Africa",
+      "body": "From Sudan to Uganda, Kenya and Rwanda, we support NGOs, startups and growing businesses with digital solutions that improve operations, accountability and service delivery.",
+      "sudan": "Sudan",
+      "uganda": "Uganda",
+      "kenya": "Kenya",
+      "rwanda": "Rwanda"
+    },
+    "seoBlock": {
+      "title": "Trusted Website Design & Cyber Security Company in Uganda",
+      "body": "Blue Team Africa provides web design, web development, cybersecurity, mobile app development, ERP systems, and SEO services to businesses and NGOs in Kampala, Juba, Khartoum, Nairobi, and across East Africa. Our solutions are built for speed, reliability, and long-term growth."
+    },
+    "techStack": {
+      "label": "We build using:"
     }
   },
   "ContactPage": {

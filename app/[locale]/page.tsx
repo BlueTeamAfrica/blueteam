@@ -125,38 +125,46 @@ export default async function Home() {
         <section className="py-20 bg-white" aria-labelledby="case-study-heading">
           <div className="max-w-6xl mx-auto px-6">
             <p className="text-center text-gray-600 mb-6">
-              Looking for a reliable <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web design services in Rwanda</Link>? Explore our local web design services.
+              {t.rich('csloSection.intro', {
+                rwandaLink: (chunks) => (
+                  <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                ),
+              })}
             </p>
             <h2 id="case-study-heading" className="text-3xl font-heading font-semibold text-center mb-8">
-              Digital Transformation for CSLO Sudan
+              {t('csloSection.title')}
             </h2>
             <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Blue Team implemented a complete <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> + <Link href="/services/crm" className="text-primary hover:underline">Frappe CRM</Link> system for CSLO Sudan, enabling real-time project tracking, automated reporting, secure data storage, and a custom <Link href="/services/mobile-apps" className="text-primary hover:underline">mobile app</Link> for field officers working in crisis-affected areas.
+                {t.rich('csloSection.body', {
+                  erpLink: (chunks) => <Link href="/services/erp" className="text-primary hover:underline">{chunks}</Link>,
+                  crmLink: (chunks) => <Link href="/services/crm" className="text-primary hover:underline">{chunks}</Link>,
+                  mobileLink: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline">{chunks}</Link>,
+                })}
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">Centralized beneficiaries, projects & inventory</p>
+                    <p className="text-gray-700">{t('csloSection.bullet1')}</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">Automated workflows and reporting dashboards</p>
+                    <p className="text-gray-700">{t('csloSection.bullet2')}</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">Mobile app for field data collection (even in low network zones)</p>
+                    <p className="text-gray-700">{t('csloSection.bullet3')}</p>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">Full integration with their website</p>
+                    <p className="text-gray-700">{t('csloSection.bullet4')}</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">100% secure cloud hosting</p>
+                    <p className="text-gray-700">{t('csloSection.bullet5')}</p>
                   </div>
                 </div>
               </div>
@@ -165,7 +173,7 @@ export default async function Home() {
                   href="/portfolio/cslo-sudan"
                   className="inline-block text-primary font-semibold hover:text-primary-dark underline"
                 >
-                  {t('csloSection.cta')} →
+                  {t('csloSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </div>
             </div>
@@ -324,16 +332,20 @@ export default async function Home() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="location-link">
               <h3 id="rwanda-regional" className="text-2xl font-heading font-semibold mb-3 text-gray-900">
-                Serving Rwanda & East Africa
+                {t('rwandaSection.title')}
               </h3>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                We provide website design, mobile app development, and cybersecurity services to NGOs and businesses in Rwanda, including Kigali. For organizations seeking <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">professional web development services in Rwanda</Link>, we offer custom backend systems, API integrations, and scalable web applications.
+                {t.rich('rwandaSection.subtitle', {
+                  devLink: (chunks) => (
+                    <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                  ),
+                })}
               </p>
               <Link
                 href="/locations/rwanda"
                 className="text-primary font-semibold hover:text-primary-dark hover:underline inline-flex items-center"
               >
-                Explore our services in Rwanda →
+                {t('rwandaSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
               </Link>
             </div>
           </div>
@@ -343,16 +355,16 @@ export default async function Home() {
         <section className="py-20 bg-white" aria-labelledby="why-trust-heading">
           <div className="max-w-6xl mx-auto px-6">
             <h2 id="why-trust-heading" className="text-3xl font-heading font-semibold text-center mb-6">
-              A Digital Team Shaped by Real-World Challenges
+              {t('whyChoose.title')}
             </h2>
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, operating from Uganda, our mission is to provide reliable, affordable, and secure digital solutions for organizations across East Africa.
+              {t('whyChoose.teamStory1')}
             </p>
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              We specialize in building systems for NGOs, companies, startups, and institutions that operate in difficult environments — where reliability, security, and performance are not optional.
+              {t('whyChoose.teamStory2')}
             </p>
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Blue Team Africa is a Rwanda-based digital solutions company providing web design and web development services for businesses and NGOs across East Africa. Founded in 2023, the company focuses on performance-driven websites, scalable systems, and long-term search visibility rather than template-based solutions.
+              {t('whyChoose.teamStory3')}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -362,9 +374,9 @@ export default async function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Security First</h3>
+                <h3 className="text-xl font-semibold mb-3">{t('whyChoose.securityFirst')}</h3>
                 <p className="text-gray-600">
-                  Every website and system follows cybersecurity best practices.
+                  {t('whyChoose.securityFirstBody')}
                 </p>
               </div>
 
@@ -374,9 +386,9 @@ export default async function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">NGO Experience</h3>
+                <h3 className="text-xl font-semibold mb-3">{t('whyChoose.ngoExpertise')}</h3>
                 <p className="text-gray-600">
-                  We've built ERP, CRM & field-data systems for humanitarian organizations.
+                  {t('whyChoose.ngoExpertiseBody')}
                 </p>
               </div>
 
@@ -386,9 +398,9 @@ export default async function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Scalable Technology</h3>
+                <h3 className="text-xl font-semibold mb-3">{t('whyChoose.scalableTech')}</h3>
                 <p className="text-gray-600">
-                  Modern stack → Next.js, ERPNext, Flutter, Firebase, Linux.
+                  {t('whyChoose.scalableTechBody')}
                 </p>
               </div>
             </div>
@@ -399,32 +411,44 @@ export default async function Home() {
         <section className="py-20 bg-white" aria-labelledby="ngo-solutions-heading">
           <div className="max-w-6xl mx-auto px-6">
             <h2 id="ngo-solutions-heading" className="text-3xl font-heading font-semibold text-center mb-6">
-              Reliable Digital Systems for NGOs Working in Challenging Environments
+              {t('ngoSolutions.title')}
             </h2>
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              We understand the unique challenges NGOs face in Sudan, South Sudan, and Uganda — connectivity issues, data security risks, field-level reporting, and resource constraints. Our team builds tools that work even in difficult conditions:
+              {t('ngoSolutions.subtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700"><Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link> NGO Modules (finance, HR, programs, logistics)</p>
+                <p className="text-gray-700">
+                  {t.rich('ngoSolutions.bullet1', {
+                    erpLink: (chunks) => <Link href="/services/erp" className="text-primary hover:underline">{chunks}</Link>,
+                  })}
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700"><Link href="/services/crm" className="text-primary hover:underline">CRM systems</Link> for beneficiary & donor management</p>
+                <p className="text-gray-700">
+                  {t.rich('ngoSolutions.bullet2', {
+                    crmLink: (chunks) => <Link href="/services/crm" className="text-primary hover:underline">{chunks}</Link>,
+                  })}
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700"><Link href="/services/mobile-apps" className="text-primary hover:underline">Mobile apps</Link> for field staff (offline data capture → automatic sync)</p>
+                <p className="text-gray-700">
+                  {t.rich('ngoSolutions.bullet3', {
+                    mobileLink: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline">{chunks}</Link>,
+                  })}
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">Secure cloud deployment</p>
+                <p className="text-gray-700">{t('ngoSolutions.bullet4')}</p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">Training & continuous support</p>
+                <p className="text-gray-700">{t('ngoSolutions.bullet5')}</p>
               </div>
             </div>
 
@@ -433,7 +457,7 @@ export default async function Home() {
                 href="/contact"
                 className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition font-semibold"
               >
-                Request an NGO System Demo
+                {t('ngoSolutions.cta')}
               </Link>
             </div>
           </div>
@@ -443,42 +467,42 @@ export default async function Home() {
         <section className="py-20 bg-gray-50" aria-labelledby="process-heading">
           <div className="max-w-6xl mx-auto px-6">
             <h2 id="process-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              Our Process
+              {t('process.title')}
             </h2>
             <div className="grid md:grid-cols-5 gap-6">
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">1</div>
-                <h3 className="text-lg font-semibold mb-2">Discovery</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('process.step1Title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  We analyze your operations, workflows and reporting needs.
+                  {t('process.step1Body')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">2</div>
-                <h3 className="text-lg font-semibold mb-2">Prototype</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('process.step2Title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  We design a clear system layout before development begins.
+                  {t('process.step2Body')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">3</div>
-                <h3 className="text-lg font-semibold mb-2">Development</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('process.step3Title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  We build your website, app or ERP using clean, scalable architecture.
+                  {t('process.step3Body')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">4</div>
-                <h3 className="text-lg font-semibold mb-2">Deployment</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('process.step4Title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  We migrate data, configure hosting and train your team.
+                  {t('process.step4Body')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">5</div>
-                <h3 className="text-lg font-semibold mb-2">Support</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('process.step5Title')}</h3>
                 <p className="text-gray-600 text-sm">
-                  We monitor performance, updates and security—24/7.
+                  {t('process.step5Body')}
                 </p>
               </div>
             </div>
@@ -489,28 +513,28 @@ export default async function Home() {
         <section className="py-20 bg-white" aria-labelledby="regional-impact-heading">
           <div className="max-w-6xl mx-auto px-6 text-center">
             <h2 id="regional-impact-heading" className="text-3xl font-heading font-semibold mb-6">
-              Serving Organizations Across East Africa
+              {t('regionalSection.title')}
             </h2>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-              From Sudan to Uganda, Kenya and Rwanda, we support NGOs, startups and growing businesses with digital solutions that improve operations, accountability and service delivery.
+              {t('regionalSection.body')}
             </p>
             {/* Country flags */}
             <div className="flex items-center justify-center gap-8 flex-wrap mt-8">
               <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
                 <span className="text-3xl">🇸🇩</span>
-                <span>Sudan</span>
+                <span>{t('regionalSection.sudan')}</span>
               </div>
               <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
                 <span className="text-3xl">🇺🇬</span>
-                <span>Uganda</span>
+                <span>{t('regionalSection.uganda')}</span>
               </div>
               <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
                 <span className="text-3xl">🇰🇪</span>
-                <span>Kenya</span>
+                <span>{t('regionalSection.kenya')}</span>
               </div>
               <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
                 <span className="text-3xl">🇷🇼</span>
-                <span>Rwanda</span>
+                <span>{t('regionalSection.rwanda')}</span>
               </div>
             </div>
           </div>
@@ -520,10 +544,10 @@ export default async function Home() {
         <section className="py-16 bg-gray-50" aria-labelledby="seo-keyword-heading">
           <div className="max-w-6xl mx-auto px-6 text-center">
             <h2 id="seo-keyword-heading" className="text-3xl font-heading font-semibold mb-6">
-              Trusted Website Design & Cyber Security Company in Uganda
+              {t('seoBlock.title')}
             </h2>
             <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              Blue Team Africa provides web design, web development, cybersecurity, mobile app development, ERP systems, and SEO services to businesses and NGOs in Kampala, Juba, Khartoum, Nairobi, and across East Africa. Our solutions are built for speed, reliability, and long-term growth.
+              {t('seoBlock.body')}
             </p>
           </div>
         </section>
@@ -531,7 +555,7 @@ export default async function Home() {
         {/* TECH STACK */}
         <section className="py-12 bg-gray-50 border-t border-gray-200">
           <div className="max-w-6xl mx-auto px-6 text-center">
-            <p className="text-gray-600 mb-6">We build using:</p>
+            <p className="text-gray-600 mb-6">{t('techStack.label')}</p>
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
               {/* ERPNext */}
               <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
@@ -653,7 +677,7 @@ export default async function Home() {
         <section id="portfolio" className="py-20 bg-white" aria-labelledby="portfolio-heading">
         <div className="max-w-6xl mx-auto px-6">
             <h2 id="portfolio-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              Selected Projects — Measurable Results
+              {t('portfolioPreview.title')}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -669,11 +693,11 @@ export default async function Home() {
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold">CSLO Sudan — ERP & CRM Digital Transformation</h3>
+                  <h3 className="font-semibold">{t('portfolioPreview.card1Title')}</h3>
                   <p className="text-sm text-gray-600 mt-2">
-                    Complete ERPNext + Frappe CRM system with mobile field reporting for humanitarian operations.
+                    {t('portfolioPreview.card1Desc')}
                     <Link href="/portfolio/cslo-sudan" className="text-primary ml-1 hover:text-primary-dark">
-                      Read case study →
+                      {t('portfolioPreview.card1ReadMore')}
                     </Link>
                   </p>
                 </div>
@@ -691,11 +715,11 @@ export default async function Home() {
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold">NGO Portal — Website & CRM</h3>
+                  <h3 className="font-semibold">{t('portfolioPreview.card2Title')}</h3>
                   <p className="text-sm text-gray-600 mt-2">
-                    40% faster donor reporting.
+                    {t('portfolioPreview.card2Desc')}
                     <Link href="/portfolio/ngo-portal" className="text-primary ml-1 hover:text-primary-dark">
-                      Read case study →
+                      {t('portfolioPreview.card2ReadMore')}
                     </Link>
                   </p>
                 </div>
@@ -713,11 +737,11 @@ export default async function Home() {
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold">Retail eCommerce — Rapid Build</h3>
+                  <h3 className="font-semibold">{t('portfolioPreview.card3Title')}</h3>
                   <p className="text-sm text-gray-600 mt-2">
-                    2× online sales in 90 days.
+                    {t('portfolioPreview.card3Desc')}
                     <Link href="/portfolio/ecommerce-shop" className="text-primary ml-1 hover:text-primary-dark">
-                      Read case study →
+                      {t('portfolioPreview.card3ReadMore')}
                     </Link>
                   </p>
                 </div>
@@ -743,59 +767,59 @@ export default async function Home() {
         <section className="py-20 bg-gray-50" aria-labelledby="faq-heading">
           <div className="max-w-5xl mx-auto px-6">
             <h2 id="faq-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              Frequently Asked Questions
+              {t('faqPreview.title')}
             </h2>
 
             <div className="space-y-6">
               <details className="bg-white p-6 rounded-xl shadow-sm">
                 <summary className="font-semibold cursor-pointer text-gray-900">
-                  How long does it take to design a website?
+                  {t('faqPreview.q1')}
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Most websites take 7–14 days depending on requirements.
+                  {t('faqPreview.a1')}
                 </p>
               </details>
 
               <details className="bg-white p-6 rounded-xl shadow-sm">
                 <summary className="font-semibold cursor-pointer text-gray-900">
-                  Do you offer hosting and maintenance?
+                  {t('faqPreview.q2')}
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Yes — secure hosting, backups, monitoring, and updates.
+                  {t('faqPreview.a2')}
                 </p>
               </details>
 
               <details className="bg-white p-6 rounded-xl shadow-sm">
                 <summary className="font-semibold cursor-pointer text-gray-900">
-                  Can you build systems for NGOs?
+                  {t('faqPreview.q3')}
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Yes. We build ERP, CRM, dashboards, and field-data apps.
+                  {t('faqPreview.a3')}
                 </p>
               </details>
 
               <details className="bg-white p-6 rounded-xl shadow-sm">
                 <summary className="font-semibold cursor-pointer text-gray-900">
-                  How secure are your websites?
+                  {t('faqPreview.q4')}
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  All websites include encryption, server hardening, and threat protection.
+                  {t('faqPreview.a4')}
                 </p>
               </details>
 
               <details className="bg-white p-6 rounded-xl shadow-sm">
                 <summary className="font-semibold cursor-pointer text-gray-900">
-                  Can you migrate my old website?
+                  {t('faqPreview.q5')}
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Yes — we migrate from WordPress, Joomla, Wix, or custom systems.
+                  {t('faqPreview.a5')}
                 </p>
               </details>
             </div>
 
             <div className="mt-10 text-center">
               <Link href="/contact" className="text-primary underline hover:text-primary-dark font-semibold">
-                Have more questions? Contact us →
+                {t('faqPreview.contactCta')}
               </Link>
             </div>
           </div>
@@ -834,7 +858,7 @@ export default async function Home() {
         </div>
       </section>
       </div>
-      
+
     </>
   )
 }
