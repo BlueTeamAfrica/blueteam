@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucide-react'

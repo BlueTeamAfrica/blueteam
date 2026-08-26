@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'

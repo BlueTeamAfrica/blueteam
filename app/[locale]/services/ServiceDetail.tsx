@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import type { Service } from './service-data'
 import { services } from './page'
 import ServiceCard from './ServiceCard'
