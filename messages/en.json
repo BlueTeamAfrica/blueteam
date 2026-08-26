@@ -1418,7 +1418,8 @@
     "followTwitter": "Follow us on X (Twitter)",
     "followLinkedIn": "Follow us on LinkedIn",
     "followInstagram": "Follow us on Instagram",
-    "followYouTube": "Follow us on YouTube"
+    "followYouTube": "Follow us on YouTube",
+    "sudanSolutions": "Sudan Solutions"
   },
   "ServicesPage": {
     "heroTitle": "Digital solutions for NGOs, startups & enterprises in East Africa",
@@ -2152,6 +2153,43 @@
     "ctaTitle": "Ready to Build Your Web Application in Rwanda?",
     "ctaBody": "Let's discuss your web development project and create a robust, scalable application that powers your organization's digital operations. Contact us today to get started.",
     "ctaPrimary": "Start Your Development Project",
+    "ctaWhatsApp": "Chat on WhatsApp"
+  },
+  "LocationsSudanPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbLocations": "Locations",
+    "breadcrumbSudan": "Sudan",
+    "headerTitle": "Technology Solutions for Sudanese Organizations",
+    "heroH1": "Technology Solutions for Sudanese Organizations and Institutions",
+    "heroPara": "Blue Team Africa is a technology team founded by Sudanese experts. We build secure, reliable digital systems for organizations serving the Sudanese community — humanitarian groups, media organizations, businesses, and educational institutions, both inside Sudan and across the diaspora.",
+    "heroCta": "Get in Touch",
+    "whoWeWorkWithTitle": "Who We Work With",
+    "item1Title": "Humanitarian and NGO Organizations",
+    "item1Body": "Field data collection, donor reporting, beneficiary management, and secure systems built for low-connectivity environments.",
+    "item2Title": "Media and Independent Journalism Organizations",
+    "item2Body": "Secure content workflows, encrypted submission systems, and infrastructure built with editorial security in mind.",
+    "item3Title": "Businesses and Startups",
+    "item3Body": "Websites, e-commerce, and business systems (ERP/CRM) for Sudanese companies and entrepreneurs, wherever they operate.",
+    "item4Title": "Educational Institutions",
+    "item4Body": "Including a growing focus on learning management systems for private colleges (see below).",
+    "realitiesTitle": "Built for the Realities of the Region",
+    "realitiesPara": "Working with Sudanese organizations means designing for real constraints: unreliable connectivity, the need for offline-capable tools, data security in sensitive environments, and systems that work whether your team is inside Sudan or coordinating from the diaspora. This isn't a generic checklist for us — it's the environment our own team comes from.",
+    "lmsTitle": "Education Technology — LMS for Private Colleges",
+    "lmsPara": "We're expanding into learning management systems (LMS) built specifically for private colleges in Sudan — course delivery, student records, and administrative systems designed for institutions operating with limited infrastructure and connectivity, without compromising on reliability or security. If you run or advise a private college in Sudan exploring digital learning infrastructure, we'd like to talk.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1Q": "Do you work with organizations located inside Sudan, given current connectivity and security challenges?",
+    "faq1A": "Yes. We design our systems to be offline-capable and low-bandwidth by default — data syncs automatically when connectivity is restored, so field teams aren't blocked by unreliable networks.",
+    "faq2Q": "Can you support Sudanese organizations based in the diaspora?",
+    "faq2A": "Yes. Much of our client base is Sudanese organizations and businesses operating from Nairobi, Kampala, and other diaspora locations. We work remotely as standard practice.",
+    "faq3Q": "How do you handle data security for humanitarian or media work?",
+    "faq3A": "We build with encryption, role-based access, and secure data handling as defaults — not add-ons — particularly for organizations working with sensitive beneficiary or editorial information.",
+    "faq4Q": "Do you currently offer a learning management system for colleges, or is this still in development?",
+    "faq4A": "This is a capability we're actively building out for private colleges in Sudan. If you're exploring digital learning infrastructure for your institution, get in touch — we're taking on early conversations now.",
+    "faq5Q": "What sectors have you worked with in Sudan?",
+    "faq5A": "Primarily humanitarian and NGO organizations, media and independent journalism groups, and businesses — spanning both inside Sudan and the diaspora.",
+    "ctaTitle": "Let's Talk",
+    "ctaBody": "Whether you're an NGO, a media organization, a business, or an educational institution — let's talk about what you need.",
+    "ctaContact": "Contact Us",
     "ctaWhatsApp": "Chat on WhatsApp"
   }
 }

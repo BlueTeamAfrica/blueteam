@@ -35,6 +35,7 @@ export default function Footer() {
     { label: t('blog'), href: '/blog' },
     { label: t('faq'), href: '/faq' },
     { label: t('contact'), href: '/contact' },
+    { label: t('sudanSolutions'), href: '/locations/sudan' },
   ]
 
   const legalLinks = [
