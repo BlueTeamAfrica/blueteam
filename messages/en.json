@@ -1,8 +1,8 @@
 {
   "HomePage": {
     "hero": {
-      "title": "High-Performance Web Design & Development for Businesses in Rwanda",
-      "subtitle": "Web design, mobile apps, cloud hosting, cybersecurity & full-stack enterprise solutions — built for East Africa and beyond.",
+      "title": "Built by Sudanese Technologists. Trusted Across East Africa.",
+      "subtitle": "Blue Team Africa is a technology team founded by Sudanese experts who rebuilt their careers after the war. We build secure, reliable digital systems for organizations serving the Sudanese community — in Sudan, across the diaspora, and throughout East Africa.",
       "ctaPrimary": "Start Your Project",
       "ctaSecondary": "Explore Our Services"
     },
@@ -79,9 +79,9 @@
       "builtForAfricaBody": "We understand the infrastructure realities of East Africa — variable connectivity, mobile-first users, and regional payment systems.",
       "ngoExpertise": "NGO Expertise",
       "ngoExpertiseBody": "We've built systems for humanitarian organizations operating in conflict zones — we understand the stakes.",
-      "teamStory1": "Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, operating from Uganda, our mission is to provide reliable, affordable, and secure digital solutions for organizations across East Africa.",
-      "teamStory2": "We specialize in building systems for NGOs, companies, startups, and institutions that operate in difficult environments — where reliability, security, and performance are not optional.",
-      "teamStory3": "Blue Team Africa is a Rwanda-based digital solutions company providing web design and web development services for businesses and NGOs across East Africa. Founded in 2023, the company focuses on performance-driven websites, scalable systems, and long-term search visibility rather than template-based solutions.",
+      "teamStory1": "Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, our team brings deep cultural understanding and technical expertise to organizations that serve the Sudanese community — humanitarian groups, media organizations, businesses, and educational institutions, both inside Sudan and across the diaspora.",
+      "teamStory2": "We specialize in building systems for NGOs, companies, colleges, and institutions operating in complex environments — where reliability, security, and performance are not optional.",
+      "teamStory3": "",
       "scalableTech": "Scalable Technology",
       "scalableTechBody": "Modern stack: Next.js, ERPNext, Flutter, Firebase, Linux."
     },
@@ -156,6 +156,25 @@
     },
     "techStack": {
       "label": "We build using:"
+    },
+    "whereWeWork": {
+      "title": "Where We Work",
+      "sudan": {
+        "name": "Sudan",
+        "desc": "Our primary focus, and the market we're actively expanding into, including new work in educational technology for private colleges."
+      },
+      "uganda": {
+        "name": "Uganda",
+        "desc": "Home to many of the Sudanese organizations and diaspora communities we serve, particularly in Kampala."
+      },
+      "kenya": {
+        "name": "Kenya",
+        "desc": "A growing base of clients and partners, particularly in Nairobi."
+      },
+      "rwanda": {
+        "name": "Rwanda",
+        "desc": "Our operational base, where Blue Team Africa is registered."
+      }
     }
   },
   "ContactPage": {

@@ -325,26 +325,41 @@ export default async function Home() {
         </div>
       </section>
 
-        {/* Serving Rwanda & East Africa - Contextual Regional Link */}
-        <section data-rwanda-section className="py-12 bg-white" aria-labelledby="rwanda-regional">
+        {/* WHERE WE WORK */}
+        <section className="py-20 bg-gray-50" aria-labelledby="where-we-work-heading">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="location-link">
-              <h3 id="rwanda-regional" className="text-2xl font-heading font-semibold mb-3 text-gray-900">
-                {t('rwandaSection.title')}
-              </h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                {t.rich('rwandaSection.subtitle', {
-                  devLink: (chunks) => (
-                    <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                  ),
-                })}
-              </p>
-              <Link
-                href="/locations/rwanda"
-                className="text-primary font-semibold hover:text-primary-dark hover:underline inline-flex items-center"
-              >
-                {t('rwandaSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-              </Link>
+            <h2 id="where-we-work-heading" className="text-3xl font-heading font-semibold text-center mb-12">
+              {t('whereWeWork.title')}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div className="flex items-start gap-4">
+                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇸🇩</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.sudan.name')}</h3>
+                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.sudan.desc')}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇺🇬</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.uganda.name')}</h3>
+                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.uganda.desc')}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇰🇪</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.kenya.name')}</h3>
+                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.kenya.desc')}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇷🇼</span>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.rwanda.name')}</h3>
+                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.rwanda.desc')}</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -358,11 +373,8 @@ export default async function Home() {
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
               {t('whyChoose.teamStory1')}
             </p>
-            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              {t('whyChoose.teamStory2')}
-            </p>
             <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
-              {t('whyChoose.teamStory3')}
+              {t('whyChoose.teamStory2')}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -502,37 +514,6 @@ export default async function Home() {
                 <p className="text-gray-600 text-sm">
                   {t('process.step5Body')}
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* REGIONAL IMPACT */}
-        <section className="py-20 bg-white" aria-labelledby="regional-impact-heading">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <h2 id="regional-impact-heading" className="text-3xl font-heading font-semibold mb-6">
-              {t('regionalSection.title')}
-            </h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-              {t('regionalSection.body')}
-            </p>
-            {/* Country flags */}
-            <div className="flex items-center justify-center gap-8 flex-wrap mt-8">
-              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
-                <span className="text-3xl">🇸🇩</span>
-                <span>{t('regionalSection.sudan')}</span>
-              </div>
-              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
-                <span className="text-3xl">🇺🇬</span>
-                <span>{t('regionalSection.uganda')}</span>
-              </div>
-              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
-                <span className="text-3xl">🇰🇪</span>
-                <span>{t('regionalSection.kenya')}</span>
-              </div>
-              <div className="text-gray-700 font-semibold text-lg flex items-center gap-2">
-                <span className="text-3xl">🇷🇼</span>
-                <span>{t('regionalSection.rwanda')}</span>
               </div>
             </div>
           </div>
