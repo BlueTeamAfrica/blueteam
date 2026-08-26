@@ -15,6 +15,7 @@ import {
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 import { Ltr } from '@/components/Ltr'
+import LocaleSwitcher from '@/components/LocaleSwitcher'
 import dynamic from 'next/dynamic'
 
 // Deferred: framer-motion (116K) is split into its own chunk and fetched after
@@ -198,16 +199,19 @@ function PanelContent({ closeMenu }: { closeMenu: () => void }) {
           })}
         </div>
 
-        {/* Repeated Contact button */}
-        <Link
-          href="/contact"
-          onClick={closeMenu}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
-          style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
-        >
-          {t('getInTouch')}
-          <ArrowRight size={14} className="rtl:rotate-180" />
-        </Link>
+        {/* Locale switcher + Contact button */}
+        <div className="flex items-center gap-3">
+          <LocaleSwitcher variant="panel" />
+          <Link
+            href="/contact"
+            onClick={closeMenu}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
+            style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
+          >
+            {t('getInTouch')}
+            <ArrowRight size={14} className="rtl:rotate-180" />
+          </Link>
+        </div>
       </div>
     </div>
   )
@@ -380,8 +384,9 @@ export default function Header() {
             />
           </Link>
 
-          {/* Right: Contact button */}
-          <div className="flex items-center justify-end">
+          {/* Right: Locale switcher + Contact button */}
+          <div className="flex items-center justify-end gap-2">
+            <LocaleSwitcher />
             <Link
               href="/contact"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
