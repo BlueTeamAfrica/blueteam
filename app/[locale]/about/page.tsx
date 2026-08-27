@@ -62,13 +62,7 @@ export default async function AboutPage() {
               {t('whoWeAreH2')}
             </h2>
             <p className="text-lg leading-relaxed mb-4">
-              {t('whoWeArePara1Intro')}{" "}
-              <Link href="/services/web-design" className="text-primary hover:underline font-semibold">{t('linkWebDesign')}</Link>,{" "}
-              <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{t('linkMobileApps')}</Link>,{" "}
-              <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">{t('linkCybersecurity')}</Link>,{" "}
-              <Link href="/services/hosting" className="text-primary hover:underline font-semibold">{t('linkHosting')}</Link>,{" "}
-              <Link href="/services/erp" className="text-primary hover:underline font-semibold">{t('linkERP')}</Link>{t('listAndSeparator')}{" "}
-              <Link href="/services/crm" className="text-primary hover:underline font-semibold">{t('linkCRM')}</Link>.
+              {t('whoWeArePara1Intro')}
             </p>
 
             <p className="text-lg leading-relaxed mb-4">
