@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   return {
-    title: 'Contact Us | Blue Team Africa - Web Design, Cybersecurity & ERP Solutions',
+    title: 'Contact Us — Web Design, Cybersecurity & ERP Solutions',
     description: 'Contact Blue Team Africa for web design Uganda, website development East Africa, SEO experts, cybersecurity, ERP solutions, and NGO tech support in Sudan, Uganda, Kenya & Rwanda.',
     keywords: [
       'web design Uganda',

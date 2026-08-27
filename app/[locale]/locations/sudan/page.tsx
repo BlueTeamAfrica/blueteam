@@ -12,7 +12,7 @@ export async function generateMetadata({
   const { locale } = await params
   const alternates = buildAlternates('/locations/sudan', locale)
   return {
-    title: 'Technology Solutions for Sudanese Organizations | Blue Team Africa',
+    title: 'Technology Solutions for Sudanese Organizations',
     description:
       'Blue Team Africa builds secure, reliable digital systems for Sudanese humanitarian groups, media organizations, businesses, and educational institutions — inside Sudan and across the diaspora.',
     robots: 'index, follow',
@@ -28,7 +28,7 @@ export async function generateMetadata({
       'diaspora Sudan technology',
     ],
     openGraph: {
-      title: 'Technology Solutions for Sudanese Organizations | Blue Team Africa',
+      title: 'Technology Solutions for Sudanese Organizations',
       description:
         'Secure, reliable digital systems for Sudanese humanitarian groups, media organizations, businesses, and educational institutions.',
       url: alternates.canonical,

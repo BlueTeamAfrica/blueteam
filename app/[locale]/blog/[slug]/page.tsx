@@ -373,7 +373,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: 'Post Not Found | Blue Team Africa',
+      title: 'Post Not Found',
       description: 'The blog post you are looking for does not exist.',
     }
   }
@@ -388,7 +388,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | Blue Team Africa`,
+    title: post.title,
     description: post.excerpt,
     alternates,
   }

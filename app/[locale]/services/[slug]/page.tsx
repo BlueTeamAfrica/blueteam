@@ -20,7 +20,7 @@ export async function generateMetadata({
 
   if (!service) {
     return {
-      title: 'Service Not Found | Blue Team Africa',
+      title: 'Service Not Found',
       description: 'This service does not exist.',
     }
   }
@@ -28,11 +28,11 @@ export async function generateMetadata({
   const alternates = buildAlternates(`/services/${service.slug}`, locale)
 
   return {
-    title: `${service.title} | Blue Team Africa`,
+    title: service.title,
     description: service.description,
     alternates,
     openGraph: {
-      title: `${service.title} | Blue Team Africa`,
+      title: service.title,
       description: service.description,
       url: alternates.canonical,
     },

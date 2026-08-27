@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { locale } = await params
   const alternates = buildAlternates('/locations/rwanda', locale)
   return {
-    title: 'Technology Solutions Provider in Rwanda | Blue Team Africa',
+    title: 'Technology Solutions Provider in Rwanda',
     description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
     robots: 'index, follow',
     alternates,

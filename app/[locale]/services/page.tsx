@@ -13,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   return {
-    title: 'Services — Blue Team Africa',
+    title: 'Services',
     description: 'Web design, hosting, ERP/CRM, mobile apps and NGO solutions—SEO-first, performance-focused digital services for East Africa.',
     alternates: buildAlternates('/services', locale),
   }

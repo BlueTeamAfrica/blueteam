@@ -22,7 +22,7 @@ export async function generateMetadata({
   const alternates = buildAlternates('/', locale)
 
   return {
-    title: 'Blue Team Africa | Web Design & Development Company',
+    title: { absolute: 'Blue Team Africa | Web Design & Development Company' },
     description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
     robots: 'index, follow',
     alternates,
