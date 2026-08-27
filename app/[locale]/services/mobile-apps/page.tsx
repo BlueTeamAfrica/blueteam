@@ -13,54 +13,6 @@ import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
-const mobileAppsFAQs: FAQ[] = [
-  {
-    question: 'What platforms do you develop for — iOS, Android, or both?',
-    answer: 'We develop for both iOS and Android using React Native, which produces a single codebase that runs natively on both platforms. For projects where native device APIs or performance requirements demand it, we can build platform-specific versions. We advise on the right approach during scoping based on your user base and budget.',
-  },
-  {
-    question: 'How long does mobile app development take?',
-    answer: 'A focused app with a defined feature set — field data collection, beneficiary registration, staff scheduling — typically takes eight to fourteen weeks from requirements to app store submission. More complex apps with real-time sync, offline-first architecture, or third-party integrations run fourteen to twenty-four weeks. We provide a firm estimate after the requirements phase.',
-  },
-  {
-    question: 'Can the app work offline in low-connectivity environments?',
-    answer: 'Offline-first capability is a design requirement we treat as standard for apps deployed in East Africa and humanitarian contexts, not an optional add-on. Data is stored locally on the device and syncs to the server automatically when a connection is available. Field teams in low-connectivity zones in Sudan, Uganda, and rural Rwanda rely on this behaviour in apps we have built.',
-  },
-  {
-    question: 'How does the app connect to our ERP or back-office system?',
-    answer: 'We build the app\'s API layer to exchange data directly with ERPNext or any back-end system with an accessible API. Field submissions — beneficiary records, incident reports, distribution data — flow into the ERP in real time once synced. This eliminates manual re-entry and gives program managers live visibility into field operations.',
-  },
-  {
-    question: 'Do you handle app store submission and approval?',
-    answer: 'Yes. We prepare all required assets — screenshots, app descriptions, privacy policy, and review responses — and manage the submission process for both the Apple App Store and Google Play Store. Approval timelines are set by the stores, but we handle everything on your behalf.',
-  },
-  {
-    question: 'What security measures are applied to mobile apps handling sensitive data?',
-    answer: 'For apps handling beneficiary data, health records, or confidential field information, we implement encrypted local storage, secure token-based authentication, certificate pinning to prevent API interception, and role-based data access so users only see records relevant to their assignment. We align these controls with our broader cybersecurity service standards.',
-  },
-]
-
-function MobileAppsFAQSchema() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: mobileAppsFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-    />
-  )
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -109,6 +61,16 @@ export default async function MobileAppsPage() {
     { question: t('faq6q'), answer: t('faq6a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: displayFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -116,7 +78,7 @@ export default async function MobileAppsPage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'Mobile App Development Services', url: 'https://www.blueteamafrica.com/services/mobile-apps' },
       ]} />
-      <MobileAppsFAQSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ServiceSchema serviceName="Mobile Apps" serviceSlug="mobile-apps" />
       <InteriorHeader
         title={t('title')}
@@ -158,7 +120,11 @@ export default async function MobileAppsPage() {
                     {t('heroH2')}
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-                    {t('heroPre')}
+                    {t.rich('heroPre', {
+                      sudanLink: (chunks) => (
+                        <Link href="/locations/sudan" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                      ),
+                    })}
                     <Link href="/locations/rwanda" className="text-primary hover:text-primary-dark hover:underline">
                       {t('heroLinkLabel')}
                     </Link>

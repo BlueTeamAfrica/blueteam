@@ -50,65 +50,6 @@ export async function generateMetadata({
 }
 
 
-// English FAQ array kept for JSON-LD schema only
-const cybersecurityFAQs: FAQ[] = [
-  {
-    question: 'How much do cybersecurity services cost?',
-    answer: 'Pricing depends on infrastructure size and services needed. Most clients fall between UGX 350,000 – 2,500,000 monthly depending on monitoring, penetration testing, and ongoing support requirements. We provide custom quotes after assessing your specific security needs.',
-  },
-  {
-    question: 'Do you work with NGOs?',
-    answer: 'Yes — we specialize in NGOs operating in Sudan, South Sudan, Uganda, Kenya, and the Great Lakes region. We understand the unique challenges humanitarian organizations face and provide tailored security solutions for high-risk environments.',
-  },
-  {
-    question: 'Can you secure our ERP / CRM?',
-    answer: 'Absolutely. We secure ERPNext, custom CRMs, and humanitarian databases. Our security services include access controls, data encryption, secure backups, and vulnerability scanning to protect your critical business systems.',
-  },
-  {
-    question: 'What is penetration testing?',
-    answer: 'Penetration testing (pentest) is ethical hacking where our security experts simulate cyber attacks to identify vulnerabilities in your systems before malicious hackers can exploit them. We provide detailed reports with actionable recommendations.',
-  },
-  {
-    question: 'How often should we perform security audits?',
-    answer: 'We recommend quarterly security audits for most organizations, with monthly vulnerability scanning. For high-risk environments or organizations handling sensitive data, we suggest more frequent assessments. Annual comprehensive audits are essential for compliance and security posture.',
-  },
-  {
-    question: 'Do you provide incident response services?',
-    answer: 'Yes, we offer 24/7 incident response and emergency recovery services. When your organization experiences a breach or cyber attack, our team responds immediately to contain the threat, assess damage, and restore operations quickly.',
-  },
-  {
-    question: 'Can you train our staff on cybersecurity?',
-    answer: 'Absolutely. Human error causes over 70% of breaches. We offer comprehensive staff cyber awareness training covering phishing prevention, password security, safe browsing, and data handling best practices tailored to your organization.',
-  },
-  {
-    question: 'Do you secure mobile apps and APIs?',
-    answer: 'Yes, we provide end-to-end security for mobile applications and API protection. This includes secure authentication, data encryption, API rate limiting, and protection against common mobile and API vulnerabilities.',
-  },
-]
-
-// FAQ Schema
-function FAQSchema() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: cybersecurityFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-    />
-  )
-}
-
 export default async function CybersecurityPage() {
   const t = await getTranslations('CybersecurityPage')
 
@@ -123,6 +64,16 @@ export default async function CybersecurityPage() {
     { question: t('faq8q'), answer: t('faq8a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: displayFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -131,7 +82,7 @@ export default async function CybersecurityPage() {
         { name: 'Cybersecurity Solutions', url: 'https://www.blueteamafrica.com/services/cybersecurity' },
       ]} />
       <ServiceSchema serviceName="Cybersecurity" serviceSlug="cybersecurity" />
-      <FAQSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <InteriorHeader
         title={t('interiorHeaderTitle')}
@@ -180,7 +131,11 @@ export default async function CybersecurityPage() {
                 <ul className="space-y-3 text-gray-700 mb-6">
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>
-                    <span>{t('sec1Li1')}</span>
+                    <span>{t.rich('sec1Li1', {
+                      sudanLink: (chunks) => (
+                        <Link href="/locations/sudan" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                      ),
+                    })}</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-3 font-bold">•</span>

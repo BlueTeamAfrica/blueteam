@@ -288,7 +288,8 @@
       "services": "Services",
       "portfolio": "Portfolio",
       "about": "About",
-      "resources": "Resources"
+      "resources": "Resources",
+      "locations": "Locations"
     },
     "portfolioCta": "See the real problems we've solved for real clients",
     "services": {
@@ -356,6 +357,12 @@
         "name": "FAQ",
         "desc": "Straight answers to the questions we get most"
       }
+    },
+    "locations": {
+      "sudan": {
+        "name": "Sudan Solutions",
+        "desc": "Technology for Sudanese organizations, NGOs, and the diaspora"
+      }
     }
   },
   "AboutPage": {
@@ -395,7 +402,8 @@
     "rwandaPara": "We support organizations across Rwanda with professional <webDesignLink>web design services in Rwanda</webDesignLink> and comprehensive <webDevLink>web development solutions for businesses and NGOs</webDevLink>. Our team combines technical expertise with regional knowledge to deliver digital solutions that work for Rwandan organizations.",
     "ctaH2": "Ready to Work with a Team That Understands Your Mission?",
     "ctaBody": "Whether you're a business, NGO, or startup — we build technology that supports your growth and impact.",
-    "ctaButton": "Contact Us"
+    "ctaButton": "Contact Us",
+    "sudanLink": "Explore our Sudan technology services →"
   },
   "TeamPage": {
     "title": "Our Team",
@@ -626,7 +634,7 @@
     "developmentBody": "We build in Next.js/React with a component-based approach: every repeating element is built once and reused, so changes propagate consistently and the codebase stays maintainable. SEO metadata, structured data (JSON-LD), sitemap, and canonical URLs are configured as part of the build — not added at the end.",
     "qaBody": "Before delivery: cross-browser testing (Chrome, Firefox, Safari, Edge), mobile testing at multiple screen sizes including low-end Android devices common in East Africa, Lighthouse performance audits targeting 90+ scores, and accessibility checks. We also test on a throttled connection to simulate variable-bandwidth conditions — not just fast broadband.",
     "launchBody": "We manage DNS cutover, SSL provisioning, and the go-live checklist. Handover includes a documented site structure, credentials inventory, and a short recorded walkthrough so your team understands what they have. If a CMS is in scope, we include content editing training. The full codebase is delivered to your repository.",
-    "ngoSectorBody": "NGOs operating in Sudan, Uganda, Kenya, and Rwanda represent a significant part of our client base. We understand the reporting cadences, donor communication requirements, and the need to present complex program work clearly to non-specialist audiences. We have built platforms for humanitarian organizations managing field operations, grant portfolios, and multi-partner programs.",
+    "ngoSectorBody": "NGOs operating in <sudanLink>Sudan</sudanLink>, Uganda, Kenya, and Rwanda represent a significant part of our client base. We understand the reporting cadences, donor communication requirements, and the need to present complex program work clearly to non-specialist audiences. We have built platforms for humanitarian organizations managing field operations, grant portfolios, and multi-partner programs.",
     "startupBody": "Early-stage companies that need a professional presence fast, without paying enterprise prices or inheriting technical debt. We scope tightly for launch, build for future expansion, and hand over something maintainable — not a template site that will need rebuilding in 18 months.",
     "profServicesBody": "Law firms, consulting practices, accountancies, healthcare providers. Organizations where trust is the product and the website is the first signal of credibility. We design for authority and clarity — not flash — and structure content so a first-time visitor understands the practice and its expertise within seconds.",
     "educationBody": "Schools, universities, and vocational training providers that need to communicate programs clearly to multiple audiences — students, parents, donors, and partners. We build sites that handle content volume without becoming confusing, and that work on devices and connections typical of the regions they serve.",
@@ -1014,7 +1022,7 @@
     "whyBullet6": "Donor Reporting & Grant Management",
     "whyBullet7": "Monitoring & Evaluation (M&E)",
     "whyBullet8": "Project & Program Management",
-    "caseTitle": "Real Use Case: ERP for Sudan-Based Humanitarian Operations",
+    "caseTitle": "Real Use Case: ERP for <sudanLink>Sudan</sudanLink>-Based Humanitarian Operations",
     "caseBody1": "We implemented a complete ERP system for a Sudanese humanitarian organization operating in conflict-affected regions. The system centralized field data, procurement, HR operations, and donor reporting into one secure platform—reducing admin time by 40% and improving field visibility.",
     "caseBody2Pre": "The ERP platform is fully integrated with a ",
     "caseBody2LinkLabel": "mobile data-collection app",
@@ -1099,7 +1107,7 @@
     "breadcrumbServices": "Services",
     "breadcrumbMobileApps": "Mobile Apps",
     "heroH2": "Secure, Offline-First Mobile Apps for East Africa",
-    "heroPre": "Secure, offline-first mobile apps for NGOs, enterprises and startups — built to work reliably in low-connectivity and high-risk environments across Sudan 🇸🇩, Uganda 🇺🇬, Kenya 🇰🇪 and Rwanda 🇷🇼. Our ",
+    "heroPre": "Secure, offline-first mobile apps for NGOs, enterprises and startups — built to work reliably in low-connectivity and high-risk environments across <sudanLink>Sudan</sudanLink> 🇸🇩, Uganda 🇺🇬, Kenya 🇰🇪 and Rwanda 🇷🇼. Our ",
     "heroLinkLabel": "mobile app development solutions in Kigali and throughout Rwanda",
     "heroPost": " are designed for NGOs, startups, and SMEs seeking secure and scalable apps.",
     "heroStartApp": "Start Your App Project",
@@ -1272,7 +1280,7 @@
     "sec1P1LinkLabel": "cybersecurity solutions for organizations in Rwanda",
     "sec1P1Post": ", including businesses and NGOs in Kigali, helping protect critical digital infrastructure across the region.",
     "sec1P2": "Our security systems are designed for:",
-    "sec1Li1": "High-risk regions like Sudan and South Sudan",
+    "sec1Li1": "High-risk regions like <sudanLink>Sudan</sudanLink> and South Sudan",
     "sec1Li2": "Remote NGO operations with limited connectivity",
     "sec1Li3": "Websites handling beneficiary databases and sensitive data",
     "sec1Li4": "SMEs and startups scaling online services",
@@ -2191,5 +2199,8 @@
     "ctaBody": "Whether you're an NGO, a media organization, a business, or an educational institution — let's talk about what you need.",
     "ctaContact": "Contact Us",
     "ctaWhatsApp": "Chat on WhatsApp"
+  },
+  "ServiceCard": {
+    "learnMore": "Learn more →"
   }
 }

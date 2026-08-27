@@ -12,54 +12,6 @@ import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
-const crmFAQs: FAQ[] = [
-  {
-    question: 'What does a CRM system from Blue Team Africa include?',
-    answer: 'Our CRM implementations cover lead and contact management, sales pipeline tracking, customer interaction history, task and follow-up automation, and reporting dashboards. We configure the system around your actual sales process rather than asking your team to adapt to a generic workflow.',
-  },
-  {
-    question: 'Which CRM platform do you build on?',
-    answer: 'We primarily implement Frappe CRM, which is built on the same framework as ERPNext. This means if your organization also needs ERP capabilities — finance, HR, inventory — the CRM and ERP share one database and one login, eliminating duplicate data entry between sales and operations.',
-  },
-  {
-    question: 'Can the CRM automate our follow-up and outreach process?',
-    answer: 'Yes. Sales automation is a core feature: automatic follow-up reminders, email sequences triggered by pipeline stage, task assignment on lead conversion, and notifications when a deal goes cold. We configure these workflows to match how your team actually works.',
-  },
-  {
-    question: 'Do you integrate CRM with our existing tools — email, calendar, WhatsApp?',
-    answer: 'Integration is a standard part of implementation. We connect your CRM to email (Gmail or Outlook), calendar syncing, and where applicable, WhatsApp Business API for teams that manage client communication through messaging. We confirm which integrations are feasible during the discovery phase.',
-  },
-  {
-    question: 'How is this useful for NGOs managing donor or partner relationships?',
-    answer: 'Many of our NGO clients use CRM to manage donor pipelines, grant applications, and partner organization contacts rather than traditional sales leads. The pipeline and automation features work equally well for relationship management in a non-commercial context — you define the stages and the CRM follows your process.',
-  },
-  {
-    question: 'What does implementation take, and what support follows?',
-    answer: 'Most CRM projects go live within four to eight weeks. We include staff training, data migration from spreadsheets or a previous system, and a handover period where we resolve any workflow gaps. Ongoing support is available through our maintenance plans.',
-  },
-]
-
-function CRMFAQSchema() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: crmFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-    />
-  )
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -84,6 +36,16 @@ export default async function CRMPage() {
     { question: t('faq6q'), answer: t('faq6a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: displayFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -91,7 +53,7 @@ export default async function CRMPage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'CRM Solutions', url: 'https://www.blueteamafrica.com/services/crm' },
       ]} />
-      <CRMFAQSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ServiceSchema serviceName="CRM" serviceSlug="crm" />
       <InteriorHeader
         title={t('title')}

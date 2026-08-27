@@ -3,6 +3,7 @@
 import { Link } from '@/i18n/navigation'
 import { motion } from 'framer-motion'
 import { Palette, Smartphone, Server, Database, BarChart3, FileText } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface ServiceCardProps {
   service: {
@@ -24,6 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 }
 
 export default function ServiceCard({ service }: ServiceCardProps) {
+  const t = useTranslations('ServiceCard')
   const IconComponent = iconMap[service.id] || Palette
 
   return (
@@ -43,7 +45,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
             <div className="mt-4">
               <span className="inline-flex items-center text-sm font-medium text-blue-600">
-                Learn more →
+                {t('learnMore')}
               </span>
             </div>
           </div>

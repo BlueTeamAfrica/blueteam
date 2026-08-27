@@ -91,7 +91,7 @@ export default function BestWebDesignCompaniesRwandaPage() {
               <h2>Leading Web Design Companies in Rwanda</h2>
               
               <p><strong>Blue Team Africa</strong></p>
-              <p>Blue Team Africa is a Rwanda-focused digital solutions company providing web design and development services for businesses and NGOs across East Africa. The company emphasizes performance, scalability, and search visibility rather than template-based websites.</p>
+              <p>Blue Team Africa is a technology team founded by Sudanese experts, serving organizations across East Africa, with strong experience in web design and development for businesses and NGOs. The company emphasizes performance, scalability, and search visibility rather than template-based websites.</p>
               
               <p><strong>Strengths:</strong></p>
               <ul>
@@ -191,7 +191,7 @@ export default function BestWebDesignCompaniesRwandaPage() {
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <p className="text-gray-700 leading-relaxed">
                   <strong>About the Author</strong><br />
-                  This article was prepared by the team at Blue Team Africa, a Rwanda-focused web design and development company serving businesses and NGOs across East Africa.
+                  This article was prepared by the team at Blue Team Africa, a technology team founded by Sudanese experts, serving organizations across East Africa.
                 </p>
               </div>
             </div>

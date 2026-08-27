@@ -13,54 +13,6 @@ import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
-const ecommerceFAQs: FAQ[] = [
-  {
-    question: 'What types of e-commerce stores do you build?',
-    answer: 'We build custom online stores, B2B ordering portals, marketplace platforms, and donation or payment collection pages. We work with WooCommerce for WordPress-based projects and Next.js with headless commerce for performance-critical or highly custom builds. We help you choose the right architecture based on your catalogue size, traffic expectations, and integrations needed.',
-  },
-  {
-    question: 'Do you integrate mobile money payment methods?',
-    answer: 'Yes — this is a standard part of our East Africa e-commerce builds. We integrate MTN Mobile Money, Airtel Money, M-Pesa, and regional payment gateways alongside international options like Stripe or PayPal where needed. We confirm gateway availability for your country during scoping.',
-  },
-  {
-    question: 'Can you connect the store to our inventory and order management?',
-    answer: 'Yes. Inventory and order management integration is one of the key services we offer. For organizations already using an ERP like ERPNext, we connect the store directly so stock levels, orders, and customer records sync automatically without manual reconciliation.',
-  },
-  {
-    question: 'How long does an e-commerce project take to build?',
-    answer: 'A straightforward product catalogue with payment integration typically runs four to eight weeks. Stores with custom product configurators, marketplace features, or ERP integration sit in the eight to fourteen week range. Timeline is confirmed after scoping.',
-  },
-  {
-    question: 'Is the store built to perform well on slow connections common in East Africa?',
-    answer: 'Performance in variable-connectivity environments is something we design for explicitly — image optimization, lazy loading, minimal JavaScript payloads, and CDN delivery. We test load times on typical East African mobile connections before handover, not just on fast broadband.',
-  },
-  {
-    question: 'What ongoing support does an e-commerce store need?',
-    answer: 'At minimum: security updates, payment gateway certificate renewals, and platform version updates. We offer maintenance plans that cover all of this plus content changes, product catalogue updates, and promotional configuration. Hosting is managed separately through our hosting service.',
-  },
-]
-
-function EcommerceFAQSchema() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: ecommerceFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-    />
-  )
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -109,6 +61,16 @@ export default async function EcommercePage() {
     { question: t('faq6q'), answer: t('faq6a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: displayFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -116,7 +78,7 @@ export default async function EcommercePage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'E-commerce Solutions', url: 'https://www.blueteamafrica.com/services/ecommerce' },
       ]} />
-      <EcommerceFAQSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ServiceSchema serviceName="E-commerce" serviceSlug="ecommerce" />
       <InteriorHeader
         title={t('title')}

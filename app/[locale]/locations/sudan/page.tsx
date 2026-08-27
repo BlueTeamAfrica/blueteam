@@ -49,60 +49,21 @@ export default async function SudanLocationPage({
   await params
   const t = await getTranslations('LocationsSudanPage')
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: t('faq1Q'), acceptedAnswer: { '@type': 'Answer', text: t('faq1A') } },
+      { '@type': 'Question', name: t('faq2Q'), acceptedAnswer: { '@type': 'Answer', text: t('faq2A') } },
+      { '@type': 'Question', name: t('faq3Q'), acceptedAnswer: { '@type': 'Answer', text: t('faq3A') } },
+      { '@type': 'Question', name: t('faq4Q'), acceptedAnswer: { '@type': 'Answer', text: t('faq4A') } },
+      { '@type': 'Question', name: t('faq5Q'), acceptedAnswer: { '@type': 'Answer', text: t('faq5A') } },
+    ],
+  }
+
   return (
     <>
-      {/* FAQPage Schema — English intentionally */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: 'Do you work with organizations located inside Sudan, given current connectivity and security challenges?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes. We design our systems to be offline-capable and low-bandwidth by default — data syncs automatically when connectivity is restored, so field teams are not blocked by unreliable networks.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'Can you support Sudanese organizations based in the diaspora?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Yes. Much of our client base is Sudanese organizations and businesses operating from Nairobi, Kampala, and other diaspora locations. We work remotely as standard practice.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'How do you handle data security for humanitarian or media work?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'We build with encryption, role-based access, and secure data handling as defaults — not add-ons — particularly for organizations working with sensitive beneficiary or editorial information.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'Do you currently offer a learning management system for colleges, or is this still in development?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: "This is a capability we're actively building out for private colleges in Sudan. If you're exploring digital learning infrastructure for your institution, get in touch — we're taking on early conversations now.",
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'What sectors have you worked with in Sudan?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'Primarily humanitarian and NGO organizations, media and independent journalism groups, and businesses — spanning both inside Sudan and the diaspora.',
-                },
-              },
-            ],
-          }),
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <InteriorHeader
         title={t('headerTitle')}

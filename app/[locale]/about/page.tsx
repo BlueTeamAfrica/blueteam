@@ -124,6 +124,12 @@ export default async function AboutPage() {
               <p className="text-lg leading-relaxed">
                 {t('sudanPara3')}
               </p>
+              <Link
+                href="/locations/sudan"
+                className="inline-block mt-6 text-primary hover:text-primary-dark font-semibold hover:underline"
+              >
+                {t('sudanLink')}
+              </Link>
             </div>
           </div>
         </div>

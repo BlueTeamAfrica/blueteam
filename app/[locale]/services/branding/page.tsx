@@ -12,54 +12,6 @@ import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
-const brandingFAQs: FAQ[] = [
-  {
-    question: 'What does a branding package from Blue Team Africa include?',
-    answer: 'A full branding engagement covers logo design (primary, secondary, and icon variants), a colour palette, typography selection, and a brand guidelines document. The guidelines specify how to apply all elements consistently across digital touchpoints — website, social profiles, email — and print materials like business cards and reports.',
-  },
-  {
-    question: 'How is your logo design process different from using an online generator?',
-    answer: 'We start with a discovery session to understand your business, audience, and market position before a single line is drawn. Every mark is custom-built to carry meaning specific to your organization. You also receive source files (AI/SVG) with full ownership, not a locked template you cannot edit or scale.',
-  },
-  {
-    question: 'Do you understand East African brand aesthetics and market expectations?',
-    answer: 'Yes — our team has designed brands for NGOs, startups, and SMEs across Sudan, Uganda, Kenya, and Rwanda. We understand how visual language varies across these markets and can create a brand that resonates locally while holding up against international standards.',
-  },
-  {
-    question: 'Can the brand identity be applied to my website after branding is complete?',
-    answer: 'Absolutely. Branding and web design work best as a unified project. Once your visual identity is defined, we apply it directly to your website through our web design and UI/UX services, ensuring complete visual consistency across every screen.',
-  },
-  {
-    question: 'What file formats will I receive, and do I own them?',
-    answer: 'You receive the complete working file set — SVG and AI vector source files, PNG exports at multiple resolutions, and a PDF brand guidelines document. All assets are yours outright; we do not retain licensing over your brand identity.',
-  },
-  {
-    question: 'How long does a branding project take?',
-    answer: 'Most branding projects complete in two to four weeks, depending on revision rounds and feedback turnaround. Projects that include brand guidelines alongside the logo add roughly one additional week. Timeline is confirmed at kickoff once the scope is clear.',
-  },
-]
-
-function BrandingFAQSchema() {
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: brandingFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-    />
-  )
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -84,6 +36,16 @@ export default async function BrandingPage() {
     { question: t('faq6q'), answer: t('faq6a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: displayFAQs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -91,7 +53,7 @@ export default async function BrandingPage() {
         { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
         { name: 'Branding & Logo Design', url: 'https://www.blueteamafrica.com/services/branding' },
       ]} />
-      <BrandingFAQSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ServiceSchema serviceName="Branding" serviceSlug="branding" />
       <InteriorHeader
         title={t('title')}

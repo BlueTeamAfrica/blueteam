@@ -43,6 +43,10 @@ const aboutHrefs = [
   { key: 'process',  href: '/process' },
 ] as const
 
+const locationHrefs = [
+  { key: 'sudan', href: '/locations/sudan' },
+] as const
+
 const resourceHrefs = [
   { key: 'blog', href: '/blog' },
   { key: 'faq',  href: '/faq' },
@@ -113,6 +117,12 @@ function PanelContent({ closeMenu }: { closeMenu: () => void }) {
     desc: t(`about.${key}.desc` as Parameters<typeof t>[0]),
   }))
 
+  const locationItems = locationHrefs.map(({ key, href }) => ({
+    href,
+    name: t(`locations.${key}.name` as Parameters<typeof t>[0]),
+    desc: t(`locations.${key}.desc` as Parameters<typeof t>[0]),
+  }))
+
   const resourceItems = resourceHrefs.map(({ key, href }) => ({
     href,
     name: t(`resources.${key}.name` as Parameters<typeof t>[0]),
@@ -145,8 +155,8 @@ function PanelContent({ closeMenu }: { closeMenu: () => void }) {
         </Link>
       </section>
 
-      {/* ── ABOUT + RESOURCES ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+      {/* ── ABOUT + RESOURCES + LOCATIONS ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
         <section>
           <PanelSection label={t('sections.about')} />
           <div className="space-y-1">
@@ -160,6 +170,15 @@ function PanelContent({ closeMenu }: { closeMenu: () => void }) {
           <PanelSection label={t('sections.resources')} />
           <div className="space-y-1">
             {resourceItems.map((l) => (
+              <NavItem key={l.href} {...l} onClick={closeMenu} />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <PanelSection label={t('sections.locations')} />
+          <div className="space-y-1">
+            {locationItems.map((l) => (
               <NavItem key={l.href} {...l} onClick={closeMenu} />
             ))}
           </div>
