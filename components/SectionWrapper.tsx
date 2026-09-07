@@ -1,9 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { ReactNode, useRef, useState, useEffect } from 'react'
 
 interface SectionWrapperProps {
   children: ReactNode
@@ -11,13 +8,35 @@ interface SectionWrapperProps {
   className?: string
 }
 
-export default function SectionWrapper({ 
-  children, 
+function useInViewOnce(margin = '-100px') {
+  const ref = useRef<HTMLElement | null>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: margin }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [margin])
+
+  return { ref, inView }
+}
+
+export default function SectionWrapper({
+  children,
   bgColor = 'white',
-  className = '' 
+  className = '',
 }: SectionWrapperProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { ref, inView } = useInViewOnce('-100px')
 
   const bgColors = {
     white: 'bg-white',
@@ -30,14 +49,9 @@ export default function SectionWrapper({
       ref={ref}
       className={`py-12 md:py-16 ${bgColors[bgColor]} ${className}`}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
+      <div className={inView ? 'fade-up' : 'opacity-0'}>
         {children}
-      </motion.div>
+      </div>
     </section>
   )
 }
-

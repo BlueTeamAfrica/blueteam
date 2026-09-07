@@ -1,9 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { ReactNode, useRef, useState, useEffect } from 'react'
 
 interface InteriorPageLayoutProps {
   title: string
@@ -13,6 +10,29 @@ interface InteriorPageLayoutProps {
   showSidebar?: boolean
 }
 
+function useInViewOnce(margin = '-100px') {
+  const ref = useRef<HTMLElement | null>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: margin }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [margin])
+
+  return { ref, inView }
+}
+
 export default function InteriorPageLayout({
   title,
   subtitle,
@@ -20,22 +40,17 @@ export default function InteriorPageLayout({
   sidebar,
   showSidebar = false,
 }: InteriorPageLayoutProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { ref, inView } = useInViewOnce('-100px')
 
   return (
     <div className="min-h-screen bg-[#F8F9FC]">
-      {/* Page Title Block - Standardized: 80-100px below fixed header */}
-      <section 
+      {/* Page Title Block */}
+      <section
         ref={ref}
         className="bg-[#F8F9FC] pt-[150px] md:pt-[180px] pb-8"
       >
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
+          <div className={inView ? 'fade-up' : 'opacity-0'}>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight font-heading text-gray-900">
               {title}
             </h1>
@@ -44,23 +59,17 @@ export default function InteriorPageLayout({
                 {subtitle}
               </p>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Content Area */}
       <div className="max-w-6xl mx-auto px-6 pb-16">
         <div className={`grid ${showSidebar ? 'md:grid-cols-[1fr_300px]' : 'grid-cols-1'} gap-8`}>
-          {/* Main Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          >
+          <div className={inView ? 'fade-up delay-1' : 'opacity-0'}>
             {children}
-          </motion.div>
+          </div>
 
-          {/* Sidebar */}
           {showSidebar && sidebar && (
             <aside className="hidden md:block">
               <div className="sticky top-[140px]">
@@ -73,4 +82,3 @@ export default function InteriorPageLayout({
     </div>
   )
 }
-

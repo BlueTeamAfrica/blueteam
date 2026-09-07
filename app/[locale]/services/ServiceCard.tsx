@@ -1,7 +1,6 @@
 "use client"
 
 import { Link } from '@/i18n/navigation'
-import { motion } from 'framer-motion'
 import { Palette, Smartphone, Server, Database, BarChart3, FileText } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -29,10 +28,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   const IconComponent = iconMap[service.id] || Palette
 
   return (
-    <motion.div
-      className="group block rounded-2xl bg-white p-6 shadow-sm border border-slate-100 hover:shadow-md transform-gpu transition-all duration-200"
-      whileHover={{ translateY: -4 }}
-    >
+    <div className="group block rounded-2xl bg-white p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transform-gpu transition-all duration-200">
       <Link href={service.href}>
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
@@ -51,7 +47,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 

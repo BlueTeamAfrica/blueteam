@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { Link } from '@/i18n/navigation'
 import { ChevronDown, MessageCircle, ArrowRight } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { faqs, type FAQ } from '@/lib/faqs'
 
 export { faqs, type FAQ }
@@ -84,22 +83,21 @@ export default function FAQSection({
                   }`}
                 />
               </button>
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    id={`faq-answer-${index}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 py-4 text-gray-700 leading-relaxed border-t border-gray-100">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div
+                id={`faq-answer-${index}`}
+                style={{
+                  display: 'grid',
+                  gridTemplateRows: openIndex === index ? '1fr' : '0fr',
+                  transition: 'grid-template-rows 0.2s ease',
+                  overflow: 'hidden',
+                }}
+              >
+                <div style={{ overflow: 'hidden' }}>
+                  <div className="px-6 py-4 text-gray-700 leading-relaxed border-t border-gray-100">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

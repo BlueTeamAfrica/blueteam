@@ -2,7 +2,6 @@
 
 import { useState, FormEvent, useRef } from 'react'
 import { Send, Loader2, CheckCircle2 } from 'lucide-react'
-import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 interface FormData {
@@ -220,12 +219,9 @@ export default function ContactForm() {
   }
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+    <form
       onSubmit={handleSubmit}
-      className="space-y-6"
+      className="space-y-6 fade-up"
     >
       {/* Name Field */}
       <div>
@@ -380,12 +376,10 @@ export default function ContactForm() {
       </div>
 
       {/* Submit Button */}
-      <motion.button
+      <button
         type="submit"
         disabled={isSubmitting}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className={`w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-xl ${
+        className={`w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
           isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-dark'
         }`}
       >
@@ -405,7 +399,7 @@ export default function ContactForm() {
             {t('form.submitButton')}
           </>
         )}
-      </motion.button>
+      </button>
 
       {/* Success/Error Messages */}
       <div
@@ -420,28 +414,24 @@ export default function ContactForm() {
       </div>
 
       {submitStatus === 'success' && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           role="alert"
           aria-live="polite"
-          className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm"
+          className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm fade-in"
         >
           {t('form.successBody')}
-        </motion.div>
+        </div>
       )}
 
       {submitStatus === 'error' && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           role="alert"
           aria-live="assertive"
-          className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm"
+          className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm fade-in"
         >
           {t('form.errorBody')}
-        </motion.div>
+        </div>
       )}
-    </motion.form>
+    </form>
   )
 }

@@ -10,28 +10,43 @@ interface GoogleAnalyticsProps {
 
 export default function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
   const pathname = usePathname()
-  // Use lazyOnload for all devices to reduce initial JS payload and improve LCP/INP
-  // Analytics can load after page is fully interactive
-  const strategy = 'lazyOnload' as const
+  const [shouldLoad, setShouldLoad] = useState(false)
 
-  // Track page views on route changes (Next.js App Router)
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', gaId, {
-        page_path: pathname,
-      })
+    const FALLBACK_MS = 5000
+    const timer = setTimeout(() => setShouldLoad(true), FALLBACK_MS)
+
+    const onInteract = () => {
+      setShouldLoad(true)
+      clearTimeout(timer)
     }
-  }, [pathname, gaId])
+
+    const events = ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'] as const
+    events.forEach(e => window.addEventListener(e, onInteract, { once: true, passive: true }))
+
+    return () => {
+      clearTimeout(timer)
+      events.forEach(e => window.removeEventListener(e, onInteract))
+    }
+  }, [])
+
+  useEffect(() => {
+    if (shouldLoad && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', gaId, { page_path: pathname })
+    }
+  }, [pathname, gaId, shouldLoad])
+
+  if (!shouldLoad) return null
 
   return (
     <>
       <Script
-        strategy={strategy}
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
       />
       <Script
         id="google-analytics"
-        strategy={strategy}
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -46,4 +61,3 @@ export default function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
     </>
   )
 }
-
