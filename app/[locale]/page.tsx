@@ -22,14 +22,24 @@ export async function generateMetadata({
   const { locale } = await params
   const alternates = buildAlternates('/', locale)
 
+  const isAr = locale === 'ar'
+
+  const metaDescription = isAr
+    ? 'فريق أفريقيا الأزرق — مطورون سودانيون يبنون مواقع ويب آمنة وأنظمة ERP وحلول أمن سيبراني للمنظمات في السودان والشتات وشرق أفريقيا.'
+    : 'Blue Team Africa — a team of Sudanese technologists building secure websites, ERP systems, and cybersecurity solutions for NGOs and businesses across Sudan, the diaspora, and East Africa.'
+
+  const ogDescription = isAr
+    ? 'من السودان إلى شرق أفريقيا — نقدم تصميم مواقع عالي الأداء وأنظمة ERP وCRM وخدمات أمن سيبراني للمنظمات غير الحكومية والشركات.'
+    : 'From Sudan to East Africa — Blue Team Africa delivers secure, high-performance websites, ERP & CRM systems, and cybersecurity services for NGOs, media organizations, and businesses.'
+
   return {
     title: { absolute: 'Blue Team Africa | Web Design & Development Company' },
-    description: 'Professional web design, website development, hosting, SEO and digital solutions for NGOs, companies, and startups in Uganda, Kenya & East Africa.',
+    description: metaDescription,
     robots: 'index, follow',
     alternates,
     openGraph: {
       title: 'BlueTeam Africa — Web Design & Digital Solutions',
-      description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
+      description: ogDescription,
       url: alternates.canonical,
       siteName: 'Blue Team Africa',
       type: 'website',
@@ -41,12 +51,12 @@ export async function generateMetadata({
           alt: 'Blue Team Africa — Web Design, Website Development & Digital Solutions',
         },
       ],
-      locale: locale === 'ar' ? 'ar_001' : 'en_US',
+      locale: isAr ? 'ar_001' : 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
       title: 'BlueTeam Africa — Web Design & Digital Solutions',
-      description: 'High-quality website design, hosting, SEO, and development services across East Africa.',
+      description: ogDescription,
       images: ['/images/hero/hero-og-01.webp'],
     },
     keywords: [
