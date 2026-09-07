@@ -95,10 +95,12 @@ export default async function Home() {
       "@type": "PostalAddress",
       "addressCountry": "RW"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Rwanda"
-    },
+    "areaServed": [
+      { "@type": "Country", "name": "Sudan" },
+      { "@type": "Country", "name": "Rwanda" },
+      { "@type": "Country", "name": "Uganda" },
+      { "@type": "Country", "name": "Kenya" }
+    ],
     "sameAs": [
       "https://www.linkedin.com/company/blue-team-africa",
       "https://about.me/blueteamafrica"
