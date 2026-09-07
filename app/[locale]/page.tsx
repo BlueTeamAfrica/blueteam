@@ -122,13 +122,6 @@ export default async function Home() {
         {/* FEATURED CASE STUDY - CSLO Sudan */}
         <section className="py-20 bg-white" aria-labelledby="case-study-heading">
           <div className="max-w-6xl mx-auto px-6">
-            <p className="text-center text-gray-600 mb-6">
-              {t.rich('csloSection.intro', {
-                rwandaLink: (chunks) => (
-                  <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                ),
-              })}
-            </p>
             <h2 id="case-study-heading" className="text-3xl font-heading font-semibold text-center mb-8">
               {t('csloSection.title')}
             </h2>
@@ -187,14 +180,6 @@ export default async function Home() {
             <p className="text-center text-gray-600 max-w-2xl mx-auto mb-4">
               {t('servicesSection.sectionSubtitle')}
             </p>
-            <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-              {t.rich('servicesSection.pricingNote', {
-                pricingLink: (chunks) => (
-                  <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                ),
-              })}
-            </p>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* CARD 1 - Web Design */}
               <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
@@ -357,7 +342,13 @@ export default async function Home() {
                 <span className="text-4xl flex-shrink-0" aria-hidden="true">🇷🇼</span>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.rwanda.name')}</h3>
-                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.rwanda.desc')}</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    {t.rich('whereWeWork.rwanda.desc', {
+                      webDesignLink: (chunks) => (
+                        <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                      ),
+                    })}
+                  </p>
                 </div>
               </div>
             </div>
@@ -792,6 +783,19 @@ export default async function Home() {
                 </summary>
                 <p className="mt-4 text-gray-600">
                   {t('faqPreview.a5')}
+                </p>
+              </details>
+
+              <details className="bg-white p-6 rounded-xl shadow-sm">
+                <summary className="font-semibold cursor-pointer text-gray-900">
+                  {t('faqPreview.q6')}
+                </summary>
+                <p className="mt-4 text-gray-600">
+                  {t.rich('faqPreview.a6', {
+                    pricingLink: (chunks) => (
+                      <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                    ),
+                  })}
                 </p>
               </details>
             </div>

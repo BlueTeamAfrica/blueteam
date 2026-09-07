@@ -134,7 +134,9 @@
       "a4": "All websites include encryption, server hardening, and threat protection.",
       "q5": "Can you migrate my old website?",
       "a5": "Yes — we migrate from WordPress, Joomla, Wix, or custom systems.",
-      "contactCta": "Have more questions? Contact us →"
+      "contactCta": "Have more questions? Contact us →",
+      "q6": "How much does a website cost in Rwanda?",
+      "a6": "Website costs in Rwanda vary by project scope — simple sites start at a few hundred dollars, while business platforms run higher. See our <pricingLink>detailed Rwanda web design pricing guide</pricingLink> for real figures."
     },
     "bottomCTA": {
       "title": "Ready to start your project?",
@@ -151,7 +153,7 @@
       "rwanda": "Rwanda"
     },
     "seoBlock": {
-      "title": "Trusted Website Design & Cyber Security Company in Uganda",
+      "title": "Trusted Website Design & Cybersecurity Partner for Sudanese Organizations Across East Africa",
       "body": "Blue Team Africa provides web design, web development, cybersecurity, mobile app development, ERP systems, and SEO services to businesses and NGOs in Kampala, Juba, Khartoum, Nairobi, and across East Africa. Our solutions are built for speed, reliability, and long-term growth."
     },
     "techStack": {
@@ -173,7 +175,7 @@
       },
       "rwanda": {
         "name": "Rwanda",
-        "desc": "Our operational base, where Blue Team Africa is registered."
+        "desc": "Our operational base, where Blue Team Africa is registered. Explore our <webDesignLink>Web Design in Rwanda</webDesignLink> services."
       }
     }
   },
@@ -1390,7 +1392,7 @@
     "ctaWhatsApp": "Request a Security Assessment"
   },
   "Footer": {
-    "tagline": "Blue Team Africa provides high-performance web design, hosting, branding, and digital solutions for NGOs, companies, and startups across East Africa. Built with precision, powered by purpose.",
+    "tagline": "Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa. Built with precision, powered by purpose.",
     "location": "Kigali, Rwanda",
     "aboutHeading": "About",
     "aboutUs": "About Us",
@@ -1414,7 +1416,7 @@
     "faq": "FAQ",
     "contact": "Contact",
     "trustedBy": "Trusted by industry research platforms",
-    "servingPre": "Serving businesses and NGOs across Rwanda. Explore our ",
+    "servingPre": "Also serving local businesses and NGOs in Rwanda — explore our ",
     "webDevLinkLabel": "Web Development in Rwanda",
     "servingPost": " services.",
     "copyright": "© {year} Blue Team Africa. All rights reserved.",
