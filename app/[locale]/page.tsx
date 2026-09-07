@@ -5,7 +5,8 @@ import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'
 import dynamic from 'next/dynamic'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getMessages } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
 // Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
@@ -68,6 +69,7 @@ export async function generateMetadata({
 
 export default async function Home() {
   const t = await getTranslations('HomePage')
+  const messages = await getMessages()
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -117,7 +119,9 @@ export default async function Home() {
 
       <div className="w-full overflow-hidden">
         {/* HERO */}
-        <HeroSection />
+        <NextIntlClientProvider messages={{ HomePage: messages.HomePage }}>
+          <HeroSection />
+        </NextIntlClientProvider>
 
         {/* FEATURED CASE STUDY - CSLO Sudan */}
         <section className="py-20 bg-white" aria-labelledby="case-study-heading">

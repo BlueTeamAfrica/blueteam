@@ -58,6 +58,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages()
+  const layoutMessages = { Navigation: messages.Navigation, Footer: messages.Footer }
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
 
@@ -68,7 +69,7 @@ export default async function LocaleLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={layoutMessages}>
           <WebSiteSchema />
           <ClientComponents gaId={gaId} />
           <Header />
