@@ -58,7 +58,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages()
-  const layoutMessages = { Navigation: messages.Navigation, Footer: messages.Footer }
+  const layoutMessages = { Navigation: messages.Navigation, Footer: messages.Footer, ServiceSidebar: messages.ServiceSidebar }
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
 
