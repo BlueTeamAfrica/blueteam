@@ -19,7 +19,7 @@
 | # | Project | Local path | GitHub repo | Live URL | Stack | Deploy | Status |
 |---|---------|-----------|-------------|----------|-------|--------|--------|
 | 1 | **blueteamafrica** (marketing site) | `~/Documents/blueteamafrica/` | `BlueTeamAfrica/blueteam` | `https://www.blueteamafrica.com` (**CERTAIN**) | Next.js 16, React 18, Tailwind, Firebase Admin (leads) | Vercel (**CERTAIN**) | Active — production |
-| 2 | **blueteam-portal** (client SaaS portal) | `~/Documents/blueteam-portal/` (canonical) + `~/Documents/blueteamafrica/blueteam-portal/` (monorepo copy) | `BlueTeamAfrica/blueteam-portal` | `https://portal.blueteamafrica.com` (**CERTAIN** from env) | Next.js 14, React 18, Tailwind, Firebase, nodemailer, react-pdf | Vercel (**INFERRED**) | Active — production |
+| 2 | **blueteam-portal** (client SaaS portal) | `~/Documents/blueteam-portal/` (standalone repo — the only copy) | `BlueTeamAfrica/blueteam-portal` | `https://portal.blueteamafrica.com` (**CERTAIN** from env) | Next.js 14, React 18, Tailwind, Firebase, nodemailer, react-pdf | Vercel (**INFERRED**) | Active — production |
 | 3 | **secure-reporter-app** (reporter mobile) | `~/Documents/secure-reporter-shared/secure-reporter-app/` | `BlueTeamAfrica/secure-reporter-app` (transferred from `BlueTeamForAfrica` on 2026-07-03) | N/A — mobile app | Expo ~54, React Native 0.81, Expo Router 6, TypeScript, Firestore REST, Supabase Storage | EAS build → APK/App Store (**UNKNOWN** if published) | Active — pre-production QA |
 | 4 | **secure-reporter-dashboard** (Secure Desk) | `~/Documents/secure-reporter-shared/secure-reporter-dashboard/` | `BlueTeamAfrica/blueteam-secure-desk` | **UNKNOWN** custom domain; Vercel preview known | Next.js (App Router), Firebase Admin, Supabase service role, docx | Vercel (**CERTAIN**) | Active — production debugging |
 | 5 | **SudanFacts / Atar** (editorial brand) | No separate codebase — config layer inside secure-reporter-dashboard | N/A | `new.sudanfacts.org` (WordPress, separate) | WordPress (public site); `factsd` workspace config (dashboard) | WordPress hosting (**UNKNOWN**) | Config active; WordPress status **UNKNOWN** |
@@ -27,7 +27,7 @@
 
 ### Notes
 
-- **blueteam-portal** has two locations. Canonical = `~/Documents/blueteam-portal/`. After editing the monorepo copy, always rsync to canonical and push from there. See sync command in `blueteamafrica/CLAUDE.md`.
+- **blueteam-portal** lives only in the standalone repo `~/Documents/blueteam-portal/`. The nested copy that used to be in `blueteamafrica/blueteam-portal/` was deliberately deleted — do not recreate it.
 - **secure-reporter-app** and **secure-reporter-dashboard** share a Firebase project and Supabase bucket. They are a paired system — never change encryption keys on one without coordinating the other.
 - **Fintech / firewall consulting** work has no dedicated repo; treat each engagement as standalone. Referenced in user's project list but no artifact path found. (**INFERRED**)
 
@@ -138,7 +138,6 @@ Pulled from each project's CLAUDE.md as of 2026-06-09. Status markers: `[ ]` ope
 | 1 | `[ ]` Invoice create permission denied for portal owner role — `Firestore rules` need write access to invoices collection for `owner` | CERTAIN (from CLAUDE.md) |
 | 2 | `[ ]` Verify all role-based access rules are committed and deployed | CERTAIN |
 | 3 | `[ ]` Keep `firestore.rules` in sync with `getBillingPlanIdFromTenant()` after any plan resolution changes | CERTAIN |
-| 4 | `[ ]` Any uncommitted portal work in monorepo needs rsync to canonical `~/Documents/blueteam-portal/` + push | INFERRED |
 
 ### blueteamafrica (marketing site)
 
@@ -191,13 +190,13 @@ Ordered by operational risk (production breakage) → user-facing functionality 
 | Task | Edit here | Then push to |
 |------|-----------|-------------|
 | Marketing site content, leads API | `~/Documents/blueteamafrica/` | `BlueTeamAfrica/blueteam` |
-| Portal feature (client, billing, tickets) | `~/Documents/blueteam-portal/` (canonical) OR monorepo copy + rsync | `BlueTeamAfrica/blueteam-portal` |
+| Portal feature (client, billing, tickets) | `~/Documents/blueteam-portal/` | `BlueTeamAfrica/blueteam-portal` |
 | Reporter mobile app | `~/Documents/secure-reporter-shared/secure-reporter-app/` | `BlueTeamForAfrica/secure-reporter-app` |
 | Secure Desk (dashboard) | `~/Documents/secure-reporter-shared/secure-reporter-dashboard/` | `BlueTeamAfrica/blueteam-secure-desk` |
 
 > **Never** commit `.env.local` to any of these repos.  
 > **Never** commit without being explicitly asked.  
-> **Never** push portal changes only to the monorepo copy — always rsync to canonical first.
+> **Never** recreate a portal copy inside this repo — portal work happens only in `~/Documents/blueteam-portal/`.
 
 ---
 
