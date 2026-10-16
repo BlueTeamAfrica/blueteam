@@ -40,7 +40,9 @@ Public marketing and services showcase site for BlueteamAfrica.com — brand pre
   don't assume the var being "set" means it's the right credential.
 
 ## Open threads
-- [ ] No confirmation mechanism (email/webhook) exists for contact form submissions yet.
+- [ ] Contact form notification: done in code (b0ff775, 2026-07-15 — staff email sent on
+  confirmed Firestore write). Awaiting production verification: submit a real form on
+  www.blueteamafrica.com and confirm both the `leads` doc and the staff email arrive.
 - [ ] Check whether `sudanfcts-reporting` project is missing a working service account
   key of its own, given its key was apparently pasted into this project's env vars
   instead — the mix-up may be mirrored on that side.
