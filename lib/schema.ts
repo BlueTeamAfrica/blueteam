@@ -253,13 +253,25 @@ export const portfolioProjects = [
   { name: 'Cloud Migration', slug: 'cloud-migration' }
 ];
 
+export interface BlogSchemaImage {
+  path: string;
+  width: number;
+  height: number;
+}
+
 // Function to generate blog JSON-LD
-export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished: string, dateModified?: string) {
+export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished: string, image: BlogSchemaImage, dateModified?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": blogTitle,
     "url": `https://www.blueteamafrica.com/blog/${blogSlug}`,
+    "image": {
+      "@type": "ImageObject",
+      "url": `https://www.blueteamafrica.com${image.path}`,
+      "width": image.width,
+      "height": image.height
+    },
     "author": {
       "@type": "Organization",
       "name": "Blue Team Africa"

@@ -77,9 +77,27 @@ const blogPosts = [
   },
 ]
 
+const blogListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": blogPosts.map((post, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "BlogPosting",
+      "url": `https://www.blueteamafrica.com/blog/${post.slug}`,
+      "name": post.title,
+    },
+  })),
+}
+
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
+      />
       <InteriorHeader
         title="Our Blog"
         breadcrumb={[

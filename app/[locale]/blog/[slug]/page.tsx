@@ -15,6 +15,8 @@ const blogPosts: Record<string, any> = {
     date: '2024-01-15',
     category: 'Web Development',
     image: '/blog/choosing-website-for-ngo.webp',
+    imageWidth: 4001,
+    imageHeight: 2667,
     content: `
       <p>Choosing the right website for your NGO is crucial for effectively reaching your audience, engaging donors, and managing your programs. With so many options available, it can be overwhelming to determine which solution best fits your organization's needs and budget.</p>
       
@@ -52,6 +54,8 @@ const blogPosts: Record<string, any> = {
     date: '2024-01-10',
     category: 'Hosting',
     image: '/blog/hosting-speed-matters-africa.webp',
+    imageWidth: 1400,
+    imageHeight: 933,
     content: `
       <p>Website speed is critical for businesses everywhere, but in Africa, it takes on even greater significance due to unique infrastructure challenges and user behavior patterns. Slow-loading websites don't just frustrate users—they directly impact your bottom line.</p>
       
@@ -90,6 +94,8 @@ const blogPosts: Record<string, any> = {
     date: '2024-01-05',
     category: 'ERP Systems',
     image: '/blog/erp-african-smes-guide.webp',
+    imageWidth: 5000,
+    imageHeight: 2750,
     content: `
       <p>Enterprise Resource Planning (ERP) systems are no longer reserved for large corporations. Small and medium enterprises (SMEs) across Africa are discovering that ERP solutions can transform their operations, improve efficiency, and enable growth.</p>
       
@@ -143,6 +149,8 @@ const blogPosts: Record<string, any> = {
     date: '2024-12-20',
     category: 'Web Design',
     image: '/blog/choosing-web-design-company-rwanda.webp',
+    imageWidth: 1400,
+    imageHeight: 925,
     content: `
       <p>For businesses operating in Rwanda, having a professional website has become essential for establishing credibility, reaching customers, and competing in the digital marketplace. However, selecting the right web design company can be challenging, especially when you're trying to balance quality, cost, and local understanding.</p>
       
@@ -193,6 +201,8 @@ const blogPosts: Record<string, any> = {
     date: '2025-01-20',
     category: 'Web Development',
     image: '/blog/web-development-companies-rwanda-2026.webp',
+    imageWidth: 1400,
+    imageHeight: 933,
     content: `
       <p>As businesses and NGOs in Rwanda continue to expand their digital presence in 2026, selecting the right web development partner has become increasingly important. The landscape of web development services in Rwanda has evolved, with organizations requiring solutions that balance technical quality, local understanding, and scalability.</p>
       
@@ -246,6 +256,8 @@ const blogPosts: Record<string, any> = {
     date: '2026-01-22',
     category: 'Web Design',
     image: '/blog/blog-thumbnail-06.webp',
+    imageWidth: 1400,
+    imageHeight: 986,
     faqSchema: {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -408,6 +420,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
         blogTitle={post.title} 
         blogSlug={slug} 
         datePublished={post.date}
+        image={{ path: post.image, width: post.imageWidth, height: post.imageHeight }}
       />
       <InteriorHeader
         title={post.title}
