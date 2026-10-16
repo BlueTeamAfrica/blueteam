@@ -5,6 +5,11 @@ import { routing } from './i18n/routing'
 
 const intlMiddleware = createIntlMiddleware(routing)
 
+// Blog posts are English-only: /ar/blog/:slug redirects to /blog/:slug (next.config.js).
+// Locale detection would send Arabic visitors back to /ar/blog/:slug, causing a loop.
+const blogPostIntlMiddleware = createIntlMiddleware({ ...routing, localeDetection: false, localeCookie: false })
+const blogPostPath = /^\/blog\/[^/]+\/?$/
+
 const serviceRedirects: Record<string, string> = {
   '/web-design': '/services/web-design',
   '/website-development': '/services/website-development',
@@ -31,6 +36,10 @@ export function proxy(request: NextRequest) {
     const locale = pathname.startsWith('/ar') ? '/ar' : ''
     const redirectUrl = new URL(`${locale}${redirectTarget}`, request.url)
     return NextResponse.redirect(redirectUrl, 301)
+  }
+
+  if (blogPostPath.test(pathname)) {
+    return blogPostIntlMiddleware(request)
   }
 
   // Locale detection and routing via next-intl

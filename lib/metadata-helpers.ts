@@ -20,3 +20,19 @@ export function buildAlternates(pagePath: string, locale: string) {
     },
   }
 }
+
+/**
+ * Alternates for English-only pages (blog posts): canonical is always the
+ * English URL and no `ar` alternate is declared (/ar/blog/:slug redirects).
+ */
+export function buildEnglishOnlyAlternates(pagePath: string) {
+  const enUrl = `${BASE}${pagePath}`
+
+  return {
+    canonical: enUrl,
+    languages: {
+      en: enUrl,
+      'x-default': enUrl,
+    },
+  }
+}

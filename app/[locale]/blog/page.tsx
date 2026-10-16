@@ -1,4 +1,5 @@
-import { Link } from '@/i18n/navigation'
+// Plain next/link: blog posts are English-only, so /ar/blog links straight to /blog/<slug>
+import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
