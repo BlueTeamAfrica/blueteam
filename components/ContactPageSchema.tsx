@@ -13,8 +13,9 @@ export default function ContactPageSchema() {
       url: 'https://www.blueteamafrica.com',
       address: {
         '@type': 'PostalAddress',
-        addressCountry: 'UG',
-        addressLocality: 'Kampala',
+        addressCountry: 'RW',
+        addressLocality: 'Kigali',
+        addressRegion: 'Kigali City',
       },
       areaServed: ['UG', 'KE', 'RW', 'SD'],
     },
