@@ -387,27 +387,6 @@ export default async function RwandaLocationPage() {
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="mb-16 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl p-8 md:p-12 fade-up" aria-labelledby="trust-section">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 id="trust-section" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
-              {t('statsTitle')}
-            </h2>
-            <div className="mt-10">
-              <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="/images/locations/rwanda-trust.webp"
-                  alt="NGO and business collaboration in Rwanda"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Why Blue Team Africa in Rwanda */}
         <section className="mb-16 bg-white rounded-2xl p-8 md:p-10 border border-gray-200 fade-up" aria-labelledby="why-blue-team">
           <h2 id="why-blue-team" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
