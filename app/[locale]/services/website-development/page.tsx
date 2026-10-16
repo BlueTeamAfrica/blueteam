@@ -4,7 +4,6 @@ import InteriorHeader from "@/components/InteriorHeader";
 import ServiceSidebar from "@/components/ServiceSidebar";
 import SectionWrapper from "@/components/SectionWrapper";
 import Link from "next/link";
-import { metadataWebsiteDevelopment } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
@@ -18,9 +17,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'WebsiteDevelopmentPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'WebsiteDevelopmentPage' })
   const alternates = buildAlternates('/services/website-development', locale)
   return {
-    ...metadataWebsiteDevelopment,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: [
       'website development',
       'web development',
@@ -35,8 +38,8 @@ export async function generateMetadata({
     ],
     alternates,
     openGraph: {
-      title: 'Professional Web Development Services',
-      description: 'Fast, secure, and scalable website development for businesses and NGOs. Custom web applications, backend systems, and enterprise solutions.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       images: ['/images/hero/hero-og-01.webp'],
     },

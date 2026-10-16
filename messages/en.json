@@ -665,7 +665,9 @@
     "faq6q": "What happens after launch — do you offer maintenance?",
     "faq6a": "We offer maintenance and support plans that cover security updates, content changes, performance monitoring, and technical fixes. For organizations that want ongoing hosting alongside maintenance, we bundle both through our hosting and maintenance services.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Web Design for NGOs Working on Sudan",
+    "metaDescription": "Fast, bilingual Arabic–English websites for NGOs, media and organisations working on Sudan. SEO-ready from day one, and the code is yours."
   },
   "ServiceSidebar": {
     "title": "Our Services",
@@ -722,7 +724,9 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaSubtitle": "Let's discuss your branding needs and get a free quote today.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Branding & Logo Design for NGOs",
+    "metaDescription": "Logos, visual identity and brand guidelines for NGOs, startups and businesses in Sudan and East Africa, with source files you fully own."
   },
   "CrmPage": {
     "title": "CRM Solutions",
@@ -767,7 +771,9 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaSubtitle": "Let's discuss your CRM needs and get a free quote today.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "CRM for NGO Donor & Partner Management",
+    "metaDescription": "CRM systems for NGOs and businesses: track donors, partners and leads, automate follow-ups, and connect email, WhatsApp and your ERP."
   },
   "CustomSystemsPage": {
     "title": "Custom Software Development",
@@ -813,7 +819,9 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaSubtitle": "Let’s discuss your custom software needs and get a free quote today.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Custom Software for NGOs & Field Teams",
+    "metaDescription": "Purpose-built software for NGOs and businesses: beneficiary databases, approval portals, field tools and dashboards. You own all the code."
   },
   "HostingPage": {
     "title": "Cloud & Web Hosting",
@@ -861,7 +869,9 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaSubtitle": "Let's discuss your hosting needs and get a free quote today.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Secure Cloud Hosting for Sudanese NGOs",
+    "metaDescription": "Managed cloud hosting with SSL, daily backups, CDN and monitoring, tuned for users in Sudan and East Africa. We run it, so you don't need a sysadmin."
   },
   "MaintenancePage": {
     "title": "IT Maintenance & Support",
@@ -904,7 +914,9 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaSubtitle": "Let's discuss your maintenance needs and get a free quote today.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Website & ERP Maintenance and Support",
+    "metaDescription": "Updates, security patches, monitoring and fast support for websites, ERPNext and custom systems, with emergency cover for live NGO operations."
   },
   "UIUXPage": {
     "title": "UI/UX Design",
@@ -947,7 +959,9 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaSubtitle": "Let's discuss your UI/UX needs and get a free quote today.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "UI/UX Design for Low-Bandwidth Users",
+    "metaDescription": "UX research, wireframes and interface design for NGO platforms and apps, built for mid-range Android phones and slow mobile data."
   },
   "EcommercePage": {
     "title": "E-commerce Solutions for Businesses in East Africa",
@@ -994,7 +1008,9 @@
     "faq6a": "At minimum: security updates, payment gateway certificate renewals, and platform version updates. We offer maintenance plans that cover all of this plus content changes, product catalogue updates, and promotional configuration. Hosting is managed separately through our hosting service.",
     "ctaTitle": "Ready to Launch Your Online Store?",
     "ctaSubtitle": "From payments to logistics, we build e-commerce platforms that convert and scale across East Africa.",
-    "ctaBtn": "Start Your E-commerce Project"
+    "ctaBtn": "Start Your E-commerce Project",
+    "metaTitle": "Mobile-Money E-commerce for East Africa",
+    "metaDescription": "Online stores with M-Pesa, MTN and Airtel mobile money, inventory sync and fast checkout on slow connections, for businesses across East Africa."
   },
   "ErpPage": {
     "title": "ERP Solutions for NGOs, Companies & Humanitarian Organizations",
@@ -1093,7 +1109,9 @@
     "faq6a": "We offer tiered maintenance and support plans covering system updates, bug resolution, user additions, and module adjustments as your organization evolves. Training for new staff and report customization are included in most support agreements.",
     "ctaTitle": "Ready to Build Your ERP System?",
     "ctaSubtitle": "Let's help your organization automate operations, improve reporting, and gain full visibility across teams.",
-    "ctaBtn": "Contact Us"
+    "ctaBtn": "Contact Us",
+    "metaTitle": "ERPNext for NGOs & Humanitarian Work",
+    "metaDescription": "ERPNext for NGOs: finance, HR, procurement, donor reporting and M&E in one system, with field data flowing in from offline mobile apps."
   },
   "MobileAppsPage": {
     "title": "Mobile App Development",
@@ -1174,7 +1192,9 @@
     "faqViewAll": "View All FAQs",
     "ctaTitle": "Ready to Build a Mobile App?",
     "ctaSubtitle": "Let's design and deploy a secure, offline-capable mobile solution for your team.",
-    "ctaBtn": "Start Your Mobile App Project"
+    "ctaBtn": "Start Your Mobile App Project",
+    "metaTitle": "Offline-First Mobile Apps for NGOs",
+    "metaDescription": "Secure Android and iOS apps that collect data offline and sync when connected. Built for NGO field teams in Sudan and other low-connectivity areas."
   },
   "WebsiteDevelopmentPage": {
     "title": "Web Development Services",
@@ -1262,7 +1282,9 @@
     "ctaTitle": "Ready to Build a Reliable Website or System for Your Organization?",
     "ctaSubtitle": "Our team is here to support your mission with professional, secure, and scalable technology.",
     "ctaGetStarted": "📧 Get Started",
-    "ctaWhatsAppNote": "💬 WhatsApp chat available for quick inquiries"
+    "ctaWhatsAppNote": "💬 WhatsApp chat available for quick inquiries",
+    "metaTitle": "Website Development for NGOs & Media",
+    "metaDescription": "Websites, portals and web apps for NGOs, media houses and businesses working on Sudan and East Africa: secure, fast and built to scale."
   },
   "CybersecurityPage": {
     "interiorHeaderTitle": "Trusted Cybersecurity Solutions for East African Businesses & NGOs",
@@ -1381,7 +1403,9 @@
     "faq8a": "Yes, we provide end-to-end security for mobile applications and API protection. This includes secure authentication, data encryption, API rate limiting, and protection against common mobile and API vulnerabilities.",
     "ctaTitle": "Ready to Secure Your Organization?",
     "ctaSubtitle": "Protect your digital assets with expert support tailored for East African conditions. Our team understands the unique challenges you face and delivers security solutions that work in your environment.",
-    "ctaWhatsApp": "Request a Security Assessment"
+    "ctaWhatsApp": "Request a Security Assessment",
+    "metaTitle": "Cybersecurity for NGOs Working on Sudan",
+    "metaDescription": "Security audits, penetration testing and incident response for NGOs and civil society working on Sudan, in the region's highest-risk environments."
   },
   "Footer": {
     "tagline": "Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa. Built with precision, powered by purpose.",

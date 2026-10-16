@@ -5,7 +5,6 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
-import { metadataEcommerce } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
@@ -19,14 +18,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'EcommercePage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'EcommercePage' })
   const alternates = buildAlternates('/services/ecommerce', locale)
   return {
-    ...metadataEcommerce,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
     alternates,
     openGraph: {
-      title: 'E-commerce Solutions for Businesses in East Africa',
-      description: 'Launch fast, scale secure, and sell everywhere. From mobile-first stores to secure payment integrations and inventory automation.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
@@ -42,8 +45,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'E-commerce Solutions | Blue Team Africa',
-      description: 'Build e-commerce platforms that convert and scale across East Africa.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       images: ['/images/services/ecommerce/services-ecommerce-hero-01.webp'],
     },
   }

@@ -7,7 +7,6 @@ import ServiceSidebar from '@/components/ServiceSidebar'
 import FAQSection from '@/components/FAQSection'
 import type { Metadata } from 'next'
 import type { FAQ } from '@/lib/faqs'
-import { metadataCybersecurity } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
@@ -19,14 +18,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'CybersecurityPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'CybersecurityPage' })
   const alternates = buildAlternates('/services/cybersecurity', locale)
   return {
-    ...metadataCybersecurity,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
     alternates,
     openGraph: {
-      title: 'Cybersecurity Solutions for East African Businesses & NGOs',
-      description: 'Enterprise-grade cybersecurity solutions including penetration testing, security audits, and secure operations for organizations across East Africa.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
@@ -42,8 +45,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Cybersecurity Solutions | Blue Team Africa',
-      description: 'Protect your digital infrastructure with expert cybersecurity solutions for East Africa.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       images: ['/images/services/cybersecurity/services-cybersecurity-hero-01.webp'],
     },
   }

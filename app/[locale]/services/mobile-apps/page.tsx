@@ -5,7 +5,6 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
-import { metadataMobileApps } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
@@ -19,14 +18,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'MobileAppsPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'MobileAppsPage' })
   const alternates = buildAlternates('/services/mobile-apps', locale)
   return {
-    ...metadataMobileApps,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: 'mobile app development, mobile app development Uganda, mobile app development Kenya, Flutter development, React Native development, offline mobile apps, NGO mobile apps East Africa',
     alternates,
     openGraph: {
-      title: 'Mobile App Development Services in East Africa',
-      description: 'Secure, offline-first mobile apps for NGOs, enterprises and startups built for low-connectivity environments.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
@@ -42,8 +45,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Mobile App Development Services | Blue Team Africa',
-      description: 'Build secure, offline-capable mobile solutions for your team.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       images: ['/images/services/mobile-apps/services-mobileapps-mobile-apps-hero-01.webp'],
     },
   }

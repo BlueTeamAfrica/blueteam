@@ -5,7 +5,6 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
-import { metadataERP } from '@/lib/service-metadata'
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'
@@ -19,14 +18,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'ErpPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'ErpPage' })
   const alternates = buildAlternates('/services/erp', locale)
   return {
-    ...metadataERP,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
     alternates,
     openGraph: {
-      title: 'ERP Solutions for NGOs, Companies & Humanitarian Organizations',
-      description: 'Modern, scalable, and secure ERP systems powered by ERPNext for organizations across East Africa.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       siteName: 'Blue Team Africa',
       images: [
@@ -42,8 +45,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'ERP Solutions | Blue Team Africa',
-      description: 'Streamline operations with ERPNext-powered ERP systems for NGOs and companies.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       images: ['/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp'],
     },
   }
