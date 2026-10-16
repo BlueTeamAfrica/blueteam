@@ -103,7 +103,7 @@ export default async function ServicesPage() {
   return (
     <>
     <BreadcrumbSchema items={breadcrumbItems} />
-    <main className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-white text-slate-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -363,7 +363,7 @@ export default async function ServicesPage() {
       <footer className="mt-24 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-10 text-slate-500 text-sm">© {new Date().getFullYear()} Blue Team Africa</div>
       </footer>
-    </main>
+    </div>
     </>
   )
 }

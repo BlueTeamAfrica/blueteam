@@ -9,7 +9,7 @@ interface ServiceDetailProps {
 
 export default function ServiceDetail({ service }: ServiceDetailProps) {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-white text-slate-900">
       <div className="max-w-6xl mx-auto px-6 py-12 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2">
@@ -133,7 +133,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   )
 }
 

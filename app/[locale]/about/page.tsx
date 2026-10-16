@@ -29,7 +29,7 @@ export default async function AboutPage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
-      <main className="bg-white text-gray-800">
+      <div className="bg-white text-gray-800">
         <InteriorHeader
           title={t('title')}
           breadcrumb={[
@@ -207,7 +207,7 @@ export default async function AboutPage() {
         </Link>
       </section>
 
-      </main>
+      </div>
     </>
   )
 }

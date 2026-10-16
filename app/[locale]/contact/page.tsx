@@ -46,7 +46,7 @@ export default async function ContactPage() {
       <LocalBusinessSchema location="Rwanda" />
       <OrganizationSchema />
 
-      <main className="bg-white text-gray-800">
+      <div className="bg-white text-gray-800">
         <InteriorHeader
           title={t('title')}
           breadcrumb={[
@@ -416,7 +416,7 @@ export default async function ContactPage() {
           </div>
         </section>
 
-      </main>
+      </div>
     </>
   )
 }
