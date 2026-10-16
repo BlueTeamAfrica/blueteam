@@ -81,25 +81,21 @@ export default async function ContactPage() {
                 <p className="text-lg leading-relaxed mb-4 text-gray-700">
                   {t.rich('seoPara1', {
                     webDesign: (chunks) => <Link href="/services/web-design" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    webDev: (chunks) => <Link href="/services/website-development" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    cyber: (chunks) => <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">{chunks}</Link>,
                     erp: (chunks) => <Link href="/services/erp" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    strong: (chunks) => <strong>{chunks}</strong>,
+                    crm: (chunks) => <Link href="/services/crm" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    mobile: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{chunks}</Link>,
+                    cyber: (chunks) => <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">{chunks}</Link>,
                   })}
                 </p>
 
                 <p className="text-lg leading-relaxed mb-4 text-gray-700">
                   {t.rich('seoPara2', {
-                    mobile: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{chunks}</Link>,
                     hosting: (chunks) => <Link href="/services/hosting" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    ecommerce: (chunks) => <Link href="/services/ecommerce" className="text-primary hover:underline font-semibold">{chunks}</Link>,
                   })}
                 </p>
 
                 <p className="text-lg leading-relaxed mb-6 text-gray-700">
-                  {t.rich('seoPara3', {
-                    strong: (chunks) => <strong>{chunks}</strong>,
-                  })}
+                  {t('seoPara3')}
                 </p>
               </div>
 
