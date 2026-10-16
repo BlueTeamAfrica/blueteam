@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Link } from '@/i18n/navigation'
+// Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
+import NextLink from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucide-react'
@@ -458,7 +460,7 @@ export default async function WebDesignRwandaPage() {
             <p className="mt-4">
               {t.rich('workingP4', {
                 costGuideLink: (chunks) => (
-                  <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                  <NextLink href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</NextLink>
                 ),
               })}
             </p>

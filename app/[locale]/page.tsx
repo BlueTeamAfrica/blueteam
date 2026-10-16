@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
+// Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
+import NextLink from 'next/link'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'
@@ -809,7 +811,7 @@ export default async function Home() {
                 <p className="mt-4 text-gray-600">
                   {t.rich('faqPreview.a6', {
                     pricingLink: (chunks) => (
-                      <Link href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                      <NextLink href="/blog/web-design-cost-in-rwanda-2026" className="text-primary hover:text-primary-dark hover:underline">{chunks}</NextLink>
                     ),
                   })}
                 </p>

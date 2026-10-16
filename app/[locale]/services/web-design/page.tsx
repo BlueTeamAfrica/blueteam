@@ -1,4 +1,6 @@
 import { Link } from '@/i18n/navigation'
+// Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
+import NextLink from 'next/link'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
@@ -105,7 +107,7 @@ export default async function WebDesignPage() {
                 <p className="text-lg text-gray-700 leading-relaxed">
                   {t.rich('ngoGuidePara', {
                     ngoGuideLink: (chunks) => (
-                      <Link href="/blog/how-to-choose-the-right-website-for-your-ngo" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
+                      <NextLink href="/blog/how-to-choose-the-right-website-for-your-ngo" className="text-primary hover:text-primary-dark hover:underline">{chunks}</NextLink>
                     ),
                   })}
                 </p>
