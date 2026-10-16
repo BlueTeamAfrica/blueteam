@@ -7,7 +7,7 @@ Public marketing and services showcase site for BlueteamAfrica.com — brand pre
 - Styling: Tailwind CSS 3.4, Framer Motion 11
 - Auth: Firebase Auth (admin areas only)
 - Database: Firestore (contact form writes) — via Firebase Admin SDK, project `blueteamafrica`
-- Sitemap: next-sitemap on postbuild
+- Sitemap/robots: app/sitemap.ts and app/robots.ts (Next metadata routes)
 - Hosting: Vercel
 
 ## Relation to other projects
