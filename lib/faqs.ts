@@ -14,7 +14,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'Do you offer hosting services?',
-    answer: 'Yes, we provide reliable cloud hosting and domain services with 99.9% uptime guarantee. Our hosting solutions are optimized for African markets with local support and competitive pricing.',
+    answer: 'Yes, we provide reliable cloud hosting and domain services, and our infrastructure targets 99.9% uptime. Our hosting solutions are optimized for African markets with local support and competitive pricing.',
   },
   {
     question: 'What payment methods do you accept?',
