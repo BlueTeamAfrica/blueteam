@@ -206,30 +206,6 @@ export default async function EcommercePage() {
               </div>
             </SectionWrapper>
 
-            {/* Case Study Teaser */}
-            <SectionWrapper bgColor="highlight">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">{t('caseTitle')}</h2>
-                <p className="text-gray-700 leading-relaxed mb-8">
-                  {t('caseBody')}
-                </p>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseProblemTitle')}</h3>
-                    <p className="text-gray-600">{t('caseProblemBody')}</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseSolutionTitle')}</h3>
-                    <p className="text-gray-600">{t('caseSolutionBody')}</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('caseImpactTitle')}</h3>
-                    <p className="text-gray-600">{t('caseImpactBody')}</p>
-                  </div>
-                </div>
-              </div>
-            </SectionWrapper>
-
             {/* FAQ Section */}
             <SectionWrapper bgColor="white">
               <FAQSection
