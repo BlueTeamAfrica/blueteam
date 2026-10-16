@@ -82,7 +82,8 @@ export function generateLocalBusinessSchema(
   country: string,
   city: string,
   url: string,
-  services?: string[]
+  services?: string[],
+  telephone?: string
 ): LocalBusinessSchema {
   const schema: LocalBusinessSchema = {
     '@context': 'https://schema.org',
@@ -98,6 +99,10 @@ export function generateLocalBusinessSchema(
 
   if (services && services.length > 0) {
     schema.serviceType = services;
+  }
+
+  if (telephone) {
+    schema.telephone = telephone;
   }
 
   return schema;

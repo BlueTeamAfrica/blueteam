@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
-import { generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema'
+import { generateServiceSchema } from '@/lib/schema'
 import { Globe, Smartphone, Shield, Code } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
@@ -42,20 +42,6 @@ export async function generateMetadata({
 }
 
 // Generate JSON-LD schemas (stay English intentionally)
-const localBusinessSchema = generateLocalBusinessSchema(
-  'Blue Team Africa',
-  'RW',
-  'Kigali',
-  'https://www.blueteamafrica.com/locations/rwanda',
-  [
-    'Website Design',
-    'Website Development',
-    'Mobile Applications',
-    'Mobile App Development',
-    'Cybersecurity Services',
-  ]
-)
-
 const websiteDesignServiceSchema = generateServiceSchema(
   'Website Design Services in Rwanda',
   'Professional website design services for NGOs and businesses in Rwanda, with expertise serving organizations in Kigali and nationwide.',
@@ -91,10 +77,6 @@ export default async function RwandaLocationPage() {
       {/* JSON-LD Schemas — stay English intentionally */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteDesignServiceSchema) }}
       />
       <script
@@ -117,6 +99,7 @@ export default async function RwandaLocationPage() {
             "logo": "https://www.blueteamafrica.com/images/logo.png",
             "image": "https://www.blueteamafrica.com/images/locations/rwanda-hero.webp",
             "description": "Blue Team Africa provides website design, mobile app development, and cybersecurity services for NGOs and businesses in Rwanda, including Kigali.",
+            "telephone": "+250798973375",
             "address": {
               "@type": "PostalAddress",
               "addressCountry": "RW",
@@ -130,6 +113,13 @@ export default async function RwandaLocationPage() {
             "sameAs": [
               "https://www.linkedin.com/company/blue-team-africa",
               "https://x.com/BLUETEAMAFRICA"
+            ],
+            "serviceType": [
+              "Website Design",
+              "Website Development",
+              "Mobile Applications",
+              "Mobile App Development",
+              "Cybersecurity Services"
             ],
             "hasOfferCatalog": {
               "@type": "OfferCatalog",

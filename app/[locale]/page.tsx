@@ -89,7 +89,7 @@ export default async function Home() {
     "url": "https://www.blueteamafrica.com",
     "logo": "https://www.blueteamafrica.com/logo.png",
     "image": "https://www.blueteamafrica.com/og-image.png",
-    "telephone": "+250798973375",
+    "telephone": "+254119402737",
     "email": "contact@blueteamafrica.com",
     "address": {
       "@type": "PostalAddress",
