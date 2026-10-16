@@ -47,8 +47,11 @@ const nextConfig = {
       { source: '/inventory-pos',         destination: '/services/erp', permanent: true },
       { source: '/monitoring-evaluation', destination: '/services',     permanent: true },
       { source: '/proposal-writing',      destination: '/contact',      permanent: true },
-      // Blog posts are English-only; runs before the next-intl proxy. /ar/blog (listing) is not matched.
+      // English-only pages; runs before the next-intl proxy. /ar/blog (listing) is not matched.
       { source: '/ar/blog/:slug',         destination: '/blog/:slug',   permanent: true },
+      { source: '/ar/privacy',            destination: '/privacy',      permanent: true },
+      { source: '/ar/terms',              destination: '/terms',        permanent: true },
+      { source: '/ar/cookies',            destination: '/cookies',      permanent: true },
     ]
   },
   // Headers for security and performance

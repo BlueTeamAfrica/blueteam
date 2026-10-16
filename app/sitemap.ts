@@ -10,6 +10,14 @@ function alts(enPath: string): { languages: Record<string, string> } {
   }
 }
 
+// English-only pages (privacy, terms, cookies): no ar alternate; /ar/ URLs redirect to English
+function enOnlyAlts(enPath: string): { languages: Record<string, string> } {
+  const enUrl = `${BASE_URL}${enPath}`
+  return {
+    languages: { en: enUrl, 'x-default': enUrl },
+  }
+}
+
 const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/`, changeFrequency: 'weekly', priority: 1.0, lastModified: new Date('2026-07-08'), alternates: alts('/') },
   { url: `${BASE_URL}/services`, changeFrequency: 'weekly', priority: 0.9, alternates: alts('/services') },
@@ -44,9 +52,9 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/locations/sudan`, changeFrequency: 'monthly', priority: 0.75, alternates: alts('/locations/sudan') },
   { url: `${BASE_URL}/web-design-rwanda`, changeFrequency: 'monthly', priority: 0.8, alternates: alts('/web-design-rwanda') },
   { url: `${BASE_URL}/web-development-rwanda`, changeFrequency: 'monthly', priority: 0.8, alternates: alts('/web-development-rwanda') },
-  { url: `${BASE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.3, alternates: alts('/privacy') },
-  { url: `${BASE_URL}/terms`, changeFrequency: 'yearly', priority: 0.3, alternates: alts('/terms') },
-  { url: `${BASE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3, alternates: alts('/cookies') },
+  { url: `${BASE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.3, alternates: enOnlyAlts('/privacy') },
+  { url: `${BASE_URL}/terms`, changeFrequency: 'yearly', priority: 0.3, alternates: enOnlyAlts('/terms') },
+  { url: `${BASE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3, alternates: enOnlyAlts('/cookies') },
 ]
 
 const blogPosts: { slug: string; date: string }[] = [

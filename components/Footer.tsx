@@ -1,6 +1,8 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
+// Legal pages are English-only: link straight to /privacy etc. (no /ar prefix, no redirect hop)
+import NextLink from 'next/link'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Phone, Mail, MapPin, Facebook, X, Linkedin, Instagram, Youtube } from 'lucide-react'
@@ -254,13 +256,13 @@ export default function Footer() {
             {/* Legal Links */}
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               {legalLinks.map((link) => (
-                <Link
+                <NextLink
                   key={link.href}
                   href={link.href}
                   className="navlink-underline text-gray-400 hover:text-white transition-colors"
                 >
                   {link.label}
-                </Link>
+                </NextLink>
               ))}
             </div>
           </div>

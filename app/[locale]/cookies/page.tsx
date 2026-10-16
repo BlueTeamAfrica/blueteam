@@ -1,16 +1,11 @@
 import type { Metadata } from 'next'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}): Promise<Metadata> {
-  const { locale } = await params
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Cookies Policy',
     description: 'Cookies Policy for Blue Team Ltd. - Learn how we use cookies and similar technologies on our website.',
-    alternates: buildAlternates('/cookies', locale),
+    alternates: buildEnglishOnlyAlternates('/cookies'),
   }
 }
 
