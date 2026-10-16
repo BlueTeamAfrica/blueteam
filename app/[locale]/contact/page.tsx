@@ -43,7 +43,7 @@ export default async function ContactPage() {
     <>
       {/* JSON-LD Schemas */}
       <ContactPageSchema />
-      <LocalBusinessSchema location="Rwanda" />
+      <LocalBusinessSchema location="Kenya" />
       <OrganizationSchema />
 
       <div className="bg-white text-gray-800">

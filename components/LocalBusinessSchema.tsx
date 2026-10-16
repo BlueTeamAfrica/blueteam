@@ -1,15 +1,20 @@
 interface LocalBusinessSchemaProps {
-  location?: 'Uganda' | 'Sudan' | 'Rwanda'
+  location?: 'Uganda' | 'Sudan' | 'Rwanda' | 'Kenya'
 }
 
 export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusinessSchemaProps) {
-  const getLocationData = () => {
+  const getLocationData = (): { addressCountry: string; addressLocality: string; addressRegion?: string } => {
     switch (location) {
       case 'Rwanda':
         return {
           addressCountry: 'RW',
           addressLocality: 'Kigali',
           addressRegion: 'Kigali City',
+        }
+      case 'Kenya':
+        return {
+          addressCountry: 'KE',
+          addressLocality: 'Nairobi',
         }
       case 'Sudan':
         return {
@@ -40,7 +45,7 @@ export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusine
       '@type': 'PostalAddress',
       addressCountry: locationData.addressCountry,
       addressLocality: locationData.addressLocality,
-      addressRegion: locationData.addressRegion,
+      ...(locationData.addressRegion && { addressRegion: locationData.addressRegion }),
     },
     priceRange: '$$',
     areaServed: [
