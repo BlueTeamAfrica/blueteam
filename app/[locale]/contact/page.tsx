@@ -19,9 +19,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'ContactPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'ContactPage' })
   return {
-    title: 'Contact Us — Web Design, Cybersecurity & ERP Solutions',
-    description: 'Contact Blue Team Africa for web design Uganda, website development East Africa, SEO experts, cybersecurity, ERP solutions, and NGO tech support in Sudan, Uganda, Kenya & Rwanda.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: [
       'web design Uganda',
       'website development East Africa',
@@ -34,6 +37,10 @@ export async function generateMetadata({
       'web design company Kampala',
     ],
     alternates: buildAlternates('/contact', locale),
+    openGraph: {
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
+    },
   }
 }
 

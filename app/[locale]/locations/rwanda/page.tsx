@@ -13,10 +13,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'LocationsRwandaPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'LocationsRwandaPage' })
   const alternates = buildAlternates('/locations/rwanda', locale)
   return {
-    title: 'Technology Solutions Provider in Rwanda',
-    description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     robots: 'index, follow',
     alternates,
     keywords: [
@@ -33,8 +36,8 @@ export async function generateMetadata({
       'business website Rwanda',
     ],
     openGraph: {
-      title: 'Website Design, Mobile App Development & Cybersecurity Company in Rwanda | Blue Team Africa',
-      description: 'Website design, mobile app development, and cybersecurity services in Rwanda, serving NGOs and businesses in Kigali and nationwide.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       type: 'website',
     },

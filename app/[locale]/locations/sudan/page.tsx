@@ -10,11 +10,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'LocationsSudanPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'LocationsSudanPage' })
   const alternates = buildAlternates('/locations/sudan', locale)
   return {
-    title: 'Technology Solutions for Sudanese Organizations',
-    description:
-      'Blue Team Africa builds secure, reliable digital systems for Sudanese humanitarian groups, media organizations, businesses, and educational institutions — inside Sudan and across the diaspora.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     robots: 'index, follow',
     alternates,
     keywords: [
@@ -28,9 +30,8 @@ export async function generateMetadata({
       'diaspora Sudan technology',
     ],
     openGraph: {
-      title: 'Technology Solutions for Sudanese Organizations',
-      description:
-        'Secure, reliable digital systems for Sudanese humanitarian groups, media organizations, businesses, and educational institutions.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       type: 'website',
     },

@@ -13,10 +13,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'FAQPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'FAQPage' })
   return {
-    title: 'Frequently Asked Questions',
-    description: 'Common questions about our services, pricing, and processes.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     alternates: buildAlternates('/faq', locale),
+    openGraph: {
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
+    },
   }
 }
 

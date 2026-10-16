@@ -280,7 +280,9 @@
     "linksAbout": "About Us",
     "rwandaPara": "For organizations in Rwanda seeking local digital solutions, we provide specialized <webDesign>website design services in Rwanda</webDesign> and custom <webDev>web development services for businesses and NGOs operating in Rwanda</webDev>. Contact us to discuss your project requirements.",
     "backToHome": "Back to Homepage",
-    "ctaBodyText": "Let’s discuss how we can help your organization achieve its technology goals with reliable, secure, and scalable solutions."
+    "ctaBodyText": "Let’s discuss how we can help your organization achieve its technology goals with reliable, secure, and scalable solutions.",
+    "metaTitle": "Contact Us: Get a Free Project Quote",
+    "metaDescription": "Talk to our team about a website, system or security project. Reach us on WhatsApp or email, or send a message for a free, no-obligation quote."
   },
   "Navigation": {
     "menu": "Menu",
@@ -405,7 +407,9 @@
     "ctaH2": "Ready to Work with a Team That Understands Your Mission?",
     "ctaBody": "Whether you're a business, NGO, or startup — we build technology that supports your growth and impact.",
     "ctaButton": "Contact Us",
-    "sudanLink": "Explore our Sudan technology services →"
+    "sudanLink": "Explore our Sudan technology services →",
+    "metaTitle": "About Us: Sudanese-Founded Tech Team",
+    "metaDescription": "Founded by Sudanese technologists who rebuilt after the war, we build secure systems for NGOs, media and organisations working on Sudan and East Africa."
   },
   "TeamPage": {
     "title": "Our Team",
@@ -484,7 +488,9 @@
     "ctaH2": "Ready to Work Together?",
     "ctaBody": "Let's discuss how we can help your organization.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaContact": "Get in Touch"
+    "ctaContact": "Get in Touch",
+    "metaTitle": "Mission & Values: Human-Centred Tech",
+    "metaDescription": "Human-centred technology, peace through service and accessibility first: the values behind how we build for NGOs, media and organisations working on Sudan."
   },
   "ProcessPage": {
     "title": "Our Process",
@@ -529,7 +535,9 @@
     "ctaH2": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss your needs and begin the discovery phase.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetStarted": "Get Started"
+    "ctaGetStarted": "Get Started",
+    "metaTitle": "Our 6-Step Project Process",
+    "metaDescription": "Discovery, design, development, QA, deployment and support: how we deliver websites and systems, with typical timelines for each stage."
   },
   "FAQPage": {
     "title": "Frequently Asked Questions",
@@ -579,7 +587,9 @@
     "q19": "Do you work with NGOs and nonprofits?",
     "a19": "Yes, we have extensive experience working with NGOs and nonprofits across East Africa. We offer special pricing and understand the unique needs of mission-driven organizations.",
     "q20": "What is your typical response time for support?",
-    "a20": "Response times vary by support package. Priority support responds within 2-4 hours, standard support within 24 hours, and basic support within 48 hours. Emergency issues are addressed immediately."
+    "a20": "Response times vary by support package. Priority support responds within 2-4 hours, standard support within 24 hours, and basic support within 48 hours. Emergency issues are addressed immediately.",
+    "metaTitle": "FAQ: Pricing, Timelines & Support",
+    "metaDescription": "Answers on website and app costs, project timelines, hosting, mobile money payments, ERP implementation and support response times."
   },
   "WebDesignPage": {
     "title": "Professional Web Design Services",
@@ -2030,7 +2040,9 @@
     "ctaTitle": "Start Your Website or Mobile App Project in Rwanda Today",
     "ctaBody": "Whether you're an NGO looking to improve your digital presence, a business expanding online, or an institution requiring secure infrastructure, we're here to help. Let's discuss how we can support your mission in Rwanda.",
     "ctaContact": "Contact Us",
-    "ctaQuote": "Request a Quote"
+    "ctaQuote": "Request a Quote",
+    "metaTitle": "Web Design & Apps in Kigali, Rwanda",
+    "metaDescription": "Website design, mobile apps and cybersecurity for NGOs, startups and businesses in Kigali and across Rwanda, built for local connectivity."
   },
   "WebDevelopmentRwandaPage": {
     "breadcrumbHome": "Home",
@@ -2216,7 +2228,9 @@
     "ctaTitle": "Let's Talk",
     "ctaBody": "Whether you're an NGO, a media organization, a business, or an educational institution — let's talk about what you need.",
     "ctaContact": "Contact Us",
-    "ctaWhatsApp": "Chat on WhatsApp"
+    "ctaWhatsApp": "Chat on WhatsApp",
+    "metaTitle": "Technology for Sudanese Organisations",
+    "metaDescription": "Secure, offline-capable systems for NGOs, media and businesses serving Sudan, whether your team works inside Sudan or from the diaspora."
   },
   "ServiceCard": {
     "learnMore": "Learn more →"

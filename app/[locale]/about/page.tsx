@@ -11,10 +11,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'AboutPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'AboutPage' })
   return {
-    title: 'About BlueTeam Africa — Web Design & Technology Experts in East Africa',
-    description: 'BlueTeam Africa is a Sudanese-founded digital agency delivering world-class web design, hosting, mobile apps, and ICT solutions across East Africa.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     alternates: buildAlternates('/about', locale),
+    openGraph: {
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
+    },
   }
 }
 
