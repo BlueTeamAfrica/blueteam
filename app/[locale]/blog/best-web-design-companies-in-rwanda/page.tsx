@@ -16,6 +16,12 @@ const articleSchema = {
   "@type": "Article",
   "headline": "Best Web Design Companies in Rwanda (2026 Comparison Guide)",
   "url": "https://www.blueteamafrica.com/blog/best-web-design-companies-in-rwanda",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.blueteamafrica.com/blog/choosing-web-design-company-rwanda.webp",
+    "width": 1400,
+    "height": 925
+  },
   "author": {
     "@type": "Organization",
     "name": "Blue Team Africa"
