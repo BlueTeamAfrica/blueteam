@@ -8,7 +8,8 @@ import ContactPageSchema from '@/components/ContactPageSchema'
 import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import ContactForm from '@/components/ContactForm'
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { Ltr } from '@/components/Ltr'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
@@ -38,6 +39,11 @@ export async function generateMetadata({
 
 export default async function ContactPage() {
   const t = await getTranslations('ContactPage')
+  const messages = await getMessages()
+  // ContactForm (client) only needs these two subtrees; keep the client payload small
+  const contactFormMessages = {
+    ContactPage: { form: messages.ContactPage.form, validation: messages.ContactPage.validation },
+  }
 
   return (
     <>
@@ -106,7 +112,9 @@ export default async function ContactPage() {
             <div className="lg:sticky lg:top-24">
               <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('formSectionTitle')}</h3>
-                <ContactForm />
+                <NextIntlClientProvider messages={contactFormMessages}>
+                  <ContactForm />
+                </NextIntlClientProvider>
               </div>
             </div>
           </div>
