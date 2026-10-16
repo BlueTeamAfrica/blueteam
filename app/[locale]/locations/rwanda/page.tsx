@@ -393,23 +393,6 @@ export default async function RwandaLocationPage() {
             <h2 id="trust-section" className="text-3xl md:text-4xl font-heading font-semibold mb-6 text-gray-900">
               {t('statsTitle')}
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 mt-10">
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">5+</div>
-                <p className="text-gray-700 font-semibold">{t('statsYearsLabel')}</p>
-                <p className="text-sm text-gray-600 mt-2">{t('statsYearsSubtitle')}</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                <p className="text-gray-700 font-semibold">{t('statsNGOsLabel')}</p>
-                <p className="text-sm text-gray-600 mt-2">{t('statsNGOsSubtitle')}</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">4</div>
-                <p className="text-gray-700 font-semibold">{t('statsCountriesLabel')}</p>
-                <p className="text-sm text-gray-600 mt-2">{t('statsCountriesSubtitle')}</p>
-              </div>
-            </div>
             <div className="mt-10">
               <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
                 <Image
