@@ -1,32 +1,30 @@
 interface LocalBusinessSchemaProps {
-  location?: 'Uganda' | 'Sudan' | 'Rwanda' | 'Kenya'
+  location?: 'Uganda' | 'Sudan' | 'Rwanda'
 }
 
 export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusinessSchemaProps) {
-  const getLocationData = (): { addressCountry: string; addressLocality: string; addressRegion?: string } => {
+  const getLocationData = (): { addressCountry: string; addressLocality: string; addressRegion?: string; telephone: string } => {
     switch (location) {
       case 'Rwanda':
         return {
           addressCountry: 'RW',
           addressLocality: 'Kigali',
           addressRegion: 'Kigali City',
-        }
-      case 'Kenya':
-        return {
-          addressCountry: 'KE',
-          addressLocality: 'Nairobi',
+          telephone: '+250798973375',
         }
       case 'Sudan':
         return {
           addressCountry: 'SD',
           addressLocality: 'Khartoum',
           addressRegion: 'Khartoum State',
+          telephone: '+254119402737',
         }
       default: // Uganda
         return {
           addressCountry: 'UG',
           addressLocality: 'Kampala',
           addressRegion: 'Central Region',
+          telephone: '+254119402737',
         }
     }
   }
@@ -39,7 +37,7 @@ export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusine
     name: 'Blue Team Africa',
     description: 'Leading web design, website development, cybersecurity, ERP solutions, and NGO tech support in East Africa.',
     url: 'https://www.blueteamafrica.com',
-    telephone: '+254119402737',
+    telephone: locationData.telephone,
     email: 'contact@blueteamafrica.com',
     address: {
       '@type': 'PostalAddress',
