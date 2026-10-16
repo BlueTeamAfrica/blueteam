@@ -7,7 +7,12 @@ const intlMiddleware = createIntlMiddleware(routing)
 
 // Blog posts are English-only: /ar/blog/:slug redirects to /blog/:slug (next.config.js).
 // Locale detection would send Arabic visitors back to /ar/blog/:slug, causing a loop.
-const blogPostIntlMiddleware = createIntlMiddleware({ ...routing, localeDetection: false, localeCookie: false })
+const blogPostIntlMiddleware = createIntlMiddleware({
+  ...routing,
+  localeDetection: false,
+  localeCookie: false,
+  alternateLinks: false,
+})
 const blogPostPath = /^\/blog\/[^/]+\/?$/
 
 const serviceRedirects: Record<string, string> = {
