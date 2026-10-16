@@ -3,7 +3,8 @@ import { Link } from '@/i18n/navigation'
 import type { Metadata } from 'next'
 import ServiceCard from './ServiceCard'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import { getTranslations } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
@@ -79,6 +80,9 @@ const caseStudyHrefs = [
 
 export default async function ServicesPage() {
   const t = await getTranslations('ServicesPage')
+  const messages = await getMessages()
+  // ServiceCard (client) needs only its own namespace
+  const serviceCardMessages = { ServiceCard: messages.ServiceCard }
 
   const breadcrumbItems = [
     { name: 'Home', url: 'https://www.blueteamafrica.com/' },
@@ -250,11 +254,13 @@ export default async function ServicesPage() {
               <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
             </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {translatedServices.map((s) => (
-                <ServiceCard key={s.id} service={s} />
-              ))}
-            </div>
+            <NextIntlClientProvider messages={serviceCardMessages}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {translatedServices.map((s) => (
+                  <ServiceCard key={s.id} service={s} />
+                ))}
+              </div>
+            </NextIntlClientProvider>
           </div>
         </section>
       </div>
@@ -329,11 +335,13 @@ export default async function ServicesPage() {
               <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
             </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {translatedServices.map((s) => (
-                <ServiceCard key={s.id} service={s} />
-              ))}
-            </div>
+            <NextIntlClientProvider messages={serviceCardMessages}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {translatedServices.map((s) => (
+                  <ServiceCard key={s.id} service={s} />
+                ))}
+              </div>
+            </NextIntlClientProvider>
           </div>
         </section>
       </div>
