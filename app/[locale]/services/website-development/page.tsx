@@ -3,7 +3,7 @@ import Image from "next/image";
 import InteriorHeader from "@/components/InteriorHeader";
 import ServiceSidebar from "@/components/ServiceSidebar";
 import SectionWrapper from "@/components/SectionWrapper";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import ServiceSchema from '@/components/ServiceSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import FAQSection from '@/components/FAQSection'

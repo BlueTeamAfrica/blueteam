@@ -169,12 +169,12 @@ export default async function ServicesPage() {
               </p>
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-blue-600 text-white font-medium shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 >
                   {t('ctaQuote')}
-                </a>
+                </Link>
 
                 <a
                   href="https://wa.me/254119402737"
@@ -298,7 +298,7 @@ export default async function ServicesPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {caseStudies.map((c) => (
-              <a
+              <Link
                 key={c.href}
                 href={c.href}
                 className="block rounded-2xl bg-white p-6 shadow-sm border border-slate-100 hover:shadow-md transition-transform transform-gpu hover:-translate-y-2"
@@ -306,7 +306,7 @@ export default async function ServicesPage() {
                 <h4 className="font-semibold">{c.title}</h4>
                 <p className="mt-2 text-sm text-slate-600">{c.excerpt}</p>
                 <div className="mt-4 text-sm text-blue-600">{t('readCaseStudy')}</div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -358,13 +358,13 @@ export default async function ServicesPage() {
           >
             {t('mobileCtaWhatsapp')}
           </a>
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700"
             aria-label="Get a free quote"
           >
             {t('mobileCtaQuote')}
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -383,9 +383,9 @@ function CategoryCard({ title, items }: { title: string; items: { label: string;
       <ul className="space-y-2">
         {items.map((it) => (
           <li key={it.label}>
-            <a href={it.href} className="text-slate-700 hover:text-blue-600">
+            <Link href={it.href} className="text-slate-700 hover:text-blue-600">
               {it.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
