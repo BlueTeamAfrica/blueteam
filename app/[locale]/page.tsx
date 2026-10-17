@@ -320,7 +320,7 @@ export default async function Home() {
                 <p className="mt-2 text-gray-600">
                   {t('servicesSection.cards.marketing.desc')}
                 </p>
-                <Link href="/services/web-design" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                <Link href="/contact" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
                   {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
