@@ -2,6 +2,7 @@ import createIntlMiddleware from 'next-intl/middleware'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { routing } from './i18n/routing'
+import { englishOnlyPath } from './i18n/english-only'
 
 const intlMiddleware = createIntlMiddleware(routing)
 
@@ -14,7 +15,6 @@ const englishOnlyIntlMiddleware = createIntlMiddleware({
   localeCookie: false,
   alternateLinks: false,
 })
-const englishOnlyPath = /^\/(blog\/[^/]+|privacy|terms|cookies)\/?$/
 
 const serviceRedirects: Record<string, string> = {
   '/web-design': '/services/web-design',

@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { routing } from '@/i18n/routing'
+import { arabicFallbackFor } from '@/i18n/english-only'
 
 /**
  * Write the next-intl locale cookie for the target locale before navigating.
@@ -40,15 +41,19 @@ function setLocaleCookie(nextLocale: string) {
  *
  * usePathname() from next/navigation returns the raw path including the /ar
  * prefix when on an AR page, so we can manipulate it directly.
+ *
+ * English-only pages (see i18n/english-only.ts) link AR to /ar/blog or /ar.
  */
 export default function LocaleSwitcher({ variant = 'header' }: { variant?: 'header' | 'panel' }) {
   const locale = useLocale()
   const pathname = usePathname()
 
   const targetLocale = locale === 'en' ? 'ar' : 'en'
+  // English-only pages have no Arabic version (their /ar/ URL redirects back to
+  // English), so the AR option goes to the nearest real Arabic page instead.
   const targetPath =
     locale === 'en'
-      ? `/ar${pathname === '/' ? '' : pathname}`
+      ? arabicFallbackFor(pathname) ?? `/ar${pathname === '/' ? '' : pathname}`
       : pathname.replace(/^\/ar/, '') || '/'
 
   const label = locale === 'en' ? 'عربي' : 'EN'
