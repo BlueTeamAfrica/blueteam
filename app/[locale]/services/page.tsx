@@ -138,7 +138,7 @@ export default async function ServicesPage() {
                     name: 'How long does a web design project take?',
                     acceptedAnswer: {
                       '@type': 'Answer',
-                      text: 'Typical projects take 3–8 weeks depending on scope. We provide a clear timeline at proposal stage.',
+                      text: 'It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.',
                     },
                   },
                   {

@@ -118,25 +118,18 @@ export default async function ProcessPage() {
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-semibold">•</span>
-                  <span>{t('timelineDiscovery')}</span>
+                  <span>{t('timelineSmall')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-semibold">•</span>
-                  <span>{t('timelineDev')}</span>
+                  <span>{t('timelineBusiness')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-semibold">•</span>
-                  <span>{t('timelineQA')}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-semibold">•</span>
-                  <span>{t('timelineDeployment')}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-semibold">•</span>
-                  <span>{t('timelineSupport')}</span>
+                  <span>{t('timelineWebApp')}</span>
                 </li>
               </ul>
+              <p className="text-gray-700 mt-4">{t('timelineOtherServices')}</p>
               <p className="text-gray-600 text-sm mt-4 italic">{t('timelineDisclaimer')}</p>
             </div>
           </div>

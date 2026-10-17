@@ -10,7 +10,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'How long does it take to build a website?',
-    answer: 'Simple websites typically take 2-4 weeks, while more complex projects can take 6-12 weeks. Timeline depends on project scope, design complexity, and client feedback cycles. We provide detailed timelines during the discovery phase.',
+    answer: 'It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.',
   },
   {
     question: 'Do you offer hosting services?',

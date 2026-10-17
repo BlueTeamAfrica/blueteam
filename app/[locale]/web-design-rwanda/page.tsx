@@ -17,7 +17,7 @@ const webDesignRwandaFAQs: FAQ[] = [
   },
   {
     question: 'How long does it take to build a website?',
-    answer: 'Website development timelines vary based on project complexity. A standard 5-page website typically takes 2-4 weeks, while more complex sites with custom features may take 6-8 weeks. We provide clear timelines during project planning.',
+    answer: 'It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.',
   },
   {
     question: 'Do you work with NGOs and international organizations?',

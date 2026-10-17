@@ -5,10 +5,10 @@ export default function HomepageFAQSchema() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'How long does a website project take?',
+        name: 'How long does it take to design a website?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Starter: 1–2 weeks. Professional: 3–6 weeks. Complex systems: 3–9 months.',
+          text: 'It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.',
         },
       },
       {
