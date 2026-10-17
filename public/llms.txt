@@ -1,0 +1,45 @@
+# Blue Team Africa
+
+> Blue Team Africa is a technology team founded by Sudanese technologists. We build secure websites, ERPNext and CRM systems, offline-first mobile apps, cloud hosting and cybersecurity for NGOs, media organisations and businesses working on Sudan and across East Africa. The company is registered in Kigali, Rwanda, and works remotely across the region in English and Arabic.
+
+Key facts:
+- Founded by Sudanese technologists who rebuilt their careers after the war.
+- Clients: humanitarian and civil-society organisations, media and independent journalism organisations, businesses and educational institutions, inside Sudan and across the diaspora.
+- Specialisms: offline-first systems for low-connectivity areas, ERPNext for NGOs (finance, procurement, donor reporting, M&E), bilingual Arabic–English websites, and security for sensitive data.
+- Countries served: Sudan, Uganda, Kenya, Rwanda.
+- Website delivery: small website 10–14 days; business website 2–4 weeks; web application or portal 6–8 weeks.
+- Contact: contact@blueteamafrica.com · WhatsApp +254 119 402 737 · Phone +250 798 973 375
+
+## Services
+- [Web Design](https://www.blueteamafrica.com/services/web-design): bilingual, SEO-ready websites for NGOs and organisations working on Sudan
+- [Website Development](https://www.blueteamafrica.com/services/website-development): websites, portals and web apps for NGOs, media and businesses
+- [ERP Systems](https://www.blueteamafrica.com/services/erp): ERPNext for NGOs and humanitarian operations
+- [CRM Solutions](https://www.blueteamafrica.com/services/crm): donor, partner and lead management
+- [Mobile Apps](https://www.blueteamafrica.com/services/mobile-apps): offline-first Android and iOS apps for field teams
+- [Cybersecurity](https://www.blueteamafrica.com/services/cybersecurity): audits, penetration testing and incident response
+- [Cloud Hosting](https://www.blueteamafrica.com/services/hosting): managed hosting with backups and monitoring
+- [Custom Systems](https://www.blueteamafrica.com/services/custom-systems): purpose-built software for NGOs and businesses
+- [E-commerce](https://www.blueteamafrica.com/services/ecommerce): online stores with mobile-money payments
+- [Maintenance & Support](https://www.blueteamafrica.com/services/maintenance): updates, security patches and monitoring
+- [UI/UX Design](https://www.blueteamafrica.com/services/ui-ux): interfaces designed for low-bandwidth users
+- [Branding](https://www.blueteamafrica.com/services/branding): logos and visual identity
+
+## Case studies
+- [ERP & CRM for a Sudanese humanitarian NGO](https://www.blueteamafrica.com/portfolio/cslo-sudan): 70% less manual data entry, 50% faster donor reporting
+- [NGO management portal](https://www.blueteamafrica.com/portfolio/ngo-portal): 75% less admin time
+- [Multi-country ERP integration](https://www.blueteamafrica.com/portfolio/erp-integration): 40% faster order processing
+- [Mobile-money e-commerce](https://www.blueteamafrica.com/portfolio/ecommerce-shop): 2× sales in 90 days, 5× in six months
+- [Healthcare mobile app](https://www.blueteamafrica.com/portfolio/mobile-app): 70% fewer no-shows
+- [Sales CRM platform](https://www.blueteamafrica.com/portfolio/crm-system): 45% higher conversion
+- [Zero-downtime cloud migration](https://www.blueteamafrica.com/portfolio/cloud-migration): 40% lower infrastructure costs
+
+## About
+- [About us](https://www.blueteamafrica.com/about)
+- [Technology for Sudanese organisations](https://www.blueteamafrica.com/locations/sudan)
+- [Rwanda](https://www.blueteamafrica.com/locations/rwanda)
+- [Our process and timelines](https://www.blueteamafrica.com/process)
+- [FAQ and pricing](https://www.blueteamafrica.com/faq)
+- [Contact](https://www.blueteamafrica.com/contact)
+
+## Optional
+- [Blog](https://www.blueteamafrica.com/blog): guides on websites, hosting and ERP
