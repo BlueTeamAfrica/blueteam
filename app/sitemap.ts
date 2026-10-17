@@ -57,6 +57,11 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/cookies`, changeFrequency: 'yearly', priority: 0.3, alternates: enOnlyAlts('/cookies') },
 ]
 
+const bilingualBlogPosts: { slug: string; date: string }[] = [
+  { slug: 'field-data-app-dashboard-sudan', date: '2026-10-17' },
+]
+
+// English-only posts: no ar alternate; /ar/blog/<slug> redirects to English
 const blogPosts: { slug: string; date: string }[] = [
   { slug: 'how-to-choose-the-right-website-for-your-ngo', date: '2024-01-15' },
   { slug: 'why-hosting-speed-matters-in-africa', date: '2024-01-10' },
@@ -75,5 +80,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }))
 
-  return [...staticRoutes, ...blogRoutes]
+  // Bilingual posts (lib/bilingual-blog.ts): en, ar and x-default alternates
+  const bilingualBlogRoutes: MetadataRoute.Sitemap = bilingualBlogPosts.map(({ slug, date }) => ({
+    url: `${BASE_URL}/blog/${slug}`,
+    lastModified: new Date(date),
+    changeFrequency: 'monthly',
+    priority: 0.65,
+    alternates: alts(`/blog/${slug}`),
+  }))
+
+  return [...staticRoutes, ...bilingualBlogRoutes, ...blogRoutes]
 }

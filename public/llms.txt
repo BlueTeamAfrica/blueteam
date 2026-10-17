@@ -43,3 +43,4 @@ Key facts:
 
 ## Optional
 - [Blog](https://www.blueteamafrica.com/blog): guides on websites, hosting and ERP
+- [Field data apps and dashboards](https://www.blueteamafrica.com/blog/field-data-app-dashboard-sudan): offline-first apps, encrypted sync and role-based dashboards

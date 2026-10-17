@@ -1,4 +1,5 @@
-// Plain next/link: blog posts are English-only, so /ar/blog links straight to /blog/<slug>
+// Plain next/link: English-only posts are linked at /blog/<slug> from /ar/blog too;
+// bilingual posts (lib/bilingual-blog.ts) link to the current locale's version.
 import Link from 'next/link'
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
@@ -6,6 +7,7 @@ import SectionWrapper from '@/components/SectionWrapper'
 import type { Metadata } from 'next'
 import { buildAlternates } from '@/lib/metadata-helpers'
 import { getTranslations } from 'next-intl/server'
+import { bilingualPostSlugs, getBilingualPost } from '@/lib/bilingual-blog'
 
 export async function generateMetadata({
   params,
@@ -27,7 +29,7 @@ export async function generateMetadata({
   }
 }
 
-const blogPosts = [
+const englishOnlyPosts = [
   {
     slug: 'best-web-design-companies-in-rwanda',
     title: 'Best Web Design Companies in Rwanda',
@@ -86,22 +88,40 @@ const blogPosts = [
   },
 ]
 
-const blogListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": blogPosts.map((post, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "BlogPosting",
-      "url": `https://www.blueteamafrica.com/blog/${post.slug}`,
-      "name": post.title,
-    },
-  })),
+// Bilingual posts first (newest), then the English-only posts
+function postsFor(locale: string) {
+  const bilingual = bilingualPostSlugs.map((slug) => {
+    const post = getBilingualPost(slug, locale)!
+    return {
+      slug,
+      href: locale === 'ar' ? `/ar/blog/${slug}` : `/blog/${slug}`,
+      title: post.title,
+      excerpt: post.excerpt,
+      date: post.datePublished,
+      category: post.category,
+      image: post.image,
+    }
+  })
+  return [...bilingual, ...englishOnlyPosts.map((post) => ({ ...post, href: `/blog/${post.slug}` }))]
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   const t = await getTranslations('BlogPage')
+  const blogPosts = postsFor(locale)
+  const blogListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": blogPosts.map((post, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "BlogPosting",
+        "url": `https://www.blueteamafrica.com${post.href}`,
+        "name": post.title,
+      },
+    })),
+  }
   return (
     <>
       <script
@@ -123,7 +143,7 @@ export default async function BlogPage() {
             {blogPosts.map((post) => (
               <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
+                href={post.href}
                 className="group block bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100"
               >
                 <div className="relative h-48 bg-gray-200 overflow-hidden">
