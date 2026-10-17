@@ -179,7 +179,7 @@ export default async function AboutPage() {
                 <Link href="/services/cybersecurity" className="text-primary hover:underline">{t('gridCybersecurity')}</Link>
               </li>
               <li>
-                <Link href="/services/maintenance" className="text-primary hover:underline">{t('gridHosting')}</Link>
+                <Link href="/services/hosting" className="text-primary hover:underline">{t('gridHosting')}</Link>
               </li>
             </ul>
           </div>
