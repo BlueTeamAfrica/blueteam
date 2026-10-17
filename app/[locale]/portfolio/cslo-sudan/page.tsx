@@ -181,10 +181,10 @@ export default async function CSLOSudanCaseStudy() {
               <p>
                 {t.rich('solutionP4', {
                   erpDevLink: (chunks) => (
-                    <Link href="/services/erpnext-development" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
+                    <Link href="/services/erp" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
                   ),
                   crmLink: (chunks) => (
-                    <Link href="/services/crm-development" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
+                    <Link href="/services/crm" className="text-primary hover:text-primary-dark underline">{chunks}</Link>
                   ),
                 })}
               </p>
