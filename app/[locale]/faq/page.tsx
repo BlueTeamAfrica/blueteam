@@ -27,31 +27,22 @@ export async function generateMetadata({
   }
 }
 
-export default async function FAQPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
+export default async function FAQPage() {
   const t = await getTranslations('FAQPage')
 
-  // Build translated Q&A array for AR locale only.
-  // EN keeps lib/faqs.ts data (unchanged); FAQSchema always uses lib/faqs.ts (EN JSON-LD on both routes).
-  const translatedFaqs =
-    locale === 'ar'
-      ? Array.from({ length: 20 }, (_, i) => {
-          const n = String(i + 1).padStart(2, '0')
-          return {
-            question: t(`q${n}` as Parameters<typeof t>[0]),
-            answer: t(`a${n}` as Parameters<typeof t>[0]),
-          }
-        })
-      : undefined
+  // Single source for both locales: FAQPage.q01–a20 feeds the accordion and the JSON-LD
+  const faqs = Array.from({ length: 20 }, (_, i) => {
+    const n = String(i + 1).padStart(2, '0')
+    return {
+      question: t(`q${n}` as Parameters<typeof t>[0]),
+      answer: t(`a${n}` as Parameters<typeof t>[0]),
+    }
+  })
 
   return (
     <>
-      {/* JSON-LD Schema — always EN (lib/faqs.ts); no change to existing schema behaviour */}
-      <FAQSchema />
+      {/* FAQPage JSON-LD — same Q&As as the accordion, in the page locale */}
+      <FAQSchema faqs={faqs} />
 
       <InteriorHeader
         title={t('title')}
@@ -68,13 +59,13 @@ export default async function FAQPage({
         </p>
       </SectionWrapper>
 
-      {/* Accordion — passes translated Q&As for AR; EN uses lib/faqs.ts directly */}
+      {/* Accordion */}
       <FAQSection
         showAll={true}
         showCTA={false}
         title=""
         description=""
-        customFAQs={translatedFaqs}
+        customFAQs={faqs}
       />
 
       {/* CTA */}

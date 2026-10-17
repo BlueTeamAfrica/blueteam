@@ -1,6 +1,6 @@
-import { faqs } from '@/lib/faqs'
+import type { FAQ } from '@/lib/faqs'
 
-export default function FAQSchema() {
+export default function FAQSchema({ faqs }: { faqs: FAQ[] }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

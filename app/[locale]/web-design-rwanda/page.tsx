@@ -10,30 +10,11 @@ import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 
-const webDesignRwandaFAQs: FAQ[] = [
-  {
-    question: 'How much does web design cost in Rwanda?',
-    answer: 'Web design costs in Rwanda depend on project scope, features, and complexity. Blue Team Africa offers flexible pricing tailored to business and NGO needs, with transparent packages starting from RWF 350,000.',
-  },
-  {
-    question: 'How long does it take to build a website?',
-    answer: 'It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.',
-  },
-  {
-    question: 'Do you work with NGOs and international organizations?',
-    answer: 'Yes. We specialize in web design for NGOs and international organizations operating in Rwanda, including informational websites, program portals, donation platforms, and multi-language sites for global audiences.',
-  },
-  {
-    question: 'Can you redesign an existing website?',
-    answer: 'Yes. We offer website redesign services to modernize existing sites, improve performance, enhance user experience, and update content management systems while preserving your brand identity and SEO value.',
-  },
-]
-
-function WebDesignRwandaFAQSchema() {
+function WebDesignRwandaFAQSchema({ faqs }: { faqs: FAQ[] }) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: webDesignRwandaFAQs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -95,7 +76,7 @@ export default async function WebDesignRwandaPage() {
 
   return (
     <>
-      <WebDesignRwandaFAQSchema />
+      <WebDesignRwandaFAQSchema faqs={displayFAQs} />
       <InteriorHeader
         title={t('pageTitle')}
         breadcrumb={[

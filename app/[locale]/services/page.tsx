@@ -111,6 +111,13 @@ export default async function ServicesPage() {
     { title: t('case3Title'), excerpt: t('case3Excerpt'), href: caseStudyHrefs[2] },
   ]
 
+  const faqs = [
+    { question: t('faq1Q'), answer: t('faq1A') },
+    { question: t('faq2Q'), answer: t('faq2A') },
+    { question: t('faq3Q'), answer: t('faq3A') },
+    { question: t('faq4Q'), answer: t('faq4A') },
+  ]
+
   return (
     <>
     <BreadcrumbSchema items={breadcrumbItems} />
@@ -139,24 +146,11 @@ export default async function ServicesPage() {
               },
               {
                 '@type': 'FAQPage',
-                mainEntity: [
-                  {
-                    '@type': 'Question',
-                    name: 'How long does a web design project take?',
-                    acceptedAnswer: {
-                      '@type': 'Answer',
-                      text: 'It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.',
-                    },
-                  },
-                  {
-                    '@type': 'Question',
-                    name: 'Do you offer hosting and maintenance?',
-                    acceptedAnswer: {
-                      '@type': 'Answer',
-                      text: 'Yes — managed hosting, backups, security updates and SLA options are available.',
-                    },
-                  },
-                ],
+                mainEntity: faqs.map((faq) => ({
+                  '@type': 'Question',
+                  name: faq.question,
+                  acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+                })),
               },
             ],
           }),
@@ -326,10 +320,9 @@ export default async function ServicesPage() {
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <FaqItem question={t('faq1Q')} answer={t('faq1A')} />
-          <FaqItem question={t('faq2Q')} answer={t('faq2A')} />
-          <FaqItem question={t('faq3Q')} answer={t('faq3A')} />
-          <FaqItem question={t('faq4Q')} answer={t('faq4A')} />
+          {faqs.map((faq) => (
+            <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
+          ))}
         </div>
       </section>
 

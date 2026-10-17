@@ -77,6 +77,15 @@ export async function generateMetadata({
 
 export default async function Home() {
   const t = await getTranslations('HomePage')
+  // Same keys as the visible FAQ preview; a6 rendered as plain text (link tag unwrapped)
+  const faqPreview = [
+    { question: t('faqPreview.q1'), answer: t('faqPreview.a1') },
+    { question: t('faqPreview.q2'), answer: t('faqPreview.a2') },
+    { question: t('faqPreview.q3'), answer: t('faqPreview.a3') },
+    { question: t('faqPreview.q4'), answer: t('faqPreview.a4') },
+    { question: t('faqPreview.q5'), answer: t('faqPreview.a5') },
+    { question: t('faqPreview.q6'), answer: t.markup('faqPreview.a6', { pricingLink: (chunks) => chunks }) },
+  ]
   const messages = await getMessages()
   const professionalServiceSchema = {
     "@context": "https://schema.org",
@@ -122,7 +131,7 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
       />
-      <HomepageFAQSchema />
+      <HomepageFAQSchema faqs={faqPreview} />
 
       {/* Mobile Move Our Services Component */}
       <MobileMoveOurServices />

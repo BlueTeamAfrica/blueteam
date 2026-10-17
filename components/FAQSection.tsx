@@ -3,9 +3,7 @@
 import { useState } from 'react'
 import { Link } from '@/i18n/navigation'
 import { ChevronDown, MessageCircle, ArrowRight } from 'lucide-react'
-import { faqs, type FAQ } from '@/lib/faqs'
-
-export { faqs, type FAQ }
+import type { FAQ } from '@/lib/faqs'
 
 interface FAQSectionProps {
   showAll?: boolean
@@ -14,7 +12,7 @@ interface FAQSectionProps {
   title?: string
   description?: string
   bgColor?: 'white' | 'gray'
-  customFAQs?: FAQ[]
+  customFAQs: FAQ[]
   viewAllLabel?: string
   ctaTitle?: string
   ctaBody?: string
@@ -38,8 +36,7 @@ export default function FAQSection({
 }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const faqsToDisplay = customFAQs || faqs
-  const displayFAQs = showAll ? faqsToDisplay : faqsToDisplay.slice(0, maxItems)
+  const displayFAQs = showAll ? customFAQs : customFAQs.slice(0, maxItems)
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)

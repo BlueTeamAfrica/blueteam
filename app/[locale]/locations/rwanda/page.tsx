@@ -137,20 +137,18 @@ export default async function RwandaLocationPage() {
         }}
       />
 
-      {/* FAQPage Schema — stays English intentionally */}
+      {/* FAQPage Schema — built from the visible FAQ keys, so it follows the page locale */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": [
-              { "@type": "Question", "name": "Do you provide website design services in Kigali, Rwanda?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Blue Team Africa provides professional website design services in Kigali and across Rwanda for NGOs, startups, and businesses, focusing on performance, security, and scalability." } },
-              { "@type": "Question", "name": "Do you offer mobile app development services in Rwanda?", "acceptedAnswer": { "@type": "Answer", "text": "We develop custom Android and iOS mobile applications for organizations in Rwanda, including NGOs and SMEs, tailored to local user needs and infrastructure." } },
-              { "@type": "Question", "name": "Can NGOs in Rwanda work with Blue Team Africa remotely?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We work with NGOs and organizations across Rwanda using secure remote collaboration, while maintaining local context and regional experience in East Africa." } },
-              { "@type": "Question", "name": "Do you provide cybersecurity services for organizations in Rwanda?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer cybersecurity solutions for organizations in Rwanda, including system hardening, secure hosting, data protection, and ongoing technical support." } },
-              { "@type": "Question", "name": "How much does website design cost in Rwanda?", "acceptedAnswer": { "@type": "Answer", "text": "Website design costs in Rwanda depend on project scope and requirements. We offer flexible solutions suitable for NGOs, startups, and growing businesses operating in Rwanda." } }
-            ]
+            "mainEntity": ([1, 2, 3, 4, 5] as const).map((n) => ({
+              "@type": "Question",
+              "name": t(`faq${n}Q`),
+              "acceptedAnswer": { "@type": "Answer", "text": t(`faq${n}A`) },
+            }))
           })
         }}
       />

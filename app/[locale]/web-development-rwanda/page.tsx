@@ -78,51 +78,23 @@ const professionalServiceSchema = {
   ]
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What types of web applications do you build?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We build a wide range of web applications including custom business platforms, NGO management systems, e-commerce solutions, dashboards, CRM integrations, API-driven applications, and scalable cloud-based systems for organizations in Rwanda."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you provide custom software development?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We provide full-stack custom software development services, building tailored solutions from the ground up to meet specific business requirements, including backend systems, APIs, databases, and frontend interfaces."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is your development scalable and secure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. All our web development follows security best practices and is built with scalability in mind. We use modern frameworks, implement secure authentication, regular security updates, and architecture designed to grow with your business needs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer ongoing support after development?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We provide ongoing technical support, maintenance, security updates, and system improvements after project delivery. Support packages are tailored to client needs, ensuring your application continues to perform optimally."
-      }
-    }
-  ]
-}
-
 export default async function WebDevelopmentRwandaPage() {
   const t = await getTranslations('WebDevelopmentRwandaPage')
 
+  // FAQPage schema must match the visible FAQ, so it is built from the same keys per locale
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: ([1, 2, 3, 4] as const).map((n) => ({
+      '@type': 'Question',
+      name: t(`faq${n}Title`),
+      acceptedAnswer: { '@type': 'Answer', text: t(`faq${n}Body`) },
+    })),
+  }
+
   return (
     <>
-      {/* JSON-LD Schemas — stay English intentionally */}
+      {/* JSON-LD: ProfessionalService stays English; FAQPage follows the page locale */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
