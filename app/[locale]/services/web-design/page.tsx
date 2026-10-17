@@ -302,6 +302,16 @@ export default async function WebDesignPage() {
                       {t('educationBody')}
                     </p>
                   </div>
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('mediaTitle')}</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {t.rich('mediaBody', {
+                        sudanFactsLink: (chunks) => (
+                          <a href="https://sudanfacts.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary-dark hover:underline">{chunks}</a>
+                        ),
+                      })}
+                    </p>
+                  </div>
                 </div>
               </div>
             </SectionWrapper>
