@@ -20,8 +20,8 @@ export async function generateMetadata({
   }
 }
 
-// Kept exported for ServiceDetail.tsx — English only, not rendered directly
-export const services = [
+// Card ids/hrefs/icons; titles and excerpts are replaced with translations below
+const services = [
   {
     id: 'web-design',
     title: 'Web Design & Development',
