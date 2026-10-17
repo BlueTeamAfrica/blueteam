@@ -62,9 +62,20 @@ export default async function SudanLocationPage({
     ],
   }
 
+  // Service schema stays English on both locales (project convention)
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Technology services for Sudanese organisations',
+    serviceType: ['Web development', 'ERP systems', 'Mobile app development', 'Cybersecurity', 'Cloud hosting'],
+    areaServed: { '@type': 'Country', name: 'Sudan' },
+    provider: { '@type': 'Organization', name: 'Blue Team Africa', url: 'https://www.blueteamafrica.com' },
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       <InteriorHeader
         headingLevel="h2"
