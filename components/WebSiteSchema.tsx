@@ -4,7 +4,7 @@ export default function WebSiteSchema() {
     '@type': 'WebSite',
     name: 'Blue Team Africa',
     url: 'https://www.blueteamafrica.com',
-    description: 'Leading web design, website development, and cyber security solutions for East Africa.',
+    description: 'Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa.',
     publisher: {
       '@type': 'Organization',
       name: 'Blue Team Africa',
