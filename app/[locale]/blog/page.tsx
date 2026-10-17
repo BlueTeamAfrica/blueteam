@@ -5,6 +5,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import type { Metadata } from 'next'
 import { buildAlternates } from '@/lib/metadata-helpers'
+import { getTranslations } from 'next-intl/server'
 
 export async function generateMetadata({
   params,
@@ -92,7 +93,8 @@ const blogListSchema = {
   })),
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const t = await getTranslations('BlogPage')
   return (
     <>
       <script
@@ -102,8 +104,8 @@ export default function BlogPage() {
       <InteriorHeader
         title="Our Blog"
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Blog' }
+          { label: t('breadcrumbHome'), href: '/' },
+          { label: t('breadcrumbBlog') }
         ]}
       />
 

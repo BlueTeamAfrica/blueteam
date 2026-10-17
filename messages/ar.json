@@ -2227,5 +2227,9 @@
   },
   "ServiceCard": {
     "learnMore": "اقرأ المزيد ←"
+  },
+  "BlogPage": {
+    "breadcrumbHome": "الرئيسية",
+    "breadcrumbBlog": "المدونة"
   }
 }

@@ -2227,5 +2227,9 @@
   },
   "ServiceCard": {
     "learnMore": "Learn more →"
+  },
+  "BlogPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog"
   }
 }
