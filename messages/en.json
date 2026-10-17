@@ -1531,6 +1531,7 @@
     "metaDescription": "Websites, ERPNext and CRM systems, offline-first mobile apps, hosting and cybersecurity for NGOs, media and businesses working on Sudan and East Africa."
   },
   "PortfolioPage": {
+    "intro": "These are projects we've built for NGOs, humanitarian organisations and businesses across Sudan and East Africa. Each case study covers the problem, what we built, and the results the client measured. Most of our work runs in hard conditions: low connectivity, sensitive data, and teams spread across several countries. That's why offline-first apps, secure ERP systems and bilingual websites come up again and again.",
     "pageTitle": "Our Portfolio",
     "breadcrumbHome": "Home",
     "breadcrumbPortfolio": "Portfolio",

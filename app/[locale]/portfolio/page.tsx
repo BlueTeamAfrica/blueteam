@@ -73,6 +73,9 @@ export default async function PortfolioPage() {
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
         {/* Portfolio Grid */}
         <SectionWrapper bgColor="white">
+          <p className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto mb-12">
+            {t('intro')}
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioIds.map(({ id, image }) => {
               const prefix = keyOf(id)
