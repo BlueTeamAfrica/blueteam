@@ -59,6 +59,10 @@
         "erp": {
           "title": "ERP & CRM Systems for NGOs (Powered by ERPNext)",
           "desc": "End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking."
+        },
+        "hosting": {
+          "title": "Cloud Hosting & Maintenance",
+          "desc": "Managed hosting, daily backups, monitoring and updates, so your website and systems stay fast and online."
         }
       }
     },

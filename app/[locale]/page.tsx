@@ -308,6 +308,27 @@ export default async function Home() {
                   {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
                 </Link>
               </article>
+
+              {/* CARD 6 - Cloud Hosting & Maintenance */}
+              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
+                  <Image
+                    src="/images/home/services/home-service-hosting-01.webp"
+                    alt="domain and cloud hosting setup checklist"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">{t('servicesSection.cards.hosting.title')}</h3>
+                <p className="mt-2 text-gray-600">
+                  {t('servicesSection.cards.hosting.desc')}
+                </p>
+                <Link href="/services/hosting" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
+                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
+                </Link>
+              </article>
             </div>
         </div>
       </section>
