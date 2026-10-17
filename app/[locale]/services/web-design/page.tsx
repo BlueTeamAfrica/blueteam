@@ -302,7 +302,7 @@ export default async function WebDesignPage() {
                       {t('educationBody')}
                     </p>
                   </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <div className="bg-white p-6 rounded-lg shadow-sm md:col-span-2">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('mediaTitle')}</h3>
                     <p className="text-gray-700 leading-relaxed">
                       {t.rich('mediaBody', {
