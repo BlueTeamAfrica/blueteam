@@ -3,7 +3,7 @@ export default function OrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Blue Team Africa',
-    description: 'Leading web design, website development, and cyber security solutions for East Africa.',
+    description: 'Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa.',
     url: 'https://www.blueteamafrica.com',
     logo: 'https://www.blueteamafrica.com/logo.png',
     sameAs: [

@@ -3,7 +3,7 @@ export default function ContactPageSchema() {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Us | Blue Team Africa',
-    description: 'Get in touch with Blue Team Africa for web design, website development, cybersecurity, ERP solutions, and NGO tech support in Uganda, Sudan, Kenya, and Rwanda.',
+    description: 'Contact Blue Team Africa about websites, ERP and CRM systems, mobile apps and cybersecurity for organisations working on Sudan and East Africa.',
     url: 'https://www.blueteamafrica.com/contact',
     mainEntity: {
       '@type': 'Organization',

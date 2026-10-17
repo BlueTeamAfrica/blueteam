@@ -35,7 +35,7 @@ export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusine
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Blue Team Africa',
-    description: 'Leading web design, website development, cybersecurity, ERP solutions, and NGO tech support in East Africa.',
+    description: 'Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa.',
     url: 'https://www.blueteamafrica.com',
     telephone: locationData.telephone,
     email: 'contact@blueteamafrica.com',
