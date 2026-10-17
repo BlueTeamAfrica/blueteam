@@ -2,7 +2,6 @@ import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
-import { metadataMobileApp } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
@@ -15,7 +14,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  return { ...metadataMobileApp, alternates: buildAlternates('/portfolio/mobile-app', locale) }
+  const t = await getTranslations({ locale, namespace: 'CaseStudyMobileAppPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'CaseStudyMobileAppPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: buildAlternates('/portfolio/mobile-app', locale),
+    openGraph: {
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
+    },
+  }
 }
 
 export default async function MobileAppCaseStudy() {

@@ -2,7 +2,6 @@ import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
-import { metadataCloudMigration } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
@@ -15,7 +14,18 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  return { ...metadataCloudMigration, alternates: buildAlternates('/portfolio/cloud-migration', locale) }
+  const t = await getTranslations({ locale, namespace: 'CaseStudyCloudMigrationPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'CaseStudyCloudMigrationPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: buildAlternates('/portfolio/cloud-migration', locale),
+    openGraph: {
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
+    },
+  }
 }
 
 export default async function CloudMigrationCaseStudy() {

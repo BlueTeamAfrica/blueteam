@@ -56,10 +56,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'WebDesignRwandaPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'WebDesignRwandaPage' })
   const alternates = buildAlternates('/web-design-rwanda', locale)
   return {
-    title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
-    description: 'Professional web design company in Rwanda delivering fast, secure, and SEO-ready websites for businesses and NGOs. Get a custom quote today.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     robots: 'index, follow',
     alternates,
     keywords: [
@@ -72,8 +75,8 @@ export async function generateMetadata({
       'business website design Rwanda',
     ],
     openGraph: {
-      title: 'Web Design Company in Rwanda | High-Performance Websites for Business & NGOs',
-      description: 'Reliable web design company in Rwanda. We build fast, SEO-ready websites for businesses, NGOs, and growing organizations. Get a quote today.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       type: 'website',
     },

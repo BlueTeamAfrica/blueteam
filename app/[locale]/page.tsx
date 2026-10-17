@@ -25,23 +25,19 @@ export async function generateMetadata({
   const alternates = buildAlternates('/', locale)
 
   const isAr = locale === 'ar'
-
-  const metaDescription = isAr
-    ? 'فريق أفريقيا الأزرق — مطورون سودانيون يبنون مواقع ويب آمنة وأنظمة ERP وحلول أمن سيبراني للمنظمات في السودان والشتات وشرق أفريقيا.'
-    : 'Blue Team Africa — a team of Sudanese technologists building secure websites, ERP systems, and cybersecurity solutions for NGOs and businesses across Sudan, the diaspora, and East Africa.'
-
-  const ogDescription = isAr
-    ? 'من السودان إلى شرق أفريقيا — نقدم تصميم مواقع عالي الأداء وأنظمة ERP وCRM وخدمات أمن سيبراني للمنظمات غير الحكومية والشركات.'
-    : 'From Sudan to East Africa — Blue Team Africa delivers secure, high-performance websites, ERP & CRM systems, and cybersecurity services for NGOs, media organizations, and businesses.'
+  const t = await getTranslations({ locale, namespace: 'HomePage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'HomePage' })
 
   return {
-    title: { absolute: 'Blue Team Africa | Web Design & Development Company' },
-    description: metaDescription,
+    // Absolute: no layout template suffix on the homepage
+    title: { absolute: t('metaTitle') },
+    description: t('metaDescription'),
     robots: 'index, follow',
     alternates,
     openGraph: {
-      title: 'BlueTeam Africa — Web Design & Digital Solutions',
-      description: ogDescription,
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: alternates.canonical,
       siteName: 'Blue Team Africa',
       type: 'website',
@@ -57,8 +53,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'BlueTeam Africa — Web Design & Digital Solutions',
-      description: ogDescription,
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       images: ['/images/hero/hero-og-01.webp'],
     },
     keywords: [

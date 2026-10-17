@@ -173,7 +173,9 @@
         "name": "Rwanda",
         "desc": "Our operational base, where Blue Team Africa is registered. Explore our <webDesignLink>Web Design in Rwanda</webDesignLink> services."
       }
-    }
+    },
+    "metaTitle": "Blue Team Africa | Web, ERP & Security for Sudanese NGOs",
+    "metaDescription": "Blue Team Africa — a team of Sudanese technologists building secure websites, ERP systems, and cybersecurity solutions for NGOs and businesses across Sudan, the diaspora, and East Africa."
   },
   "ContactPage": {
     "title": "Contact Us",
@@ -448,7 +450,9 @@
     "ctaH2": "Ready to Work Together?",
     "ctaBody": "Let's discuss how we can help your organization.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaContact": "Get in Touch"
+    "ctaContact": "Get in Touch",
+    "metaTitle": "Meet Our Team",
+    "metaDescription": "The people behind Blue Team Africa: a Sudanese-founded team building secure systems for organisations working on Sudan and East Africa."
   },
   "MissionPage": {
     "title": "Our Mission & Values",
@@ -1514,7 +1518,9 @@
     "faq4Q": "Do you work across East Africa?",
     "faq4A": "Yes. We work with clients in Uganda, Kenya, Rwanda, Sudan and more — remote or on-the-ground.",
     "mobileCtaWhatsapp": "WhatsApp",
-    "mobileCtaQuote": "Get Quote"
+    "mobileCtaQuote": "Get Quote",
+    "metaTitle": "Our Services: Web, ERP, Apps & Security",
+    "metaDescription": "Websites, ERPNext and CRM systems, offline-first mobile apps, hosting and cybersecurity for NGOs, media and businesses working on Sudan and East Africa."
   },
   "PortfolioPage": {
     "pageTitle": "Our Portfolio",
@@ -1544,7 +1550,9 @@
     "item_cloudMigration_desc": "Complete infrastructure migration to cloud with zero downtime",
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help bring your vision to life.",
-    "ctaButton": "Get Started"
+    "ctaButton": "Get Started",
+    "metaTitle": "Portfolio: NGO, ERP & App Case Studies",
+    "metaDescription": "Real projects with measured results: ERP and CRM for humanitarian work in Sudan, NGO portals, mobile apps, e-commerce and cloud migration."
   },
   "CaseStudyCsloSudanPage": {
     "pageTitle": "ERP & CRM Digital Transformation for CSLO Sudan",
@@ -1602,7 +1610,9 @@
     "ctaTitle": "Ready to Transform Your NGO's Operations?",
     "ctaBody": "Let's discuss how we can help streamline your programs with ERP, CRM, and mobile solutions tailored for humanitarian operations.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "ERP & CRM for a Sudanese Humanitarian NGO",
+    "metaDescription": "How ERPNext, Frappe CRM and an offline mobile app cut manual data entry by 70% and made donor reporting 50% faster for an NGO working in Sudan."
   },
   "CaseStudyNgoPortalPage": {
     "pageTitle": "NGO Management Portal",
@@ -1634,7 +1644,9 @@
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help your organization with a custom solution.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "NGO Management Portal Case Study",
+    "metaDescription": "An offline-first portal for a regional East African NGO: 75% less admin time, 50% faster donor reporting and 3x more programs tracked."
   },
   "CaseStudyErpIntegrationPage": {
     "pageTitle": "Enterprise ERP Integration",
@@ -1667,7 +1679,9 @@
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help streamline your operations with an ERP solution.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Multi-Country ERP Integration Case Study",
+    "metaDescription": "One ERP across Uganda, Kenya and Rwanda for a manufacturer: 60% fewer inventory discrepancies, 40% faster order processing, 30% lower costs."
   },
   "CaseStudyEcommerceShopPage": {
     "pageTitle": "E-commerce Platform",
@@ -1702,7 +1716,9 @@
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help launch your e-commerce store.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Mobile-Money E-commerce Case Study",
+    "metaDescription": "A mobile-first store with MTN, Airtel and M-Pesa payments: online sales doubled in 90 days and grew 5x within six months."
   },
   "CaseStudyMobileAppPage": {
     "pageTitle": "Healthcare Mobile App",
@@ -1737,7 +1753,9 @@
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help develop a mobile app for your business.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Healthcare Mobile App Case Study",
+    "metaDescription": "iOS and Android app for a clinic chain: online booking, secure patient records and SMS reminders cut appointment no-shows by 70%."
   },
   "CaseStudyCrmSystemPage": {
     "pageTitle": "Sales CRM Platform",
@@ -1772,7 +1790,9 @@
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help improve your sales process with a CRM solution.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Sales CRM Platform Case Study",
+    "metaDescription": "A CRM for a B2B sales team: pipeline tracking and automated follow-ups lifted conversion by 45% and cut the sales cycle by 35%."
   },
   "CaseStudyCloudMigrationPage": {
     "pageTitle": "Cloud Migration Project",
@@ -1807,7 +1827,9 @@
     "ctaTitle": "Ready to Start Your Project?",
     "ctaBody": "Let's discuss how we can help migrate your infrastructure to the cloud.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Quote"
+    "ctaGetQuote": "Get a Quote",
+    "metaTitle": "Zero-Downtime Cloud Migration Case Study",
+    "metaDescription": "Phased migration from on-premises servers to the cloud with zero downtime, 99.9% uptime and 40% lower infrastructure costs."
   },
   "WebDesignRwandaPage": {
     "pageTitle": "Professional Web Design Services for Businesses in Rwanda",
@@ -1956,7 +1978,9 @@
     "ctaTitle": "Ready to Build Your Website in Rwanda?",
     "ctaBody": "Let's discuss your web design project and create a website that helps your organization achieve its goals. Contact us today to get started.",
     "ctaWhatsApp": "Chat on WhatsApp",
-    "ctaGetQuote": "Get a Free Quote"
+    "ctaGetQuote": "Get a Free Quote",
+    "metaTitle": "Web Design Company in Rwanda",
+    "metaDescription": "Fast, SEO-ready websites for businesses and NGOs in Kigali and across Rwanda, with clear packages from RWF 350,000 including hosting."
   },
   "LocationsRwandaPage": {
     "breadcrumbHome": "Home",
@@ -2179,7 +2203,9 @@
     "ctaTitle": "Ready to Build Your Web Application in Rwanda?",
     "ctaBody": "Let's discuss your web development project and create a robust, scalable application that powers your organization's digital operations. Contact us today to get started.",
     "ctaPrimary": "Start Your Development Project",
-    "ctaWhatsApp": "Chat on WhatsApp"
+    "ctaWhatsApp": "Chat on WhatsApp",
+    "metaTitle": "Web Development Company in Rwanda",
+    "metaDescription": "Custom web apps, APIs and secure backend systems for NGOs, startups and businesses in Kigali and across Rwanda, built to scale."
   },
   "LocationsSudanPage": {
     "breadcrumbHome": "Home",
@@ -2225,6 +2251,8 @@
   },
   "BlogPage": {
     "breadcrumbHome": "Home",
-    "breadcrumbBlog": "Blog"
+    "breadcrumbBlog": "Blog",
+    "metaTitle": "Blog: Guides on Web, ERP & Hosting",
+    "metaDescription": "Practical guides on websites, hosting, ERP and choosing a tech partner, for NGOs and businesses in East Africa."
   }
 }

@@ -3,7 +3,6 @@ import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
-import { metadataCsloSudan } from '@/lib/portfolio-metadata'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
@@ -15,13 +14,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'CaseStudyCsloSudanPage' })
+  // OpenGraph/Twitter text stays English on both locales (project convention)
+  const tEn = await getTranslations({ locale: 'en', namespace: 'CaseStudyCsloSudanPage' })
   return {
-    ...metadataCsloSudan,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     keywords: 'ERPNext Sudan, CRM Sudan, NGO ERP system, humanitarian data management Sudan, CSLO Sudan ERP, East Africa technology solutions',
     alternates: buildAlternates('/portfolio/cslo-sudan', locale),
     openGraph: {
-      title: 'ERP & CRM Implementation for CSLO Sudan',
-      description: 'Blue Team Africa deployed a modern ERPNext + CRM platform for CSLO Sudan, including mobile field reporting and secure multi-program dashboards.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       url: 'https://www.blueteamafrica.com/portfolio/cslo-sudan',
       siteName: 'Blue Team Africa',
       images: [
@@ -37,8 +40,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'ERP & CRM Digital Transformation for CSLO Sudan',
-      description: 'A complete ERPNext + CRM digital transformation built for humanitarian operations in Sudan.',
+      title: tEn('metaTitle'),
+      description: tEn('metaDescription'),
       images: ['/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp'],
     },
   }
