@@ -237,6 +237,19 @@ export default async function WebsiteDevelopmentPage() {
                     </li>
                   </ul>
                 </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {t('build6Title')}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {t.rich('build6Desc', {
+                      sudanFactsLink: (chunks) => (
+                        <a href="https://sudanfacts.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary-dark hover:underline">{chunks}</a>
+                      ),
+                    })}
+                  </p>
+                </div>
               </div>
             </SectionWrapper>
 
