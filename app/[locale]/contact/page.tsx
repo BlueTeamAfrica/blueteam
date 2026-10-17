@@ -25,17 +25,6 @@ export async function generateMetadata({
   return {
     title: t('metaTitle'),
     description: t('metaDescription'),
-    keywords: [
-      'web design Uganda',
-      'website development East Africa',
-      'SEO experts',
-      'Sudan NGO tech support',
-      'cybersecurity',
-      'ERP solutions',
-      'contact Blue Team Africa',
-      'NGO tech support Uganda',
-      'web design company Kampala',
-    ],
     alternates: buildAlternates('/contact', locale),
     openGraph: {
       title: tEn('metaTitle'),
