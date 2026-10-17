@@ -1,7 +1,8 @@
 "use client"
 
 import { Fragment } from "react"
-import Link from "next/link"
+import NextLink from "next/link"
+import { Link } from "@/i18n/navigation"
 
 interface InteriorHeaderProps {
   title: string
@@ -29,9 +30,17 @@ export default function InteriorHeader({ title, breadcrumb, headingLevel = 'h1' 
           <Fragment key={index}>
             <span className="flex items-center">
               {item.href ? (
-                <Link href={item.href} className="hover:text-primary">
-                  {item.label}
-                </Link>
+                item.href.startsWith("/") ? (
+                  // Locale-aware: on /ar pages "/" -> "/ar", "/services" -> "/ar/services"
+                  <Link href={item.href} className="hover:text-primary">
+                    {item.label}
+                  </Link>
+                ) : (
+                  // Non-path hrefs (e.g. "#") stay as-is
+                  <NextLink href={item.href} className="hover:text-primary">
+                    {item.label}
+                  </NextLink>
+                )
               ) : (
                 <span className="text-gray-900 font-medium">{item.label}</span>
               )}
