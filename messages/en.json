@@ -59,10 +59,6 @@
         "erp": {
           "title": "ERP & CRM Systems for NGOs (Powered by ERPNext)",
           "desc": "End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking."
-        },
-        "marketing": {
-          "title": "Digital Marketing",
-          "desc": "SEO, content, analytics, social media management, and lead-generation funnels."
         }
       }
     },
