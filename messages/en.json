@@ -2263,5 +2263,10 @@
     "breadcrumbBlog": "Blog",
     "metaTitle": "Blog: Guides on Web, ERP & Hosting",
     "metaDescription": "Practical guides on websites, hosting, ERP and choosing a tech partner, for NGOs and businesses in East Africa."
+  },
+  "BlogPostPage": {
+    "ctaTitle": "Ready to Get Started?",
+    "ctaWhatsApp": "Chat on WhatsApp",
+    "ctaContact": "Get in Touch"
   }
 }

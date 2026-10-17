@@ -6,7 +6,11 @@ import InteriorHeader from '@/components/InteriorHeader'
 import type { Metadata } from 'next'
 import { blogMetadataMap } from '@/lib/blog-metadata'
 import BlogSchema from '@/components/BlogSchema'
-import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { getTranslations } from 'next-intl/server'
+import { bilingualPostSlugs, getBilingualPost } from '@/lib/bilingual-blog'
+
+const SITE = 'https://www.blueteamafrica.com'
 
 const blogPosts: Record<string, any> = {
   'how-to-choose-the-right-website-for-your-ngo': {
@@ -371,7 +375,7 @@ const blogPosts: Record<string, any> = {
 export async function generateStaticParams() {
   const locales = ['en', 'ar']
   return locales.flatMap((locale) =>
-    Object.keys(blogPosts).map((slug) => ({ locale, slug }))
+    [...bilingualPostSlugs, ...Object.keys(blogPosts)].map((slug) => ({ locale, slug }))
   )
 }
 
@@ -380,7 +384,32 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
+  const { locale, slug } = await params
+
+  const bilingual = getBilingualPost(slug, locale)
+  if (bilingual) {
+    // OpenGraph/Twitter text stays English on both locales (project convention)
+    const en = getBilingualPost(slug, 'en')!
+    const ogImage = { url: `${SITE}${en.image}`, width: en.imageWidth, height: en.imageHeight, alt: en.imageAlt }
+    return {
+      title: bilingual.metaTitle,
+      description: bilingual.metaDescription,
+      alternates: buildAlternates(`/blog/${slug}`, locale),
+      openGraph: {
+        type: 'article',
+        title: en.metaTitle,
+        description: en.metaDescription,
+        images: [ogImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: en.metaTitle,
+        description: en.metaDescription,
+        images: [ogImage.url],
+      },
+    }
+  }
+
   const post = blogPosts[slug]
 
   if (!post) {
@@ -407,26 +436,70 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
-  const { slug } = await params
-  const post = blogPosts[slug]
+  const { locale, slug } = await params
+  const bilingual = getBilingualPost(slug, locale)
+  const post = bilingual
+    ? {
+        title: bilingual.title,
+        content: bilingual.html,
+        image: bilingual.image,
+        imageWidth: bilingual.imageWidth,
+        imageHeight: bilingual.imageHeight,
+        imageAlt: bilingual.imageAlt,
+      }
+    : blogPosts[slug]
 
   if (!post) {
     notFound()
   }
 
+  const tBlog = await getTranslations('BlogPage')
+  const t = await getTranslations('BlogPostPage')
+  // The Arabic post has no Arabic author box or related posts (those list English-only posts)
+  const isArabic = bilingual?.locale === 'ar'
+  const postSchema = bilingual && {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: bilingual.title,
+    description: bilingual.metaDescription,
+    url: buildAlternates(`/blog/${slug}`, locale).canonical,
+    inLanguage: bilingual.locale,
+    image: {
+      '@type': 'ImageObject',
+      url: `${SITE}${bilingual.image}`,
+      width: bilingual.imageWidth,
+      height: bilingual.imageHeight,
+    },
+    author: { '@type': 'Organization', name: bilingual.author },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Blue Team Africa',
+      logo: { '@type': 'ImageObject', url: `${SITE}/images/logo/logo.webp` },
+    },
+    datePublished: bilingual.datePublished,
+    dateModified: bilingual.datePublished,
+  }
+
   return (
     <>
-      <BlogSchema 
-        blogTitle={post.title} 
-        blogSlug={slug} 
-        datePublished={post.date}
-        image={{ path: post.image, width: post.imageWidth, height: post.imageHeight }}
-      />
+      {postSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(postSchema) }}
+        />
+      ) : (
+        <BlogSchema 
+          blogTitle={post.title} 
+          blogSlug={slug} 
+          datePublished={post.date}
+          image={{ path: post.image, width: post.imageWidth, height: post.imageHeight }}
+        />
+      )}
       <InteriorHeader
         title={post.title}
         breadcrumb={[
-          { label: 'Home', href: '/' },
-          { label: 'Blog', href: '/blog' },
+          { label: tBlog('breadcrumbHome'), href: '/' },
+          { label: tBlog('breadcrumbBlog'), href: '/blog' },
           { label: post.title }
         ]}
       />
@@ -438,7 +511,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image
               src={post.image}
-              alt={post.title}
+              alt={post.imageAlt ?? post.title}
               width={1200}
               height={630}
               className="object-cover w-full h-full"
@@ -477,16 +550,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           )}
           
           {/* About the Author */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-gray-700 leading-relaxed">
-              <strong>About the Author</strong><br />
-              This article was prepared by the team at Blue Team Africa, a technology team founded by Sudanese experts, serving organizations across East Africa.
-            </p>
-          </div>
+          {!isArabic && (
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <p className="text-gray-700 leading-relaxed">
+                <strong>About the Author</strong><br />
+                This article was prepared by the team at Blue Team Africa, a technology team founded by Sudanese experts, serving organizations across East Africa.
+              </p>
+            </div>
+          )}
         </div>
       </article>
 
       {/* Related Posts */}
+      {!isArabic && (
       <section className="py-12 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">More Articles</h2>
@@ -506,16 +582,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           </div>
         </div>
       </section>
+      )}
 
       {/* CTA */}
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-heading font-bold mb-4">
-            Ready to Get Started?
+            {t('ctaTitle')}
           </h2>
-          <p className="text-gray-300 mb-6">
-            Let's discuss how we can help with your project.
-          </p>
+          {!isArabic && (
+            <p className="text-gray-300 mb-6">
+              Let's discuss how we can help with your project.
+            </p>
+          )}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://wa.me/254119402737"
@@ -524,14 +603,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
               className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('ctaWhatsApp')}
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
             >
-              Get in Touch
-              <ArrowRight size={18} />
+              {t('ctaContact')}
+              <ArrowRight size={18} className="rtl:rotate-180" />
             </Link>
           </div>
         </div>
