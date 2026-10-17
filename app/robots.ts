@@ -15,6 +15,25 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/_next/', '/admin/'],
       },
+      // AI crawlers: explicitly allowed. A named group overrides '*' for that bot,
+      // so the Disallow lines must be repeated here.
+      {
+        userAgent: [
+          'GPTBot',
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'ClaudeBot',
+          'Claude-SearchBot',
+          'Claude-User',
+          'PerplexityBot',
+          'Perplexity-User',
+          'Google-Extended',
+          'Applebot-Extended',
+          'CCBot',
+        ],
+        allow: '/',
+        disallow: ['/api/', '/_next/', '/admin/'],
+      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
   }
