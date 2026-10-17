@@ -72,7 +72,6 @@ export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusine
       'CRM Systems',
       'Mobile App Development',
       'NGO Tech Support',
-      'Digital Marketing',
       'Website Hosting',
     ],
   }

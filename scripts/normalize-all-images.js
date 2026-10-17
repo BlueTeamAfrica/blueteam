@@ -64,7 +64,6 @@ const EXPECTED_IMAGES = {
     { name: 'home-service-cybersecurity-01.webp', folder: 'home/services' },
     { name: 'home-service-mobile-apps-01.webp', folder: 'home/services' },
     { name: 'home-service-erp-01.webp', folder: 'home/services' },
-    { name: 'home-service-digital-marketing-01.webp', folder: 'home/services' },
     { name: 'home-service-hosting-01.webp', folder: 'home/services' },
   ],
   'home/portfolio': [
