@@ -391,14 +391,15 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Center: Logo — true center via grid */}
+          {/* Center: Logo — true center via grid. Height is auto (capped at 64px) so when the
+              column squeezes on tiny phones the logo scales down instead of stretching */}
           <Link href="/" className="flex items-center h-16 no-underline" aria-label="Blue Team Africa — home">
             <Image
               src="/images/logo/logo-lockup.png"
               alt="Blue Team Africa"
               width={210}
               height={90}
-              className="h-16 w-auto"
+              className="h-auto w-auto max-h-16"
               priority
             />
           </Link>
