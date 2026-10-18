@@ -508,3 +508,100 @@ html {
   }
 }
 
+
+/* Blog post body rendered from Markdown (lib/markdown.ts), bilingual posts only.
+   Sizes and colours follow the post template's FAQ/author blocks: headings
+   font-heading gray-900, body gray-700 leading-relaxed. Logical properties so
+   list markers and indents flip to the right on Arabic (dir="rtl"). */
+.post-body {
+  color: #374151; /* gray-700 */
+  font-size: 1.125rem;
+  line-height: 1.75;
+  text-align: start;
+}
+
+.post-body > :first-child {
+  margin-block-start: 0;
+}
+
+.post-body h2,
+.post-body h3 {
+  color: #111827; /* gray-900 */
+  font-family: var(--font-poppins), var(--font-inter), sans-serif;
+  font-weight: 600;
+}
+
+.post-body h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-block: 2.5rem 1rem;
+}
+
+.post-body h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-block: 2rem 0.75rem;
+}
+
+/* Arabic: no Arabic web font is loaded, so keep headings on the page's (and H1's)
+   font stack rather than Poppins */
+.post-body:lang(ar) h2,
+.post-body:lang(ar) h3 {
+  font-family: inherit;
+}
+
+.post-body p {
+  margin-block: 0 1.25rem;
+}
+
+.post-body ul,
+.post-body ol {
+  margin-block: 0 1.25rem;
+  padding-inline-start: 1.5rem;
+}
+
+.post-body ul {
+  list-style-type: disc;
+}
+
+.post-body ol {
+  list-style-type: decimal;
+}
+
+.post-body li {
+  margin-block: 0 0.5rem;
+  padding-inline-start: 0.25rem;
+}
+
+.post-body strong {
+  color: #111827; /* gray-900 */
+  font-weight: 600;
+}
+
+/* Same treatment as a.text-primary (WCAG AA contrast, underlined) */
+.post-body a {
+  color: var(--color-primary-text, #0d5a8a);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.post-body a:hover {
+  color: var(--color-primary-dark, #14699a);
+  text-decoration-thickness: 2px;
+}
+
+/* Phones: the global mobile rule shrinks h2/h3 (1.35rem / 1.15rem, !important),
+   so drop body text to 1rem to keep h2 > h3 > p */
+@media (max-width: 640px) {
+  .post-body {
+    font-size: 1rem;
+  }
+
+  .post-body h2 {
+    margin-block: 2rem 0.75rem;
+  }
+
+  .post-body h3 {
+    margin-block: 1.5rem 0.5rem;
+  }
+}

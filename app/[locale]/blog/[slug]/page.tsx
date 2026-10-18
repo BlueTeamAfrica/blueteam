@@ -524,8 +524,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
       {/* Blog Content */}
       <article className="py-12 bg-white">
         <div className="max-w-3xl mx-auto px-6">
+          {/* post-body (globals.css) styles the Markdown body of bilingual posts only */}
           <div
-            className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-strong:text-gray-900"
+            className={`prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-strong:text-gray-900${bilingual ? ' post-body' : ''}`}
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
           {/* FAQ Schema */}
