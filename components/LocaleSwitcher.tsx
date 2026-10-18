@@ -84,7 +84,7 @@ export default function LocaleSwitcher({ variant = 'header' }: { variant?: 'head
       prefetch={false}
       onClick={() => setLocaleCookie(targetLocale)}
       aria-label={ariaLabel}
-      className="inline-flex items-center px-3 py-2 rounded-full text-sm font-semibold border border-current no-underline transition-opacity hover:opacity-70 select-none"
+      className="inline-flex items-center px-3 max-sm:rtl:px-2.5 py-2 rounded-full text-sm font-semibold border border-current no-underline transition-opacity hover:opacity-70 select-none"
       style={{ color: 'var(--color-primary, #1982c4)', fontFamily }}
     >
       {label}

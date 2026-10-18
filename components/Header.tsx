@@ -403,12 +403,13 @@ export default function Header() {
             />
           </Link>
 
-          {/* Right: Locale switcher + Contact button */}
-          <div className="flex items-center justify-end gap-2">
+          {/* Right: Locale switcher + Contact button. On Arabic phones "تواصل معنا" needs
+              the tighter gap and padding to stay on one line without squeezing the logo */}
+          <div className="flex items-center justify-end gap-2 max-sm:rtl:gap-1">
             <LocaleSwitcher />
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-1.5 px-4 max-sm:rtl:px-2.5 py-2 rounded-full text-sm font-semibold text-white no-underline whitespace-nowrap transition-opacity hover:opacity-90"
               style={{ backgroundColor: 'var(--color-primary, #1982c4)' }}
             >
               {t('contact')}
