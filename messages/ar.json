@@ -2259,6 +2259,8 @@
     "learnMore": "اقرأ المزيد ←"
   },
   "BlogPage": {
+    "heading": "المدونة",
+    "readMore": "اقرأ المزيد",
     "breadcrumbHome": "الرئيسية",
     "breadcrumbBlog": "المدونة",
     "metaTitle": "المدونة: أدلة حول المواقع وERP والاستضافة",

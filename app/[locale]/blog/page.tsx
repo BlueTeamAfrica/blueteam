@@ -129,7 +129,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
       />
       <InteriorHeader
-        title="Our Blog"
+        title={t('heading')}
         breadcrumb={[
           { label: t('breadcrumbHome'), href: '/' },
           { label: t('breadcrumbBlog') }
@@ -175,7 +175,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                     {post.excerpt}
                   </p>
                   <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
-                    Read More
+                    {t('readMore')}
                     <svg
                       className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
                       fill="none"
