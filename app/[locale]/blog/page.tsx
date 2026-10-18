@@ -184,7 +184,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                   <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
                     {t('readMore')}
                     <svg
-                      className="w-4 h-4 ms-1 rtl:rotate-180 group-hover:translate-x-1 transition-transform"
+                      className="w-4 h-4 ms-1 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
