@@ -2261,6 +2261,10 @@
   "BlogPage": {
     "heading": "Our Blog",
     "readMore": "Read More",
+    "categoryWebDesign": "Web Design",
+    "categoryWebDevelopment": "Web Development",
+    "categoryHosting": "Hosting",
+    "categoryErpSystems": "ERP Systems",
     "breadcrumbHome": "Home",
     "breadcrumbBlog": "Blog",
     "metaTitle": "Blog: Guides on Web, ERP & Hosting",

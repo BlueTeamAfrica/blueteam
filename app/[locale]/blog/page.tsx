@@ -35,7 +35,7 @@ const englishOnlyPosts = [
     title: 'Best Web Design Companies in Rwanda',
     excerpt: 'A comparison of leading web design companies in Rwanda and how to choose the right partner for your business or NGO.',
     date: '2026-01-16',
-    category: 'Web Design',
+    categoryKey: 'categoryWebDesign',
     image: '/blog/choosing-web-design-company-rwanda.webp',
   },
   {
@@ -43,7 +43,7 @@ const englishOnlyPosts = [
     title: 'Website Design Cost in Rwanda (2026 Guide)',
     excerpt: 'Complete guide to website design costs in Rwanda for 2026. Understand pricing factors, package options, and what to expect when investing in a professional website.',
     date: '2026-01-22',
-    category: 'Web Design',
+    categoryKey: 'categoryWebDesign',
     image: '/blog/blog-thumbnail-06.webp',
   },
   {
@@ -51,7 +51,7 @@ const englishOnlyPosts = [
     title: 'Web Development Companies in Rwanda: What to Look For in 2026',
     excerpt: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
     date: '2025-01-20',
-    category: 'Web Development',
+    categoryKey: 'categoryWebDevelopment',
     image: '/blog/web-development-companies-rwanda-2026.webp',
   },
   {
@@ -59,7 +59,7 @@ const englishOnlyPosts = [
     title: 'Choosing a Web Design Partner: A Guide for Rwandan Businesses',
     excerpt: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
     date: '2024-12-20',
-    category: 'Web Design',
+    categoryKey: 'categoryWebDesign',
     image: '/blog/choosing-web-design-company-rwanda.webp',
   },
   {
@@ -67,7 +67,7 @@ const englishOnlyPosts = [
     title: 'How to Choose the Right Website for Your NGO',
     excerpt: 'A comprehensive guide to selecting the best website solution for your nonprofit organization, including key features and considerations.',
     date: '2024-01-15',
-    category: 'Web Development',
+    categoryKey: 'categoryWebDevelopment',
     image: '/blog/choosing-website-for-ngo.webp',
   },
   {
@@ -75,7 +75,7 @@ const englishOnlyPosts = [
     title: 'Why Hosting Speed Matters in Africa',
     excerpt: 'Understanding the importance of fast hosting speeds for African businesses and how it impacts user experience and conversions.',
     date: '2024-01-10',
-    category: 'Hosting',
+    categoryKey: 'categoryHosting',
     image: '/blog/hosting-speed-matters-africa.webp',
   },
   {
@@ -83,13 +83,13 @@ const englishOnlyPosts = [
     title: 'ERP for African SMEs: A Complete Guide',
     excerpt: 'Everything small and medium enterprises in Africa need to know about implementing ERP systems to streamline operations.',
     date: '2024-01-05',
-    category: 'ERP Systems',
+    categoryKey: 'categoryErpSystems',
     image: '/blog/erp-african-smes-guide.webp',
   },
-]
+] as const
 
 // Bilingual posts first (newest), then the English-only posts
-function postsFor(locale: string) {
+function postsFor(locale: string, t: (key: (typeof englishOnlyPosts)[number]['categoryKey']) => string) {
   const bilingual = bilingualPostSlugs.map((slug) => {
     const post = getBilingualPost(slug, locale)!
     return {
@@ -102,13 +102,20 @@ function postsFor(locale: string) {
       image: post.image,
     }
   })
-  return [...bilingual, ...englishOnlyPosts.map((post) => ({ ...post, href: `/blog/${post.slug}` }))]
+  return [
+    ...bilingual,
+    ...englishOnlyPosts.map(({ categoryKey, ...post }) => ({
+      ...post,
+      category: t(categoryKey),
+      href: `/blog/${post.slug}`,
+    })),
+  ]
 }
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const t = await getTranslations('BlogPage')
-  const blogPosts = postsFor(locale)
+  const blogPosts = postsFor(locale, t)
   const blogListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -161,7 +168,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       {post.category}
                     </span>
                     <span className="text-xs text-gray-500">
-                      {new Date(post.date).toLocaleDateString('en-US', {
+                      {new Date(post.date).toLocaleDateString(locale === 'ar' ? 'ar-u-nu-latn' : 'en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
@@ -177,7 +184,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                   <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
                     {t('readMore')}
                     <svg
-                      className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                      className="w-4 h-4 ms-1 rtl:rotate-180 group-hover:translate-x-1 transition-transform"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

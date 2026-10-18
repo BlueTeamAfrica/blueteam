@@ -2261,6 +2261,10 @@
   "BlogPage": {
     "heading": "المدونة",
     "readMore": "اقرأ المزيد",
+    "categoryWebDesign": "تصميم المواقع",
+    "categoryWebDevelopment": "تطوير المواقع",
+    "categoryHosting": "الاستضافة",
+    "categoryErpSystems": "أنظمة ERP",
     "breadcrumbHome": "الرئيسية",
     "breadcrumbBlog": "المدونة",
     "metaTitle": "المدونة: أدلة حول المواقع وERP والاستضافة",
