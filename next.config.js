@@ -40,6 +40,10 @@ const nextConfig = {
   // SWC minification is enabled by default in Next.js 16+
   // Performance optimizations
   poweredByHeader: false,
+  // Next streams <title>, description, canonical and hreflang into <body> unless the UA matches
+  // this. Google ignores canonical/hreflang outside <head> in the raw HTML (and Googlebot is not
+  // in Next's default list), so every request gets blocking metadata in <head>
+  htmlLimitedBots: /.*/,
   async redirects() {
     return [
       { source: '/erp-crm',               destination: '/services/erp', permanent: true },
