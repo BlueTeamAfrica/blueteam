@@ -75,7 +75,8 @@ export default function BestWebDesignCompaniesRwandaPage() {
         {/* Blog Content */}
         <article className="py-12 bg-white">
           <div className="max-w-3xl mx-auto px-6">
-            <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-strong:text-gray-900">
+            {/* post-body (globals.css) styles the post body */}
+            <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-strong:text-gray-900 post-body">
               
               <h2>Introduction</h2>
               <p>Rwanda's digital landscape has grown significantly in recent years, with businesses and organizations increasingly recognizing the importance of professional web presence. As the market evolves, selecting the right web design partner has become a critical decision for organizations seeking to establish or enhance their online presence.</p>
@@ -187,14 +188,14 @@ export default function BestWebDesignCompaniesRwandaPage() {
               <p>Whether you require a simple business website or a complex platform with custom functionality, taking time to understand different providers' capabilities and approaches helps ensure you select a partner that aligns with your organization's goals and requirements.</p>
               
               <p>Remember that a website is a long-term investment that affects how your organization is perceived and how effectively you can reach your audience. Selecting the right design partner is an important decision that deserves careful consideration of both immediate needs and future growth plans.</p>
-              
-              {/* About the Author */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <p className="text-gray-700 leading-relaxed">
-                  <strong>About the Author</strong><br />
-                  This article was prepared by the team at Blue Team Africa, a technology team founded by Sudanese experts, serving organizations across East Africa.
-                </p>
-              </div>
+            </div>
+
+            {/* About the Author: outside post-body, as in the blog/[slug] template */}
+            <div className="mt-12 pt-8 border-t border-gray-200">
+              <p className="text-gray-700 leading-relaxed">
+                <strong>About the Author</strong><br />
+                This article was prepared by the team at Blue Team Africa, a technology team founded by Sudanese experts, serving organizations across East Africa.
+              </p>
             </div>
           </div>
         </article>

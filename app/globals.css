@@ -509,7 +509,7 @@ html {
 }
 
 
-/* Blog post body rendered from Markdown (lib/markdown.ts), bilingual posts only.
+/* Blog post body: bilingual posts (Markdown, lib/markdown.ts) and the English-only posts.
    Sizes and colours follow the post template's FAQ/author blocks: headings
    font-heading gray-900, body gray-700 leading-relaxed. Logical properties so
    list markers and indents flip to the right on Arabic (dir="rtl"). */
