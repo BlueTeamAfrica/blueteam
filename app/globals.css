@@ -543,8 +543,8 @@ html {
   margin-block: 2rem 0.75rem;
 }
 
-/* Arabic: no Arabic web font is loaded, so keep headings on the page's (and H1's)
-   font stack rather than Poppins */
+/* Arabic: keep headings on the page's (and H1's) font stack rather than Poppins, so Latin
+   words in them stay Inter. Arabic glyphs are IBM Plex Sans Arabic in either stack */
 .post-body:lang(ar) h2,
 .post-body:lang(ar) h3 {
   font-family: inherit;

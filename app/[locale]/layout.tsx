@@ -42,6 +42,38 @@ const poppins = localFont({
   ],
 })
 
+// Arabic blocks only: Latin never matches it, and pages without Arabic text never download it
+const plexArabic = localFont({
+  src: [
+    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-600-normal.woff2', weight: '600', style: 'normal' },
+    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  preload: false,
+  adjustFontFallback: false,
+  declarations: [
+    { prop: 'unicode-range', value: 'U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFC' },
+  ],
+})
+
+// next/font's family is "'<face>', '<face> Fallback'", the fallback being a local Arial with
+// metric overrides. Windows' Arial has Arabic glyphs, so Plex goes between the two; after the
+// fallback it would never be reached on Windows.
+function withArabic(font: { style: { fontFamily: string } }) {
+  const [face, ...fallback] = font.style.fontFamily.split(', ')
+  return [face, plexArabic.style.fontFamily, ...fallback].join(', ')
+}
+
+// The body and heading stacks in globals.css and tailwind.config.ts are built on these.
+// --font-inter-latin leaves Plex out, for Arabic that must not pull the font onto English pages
+const fontVariables = {
+  '--font-inter': withArabic(inter),
+  '--font-poppins': withArabic(poppins),
+  '--font-inter-latin': inter.style.fontFamily,
+} as React.CSSProperties
+
 export const metadata: Metadata = {
   title: {
     default: 'Blue Team Africa',
@@ -80,12 +112,12 @@ export default async function LocaleLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
 
   return (
-    <html lang={locale} dir={dir} className={`${inter.variable} ${poppins.variable}`}>
+    <html lang={locale} dir={dir} style={fontVariables}>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
-      <body className={`${inter.className} bg-[#F8F9FC] text-gray-900 font-body antialiased`}>
+      <body className="bg-[#F8F9FC] text-gray-900 font-body antialiased">
         <NextIntlClientProvider messages={layoutMessages}>
           <WebSiteSchema />
           <ClientComponents gaId={gaId} />
