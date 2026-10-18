@@ -202,12 +202,14 @@ export default async function ContactPage() {
                       <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <Mail className="w-6 h-6 text-primary" />
                       </div>
-                      <div>
+                      {/* min-w-0 + overflow-wrap:anywhere let the address wrap on narrow phones
+                          instead of widening the card past the viewport */}
+                      <div className="min-w-0">
                         <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('emailLabel')}</h4>
                         <p className="text-gray-600 mb-2">{t('directContact')}</p>
                         <a
                           href="mailto:contact@blueteamafrica.com"
-                          className="text-primary hover:underline font-medium"
+                          className="text-primary hover:underline font-medium [overflow-wrap:anywhere]"
                         >
                           <Ltr>contact@blueteamafrica.com →</Ltr>
                         </a>
