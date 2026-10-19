@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { container, sectionPad, focusRing, stretched, SectionHeader, BrowserFrame, LeadingFigure } from './shared'
 
@@ -32,6 +32,9 @@ function Tag({ children, onDark = false }: { children: string; onDark?: boolean 
 
 export default async function SelectedWork() {
   const t = await getTranslations('HomePage.selectedWork')
+  // The SudanFacts title is the only Arabic on the English homepage; keep it off Scheherazade
+  // New (87 KB) there, like the language pill: its Arabic renders in the OS's Arabic font
+  const latinOnly = (await getLocale()) === 'en' ? { fontFamily: 'var(--font-poppins-latin), sans-serif' } : undefined
   const tHeader = await getTranslations('Header')
   const tile = 'reveal group relative rounded-[24px] p-6 md:p-8 transition-shadow hover:shadow-[0_12px_32px_rgba(11,27,43,0.10)]'
   const h3 = 'mt-2 font-heading !text-[22px] font-bold !leading-snug md:!text-[24px]'
@@ -45,7 +48,7 @@ export default async function SelectedWork() {
           {/* SudanFacts: span 2 */}
           <div className={`${tile} border border-[#E3E9EF] bg-white md:col-span-2`}>
             <Tag>{t('sfTag')}</Tag>
-            <h3 className={`${h3} text-navy`}>{t('sfTitle')}</h3>
+            <h3 className={`${h3} text-navy`} style={latinOnly}>{t('sfTitle')}</h3>
             <p className="mt-2 text-[16px] leading-relaxed text-[#4A5868]">{t('sfDesc')}</p>
             <div className="mt-6 grid grid-cols-2 gap-3 md:gap-5">
               {(['en', 'ar'] as const).map((l) => (
