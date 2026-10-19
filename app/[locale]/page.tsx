@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 import { getTranslations, getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { buildAlternates } from '@/lib/metadata-helpers'
+import { Flag } from '@/components/Flag'
 
 // Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
 // These will still be code-split and loaded lazily, improving initial bundle size
@@ -341,28 +342,28 @@ export default async function Home() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
               <div className="flex items-start gap-4">
-                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇸🇩</span>
+                <Flag code="sd" size="large" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.sudan.name')}</h3>
                   <p className="text-gray-700 leading-relaxed">{t('whereWeWork.sudan.desc')}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇺🇬</span>
+                <Flag code="ug" size="large" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.uganda.name')}</h3>
                   <p className="text-gray-700 leading-relaxed">{t('whereWeWork.uganda.desc')}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇰🇪</span>
+                <Flag code="ke" size="large" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.kenya.name')}</h3>
                   <p className="text-gray-700 leading-relaxed">{t('whereWeWork.kenya.desc')}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-4xl flex-shrink-0" aria-hidden="true">🇷🇼</span>
+                <Flag code="rw" size="large" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.rwanda.name')}</h3>
                   <p className="text-gray-700 leading-relaxed">

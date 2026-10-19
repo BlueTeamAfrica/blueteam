@@ -11,6 +11,7 @@ import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
+import { flagTags } from '@/components/Flag'
 
 export async function generateMetadata({
   params,
@@ -124,6 +125,7 @@ export default async function MobileAppsPage() {
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
                     {t.rich('heroPre', {
+                      ...flagTags,
                       sudanLink: (chunks) => (
                         <Link href="/locations/sudan" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
                       ),

@@ -11,6 +11,7 @@ import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
+import { flagTags } from '@/components/Flag'
 
 export async function generateMetadata({
   params,
@@ -109,7 +110,7 @@ export default async function EcommercePage() {
                     {t('heroH2')}
                   </h2>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-                    {t('heroBody')}
+                    {t.rich('heroBody', flagTags)}
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
