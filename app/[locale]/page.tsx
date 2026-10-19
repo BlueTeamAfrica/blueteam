@@ -8,11 +8,12 @@ import HeroSection from '@/components/hero/Hero'
 import { getTranslations, getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { buildAlternates } from '@/lib/metadata-helpers'
-import { Flag } from '@/components/Flag'
 import ResultsBand from '@/components/home/ResultsBand'
 import ServicesBento from '@/components/home/ServicesBento'
 import SelectedWork from '@/components/home/SelectedWork'
 import SecureByDesign from '@/components/home/SecureByDesign'
+import HowWeWork from '@/components/home/HowWeWork'
+import WhereWeWork from '@/components/home/WhereWeWork'
 
 
 export async function generateMetadata({
@@ -142,97 +143,8 @@ export default async function Home() {
         <ServicesBento />
         <SelectedWork />
         <SecureByDesign />
-
-        {/* WHERE WE WORK */}
-        <section className="py-20 bg-gray-50" aria-labelledby="where-we-work-heading">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 id="where-we-work-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              {t('whereWeWork.title')}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-              <div className="flex items-start gap-4">
-                <Flag code="sd" size="large" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.sudan.name')}</h3>
-                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.sudan.desc')}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Flag code="ug" size="large" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.uganda.name')}</h3>
-                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.uganda.desc')}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Flag code="ke" size="large" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.kenya.name')}</h3>
-                  <p className="text-gray-700 leading-relaxed">{t('whereWeWork.kenya.desc')}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Flag code="rw" size="large" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t('whereWeWork.rwanda.name')}</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {t.rich('whereWeWork.rwanda.desc', {
-                      webDesignLink: (chunks) => (
-                        <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                      ),
-                    })}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* OUR PROCESS */}
-        <section className="py-20 bg-gray-50" aria-labelledby="process-heading">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 id="process-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              {t('process.title')}
-            </h2>
-            <div className="grid md:grid-cols-5 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">1</div>
-                <h3 className="text-lg font-semibold mb-2">{t('process.step1Title')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('process.step1Body')}
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">2</div>
-                <h3 className="text-lg font-semibold mb-2">{t('process.step2Title')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('process.step2Body')}
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">3</div>
-                <h3 className="text-lg font-semibold mb-2">{t('process.step3Title')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('process.step3Body')}
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">4</div>
-                <h3 className="text-lg font-semibold mb-2">{t('process.step4Title')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('process.step4Body')}
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">5</div>
-                <h3 className="text-lg font-semibold mb-2">{t('process.step5Title')}</h3>
-                <p className="text-gray-600 text-sm">
-                  {t('process.step5Body')}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <HowWeWork />
+        <WhereWeWork />
       </div>
 
       {/* Bottom Container for Mobile Services Repositioning */}

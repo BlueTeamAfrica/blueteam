@@ -176,7 +176,10 @@
       "rwanda": {
         "name": "Rwanda",
         "desc": "Our operational base, where Blue Team Africa is registered. Explore our <webDesignLink>Web Design in Rwanda</webDesignLink> services."
-      }
+      },
+      "heading": "Rooted in Sudan, working across East Africa.",
+      "rwandaText": "Our operational base in Kigali, where Blue Team Africa is registered.",
+      "sudanLink": "Sudan solutions →"
     },
     "metaTitle": "Blue Team Africa | Web, ERP & Security for Sudanese NGOs",
     "metaDescription": "Blue Team Africa — a team of Sudanese technologists building secure websites, ERP systems, and cybersecurity solutions for NGOs and businesses across Sudan, the diaspora, and East Africa.",
@@ -243,6 +246,19 @@
       "card3Body": "A modern stack that grows with you, from a first website to a full platform.",
       "buildWith": "We build with",
       "seoLine": "Website design, development and cybersecurity for Sudanese organisations, NGOs and businesses in Khartoum, Juba, Kampala, Nairobi and across East Africa."
+    },
+    "howWeWork": {
+      "eyebrow": "How we work",
+      "title": "Five steps. No surprises.",
+      "step1": "We study your operations, workflows and reporting needs.",
+      "step2": "You see the layout and flow before we build anything.",
+      "step3": "We build the website, app or ERP, with regular demos.",
+      "step4": "Data migration, hosting set-up and staff training.",
+      "step5": "Monitoring, updates and security, long after launch.",
+      "timelinesTitle": "Typical timelines",
+      "timeline1": "Small website · 10–14 days",
+      "timeline2": "Business website · 2–4 weeks",
+      "timeline3": "Web app or portal · 6–8 weeks"
     }
   },
   "ContactPage": {
