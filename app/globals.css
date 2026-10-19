@@ -48,15 +48,11 @@ button[class*="bg-"],
   text-decoration: none !important;
 }
 
-/* Remove underlines from header navigation only (header + upper header) */
+/* Remove underlines from header navigation only (header + its mobile menu) */
 header a,
 header nav a,
+#hdr-mobile a,
 aside[role="dialog"] a {
-  text-decoration: none !important;
-}
-
-/* Top header bar links (fixed blue bar at top) - target by inline style attribute */
-div[style*="backgroundColor: var(--color-primary"] a {
   text-decoration: none !important;
 }
 
@@ -603,4 +599,19 @@ html {
    the tight Latin heading leading (1.0–1.25); !important to override the mobile sizes above */
 :lang(ar) :is(h1, h2, h3, .page-title, .hero-title, .section-title) {
   line-height: 1.4 !important;
+}
+
+/* Header panels and mobile menu (components/HeaderShell.tsx): shown with display, so the
+   entrance is an animation rather than a transition */
+@keyframes hdr-in {
+  from { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes hdr-slide {
+  from { opacity: 0; transform: translateX(var(--hdr-slide-from, 16px)); }
+}
+.hdr-in { animation: hdr-in 150ms ease-out; }
+.hdr-slide { animation: hdr-slide 180ms ease-out; }
+[dir='rtl'] .hdr-slide { --hdr-slide-from: -16px; }
+@media (prefers-reduced-motion: reduce) {
+  .hdr-in, .hdr-slide { animation: none; }
 }

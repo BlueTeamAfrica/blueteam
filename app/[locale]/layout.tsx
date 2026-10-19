@@ -94,7 +94,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages()
-  const layoutMessages = { Navigation: messages.Navigation, Footer: messages.Footer, ServiceSidebar: messages.ServiceSidebar }
+  const layoutMessages = { Footer: messages.Footer, ServiceSidebar: messages.ServiceSidebar }
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
 
@@ -109,7 +109,7 @@ export default async function LocaleLayout({
           <WebSiteSchema />
           <ClientComponents gaId={gaId} />
           <Header />
-          <main className="pt-[39px] md:pt-[32px]">{children}</main>
+          <main>{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>

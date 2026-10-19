@@ -59,3 +59,19 @@ export function getBilingualPost(slug: string, locale: string): BilingualPost | 
     html: markdownToHtml(body),
   }
 }
+
+export type BilingualPostCard = Pick<BilingualPost, 'slug' | 'title' | 'image' | 'imageWidth' | 'imageHeight' | 'imageAlt'>
+
+/** The most recently published bilingual post, without rendering its body (header featured card). */
+export function getLatestBilingualPost(locale: string): BilingualPostCard {
+  const [slug, source] = Object.entries(sources).sort(([, a], [, b]) => b.datePublished.localeCompare(a.datePublished))[0]
+  const { data } = parseFrontmatter(source[locale === 'ar' ? 'ar' : 'en'])
+  return {
+    slug,
+    title: data.title,
+    image: data.image,
+    imageWidth: Number(data.imageWidth),
+    imageHeight: Number(data.imageHeight),
+    imageAlt: data.imageAlt,
+  }
+}

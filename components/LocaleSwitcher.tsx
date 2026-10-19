@@ -44,7 +44,7 @@ function setLocaleCookie(nextLocale: string) {
  *
  * English-only pages (see i18n/english-only.ts) link AR to /ar/blog or /ar.
  */
-export default function LocaleSwitcher({ variant = 'header' }: { variant?: 'header' | 'panel' }) {
+export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' | 'segmented' }) {
   const locale = useLocale()
   const pathname = usePathname()
 
@@ -56,38 +56,55 @@ export default function LocaleSwitcher({ variant = 'header' }: { variant?: 'head
       ? arabicFallbackFor(pathname) ?? `/ar${pathname === '/' ? '' : pathname}`
       : pathname.replace(/^\/ar/, '') || '/'
 
-  const label = locale === 'en' ? 'عربي' : 'EN'
   const ariaLabel = locale === 'en' ? 'Switch to Arabic' : 'Switch to English'
-  // "عربي" is the only Arabic on English pages; kept off Scheherazade New (87 KB at 700) so
-  // English pages never download it (it renders in the OS's Arabic font, as before)
-  const fontFamily = 'var(--font-poppins-latin), sans-serif'
+  // Arabic labels are the only Arabic on English pages; kept off Scheherazade New (87 KB at 700)
+  // so English pages never download it (they render in the OS's Arabic font, as before)
+  const latinOnly = locale === 'en' ? { fontFamily: 'var(--font-poppins-latin), sans-serif' } : undefined
+  const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C83C5]'
 
-  if (variant === 'panel') {
+  if (variant === 'segmented') {
+    const segment = 'flex-1 rounded-[10px] py-2.5 text-center text-[15px] font-semibold no-underline'
+    const options = [
+      { code: 'en', label: 'English', lang: 'en' },
+      { code: 'ar', label: 'العربية', lang: 'ar' },
+    ]
     return (
-      <Link
-        href={targetPath}
-        prefetch={false}
-        onClick={() => setLocaleCookie(targetLocale)}
-        aria-label={ariaLabel}
-        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 text-gray-600 hover:text-gray-900 transition-all no-underline select-none"
-        style={{ fontFamily }}
-      >
-        {label}
-      </Link>
+      <div className="flex gap-1 rounded-xl bg-[#F0F3F6] p-1" dir="ltr">
+        {options.map((o) =>
+          o.code === locale ? (
+            <span key={o.code} lang={o.lang} aria-current="true" className={`${segment} bg-white text-[#0B1B2B] shadow-sm`}>
+              {o.label}
+            </span>
+          ) : (
+            <Link
+              key={o.code}
+              href={targetPath}
+              prefetch={false}
+              lang={o.lang}
+              onClick={() => setLocaleCookie(targetLocale)}
+              className={`${segment} text-[#4A5868] hover:text-[#0B1B2B] ${focusRing}`}
+              style={o.code === 'ar' ? latinOnly : undefined}
+            >
+              {o.label}
+            </Link>
+          ),
+        )}
+      </div>
     )
   }
 
-  // header variant — matches the existing Contact button style but outlined
+  // Header pill: عربي on English pages, EN on Arabic pages
   return (
     <Link
       href={targetPath}
       prefetch={false}
       onClick={() => setLocaleCookie(targetLocale)}
       aria-label={ariaLabel}
-      className="inline-flex items-center px-3 max-sm:rtl:px-2.5 py-2 rounded-full text-sm font-semibold border border-current no-underline transition-opacity hover:opacity-70 select-none"
-      style={{ color: 'var(--color-primary, #1982c4)', fontFamily }}
+      lang={targetLocale}
+      className={`inline-flex h-10 items-center rounded-full border border-[#D5DEE7] px-2.5 text-[14px] min-[380px]:px-4 min-[380px]:text-[15px] font-semibold text-[#1C83C5] no-underline transition-colors hover:border-[#1C83C5] select-none ${focusRing}`}
+      style={latinOnly}
     >
-      {label}
+      {locale === 'en' ? 'عربي' : 'EN'}
     </Link>
   )
 }
