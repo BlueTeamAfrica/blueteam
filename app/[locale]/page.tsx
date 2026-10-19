@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 // Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
 import NextLink from 'next/link'
@@ -12,6 +11,8 @@ import { buildAlternates } from '@/lib/metadata-helpers'
 import { Flag } from '@/components/Flag'
 import ResultsBand from '@/components/home/ResultsBand'
 import ServicesBento from '@/components/home/ServicesBento'
+import SelectedWork from '@/components/home/SelectedWork'
+import SecureByDesign from '@/components/home/SecureByDesign'
 
 
 export async function generateMetadata({
@@ -139,6 +140,8 @@ export default async function Home() {
 
         <ResultsBand />
         <ServicesBento />
+        <SelectedWork />
+        <SecureByDesign />
 
         {/* WHERE WE WORK */}
         <section className="py-20 bg-gray-50" aria-labelledby="where-we-work-heading">
@@ -185,59 +188,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* WHY CHOOSE BLUE TEAM AFRICA */}
-        <section className="py-20 bg-white" aria-labelledby="why-trust-heading">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 id="why-trust-heading" className="text-3xl font-heading font-semibold text-center mb-6">
-              {t('whyChoose.title')}
-            </h2>
-            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              {t('whyChoose.teamStory1')}
-            </p>
-            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
-              {t('whyChoose.teamStory2')}
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{t('whyChoose.securityFirst')}</h3>
-                <p className="text-gray-600">
-                  {t('whyChoose.securityFirstBody')}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{t('whyChoose.ngoExpertise')}</h3>
-                <p className="text-gray-600">
-                  {t('whyChoose.ngoExpertiseBody')}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{t('whyChoose.scalableTech')}</h3>
-                <p className="text-gray-600">
-                  {t('whyChoose.scalableTechBody')}
-                </p>
-              </div>
-            </div>
-        </div>
-      </section>
-
         {/* OUR PROCESS */}
         <section className="py-20 bg-gray-50" aria-labelledby="process-heading">
           <div className="max-w-6xl mx-auto px-6">
@@ -280,226 +230,6 @@ export default async function Home() {
                   {t('process.step5Body')}
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SEO KEYWORD BLOCK */}
-        <section className="py-16 bg-gray-50" aria-labelledby="seo-keyword-heading">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <h2 id="seo-keyword-heading" className="text-3xl font-heading font-semibold mb-6">
-              {t('seoBlock.title')}
-            </h2>
-            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-              {t('seoBlock.body')}
-            </p>
-          </div>
-        </section>
-
-        {/* TECH STACK */}
-        <section className="py-12 bg-gray-50 border-t border-gray-200">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <p className="text-gray-600 mb-6">{t('techStack.label')}</p>
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-              {/* ERPNext */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/erpnext/0089FF"
-                    alt="ERPNext"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">ERPNext</span>
-              </div>
-              {/* Frappe */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/frappe/0089FF"
-                    alt="Frappe"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">Frappe</span>
-              </div>
-              {/* React */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/react/61DAFB"
-                    alt="React"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">React</span>
-              </div>
-              {/* Next.js */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/nextdotjs/000000"
-                    alt="Next.js"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">Next.js</span>
-              </div>
-              {/* Flutter */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/flutter/02569B"
-                    alt="Flutter"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">Flutter</span>
-              </div>
-              {/* Firebase */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/firebase/FFCA28"
-                    alt="Firebase"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">Firebase</span>
-              </div>
-              {/* Vercel */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/vercel/000000"
-                    alt="Vercel"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">Vercel</span>
-              </div>
-              {/* Tailwind CSS */}
-              <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300 group">
-                <div className="w-20 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
-                    alt="Tailwind CSS"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-xs text-gray-600 font-medium">Tailwind</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PORTFOLIO PREVIEW */}
-        <section id="portfolio" className="py-20 bg-white" aria-labelledby="portfolio-heading">
-        <div className="max-w-6xl mx-auto px-6">
-            <h2 id="portfolio-heading" className="text-3xl font-heading font-semibold text-center mb-12">
-              {t('portfolioPreview.title')}
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <article className="rounded-2xl overflow-hidden shadow bg-white">
-                <div className="relative w-full h-48">
-                  <Image
-                    src="/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp"
-                    alt="CSLO Sudan ERPNext and CRM implementation case study"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold">{t('portfolioPreview.card1Title')}</h3>
-                  <p className="text-sm text-gray-600 mt-2">
-                    {t('portfolioPreview.card1Desc')}
-                    <Link href="/portfolio/cslo-sudan" className="text-primary ml-1 hover:text-primary-dark">
-                      {t('portfolioPreview.card1ReadMore')}
-                    </Link>
-                  </p>
-                </div>
-              </article>
-
-              <article className="rounded-2xl overflow-hidden shadow bg-white">
-                <div className="relative w-full h-48">
-                  <Image
-                    src="/images/home/portfolio/home-portfolio-ngo-portal-01.webp"
-                    alt="NGO portal Uganda"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold">{t('portfolioPreview.card2Title')}</h3>
-                  <p className="text-sm text-gray-600 mt-2">
-                    {t('portfolioPreview.card2Desc')}
-                    <Link href="/portfolio/ngo-portal" className="text-primary ml-1 hover:text-primary-dark">
-                      {t('portfolioPreview.card2ReadMore')}
-                    </Link>
-                  </p>
-                </div>
-              </article>
-
-              <article className="rounded-2xl overflow-hidden shadow bg-white">
-                <div className="relative w-full h-48">
-                  <Image
-                    src="/images/home/portfolio/home-portfolio-ecommerce-01.webp"
-                    alt="Ecommerce Uganda case study"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold">{t('portfolioPreview.card3Title')}</h3>
-                  <p className="text-sm text-gray-600 mt-2">
-                    {t('portfolioPreview.card3Desc')}
-                    <Link href="/portfolio/ecommerce-shop" className="text-primary ml-1 hover:text-primary-dark">
-                      {t('portfolioPreview.card3ReadMore')}
-                    </Link>
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div className="mt-10 text-center">
-              <Link
-                href="/portfolio"
-                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition"
-                aria-label="View all portfolio case studies"
-              >
-                {t('portfolioPreview.cta')}
-              </Link>
             </div>
           </div>
         </section>

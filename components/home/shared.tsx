@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from '@/i18n/navigation'
+import { Ltr } from '@/components/Ltr'
 
 // Building blocks shared by the homepage sections (app/[locale]/page.tsx). Server components.
 
@@ -92,4 +93,12 @@ export function BrowserFrame({ children, className = '', dark = false }: { child
       {children}
     </div>
   )
+}
+
+/** Keeps a leading figure ("−75%", "2×") in LTR order inside Arabic text, where the minus
+    sign would otherwise land on the wrong side of the number */
+export function LeadingFigure({ text }: { text: string }) {
+  const m = text.match(/^([−-]?\d[\d.,]*[%×]?)(\s[\s\S]*)$/)
+  if (!m) return <>{text}</>
+  return <><Ltr>{m[1]}</Ltr>{m[2]}</>
 }

@@ -211,6 +211,38 @@
       "cyberDesc": "Security audits, hardening and staff training.",
       "hostingTitle": "Cloud hosting & maintenance",
       "hostingDesc": "Secure, monitored hosting with updates and support."
+    },
+    "selectedWork": {
+      "eyebrow": "Selected work",
+      "title": "Projects with measurable results.",
+      "sfTag": "Media · Sudan",
+      "sfTitle": "SudanFacts · سودان فاكتس",
+      "sfDesc": "A bilingual newsroom website for a leading Sudanese media house.",
+      "sfLink": "Visit the site ↗",
+      "csloTitle": "ERP, CRM and an offline field app",
+      "csloDesc": "Beneficiaries, projects and inventory in one system, with field data that syncs when there is signal.",
+      "csloStat1": "−70%",
+      "csloStat1Label": "manual data entry",
+      "csloStat2": "50%",
+      "csloStat2Label": "faster donor reports",
+      "ngoDesc": "Field staff work without a connection; headquarters sees every site on one dashboard.",
+      "ngoStat": "−75% admin time",
+      "ecomTitle": "E-commerce platform",
+      "ecomDesc": "A faster store with a clearer checkout, built in weeks.",
+      "ecomStat": "2× sales in 90 days · 5× in six months"
+    },
+    "secureByDesign": {
+      "eyebrow": "Secure by design",
+      "title": "Built by a security team, for the places networks fail.",
+      "intro": "We combine cultural understanding with technical expertise, building for humanitarian groups, media, businesses and educational institutions that work where networks fail and data is sensitive.",
+      "card1Title": "Security-first",
+      "card1Body": "Security is built into every site and system from day one, not added at the end.",
+      "card2Title": "NGO expertise",
+      "card2Body": "Experience with humanitarian work in conflict zones, and the realities that come with it.",
+      "card3Title": "Scalable technology",
+      "card3Body": "A modern stack that grows with you, from a first website to a full platform.",
+      "buildWith": "We build with",
+      "seoLine": "Website design, development and cybersecurity for Sudanese organisations, NGOs and businesses in Khartoum, Juba, Kampala, Nairobi and across East Africa."
     }
   },
   "ContactPage": {
