@@ -6,16 +6,13 @@ import NextLink from 'next/link'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HomepageFAQSchema from '@/components/HomepageFAQSchema'
 import HeroSection from '@/components/hero/Hero'
-import dynamic from 'next/dynamic'
 import { getTranslations, getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { buildAlternates } from '@/lib/metadata-helpers'
 import { Flag } from '@/components/Flag'
+import ResultsBand from '@/components/home/ResultsBand'
+import ServicesBento from '@/components/home/ServicesBento'
 
-// Dynamically import non-critical components to reduce initial JS payload (mobile optimization)
-// These will still be code-split and loaded lazily, improving initial bundle size
-
-const MobileMoveOurServices = dynamic(() => import('@/components/MobileMoveOurServices'))
 
 export async function generateMetadata({
   params,
@@ -134,205 +131,14 @@ export default async function Home() {
       />
       <HomepageFAQSchema faqs={faqPreview} />
 
-      {/* Mobile Move Our Services Component */}
-      <MobileMoveOurServices />
-
       <div className="w-full overflow-hidden">
         {/* HERO */}
         <NextIntlClientProvider messages={{ HomePage: messages.HomePage }}>
           <HeroSection />
         </NextIntlClientProvider>
 
-        {/* FEATURED CASE STUDY - CSLO Sudan */}
-        <section className="py-20 bg-white" aria-labelledby="case-study-heading">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 id="case-study-heading" className="text-3xl font-heading font-semibold text-center mb-8">
-              {t('csloSection.title')}
-            </h2>
-            <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                {t.rich('csloSection.body', {
-                  erpLink: (chunks) => <Link href="/services/erp" className="text-primary hover:underline">{chunks}</Link>,
-                  crmLink: (chunks) => <Link href="/services/crm" className="text-primary hover:underline">{chunks}</Link>,
-                  mobileLink: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline">{chunks}</Link>,
-                })}
-              </p>
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{t('csloSection.bullet1')}</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{t('csloSection.bullet2')}</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{t('csloSection.bullet3')}</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{t('csloSection.bullet4')}</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{t('csloSection.bullet5')}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="text-center">
-                <Link
-                  href="/portfolio/cslo-sudan"
-                  className="inline-block text-primary font-semibold hover:text-primary-dark underline"
-                >
-                  {t('csloSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SERVICES GRID */}
-        <section id="services" data-our-services="top" className="py-20 bg-gray-50" aria-labelledby="services-heading">
-        <div className="max-w-6xl mx-auto px-6">
-            <h2 id="services-heading" className="text-3xl font-heading font-semibold text-center mb-4">
-              {t('servicesSection.sectionTitle')}
-            </h2>
-            <p className="text-center text-gray-600 max-w-2xl mx-auto mb-4">
-              {t('servicesSection.sectionSubtitle')}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* CARD 1 - Web Design */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/home-service-web-design-01.webp"
-                    alt="website design Uganda mobile-first UX"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{t('servicesSection.cards.webDesign.title')}</h3>
-                <p className="mt-2 text-gray-600">
-                  {t('servicesSection.cards.webDesign.desc')}
-                </p>
-                <Link href="/services/web-design" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </article>
-
-              {/* CARD 2 - Website Development */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/home-service-website-development-01.webp"
-                    alt="website development Uganda custom systems"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{t('servicesSection.cards.webDev.title')}</h3>
-                <p className="mt-2 text-gray-600">
-                  {t('servicesSection.cards.webDev.desc')}
-                </p>
-                <Link href="/services/website-development" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </article>
-
-              {/* CARD 3 - Cyber Security */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/home-service-cybersecurity-01.webp"
-                    alt="cyber security Uganda penetration testing"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{t('servicesSection.cards.cyber.title')}</h3>
-                <p className="mt-2 text-gray-600">
-                  {t('servicesSection.cards.cyber.desc')}
-                </p>
-                <Link href="/services/cybersecurity" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </article>
-
-              {/* CARD 4 - Mobile App Development */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/home-service-mobile-apps-01.webp"
-                    alt="mobile app development for field teams"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{t('servicesSection.cards.mobileApps.title')}</h3>
-                <p className="mt-2 text-gray-600">
-                  {t('servicesSection.cards.mobileApps.desc')}
-                </p>
-                <Link href="/services/mobile-apps" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </article>
-
-              {/* CARD 5 - ERP & CRM Systems */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/home-service-erp-01.webp"
-                    alt="ERP CRM systems for NGOs ERPNext"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{t('servicesSection.cards.erp.title')}</h3>
-                <p className="mt-2 text-gray-600">
-                  {t('servicesSection.cards.erp.desc')}
-                </p>
-                <Link href="/services/erp" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </article>
-
-              {/* CARD 6 - Cloud Hosting & Maintenance */}
-              <article className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-                <div className="relative w-full h-44 mb-4 rounded-md overflow-hidden">
-                  <Image
-                    src="/images/home/services/home-service-hosting-01.webp"
-                    alt="domain and cloud hosting setup checklist"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold">{t('servicesSection.cards.hosting.title')}</h3>
-                <p className="mt-2 text-gray-600">
-                  {t('servicesSection.cards.hosting.desc')}
-                </p>
-                <Link href="/services/hosting" className="mt-4 inline-flex items-center gap-1 text-primary font-medium hover:text-primary-dark">
-                  {t('servicesSection.cta')}<span aria-hidden="true" className="rtl:hidden"> →</span><span aria-hidden="true" className="ltr:hidden"> ←</span>
-                </Link>
-              </article>
-            </div>
-        </div>
-      </section>
+        <ResultsBand />
+        <ServicesBento />
 
         {/* WHERE WE WORK */}
         <section className="py-20 bg-gray-50" aria-labelledby="where-we-work-heading">
@@ -431,62 +237,6 @@ export default async function Home() {
             </div>
         </div>
       </section>
-
-        {/* NGO DIGITAL SOLUTIONS */}
-        <section className="py-20 bg-white" aria-labelledby="ngo-solutions-heading">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 id="ngo-solutions-heading" className="text-3xl font-heading font-semibold text-center mb-6">
-              {t('ngoSolutions.title')}
-            </h2>
-            <p className="text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              {t('ngoSolutions.subtitle')}
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">
-                  {t.rich('ngoSolutions.bullet1', {
-                    erpLink: (chunks) => <Link href="/services/erp" className="text-primary hover:underline">{chunks}</Link>,
-                  })}
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">
-                  {t.rich('ngoSolutions.bullet2', {
-                    crmLink: (chunks) => <Link href="/services/crm" className="text-primary hover:underline">{chunks}</Link>,
-                  })}
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">
-                  {t.rich('ngoSolutions.bullet3', {
-                    mobileLink: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline">{chunks}</Link>,
-                  })}
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">{t('ngoSolutions.bullet4')}</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-gray-700">{t('ngoSolutions.bullet5')}</p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/contact"
-                className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition font-semibold"
-              >
-                {t('ngoSolutions.cta')}
-              </Link>
-            </div>
-          </div>
-        </section>
 
         {/* OUR PROCESS */}
         <section className="py-20 bg-gray-50" aria-labelledby="process-heading">

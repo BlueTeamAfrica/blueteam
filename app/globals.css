@@ -615,3 +615,18 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .hdr-in, .hdr-slide { animation: none; }
 }
+
+/* Homepage sections (components/home): fade-up as each block scrolls into view. CSS only
+   (scroll-driven animation); browsers without it, and reduced-motion users, see no motion */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}

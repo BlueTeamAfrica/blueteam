@@ -179,7 +179,39 @@
       }
     },
     "metaTitle": "Blue Team Africa | Web, ERP & Security for Sudanese NGOs",
-    "metaDescription": "Blue Team Africa — a team of Sudanese technologists building secure websites, ERP systems, and cybersecurity solutions for NGOs and businesses across Sudan, the diaspora, and East Africa."
+    "metaDescription": "Blue Team Africa — a team of Sudanese technologists building secure websites, ERP systems, and cybersecurity solutions for NGOs and businesses across Sudan, the diaspora, and East Africa.",
+    "results": {
+      "stat1Label": "less manual data entry",
+      "stat2Label": "faster donor reporting",
+      "stat3Label": "less administrative time",
+      "stat4Label": "online sales in 90 days",
+      "line": "Real results from our client projects.",
+      "link": "See the case studies →"
+    },
+    "servicesBento": {
+      "eyebrow": "What we do",
+      "title": "One team for your website, your systems and their security.",
+      "webBadge": "Our core",
+      "webTitle": "Web design & development",
+      "webDesc": "Bilingual, SEO-ready websites that load fast on African networks. Small sites in 10–14 days.",
+      "webLink": "Explore web design →",
+      "ngoTitle": "Built for NGOs",
+      "ngoBadge": "Our specialty",
+      "ngoIntro": "From beneficiary management to donor reporting: the systems behind humanitarian work.",
+      "ngoItem1": "ERPNext NGO modules",
+      "ngoItem2": "Beneficiary & donor CRM",
+      "ngoItem3": "Offline field apps",
+      "ngoItem4": "Training & support",
+      "ngoCta": "Request an NGO system demo",
+      "mobileTitle": "Mobile apps",
+      "mobileDesc": "Field data apps that work offline and sync later.",
+      "erpTitle": "ERP & CRM",
+      "erpDesc": "Finance, programs, stock and contacts, powered by ERPNext.",
+      "cyberTitle": "Cybersecurity",
+      "cyberDesc": "Security audits, hardening and staff training.",
+      "hostingTitle": "Cloud hosting & maintenance",
+      "hostingDesc": "Secure, monitored hosting with updates and support."
+    }
   },
   "ContactPage": {
     "title": "Contact Us",
