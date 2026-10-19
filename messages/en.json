@@ -6,21 +6,6 @@
       "ctaPrimary": "Start Your Project",
       "ctaSecondary": "Explore Our Services"
     },
-    "rotatingServices": {
-      "mobileApps": "Mobile Apps",
-      "stunningWebsites": "Stunning Websites",
-      "cloudHosting": "Cloud Hosting Solutions",
-      "cybersecurity": "Cybersecurity Defenses",
-      "aiChatbots": "AI-Powered Chatbots",
-      "enterpriseIT": "Enterprise IT Systems",
-      "erp": "ERP Systems",
-      "crm": "CRM Platforms",
-      "seo": "SEO Optimization",
-      "brandIdentity": "Brand Identity Design",
-      "socialMedia": "Social Media Growth",
-      "ecommerce": "E-Commerce Solutions",
-      "customSoftware": "Custom Business Software"
-    },
     "process": {
       "step1Title": "Discovery",
       "step2Title": "Prototype",
@@ -150,6 +135,33 @@
       "timeline2": "Business website · 2–4 weeks",
       "timeline3": "Web app or portal · 6–8 weeks"
     }
+  },
+  "Hero": {
+    "eyebrowChip": "We build",
+    "eyebrowText": "Websites · Apps · Systems · Security",
+    "bilingualLine": "Every site we build, in both languages.",
+    "phoneTitle": "New record",
+    "phoneSubtitle": "Distribution · Site 22",
+    "field1Label": "Household ID",
+    "field1Value": "HH-0417",
+    "field2Label": "People in household",
+    "field2Value": "6",
+    "field3Label": "Items received",
+    "field3Value": "Food kit, water",
+    "statusSaving": "Saving record...",
+    "statusOffline": "Saved offline · will sync",
+    "statusSyncing": "Signal back · syncing...",
+    "statusSynced": "✓ Synced, encrypted",
+    "dashTitle": "Field records this week",
+    "dashSynced": "● Synced just now",
+    "dashNote": "Illustrative data",
+    "siteHeading": "Built for the field",
+    "caption1": "A field worker saves a record...",
+    "caption2": "...offline, no signal needed.",
+    "caption3": "Signal returns: it syncs, encrypted.",
+    "caption4": "The dashboard updates instantly.",
+    "caption5": "And the website speaks Arabic too.",
+    "caption6": "One team. Web, apps, systems, security."
   },
   "ContactPage": {
     "title": "Contact Us",

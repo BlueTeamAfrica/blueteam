@@ -1,0 +1,403 @@
+/* Homepage hero (components/hero). HeroLoop puts data-step (0–5) and the flags derived from it
+   on .root; everything here is CSS transitions keyed off those attributes. Only opacity,
+   transform and colours change, never layout, so the loop cannot shift the page. */
+
+/* ---- Stacked layers: one grid cell, so the box is as tall as the tallest layer ---- */
+.layers {
+  display: grid;
+}
+.layers > * {
+  grid-area: 1 / 1;
+  transition: opacity 1s ease;
+}
+.layerOther,
+.root[data-flip='true'] .layerPage {
+  opacity: 0;
+}
+.root[data-flip='true'] .layerOther {
+  opacity: 1;
+}
+
+/* Arabic on the English page: the OS's Arabic font until the loop is about to show it, then
+   Scheherazade New, so / only downloads the 87 KB font for visitors who watch the loop */
+.root .lazyAr {
+  font-family: var(--font-poppins-latin), sans-serif;
+}
+.root[data-warm='true'] .lazyAr {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* ---- EN ⇄ عربي pills: the language the headline is showing is filled ---- */
+.pill {
+  border: 1px solid #d5dee7;
+  background: #fff;
+  color: #4a5868;
+  transition: background-color 1.1s ease, border-color 1.1s ease, color 1.1s ease;
+}
+.root:not([data-flip='true']) .pillPage,
+.root[data-flip='true'] .pillOther {
+  border-color: #1c83c5;
+  background: #1c83c5;
+  color: #fff;
+}
+
+/* ---- Stage: drawn in design units (--u = 1/600 of its width, 1/340 in the compact one), so
+   it scales to any column width with its proportions, and its height, fixed ---- */
+.stageWrap {
+  container-type: inline-size;
+  width: 100%;
+}
+.stage {
+  --u: calc(100cqw / 600);
+  --dir: 1;
+  position: relative;
+  height: calc(660 * var(--u));
+  /* lock positions (centres): at the phone, halfway, at the dashboard */
+  --p0x: 244; --p0y: 330;
+  --p1x: 392; --p1y: 277;
+  --p2x: 540; --p2y: 224;
+  --ls: 44;
+}
+:global(html[dir='rtl']) .stage {
+  --dir: -1;
+}
+.compact {
+  --u: calc(100cqw / 340);
+  height: calc(368 * var(--u));
+  --p0x: 178; --p0y: 234;
+  --p1x: 244; --p1y: 199;
+  --p2x: 310; --p2y: 164;
+  --ls: 34;
+}
+
+/* Every mockup: position and size in design units; its contents in --k (= --u × --s) */
+.item {
+  position: absolute;
+  inset-inline-start: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+  --k: calc(var(--u) * var(--s, 1));
+}
+
+.path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: #1c83c5;
+  transform: scaleX(var(--dir));
+}
+
+/* ---- Dashboard ---- */
+.dash {
+  --x: 280; --y: 0; --w: 320; --h: 224;
+  --f-title: 13; --f-note: 12; --f-count: 36; --f-synced: 12; --bars-h: 72;
+  display: flex;
+  flex-direction: column;
+  padding: calc(20 * var(--k)) calc(22 * var(--k));
+  border-radius: calc(18 * var(--k));
+  background: #0b1b2b;
+  color: #fff;
+  box-shadow: 0 calc(16 * var(--k)) calc(40 * var(--k)) rgba(11, 27, 43, 0.22);
+}
+.compact .dash {
+  --x: 180; --y: 0; --w: 160; --h: 166; --s: 0.64;
+  --f-title: 16.5; --f-note: 14; --f-count: 44; --f-synced: 15; --bars-h: 60;
+}
+.dashHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(2 * var(--k)) calc(10 * var(--k));
+}
+.dashTitle {
+  font-size: calc(var(--f-title) * var(--k));
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.72);
+}
+.dashNote {
+  font-size: calc(var(--f-note) * var(--k));
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.5);
+}
+.count {
+  margin-top: calc(6 * var(--k));
+  font-size: calc(var(--f-count) * var(--k));
+  font-weight: 700;
+  line-height: 1.1;
+}
+.countNew,
+.root[data-synced='true'] .countOld {
+  opacity: 0;
+}
+.root[data-synced='true'] .countNew {
+  opacity: 1;
+}
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: calc(12 * var(--k));
+  height: calc(var(--bars-h) * var(--k));
+  margin-top: calc(12 * var(--k));
+}
+.bar {
+  width: calc(30 * var(--k));
+  border-radius: calc(6 * var(--k)) calc(6 * var(--k)) calc(2 * var(--k)) calc(2 * var(--k));
+  background: #1c83c5;
+  transform-origin: bottom;
+}
+.barLast {
+  background: #d77828;
+  transition: transform 1.1s ease;
+}
+.root[data-synced='true'] .barLast {
+  transform: scaleY(1.9);
+}
+.synced {
+  margin-top: auto;
+  font-size: calc(var(--f-synced) * var(--k));
+  font-weight: 600;
+  line-height: 1.3;
+  color: #4ade80;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.root[data-synced='true'] .synced {
+  opacity: 1;
+}
+
+/* ---- Phone ---- */
+.phone {
+  --x: 0; --y: 92; --w: 236; --h: 472;
+  --f-label: 11; --f-value: 13; --f-status: 12; --f-title: 17; --f-sub: 12;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: calc(8 * var(--k)) solid #0b1b2b;
+  border-radius: calc(36 * var(--k));
+  background: #fff;
+  box-shadow: 0 calc(16 * var(--k)) calc(40 * var(--k)) rgba(11, 27, 43, 0.18);
+}
+.compact .phone {
+  --x: 0; --y: 24; --w: 172; --h: 344; --s: 0.729;
+  --f-label: 13; --f-value: 14.5; --f-status: 13; --f-title: 19; --f-sub: 13.5;
+}
+.phoneHead {
+  padding: calc(12 * var(--k)) calc(16 * var(--k)) calc(16 * var(--k));
+  background: #1c83c5;
+  color: #fff;
+}
+.phoneBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(11 * var(--k));
+  font-weight: 600;
+  line-height: 1;
+}
+.signal {
+  width: calc(20 * var(--k));
+  height: calc(16 * var(--k));
+}
+.signalBars {
+  transition: opacity 1.1s ease;
+}
+.root[data-offline='true'] .signalBars {
+  opacity: 0.4;
+}
+.signalCross {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.root[data-offline='true'] .signalCross {
+  opacity: 1;
+}
+.phoneTitle {
+  margin-top: calc(12 * var(--k));
+  font-size: calc(var(--f-title) * var(--k));
+  font-weight: 700;
+  line-height: 1.25;
+}
+.phoneSub {
+  margin-top: calc(2 * var(--k));
+  font-size: calc(var(--f-sub) * var(--k));
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.82);
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--k));
+  padding: calc(16 * var(--k));
+}
+.label {
+  font-size: calc(var(--f-label) * var(--k));
+  line-height: 1.3;
+  color: #4a5868;
+}
+.value {
+  margin-top: calc(4 * var(--k));
+  padding: calc(7 * var(--k)) calc(10 * var(--k));
+  border: 1px solid #e3e9ef;
+  border-radius: calc(8 * var(--k));
+  font-size: calc(var(--f-value) * var(--k));
+  font-weight: 600;
+  line-height: 1.35;
+  color: #0b1b2b;
+}
+.status {
+  margin: auto calc(16 * var(--k)) calc(16 * var(--k));
+  padding: calc(9 * var(--k)) calc(8 * var(--k));
+  border-radius: 999px;
+  font-size: calc(var(--f-status) * var(--k));
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  background: #eef2f6;
+  color: #4a5868;
+  transition: background-color 1.1s ease, color 1.1s ease;
+}
+.root[data-step='1'] .status { background: #fdebd9; color: #9a4f14; }
+.root[data-step='2'] .status { background: #eaf4fb; color: #14699a; }
+.root[data-synced='true'] .status { background: #e3f6ea; color: #1b7a3f; }
+
+/* Only the layer for the current step is visible (status: 0, 1, 2, then 3 for 3–5) */
+.stepLayer {
+  opacity: 0;
+}
+.root[data-step='0'] .on0,
+.root[data-step='1'] .on1,
+.root[data-step='2'] .on2,
+.root[data-step='3'] .on3,
+.root[data-step='4'] .on4,
+.root[data-step='5'] .on5,
+.root[data-synced='true'] .onSynced {
+  opacity: 1;
+}
+
+/* ---- Travelling lock ---- */
+.lock {
+  --lx: var(--p0x);
+  --ly: var(--p0y);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--ls) * var(--u));
+  height: calc(var(--ls) * var(--u));
+  border: 1px solid #d6e6f2;
+  border-radius: 50%;
+  background: #fff;
+  color: #1c83c5;
+  box-shadow: 0 calc(6 * var(--u)) calc(16 * var(--u)) rgba(11, 27, 43, 0.16);
+  opacity: 0;
+  transform: translate(
+    calc((var(--lx) - var(--ls) / 2) * var(--u) * var(--dir)),
+    calc((var(--ly) - var(--ls) / 2) * var(--u))
+  );
+  transition: transform 2.4s ease, opacity 1s ease;
+}
+.lock svg {
+  width: 46%;
+  height: 46%;
+}
+.root:is([data-step='1'], [data-step='2'], [data-step='3']) .lock {
+  opacity: 1;
+}
+.root[data-step='2'] .lock { --lx: var(--p1x); --ly: var(--p1y); }
+.root:is([data-step='3'], [data-step='4'], [data-step='5']) .lock { --lx: var(--p2x); --ly: var(--p2y); }
+
+/* ---- Website panel ---- */
+.site {
+  --x: 268; --y: 376; --w: 332; --h: 230;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e3e9ef;
+  border-radius: calc(12 * var(--k));
+  background: #fff;
+  box-shadow: 0 calc(12 * var(--k)) calc(32 * var(--k)) rgba(11, 27, 43, 0.16);
+}
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: calc(5 * var(--k));
+  height: calc(30 * var(--k));
+  padding: 0 calc(10 * var(--k));
+  background: #f0f3f6;
+}
+.dot {
+  width: calc(8 * var(--k));
+  height: calc(8 * var(--k));
+  border-radius: 50%;
+}
+.url {
+  flex: 1;
+  margin-inline-start: calc(8 * var(--k));
+  padding: calc(3 * var(--k)) calc(10 * var(--k));
+  border-radius: 999px;
+  background: #fff;
+  font-size: calc(11 * var(--k));
+  line-height: 1.3;
+  color: #4a5868;
+}
+.mini {
+  padding: calc(14 * var(--k)) calc(16 * var(--k));
+}
+.miniNav {
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--k));
+}
+.miniHeading {
+  margin-top: calc(16 * var(--k));
+  font-size: calc(18 * var(--k));
+  font-weight: 700;
+  line-height: 1.35;
+  color: #0b1b2b;
+}
+.block {
+  display: block;
+  height: calc(var(--bh) * var(--k));
+  width: calc(var(--bw) * var(--k));
+  border-radius: calc(3 * var(--k));
+  background: var(--bc, #e3e9ef);
+}
+.miniLine {
+  margin-top: calc(8 * var(--k));
+}
+.miniCards {
+  display: flex;
+  gap: calc(8 * var(--k));
+  margin-top: calc(14 * var(--k));
+}
+.miniCards > span {
+  flex: 1;
+  height: calc(30 * var(--k));
+  border-radius: calc(6 * var(--k));
+  background: #f0f3f6;
+}
+
+/* ---- Caption along the bottom of the full stage (the compact one has it below its panel) ---- */
+.caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  font-size: max(13px, calc(15 * var(--u)));
+  line-height: 1.4;
+  text-align: center;
+  color: #4a5868;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root * {
+    transition: none !important;
+  }
+}

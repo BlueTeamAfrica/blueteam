@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HeroSection from '@/components/hero/Hero'
-import { getTranslations, getMessages } from 'next-intl/server'
-import { NextIntlClientProvider } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata-helpers'
 import ResultsBand from '@/components/home/ResultsBand'
 import ServicesBento from '@/components/home/ServicesBento'
@@ -73,7 +72,6 @@ export async function generateMetadata({
 }
 
 export default async function Home() {
-  const messages = await getMessages()
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -120,11 +118,7 @@ export default async function Home() {
       />
 
       <div className="w-full overflow-hidden">
-        {/* HERO */}
-        {/* Only the strings the hero reads, not the whole HomePage namespace */}
-        <NextIntlClientProvider messages={{ HomePage: { hero: messages.HomePage.hero, rotatingServices: messages.HomePage.rotatingServices } }}>
-          <HeroSection />
-        </NextIntlClientProvider>
+        <HeroSection />
 
         <ResultsBand />
         <ServicesBento />
