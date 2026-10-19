@@ -21,109 +21,15 @@
       "ecommerce": "E-Commerce Solutions",
       "customSoftware": "Custom Business Software"
     },
-    "csloSection": {
-      "title": "Digital Transformation for CSLO Sudan",
-      "body": "Blue Team implemented a complete <erpLink>ERPNext</erpLink> + <crmLink>Frappe CRM</crmLink> system for CSLO Sudan, enabling real-time project tracking, automated reporting, secure data storage, and a custom <mobileLink>mobile app</mobileLink> for field officers working in crisis-affected areas.",
-      "cta": "View Full Case Study",
-      "intro": "Looking for a reliable <rwandaLink>professional web design services in Rwanda</rwandaLink>? Explore our local web design services.",
-      "bullet1": "Centralized beneficiaries, projects & inventory",
-      "bullet2": "Automated workflows and reporting dashboards",
-      "bullet3": "Mobile app for field data collection (even in low network zones)",
-      "bullet4": "Full integration with their website",
-      "bullet5": "Secure, monitored cloud hosting"
-    },
-    "servicesSection": {
-      "title": "What We Build",
-      "subtitle": "End-to-end digital solutions for NGOs, businesses, and startups — from websites and apps to ERP systems and cybersecurity.",
-      "cta": "Learn More",
-      "sectionTitle": "Our Core Digital Services",
-      "sectionSubtitle": "We combine design, engineering, and cybersecurity to deliver complete digital solutions.",
-      "pricingNote": "Learn more about <pricingLink>how much website design costs in Rwanda</pricingLink> in our comprehensive pricing guide.",
-      "cards": {
-        "webDesign": {
-          "title": "Web Design (SEO-Ready Websites)",
-          "desc": "Modern, mobile-first website design optimized for speed, ranking, and user experience."
-        },
-        "webDev": {
-          "title": "Website Development (Fast, Secure, Custom)",
-          "desc": "Custom Next.js websites, portals, dashboards, and enterprise systems tailored for your workflow."
-        },
-        "cyber": {
-          "title": "Cyber Security Services",
-          "desc": "Full protection: penetration testing, threat monitoring, audits, backups, secure hosting, and compliance."
-        },
-        "mobileApps": {
-          "title": "Mobile App Development (NGO Field Data Applications)",
-          "desc": "We build offline-capable Android & iOS apps that sync directly with your ERP, CRM, or database."
-        },
-        "erp": {
-          "title": "ERP & CRM Systems for NGOs (Powered by ERPNext)",
-          "desc": "End-to-end NGO management systems: finance, HR, logistics, reporting, and field tracking."
-        },
-        "hosting": {
-          "title": "Cloud Hosting & Maintenance",
-          "desc": "Managed hosting, daily backups, monitoring and updates, so your website and systems stay fast and online."
-        }
-      }
-    },
-    "rwandaSection": {
-      "title": "Web Design & Development in Rwanda",
-      "subtitle": "We provide website design, mobile app development, and cybersecurity services to NGOs and businesses in Rwanda, including Kigali. For organizations seeking <devLink>professional web development services in Rwanda</devLink>, we offer custom backend systems, API integrations, and scalable web applications.",
-      "cta": "Explore Rwanda Services"
-    },
-    "whyChoose": {
-      "title": "A Digital Team Shaped by Real-World Challenges",
-      "securityFirst": "Security-First",
-      "securityFirstBody": "Every solution is built with security at its core — from secure coding practices to cybersecurity audits.",
-      "builtForAfrica": "Built for Africa",
-      "builtForAfricaBody": "We understand the infrastructure realities of East Africa — variable connectivity, mobile-first users, and regional payment systems.",
-      "ngoExpertise": "NGO Expertise",
-      "ngoExpertiseBody": "We've built systems for humanitarian organizations operating in conflict zones — we understand the stakes.",
-      "teamStory1": "Blue Team Africa was formed by a group of Sudanese technology professionals who rebuilt their careers after the war. Today, our team brings deep cultural understanding and technical expertise to organizations that serve the Sudanese community — humanitarian groups, media organizations, businesses, and educational institutions, both inside Sudan and across the diaspora.",
-      "teamStory2": "We specialize in building systems for NGOs, companies, colleges, and institutions operating in complex environments — where reliability, security, and performance are not optional.",
-      "teamStory3": "",
-      "scalableTech": "Scalable Technology",
-      "scalableTechBody": "Modern stack: Next.js, ERPNext, Flutter, Firebase, Linux."
-    },
-    "ngoSolutions": {
-      "title": "Digital Solutions for NGOs",
-      "subtitle": "From beneficiary management to donor reporting, we build the systems that power humanitarian operations in East Africa.",
-      "cta": "Request an NGO System Demo",
-      "bullet1": "<erpLink>ERPNext</erpLink> NGO Modules (finance, HR, programs, logistics)",
-      "bullet2": "<crmLink>CRM systems</crmLink> for beneficiary & donor management",
-      "bullet3": "<mobileLink>Mobile apps</mobileLink> for field staff (offline data capture, automatic sync)",
-      "bullet4": "Secure cloud deployment",
-      "bullet5": "Training & continuous support"
-    },
     "process": {
-      "title": "How We Work",
       "step1Title": "Discovery",
-      "step1Body": "We analyze your operations, workflows and reporting needs.",
       "step2Title": "Prototype",
-      "step2Body": "We design a clear system layout before development begins.",
       "step3Title": "Development",
-      "step3Body": "We build your website, app or ERP using clean, scalable architecture.",
       "step4Title": "Deployment",
-      "step4Body": "We migrate data, configure hosting and train your team.",
-      "step5Title": "Support",
-      "step5Body": "We monitor performance, updates and security—24/7."
-    },
-    "portfolioPreview": {
-      "title": "Selected Projects — Measurable Results",
-      "cta": "View All Case Studies",
-      "card1Title": "CSLO Sudan — ERP & CRM Digital Transformation",
-      "card1Desc": "Complete ERPNext + Frappe CRM system with mobile field reporting for humanitarian operations.",
-      "card1ReadMore": "Read case study →",
-      "card2Title": "NGO Portal — Website & CRM",
-      "card2Desc": "50% faster donor reporting.",
-      "card2ReadMore": "Read case study →",
-      "card3Title": "Retail eCommerce — Rapid Build",
-      "card3Desc": "2× online sales in 90 days, 5× within six months.",
-      "card3ReadMore": "Read case study →"
+      "step5Title": "Support"
     },
     "faqPreview": {
       "title": "Common Questions",
-      "cta": "View All FAQs",
       "q1": "How long does it take to design a website?",
       "a1": "It depends on size: a small website (landing page or up to about 5 pages) takes 10–14 days, a business website (about 6–15 pages with a CMS and integrations) 2–4 weeks, and a web application or portal (logins, dashboards, databases) 6–8 weeks. We confirm the timeline after scoping.",
       "q2": "Do you offer hosting and maintenance?",
@@ -134,7 +40,6 @@
       "a4": "All websites include encryption, server hardening, and threat protection.",
       "q5": "Can you migrate my old website?",
       "a5": "Yes — we migrate from WordPress, Joomla, Wix, or custom systems.",
-      "contactCta": "Have more questions? Contact us →",
       "q6": "How much does a website cost in Rwanda?",
       "a6": "Website costs in Rwanda vary by project scope — simple sites start at a few hundred dollars, while business platforms run higher. See our <pricingLink>detailed Rwanda web design pricing guide</pricingLink> for real figures.",
       "eyebrow": "FAQ",
@@ -146,23 +51,7 @@
       "ctaPrimary": "Get a Free Quote",
       "ctaWhatsApp": "Contact Us on WhatsApp"
     },
-    "regionalSection": {
-      "title": "Serving Organizations Across East Africa",
-      "body": "From Sudan to Uganda, Kenya and Rwanda, we support NGOs, startups and growing businesses with digital solutions that improve operations, accountability and service delivery.",
-      "sudan": "Sudan",
-      "uganda": "Uganda",
-      "kenya": "Kenya",
-      "rwanda": "Rwanda"
-    },
-    "seoBlock": {
-      "title": "Trusted Website Design & Cybersecurity Partner for Sudanese Organizations Across East Africa",
-      "body": "Blue Team Africa provides web design, web development, cybersecurity, mobile app development, ERP systems, and SEO services to businesses and NGOs in Kampala, Juba, Khartoum, Nairobi, and across East Africa. Our solutions are built for speed, reliability, and long-term growth."
-    },
-    "techStack": {
-      "label": "We build using:"
-    },
     "whereWeWork": {
-      "title": "Where We Work",
       "sudan": {
         "name": "Sudan",
         "desc": "Our primary focus, and the market we're actively expanding into, including new work in educational technology for private colleges."
@@ -176,8 +65,7 @@
         "desc": "A growing base of clients and partners, particularly in Nairobi."
       },
       "rwanda": {
-        "name": "Rwanda",
-        "desc": "Our operational base, where Blue Team Africa is registered. Explore our <webDesignLink>Web Design in Rwanda</webDesignLink> services."
+        "name": "Rwanda"
       },
       "heading": "Rooted in Sudan, working across East Africa.",
       "rwandaText": "Our operational base in Kigali, where Blue Team Africa is registered.",
