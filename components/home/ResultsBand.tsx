@@ -21,7 +21,7 @@ export default async function ResultsBand() {
           {STATS.map((s, i) => (
             <li key={s.key} className={`border-s-2 ps-5 md:ps-6 ${i === STATS.length - 1 ? 'border-[#F0A867]' : 'border-white/40'}`}>
               <p dir="ltr" className="text-start font-heading text-[44px] font-extrabold leading-none md:text-[64px] rtl:text-end">{s.value}</p>
-              <p className="mt-3 text-[16px] font-bold leading-snug md:text-[19px]">{t(s.key)}</p>
+              <p className="mt-3 text-[16px] font-bold leading-snug md:text-[19px] rtl:leading-[1.6]">{t(s.key)}</p>
             </li>
           ))}
         </ul>
