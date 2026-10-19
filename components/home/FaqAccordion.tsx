@@ -20,11 +20,11 @@ export default function FaqAccordion({ items }: { items: { q: string; a: ReactNo
                 aria-expanded={isOpen}
                 aria-controls={`faq-a-${i}`}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-4 py-5 text-start font-heading font-semibold text-[#0B1B2B] hover:text-[#1C83C5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C83C5]"
+                className="flex w-full items-center justify-between gap-4 py-5 text-start font-heading font-semibold text-navy hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 <span data-faq-q>{item.q}</span>
                 <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-200 motion-reduce:transition-none ${isOpen ? 'rotate-45 bg-[#1C83C5] text-white' : 'bg-[#EAF4FB] text-[#1C83C5]'}`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-200 motion-reduce:transition-none ${isOpen ? 'rotate-45 bg-primary text-white' : 'bg-[#EAF4FB] text-primary'}`}
                   aria-hidden="true"
                 >
                   <Plus size={18} />

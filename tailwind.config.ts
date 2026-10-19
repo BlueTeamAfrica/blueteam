@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#1982c4',
+        primary: '#1C83C5', // logo blue
         'primary-dark': '#14699a',
         'primary-light': '#4da3d9',
         'primary-50': '#e6f2f8',
@@ -21,7 +21,8 @@ const config: Config = {
         muted: '#64748B',
         // Keep for backward compatibility
         foreground: 'var(--foreground)',
-        accent: 'var(--accent)',
+        accent: '#D77828', // logo orange (was var(--accent); no accent-* class was in use)
+        navy: '#0B1B2B',
       },
       fontFamily: {
         heading: ['var(--font-poppins)', 'sans-serif'],

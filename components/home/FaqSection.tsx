@@ -13,7 +13,7 @@ export default async function FaqSection() {
   // JSON-LD gets as plain text
   const pricingLink = (chunks: React.ReactNode) => (
     // Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
-    <NextLink href="/blog/web-design-cost-in-rwanda-2026" className={`rounded text-[#0D5A8A] underline hover:text-[#1C83C5] ${focusRing}`}>{chunks}</NextLink>
+    <NextLink href="/blog/web-design-cost-in-rwanda-2026" className={`rounded text-[#0D5A8A] underline hover:text-primary ${focusRing}`}>{chunks}</NextLink>
   )
   const items = KEYS.map((n) => ({
     q: t(`q${n}`),

@@ -35,13 +35,13 @@ const EMAIL = 'contact@blueteamafrica.com'
 type Tone = 'blue' | 'orange'
 interface Item { href: string; title: string; desc: string; icon: LucideIcon; tone?: Tone }
 
-const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C83C5]'
+const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
 
 function IconTile({ icon: Icon, tone = 'blue' }: { icon: LucideIcon; tone?: Tone }) {
   return (
     <span
       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] ${
-        tone === 'orange' ? 'bg-[#FBEFE4] text-[#B5621D]' : 'bg-[#EAF4FB] text-[#1C83C5]'
+        tone === 'orange' ? 'bg-[#FBEFE4] text-[#B5621D]' : 'bg-[#EAF4FB] text-primary'
       }`}
       aria-hidden="true"
     >
@@ -60,7 +60,7 @@ function PanelItem({ item }: { item: Item }) {
       <Link href={item.href} className={`group -mx-2 flex gap-3 rounded-xl p-2 no-underline transition-colors hover:bg-[#F6F8FA] ${focusRing}`}>
         <IconTile icon={item.icon} tone={item.tone} />
         <span className="min-w-0">
-          <span className="block text-[16px] font-semibold leading-snug text-[#0B1B2B] group-hover:text-[#1C83C5]">{item.title}</span>
+          <span className="block text-[16px] font-semibold leading-snug text-[#0B1B2B] group-hover:text-primary">{item.title}</span>
           <span className="mt-0.5 block text-[14px] leading-snug text-[#4A5868]">{item.desc}</span>
         </span>
       </Link>
@@ -79,9 +79,10 @@ function Strip({ left, right }: { left: ReactNode; right: ReactNode }) {
   )
 }
 
+// !text-primary, not text-primary: globals.css recolours a.text-primary to the darker link blue
 function StripLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link href={href} className={`rounded font-semibold text-[#1C83C5] no-underline hover:underline ${focusRing}`}>
+    <Link href={href} className={`rounded font-semibold !text-primary no-underline hover:underline ${focusRing}`}>
       {children}
     </Link>
   )
@@ -92,15 +93,15 @@ function ContactLines({ className = '' }: { className?: string }) {
     <ul className={`space-y-2 text-[15px] ${className}`}>
       {PHONES.map((p) => (
         <li key={p}>
-          <a href={`tel:${p.replace(/\s/g, '')}`} className={`inline-flex items-center gap-2 rounded font-semibold text-[#0B1B2B] no-underline hover:text-[#1C83C5] ${focusRing}`}>
-            <Phone size={16} className="text-[#1C83C5]" aria-hidden="true" />
+          <a href={`tel:${p.replace(/\s/g, '')}`} className={`inline-flex items-center gap-2 rounded font-semibold text-[#0B1B2B] no-underline hover:text-primary ${focusRing}`}>
+            <Phone size={16} className="text-primary" aria-hidden="true" />
             <Ltr>{p}</Ltr>
           </a>
         </li>
       ))}
       <li>
-        <a href={`mailto:${EMAIL}`} className={`inline-flex items-center gap-2 rounded font-semibold text-[#0B1B2B] no-underline hover:text-[#1C83C5] ${focusRing}`}>
-          <Mail size={16} className="text-[#1C83C5]" aria-hidden="true" />
+        <a href={`mailto:${EMAIL}`} className={`inline-flex items-center gap-2 rounded font-semibold text-[#0B1B2B] no-underline hover:text-primary ${focusRing}`}>
+          <Mail size={16} className="text-primary" aria-hidden="true" />
           <Ltr>{EMAIL}</Ltr>
         </a>
       </li>
@@ -172,7 +173,7 @@ export default async function Header() {
 
   const cards = [
     { n: 1, href: '/portfolio/cslo-sudan', cls: 'bg-[#0B1B2B] text-white', sub: 'text-white/70' },
-    { n: 2, href: '/portfolio/ngo-portal', cls: 'bg-[#1C83C5] text-white', sub: 'text-white/80' },
+    { n: 2, href: '/portfolio/ngo-portal', cls: 'bg-primary text-white', sub: 'text-white/80' },
     { n: 3, href: '/portfolio/ecommerce-shop', cls: 'bg-[#FBEFE4] text-[#0B1B2B]', sub: 'text-[#4A5868]' },
   ].map((c) => ({
     ...c,
@@ -202,14 +203,14 @@ export default async function Header() {
     { href: '/locations/rwanda', title: tRwanda('breadcrumbRwanda'), desc: t('rwandaDesc') },
   ]
 
-  const ctaClass = `inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[12px] bg-[#1C83C5] px-6 font-heading text-[18px] font-bold text-white no-underline transition-colors hover:bg-[#166DA6] ${focusRing}`
+  const ctaClass = `inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[12px] bg-primary px-6 font-heading text-[18px] font-bold text-white no-underline transition-colors hover:bg-[#166DA6] ${focusRing}`
 
   const logo = (
     <Link href="/" className={`flex shrink-0 items-center gap-1.5 rounded-lg no-underline min-[380px]:gap-2 lg:gap-2.5 ${focusRing}`} aria-label="Blue Team Africa">
       <Image src="/images/logo/logo-icon.png" alt="" width={44} height={44} className="h-8 w-8 min-[380px]:h-9 min-[380px]:w-9 lg:h-11 lg:w-11" priority />
       {/* Sized down below 380px so logo, language pill and menu button fit on one row at 320 */}
       <span dir="ltr" className="whitespace-nowrap font-heading text-[14px] font-bold leading-none min-[380px]:text-[18px] lg:text-[21px]">
-        <span className="text-[#1C83C5]">Blue Team</span> <span className="text-[#D77828]">Africa</span>
+        <span className="text-primary">Blue Team</span> <span className="text-accent">Africa</span>
       </span>
     </Link>
   )
@@ -232,8 +233,8 @@ export default async function Header() {
           <Image src={post.image} alt={post.imageAlt} width={post.imageWidth} height={post.imageHeight} sizes="300px" className="h-auto w-full" />
           <span className="block p-4">
             <span className="block text-[12px] font-semibold uppercase tracking-wide text-[#B5621D]">{t('newOnBlog')}</span>
-            <span className="mt-1.5 block text-[16px] font-semibold leading-snug text-[#0B1B2B] group-hover:text-[#1C83C5]">{post.title}</span>
-            <span className="mt-3 block text-[14px] font-semibold text-[#1C83C5]">{t('readArticle')}</span>
+            <span className="mt-1.5 block text-[16px] font-semibold leading-snug text-[#0B1B2B] group-hover:text-primary">{post.title}</span>
+            <span className="mt-3 block text-[14px] font-semibold text-primary">{t('readArticle')}</span>
           </span>
         </Link>
       </div>
@@ -260,7 +261,7 @@ export default async function Header() {
           <ul className="space-y-1">
             {moreCases.map((c) => (
               <li key={c.href}>
-                <Link href={c.href} className={`-mx-2 flex items-center justify-between gap-2 rounded-lg px-2 py-2 text-[15px] font-medium text-[#0B1B2B] no-underline hover:bg-[#F6F8FA] hover:text-[#1C83C5] ${focusRing}`}>
+                <Link href={c.href} className={`-mx-2 flex items-center justify-between gap-2 rounded-lg px-2 py-2 text-[15px] font-medium text-[#0B1B2B] no-underline hover:bg-[#F6F8FA] hover:text-primary ${focusRing}`}>
                   {c.title}
                   <ChevronRight size={16} className="shrink-0 text-[#4A5868] rtl:rotate-180" aria-hidden="true" />
                 </Link>
@@ -284,7 +285,7 @@ export default async function Header() {
           {aboutItems.map((i) => (
             <li key={i.href}>
               <Link href={i.href} className={`group -mx-2 block rounded-xl p-2 no-underline hover:bg-[#F6F8FA] ${focusRing}`}>
-                <span className="block text-[16px] font-semibold text-[#0B1B2B] group-hover:text-[#1C83C5]">{i.title}</span>
+                <span className="block text-[16px] font-semibold text-[#0B1B2B] group-hover:text-primary">{i.title}</span>
                 <span className="mt-0.5 block text-[14px] text-[#4A5868]">{i.desc}</span>
               </Link>
             </li>

@@ -29,7 +29,7 @@ export default async function WhereWeWork() {
           {countries.map((c) => (
             <div key={c.code} className="reveal flex flex-col rounded-[20px] border border-[#E3E9EF] bg-white p-6">
               <Flag code={c.code} size="large" />
-              <h3 className="mt-4 font-heading !text-[20px] font-bold text-[#0B1B2B]">{c.name}</h3>
+              <h3 className="mt-4 font-heading !text-[20px] font-bold text-navy">{c.name}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-[#4A5868]">{c.text}</p>
               {'link' in c && <div className="mt-auto">{c.link}</div>}
             </div>

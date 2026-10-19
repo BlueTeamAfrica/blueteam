@@ -6,7 +6,7 @@ import { Ltr } from '@/components/Ltr'
 
 export const container = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
 export const sectionPad = 'py-16 md:py-[112px]'
-export const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C83C5]'
+export const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
 // Makes the whole card clickable through one real link (put it on the card's main link)
 export const stretched = "after:absolute after:inset-0 after:rounded-[inherit] after:content-['']"
 
@@ -21,7 +21,7 @@ export function Eyebrow({ children, onDark = false }: { children: ReactNode; onD
 
 export function H2({ id, children, onDark = false, className = '' }: { id: string; children: ReactNode; onDark?: boolean; className?: string }) {
   return (
-    <h2 id={id} className={`mt-3 font-heading !text-[32px] font-bold !leading-[1.15] md:!text-[48px] ${onDark ? 'text-white' : 'text-[#0B1B2B]'} ${className}`}>
+    <h2 id={id} className={`mt-3 font-heading !text-[32px] font-bold !leading-[1.15] md:!text-[48px] ${onDark ? 'text-white' : 'text-navy'} ${className}`}>
       {children}
     </h2>
   )
@@ -46,17 +46,18 @@ export function SectionHeader({ id, eyebrow, title, link, onDark = false }: {
   )
 }
 
-/** Faint network of nodes and lines, the brand motif. Decorative; mirrors in RTL. */
-export function NetworkLines({ className = '', stroke = 'currentColor', accent }: { className?: string; stroke?: string; accent?: string }) {
+/** Faint network of nodes and lines, the brand motif, drawn in currentColor (set it with a
+    text-* class); accentNode makes one node orange. Decorative; mirrors in RTL. */
+export function NetworkLines({ className = '', accentNode = false }: { className?: string; accentNode?: boolean }) {
   const nodes: [number, number][] = [[40, 60], [130, 20], [210, 90], [300, 40], [380, 110], [90, 160], [190, 200], [280, 170], [360, 250], [150, 280], [250, 290]]
   const edges: [number, number][] = [[0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [5, 2], [2, 6], [6, 7], [7, 3], [7, 4], [7, 8], [6, 9], [9, 10], [10, 7], [5, 6], [10, 8]]
   return (
     <svg viewBox="0 0 420 320" fill="none" aria-hidden="true" className={`pointer-events-none rtl:-scale-x-100 ${className}`}>
       {edges.map(([a, b]) => (
-        <line key={`${a}-${b}`} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]} stroke={stroke} strokeWidth="1.5" />
+        <line key={`${a}-${b}`} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]} stroke="currentColor" strokeWidth="1.5" />
       ))}
       {nodes.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r={i === 7 && accent ? 7 : 4.5} fill={i === 7 && accent ? accent : stroke} />
+        <circle key={i} cx={x} cy={y} r={i === 7 && accentNode ? 7 : 4.5} fill="currentColor" className={i === 7 && accentNode ? 'fill-accent' : undefined} />
       ))}
     </svg>
   )
@@ -83,7 +84,7 @@ export function ArrowIcon({ className = '' }: { className?: string }) {
 /** Minimal browser chrome around a screenshot or a CSS mock page */
 export function BrowserFrame({ children, className = '', dark = false }: { children: ReactNode; className?: string; dark?: boolean }) {
   return (
-    <div className={`overflow-hidden rounded-xl border shadow-[0_12px_32px_rgba(11,27,43,0.18)] ${dark ? 'border-white/15 bg-[#0B1B2B]' : 'border-[#E3E9EF] bg-white'} ${className}`}>
+    <div className={`overflow-hidden rounded-xl border shadow-[0_12px_32px_rgba(11,27,43,0.18)] ${dark ? 'border-white/15 bg-navy' : 'border-[#E3E9EF] bg-white'} ${className}`}>
       <div className={`flex h-7 items-center gap-1.5 px-3 ${dark ? 'bg-white/10' : 'bg-[#F0F3F6]'}`} dir="ltr">
         <span className="h-2 w-2 rounded-full bg-[#FF6159]" />
         <span className="h-2 w-2 rounded-full bg-[#FFBD2E]" />

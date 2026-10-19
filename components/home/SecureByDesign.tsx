@@ -24,7 +24,7 @@ export default async function SecureByDesign() {
 
   return (
     <section aria-labelledby="secure-heading" className={`relative overflow-hidden bg-[#0A1A2B] text-white ${sectionPad}`}>
-      <NetworkLines className="absolute -top-6 end-0 w-[520px] opacity-40" stroke="#1C83C5" accent="#D77828" />
+      <NetworkLines className="absolute -top-6 end-0 w-[520px] text-primary opacity-40" accentNode />
       <div className={`${container} relative`}>
         <div className="max-w-3xl">
           <Eyebrow onDark>{t('eyebrow')}</Eyebrow>
@@ -36,7 +36,7 @@ export default async function SecureByDesign() {
           {cards.map((c) => (
             <div key={c.title} className="reveal rounded-[20px] border border-white/10 bg-white/[0.06] p-7 backdrop-blur-sm">
               <span
-                className={`flex h-12 w-12 items-center justify-center rounded-[14px] ${c.orange ? 'bg-[#D77828]/20 text-[#F0A867]' : 'bg-[#1C83C5]/25 text-[#8CC8EE]'}`}
+                className={`flex h-12 w-12 items-center justify-center rounded-[14px] ${c.orange ? 'bg-accent/20 text-[#F0A867]' : 'bg-primary/25 text-[#8CC8EE]'}`}
                 aria-hidden="true"
               >
                 <c.icon size={24} strokeWidth={1.75} />
@@ -51,7 +51,7 @@ export default async function SecureByDesign() {
           <p className="shrink-0 text-[15px] font-semibold text-white/80">{t('buildWith')}</p>
           <ul className="flex flex-wrap gap-2.5">
             {STACK.map((s) => (
-              <li key={s.name} className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-[14px] font-semibold text-[#0B1B2B]">
+              <li key={s.name} className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-[14px] font-semibold text-navy">
                 {/* eslint-disable-next-line @next/next/no-img-element -- remote SVG logos, as before */}
                 <img src={`https://cdn.simpleicons.org/${s.icon}`} alt="" width={18} height={18} loading="lazy" className="h-[18px] w-[18px]" />
                 {s.name}

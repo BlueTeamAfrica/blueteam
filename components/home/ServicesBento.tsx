@@ -9,13 +9,13 @@ function MockSite() {
     <BrowserFrame className="mt-8 max-w-[440px]" >
       <div className="space-y-3 p-4" aria-hidden="true">
         <div className="flex items-center justify-between">
-          <span className="h-2.5 w-16 rounded-full bg-[#1C83C5]" />
+          <span className="h-2.5 w-16 rounded-full bg-primary" />
           <span className="flex gap-1.5"><span className="h-2 w-8 rounded-full bg-[#D5DEE7]" /><span className="h-2 w-8 rounded-full bg-[#D5DEE7]" /><span className="h-2 w-8 rounded-full bg-[#D5DEE7]" /></span>
         </div>
         <div className="rounded-lg bg-[#EAF4FB] p-4">
-          <span className="block h-3 w-3/4 rounded-full bg-[#0B1B2B]/80" />
+          <span className="block h-3 w-3/4 rounded-full bg-navy/80" />
           <span className="mt-2 block h-2 w-1/2 rounded-full bg-[#4A5868]/40" />
-          <span className="mt-4 inline-block h-5 w-20 rounded-md bg-[#D77828]" />
+          <span className="mt-4 inline-block h-5 w-20 rounded-md bg-accent" />
         </div>
         <div className="grid grid-cols-3 gap-2">
           {[0, 1, 2].map((i) => (
@@ -36,12 +36,12 @@ function SmallTile({ href, icon: Icon, title, desc, tone = 'light', wide = false
   const peach = tone === 'peach'
   return (
     <div className={`reveal group relative flex flex-col rounded-[24px] p-7 transition-shadow hover:shadow-[0_12px_32px_rgba(11,27,43,0.10)] ${peach ? 'bg-[#FBEFE4]' : 'bg-[#F4F8FB]'} ${wide ? 'md:col-span-2 md:flex-row md:items-center md:gap-6' : ''}`}>
-      <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] ${peach ? 'bg-[#F7DCC4] text-[#B5621D]' : 'bg-[#DCEBF6] text-[#1C83C5]'}`} aria-hidden="true">
+      <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] ${peach ? 'bg-[#F7DCC4] text-[#B5621D]' : 'bg-[#DCEBF6] text-primary'}`} aria-hidden="true">
         <Icon size={24} strokeWidth={1.75} />
       </span>
       <div className={wide ? 'mt-5 md:mt-0' : 'mt-5'}>
-        <h3 className="font-heading !text-[21px] font-bold text-[#0B1B2B]">
-          <Link href={href} className={`rounded !no-underline group-hover:text-[#1C83C5] ${stretched} ${focusRing}`}>{title}</Link>
+        <h3 className="font-heading !text-[21px] font-bold text-navy">
+          <Link href={href} className={`rounded !no-underline group-hover:text-primary ${stretched} ${focusRing}`}>{title}</Link>
         </h3>
         <p className="mt-2 text-[16px] leading-relaxed text-[#4A5868]">{desc}</p>
       </div>
@@ -61,7 +61,7 @@ export default async function ServicesBento() {
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {/* Web design & development: 2×2 */}
-          <div className="reveal group relative flex flex-col overflow-hidden rounded-[24px] bg-[#1C83C5] p-8 text-white md:col-span-2 lg:row-span-2 md:p-10">
+          <div className="reveal group relative flex flex-col overflow-hidden rounded-[24px] bg-primary p-8 text-white md:col-span-2 lg:row-span-2 md:p-10">
             <span className="self-start rounded-full bg-white/15 px-3 py-1 text-[13px] font-semibold">{t('webBadge')}</span>
             <h3 className="mt-5 font-heading !text-[28px] font-bold !leading-tight md:!text-[34px]">{t('webTitle')}</h3>
             <p className="mt-3 max-w-[460px] text-[17px] leading-relaxed text-white/85">{t('webDesc')}</p>
@@ -74,7 +74,7 @@ export default async function ServicesBento() {
           </div>
 
           {/* Built for NGOs: cols 3–4, row 1 */}
-          <div className="reveal relative flex flex-col rounded-[24px] bg-[#0B1B2B] p-8 text-white md:col-span-2 md:p-10">
+          <div className="reveal relative flex flex-col rounded-[24px] bg-navy p-8 text-white md:col-span-2 md:p-10">
             <span className="self-start rounded-full bg-[#FBEFE4] px-3 py-1 text-[13px] font-semibold text-[#B5621D]">{t('ngoBadge')}</span>
             <h3 className="mt-5 font-heading !text-[26px] font-bold !leading-tight md:!text-[30px]">{t('ngoTitle')}</h3>
             <p className="mt-3 text-[16px] leading-relaxed text-white/75">{t('ngoIntro')}</p>
@@ -86,7 +86,7 @@ export default async function ServicesBento() {
                 </li>
               ))}
             </ul>
-            <Link href="/contact" className={`mt-8 inline-flex h-12 items-center justify-center self-start rounded-[12px] bg-white px-6 text-[16px] font-semibold text-[#0B1B2B] !no-underline transition-colors hover:bg-[#EAF4FB] ${focusRing}`}>
+            <Link href="/contact" className={`mt-8 inline-flex h-12 items-center justify-center self-start rounded-[12px] bg-white px-6 text-[16px] font-semibold text-navy !no-underline transition-colors hover:bg-[#EAF4FB] ${focusRing}`}>
               {t('ngoCta')}
             </Link>
           </div>

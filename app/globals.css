@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #1982c4;
+  --color-primary: #1C83C5;
   --color-primary-dark: #14699a;
   --color-primary-light: #4da3d9;
   --color-primary-text: #0d5a8a; /* Darker shade for better contrast on white */
@@ -403,7 +403,7 @@ html {
 /* Location link section styling - minimal, mobile-first */
 .location-link {
   padding: 1.5rem;
-  border-left: 3px solid var(--color-primary, #1982c4);
+  border-left: 3px solid var(--color-primary, #1C83C5);
   background: rgba(37, 99, 235, 0.05);
   border-radius: 0 8px 8px 0;
 }
@@ -463,7 +463,7 @@ html {
 }
 
 .pricing-card.featured {
-  border: 2px solid var(--color-primary, #1982c4);
+  border: 2px solid var(--color-primary, #1C83C5);
   position: relative;
 }
 
@@ -473,7 +473,7 @@ html {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-primary, #1982c4);
+  background: var(--color-primary, #1C83C5);
   color: white;
   padding: 4px 16px;
   border-radius: 20px;
@@ -482,7 +482,7 @@ html {
 }
 
 .pricing-card .price {
-  color: var(--color-primary, #1982c4);
+  color: var(--color-primary, #1C83C5);
 }
 
 .pricing-card ul {

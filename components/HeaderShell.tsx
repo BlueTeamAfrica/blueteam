@@ -20,7 +20,7 @@ interface Props {
 
 const OPEN_DELAY = 150
 const CLOSE_DELAY = 200
-const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C83C5]'
+const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 // Open/close behaviour for the server-rendered header (components/Header.tsx). Panels and the
@@ -140,7 +140,7 @@ export default function HeaderShell({ labels, logo, ctaClass, panels, mobileScre
     if ((e.target as HTMLElement).closest('a')) closeAll()
   }
 
-  const navButton = `inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[16px] font-semibold text-[#0B1B2B] transition-colors hover:text-[#1C83C5] ${focusRing}`
+  const navButton = `inline-flex items-center gap-1 rounded-lg px-3 py-2 text-[16px] font-semibold text-[#0B1B2B] transition-colors hover:text-primary ${focusRing}`
 
   return (
     <>
@@ -159,7 +159,7 @@ export default function HeaderShell({ labels, logo, ctaClass, panels, mobileScre
                   <button
                     ref={(el) => { triggerRefs.current[key] = el }}
                     type="button"
-                    className={`${navButton} ${open === key ? 'text-[#1C83C5]' : ''}`}
+                    className={`${navButton} ${open === key ? 'text-primary' : ''}`}
                     aria-expanded={open === key}
                     aria-controls={`hdr-panel-${key}`}
                     onClick={() => toggle(key)}
@@ -258,7 +258,7 @@ export default function HeaderShell({ labels, logo, ctaClass, panels, mobileScre
               <button
                 type="button"
                 data-hdr-back
-                className={`-ms-2 inline-flex h-11 items-center gap-1 rounded-lg px-2 text-[16px] font-semibold text-[#1C83C5] ${focusRing}`}
+                className={`-ms-2 inline-flex h-11 items-center gap-1 rounded-lg px-2 text-[16px] font-semibold text-primary ${focusRing}`}
                 onClick={() => setMobileSub(null)}
               >
                 <ChevronLeft size={20} className="rtl:rotate-180" aria-hidden="true" />

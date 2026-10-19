@@ -8,14 +8,14 @@ export default async function CtaBand() {
   return (
     <section aria-labelledby="cta-heading" className="bg-white pb-16 md:pb-[112px]">
       <div className={container}>
-        <div className="reveal relative overflow-hidden rounded-[32px] bg-[#1C83C5] px-6 py-14 text-center text-white md:px-16 md:py-20">
-          <NetworkLines className="absolute -bottom-16 -start-10 w-[460px] opacity-[0.14]" stroke="#FFFFFF" />
-          <NetworkLines className="absolute -top-14 -end-10 hidden w-[460px] opacity-[0.14] md:block" stroke="#FFFFFF" />
+        <div className="reveal relative overflow-hidden rounded-[32px] bg-primary px-6 py-14 text-center text-white md:px-16 md:py-20">
+          <NetworkLines className="absolute -bottom-16 -start-10 w-[460px] text-white opacity-[0.14]" />
+          <NetworkLines className="absolute -top-14 -end-10 hidden w-[460px] text-white opacity-[0.14] md:block" />
           <div className="relative mx-auto max-w-2xl">
             <h2 id="cta-heading" className="font-heading !text-[30px] font-bold !leading-[1.15] md:!text-[44px]">{t('title')}</h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/85 md:text-[19px]">{t('subtitle')}</p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-              <Link href="/contact" className={`${button} bg-white text-[#0B1B2B] hover:bg-[#EAF4FB]`}>
+              <Link href="/contact" className={`${button} bg-white text-navy hover:bg-[#EAF4FB]`}>
                 {t('ctaPrimary')}
               </Link>
               <a

@@ -60,7 +60,7 @@ export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' 
   // Arabic labels are the only Arabic on English pages; kept off Scheherazade New (87 KB at 700)
   // so English pages never download it (they render in the OS's Arabic font, as before)
   const latinOnly = locale === 'en' ? { fontFamily: 'var(--font-poppins-latin), sans-serif' } : undefined
-  const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C83C5]'
+  const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
 
   if (variant === 'segmented') {
     const segment = 'flex-1 rounded-[10px] py-2.5 text-center text-[15px] font-semibold no-underline'
@@ -93,7 +93,8 @@ export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' 
     )
   }
 
-  // Header pill: عربي on English pages, EN on Arabic pages
+  // Header pill: عربي on English pages, EN on Arabic pages. !text-primary, not text-primary: globals.css
+  // recolours a.text-primary to the darker link blue
   return (
     <Link
       href={targetPath}
@@ -101,7 +102,7 @@ export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' 
       onClick={() => setLocaleCookie(targetLocale)}
       aria-label={ariaLabel}
       lang={targetLocale}
-      className={`inline-flex h-10 items-center rounded-full border border-[#D5DEE7] px-2.5 text-[14px] min-[380px]:px-4 min-[380px]:text-[15px] font-semibold text-[#1C83C5] no-underline transition-colors hover:border-[#1C83C5] select-none ${focusRing}`}
+      className={`inline-flex h-10 items-center rounded-full border border-[#D5DEE7] px-2.5 text-[14px] min-[380px]:px-4 min-[380px]:text-[15px] font-semibold !text-primary no-underline transition-colors hover:border-primary select-none ${focusRing}`}
       style={latinOnly}
     >
       {locale === 'en' ? 'عربي' : 'EN'}
