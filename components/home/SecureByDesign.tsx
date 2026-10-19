@@ -1,17 +1,18 @@
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import { ShieldCheck, HeartHandshake, Layers, type LucideIcon } from 'lucide-react'
 import { container, sectionPad, Eyebrow, H2, NetworkLines } from './shared'
 
-// Same logo files the old "We build using" strip loaded (Simple Icons CDN)
+// Simple Icons logos, self-hosted in public/images/tech (see its README)
 const STACK = [
-  { name: 'ERPNext', icon: 'erpnext/0089FF' },
-  { name: 'Frappe', icon: 'frappe/0089FF' },
-  { name: 'React', icon: 'react/61DAFB' },
-  { name: 'Next.js', icon: 'nextdotjs/000000' },
-  { name: 'Flutter', icon: 'flutter/02569B' },
-  { name: 'Firebase', icon: 'firebase/FFCA28' },
-  { name: 'Vercel', icon: 'vercel/000000' },
-  { name: 'Tailwind', icon: 'tailwindcss/06B6D4' },
+  { name: 'ERPNext', icon: 'erpnext' },
+  { name: 'Frappe', icon: 'frappe' },
+  { name: 'React', icon: 'react' },
+  { name: 'Next.js', icon: 'nextdotjs' },
+  { name: 'Flutter', icon: 'flutter' },
+  { name: 'Firebase', icon: 'firebase' },
+  { name: 'Vercel', icon: 'vercel' },
+  { name: 'Tailwind', icon: 'tailwindcss' },
 ]
 
 export default async function SecureByDesign() {
@@ -52,8 +53,7 @@ export default async function SecureByDesign() {
           <ul className="flex flex-wrap gap-2.5">
             {STACK.map((s) => (
               <li key={s.name} className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-[14px] font-semibold text-navy">
-                {/* eslint-disable-next-line @next/next/no-img-element -- remote SVG logos, as before */}
-                <img src={`https://cdn.simpleicons.org/${s.icon}`} alt="" width={18} height={18} loading="lazy" className="h-[18px] w-[18px]" />
+                <Image src={`/images/tech/${s.icon}.svg`} alt="" width={18} height={18} unoptimized className="h-[18px] w-[18px]" />
                 {s.name}
               </li>
             ))}
