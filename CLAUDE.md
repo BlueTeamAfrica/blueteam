@@ -4,7 +4,7 @@ Public marketing and services showcase site for BlueteamAfrica.com — brand pre
 
 ## Stack
 - Framework: Next.js 16.0.7, React 18.3, TypeScript 5.4
-- Styling: Tailwind CSS 3.4, Framer Motion 11
+- Styling: Tailwind CSS 3.4 (no animation library: the homepage hero uses CSS transitions)
 - Auth: Firebase Auth (admin areas only)
 - Database: Firestore (contact form writes) — via Firebase Admin SDK, project `blueteamafrica`
 - Sitemap/robots: app/sitemap.ts and app/robots.ts (Next metadata routes)
