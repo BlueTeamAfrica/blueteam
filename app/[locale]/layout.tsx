@@ -14,24 +14,10 @@ import ClientComponents from '@/components/ClientComponents'
 // Self-hosted (app/fonts, see its README for sources) so builds never fetch from Google.
 // next/font only accepts literals here, hence the repetition. unicode-range is Google's "latin"
 // subset, so the same characters (arrows, ✓, emoji) fall through to the next font as before.
-
-// One variable file, declared at the discrete weights next/font/google used: font-semibold
-// (600) keeps resolving to the 700 face, as it always has
-const inter = localFont({
-  src: [
-    { path: '../fonts/inter/inter-latin-wght-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/inter/inter-latin-wght-normal.woff2', weight: '500', style: 'normal' },
-    { path: '../fonts/inter/inter-latin-wght-normal.woff2', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-inter',
-  display: 'swap',
-  declarations: [
-    { prop: 'unicode-range', value: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD' },
-  ],
-})
-
 const poppins = localFont({
   src: [
+    { path: '../fonts/poppins/poppins-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/poppins/poppins-latin-500-normal.woff2', weight: '500', style: 'normal' },
     { path: '../fonts/poppins/poppins-latin-600-normal.woff2', weight: '600', style: 'normal' },
     { path: '../fonts/poppins/poppins-latin-700-normal.woff2', weight: '700', style: 'normal' },
   ],
@@ -42,36 +28,37 @@ const poppins = localFont({
   ],
 })
 
-// Arabic blocks only: Latin never matches it, and pages without Arabic text never download it
-const plexArabic = localFont({
+// Arabic blocks only: Latin never matches it, and pages without Arabic text never download it.
+// Scheherazade New draws its letters smaller than Latin at the same font-size, so size-adjust
+// scales the Arabic glyphs alone; rem-based spacing and Latin text on /ar keep their sizes.
+const scheherazade = localFont({
   src: [
-    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-400-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-500-normal.woff2', weight: '500', style: 'normal' },
-    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-600-normal.woff2', weight: '600', style: 'normal' },
-    { path: '../fonts/ibm-plex-sans-arabic/ibm-plex-sans-arabic-arabic-700-normal.woff2', weight: '700', style: 'normal' },
+    { path: '../fonts/scheherazade-new/scheherazade-new-arabic-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/scheherazade-new/scheherazade-new-arabic-700-normal.woff2', weight: '700', style: 'normal' },
   ],
   display: 'swap',
   preload: false,
   adjustFontFallback: false,
   declarations: [
     { prop: 'unicode-range', value: 'U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFC' },
+    { prop: 'size-adjust', value: '115%' },
   ],
 })
 
 // next/font's family is "'<face>', '<face> Fallback'", the fallback being a local Arial with
-// metric overrides. Windows' Arial has Arabic glyphs, so Plex goes between the two; after the
-// fallback it would never be reached on Windows.
+// metric overrides. Windows' Arial has Arabic glyphs, so Scheherazade goes between the two;
+// after the fallback it would never be reached on Windows.
 function withArabic(font: { style: { fontFamily: string } }) {
   const [face, ...fallback] = font.style.fontFamily.split(', ')
-  return [face, plexArabic.style.fontFamily, ...fallback].join(', ')
+  return [face, scheherazade.style.fontFamily, ...fallback].join(', ')
 }
 
 // The body and heading stacks in globals.css and tailwind.config.ts are built on these.
-// --font-inter-latin leaves Plex out, for Arabic that must not pull the font onto English pages
+// --font-poppins-latin leaves Scheherazade out, for Arabic that must not pull the font onto
+// English pages
 const fontVariables = {
-  '--font-inter': withArabic(inter),
   '--font-poppins': withArabic(poppins),
-  '--font-inter-latin': inter.style.fontFamily,
+  '--font-poppins-latin': poppins.style.fontFamily,
 } as React.CSSProperties
 
 export const metadata: Metadata = {

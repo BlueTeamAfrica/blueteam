@@ -65,7 +65,7 @@ html, body {
 }
 
 body {
-  font-family: var(--font-inter), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-poppins), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   background: var(--color-background);
   color: var(--color-dark);
@@ -73,7 +73,7 @@ body {
 }
 
 .font-heading {
-  font-family: var(--font-poppins), var(--font-inter), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 @layer utilities {
@@ -527,7 +527,7 @@ html {
 .post-body h2,
 .post-body h3 {
   color: #111827; /* gray-900 */
-  font-family: var(--font-poppins), var(--font-inter), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-weight: 600;
 }
 
@@ -541,13 +541,6 @@ html {
   font-size: 1.25rem;
   line-height: 1.4;
   margin-block: 2rem 0.75rem;
-}
-
-/* Arabic: keep headings on the page's (and H1's) font stack rather than Poppins, so Latin
-   words in them stay Inter. Arabic glyphs are IBM Plex Sans Arabic in either stack */
-.post-body:lang(ar) h2,
-.post-body:lang(ar) h3 {
-  font-family: inherit;
 }
 
 .post-body p {
@@ -604,4 +597,10 @@ html {
   .post-body h3 {
     margin-block: 1.5rem 0.5rem;
   }
+}
+
+/* Scheherazade New's marks reach well above and below its letters, so Arabic lines collide at
+   the tight Latin heading leading (1.0–1.25); !important to override the mobile sizes above */
+:lang(ar) :is(h1, h2, h3, .page-title, .hero-title, .section-title) {
+  line-height: 1.4 !important;
 }

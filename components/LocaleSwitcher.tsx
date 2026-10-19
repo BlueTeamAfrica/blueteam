@@ -58,9 +58,9 @@ export default function LocaleSwitcher({ variant = 'header' }: { variant?: 'head
 
   const label = locale === 'en' ? 'عربي' : 'EN'
   const ariaLabel = locale === 'en' ? 'Switch to Arabic' : 'Switch to English'
-  // "عربي" is the only Arabic on English pages; kept off IBM Plex Sans Arabic so English
-  // pages never download it (it renders in the OS's Arabic font, as before)
-  const fontFamily = 'var(--font-inter-latin), sans-serif'
+  // "عربي" is the only Arabic on English pages; kept off Scheherazade New (87 KB at 700) so
+  // English pages never download it (it renders in the OS's Arabic font, as before)
+  const fontFamily = 'var(--font-poppins-latin), sans-serif'
 
   if (variant === 'panel') {
     return (
