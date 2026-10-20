@@ -2297,5 +2297,27 @@
     "ctaTitle": "Ready to Get Started?",
     "ctaWhatsApp": "Chat on WhatsApp",
     "ctaContact": "Get in Touch"
+  },
+  "ServiceTemplate": {
+    "getQuote": "Get a free quote",
+    "whatYouGet": "What you get",
+    "fromCase": "From our {name} case study",
+    "readCase": "Read the case study →",
+    "breadcrumbNav": "Breadcrumb",
+    "performanceTarget": "Performance target",
+    "devices": "Mobile · Tablet · Desktop",
+    "browserHeadline": "Clean water for 12 communities",
+    "recordsBySite": "Records by site",
+    "live": "● Live",
+    "securityEvents": "Security events",
+    "monitored": "● Monitored",
+    "eventBlocked": "Login attempt blocked",
+    "eventCertificate": "Certificate renewed",
+    "eventBackup": "Backup verified",
+    "eventPatch": "Patch applied",
+    "tagEncrypted": "Encrypted",
+    "tagBackedUp": "Backed up",
+    "tag247": "24/7",
+    "illustrative": "Illustrative"
   }
 }

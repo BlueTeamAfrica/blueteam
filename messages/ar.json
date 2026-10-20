@@ -2297,5 +2297,27 @@
     "ctaTitle": "هل أنت مستعد للبدء؟",
     "ctaWhatsApp": "تواصل عبر واتساب",
     "ctaContact": "تواصل معنا"
+  },
+  "ServiceTemplate": {
+    "getQuote": "احصل على عرض سعر مجاني",
+    "whatYouGet": "ماذا ستحصل",
+    "fromCase": "من دراسة حالة {name}",
+    "readCase": "اقرأ دراسة الحالة ←",
+    "breadcrumbNav": "مسار التنقل",
+    "performanceTarget": "هدف الأداء",
+    "devices": "جوال · جهاز لوحي · حاسوب",
+    "browserHeadline": "مياه نظيفة لـ12 مجتمعاً",
+    "recordsBySite": "السجلات حسب الموقع",
+    "live": "● مباشر",
+    "securityEvents": "الأحداث الأمنية",
+    "monitored": "● تحت المراقبة",
+    "eventBlocked": "محاولة دخول محظورة",
+    "eventCertificate": "تجديد الشهادة",
+    "eventBackup": "التحقق من النسخة الاحتياطية",
+    "eventPatch": "تطبيق تحديث أمني",
+    "tagEncrypted": "مشفّر",
+    "tagBackedUp": "نسخ احتياطي",
+    "tag247": "على مدار الساعة",
+    "illustrative": "توضيحي"
   }
 }
