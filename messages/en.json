@@ -2318,6 +2318,8 @@
     "tagEncrypted": "Encrypted",
     "tagBackedUp": "Backed up",
     "tag247": "24/7",
-    "illustrative": "Illustrative"
+    "illustrative": "Illustrative",
+    "relatedServices": "Related services",
+    "relatedCase": "Related case study"
   }
 }

@@ -15,11 +15,15 @@ const WHATSAPP = 'https://wa.me/254119402737'
 
 export interface Crumb { label: string; href?: string }
 
-export default async function ServiceHero({ family, title, intro, breadcrumb }: {
+export default async function ServiceHero({ family, title, tagline, intro, introExtra, breadcrumb }: {
   family: ServiceFamily
   title: string
+  /** A page's existing sub-heading line, shown under the H1 */
+  tagline?: ReactNode
   /** The page's intro paragraph content (may include links) */
   intro: ReactNode
+  /** Further intro paragraphs, smaller */
+  introExtra?: ReactNode[]
   breadcrumb: Crumb[]
 }) {
   const locale = await getLocale()
@@ -61,9 +65,11 @@ export default async function ServiceHero({ family, title, intro, breadcrumb }: 
           <h1 id="service-heading" className={`mt-4 font-heading !text-[34px] font-bold !leading-[1.12] md:!text-[44px] lg:!text-[50px] rtl:!leading-[1.35] ${dark ? 'text-white' : 'text-navy'}`}>
             {title}
           </h1>
-          <p className={`mt-5 max-w-[600px] text-[17px] leading-relaxed md:text-[18px] ${dark ? 'text-[#C5D2DE] [&_a]:text-[#8CC8EE] [&_a]:underline' : 'text-[#4A5868] [&_a]:text-[#0D5A8A] [&_a]:underline'}`}>
-            {intro}
-          </p>
+          {tagline && <p className={`mt-4 font-heading text-[20px] font-semibold leading-snug md:text-[22px] ${dark ? 'text-white' : 'text-navy'}`}>{tagline}</p>}
+          <div className={`max-w-[600px] ${dark ? 'text-[#C5D2DE] [&_a]:text-[#8CC8EE] [&_a]:underline' : 'text-[#4A5868] [&_a]:text-[#0D5A8A] [&_a]:underline'}`}>
+            <p className="mt-5 text-[17px] leading-relaxed md:text-[18px]">{intro}</p>
+            {introExtra?.map((p, i) => <p key={i} className="mt-3 text-[16px] leading-relaxed">{p}</p>)}
+          </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link

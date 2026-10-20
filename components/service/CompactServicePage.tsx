@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import ServiceSchema from '@/components/ServiceSchema'
 import ServiceHero, { type ServiceFamily } from './ServiceHero'
-import ResultsStrip from './ResultsStrip'
+import CaseResults, { type CaseStudyStrip } from './CaseResults'
 import BenefitsBento from './BenefitsBento'
 import { NumberedCards } from './InfoSections'
 import ServiceFaq from './ServiceFaq'
@@ -15,14 +15,6 @@ import RelatedServices from './RelatedServices'
 // No sidebar and no in-page CTA: the footer's CTA band follows.
 
 const SITE = 'https://www.blueteamafrica.com'
-
-export interface CaseStudyStrip {
-  href: string
-  /** The case-study page's namespace; its pageTitle and stat labels are used as they are */
-  namespace: string
-  /** Values exactly as that page shows them, one per stat1Label… key */
-  values: string[]
-}
 
 export interface CompactServiceConfig {
   namespace: string
@@ -41,7 +33,6 @@ export default async function CompactServicePage({ config, intro }: { config: Co
   const { namespace, slug, family, crumbKey, schemaCrumbName, schemaServiceName, related, caseStudy } = config
   const t = await getTranslations(namespace)
   const tTemplate = await getTranslations('ServiceTemplate')
-  const tCase = caseStudy ? await getTranslations(caseStudy.namespace) : null
 
   const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
 
@@ -65,14 +56,7 @@ export default async function CompactServicePage({ config, intro }: { config: Co
         ]}
       />
 
-      {caseStudy && tCase && (
-        <ResultsStrip
-          label={tTemplate('fromCase', { name: tCase('pageTitle') })}
-          stats={caseStudy.values.map((value, i) => ({ value, label: tCase(`stat${i + 1}Label`) }))}
-          href={caseStudy.href}
-          linkLabel={tTemplate('readCase')}
-        />
-      )}
+      {caseStudy && <CaseResults {...caseStudy} />}
 
       <BenefitsBento
         eyebrow={t(crumbKey)}
@@ -82,7 +66,7 @@ export default async function CompactServicePage({ config, intro }: { config: Co
 
       <NumberedCards
         id="why-heading"
-        title={t('whyTitle')}
+        heading={t('whyTitle')}
         tone="light"
         items={[1, 2, 3].map((n) => ({ title: t(`why${n}Title`), body: t(`why${n}Body`) }))}
       />
