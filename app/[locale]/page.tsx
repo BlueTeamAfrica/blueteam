@@ -39,7 +39,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: '/images/hero/hero-og-01.webp',
+          url: '/images/hero/hero-og-1200x630.jpg',
           width: 1200,
           height: 630,
           alt: 'Blue Team Africa — Web Design, Website Development & Digital Solutions',
@@ -51,7 +51,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
-      images: ['/images/hero/hero-og-01.webp'],
+      images: ['/images/hero/hero-og-1200x630.jpg'],
     },
     keywords: [
       'web design',

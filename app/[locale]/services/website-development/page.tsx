@@ -41,7 +41,7 @@ export async function generateMetadata({
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
       url: alternates.canonical,
-      images: ['/images/hero/hero-og-01.webp'],
+      images: ['/images/hero/hero-og-1200x630.jpg'],
     },
   }
 }
