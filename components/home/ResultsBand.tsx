@@ -14,7 +14,7 @@ const STATS = [
 export default async function ResultsBand() {
   const t = await getTranslations('HomePage.results')
   return (
-    <section aria-labelledby="results-heading" className="relative overflow-hidden bg-primary text-white">
+    <section aria-labelledby="results-heading" className="relative overflow-hidden bg-primary-strong text-white">
       <NetworkLines className="absolute -top-10 end-0 hidden w-[420px] text-white opacity-[0.14] sm:block" />
       <div className={`${container} relative py-14 md:py-20`}>
         <ul className="reveal grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">

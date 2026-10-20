@@ -61,10 +61,10 @@ export default async function ServicesBento() {
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {/* Web design & development: 2×2 */}
-          <div className="reveal group relative flex flex-col overflow-hidden rounded-[24px] bg-primary p-8 text-white md:col-span-2 lg:row-span-2 md:p-10">
+          <div className="reveal group relative flex flex-col overflow-hidden rounded-[24px] bg-primary-strong p-8 text-white md:col-span-2 lg:row-span-2 md:p-10">
             <span className="self-start rounded-full bg-navy/20 px-3 py-1 text-[13px] font-semibold">{t('webBadge')}</span>
             <h3 className="mt-5 font-heading !text-[28px] font-bold !leading-tight md:!text-[34px]">{t('webTitle')}</h3>
-            <p className="mt-3 max-w-[460px] text-[17px] leading-relaxed text-white/85">{t('webDesc')}</p>
+            <p className="mt-3 max-w-[460px] text-[17px] leading-relaxed text-white">{t('webDesc')}</p>
             <Link href="/services/web-design" className={`mt-6 self-start rounded text-[16px] font-semibold text-white !no-underline group-hover:!underline ${stretched} ${focusRing}`}>
               {t('webLink')}
             </Link>

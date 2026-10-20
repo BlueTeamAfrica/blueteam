@@ -380,10 +380,10 @@ export default async function WebDesignPage() {
             </SectionWrapper>
 
             {/* CTA Strip */}
-            <section className="py-12 bg-primary text-white">
+            <section className="py-12 bg-primary-strong text-white">
               <div className="max-w-4xl mx-auto px-6 text-center">
                 <h2 className="text-2xl font-heading font-bold mb-4">{t('government')}</h2>
-                <p className="text-primary-100 mb-6">{t('education')}</p>
+                <p className="text-white mb-6">{t('education')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"

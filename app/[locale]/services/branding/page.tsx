@@ -173,10 +173,10 @@ export default async function BrandingPage() {
             </section>
 
             {/* CTA Strip */}
-            <section className="p-8 bg-primary text-white rounded-lg">
+            <section className="p-8 bg-primary-strong text-white rounded-lg">
               <div className="text-center">
                 <h2 className="text-2xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
-                <p className="text-primary-100 mb-6">{t('ctaSubtitle')}</p>
+                <p className="text-white mb-6">{t('ctaSubtitle')}</p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="https://wa.me/254119402737"
