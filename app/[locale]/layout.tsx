@@ -100,7 +100,8 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages()
-  // Only what client components translate: ServiceSidebar (Header and Footer are server components)
+  // Only what client components translate: ServiceSidebar (Header is a server component; Footer
+  // translates on the server and passes FooterView its strings)
   const layoutMessages = { ServiceSidebar: messages.ServiceSidebar }
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
