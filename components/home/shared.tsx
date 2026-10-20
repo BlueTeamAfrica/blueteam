@@ -2,7 +2,8 @@ import type { ReactNode } from 'react'
 import { Link } from '@/i18n/navigation'
 import { Ltr } from '@/components/Ltr'
 
-// Building blocks shared by the homepage sections (app/[locale]/page.tsx). Server components.
+// Building blocks shared by the homepage sections (app/[locale]/page.tsx) and the footer. Server
+// components.
 
 export const container = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
 export const sectionPad = 'py-16 md:py-[112px]'
