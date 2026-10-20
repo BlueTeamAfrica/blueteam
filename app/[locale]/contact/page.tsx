@@ -245,7 +245,7 @@ export default async function ContactPage() {
                           href="https://wa.me/250798973375?text=Emergency%20NGO%20Support%20Request"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-red-600 hover:underline font-medium"
+                          className="text-red-700 hover:underline font-medium"
                         >
                           {t('emergencyNgoLink')} →
                         </a>
@@ -403,14 +403,14 @@ export default async function ContactPage() {
               href="https://wa.me/250798973375"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary-dark transition"
+              className="inline-flex items-center gap-2 bg-primary-strong text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
               {t('bottomSubtitle')}
             </a>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition"
+              className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary-strong hover:text-white transition"
             >
               {t('bottomCta')}
               <ArrowRight size={18} />

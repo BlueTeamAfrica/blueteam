@@ -73,7 +73,7 @@ export default async function HeroSection() {
       <div className={`${container} relative grid gap-10 pb-14 pt-10 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,560fr)_minmax(0,600fr)] lg:items-center lg:gap-12 lg:py-20`}>
         <div className="max-w-[640px] lg:max-w-[560px]">
           <p className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-[18px] border border-[#D6E6F2] bg-[#F4F8FB] py-1 pe-3 ps-1 text-[13px] font-medium text-[#33475B] sm:gap-x-2.5 sm:pe-4 sm:text-[14px]">
-            <span className="rounded-full bg-primary px-2.5 py-1 text-[12px] font-semibold text-white sm:px-3 sm:text-[13px]">{h('eyebrowChip')}</span>
+            <span className="rounded-full bg-primary-strong px-2.5 py-1 text-[12px] font-semibold text-white sm:px-3 sm:text-[13px]">{h('eyebrowChip')}</span>
             {h('eyebrowText')}
           </p>
 
@@ -108,7 +108,7 @@ export default async function HeroSection() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap md:gap-4">
-            <Link href="/contact" className={`${button} bg-primary !text-white hover:!bg-[#166DA6]`}>
+            <Link href="/contact" className={`${button} bg-primary-strong !text-white hover:!bg-primary-strong-hover`}>
               {t('ctaPrimary')}
             </Link>
             <Link href="/services" className={`${button} border-2 border-primary !text-[#0D5A8A] hover:bg-[#EAF4FB]`}>

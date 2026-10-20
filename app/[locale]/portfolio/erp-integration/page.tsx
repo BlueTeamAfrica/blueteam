@@ -144,7 +144,7 @@ export default async function ERPIntegrationCaseStudy() {
               href="https://wa.me/254119402737"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
+              className="inline-flex items-center gap-2 bg-primary-strong text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               <MessageCircle size={20} />
               {t('ctaWhatsApp')}

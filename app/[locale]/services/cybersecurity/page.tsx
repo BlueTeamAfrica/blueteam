@@ -443,7 +443,7 @@ export default async function CybersecurityPage() {
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-strong text-white rounded-full flex items-center justify-center font-bold mr-4">
                       1
                     </div>
                     <div>
@@ -452,7 +452,7 @@ export default async function CybersecurityPage() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-strong text-white rounded-full flex items-center justify-center font-bold mr-4">
                       2
                     </div>
                     <div>
@@ -461,7 +461,7 @@ export default async function CybersecurityPage() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-strong text-white rounded-full flex items-center justify-center font-bold mr-4">
                       3
                     </div>
                     <div>
@@ -470,7 +470,7 @@ export default async function CybersecurityPage() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-strong text-white rounded-full flex items-center justify-center font-bold mr-4">
                       4
                     </div>
                     <div>
@@ -479,7 +479,7 @@ export default async function CybersecurityPage() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-strong text-white rounded-full flex items-center justify-center font-bold mr-4">
                       5
                     </div>
                     <div>
@@ -488,7 +488,7 @@ export default async function CybersecurityPage() {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-primary-strong text-white rounded-full flex items-center justify-center font-bold mr-4">
                       6
                     </div>
                     <div>
@@ -526,7 +526,7 @@ export default async function CybersecurityPage() {
                     href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20request%20a%20security%20assessment."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition shadow-lg"
+                    className="inline-flex items-center gap-2 bg-primary-strong text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition shadow-lg"
                   >
                     <MessageCircle size={20} />
                     {t('ctaWhatsApp')}

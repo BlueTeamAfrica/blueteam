@@ -133,7 +133,7 @@ export default async function WebDevelopmentRwandaPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/contact"
-                  className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
+                  className="inline-block px-8 py-4 bg-primary-strong text-white rounded-lg hover:bg-primary-dark transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
                 >
                   {t('heroCtaPrimary')}
                 </Link>

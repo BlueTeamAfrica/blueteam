@@ -14,7 +14,7 @@ export default function WhatsAppFloat() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-50 bg-[#25D366] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-[#20BA5A] transition-all duration-300 hover:scale-110 group"
+      className="fixed bottom-5 right-5 z-50 bg-[#128C7E] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-[#075E54] transition-all duration-300 hover:scale-110 group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Chat with Blue Team Africa on WhatsApp +254 119 402 737"
@@ -30,7 +30,7 @@ export default function WhatsAppFloat() {
       </svg>
 
       {/* Pulse Animation Ring */}
-      <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-75" />
+      <div className="absolute inset-0 bg-[#128C7E] rounded-full animate-ping opacity-75" />
 
       {/* Tooltip on hover */}
       {isHovered && (

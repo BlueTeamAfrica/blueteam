@@ -79,10 +79,10 @@ function Strip({ left, right }: { left: ReactNode; right: ReactNode }) {
   )
 }
 
-// !text-primary, not text-primary: globals.css recolours a.text-primary to the darker link blue
+// primary-dark: small text (15px) on the #F6F8FA strip, where primary is 3.9:1
 function StripLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link href={href} className={`rounded font-semibold !text-primary no-underline hover:underline ${focusRing}`}>
+    <Link href={href} className={`rounded font-semibold text-primary-dark no-underline hover:underline ${focusRing}`}>
       {children}
     </Link>
   )
@@ -173,7 +173,7 @@ export default async function Header() {
 
   const cards = [
     { n: 1, href: '/portfolio/cslo-sudan', cls: 'bg-[#0B1B2B] text-white', sub: 'text-white/70' },
-    { n: 2, href: '/portfolio/ngo-portal', cls: 'bg-primary text-white', sub: 'text-white/80' },
+    { n: 2, href: '/portfolio/ngo-portal', cls: 'bg-primary-strong text-white', sub: 'text-white' },
     { n: 3, href: '/portfolio/ecommerce-shop', cls: 'bg-[#FBEFE4] text-[#0B1B2B]', sub: 'text-[#4A5868]' },
   ].map((c) => ({
     ...c,
@@ -203,14 +203,16 @@ export default async function Header() {
     { href: '/locations/rwanda', title: tRwanda('breadcrumbRwanda'), desc: t('rwandaDesc') },
   ]
 
-  const ctaClass = `inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[12px] bg-primary px-6 font-heading text-[18px] font-bold text-white no-underline transition-colors hover:bg-[#166DA6] ${focusRing}`
+  const ctaClass = `inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[12px] bg-primary-strong px-6 font-heading text-[18px] font-bold text-white no-underline transition-colors hover:bg-primary-strong-hover ${focusRing}`
 
   const logo = (
     <Link href="/" className={`flex shrink-0 items-center gap-1.5 rounded-lg no-underline min-[380px]:gap-2 lg:gap-2.5 ${focusRing}`} aria-label="Blue Team Africa">
       <Image src="/images/logo/logo-icon.png" alt="" width={44} height={44} className="h-8 w-8 min-[380px]:h-9 min-[380px]:w-9 lg:h-11 lg:w-11" priority />
-      {/* Sized down below 380px so logo, language pill and menu button fit on one row at 320 */}
-      <span dir="ltr" className="whitespace-nowrap font-heading text-[14px] font-bold leading-none min-[380px]:text-[18px] lg:text-[21px]">
-        <span className="text-primary">Blue Team</span> <span className="text-accent">Africa</span>
+      {/* Sized down below 380px so logo, language pill and menu button fit on one row at 320.
+          From 380px it is large text (19px bold), where the logo colours pass 3:1; the 14px
+          size needs the strong shades for 4.5:1 */}
+      <span dir="ltr" className="whitespace-nowrap font-heading text-[14px] font-bold leading-none min-[380px]:text-[19px] lg:text-[21px]">
+        <span className="text-primary-strong min-[380px]:text-primary">Blue Team</span> <span className="text-accent-strong min-[380px]:text-accent">Africa</span>
       </span>
     </Link>
   )
@@ -232,9 +234,9 @@ export default async function Header() {
         >
           <Image src={post.image} alt={post.imageAlt} width={post.imageWidth} height={post.imageHeight} sizes="300px" className="h-auto w-full" />
           <span className="block p-4">
-            <span className="block text-[12px] font-semibold uppercase tracking-wide text-[#B5621D]">{t('newOnBlog')}</span>
+            <span className="block text-[12px] font-semibold uppercase tracking-wide text-accent-strong">{t('newOnBlog')}</span>
             <span className="mt-1.5 block text-[16px] font-semibold leading-snug text-[#0B1B2B] group-hover:text-primary">{post.title}</span>
-            <span className="mt-3 block text-[14px] font-semibold text-primary">{t('readArticle')}</span>
+            <span className="mt-3 block text-[14px] font-semibold text-primary-dark">{t('readArticle')}</span>
           </span>
         </Link>
       </div>

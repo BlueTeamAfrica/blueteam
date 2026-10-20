@@ -20,8 +20,9 @@ export default async function HowWeWork() {
           <span aria-hidden="true" className="absolute bottom-6 start-6 top-6 w-0.5 bg-[#D5E6F3] md:bottom-auto md:end-[10%] md:start-[10%] md:top-6 md:h-0.5 md:w-auto" />
           {steps.map((s) => (
             <li key={s.n} className="reveal relative flex gap-5 md:flex-col md:items-center md:gap-0 md:text-center">
+              {/* 19px bold is large text, so white passes on both primary (4.12:1) and accent (3.18:1) */}
               <span
-                className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-heading text-[18px] font-bold text-white ring-8 ring-white ${s.n === 5 ? 'bg-accent' : 'bg-primary'}`}
+                className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-heading text-[19px] font-bold text-white ring-8 ring-white ${s.n === 5 ? 'bg-accent' : 'bg-primary'}`}
                 aria-hidden="true"
               >
                 {s.n}

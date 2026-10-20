@@ -208,7 +208,7 @@ export default async function AboutPage() {
         </p>
         <Link
           href="/contact"
-          className="inline-block bg-primary text-white px-10 py-3 font-semibold rounded-lg shadow hover:bg-primary-dark transition"
+          className="inline-block bg-primary-strong text-white px-10 py-3 font-semibold rounded-lg shadow hover:bg-primary-dark transition"
         >
           {t('ctaButton')}
         </Link>

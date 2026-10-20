@@ -353,7 +353,7 @@ export default async function ServicesPage() {
             href="https://wa.me/254119402737"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#075E54] text-white font-semibold hover:bg-[#054C44]"
             aria-label={t('ctaWhatsApp')}
           >
             {t('mobileCtaWhatsapp')}

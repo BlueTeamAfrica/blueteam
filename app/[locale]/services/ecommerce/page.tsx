@@ -117,7 +117,7 @@ export default async function EcommercePage() {
                       href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20start%20an%20e-commerce%20store."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition"
+                      className="inline-flex items-center gap-2 bg-primary-strong hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition"
                     >
                       <MessageCircle size={20} />
                       {t('heroStartStore')}

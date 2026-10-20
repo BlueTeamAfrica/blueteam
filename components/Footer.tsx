@@ -199,7 +199,7 @@ export default function Footer() {
                 href="https://wa.me/254119402737"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-lg hover:bg-[#20BA5A] transition-colors text-sm font-medium mt-2"
+                className="inline-flex items-center gap-2 bg-[#075E54] text-white px-4 py-2 rounded-lg hover:bg-[#054C44] transition-colors text-sm font-medium mt-2"
               >
                 <svg
                   className="w-4 h-4"

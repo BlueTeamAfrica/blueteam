@@ -379,7 +379,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
+        className={`w-full bg-primary-strong text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
           isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-dark'
         }`}
       >

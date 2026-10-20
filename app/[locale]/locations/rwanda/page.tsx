@@ -179,7 +179,7 @@ export default async function RwandaLocationPage() {
               </p>
               <Link
                 href="/contact"
-                className="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="inline-block px-8 py-4 bg-primary-strong text-white rounded-lg hover:bg-primary-dark transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 {t('heroCta')}
               </Link>

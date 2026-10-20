@@ -18,7 +18,7 @@ function PhoneMock() {
           </div>
         ))}
       </div>
-      <div className="mt-3 flex items-center gap-1.5 rounded-lg bg-[#FBEFE4] px-2 py-1.5 text-[10.5px] font-semibold text-[#B5621D]">
+      <div className="mt-3 flex items-center gap-1.5 rounded-lg bg-[#FBEFE4] px-2 py-1.5 text-[10.5px] font-semibold text-accent-strong">
         <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
         Saved offline · will sync
       </div>

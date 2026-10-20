@@ -95,7 +95,7 @@ export default async function PortfolioPage() {
                     />
                   </div>
                   <div className="p-6">
-                    <span className="text-xs uppercase tracking-wide text-primary font-semibold">
+                    <span className="text-xs uppercase tracking-wide text-primary-dark font-semibold">
                       {t(`${prefix}_cat` as Parameters<typeof t>[0])}
                     </span>
                     <h3 className="text-xl font-semibold text-gray-900 mt-2 mb-2 group-hover:text-primary transition-colors">
@@ -104,7 +104,7 @@ export default async function PortfolioPage() {
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {t(`${prefix}_desc` as Parameters<typeof t>[0])}
                     </p>
-                    <div className="mt-4 flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
+                    <div className="mt-4 flex items-center text-primary-dark font-medium text-sm group-hover:gap-2 transition-all">
                       {t('viewCaseStudy')}
                       <svg
                         className="w-4 h-4 ms-1 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
@@ -138,7 +138,7 @@ export default async function PortfolioPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
+              className="inline-flex items-center gap-2 bg-primary-strong text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
             >
               {t('ctaButton')}
               <svg

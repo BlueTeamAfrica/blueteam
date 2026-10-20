@@ -93,8 +93,8 @@ export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' 
     )
   }
 
-  // Header pill: عربي on English pages, EN on Arabic pages. !text-primary, not text-primary: globals.css
-  // recolours a.text-primary to the darker link blue
+  // Header pill: عربي on English pages, EN on Arabic pages. primary-dark, not primary: the label is
+  // small text (15px), and primary is 4.12:1 on white
   return (
     <Link
       href={targetPath}
@@ -102,7 +102,7 @@ export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' 
       onClick={() => setLocaleCookie(targetLocale)}
       aria-label={ariaLabel}
       lang={targetLocale}
-      className={`inline-flex h-10 items-center rounded-full border border-[#D5DEE7] px-2.5 text-[14px] min-[380px]:px-4 min-[380px]:text-[15px] font-semibold !text-primary no-underline transition-colors hover:border-primary select-none ${focusRing}`}
+      className={`inline-flex h-10 items-center rounded-full border border-[#D5DEE7] px-2.5 text-[14px] min-[380px]:px-4 min-[380px]:text-[15px] font-semibold text-primary-dark no-underline transition-colors hover:border-primary select-none ${focusRing}`}
       style={latinOnly}
     >
       {locale === 'en' ? 'عربي' : 'EN'}

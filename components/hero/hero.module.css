@@ -27,7 +27,8 @@
   font-family: var(--font-poppins), sans-serif;
 }
 
-/* ---- EN ⇄ عربي pills: the language the headline is showing is filled ---- */
+/* ---- EN ⇄ عربي pills: the language the headline is showing is filled (primary-strong: white
+   13px text needs 4.5:1, primary gives 4.12) ---- */
 .pill {
   border: 1px solid #d5dee7;
   background: #fff;
@@ -36,8 +37,8 @@
 }
 .root:not([data-flip='true']) .pillPage,
 .root[data-flip='true'] .pillOther {
-  border-color: #1c83c5;
-  background: #1c83c5;
+  border-color: #1b7cbb;
+  background: #1b7cbb;
   color: #fff;
 }
 
@@ -185,9 +186,10 @@
   --x: 0; --y: 24; --w: 172; --h: 344; --s: 0.729;
   --f-label: 13; --f-value: 14.5; --f-status: 13; --f-title: 19; --f-sub: 13.5;
 }
+/* primary-strong under the small white text; the subtitle is plain white, as no tint of it passes */
 .phoneHead {
   padding: calc(12 * var(--k)) calc(16 * var(--k)) calc(16 * var(--k));
-  background: #1c83c5;
+  background: #1b7cbb;
   color: #fff;
 }
 .phoneBar {
@@ -225,7 +227,6 @@
   margin-top: calc(2 * var(--k));
   font-size: calc(var(--f-sub) * var(--k));
   line-height: 1.35;
-  color: rgba(255, 255, 255, 0.82);
 }
 .fields {
   display: flex;

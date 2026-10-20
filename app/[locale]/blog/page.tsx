@@ -164,7 +164,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs uppercase tracking-wide text-primary font-semibold">
+                    <span className="text-xs uppercase tracking-wide text-primary-dark font-semibold">
                       {post.category}
                     </span>
                     <span className="text-xs text-gray-500">
@@ -181,7 +181,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
+                  <div className="flex items-center text-primary-dark font-medium text-sm group-hover:gap-2 transition-all">
                     {t('readMore')}
                     <svg
                       className="w-4 h-4 ms-1 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
