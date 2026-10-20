@@ -1,19 +1,17 @@
-import { Link } from '@/i18n/navigation'
-// Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
-import NextLink from 'next/link'
-import Image from 'next/image'
-import { MessageCircle, ArrowRight } from 'lucide-react'
-import InteriorHeader from '@/components/InteriorHeader'
-import SectionWrapper from '@/components/SectionWrapper'
-import ServiceSidebar from '@/components/ServiceSidebar'
-
 import type { Metadata } from 'next'
-import ServiceSchema from '@/components/ServiceSchema'
-import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import FAQSection from '@/components/FAQSection'
-import type { FAQ } from '@/lib/faqs'
+import NextLink from 'next/link'
 import { getTranslations } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 import { buildAlternates } from '@/lib/metadata-helpers'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import ServiceSchema from '@/components/ServiceSchema'
+import ServiceHero from '@/components/service/ServiceHero'
+import CaseResults from '@/components/service/CaseResults'
+import BenefitsBento from '@/components/service/BenefitsBento'
+import { NumberedCards, DarkBand, StepsTimeline, ChipsRow, CaseStudyCards } from '@/components/service/InfoSections'
+import ServiceFaq from '@/components/service/ServiceFaq'
+import RelatedServices from '@/components/service/RelatedServices'
+import { inlineLink } from '@/components/service/styles'
 
 export async function generateMetadata({
   params,
@@ -35,383 +33,126 @@ export async function generateMetadata({
   }
 }
 
+const SITE = 'https://www.blueteamafrica.com'
+
+// Bands alternate: hero (white) → results → white → light → dark → white → light → white →
+// light FAQ → white related. Key names in WebDesignPage don't match their text (e.g.
+// customDesign is "Types of Websites We Build"); they are used as the old page used them.
 export default async function WebDesignPage() {
   const t = await getTranslations('WebDesignPage')
-
-  const displayFAQs: FAQ[] = [
-    { question: t('faq1q'), answer: t('faq1a') },
-    { question: t('faq2q'), answer: t('faq2a') },
-    { question: t('faq3q'), answer: t('faq3a') },
-    { question: t('faq4q'), answer: t('faq4a') },
-    { question: t('faq5q'), answer: t('faq5a') },
-    { question: t('faq6q'), answer: t('faq6a') },
-  ]
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: displayFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-    })),
-  }
+  const tTemplate = await getTranslations('ServiceTemplate')
+  const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
 
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-        { name: 'Professional Web Design Services', url: 'https://www.blueteamafrica.com/services/web-design' },
+        { name: 'Home', url: `${SITE}/` },
+        { name: 'Services', url: `${SITE}/services` },
+        { name: 'Professional Web Design Services', url: `${SITE}/services/web-design` },
       ]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ServiceSchema serviceName="Web Design" serviceSlug="web-design" />
-      <InteriorHeader
+
+      <ServiceHero
+        family="design"
         title={t('title')}
+        intro={t('intro')}
+        introExtra={[
+          t.rich('rwandaIntroPara', { rwandaLink: (chunks) => <Link href="/web-design-rwanda">{chunks}</Link> }),
+          // Blog posts are English-only: link straight to /blog/<slug> (no /ar prefix, no redirect hop)
+          t.rich('ngoGuidePara', { ngoGuideLink: (chunks) => <NextLink href="/blog/how-to-choose-the-right-website-for-your-ngo">{chunks}</NextLink> }),
+        ]}
         breadcrumb={[
           { label: t('breadcrumbHome'), href: '/' },
           { label: t('breadcrumbServices'), href: '/services' },
-          { label: t('breadcrumbWebDesign') }
+          { label: t('breadcrumbWebDesign') },
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <div className="flex flex-col lg:flex-row gap-8">
-          <aside className="hidden lg:block lg:w-1/4 flex-shrink-0">
-            <div className="lg:sticky lg:top-24">
-              <ServiceSidebar />
-            </div>
-          </aside>
+      {/* Figures as /portfolio/ecommerce-shop shows them (the platform this page describes) */}
+      <CaseResults href="/portfolio/ecommerce-shop" namespace="CaseStudyEcommerceShopPage" values={['5x', '80%', '3x']} />
 
-          <div className="lg:w-3/4 flex-grow">
-            {/* Hero Image */}
-            <section className="mb-12">
-              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src="/images/services/web-design/services-webdesign-web-design-hero-01.webp"
-                  alt="Professional Web Design Services"
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
-            </section>
+      <BenefitsBento
+        eyebrow={t('breadcrumbWebDesign')}
+        title={tTemplate('whatYouGet')}
+        cards={[
+          { title: t('responsiveDesign'), body: t('responsiveDesignBody') },
+          { title: t('fastPerformance'), body: t('fastPerformanceBody') },
+          { title: t('seoReady'), body: t('seoReadyBody') },
+        ]}
+      />
 
-            {/* Intro Text Section */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-3xl mx-auto px-6">
-                <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  {t('intro')}
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  {t.rich('rwandaIntroPara', {
-                    rwandaLink: (chunks) => (
-                      <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                    ),
-                  })}
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  {t.rich('ngoGuidePara', {
-                    ngoGuideLink: (chunks) => (
-                      <NextLink href="/blog/how-to-choose-the-right-website-for-your-ngo" className="text-primary hover:text-primary-dark hover:underline">{chunks}</NextLink>
-                    ),
-                  })}
-                </p>
-              </div>
-            </SectionWrapper>
+      <NumberedCards
+        id="types-heading"
+        heading={t('customDesign')}
+        tone="light"
+        items={[
+          { title: t('customDesignBody'), body: t('corporateBody') },
+          { title: t('secureHosting'), body: t('ngoBody') },
+          { title: t('secureHostingBody'), body: t('landingBody') },
+          { title: t('cmsIntegration'), body: t('portfolioBody') },
+          { title: t('cmsIntegrationBody'), body: t('contentBody') },
+        ]}
+      />
 
-            {/* 3 Value Pillars */}
-            <SectionWrapper bgColor="light">
-              <div className="max-w-6xl mx-auto px-6">
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('responsiveDesign')}</h3>
-                    <p className="text-gray-600">
-                      {t('responsiveDesignBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('fastPerformance')}</h3>
-                    <p className="text-gray-600">
-                      {t('fastPerformanceBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('seoReady')}</h3>
-                    <p className="text-gray-600">
-                      {t('seoReadyBody')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </SectionWrapper>
+      <DarkBand
+        id="stack-heading"
+        heading={t('servicesTitle')}
+        lead={[t('techIntro')]}
+        items={[
+          { title: t('loadSpeedTitle'), body: t('loadSpeedBody') },
+          { title: t('seoStructureTitle'), body: t('seoStructureBody') },
+          { title: t('vendorLockTitle'), body: t('vendorLockBody') },
+          { title: t('maintainableTitle'), body: t('maintainableBody') },
+        ]}
+      />
 
-            {/* Types of Websites We Build */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  {t('customDesign')}
-                </h2>
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('customDesignBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('corporateBody')}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('secureHosting')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('ngoBody')}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('secureHostingBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('landingBody')}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('cmsIntegration')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('portfolioBody')}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('cmsIntegrationBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('contentBody')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </SectionWrapper>
+      <StepsTimeline
+        id="process-heading"
+        heading={t('corporateSites')}
+        vertical
+        items={[
+          { title: t('corporateSitesBody'), body: t('discoveryBody') },
+          { title: t('ngoWebsites'), body: t('designBody') },
+          { title: t('ngoWebsitesBody'), body: t('developmentBody') },
+          { title: t('ecommerceSites'), body: t('qaBody') },
+          { title: t('ecommerceSitesBody'), body: t('launchBody') },
+        ]}
+      />
 
-            {/* Technology Stack */}
-            <SectionWrapper bgColor="light">
-              <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-6">
-                  {t('servicesTitle')}
-                </h2>
-                <p className="text-gray-700 leading-relaxed mb-8">
-                  {t('techIntro')}
-                </p>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('loadSpeedTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('loadSpeedBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('seoStructureTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('seoStructureBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('vendorLockTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('vendorLockBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('maintainableTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('maintainableBody')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </SectionWrapper>
+      <ChipsRow
+        id="industries-heading"
+        heading={t('portfolioSites')}
+        tone="light"
+        items={[
+          { title: t('portfolioSitesBody'), body: t.rich('ngoSectorBody', { sudanLink: (chunks) => <Link href="/locations/sudan" className={inlineLink}>{chunks}</Link> }) },
+          { title: t('rwandaTitle'), body: t('startupBody') },
+          { title: t('rwandaBody'), body: t('profServicesBody') },
+          { title: t('industriesTitle'), body: t('educationBody') },
+          { title: t('mediaTitle'), body: t.rich('mediaBody', { sudanFactsLink: (chunks) => <a href="https://sudanfacts.org" target="_blank" rel="noopener noreferrer" className={inlineLink}>{chunks}</a> }) },
+        ]}
+      />
 
-            {/* Delivery Process */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  {t('corporateSites')}
-                </h2>
-                <div className="space-y-6">
-                  <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('corporateSitesBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('discoveryBody')}
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ngoWebsites')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('designBody')}
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ngoWebsitesBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('developmentBody')}
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ecommerceSites')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('qaBody')}
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-primary pl-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('ecommerceSitesBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('launchBody')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </SectionWrapper>
+      <CaseStudyCards
+        id="work-heading"
+        heading={t('seeOurWorkTitle')}
+        cases={[
+          { href: '/portfolio/ngo-portal', title: t('ngoPortalTitle'), body: [t('ngoPortalBody')] },
+          { href: '/portfolio/ecommerce-shop', title: t('ecommercePlatformTitle'), body: [t('ecommercePlatformBody')] },
+        ]}
+        allLink={{ href: '/portfolio', label: t('ngos') }}
+      />
 
-            {/* Industries We Serve */}
-            <SectionWrapper bgColor="light">
-              <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  {t('portfolioSites')}
-                </h2>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('portfolioSitesBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t.rich('ngoSectorBody', {
-                        sudanLink: (chunks) => (
-                          <Link href="/locations/sudan" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                        ),
-                      })}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('rwandaTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('startupBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('rwandaBody')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('profServicesBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('industriesTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('educationBody')}
-                    </p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-sm md:col-span-2">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('mediaTitle')}</h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t.rich('mediaBody', {
-                        sudanFactsLink: (chunks) => (
-                          <a href="https://sudanfacts.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary-dark hover:underline">{chunks}</a>
-                        ),
-                      })}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </SectionWrapper>
+      <ServiceFaq tone="light" title={t('faqTitle')} description={t('faqDescription')} items={faqs} viewAllLabel={t('faqViewAll')} />
 
-            {/* See Our Work */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                  {t('seeOurWorkTitle')}
-                </h2>
-                <div className="space-y-6 mb-8">
-                  <div className="border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      <Link href="/portfolio/ngo-portal" className="text-primary hover:text-primary-dark hover:underline">
-                        {t('ngoPortalTitle')} →
-                      </Link>
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('ngoPortalBody')}
-                    </p>
-                  </div>
-                  <div className="border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      <Link href="/portfolio/ecommerce-shop" className="text-primary hover:text-primary-dark hover:underline">
-                        {t('ecommercePlatformTitle')} →
-                      </Link>
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {t('ecommercePlatformBody')}
-                    </p>
-                  </div>
-                </div>
-                <Link href="/portfolio" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-semibold hover:underline">
-                  {t('ngos')}
-                  <ArrowRight size={16} />
-                </Link>
-              </div>
-            </SectionWrapper>
-
-            {/* Related Services */}
-            <SectionWrapper bgColor="highlight">
-              <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
-                <div className="flex flex-wrap gap-4">
-                  <Link href="/services/hosting" className="text-primary hover:text-primary-dark font-medium">
-                    {t('relatedHosting')} →
-                  </Link>
-                  <Link href="/services/ecommerce" className="text-primary hover:text-primary-dark font-medium">
-                    {t('relatedEcommerce')} →
-                  </Link>
-                  <Link href="/services/branding" className="text-primary hover:text-primary-dark font-medium">
-                    {t('relatedBranding')} →
-                  </Link>
-                </div>
-              </div>
-            </SectionWrapper>
-
-            {/* FAQ Section */}
-            <SectionWrapper bgColor="white">
-              <FAQSection
-                customFAQs={displayFAQs}
-                title={t('faqTitle')}
-                description={t('faqDescription')}
-                viewAllLabel={t('faqViewAll')}
-              />
-            </SectionWrapper>
-
-            {/* CTA Strip */}
-            <section className="py-12 bg-primary-strong text-white">
-              <div className="max-w-4xl mx-auto px-6 text-center">
-                <h2 className="text-2xl font-heading font-bold mb-4">{t('government')}</h2>
-                <p className="text-white mb-6">{t('education')}</p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a
-                    href="https://wa.me/254119402737"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
-                  >
-                    <MessageCircle size={20} />
-                    {t('ctaWhatsApp')}
-                  </a>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 border-2 border-white bg-primary-strong text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-strong-hover transition"
-                  >
-                    {t('ctaGetQuote')}
-                    <ArrowRight size={18} />
-                  </Link>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Services - Mobile Only (Bottom) */}
-      <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
-        <ServiceSidebar />
-      </div>
+      <RelatedServices
+        tone="white"
+        title={t('relatedTitle')}
+        links={[
+          { href: '/services/hosting', label: t('relatedHosting') },
+          { href: '/services/ecommerce', label: t('relatedEcommerce') },
+          { href: '/services/branding', label: t('relatedBranding') },
+        ]}
+      />
     </>
   )
 }
