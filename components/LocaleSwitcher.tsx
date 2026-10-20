@@ -56,7 +56,8 @@ export default function LocaleSwitcher({ variant = 'pill' }: { variant?: 'pill' 
       ? arabicFallbackFor(pathname) ?? `/ar${pathname === '/' ? '' : pathname}`
       : pathname.replace(/^\/ar/, '') || '/'
 
-  const ariaLabel = locale === 'en' ? 'Switch to Arabic' : 'Switch to English'
+  // Starts with the visible label, so voice control ("click EN") and the accessible name agree
+  const ariaLabel = locale === 'en' ? 'عربي, switch to Arabic' : 'EN, switch to English'
   // Arabic labels are the only Arabic on English pages; kept off Scheherazade New (87 KB at 700)
   // so English pages never download it (they render in the OS's Arabic font, as before)
   const latinOnly = locale === 'en' ? { fontFamily: 'var(--font-poppins-latin), sans-serif' } : undefined
