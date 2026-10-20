@@ -45,6 +45,12 @@ const scheherazade = localFont({
   ],
 })
 
+// Preloaded on Arabic pages only, so the hero heading (700) renders in Scheherazade New from its
+// first paint instead of swapping in and shifting the layout. next/font can only preload per route
+// (both locales share these), so this is its emitted file, content-hashed: scripts/
+// check-font-preload.js fails the build if the font file or Next's naming changes the path.
+const AR_HEADING_FONT = '/_next/static/media/scheherazade_new_arabic_700_normal.c1df1337.woff2'
+
 // next/font's family is "'<face>', '<face> Fallback'", the fallback being a local Arial with
 // metric overrides. Windows' Arial has Arabic glyphs, so Scheherazade goes between the two;
 // after the fallback it would never be reached on Windows.
@@ -101,6 +107,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={dir} style={fontVariables}>
       <head>
+        {locale === 'ar' && <link rel="preload" href={AR_HEADING_FONT} as="font" type="font/woff2" crossOrigin="" />}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
