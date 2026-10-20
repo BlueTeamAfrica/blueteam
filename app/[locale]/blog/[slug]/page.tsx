@@ -421,17 +421,20 @@ export async function generateMetadata({
 
   const alternates = buildEnglishOnlyAlternates(`/blog/${slug}`)
   const sharedMetadata = blogMetadataMap[slug]
-  if (sharedMetadata) {
-    return {
-      ...sharedMetadata,
-      alternates,
-    }
-  }
+  const title = (sharedMetadata?.title as string | undefined) ?? post.title
+  const description = sharedMetadata?.description ?? post.excerpt
+  const ogImage = { url: `${SITE}${post.image}`, width: post.imageWidth, height: post.imageHeight, alt: post.title }
 
   return {
-    title: post.title,
-    description: post.excerpt,
+    title,
+    description,
     alternates,
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      images: [ogImage],
+    },
   }
 }
 

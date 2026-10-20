@@ -2,10 +2,17 @@ import type { Metadata } from 'next'
 import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Cookies Policy'
+  const description = 'Cookies Policy for Blue Team Ltd. - Learn how we use cookies and similar technologies on our website.'
   return {
-    title: 'Cookies Policy',
-    description: 'Cookies Policy for Blue Team Ltd. - Learn how we use cookies and similar technologies on our website.',
+    title,
+    description,
     alternates: buildEnglishOnlyAlternates('/cookies'),
+    openGraph: {
+      title,
+      description,
+      images: ['/images/hero/hero-og-01.webp'],
+    },
   }
 }
 

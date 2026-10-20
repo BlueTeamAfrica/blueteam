@@ -2,10 +2,17 @@ import type { Metadata } from 'next'
 import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Terms of Service'
+  const description = 'Terms of Service for Blue Team Ltd. - Learn about the terms and conditions for using our website and services.'
   return {
-    title: 'Terms of Service',
-    description: 'Terms of Service for Blue Team Ltd. - Learn about the terms and conditions for using our website and services.',
+    title,
+    description,
     alternates: buildEnglishOnlyAlternates('/terms'),
+    openGraph: {
+      title,
+      description,
+      images: ['/images/hero/hero-og-01.webp'],
+    },
   }
 }
 

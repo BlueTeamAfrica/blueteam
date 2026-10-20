@@ -2,10 +2,17 @@ import type { Metadata } from 'next'
 import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Privacy Policy'
+  const description = 'Privacy Policy for Blue Team Ltd. - Learn how we collect, use, and protect your personal information.'
   return {
-    title: 'Privacy Policy',
-    description: 'Privacy Policy for Blue Team Ltd. - Learn how we collect, use, and protect your personal information.',
+    title,
+    description,
     alternates: buildEnglishOnlyAlternates('/privacy'),
+    openGraph: {
+      title,
+      description,
+      images: ['/images/hero/hero-og-01.webp'],
+    },
   }
 }
 
