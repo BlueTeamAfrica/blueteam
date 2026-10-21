@@ -143,23 +143,30 @@ export function ChipsRow({ id, heading, eyebrow, lead, items, tone = 'light' }: 
   )
 }
 
+/** The checklist grid on its own, for a list that belongs to another section */
+export function CheckItems({ items, tone = 'white' }: { items: Item[]; tone?: Tone }) {
+  return (
+    <ul className="grid gap-x-10 gap-y-5 md:grid-cols-2">
+      {items.map((it, i) => (
+        <li key={i} className="flex gap-3">
+          <CheckIcon className={`mt-0.5 ${tone === 'dark' ? 'text-[#8CC8EE]' : 'text-primary'}`} />
+          <div className={`text-[16px] leading-relaxed ${body(tone)}`}>
+            {it.title && <h3 className={`mb-1 font-heading !text-[17px] font-semibold !leading-snug ${title(tone)}`}>{it.title}</h3>}
+            {it.body}
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 /** Two-column list with check icons, for long bullet lists. Items may carry a bold title */
 export function Checklist({ id, heading, eyebrow, lead, closing, items, tone = 'white' }: {
   id: string; heading: ReactNode; eyebrow?: string; lead?: ReactNode[]; closing?: ReactNode[]; items: Item[]; tone?: Tone
 }) {
   return (
     <Band id={id} tone={tone} heading={heading} eyebrow={eyebrow} lead={lead} closing={closing}>
-      <ul className="grid gap-x-10 gap-y-5 md:grid-cols-2">
-        {items.map((it, i) => (
-          <li key={i} className="flex gap-3">
-            <CheckIcon className={`mt-0.5 ${tone === 'dark' ? 'text-[#8CC8EE]' : 'text-primary'}`} />
-            <div className={`text-[16px] leading-relaxed ${body(tone)}`}>
-              {it.title && <h3 className={`mb-1 font-heading !text-[17px] font-semibold !leading-snug ${title(tone)}`}>{it.title}</h3>}
-              {it.body}
-            </div>
-          </li>
-        ))}
-      </ul>
+      <CheckItems items={items} tone={tone} />
     </Band>
   )
 }

@@ -1,16 +1,16 @@
-import { Link } from '@/i18n/navigation'
-import Image from 'next/image'
-import { MessageCircle } from 'lucide-react'
-import InteriorHeader from '@/components/InteriorHeader'
-import SectionWrapper from '@/components/SectionWrapper'
-import ServiceSidebar from '@/components/ServiceSidebar'
 import type { Metadata } from 'next'
-import ServiceSchema from '@/components/ServiceSchema'
-import BreadcrumbSchema from '@/components/BreadcrumbSchema'
-import FAQSection from '@/components/FAQSection'
-import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 import { buildAlternates } from '@/lib/metadata-helpers'
+import BreadcrumbSchema from '@/components/BreadcrumbSchema'
+import ServiceSchema from '@/components/ServiceSchema'
+import ServiceHero from '@/components/service/ServiceHero'
+import CaseResults from '@/components/service/CaseResults'
+import BenefitsBento from '@/components/service/BenefitsBento'
+import { Checklist, CheckItems, NumberedCards, CaseStudyCards } from '@/components/service/InfoSections'
+import ServiceFaq from '@/components/service/ServiceFaq'
+import RelatedServices from '@/components/service/RelatedServices'
+import { inlineLink } from '@/components/service/styles'
 
 export async function generateMetadata({
   params,
@@ -52,333 +52,109 @@ export async function generateMetadata({
   }
 }
 
+const SITE = 'https://www.blueteamafrica.com'
+
+// Bands: hero (light) → results → white value cards + "What you get" list → light checklist →
+// navy checklist → white case studies → light "why choose" → white FAQ → light related
 export default async function ERPPage() {
   const t = await getTranslations('ErpPage')
-
-  const displayFAQs: FAQ[] = [
-    { question: t('faq1q'), answer: t('faq1a') },
-    { question: t('faq2q'), answer: t('faq2a') },
-    { question: t('faq3q'), answer: t('faq3a') },
-    { question: t('faq4q'), answer: t('faq4a') },
-    { question: t('faq5q'), answer: t('faq5a') },
-    { question: t('faq6q'), answer: t('faq6a') },
-  ]
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: displayFAQs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-    })),
-  }
+  const tPf = await getTranslations('PortfolioPage')
+  const tSvc = await getTranslations('ServiceSidebar')
+  const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
+  const to = (href: string, label: string) => <Link href={href} className={inlineLink}>{label}</Link>
 
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://www.blueteamafrica.com/' },
-        { name: 'Services', url: 'https://www.blueteamafrica.com/services' },
-        { name: 'ERP Solutions', url: 'https://www.blueteamafrica.com/services/erp' },
+        { name: 'Home', url: `${SITE}/` },
+        { name: 'Services', url: `${SITE}/services` },
+        { name: 'ERP Solutions', url: `${SITE}/services/erp` },
       ]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ServiceSchema serviceName="ERP" serviceSlug="erp" />
-      <InteriorHeader
+
+      <ServiceHero
+        family="systems"
         title={t('title')}
+        intro={<>{t('introPre')}<strong><Link href="/services/erp">{t('introLinkLabel')}</Link></strong>{t('introPost')}</>}
         breadcrumb={[
           { label: t('breadcrumbHome'), href: '/' },
           { label: t('breadcrumbServices'), href: '/services' },
-          { label: t('breadcrumbErp') }
+          { label: t('breadcrumbErp') },
         ]}
       />
 
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <div className="flex flex-col lg:flex-row gap-8">
-          <aside className="hidden lg:block lg:w-1/4 flex-shrink-0">
-            <div className="lg:sticky lg:top-24">
-              <ServiceSidebar />
-            </div>
-          </aside>
+      {/* The CSLO case this page presents; figures as /portfolio/cslo-sudan shows them */}
+      <CaseResults href="/portfolio/cslo-sudan" namespace="CaseStudyCsloSudanPage" values={['70%', '50%']} />
 
-          <div className="lg:w-3/4 flex-grow">
-            {/* Hero Image */}
-            <section className="mb-12">
-              <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src="/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp"
-                  alt="ERP Systems"
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
-            </section>
+      {/* The value cards and the "What you get" list share one section: two "What you get"
+          headings would repeat each other */}
+      <BenefitsBento
+        eyebrow={t('breadcrumbErp')}
+        title={t('featuresTitle')}
+        cards={[1, 2, 3].map((n) => ({ title: t(`pillar${n}Title`), body: t(`pillar${n}Body`) }))}
+      >
+        <CheckItems items={[
+          { body: t('feature1') },
+          { body: <>{t('feature2Pre')}{to('/services/hosting', t('feature2LinkLabel'))}{t('feature2Post')}</> },
+          { body: t('feature3') },
+          { body: t('feature4') },
+          { body: t('feature5') },
+          { body: t('feature6') },
+          { body: <>{t('feature7Pre')}{to('/services/web-design', t('feature7Link1'))}{t('feature7Mid')}{to('/services/mobile-apps', t('feature7Link2'))}</> },
+          { body: <>{t('feature8Pre')}{to('/services/maintenance', t('feature8LinkLabel'))}{t('feature8Post')}</> },
+        ]} />
+      </BenefitsBento>
 
-            {/* Hero Intro */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-5xl mx-auto">
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  {t('introPre')}
-                  <strong>
-                    <Link href="/services/erp" className="text-primary hover:underline">
-                      {t('introLinkLabel')}
-                    </Link>
-                  </strong>
-                  {t('introPost')}
-                </p>
-              </div>
-            </SectionWrapper>
+      <Checklist
+        id="centralize-heading"
+        heading={t('whyTitle')}
+        tone="light"
+        lead={[<>{t('whyBodyPre')}<strong>{to('/services/erp', t('whyBodyLinkLabel'))}</strong>{t('whyBodyPost')}</>]}
+        items={[1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({ body: t(`whyBullet${n}`) }))}
+      />
 
-            {/* Centralize / Why ERP Section */}
-            <SectionWrapper bgColor="light">
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  {t('whyTitle')}
-                </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  {t('whyBodyPre')}
-                  <strong>
-                    <Link href="/services/erp" className="text-primary hover:underline">
-                      {t('whyBodyLinkLabel')}
-                    </Link>
-                  </strong>
-                  {t('whyBodyPost')}
-                </p>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800 text-lg">
-                  {(['whyBullet1','whyBullet2','whyBullet3','whyBullet4','whyBullet5','whyBullet6','whyBullet7','whyBullet8'] as const).map((key) => (
-                    <li key={key} className="flex items-start">
-                      <span className="text-primary mr-3 font-bold">•</span>
-                      <span>{t(key)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </SectionWrapper>
+      <Checklist
+        id="mobile-heading"
+        heading={t('mobileTitle')}
+        tone="dark"
+        lead={[<>{t('mobileBodyPre')}{to('/services/mobile-apps', t('mobileBodyLinkLabel'))}{t('mobileBodyPost')}</>]}
+        items={[1, 2, 3, 4, 5].map((n) => ({ body: t(`mobileBullet${n}`) }))}
+        closing={[t('mobileClosing')]}
+      />
 
-            {/* Sudan Case Study Section */}
-            <SectionWrapper bgColor="highlight">
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  {t.rich('caseTitle', {
-                    sudanLink: (chunks) => (
-                      <Link href="/locations/sudan" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>
-                    ),
-                  })}
-                </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  {t('caseBody1')}
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  {t('caseBody2Pre')}
-                  <strong>
-                    <Link href="/services/mobile-apps" className="text-primary hover:underline">
-                      {t('caseBody2LinkLabel')}
-                    </Link>
-                  </strong>
-                  {t('caseBody2Post')}
-                </p>
-                <div className="flex flex-wrap gap-4 mt-2">
-                  <Link href="/portfolio/cslo-sudan" className="text-primary hover:text-primary-dark font-medium">
-                    {t('caseStudyLink1')} →
-                  </Link>
-                  <Link href="/portfolio/erp-integration" className="text-primary hover:text-primary-dark font-medium">
-                    {t('caseStudyLink2')} →
-                  </Link>
-                </div>
-              </div>
-            </SectionWrapper>
+      <CaseStudyCards
+        id="case-heading"
+        heading={t.rich('caseTitle', { sudanLink: (chunks) => <Link href="/locations/sudan" className={inlineLink}>{chunks}</Link> })}
+        lead={[t('caseBody1'), <>{t('caseBody2Pre')}<strong>{to('/services/mobile-apps', t('caseBody2LinkLabel'))}</strong>{t('caseBody2Post')}</>]}
+        cases={[
+          { href: '/portfolio/cslo-sudan', tag: tPf('item_csloSudan_cat'), title: t('caseStudyLink1'), body: [tPf('item_csloSudan_desc')] },
+          { href: '/portfolio/erp-integration', tag: tPf('item_erpIntegration_cat'), title: t('caseStudyLink2'), body: [tPf('item_erpIntegration_desc')] },
+        ]}
+      />
 
-            {/* Mobile App Integration */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  {t('mobileTitle')}
-                </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  {t('mobileBodyPre')}
-                  <Link href="/services/mobile-apps" className="text-primary hover:underline">
-                    {t('mobileBodyLinkLabel')}
-                  </Link>
-                  {t('mobileBodyPost')}
-                </p>
-                <ul className="space-y-4 text-gray-800 text-lg mb-8">
-                  {(['mobileBullet1','mobileBullet2','mobileBullet3','mobileBullet4','mobileBullet5'] as const).map((key) => (
-                    <li key={key} className="flex items-start">
-                      <span className="text-primary mr-3 font-bold">•</span>
-                      <span>{t(key)}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-lg text-gray-700">
-                  {t('mobileClosing')}
-                </p>
-              </div>
-            </SectionWrapper>
+      <NumberedCards
+        id="why-choose-heading"
+        heading={t('whyChooseTitle')}
+        tone="light"
+        items={[
+          { title: t('why1Title'), body: <>{t('why1BodyPre')}{to('/services/erp', 'ERPNext')}{t('why1BodyMid')}{to('/services/crm', 'Frappe')}{t('why1BodyPost')}</> },
+          { title: t('why2Title'), body: <>{t('why2BodyPre')}{to('/services/mobile-apps', t('why2BodyLinkLabel'))}{t('why2BodyPost')}</> },
+          { title: t('why3Title'), body: <>{t('why3BodyPre')}{to('/services/maintenance', t('why3BodyLinkLabel'))}{t('why3BodyPost')}</> },
+        ]}
+      />
 
-            {/* Key Features Section */}
-            <SectionWrapper bgColor="light">
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                  {t('featuresTitle')}
-                </h2>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800 text-lg">
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>{t('feature1')}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>
-                      {t('feature2Pre')}
-                      <Link href="/services/hosting" className="text-primary hover:underline">{t('feature2LinkLabel')}</Link>
-                      {t('feature2Post')}
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>{t('feature3')}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>{t('feature4')}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>{t('feature5')}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>{t('feature6')}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>
-                      {t('feature7Pre')}
-                      <Link href="/services/web-design" className="text-primary hover:underline">{t('feature7Link1')}</Link>
-                      {t('feature7Mid')}
-                      <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('feature7Link2')}</Link>
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-3 font-bold">•</span>
-                    <span>
-                      {t('feature8Pre')}
-                      <Link href="/services/maintenance" className="text-primary hover:underline">{t('feature8LinkLabel')}</Link>
-                      {t('feature8Post')}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </SectionWrapper>
+      <ServiceFaq title={t('faqTitle')} description={t('faqDescription')} items={faqs} viewAllLabel={t('faqViewAll')} />
 
-            {/* Related Services */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-5xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-heading font-bold text-gray-900 mb-6">
-                  {t('relatedTitle')}
-                </h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  {t('relatedBodyPre')}
-                  <Link href="/services/web-design" className="text-primary hover:underline">{t('relatedLink1')}</Link>
-                  {t('relatedMid1')}
-                  <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('relatedLink2')}</Link>
-                  {t('relatedMid2')}
-                  <Link href="/services/cybersecurity" className="text-primary hover:underline">{t('relatedLink3')}</Link>
-                  {t('relatedPost')}
-                </p>
-              </div>
-            </SectionWrapper>
-
-            {/* 3 Value Pillars */}
-            <SectionWrapper bgColor="light">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar1Title')}</h3>
-                  <p className="text-gray-600">{t('pillar1Body')}</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar2Title')}</h3>
-                  <p className="text-gray-600">{t('pillar2Body')}</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('pillar3Title')}</h3>
-                  <p className="text-gray-600">{t('pillar3Body')}</p>
-                </div>
-              </div>
-            </SectionWrapper>
-
-            {/* Why Choose Blue Team Africa */}
-            <SectionWrapper bgColor="white">
-              <h2 className="text-3xl font-heading font-bold text-gray-900 mb-8">
-                {t('whyChooseTitle')}
-              </h2>
-              <div className="space-y-6 text-gray-700">
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{t('why1Title')}</h3>
-                  <p>
-                    {t('why1BodyPre')}
-                    <Link href="/services/erp" className="text-primary hover:underline">ERPNext</Link>
-                    {t('why1BodyMid')}
-                    <Link href="/services/crm" className="text-primary hover:underline">Frappe</Link>
-                    {t('why1BodyPost')}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{t('why2Title')}</h3>
-                  <p>
-                    {t('why2BodyPre')}
-                    <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('why2BodyLinkLabel')}</Link>
-                    {t('why2BodyPost')}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{t('why3Title')}</h3>
-                  <p>
-                    {t('why3BodyPre')}
-                    <Link href="/services/maintenance" className="text-primary hover:underline">{t('why3BodyLinkLabel')}</Link>
-                    {t('why3BodyPost')}
-                  </p>
-                </div>
-              </div>
-            </SectionWrapper>
-
-            {/* FAQ Section */}
-            <SectionWrapper bgColor="white">
-              <FAQSection
-                customFAQs={displayFAQs}
-                title={t('faqTitle')}
-                description={t('faqDescription')}
-                viewAllLabel={t('faqViewAll')}
-              />
-            </SectionWrapper>
-
-            {/* CTA Section */}
-            <SectionWrapper bgColor="white">
-              <div className="max-w-4xl mx-auto text-center py-12 md:py-16 bg-primary text-white rounded-lg">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">{t('ctaTitle')}</h2>
-                <p className="text-white/90 max-w-2xl mx-auto mb-8 text-lg">
-                  {t('ctaSubtitle')}
-                </p>
-                <a
-                  href="https://wa.me/254119402737?text=Hello!%20I%20would%20like%20to%20discuss%20ERP%20solutions%20for%20my%20organization."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition shadow-lg"
-                >
-                  <MessageCircle size={20} />
-                  {t('ctaBtn')}
-                </a>
-              </div>
-            </SectionWrapper>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Services - Mobile Only (Bottom) */}
-      <div className="block lg:hidden max-w-7xl mx-auto px-6 pb-12">
-        <ServiceSidebar />
-      </div>
+      {/* The page's related-services sentence (links kept) over cards for the same three */}
+      <RelatedServices
+        title={t('relatedTitle')}
+        intro={<>{t('relatedBodyPre')}{to('/services/web-design', t('relatedLink1'))}{t('relatedMid1')}{to('/services/mobile-apps', t('relatedLink2'))}{t('relatedMid2')}{to('/services/cybersecurity', t('relatedLink3'))}{t('relatedPost')}</>}
+        links={[
+          { href: '/services/web-design', label: tSvc('webDesign') },
+          { href: '/services/mobile-apps', label: tSvc('mobileApps') },
+          { href: '/services/cybersecurity', label: tSvc('cybersecurity') },
+        ]}
+      />
     </>
   )
 }

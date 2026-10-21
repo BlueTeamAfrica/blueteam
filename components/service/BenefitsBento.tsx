@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { container, Eyebrow, H2 } from '@/components/home/shared'
 
 // The page's value cards as a bento: first card wide and light, second navy, third peach.
@@ -11,7 +12,8 @@ const TONES = [
   'bg-[#FBEFE4]',
 ]
 
-export default function BenefitsBento({ eyebrow, title, cards }: { eyebrow: string; title: string; cards: Card[] }) {
+/** `children` render after the cards, inside the same section (e.g. a checklist that belongs to it) */
+export default function BenefitsBento({ eyebrow, title, cards, children }: { eyebrow: string; title: string; cards: Card[]; children?: ReactNode }) {
   return (
     <section aria-labelledby="benefits-heading" className="bg-white py-14 md:py-20">
       <div className={container}>
@@ -30,6 +32,7 @@ export default function BenefitsBento({ eyebrow, title, cards }: { eyebrow: stri
             )
           })}
         </div>
+        {children && <div className="mt-12">{children}</div>}
       </div>
     </section>
   )
