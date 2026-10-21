@@ -37,6 +37,8 @@ const config: CompactServiceConfig = {
   ],
   // Figures as /portfolio/ngo-portal shows them; labels are its own keys
   caseStudy: { href: '/portfolio/ngo-portal', namespace: 'CaseStudyNgoPortalPage', values: ['75%', '50%', '3x'] },
+  // The page linked both case studies before the template; the strip covers the first
+  relatedCase: { href: '/portfolio/crm-system', item: 'crmSystem' },
 }
 
 export default async function CustomSystemsPage() {
