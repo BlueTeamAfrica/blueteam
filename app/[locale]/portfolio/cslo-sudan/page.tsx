@@ -51,50 +51,6 @@ export async function generateMetadata({
   }
 }
 
-function CaseStudySchema() {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'CaseStudy',
-    name: 'ERPNext & Frappe CRM Implementation for CSLO Sudan',
-    description: 'Blue Team delivered a full ERP and CRM digital transformation for CSLO Sudan, including remote field data collection, automated workflows, reporting dashboards and mobile-app-powered humanitarian data capture.',
-    provider: {
-      '@type': 'Organization',
-      name: 'Blue Team Africa',
-      url: 'https://www.blueteamafrica.com',
-      logo: 'https://www.blueteamafrica.com/images/logo/logo.png',
-    },
-    client: {
-      '@type': 'NonprofitOrganization',
-      name: 'CSLO Sudan',
-      address: 'Sudan',
-      url: 'https://cslo-sudan.org',
-    },
-    about: [
-      'ERPNext Implementation',
-      'Frappe CRM Deployment',
-      'Humanitarian Project Management System',
-      'Mobile Data Collection App',
-      'Secure Database Integration',
-    ],
-    genre: 'Digital Transformation',
-    keywords: [
-      'ERP Sudan',
-      'CRM Sudan',
-      'ERPNext Sudan',
-      'Humanitarian data management Sudan',
-      'NGO technology solutions East Africa',
-      'Blue Team Africa',
-    ],
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
-}
-
 export default async function CSLOSudanCaseStudy() {
   const t = await getTranslations('CaseStudyCsloSudanPage')
   const to = (href: string) => (chunks: ReactNode) => <Link href={href} className={inlineLink}>{chunks}</Link>
@@ -105,7 +61,6 @@ export default async function CSLOSudanCaseStudy() {
 
   return (
     <>
-      <CaseStudySchema />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://www.blueteamafrica.com/' },
         { name: 'Portfolio', url: 'https://www.blueteamafrica.com/portfolio' },
