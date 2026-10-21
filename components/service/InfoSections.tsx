@@ -95,17 +95,23 @@ export function StepsTimeline({ id, heading, eyebrow, lead, items, tone = 'white
   id: string; heading: ReactNode; eyebrow?: string; lead?: ReactNode[]; items: Item[]; tone?: Exclude<Tone, 'dark'>; vertical?: boolean
 }) {
   const ring = tone === 'light' ? 'ring-[#F6F8FA]' : 'ring-white'
-  const across = vertical ? '' : 'md:auto-cols-fr md:grid-flow-col md:gap-6 md:before:bottom-auto md:before:end-[8%] md:before:start-[8%] md:before:h-0.5 md:before:w-auto'
+  // Across from md; with more than five steps from lg, so columns don't get too narrow
+  const wide = items.length > 5
+  const across = vertical ? '' : wide
+    ? 'lg:auto-cols-fr lg:grid-flow-col lg:gap-6 lg:before:bottom-auto lg:before:end-[8%] lg:before:start-[8%] lg:before:h-0.5 lg:before:w-auto'
+    : 'md:auto-cols-fr md:grid-flow-col md:gap-6 md:before:bottom-auto md:before:end-[8%] md:before:start-[8%] md:before:h-0.5 md:before:w-auto'
+  const item = vertical ? '' : wide ? 'lg:flex-col lg:items-center lg:gap-0 lg:text-center' : 'md:flex-col md:items-center md:gap-0 md:text-center'
+  const textBox = vertical ? 'pt-2.5' : wide ? 'lg:mt-5' : 'md:mt-5'
   return (
     <Band id={id} tone={tone} heading={heading} eyebrow={eyebrow} lead={lead}>
       <ol className={`relative grid gap-8 before:absolute before:bottom-6 before:start-6 before:top-6 before:w-0.5 before:bg-[#D5E6F3] ${vertical ? 'max-w-3xl' : ''} ${across}`}>
         {items.map((s, i) => (
-          <li key={i} className={`relative flex gap-5 ${vertical ? '' : 'md:flex-col md:items-center md:gap-0 md:text-center'}`}>
+          <li key={i} className={`relative flex gap-5 ${item}`}>
             {/* 19px bold is large text, so white passes on primary (4.12:1) */}
             <span aria-hidden="true" className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary font-heading text-[19px] font-bold text-white ring-8 ${ring}`}>
               {i + 1}
             </span>
-            <div className={vertical ? 'pt-2.5' : 'md:mt-5'}>
+            <div className={textBox}>
               <h3 className="font-heading !text-[18px] font-bold !leading-snug text-navy"><span className="sr-only">{i + 1}. </span>{s.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-[#4A5868]">{s.body}</p>
             </div>
