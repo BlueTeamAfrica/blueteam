@@ -9,12 +9,10 @@ export default function OrganizationSchema() {
     // Owner-approved: founded 2023; works in these four countries
     foundingDate: '2023',
     areaServed: ['Sudan', 'Uganda', 'Rwanda', 'Kenya'].map((name) => ({ '@type': 'Country', name })),
+    // The profiles the footer links (FooterView): Facebook and LinkedIn
     sameAs: [
       'https://www.facebook.com/profile.php?id=61585128246041',
-      'https://x.com/BLUETEAMAFRICA',
       'https://www.linkedin.com/company/blue-team-africa',
-      'https://www.instagram.com/blueteamafrica/',
-      'https://youtube.com/@BLUETEAMAFRICA',
     ],
     contactPoint: [
       {

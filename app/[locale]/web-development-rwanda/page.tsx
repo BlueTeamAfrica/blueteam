@@ -66,9 +66,7 @@ const professionalServiceSchema = {
   },
   "sameAs": [
     "https://www.linkedin.com/company/blue-team-africa",
-    "https://www.facebook.com/profile.php?id=61585128246041",
-    "https://www.instagram.com/blueteamafrica/",
-    "https://x.com/BLUETEAMAFRICA"
+    "https://www.facebook.com/profile.php?id=61585128246041"
   ],
   "serviceType": [
     "Web Development",

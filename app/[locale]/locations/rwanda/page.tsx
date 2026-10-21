@@ -114,8 +114,7 @@ export default async function RwandaLocationPage() {
               { "@type": "City", "name": "Kigali" }
             ],
             "sameAs": [
-              "https://www.linkedin.com/company/blue-team-africa",
-              "https://x.com/BLUETEAMAFRICA"
+              "https://www.linkedin.com/company/blue-team-africa"
             ],
             "serviceType": [
               "Website Design",
