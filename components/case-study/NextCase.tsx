@@ -3,7 +3,8 @@ import { Link } from '@/i18n/navigation'
 import { container, ArrowIcon } from '@/components/home/shared'
 import { nextCase } from './cases'
 
-// Navy band linking the next case study in portfolio order (wraps from the last to the first)
+// Navy band linking the next case study in portfolio order (wraps from the last to the first).
+// The link is named by its own text (label, title, summary), so name and visible text match.
 
 export default async function NextCase({ slug }: { slug: string }) {
   const t = await getTranslations('CaseStudyTemplate')
@@ -15,7 +16,6 @@ export default async function NextCase({ slug }: { slug: string }) {
       <div className={container}>
         <Link
           href={`/portfolio/${next.slug}`}
-          aria-label={`${t('nextCase')}: ${title}`}
           className="group flex flex-col gap-4 rounded py-12 !no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:flex-row md:items-center md:justify-between md:py-16"
         >
           <div>
