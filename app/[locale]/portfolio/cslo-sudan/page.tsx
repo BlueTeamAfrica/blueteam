@@ -57,7 +57,7 @@ function CaseStudySchema() {
       '@type': 'Organization',
       name: 'Blue Team Africa',
       url: 'https://www.blueteamafrica.com',
-      logo: 'https://www.blueteamafrica.com/logo.png',
+      logo: 'https://www.blueteamafrica.com/images/logo/logo.png',
     },
     client: {
       '@type': 'NonprofitOrganization',

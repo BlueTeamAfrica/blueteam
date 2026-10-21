@@ -99,7 +99,7 @@ export default async function RwandaLocationPage() {
             "@type": "LocalBusiness",
             "name": "Blue Team Africa",
             "url": "https://www.blueteamafrica.com/locations/rwanda",
-            "logo": "https://www.blueteamafrica.com/images/logo.png",
+            "logo": "https://www.blueteamafrica.com/images/logo/logo.png",
             "image": "https://www.blueteamafrica.com/images/locations/rwanda-hero.webp",
             "description": "Blue Team Africa provides website design, mobile app development, and cybersecurity services for NGOs and businesses in Rwanda, including Kigali.",
             "telephone": "+250798973375",

@@ -10,7 +10,7 @@ export default function WebSiteSchema() {
       name: 'Blue Team Africa',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.blueteamafrica.com/logo.png',
+        url: 'https://www.blueteamafrica.com/images/logo/logo.png',
       },
     },
   })

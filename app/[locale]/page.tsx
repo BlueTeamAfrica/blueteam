@@ -79,7 +79,7 @@ export default async function Home() {
     "name": "Blue Team Africa",
     "legalName": "Blue Team Ltd.",
     "url": "https://www.blueteamafrica.com",
-    "logo": "https://www.blueteamafrica.com/logo.png",
+    "logo": "https://www.blueteamafrica.com/images/logo/logo.png",
     "image": "https://www.blueteamafrica.com/og-image.png",
     "telephone": "+254119402737",
     "email": "contact@blueteamafrica.com",

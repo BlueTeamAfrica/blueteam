@@ -48,7 +48,7 @@ const professionalServiceSchema = {
   "name": "Blue Team Africa – Web Development Company in Rwanda",
   "alternateName": "Blue Team for Digital Solutions",
   "url": "https://www.blueteamafrica.com/web-development-rwanda",
-  "logo": "https://www.blueteamafrica.com/logo.png",
+  "logo": "https://www.blueteamafrica.com/images/logo/logo.png",
   "image": "https://www.blueteamafrica.com/og-image.png",
   "telephone": "+250798973375",
   "email": "contact@blueteamafrica.com",
