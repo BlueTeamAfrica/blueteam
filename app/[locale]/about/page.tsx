@@ -26,6 +26,7 @@ export async function generateMetadata({
     openGraph: {
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
+      images: ['/images/hero/hero-og-1200x630.jpg'],
     },
   }
 }

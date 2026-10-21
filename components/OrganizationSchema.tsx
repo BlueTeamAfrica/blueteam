@@ -6,6 +6,9 @@ export default function OrganizationSchema() {
     description: 'Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa.',
     url: 'https://www.blueteamafrica.com',
     logo: 'https://www.blueteamafrica.com/images/logo/logo.png',
+    // Owner-approved: founded 2023; works in these four countries
+    foundingDate: '2023',
+    areaServed: ['Sudan', 'Uganda', 'Rwanda', 'Kenya'].map((name) => ({ '@type': 'Country', name })),
     sameAs: [
       'https://www.facebook.com/profile.php?id=61585128246041',
       'https://x.com/BLUETEAMAFRICA',
