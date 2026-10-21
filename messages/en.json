@@ -374,7 +374,16 @@
     "ctaButton": "Contact Us",
     "sudanLink": "Explore our Sudan technology services →",
     "metaTitle": "About Us: Sudanese-Founded Tech Team",
-    "metaDescription": "Founded by Sudanese technologists who rebuilt after the war, we build secure systems for NGOs, media and organisations working on Sudan and East Africa."
+    "metaDescription": "Founded by Sudanese technologists who rebuilt after the war, we build secure systems for NGOs, media and organisations working on Sudan and East Africa.",
+    "heroFoundedLabel": "Founded",
+    "heroCountriesLabel": "Countries",
+    "chipOffline": "Works offline",
+    "chipLanguages": "English · العربية",
+    "storyLabel": "Our story",
+    "cardLowConnectivityTitle": "Built for low connectivity",
+    "cardBilingualTitle": "Bilingual by default",
+    "cardBilingualBody": "Websites and systems in English and Arabic, with right-to-left layouts built in from the start, not added later.",
+    "whereNote": "Since 2023 · 4 countries"
   },
   "TeamPage": {
     "title": "Our Team",
