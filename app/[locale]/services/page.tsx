@@ -133,7 +133,7 @@ export default async function ServicesPage() {
                 '@id': 'https://www.blueteamafrica.com/#organization',
                 name: 'Blue Team Africa',
                 url: 'https://www.blueteamafrica.com',
-                logo: 'https://www.blueteamafrica.com/logo.png',
+                logo: 'https://www.blueteamafrica.com/images/logo/logo.png',
                 sameAs: ['https://www.linkedin.com/company/blue-team-africa'],
                 contactPoint: [
                   {
@@ -246,25 +246,23 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* SERVICE CARDS — desktop */}
-      <div className="hidden sm:block">
-        <section className="bg-slate-50">
-          <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
-            <header className="mb-8">
-              <h2 className="text-2xl font-bold">{t('servicesTitle')}</h2>
-              <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
-            </header>
+      {/* SERVICE CARDS (one grid: one column on phones, two from sm, three from lg) */}
+      <section className="bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
+          <header className="mb-8">
+            <h2 className="text-2xl font-bold">{t('servicesTitle')}</h2>
+            <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
+          </header>
 
-            <NextIntlClientProvider messages={serviceCardMessages}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {translatedServices.map((s) => (
-                  <ServiceCard key={s.id} service={s} />
-                ))}
-              </div>
-            </NextIntlClientProvider>
-          </div>
-        </section>
-      </div>
+          <NextIntlClientProvider messages={serviceCardMessages}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {translatedServices.map((s) => (
+                <ServiceCard key={s.id} service={s} />
+              ))}
+            </div>
+          </NextIntlClientProvider>
+        </div>
+      </section>
 
       {/* WHY CHOOSE US STRIP */}
       <section className="max-w-6xl mx-auto px-6 py-10 lg:py-14">
@@ -326,26 +324,6 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* SERVICE CARDS — mobile only */}
-      <div className="block sm:hidden">
-        <section className="bg-slate-50">
-          <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
-            <header className="mb-8">
-              <h2 className="text-2xl font-bold">{t('servicesTitle')}</h2>
-              <p className="mt-2 text-slate-600">{t('servicesSubtitle')}</p>
-            </header>
-
-            <NextIntlClientProvider messages={serviceCardMessages}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {translatedServices.map((s) => (
-                  <ServiceCard key={s.id} service={s} />
-                ))}
-              </div>
-            </NextIntlClientProvider>
-          </div>
-        </section>
-      </div>
-
       {/* MOBILE STICKY CTA */}
       <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 sm:hidden z-50">
         <div className="flex gap-3 items-center bg-white rounded-full p-2 shadow-lg border border-slate-200">
@@ -368,9 +346,6 @@ export default async function ServicesPage() {
         </div>
       </div>
 
-      <footer className="mt-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-10 text-slate-500 text-sm">© {new Date().getFullYear()} Blue Team Africa</div>
-      </footer>
     </div>
     </>
   )
