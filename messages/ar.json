@@ -2183,5 +2183,9 @@
     "illustrative": "توضيحي",
     "relatedServices": "خدمات ذات صلة",
     "relatedCase": "دراسة حالة ذات صلة"
+  },
+  "CaseStudyTemplate": {
+    "keyResults": "أبرز النتائج",
+    "nextCase": "دراسة الحالة التالية"
   }
 }

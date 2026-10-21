@@ -2183,5 +2183,9 @@
     "illustrative": "Illustrative",
     "relatedServices": "Related services",
     "relatedCase": "Related case study"
+  },
+  "CaseStudyTemplate": {
+    "keyResults": "Key results",
+    "nextCase": "Next case study"
   }
 }

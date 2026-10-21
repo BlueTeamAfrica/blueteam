@@ -15,7 +15,7 @@ const WHATSAPP = 'https://wa.me/254119402737'
 
 export interface Crumb { label: string; href?: string }
 
-export default async function ServiceHero({ family, title, tagline, intro, introExtra, breadcrumb }: {
+export default async function ServiceHero({ family, title, tagline, intro, introExtra, breadcrumb, pills, actions = true }: {
   family: ServiceFamily
   title: string
   /** A page's existing sub-heading line, shown under the H1 */
@@ -25,6 +25,10 @@ export default async function ServiceHero({ family, title, tagline, intro, intro
   /** Further intro paragraphs, smaller */
   introExtra?: ReactNode[]
   breadcrumb: Crumb[]
+  /** Chips in place of the group pill (case studies show their categories) */
+  pills?: string[]
+  /** The two buttons; case-study pages leave them out */
+  actions?: boolean
 }) {
   const locale = await getLocale()
   const t = await getTranslations('ServiceTemplate')
@@ -59,9 +63,11 @@ export default async function ServiceHero({ family, title, tagline, intro, intro
             </ol>
           </nav>
 
-          <p className={`mt-6 inline-flex rounded-full px-3 py-1 text-[13px] font-semibold ${dark ? 'bg-white/10 text-[#8CC8EE]' : 'bg-[#EAF4FB] text-[#0D5A8A]'}`}>
-            {tHeader(GROUP_KEY[family])}
-          </p>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {(pills ?? [tHeader(GROUP_KEY[family])]).map((p) => (
+              <li key={p} className={`rounded-full px-3 py-1 text-[13px] font-semibold ${dark ? 'bg-white/10 text-[#8CC8EE]' : 'bg-[#EAF4FB] text-[#0D5A8A]'}`}>{p}</li>
+            ))}
+          </ul>
           <h1 id="service-heading" className={`mt-4 font-heading !text-[34px] font-bold !leading-[1.12] md:!text-[44px] lg:!text-[50px] rtl:!leading-[1.35] ${dark ? 'text-white' : 'text-navy'}`}>
             {title}
           </h1>
@@ -71,23 +77,25 @@ export default async function ServiceHero({ family, title, tagline, intro, intro
             {introExtra?.map((p, i) => <p key={i} className="mt-3 text-[16px] leading-relaxed">{p}</p>)}
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-            <Link
-              href="/contact"
-              className={`${button} ${dark ? 'bg-white text-navy hover:bg-[#EAF4FB]' : 'bg-primary-strong text-white hover:bg-primary-strong-hover'}`}
-            >
-              {t('getQuote')}
-            </Link>
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${button} border-2 ${dark ? 'border-white text-white hover:bg-white/10' : 'border-primary text-[#0D5A8A] hover:bg-[#EAF4FB]'}`}
-            >
-              <WhatsAppIcon />
-              {tFooter('ctaWhatsApp')}
-            </a>
-          </div>
+          {actions && (
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+              <Link
+                href="/contact"
+                className={`${button} ${dark ? 'bg-white text-navy hover:bg-[#EAF4FB]' : 'bg-primary-strong text-white hover:bg-primary-strong-hover'}`}
+              >
+                {t('getQuote')}
+              </Link>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${button} border-2 ${dark ? 'border-white text-white hover:bg-white/10' : 'border-primary text-[#0D5A8A] hover:bg-[#EAF4FB]'}`}
+              >
+                <WhatsAppIcon />
+                {tFooter('ctaWhatsApp')}
+              </a>
+            </div>
+          )}
         </div>
 
         <div aria-hidden="true">

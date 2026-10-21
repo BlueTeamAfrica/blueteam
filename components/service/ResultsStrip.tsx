@@ -11,8 +11,9 @@ export interface Stat { value: string; label: string }
 export default function ResultsStrip({ label, stats, href, linkLabel }: {
   label: string
   stats: Stat[]
-  href: string
-  linkLabel: string
+  /** Link to the case study; left out on the case-study page itself */
+  href?: string
+  linkLabel?: string
 }) {
   return (
     <section aria-label={label} className="bg-primary-strong text-white">
@@ -28,12 +29,12 @@ export default function ResultsStrip({ label, stats, href, linkLabel }: {
             </li>
           ))}
         </ul>
-        <Link
+        {href && <Link
           href={href}
           className="shrink-0 rounded font-semibold text-white !no-underline underline-offset-4 hover:!underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           {linkLabel}
-        </Link>
+        </Link>}
       </div>
     </section>
   )

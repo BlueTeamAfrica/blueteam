@@ -7,13 +7,15 @@ import { container, focusRing, H2, ArrowIcon } from '@/components/home/shared'
 
 export interface FaqItem { q: string; a: string }
 
-export default function ServiceFaq({ title, description, items, viewAllLabel, tone = 'white' }: {
+export default function ServiceFaq({ title, description, items, viewAllLabel, tone = 'white', schema: withSchema = true }: {
   title: string
   description: string
   items: FaqItem[]
   /** Link to /faq; left out where the page never showed one */
   viewAllLabel?: string
   tone?: 'white' | 'light'
+  /** FAQPage JSON-LD; off where a page never had it (its JSON-LD stays as it was) */
+  schema?: boolean
 }) {
   const schema = {
     '@context': 'https://schema.org',
@@ -26,7 +28,7 @@ export default function ServiceFaq({ title, description, items, viewAllLabel, to
   }
   return (
     <section aria-labelledby="faq-heading" className={`${tone === 'light' ? 'bg-[#F6F8FA]' : 'bg-white'} py-14 md:py-20`}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      {withSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />}
       <div className={`${container} grid gap-10 md:grid-cols-3 md:gap-12`}>
         <div>
           <H2 id="faq-heading" className="!mt-0">{title}</H2>
