@@ -33,7 +33,7 @@ export async function generateMetadata({
       siteName: 'Blue Team Africa',
       images: [
         {
-          url: '/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp',
+          url: '/images/hero/hero-og-1200x630.jpg',
           width: 1200,
           height: 630,
           alt: 'CSLO Sudan ERPNext and CRM Implementation',
@@ -46,7 +46,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
-      images: ['/images/portfolio/cslo-sudan/case-cslo-cslo-01.webp'],
+      images: ['/images/hero/hero-og-1200x630.jpg'],
     },
   }
 }
