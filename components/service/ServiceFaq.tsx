@@ -9,7 +9,7 @@ export interface FaqItem { q: string; a: string }
 
 export default function ServiceFaq({ title, description, items, viewAllLabel, tone = 'white', schema: withSchema = true }: {
   title: string
-  description: string
+  description?: string
   items: FaqItem[]
   /** Link to /faq; left out where the page never showed one */
   viewAllLabel?: string
@@ -32,7 +32,7 @@ export default function ServiceFaq({ title, description, items, viewAllLabel, to
       <div className={`${container} grid gap-10 md:grid-cols-3 md:gap-12`}>
         <div>
           <H2 id="faq-heading" className="!mt-0">{title}</H2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#4A5868]">{description}</p>
+          {description && <p className="mt-5 text-[16px] leading-relaxed text-[#4A5868]">{description}</p>}
           {viewAllLabel && (
             <Link href="/faq" className={`mt-5 inline-flex items-center gap-1.5 rounded font-semibold text-[#0D5A8A] !no-underline hover:!underline ${focusRing}`}>
               {viewAllLabel} <ArrowIcon />
