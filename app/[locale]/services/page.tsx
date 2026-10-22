@@ -28,6 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
+      images: ['/images/hero/hero-og-1200x630.jpg'],
     },
   }
 }
@@ -92,41 +93,6 @@ export default async function ServicesPage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': [
-              {
-                '@type': 'Organization',
-                '@id': 'https://www.blueteamafrica.com/#organization',
-                name: 'Blue Team Africa',
-                url: 'https://www.blueteamafrica.com',
-                logo: 'https://www.blueteamafrica.com/images/logo/logo.png',
-                sameAs: ['https://www.linkedin.com/company/blue-team-africa'],
-                contactPoint: [
-                  {
-                    '@type': 'ContactPoint',
-                    telephone: '+254119402737',
-                    contactType: 'sales',
-                    areaServed: ['UG', 'KE', 'RW', 'SD'],
-                  },
-                ],
-              },
-              {
-                '@type': 'FAQPage',
-                mainEntity: faqs.map((faq) => ({
-                  '@type': 'Question',
-                  name: faq.q,
-                  acceptedAnswer: { '@type': 'Answer', text: faq.a },
-                })),
-              },
-            ],
-          }),
-        }}
-      />
-
       {/* HERO */}
       <section aria-labelledby="services-heading" className="relative overflow-hidden bg-white">
         <NetworkLines className="absolute -bottom-10 -end-24 w-[420px] text-primary opacity-[0.10] lg:-top-12 lg:bottom-auto lg:end-0 lg:w-[560px]" />
@@ -219,7 +185,7 @@ export default async function ServicesPage() {
 
       <HowWeWork />
 
-      <ServiceFaq tone="light" title={t('faqTitle')} items={faqs} viewAllLabel={tFaq('faqViewAll')} schema={false} />
+      <ServiceFaq tone="light" title={t('faqTitle')} items={faqs} viewAllLabel={tFaq('faqViewAll')} />
     </>
   )
 }
