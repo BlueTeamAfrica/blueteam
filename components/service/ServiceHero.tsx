@@ -34,7 +34,6 @@ export default async function ServiceHero({ family, title, tagline, intro, intro
   const t = await getTranslations('ServiceTemplate')
   const tHeader = await getTranslations('Header')
   const tFooter = await getTranslations('Footer')
-  const tHero = await getTranslations('Hero')
   const dark = family === 'protect'
 
   const focusRing = `focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${dark ? 'focus-visible:outline-white' : 'focus-visible:outline-primary'}`
@@ -99,24 +98,35 @@ export default async function ServiceHero({ family, title, tagline, intro, intro
         </div>
 
         <div aria-hidden="true">
-          {family === 'design' && (
-            <DesignVisual s={{ headline: t('browserHeadline'), performanceTarget: t('performanceTarget'), devices: t('devices'), latinAr: locale === 'en' }} />
-          )}
-          {family === 'systems' && (
-            <SystemsVisual s={{
-              phoneTitle: tHero('phoneTitle'), phoneSubtitle: tHero('phoneSubtitle'), synced: tHero('statusSynced'),
-              recordsBySite: t('recordsBySite'), live: t('live'), illustrativeData: tHero('dashNote'),
-            }} />
-          )}
-          {family === 'protect' && (
-            <ProtectVisual s={{
-              securityEvents: t('securityEvents'), monitored: t('monitored'), illustrative: t('illustrative'),
-              events: [[t('eventBlocked'), '02:14'], [t('eventCertificate'), '06:00'], [t('eventBackup'), '06:30'], [t('eventPatch'), '09:12']],
-              tags: [t('tagEncrypted'), t('tagBackedUp'), t('tag247')],
-            }} />
-          )}
+          <FamilyVisual family={family} />
         </div>
       </div>
     </section>
+  )
+}
+
+/** The family's static mockup (fictional data), as the hero shows it; decorative, so the caller
+    wraps it in aria-hidden. Also used by the /services index bands. */
+export async function FamilyVisual({ family }: { family: ServiceFamily }) {
+  const locale = await getLocale()
+  const t = await getTranslations('ServiceTemplate')
+  const tHero = await getTranslations('Hero')
+  if (family === 'design') {
+    return <DesignVisual s={{ headline: t('browserHeadline'), performanceTarget: t('performanceTarget'), devices: t('devices'), latinAr: locale === 'en' }} />
+  }
+  if (family === 'systems') {
+    return (
+      <SystemsVisual s={{
+        phoneTitle: tHero('phoneTitle'), phoneSubtitle: tHero('phoneSubtitle'), synced: tHero('statusSynced'),
+        recordsBySite: t('recordsBySite'), live: t('live'), illustrativeData: tHero('dashNote'),
+      }} />
+    )
+  }
+  return (
+    <ProtectVisual s={{
+      securityEvents: t('securityEvents'), monitored: t('monitored'), illustrative: t('illustrative'),
+      events: [[t('eventBlocked'), '02:14'], [t('eventCertificate'), '06:00'], [t('eventBackup'), '06:30'], [t('eventPatch'), '09:12']],
+      tags: [t('tagEncrypted'), t('tagBackedUp'), t('tag247')],
+    }} />
   )
 }
