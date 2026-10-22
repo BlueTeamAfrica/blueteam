@@ -1,18 +1,6 @@
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 import {
-  Monitor,
-  Code2,
-  MousePointerClick,
-  PenTool,
-  ShoppingCart,
-  Smartphone,
-  Puzzle,
-  BarChart3,
-  Users,
-  ShieldCheck,
-  Server,
-  Wrench,
   MapPin,
   Phone,
   Mail,
@@ -25,6 +13,7 @@ import { Ltr } from '@/components/Ltr'
 import LocaleSwitcher from '@/components/LocaleSwitcher'
 import HeaderShell from '@/components/HeaderShell'
 import { getLatestBilingualPost } from '@/lib/bilingual-blog'
+import { FAMILIES, getServiceNames } from '@/components/service/services'
 
 // Server component: every panel and the mobile menu are rendered into the HTML (hidden until
 // opened) so crawlers see all links. HeaderShell only adds open/close behaviour.
@@ -132,44 +121,23 @@ function MobileGroup({ heading, children }: { heading: string; children: ReactNo
 export default async function Header() {
   const locale = await getLocale()
   const t = await getTranslations('Header')
-  const tSvc = await getTranslations('ServiceSidebar')
-  const tNav = await getTranslations('Navigation')
+  const serviceName = await getServiceNames()
   const tPf = await getTranslations('PortfolioPage')
   const tSudan = await getTranslations('LocationsSudanPage')
   const tRwanda = await getTranslations('LocationsRwandaPage')
   const post = getLatestBilingualPost(locale)
 
-  // Service titles reuse the existing ServiceSidebar names; ServiceSidebar lists ERP and CRM as
-  // one entry, so those two come from Navigation.services
-  const groups: { heading: string; items: Item[] }[] = [
-    {
-      heading: t('groupBuild'),
-      items: [
-        { href: '/services/web-design', title: tSvc('webDesign'), desc: t('descWebDesign'), icon: Monitor },
-        { href: '/services/website-development', title: tSvc('websiteDev'), desc: t('descWebDev'), icon: Code2 },
-        { href: '/services/ui-ux', title: tSvc('uiux'), desc: t('descUiUx'), icon: MousePointerClick },
-        { href: '/services/branding', title: tSvc('branding'), desc: t('descBranding'), icon: PenTool },
-      ],
-    },
-    {
-      heading: t('groupSystems'),
-      items: [
-        { href: '/services/ecommerce', title: tSvc('ecommerce'), desc: t('descEcommerce'), icon: ShoppingCart },
-        { href: '/services/mobile-apps', title: tSvc('mobileApps'), desc: t('descMobile'), icon: Smartphone },
-        { href: '/services/custom-systems', title: tSvc('customSystems'), desc: t('descCustom'), icon: Puzzle },
-        { href: '/services/erp', title: tNav('services.erp.name'), desc: t('descErp'), icon: BarChart3 },
-        { href: '/services/crm', title: tNav('services.crm.name'), desc: t('descCrm'), icon: Users },
-      ],
-    },
-    {
-      heading: t('groupProtect'),
-      items: [
-        { href: '/services/cybersecurity', title: tSvc('cybersecurity'), desc: t('descSecurity'), icon: ShieldCheck, tone: 'orange' },
-        { href: '/services/hosting', title: tSvc('hosting'), desc: t('descHosting'), icon: Server, tone: 'orange' },
-        { href: '/services/maintenance', title: tSvc('maintenance'), desc: t('descMaintenance'), icon: Wrench, tone: 'orange' },
-      ],
-    },
-  ]
+  // The three service families from the shared list; Protect & run keeps its orange tiles
+  const groups: { heading: string; items: Item[] }[] = FAMILIES.map((f) => ({
+    heading: t(f.headingKey),
+    items: f.services.map((svc) => ({
+      href: `/services/${svc.slug}`,
+      title: serviceName(svc),
+      desc: t(svc.descKey),
+      icon: svc.icon,
+      tone: f.id === 'protect' ? 'orange' : undefined,
+    })),
+  }))
 
   const cards = [
     { n: 1, href: '/portfolio/cslo-sudan', cls: 'bg-[#0B1B2B] text-white', sub: 'text-white/70' },

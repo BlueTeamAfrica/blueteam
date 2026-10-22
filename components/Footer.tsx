@@ -1,33 +1,20 @@
 import { getTranslations } from 'next-intl/server'
 import FooterView, { type FooterLink } from '@/components/FooterView'
+import { SERVICES, getServiceNames } from '@/components/service/services'
 
 // Translates the footer on the server and hands FooterView (client) just the strings
 export default async function Footer() {
   const t = await getTranslations('Footer')
   const tHeader = await getTranslations('Header')
-  const tSvc = await getTranslations('ServiceSidebar')
-  const tNav = await getTranslations('Navigation')
+  const serviceName = await getServiceNames()
   const tSudan = await getTranslations('LocationsSudanPage')
   const tRwanda = await getTranslations('LocationsRwandaPage')
   const year = new Date().getFullYear()
 
-  // Same service names as the header's Services panel
-  const services: FooterLink[] = [
-    { href: '/services/web-design', label: tSvc('webDesign') },
-    { href: '/services/website-development', label: tSvc('websiteDev') },
-    { href: '/services/ui-ux', label: tSvc('uiux') },
-    { href: '/services/branding', label: tSvc('branding') },
-    { href: '/services/ecommerce', label: tSvc('ecommerce') },
-    { href: '/services/mobile-apps', label: tSvc('mobileApps') },
-  ]
-  const servicesMore: FooterLink[] = [
-    { href: '/services/custom-systems', label: tSvc('customSystems') },
-    { href: '/services/erp', label: tNav('services.erp.name') },
-    { href: '/services/crm', label: tNav('services.crm.name') },
-    { href: '/services/cybersecurity', label: tSvc('cybersecurity') },
-    { href: '/services/hosting', label: tSvc('hosting') },
-    { href: '/services/maintenance', label: tSvc('maintenance') },
-  ]
+  // The shared service list, in family order, split over two columns of six
+  const allServices: FooterLink[] = SERVICES.map((svc) => ({ href: `/services/${svc.slug}`, label: serviceName(svc) }))
+  const services = allServices.slice(0, 6)
+  const servicesMore = allServices.slice(6)
   const company: FooterLink[] = [
     { href: '/about', label: tHeader('about') },
     { href: '/portfolio', label: t('caseStudies') },

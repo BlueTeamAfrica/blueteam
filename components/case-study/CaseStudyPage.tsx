@@ -8,6 +8,7 @@ import RelatedServices from '@/components/service/RelatedServices'
 import CaseSection from './CaseSection'
 import NextCase from './NextCase'
 import { caseBySlug } from './cases'
+import { SERVICES, getServiceNames } from '@/components/service/services'
 
 // A case study, top to bottom: hero (category chips, title, the portfolio card's summary, the
 // family visual) → its own figures → Challenge → Solution (tinted) → Results → related
@@ -17,29 +18,10 @@ import { caseBySlug } from './cases'
 
 const SITE = 'https://www.blueteamafrica.com'
 
-/** Service names as the header and footer show them: [namespace, key] per service slug */
-export const SERVICE_NAME: Record<string, [string, string]> = {
-  'web-design': ['ServiceSidebar', 'webDesign'],
-  'website-development': ['ServiceSidebar', 'websiteDev'],
-  'ui-ux': ['ServiceSidebar', 'uiux'],
-  branding: ['ServiceSidebar', 'branding'],
-  ecommerce: ['ServiceSidebar', 'ecommerce'],
-  'mobile-apps': ['ServiceSidebar', 'mobileApps'],
-  'custom-systems': ['ServiceSidebar', 'customSystems'],
-  erp: ['Navigation', 'services.erp.name'],
-  crm: ['Navigation', 'services.crm.name'],
-  cybersecurity: ['ServiceSidebar', 'cybersecurity'],
-  hosting: ['ServiceSidebar', 'hosting'],
-  maintenance: ['ServiceSidebar', 'maintenance'],
-}
-
+/** Links to services by slug, named as the header and footer name them */
 export async function serviceLinks(slugs: string[]) {
-  const tSvc = await getTranslations('ServiceSidebar')
-  const tNav = await getTranslations('Navigation')
-  return slugs.map((s) => {
-    const [ns, key] = SERVICE_NAME[s]
-    return { href: `/services/${s}`, label: ns === 'Navigation' ? tNav(key) : tSvc(key) }
-  })
+  const serviceName = await getServiceNames()
+  return slugs.map((slug) => ({ href: `/services/${slug}`, label: serviceName(SERVICES.find((svc) => svc.slug === slug)!) }))
 }
 
 export async function CaseHero({ slug }: { slug: string }) {
