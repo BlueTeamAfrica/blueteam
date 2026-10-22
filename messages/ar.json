@@ -1353,7 +1353,7 @@
     "cookiePolicy": "سياسة ملفات تعريف الارتباط"
   },
   "ServicesPage": {
-    "heroTitle": "خدمات رقمية للمنظمات والشركات المهتمة بالشأن السوداني وشرق أفريقيا",
+    "heroTitle": "خدمات للمنظمات والشركات العاملة في السودان وشرق أفريقيا",
     "chipCount": "{count, plural, zero {# خدمة} one {خدمة واحدة} two {خدمتان} few {# خدمات} many {# خدمة} other {# خدمة}}",
     "familyEyebrow": "{num} · {count, plural, zero {# خدمة} one {خدمة واحدة} two {خدمتان} few {# خدمات} many {# خدمة} other {# خدمة}}",
     "workEyebrow": "أعمال مختارة",
