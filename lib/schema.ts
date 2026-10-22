@@ -210,22 +210,6 @@ export function getServiceSchema(serviceName: string, serviceSlug: string) {
   };
 }
 
-// List of services
-export const services = [
-  { name: 'Web Design', slug: 'web-design' },
-  { name: 'Website Development', slug: 'website-development' },
-  { name: 'Hosting', slug: 'hosting' },
-  { name: 'Mobile Apps', slug: 'mobile-apps' },
-  { name: 'ERP', slug: 'erp' },
-  { name: 'CRM', slug: 'crm' },
-  { name: 'Cybersecurity', slug: 'cybersecurity' },
-  { name: 'E-commerce', slug: 'ecommerce' },
-  { name: 'Custom Systems', slug: 'custom-systems' },
-  { name: 'Maintenance', slug: 'maintenance' },
-  { name: 'Branding', slug: 'branding' },
-  { name: 'UI/UX', slug: 'ui-ux' }
-];
-
 // Function to generate portfolio JSON-LD
 export function getPortfolioSchema(projectName: string, projectSlug: string) {
   return {

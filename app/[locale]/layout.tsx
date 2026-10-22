@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 import '../styles/animations.css'
@@ -99,10 +98,8 @@ export default async function LocaleLayout({
     notFound()
   }
 
-  const messages = await getMessages()
-  // Only what client components translate: ServiceSidebar (Header is a server component; Footer
-  // translates on the server and passes FooterView its strings)
-  const layoutMessages = { ServiceSidebar: messages.ServiceSidebar }
+  // No client component under the layout translates anything (Header is a server component;
+  // Footer translates on the server and passes FooterView its strings), so no messages ship
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
   const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-PYJR1T65RQ'
 
@@ -114,7 +111,7 @@ export default async function LocaleLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className="bg-[#F8F9FC] text-gray-900 font-body antialiased">
-        <NextIntlClientProvider messages={layoutMessages}>
+        <NextIntlClientProvider messages={{}}>
           <WebSiteSchema />
           <ClientComponents gaId={gaId} />
           <Header />
