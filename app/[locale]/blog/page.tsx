@@ -175,9 +175,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       })}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                  {/* h2 under the page's h1; .card-title keeps the old h3 size on phones (globals.css) */}
+                  <h2 className="card-title text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors">
                     {post.title}
-                  </h3>
+                  </h2>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {post.excerpt}
                   </p>

@@ -78,7 +78,7 @@ export default async function SudanLocationPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
       <InteriorHeader
-        headingLevel="h2"
+        titleIsHeading={false}
         title={t('headerTitle')}
         breadcrumb={[
           { label: t('breadcrumbHome'), href: '/' },

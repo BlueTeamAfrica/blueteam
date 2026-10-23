@@ -155,7 +155,7 @@ export default async function RwandaLocationPage() {
       />
 
       <InteriorHeader
-        headingLevel="h2"
+        titleIsHeading={false}
         title={t('headerTitle')}
         breadcrumb={[
           { label: t('breadcrumbHome'), href: '/' },

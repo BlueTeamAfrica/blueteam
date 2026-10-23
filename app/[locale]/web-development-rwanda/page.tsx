@@ -103,7 +103,7 @@ export default async function WebDevelopmentRwandaPage() {
       />
 
       <InteriorHeader
-        headingLevel="h2"
+        titleIsHeading={false}
         title={t('headerTitle')}
         breadcrumb={[
           { label: t('breadcrumbHome'), href: '/' },

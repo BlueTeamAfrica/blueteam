@@ -7,19 +7,23 @@ import { Link } from "@/i18n/navigation"
 interface InteriorHeaderProps {
   title: string
   breadcrumb: { label: string; href?: string }[]
-  headingLevel?: 'h1' | 'h2' | 'h3'
+  /** false when the page has its own H1: the title is then not a heading at all */
+  titleIsHeading?: boolean
 }
 
-export default function InteriorHeader({ title, breadcrumb, headingLevel = 'h1' }: InteriorHeaderProps) {
-  const HeadingTag = headingLevel
+export default function InteriorHeader({ title, breadcrumb, titleIsHeading = true }: InteriorHeaderProps) {
+  // The non-heading title takes .section-title, which shares h2's phone size and Arabic line
+  // height in globals.css, so it renders exactly as the h2 it replaced
+  const TitleTag = titleIsHeading ? 'h1' : 'div'
+  const titleClass = titleIsHeading ? '' : 'section-title '
 
   return (
     <div className="relative w-full bg-[#F5F7FA]/80 backdrop-blur-md border-b border-gray-200 pt-[120px] md:pt-[140px] pb-12 md:pb-16 overflow-hidden">
 
       {/* Title */}
-      <HeadingTag className="text-3xl md:text-4xl font-bold text-gray-900 text-center fade-up">
+      <TitleTag className={`${titleClass}text-3xl md:text-4xl font-bold text-gray-900 text-center fade-up`}>
         {title}
-      </HeadingTag>
+      </TitleTag>
 
       {/* Animated Underline */}
       <div className="h-[6px] w-[90px] bg-primary rounded-full mx-auto mt-4 fade-up delay-1" />

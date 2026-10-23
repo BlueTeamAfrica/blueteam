@@ -430,7 +430,8 @@ html {
     line-height: 1.2 !important;
   }
 
-  h3 {
+  h3,
+  h2.card-title {
     font-size: 1.15rem !important;
     line-height: 1.25 !important;
   }

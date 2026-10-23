@@ -83,7 +83,7 @@ export default async function WebDesignRwandaPage() {
           { label: t('breadcrumbHome'), href: '/' },
           { label: t('breadcrumbCurrent') },
         ]}
-        headingLevel="h2"
+        titleIsHeading={false}
       />
 
       {/* Hero Section */}
