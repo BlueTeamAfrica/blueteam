@@ -34,7 +34,8 @@ const englishOnlyPosts = [
     slug: 'best-web-design-companies-in-rwanda',
     title: 'Best Web Design Companies in Rwanda',
     excerpt: 'A comparison of leading web design companies in Rwanda and how to choose the right partner for your business or NGO.',
-    date: '2026-01-16',
+    // Same as the post's own JSON-LD datePublished and the sitemap
+    date: '2026-01-25',
     categoryKey: 'categoryWebDesign',
     image: '/blog/choosing-web-design-company-rwanda.webp',
   },
@@ -159,6 +160,8 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                     alt={post.title}
                     width={400}
                     height={256}
+                    // One column below md, two to lg, then three (max-w-7xl: about 387px each)
+                    sizes="(min-width: 1280px) 390px, (min-width: 1024px) calc((100vw - 112px) / 3), (min-width: 768px) calc((100vw - 80px) / 2), calc(100vw - 48px)"
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

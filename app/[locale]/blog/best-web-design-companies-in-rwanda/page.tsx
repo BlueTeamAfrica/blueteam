@@ -73,8 +73,12 @@ export default function BestWebDesignCompaniesRwandaPage() {
                 alt="Best Web Design Companies in Rwanda"
                 width={1200}
                 height={630}
+                // The max-w-4xl box: viewport minus both px-6 gutters, up to 896 - 48 = 848px
+                sizes="(max-width: 944px) calc(100vw - 96px), 848px"
                 className="object-cover w-full h-full"
-                priority
+                // Next 16: preload replaces the deprecated priority (one preload link)
+                preload
+                fetchPriority="high"
               />
             </div>
           </div>
