@@ -25,14 +25,16 @@ interface FormErrors {
 
 // Phone number formatting helper
 const formatPhoneNumber = (value: string): string => {
+  // Keep a leading + if the visitor typed one (international format)
+  const plus = value.trimStart().startsWith('+') ? '+' : ''
   // Remove all non-digit characters
   const digits = value.replace(/\D/g, '')
 
   // Format based on length
-  if (digits.length <= 3) return digits
-  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`
-  if (digits.length <= 9) return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
-  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9, 12)}`
+  if (digits.length <= 3) return plus + digits
+  if (digits.length <= 6) return `${plus}${digits.slice(0, 3)} ${digits.slice(3)}`
+  if (digits.length <= 9) return `${plus}${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
+  return `${plus}${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9, 12)}`
 }
 
 // Input sanitization helper
