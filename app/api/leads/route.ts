@@ -231,7 +231,8 @@ export async function POST(request: NextRequest) {
           }
           leads.push(leadData)
           fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2))
-          console.log('[LEADS] Saved to local data/leads.json (dev fallback)')
+          // warn: a fallback save means Firestore failed (and production strips console.log)
+          console.warn('[LEADS] Saved to local data/leads.json (dev fallback)')
         } catch (fileError) {
           console.error('[LEADS_FILESYSTEM_ERROR] Failed to write local fallback leads.json:', fileError)
         }
