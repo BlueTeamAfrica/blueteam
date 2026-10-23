@@ -20,7 +20,7 @@ Public marketing and services showcase site for BlueteamAfrica.com — brand pre
   mixed up with that one.
 - Vercel: this project's team is `blueteamafricas-projects` (note the "s" — easy to
   confuse with the similarly-named `blueteams-projects`, a different, mostly-empty team
-  under a different account). Confirm `.vercel/project.json` orgId matches
+  under a different account). Confirm `.vercel/repo.json` (project `blueteam`) orgId matches
   `team_QRM7drbhAg7GGhINd7WdJbmA` before trusting any `vercel env`/`vercel logs` output —
   a CLI scope mismatch caused a full day of misdiagnosis on 2026-07-07.
 
