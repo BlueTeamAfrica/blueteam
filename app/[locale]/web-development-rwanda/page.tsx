@@ -49,7 +49,7 @@ const professionalServiceSchema = {
   "alternateName": "Blue Team for Digital Solutions",
   "url": "https://www.blueteamafrica.com/web-development-rwanda",
   "logo": "https://www.blueteamafrica.com/images/logo/logo.png",
-  "image": "https://www.blueteamafrica.com/og-image.png",
+  "image": "https://www.blueteamafrica.com/images/hero/hero-og-1200x630.jpg",
   "telephone": "+250798973375",
   "email": "contact@blueteamafrica.com",
   "priceRange": "$$",

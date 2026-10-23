@@ -45,13 +45,15 @@ export async function generateMetadata({
 }
 
 // Generate JSON-LD schemas (stay English intentionally)
+const AREAS_SERVED = ['Rwanda', { '@type': 'City', name: 'Kigali', containedInPlace: { '@type': 'Country', name: 'Rwanda' } }]
+
 const websiteDesignServiceSchema = generateServiceSchema(
   'Website Design Services in Rwanda',
   'Professional website design services for NGOs and businesses in Rwanda, with expertise serving organizations in Kigali and nationwide.',
   'Blue Team Africa',
   'https://www.blueteamafrica.com',
   'Website Design',
-  ['Rwanda', 'Kigali']
+  AREAS_SERVED
 )
 
 const mobileAppServiceSchema = generateServiceSchema(
@@ -60,7 +62,7 @@ const mobileAppServiceSchema = generateServiceSchema(
   'Blue Team Africa',
   'https://www.blueteamafrica.com',
   'Mobile App Development',
-  ['Rwanda', 'Kigali']
+  AREAS_SERVED
 )
 
 const cybersecurityServiceSchema = generateServiceSchema(
@@ -69,7 +71,7 @@ const cybersecurityServiceSchema = generateServiceSchema(
   'Blue Team Africa',
   'https://www.blueteamafrica.com',
   'Cybersecurity',
-  ['Rwanda', 'Kigali']
+  AREAS_SERVED
 )
 
 export default async function RwandaLocationPage() {

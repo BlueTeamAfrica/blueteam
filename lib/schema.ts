@@ -30,11 +30,15 @@ export interface ServiceSchema {
     name: string;
     url: string;
   };
-  areaServed?: {
-    '@type': string;
-    name: string;
-  }[];
+  areaServed?: Place[];
   serviceType: string;
+}
+
+/** A schema.org Place (Country, City…), optionally inside a larger one */
+export interface Place {
+  '@type': string;
+  name: string;
+  containedInPlace?: Place;
 }
 
 export interface OrganizationSchema {
@@ -114,7 +118,8 @@ export function generateServiceSchema(
   providerName: string,
   providerUrl: string,
   serviceType: string,
-  areasServed?: string[]
+  // A plain string is a country; pass a Place for anything else (e.g. a City)
+  areasServed?: (string | Place)[]
 ): ServiceSchema {
   const schema: ServiceSchema = {
     '@context': 'https://schema.org',
@@ -130,10 +135,9 @@ export function generateServiceSchema(
   };
 
   if (areasServed && areasServed.length > 0) {
-    schema.areaServed = areasServed.map(area => ({
-      '@type': 'Country',
-      name: area,
-    }));
+    schema.areaServed = areasServed.map(area =>
+      typeof area === 'string' ? { '@type': 'Country', name: area } : area
+    );
   }
 
   return schema;
@@ -189,8 +193,8 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
   };
 }
 
-// Function to generate service JSON-LD (optimized for Kigali & East Africa)
-export function getServiceSchema(serviceName: string, serviceSlug: string) {
+// Function to generate service JSON-LD; description is the service page's own (English) meta description
+export function getServiceSchema(serviceName: string, serviceSlug: string, description: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -199,19 +203,53 @@ export function getServiceSchema(serviceName: string, serviceSlug: string) {
       "@type": "LocalBusiness",
       "name": "Blue Team Africa",
       "url": "https://www.blueteamafrica.com",
-      "logo": "https://www.blueteamafrica.com/images/logo/logo.webp"
+      "logo": "https://www.blueteamafrica.com/images/logo/logo.png"
     },
     "areaServed": {
       "@type": "Place",
       "name": "Kigali, Rwanda"
     },
     "url": `https://www.blueteamafrica.com/services/${serviceSlug}`,
-    "description": `Professional ${serviceName} services for NGOs and businesses in Kigali and East Africa.`
+    "description": description
   };
 }
 
+// Each case study's own summary for its CreativeWork JSON-LD (English on both locales).
+// Every detail here is stated on the case page itself.
+const portfolioSummaries: Record<string, { description: string; keywords: string[] }> = {
+  'cslo-sudan': {
+    description: 'ERPNext and Frappe CRM implementation with mobile field reporting for a humanitarian organisation working in conflict-affected regions of Sudan.',
+    keywords: ['ERPNext', 'Frappe CRM', 'humanitarian', 'NGO', 'Sudan', 'mobile field reporting'],
+  },
+  'ngo-portal': {
+    description: 'A platform for a regional NGO in East Africa to manage programmes, beneficiaries and donor relations, replacing manual processes.',
+    keywords: ['NGO', 'programme management', 'beneficiary management', 'donor relations', 'East Africa'],
+  },
+  'erp-integration': {
+    description: 'Custom ERP integration connecting the systems of a manufacturing company operating in Uganda, Kenya and Rwanda.',
+    keywords: ['ERP', 'manufacturing', 'systems integration', 'Uganda', 'Kenya', 'Rwanda'],
+  },
+  'ecommerce-shop': {
+    description: 'Online store with mobile money payments and inventory management for a retail business expanding beyond its physical shops.',
+    keywords: ['e-commerce', 'mobile money', 'inventory management', 'retail', 'East Africa'],
+  },
+  'mobile-app': {
+    description: 'Mobile application for patient records and appointment scheduling, replacing paper records for a healthcare clinic chain.',
+    keywords: ['mobile app', 'healthcare', 'patient records', 'appointment scheduling'],
+  },
+  'crm-system': {
+    description: 'CRM system with automated workflows and analytics for a B2B sales company moving off spreadsheets and email.',
+    keywords: ['CRM', 'sales', 'workflow automation', 'analytics', 'B2B'],
+  },
+  'cloud-migration': {
+    description: "Migration of a technology company's on-premises servers to the cloud with zero downtime.",
+    keywords: ['cloud migration', 'infrastructure', 'hosting', 'zero downtime'],
+  },
+};
+
 // Function to generate portfolio JSON-LD
 export function getPortfolioSchema(projectName: string, projectSlug: string) {
+  const summary = portfolioSummaries[projectSlug];
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -221,8 +259,7 @@ export function getPortfolioSchema(projectName: string, projectSlug: string) {
       "@type": "Organization",
       "name": "Blue Team Africa"
     },
-    "description": `Case study of ${projectName} showcasing web, software, or digital solutions for NGOs and businesses in Kigali and East Africa.`,
-    "keywords": ["Kigali", "East Africa", "NGO", "business", "software", "web", "mobile"]
+    ...(summary && { "description": summary.description, "keywords": summary.keywords })
   };
 }
 
