@@ -56,3 +56,6 @@ blueteam-portal/app.rtf
 !next.config.js
 !vercel.json
 !messages/*.json
+
+# Local dev fallback for contact-form leads (app/api/leads/route.ts); may hold personal data
+data/leads.json
