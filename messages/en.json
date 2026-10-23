@@ -218,7 +218,12 @@
       "successTitle": "Message Sent!",
       "successBody": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
       "errorBody": "Oops! Something went wrong. Please try again or contact us directly via WhatsApp.",
-      "charCount": "{count}/2000 characters"
+      "charCount": "{count}/2000 characters",
+      "unconfirmedTitle": "We couldn't confirm your message",
+      "unconfirmedBody": "Please email us at <email>contact@blueteamafrica.com</email> or message us on WhatsApp at <phone>+254 119 402 737</phone> so nothing gets lost.",
+      "srSuccess": "Form submitted successfully",
+      "srError": "Form submission failed",
+      "required": "required"
     },
     "validation": {
       "nameRequired": "Name is required",

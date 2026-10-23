@@ -218,7 +218,12 @@
       "successTitle": "تم إرسال الرسالة!",
       "successBody": "شكراً لك! تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.",
       "errorBody": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرةً عبر واتساب.",
-      "charCount": "{count}/2000 حرف"
+      "charCount": "{count}/2000 حرف",
+      "unconfirmedTitle": "لم نتمكّن من تأكيد وصول رسالتك",
+      "unconfirmedBody": "يُرجى مراسلتنا على <email>contact@blueteamafrica.com</email> أو عبر واتساب على <phone>+254 119 402 737</phone> حتى لا تضيع رسالتك.",
+      "srSuccess": "تم إرسال النموذج بنجاح",
+      "srError": "تعذّر إرسال النموذج",
+      "required": "مطلوب"
     },
     "validation": {
       "nameRequired": "الاسم مطلوب",

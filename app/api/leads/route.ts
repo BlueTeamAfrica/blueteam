@@ -82,6 +82,23 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     let { name, email, phone, subject, message } = body
+    const locale = body.locale === 'ar' ? 'ar' : body.locale === 'en' ? 'en' : undefined
+
+    const rateLimitHeaders = {
+      'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
+      'X-RateLimit-Remaining': String(rateLimit.remaining),
+    }
+
+    // Honeypot: real visitors never see company_website (off-screen, aria-hidden, not
+    // tabbable). If it's filled, store nothing, send nothing, and answer exactly like a
+    // stored and notified lead so a bot can't tell
+    if (typeof body.company_website === 'string' && body.company_website.trim() !== '') {
+      console.warn('[LEADS_HONEYPOT] Honeypot field filled — submission dropped', { ip: ip === 'unknown' ? undefined : ip })
+      return NextResponse.json(
+        { success: true, message: 'Lead saved successfully', storage: 'firebase', notified: true },
+        { status: 200, headers: rateLimitHeaders }
+      )
+    }
 
     // Sanitize all inputs
     name = sanitizeInput(name || '')
@@ -135,12 +152,14 @@ export async function POST(request: NextRequest) {
       message,
       timestamp: new Date().toISOString(),
       source: 'contact-form',
+      locale,
       ip: ip === 'unknown' ? undefined : ip, // Don't store if unknown
       userAgent: request.headers.get('user-agent') || undefined,
     }
 
     // Try to save to Firestore via Admin SDK
     let savedToFirebase = false
+    let notified = false
     let firebaseError: Error | null = null
     let adminUnavailable = false
 
@@ -153,6 +172,7 @@ export async function POST(request: NextRequest) {
         // Send staff notification — failure must not affect the user response
         try {
           await notifyNewLead({ ...leadData, leadId: docRef.id })
+          notified = true
           console.log('[LEADS_NOTIFY] Staff notification sent')
         } catch (emailErr) {
           console.error('[EMAIL_NOTIFY_FAILED] Staff notification failed — lead is safely stored in Firestore:', emailErr)
@@ -182,6 +202,16 @@ export async function POST(request: NextRequest) {
     // Either way, data written here will NOT survive a container recycle — it is not a
     // reliable backup. The only purpose is to preserve data in local dev.
     if (!savedToFirebase) {
+      // The lead isn't stored: email it anyway, so the email is at least one copy
+      try {
+        await notifyNewLead(leadData, { notSaved: true })
+        notified = true
+        // warn, not log: production builds strip console.log (next.config.js removeConsole)
+        console.warn('[LEADS_NOTIFY] Staff notification sent for a lead Firestore did not store')
+      } catch (emailErr) {
+        console.error('[EMAIL_NOTIFY_FAILED] Staff notification failed and Firestore did not store the lead:', emailErr)
+      }
+
       const isVercel = !!process.env.VERCEL
       if (isVercel) {
         console.error(
@@ -213,15 +243,13 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Lead saved successfully',
         storage: savedToFirebase ? 'firebase' : 'degraded',
+        notified,
         ...(adminUnavailable && { adminUnavailable: true }),
         ...(firebaseError && process.env.NODE_ENV === 'development' && { firebaseError: firebaseError.message }),
       },
       {
         status: 200,
-        headers: {
-          'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
-          'X-RateLimit-Remaining': String(rateLimit.remaining),
-        },
+        headers: rateLimitHeaders,
       }
     )
   } catch (error) {

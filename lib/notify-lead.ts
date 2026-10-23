@@ -19,15 +19,18 @@ export async function notifyNewLead(lead: {
   subject: string
   message: string
   timestamp: string
+  locale?: string
   leadId?: string
-}) {
+}, { notSaved = false }: { notSaved?: boolean } = {}) {
   const subjectLabel = lead.subject.replace(/-/g, ' ')
+  // A lead Firestore couldn't store exists only in this email: say so in the subject
+  const prefix = notSaved ? '[NOT SAVED — Firestore failed] ' : ''
 
   await transporter.sendMail({
     from: `"Blue Team Africa" <${process.env.SMTP_USER}>`,
     to: NOTIFY_TO,
     replyTo: lead.email,
-    subject: `New lead: ${lead.name} — ${subjectLabel}`,
+    subject: `${prefix}New lead: ${lead.name} — ${subjectLabel}`,
     text: [
       `New contact form submission on blueteamafrica.com`,
       ``,
@@ -35,12 +38,13 @@ export async function notifyNewLead(lead: {
       `Email:    ${lead.email}`,
       `Phone:    ${lead.phone}`,
       `Subject:  ${subjectLabel}`,
+      `Locale:   ${lead.locale ?? 'unknown'}`,
       ``,
       `Message:`,
       lead.message,
       ``,
       `Submitted: ${lead.timestamp}`,
-      lead.leadId ? `Firestore ID: ${lead.leadId}` : '',
+      lead.leadId ? `Firestore ID: ${lead.leadId}` : 'NOT SAVED: Firestore write failed; this email is the only copy',
     ].filter(line => line !== undefined).join('\n'),
   })
 }

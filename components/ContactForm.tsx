@@ -2,7 +2,8 @@
 
 import { useState, FormEvent, useRef } from 'react'
 import { Send, Loader2, CheckCircle2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { Ltr } from '@/components/Ltr'
 
 interface FormData {
   name: string
@@ -10,6 +11,8 @@ interface FormData {
   phone: string
   subject: string
   message: string
+  // Honeypot: off-screen and aria-hidden, so only bots fill it
+  company_website: string
 }
 
 interface FormErrors {
@@ -44,6 +47,7 @@ const sanitizeInput = (input: string): string => {
 
 export default function ContactForm() {
   const t = useTranslations('ContactPage')
+  const locale = useLocale()
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -51,11 +55,13 @@ export default function ContactForm() {
     phone: '',
     subject: '',
     message: '',
+    company_website: '',
   })
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  // unconfirmed: the API answered but the lead was neither stored nor emailed
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'unconfirmed' | 'error'>('idle')
   const statusMessageRef = useRef<HTMLDivElement>(null)
 
   const validateForm = (): boolean => {
@@ -128,6 +134,8 @@ export default function ContactForm() {
         phone: sanitizeInput(formData.phone),
         subject: sanitizeInput(formData.subject),
         message: sanitizeInput(formData.message),
+        company_website: formData.company_website,
+        locale,
       }
 
       // Submit to API endpoint
@@ -141,6 +149,16 @@ export default function ContactForm() {
 
       if (response.ok) {
         const data = await response.json()
+        // Success only when the lead reached us: stored in Firestore, or at least emailed
+        const delivered = data.storage === 'firebase' || data.notified === true
+        if (!delivered) {
+          // Neither worked: keep what the visitor typed and ask them to reach us directly.
+          // This state stays until they submit again
+          setSubmitStatus('unconfirmed')
+          setErrors({})
+          statusMessageRef.current?.focus()
+          return
+        }
         setSubmitStatus('success')
         setFormData({
           name: '',
@@ -148,15 +166,16 @@ export default function ContactForm() {
           phone: '',
           subject: '',
           message: '',
+          company_website: '',
         })
         setErrors({})
         // Focus on status message for screen readers
         if (statusMessageRef.current) {
           statusMessageRef.current.focus()
         }
-        // Fire GA4 form_submit only when the lead actually reached Firestore.
-        // storage: 'degraded' means the write failed silently — don't count as a conversion.
-        if (data.storage !== 'degraded' && typeof window !== 'undefined' && window.gtag) {
+        // GA4 form_submit only on a real success (stored or emailed). A filled honeypot
+        // gets the API's fake success, which isn't a conversion
+        if (!sanitizedData.company_website && typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit', {
             form_name: 'contact',
             form_subject: sanitizedData.subject,
@@ -226,7 +245,7 @@ export default function ContactForm() {
       {/* Name Field */}
       <div>
         <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.fullName')} <span className="text-red-500" aria-label="required">*</span>
+          {t('form.fullName')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
         </label>
         <input
           type="text"
@@ -254,7 +273,7 @@ export default function ContactForm() {
       {/* Email Field */}
       <div>
         <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.emailAddress')} <span className="text-red-500" aria-label="required">*</span>
+          {t('form.emailAddress')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
         </label>
         <input
           type="email"
@@ -282,7 +301,7 @@ export default function ContactForm() {
       {/* Phone Field */}
       <div>
         <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.phoneNumber')} <span className="text-red-500" aria-label="required">*</span>
+          {t('form.phoneNumber')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
         </label>
         <input
           type="tel"
@@ -310,7 +329,7 @@ export default function ContactForm() {
       {/* Subject Field */}
       <div>
         <label htmlFor="subject" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.subject')} <span className="text-red-500" aria-label="required">*</span>
+          {t('form.subject')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
         </label>
         <select
           id="subject"
@@ -345,7 +364,7 @@ export default function ContactForm() {
       {/* Message Field */}
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.message')} <span className="text-red-500" aria-label="required">*</span>
+          {t('form.message')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
         </label>
         <textarea
           id="message"
@@ -373,6 +392,22 @@ export default function ContactForm() {
             </span>
           )}
         </div>
+      </div>
+
+      {/* Honeypot: off-screen (not display:none, which some bots skip), out of the tab order
+          and hidden from assistive tech. Kept on the inline-start side so it never adds
+          scrollable overflow in either direction */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden rtl:left-auto rtl:-right-[9999px]">
+        <label htmlFor="company_website">Website</label>
+        <input
+          type="text"
+          id="company_website"
+          name="company_website"
+          value={formData.company_website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {/* Submit Button */}
@@ -409,8 +444,9 @@ export default function ContactForm() {
         aria-atomic="true"
         className="sr-only"
       >
-        {submitStatus === 'success' && 'Form submitted successfully'}
-        {submitStatus === 'error' && 'Form submission failed'}
+        {submitStatus === 'success' && t('form.srSuccess')}
+        {submitStatus === 'unconfirmed' && t('form.unconfirmedTitle')}
+        {submitStatus === 'error' && t('form.srError')}
       </div>
 
       {submitStatus === 'success' && (
@@ -420,6 +456,22 @@ export default function ContactForm() {
           className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm fade-in"
         >
           {t('form.successBody')}
+        </div>
+      )}
+
+      {submitStatus === 'unconfirmed' && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="p-4 bg-amber-50 border border-amber-300 rounded-lg text-amber-900 text-sm fade-in"
+        >
+          <p className="font-semibold">{t('form.unconfirmedTitle')}</p>
+          <p className="mt-1">
+            {t.rich('form.unconfirmedBody', {
+              email: (chunks) => <Ltr>{chunks}</Ltr>,
+              phone: (chunks) => <Ltr>{chunks}</Ltr>,
+            })}
+          </p>
         </div>
       )}
 
