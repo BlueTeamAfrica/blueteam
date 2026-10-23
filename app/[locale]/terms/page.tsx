@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { buildEnglishOnlyAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Terms of Service'
   const description = 'Terms of Service for Blue Team Ltd. - Learn about the terms and conditions for using our website and services.'
-  return {
+  return withSocialDefaults({
     title,
     description,
     alternates: buildEnglishOnlyAlternates('/terms'),
@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 export default function TermsOfService() {

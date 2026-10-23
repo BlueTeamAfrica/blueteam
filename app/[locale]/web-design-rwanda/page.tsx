@@ -8,7 +8,7 @@ import { MessageCircle, ArrowRight, Globe, Smartphone, Search, Zap } from 'lucid
 import FAQSection from '@/components/FAQSection'
 import type { FAQ } from '@/lib/faqs'
 import { getTranslations } from 'next-intl/server'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 function WebDesignRwandaFAQSchema({ faqs }: { faqs: FAQ[] }) {
   const faqSchema = {
@@ -41,7 +41,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'WebDesignRwandaPage' })
   const alternates = buildAlternates('/web-design-rwanda', locale)
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     robots: 'index, follow',
@@ -61,7 +61,7 @@ export async function generateMetadata({
       url: alternates.canonical,
       type: 'website',
     },
-  }
+  })
 }
 
 export default async function WebDesignRwandaPage() {

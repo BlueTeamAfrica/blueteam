@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import type { Metadata } from 'next'
-import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { buildEnglishOnlyAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Best Web Design Companies in Rwanda (2026 Comparison Guide)'
   const description = 'Looking for the best web design company in Rwanda? This guide compares top agencies based on experience, services, and suitability for businesses and NGOs.'
-  return {
+  return withSocialDefaults({
     title,
     description,
     alternates: buildEnglishOnlyAlternates('/blog/best-web-design-companies-in-rwanda'),
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images: [{ url: 'https://www.blueteamafrica.com/blog/choosing-web-design-company-rwanda.webp', width: 1400, height: 925, alt: title }],
     },
-  }
+  })
 }
 
 const articleSchema = {

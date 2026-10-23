@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Link } from '@/i18n/navigation'
 import InteriorHeader from '@/components/InteriorHeader'
 import { getTranslations } from 'next-intl/server'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -14,7 +14,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'LocationsSudanPage' })
   const alternates = buildAlternates('/locations/sudan', locale)
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     robots: 'index, follow',
@@ -35,7 +35,7 @@ export async function generateMetadata({
       url: alternates.canonical,
       type: 'website',
     },
-  }
+  })
 }
 
 export async function generateStaticParams() {

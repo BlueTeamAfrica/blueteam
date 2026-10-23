@@ -5,7 +5,7 @@ import FAQSchema from '@/components/FAQSchema'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import { getTranslations } from 'next-intl/server'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -16,7 +16,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'FAQPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'FAQPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: buildAlternates('/faq', locale),
@@ -24,7 +24,7 @@ export async function generateMetadata({
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
     },
-  }
+  })
 }
 
 export default async function FAQPage() {

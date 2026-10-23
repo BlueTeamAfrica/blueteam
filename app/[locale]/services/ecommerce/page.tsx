@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import { flagTags } from '@/components/Flag'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import ServiceSchema from '@/components/ServiceSchema'
@@ -20,7 +20,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'EcommercePage' })
   const alternates = buildAlternates('/services/ecommerce', locale)
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     keywords: 'e-commerce Uganda, e-commerce Kenya, online store development, e-commerce solutions East Africa, mobile money integration, payment gateway integration, e-commerce platform development',
@@ -47,7 +47,7 @@ export async function generateMetadata({
       description: tEn('metaDescription'),
       images: ['/images/services/ecommerce/services-ecommerce-hero-01.webp'],
     },
-  }
+  })
 }
 
 const SITE = 'https://www.blueteamafrica.com'

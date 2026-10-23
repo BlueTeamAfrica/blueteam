@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { Ltr } from '@/components/Ltr'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
   params,
@@ -22,7 +22,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'ContactPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'ContactPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: buildAlternates('/contact', locale),
@@ -30,7 +30,7 @@ export async function generateMetadata({
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
     },
-  }
+  })
 }
 
 export default async function ContactPage() {

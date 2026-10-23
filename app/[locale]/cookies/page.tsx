@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { buildEnglishOnlyAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Cookies Policy'
   const description = 'Cookies Policy for Blue Team Ltd. - Learn how we use cookies and similar technologies on our website.'
-  return {
+  return withSocialDefaults({
     title,
     description,
     alternates: buildEnglishOnlyAlternates('/cookies'),
@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 export default function CookiesPolicy() {

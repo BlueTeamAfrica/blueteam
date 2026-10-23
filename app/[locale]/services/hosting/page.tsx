@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import CompactServicePage, { type CompactServiceConfig } from '@/components/service/CompactServicePage'
 
 export async function generateMetadata({
@@ -13,7 +13,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'HostingPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'HostingPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: buildAlternates('/services/hosting', locale),
@@ -21,7 +21,7 @@ export async function generateMetadata({
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
     },
-  }
+  })
 }
 
 const config: CompactServiceConfig = {

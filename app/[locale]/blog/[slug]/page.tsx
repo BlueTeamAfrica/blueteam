@@ -6,7 +6,7 @@ import InteriorHeader from '@/components/InteriorHeader'
 import type { Metadata } from 'next'
 import { blogMetadataMap } from '@/lib/blog-metadata'
 import BlogSchema from '@/components/BlogSchema'
-import { buildAlternates, buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, buildEnglishOnlyAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import { getTranslations } from 'next-intl/server'
 import { bilingualPostSlugs, getBilingualPost } from '@/lib/bilingual-blog'
 
@@ -391,7 +391,7 @@ export async function generateMetadata({
     // OpenGraph/Twitter text stays English on both locales (project convention)
     const en = getBilingualPost(slug, 'en')!
     const ogImage = { url: `${SITE}${en.image}`, width: en.imageWidth, height: en.imageHeight, alt: en.imageAlt }
-    return {
+    return withSocialDefaults({
       title: bilingual.metaTitle,
       description: bilingual.metaDescription,
       alternates: buildAlternates(`/blog/${slug}`, locale),
@@ -407,16 +407,16 @@ export async function generateMetadata({
         description: en.metaDescription,
         images: [ogImage.url],
       },
-    }
+    })
   }
 
   const post = blogPosts[slug]
 
   if (!post) {
-    return {
+    return withSocialDefaults({
       title: 'Post Not Found',
       description: 'The blog post you are looking for does not exist.',
-    }
+    })
   }
 
   const alternates = buildEnglishOnlyAlternates(`/blog/${slug}`)
@@ -425,7 +425,7 @@ export async function generateMetadata({
   const description = sharedMetadata?.description ?? post.excerpt
   const ogImage = { url: `${SITE}${post.image}`, width: post.imageWidth, height: post.imageHeight, alt: post.title }
 
-  return {
+  return withSocialDefaults({
     title,
     description,
     alternates,
@@ -435,7 +435,7 @@ export async function generateMetadata({
       description,
       images: [ogImage],
     },
-  }
+  })
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

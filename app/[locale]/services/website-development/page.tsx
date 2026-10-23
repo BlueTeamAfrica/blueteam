@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import ServiceSchema from '@/components/ServiceSchema'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -21,7 +21,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'WebsiteDevelopmentPage' })
   const alternates = buildAlternates('/services/website-development', locale)
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     keywords: [
@@ -43,7 +43,7 @@ export async function generateMetadata({
       url: alternates.canonical,
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 const SITE = 'https://www.blueteamafrica.com'

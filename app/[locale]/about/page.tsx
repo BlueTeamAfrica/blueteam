@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { Flag } from '@/components/Flag'
 import { Ltr } from '@/components/Ltr'
@@ -19,7 +19,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'AboutPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'AboutPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: buildAlternates('/about', locale),
@@ -28,7 +28,7 @@ export async function generateMetadata({
       description: tEn('metaDescription'),
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 const SITE = 'https://www.blueteamafrica.com'

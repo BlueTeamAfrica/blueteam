@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation'
 import PortfolioSchema from '@/components/PortfolioSchema'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { getTranslations } from 'next-intl/server'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import { CaseHero, CaseResultsStrip } from '@/components/case-study/CaseStudyPage'
 import CaseSection from '@/components/case-study/CaseSection'
 import NextCase from '@/components/case-study/NextCase'
@@ -21,7 +21,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'CaseStudyCsloSudanPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'CaseStudyCsloSudanPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     keywords: 'ERPNext Sudan, CRM Sudan, NGO ERP system, humanitarian data management Sudan, CSLO Sudan ERP, East Africa technology solutions',
@@ -48,7 +48,7 @@ export async function generateMetadata({
       description: tEn('metaDescription'),
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 export default async function CSLOSudanCaseStudy() {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import ServiceSchema from '@/components/ServiceSchema'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -20,7 +20,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'CybersecurityPage' })
   const alternates = buildAlternates('/services/cybersecurity', locale)
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     keywords: 'cybersecurity Uganda, cybersecurity Sudan, penetration testing East Africa, security audit Uganda, NGO cybersecurity, website security, data protection East Africa, cyber security services, Blue Team Africa',
@@ -47,7 +47,7 @@ export async function generateMetadata({
       description: tEn('metaDescription'),
       images: ['/images/services/cybersecurity/services-cybersecurity-hero-01.webp'],
     },
-  }
+  })
 }
 
 const SITE = 'https://www.blueteamafrica.com'

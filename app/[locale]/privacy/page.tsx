@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { buildEnglishOnlyAlternates } from '@/lib/metadata-helpers'
+import { buildEnglishOnlyAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = 'Privacy Policy'
   const description = 'Privacy Policy for Blue Team Ltd. - Learn how we collect, use, and protect your personal information.'
-  return {
+  return withSocialDefaults({
     title,
     description,
     alternates: buildEnglishOnlyAlternates('/privacy'),
@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 export default function PrivacyPolicy() {

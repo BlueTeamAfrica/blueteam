@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import HeroSection from '@/components/hero/Hero'
 import { getTranslations } from 'next-intl/server'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import ResultsBand from '@/components/home/ResultsBand'
 import ServicesBento from '@/components/home/ServicesBento'
 import SelectedWork from '@/components/home/SelectedWork'
@@ -25,7 +25,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'HomePage' })
 
-  return {
+  return withSocialDefaults({
     // Absolute: no layout template suffix on the homepage
     title: { absolute: t('metaTitle') },
     description: t('metaDescription'),
@@ -68,7 +68,7 @@ export async function generateMetadata({
       'web design company',
       'website development company',
     ],
-  }
+  })
 }
 
 export default async function Home() {

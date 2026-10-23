@@ -5,7 +5,7 @@ import Image from 'next/image'
 import InteriorHeader from '@/components/InteriorHeader'
 import SectionWrapper from '@/components/SectionWrapper'
 import type { Metadata } from 'next'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import { getTranslations } from 'next-intl/server'
 import { bilingualPostSlugs, getBilingualPost } from '@/lib/bilingual-blog'
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'BlogPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'BlogPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: buildAlternates('/blog', locale),
@@ -26,7 +26,7 @@ export async function generateMetadata({
       title: tEn('metaTitle'),
       description: tEn('metaDescription'),
     },
-  }
+  })
 }
 
 const englishOnlyPosts = [

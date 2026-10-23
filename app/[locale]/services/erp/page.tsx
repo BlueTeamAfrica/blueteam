@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import ServiceSchema from '@/components/ServiceSchema'
 import ServiceHero from '@/components/service/ServiceHero'
@@ -22,7 +22,7 @@ export async function generateMetadata({
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'ErpPage' })
   const alternates = buildAlternates('/services/erp', locale)
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     keywords: 'ERP systems, ERPNext, ERP solutions Uganda, ERP for NGOs, ERP for humanitarian organizations, ERPNext implementation, enterprise resource planning East Africa, NGO ERP systems',
@@ -49,7 +49,7 @@ export async function generateMetadata({
       description: tEn('metaDescription'),
       images: ['/images/services/erp-crm/services-erpcrm-erp-crm-dashboard-01.webp'],
     },
-  }
+  })
 }
 
 const SITE = 'https://www.blueteamafrica.com'

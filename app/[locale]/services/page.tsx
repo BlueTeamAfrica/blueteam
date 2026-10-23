@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { Ltr } from '@/components/Ltr'
-import { buildAlternates } from '@/lib/metadata-helpers'
+import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 import { container, focusRing, stretched, NetworkLines, Eyebrow, H2, SectionHeader, ArrowIcon } from '@/components/home/shared'
 import HowWeWork from '@/components/home/HowWeWork'
 import { FamilyVisual } from '@/components/service/ServiceHero'
@@ -21,7 +21,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'ServicesPage' })
   // OpenGraph/Twitter text stays English on both locales (project convention)
   const tEn = await getTranslations({ locale: 'en', namespace: 'ServicesPage' })
-  return {
+  return withSocialDefaults({
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: buildAlternates('/services', locale),
@@ -30,7 +30,7 @@ export async function generateMetadata({
       description: tEn('metaDescription'),
       images: ['/images/hero/hero-og-1200x630.jpg'],
     },
-  }
+  })
 }
 
 // The services hub: hero with a jump-nav to the three families → one band per family (white,
