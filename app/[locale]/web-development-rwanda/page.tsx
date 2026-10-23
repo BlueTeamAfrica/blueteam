@@ -540,7 +540,7 @@ export default async function WebDevelopmentRwandaPage() {
               {t('ctaPrimary')}
             </Link>
             <a
-              href="https://wa.me/254119402737"
+              href="https://wa.me/250798973375"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-all font-semibold"
