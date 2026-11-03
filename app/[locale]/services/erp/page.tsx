@@ -59,7 +59,7 @@ const SITE = 'https://www.blueteamafrica.com'
 export default async function ERPPage() {
   const t = await getTranslations('ErpPage')
   const tPf = await getTranslations('PortfolioPage')
-  const tSvc = await getTranslations('ServiceSidebar')
+  const tSvc = await getTranslations('ServiceNames')
   const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
   const to = (href: string, label: string) => <Link href={href} className={inlineLink}>{label}</Link>
 

@@ -18,7 +18,7 @@ import type { ServiceFamily } from './ServiceHero'
 
 // The 12 services in their three families, in display order: the one list the header menus,
 // the footer, the case-study pages and the /services index all read. Titles keep the names the
-// header has always shown (ServiceSidebar, or Navigation.services for ERP and CRM); descriptions
+// header has always shown (ServiceNames, or Navigation.services for ERP and CRM); descriptions
 // are the header's one-liners. A figure is one value from the service's results strip, exactly
 // as its case page shows it, labelled by that page's own stat key.
 
@@ -35,7 +35,7 @@ export interface Service {
   slug: string
   icon: LucideIcon
   /** [namespace, key] of the service's name */
-  title: ['ServiceSidebar' | 'Navigation', string]
+  title: ['ServiceNames' | 'Navigation', string]
   /** Header.* one-liner */
   descKey: string
   figure?: ServiceFigure
@@ -61,11 +61,11 @@ export const FAMILIES: Family[] = [
     headingKey: 'groupBuild',
     icon: Monitor,
     services: [
-      { slug: 'web-design', icon: Monitor, title: ['ServiceSidebar', 'webDesign'], descKey: 'descWebDesign', figure: ecommerceShop('5x', 1) },
-      { slug: 'website-development', icon: Code2, title: ['ServiceSidebar', 'websiteDev'], descKey: 'descWebDev', figure: cslo('70%', 1) },
-      { slug: 'ui-ux', icon: MousePointerClick, title: ['ServiceSidebar', 'uiux'], descKey: 'descUiUx' },
-      { slug: 'branding', icon: PenTool, title: ['ServiceSidebar', 'branding'], descKey: 'descBranding' },
-      { slug: 'ecommerce', icon: ShoppingCart, title: ['ServiceSidebar', 'ecommerce'], descKey: 'descEcommerce', figure: ecommerceShop('80%', 2) },
+      { slug: 'web-design', icon: Monitor, title: ['ServiceNames', 'webDesign'], descKey: 'descWebDesign', figure: ecommerceShop('5x', 1) },
+      { slug: 'website-development', icon: Code2, title: ['ServiceNames', 'websiteDev'], descKey: 'descWebDev', figure: cslo('70%', 1) },
+      { slug: 'ui-ux', icon: MousePointerClick, title: ['ServiceNames', 'uiux'], descKey: 'descUiUx' },
+      { slug: 'branding', icon: PenTool, title: ['ServiceNames', 'branding'], descKey: 'descBranding' },
+      { slug: 'ecommerce', icon: ShoppingCart, title: ['ServiceNames', 'ecommerce'], descKey: 'descEcommerce', figure: ecommerceShop('80%', 2) },
     ],
   },
   {
@@ -74,8 +74,8 @@ export const FAMILIES: Family[] = [
     headingKey: 'groupSystems',
     icon: Smartphone,
     services: [
-      { slug: 'mobile-apps', icon: Smartphone, title: ['ServiceSidebar', 'mobileApps'], descKey: 'descMobile', figure: cslo('50%', 2) },
-      { slug: 'custom-systems', icon: Puzzle, title: ['ServiceSidebar', 'customSystems'], descKey: 'descCustom', figure: { value: '75%', namespace: 'CaseStudyNgoPortalPage', labelKey: 'stat1Label', caseSlug: 'ngo-portal' } },
+      { slug: 'mobile-apps', icon: Smartphone, title: ['ServiceNames', 'mobileApps'], descKey: 'descMobile', figure: cslo('50%', 2) },
+      { slug: 'custom-systems', icon: Puzzle, title: ['ServiceNames', 'customSystems'], descKey: 'descCustom', figure: { value: '75%', namespace: 'CaseStudyNgoPortalPage', labelKey: 'stat1Label', caseSlug: 'ngo-portal' } },
       { slug: 'erp', icon: BarChart3, title: ['Navigation', 'services.erp.name'], descKey: 'descErp', figure: cslo('70%', 1) },
       { slug: 'crm', icon: Users, title: ['Navigation', 'services.crm.name'], descKey: 'descCrm', figure: { value: '45%', namespace: 'CaseStudyCrmSystemPage', labelKey: 'stat1Label', caseSlug: 'crm-system' } },
     ],
@@ -86,9 +86,9 @@ export const FAMILIES: Family[] = [
     headingKey: 'groupProtect',
     icon: ShieldCheck,
     services: [
-      { slug: 'cybersecurity', icon: ShieldCheck, title: ['ServiceSidebar', 'cybersecurity'], descKey: 'descSecurity' },
-      { slug: 'hosting', icon: Server, title: ['ServiceSidebar', 'hosting'], descKey: 'descHosting', figure: { value: '99.9%', namespace: 'CaseStudyCloudMigrationPage', labelKey: 'stat1Label', caseSlug: 'cloud-migration' } },
-      { slug: 'maintenance', icon: Wrench, title: ['ServiceSidebar', 'maintenance'], descKey: 'descMaintenance' },
+      { slug: 'cybersecurity', icon: ShieldCheck, title: ['ServiceNames', 'cybersecurity'], descKey: 'descSecurity' },
+      { slug: 'hosting', icon: Server, title: ['ServiceNames', 'hosting'], descKey: 'descHosting', figure: { value: '99.9%', namespace: 'CaseStudyCloudMigrationPage', labelKey: 'stat1Label', caseSlug: 'cloud-migration' } },
+      { slug: 'maintenance', icon: Wrench, title: ['ServiceNames', 'maintenance'], descKey: 'descMaintenance' },
     ],
   },
 ]
@@ -97,7 +97,7 @@ export const SERVICES: Service[] = FAMILIES.flatMap((f) => f.services)
 
 /** Translator for service names: name(service) → the name the header shows */
 export async function getServiceNames() {
-  const tSvc = await getTranslations('ServiceSidebar')
+  const tSvc = await getTranslations('ServiceNames')
   const tNav = await getTranslations('Navigation')
   return (s: Service) => (s.title[0] === 'Navigation' ? tNav(s.title[1]) : tSvc(s.title[1]))
 }

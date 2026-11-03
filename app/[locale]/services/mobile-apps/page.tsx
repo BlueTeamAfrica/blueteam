@@ -62,7 +62,7 @@ export default async function MobileAppsPage() {
   const tPf = await getTranslations('PortfolioPage')
   const tFooter = await getTranslations('Footer')
   const tNav = await getTranslations('Navigation')
-  const tSvc = await getTranslations('ServiceSidebar')
+  const tSvc = await getTranslations('ServiceNames')
   const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
   const erp = (label: string) => <Link href="/services/erp" className={inlineLink}>{label}</Link>
   const crm = (label: string) => <Link href="/services/crm" className={inlineLink}>{label}</Link>

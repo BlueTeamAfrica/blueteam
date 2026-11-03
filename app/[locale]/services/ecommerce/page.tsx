@@ -59,7 +59,7 @@ export default async function EcommercePage() {
   const tTemplate = await getTranslations('ServiceTemplate')
   const tPf = await getTranslations('PortfolioPage')
   const tFooter = await getTranslations('Footer')
-  const tSvc = await getTranslations('ServiceSidebar')
+  const tSvc = await getTranslations('ServiceNames')
   const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
 
   return (

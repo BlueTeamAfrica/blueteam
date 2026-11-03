@@ -58,7 +58,7 @@ const SITE = 'https://www.blueteamafrica.com'
 export default async function CybersecurityPage() {
   const t = await getTranslations('CybersecurityPage')
   const tTemplate = await getTranslations('ServiceTemplate')
-  const tSvc = await getTranslations('ServiceSidebar')
+  const tSvc = await getTranslations('ServiceNames')
   const faqs = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({ q: t(`faq${n}q`), a: t(`faq${n}a`) }))
 
   return (
