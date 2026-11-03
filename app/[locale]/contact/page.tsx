@@ -88,7 +88,7 @@ async function Channels() {
           <ShieldCheck size={22} strokeWidth={1.75} />
         </span>
         <span>
-          <span className="block font-heading text-[17px] font-bold text-white">{t('hoursDetail')}</span>
+          <span className="block font-heading text-[17px] font-bold text-white">{t('emergencyTitle')}</span>
           <span className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#8CC8EE] group-hover:underline">
             {t('emergencyNgoLink')} <ArrowIcon />
           </span>
