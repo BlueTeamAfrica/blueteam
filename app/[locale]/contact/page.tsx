@@ -1,9 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link } from '@/i18n/navigation'
 import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react'
-import OrganizationSchema from '@/components/OrganizationSchema'
 import ContactPageSchema from '@/components/ContactPageSchema'
-import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import ContactForm from '@/components/ContactForm'
 import WhatsAppIcon from '@/components/WhatsAppIcon'
 import type { Metadata } from 'next'
@@ -112,10 +110,8 @@ export default async function ContactPage() {
 
   return (
     <>
-      {/* JSON-LD Schemas */}
+      {/* JSON-LD: ContactPage only; the site-wide blocks come from the layout */}
       <ContactPageSchema />
-      <LocalBusinessSchema />
-      <OrganizationSchema />
 
       <section aria-labelledby="contact-heading" className="relative overflow-hidden bg-white">
         <NetworkLines className="absolute -start-24 -top-10 w-[420px] text-primary opacity-[0.08] lg:-start-16 lg:w-[540px]" />
