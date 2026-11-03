@@ -199,7 +199,7 @@
       "emailAddress": "Email Address",
       "emailPlaceholder": "your.email@example.com",
       "phoneNumber": "Phone Number",
-      "phonePlaceholder": "+256 700 000 000",
+      "phonePlaceholder": "+254 700 000 000",
       "subject": "Subject",
       "subjectPlaceholder": "Select a subject",
       "subjectWebDesign": "Web Design Inquiry",
@@ -271,7 +271,13 @@
     "backToHome": "Back to Homepage",
     "ctaBodyText": "Let’s discuss how we can help your organization achieve its technology goals with reliable, secure, and scalable solutions.",
     "metaTitle": "Contact Us: Get a Free Project Quote",
-    "metaDescription": "Talk to our team about a website, system or security project. Reach us on WhatsApp or email, or send a message for a free, no-obligation quote."
+    "metaDescription": "Talk to our team about a website, system or security project. Reach us on WhatsApp or email, or send a message for a free, no-obligation quote.",
+    "channels": {
+      "call": "Call",
+      "rwandaLine": "Rwanda line:"
+    },
+    "otherWays": "Other ways to reach us",
+    "emergencyPrefill": "Emergency NGO Support Request"
   },
   "Navigation": {
     "services": {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent, useRef } from 'react'
-import { Send, Loader2, CheckCircle2 } from 'lucide-react'
+import { Send, Loader2, CheckCircle2, AlertTriangle, XCircle } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Ltr } from '@/components/Ltr'
 
@@ -240,15 +240,21 @@ export default function ContactForm() {
     }
   }
 
+  // Field styles: 50px inputs, 12px radius; #B23A24 text and border for a field in error
+  const label = 'mb-2 block text-[15px] font-semibold text-navy'
+  const required = <span className="text-[#B23A24]" aria-label={t('form.required')}>*</span>
+  const field = (invalid: boolean) =>
+    `w-full rounded-[12px] border bg-white px-4 text-[16px] text-navy placeholder:text-[#4A5868] placeholder:opacity-70 transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+      invalid ? 'border-[#B23A24] focus:border-[#B23A24]' : 'border-[#D5DEE7] focus:border-primary'
+    }`
+  const fieldError = 'mt-1.5 text-[14px] text-[#B23A24]'
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6 fade-up"
-    >
+    <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
       {/* Name Field */}
       <div>
-        <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.fullName')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
+        <label htmlFor="name" className={label}>
+          {t('form.fullName')} {required}
         </label>
         <input
           type="text"
@@ -261,13 +267,11 @@ export default function ContactForm() {
           aria-invalid={errors.name ? 'true' : 'false'}
           aria-describedby={errors.name ? 'name-error' : undefined}
           maxLength={100}
-          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-            errors.name ? 'border-red-500' : 'border-gray-300 focus:border-primary'
-          }`}
+          className={`${field(!!errors.name)} h-[50px]`}
           placeholder={t('form.fullNamePlaceholder')}
         />
         {errors.name && (
-          <p id="name-error" className="mt-1 text-sm text-red-500" role="alert">
+          <p id="name-error" className={fieldError} role="alert">
             {errors.name}
           </p>
         )}
@@ -275,8 +279,8 @@ export default function ContactForm() {
 
       {/* Email Field */}
       <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.emailAddress')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
+        <label htmlFor="email" className={label}>
+          {t('form.emailAddress')} {required}
         </label>
         <input
           type="email"
@@ -289,13 +293,11 @@ export default function ContactForm() {
           aria-invalid={errors.email ? 'true' : 'false'}
           aria-describedby={errors.email ? 'email-error' : undefined}
           maxLength={255}
-          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-            errors.email ? 'border-red-500' : 'border-gray-300 focus:border-primary'
-          }`}
+          className={`${field(!!errors.email)} h-[50px]`}
           placeholder={t('form.emailPlaceholder')}
         />
         {errors.email && (
-          <p id="email-error" className="mt-1 text-sm text-red-500" role="alert">
+          <p id="email-error" className={fieldError} role="alert">
             {errors.email}
           </p>
         )}
@@ -303,8 +305,8 @@ export default function ContactForm() {
 
       {/* Phone Field */}
       <div>
-        <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.phoneNumber')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
+        <label htmlFor="phone" className={label}>
+          {t('form.phoneNumber')} {required}
         </label>
         <input
           type="tel"
@@ -317,13 +319,11 @@ export default function ContactForm() {
           aria-invalid={errors.phone ? 'true' : 'false'}
           aria-describedby={errors.phone ? 'phone-error' : undefined}
           maxLength={20}
-          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-            errors.phone ? 'border-red-500' : 'border-gray-300 focus:border-primary'
-          }`}
+          className={`${field(!!errors.phone)} h-[50px]`}
           placeholder={t('form.phonePlaceholder')}
         />
         {errors.phone && (
-          <p id="phone-error" className="mt-1 text-sm text-red-500" role="alert">
+          <p id="phone-error" className={fieldError} role="alert">
             {errors.phone}
           </p>
         )}
@@ -331,8 +331,8 @@ export default function ContactForm() {
 
       {/* Subject Field */}
       <div>
-        <label htmlFor="subject" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.subject')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
+        <label htmlFor="subject" className={label}>
+          {t('form.subject')} {required}
         </label>
         <select
           id="subject"
@@ -342,9 +342,7 @@ export default function ContactForm() {
           aria-required="true"
           aria-invalid={errors.subject ? 'true' : 'false'}
           aria-describedby={errors.subject ? 'subject-error' : undefined}
-          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-            errors.subject ? 'border-red-500' : 'border-gray-300 focus:border-primary'
-          }`}
+          className={`${field(!!errors.subject)} h-[50px]`}
         >
           <option value="">{t('form.subjectPlaceholder')}</option>
           <option value="web-design">{t('form.subjectWebDesign')}</option>
@@ -358,16 +356,16 @@ export default function ContactForm() {
           <option value="other">{t('form.subjectOther')}</option>
         </select>
         {errors.subject && (
-          <p id="subject-error" className="mt-1 text-sm text-red-500" role="alert">
+          <p id="subject-error" className={fieldError} role="alert">
             {errors.subject}
           </p>
         )}
       </div>
 
-      {/* Message Field */}
-      <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-          {t('form.message')} <span className="text-red-500" aria-label={t('form.required')}>*</span>
+      {/* Message Field: both columns */}
+      <div className="sm:col-span-2">
+        <label htmlFor="message" className={label}>
+          {t('form.message')} {required}
         </label>
         <textarea
           id="message"
@@ -379,18 +377,16 @@ export default function ContactForm() {
           aria-invalid={errors.message ? 'true' : 'false'}
           aria-describedby={errors.message ? 'message-error' : undefined}
           maxLength={2000}
-          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition resize-none ${
-            errors.message ? 'border-red-500' : 'border-gray-300 focus:border-primary'
-          }`}
+          className={`${field(!!errors.message)} resize-none py-3`}
           placeholder={t('form.messagePlaceholder')}
         />
-        <div className="mt-1 flex justify-between items-center">
+        <div className="mt-1.5 flex items-center justify-between">
           {errors.message ? (
-            <p id="message-error" className="text-sm text-red-500" role="alert">
+            <p id="message-error" className="text-[14px] text-[#B23A24]" role="alert">
               {errors.message}
             </p>
           ) : (
-            <span className="text-sm text-gray-500">
+            <span className="text-[14px] text-[#4A5868]">
               {t('form.charCount', { count: formData.message.length })}
             </span>
           )}
@@ -418,80 +414,86 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className={`w-full bg-primary-strong text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
-          isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-dark'
-        }`}
-      >
-        {isSubmitting ? (
-          <>
-            <Loader2 className="w-5 h-5 animate-spin" />
-            {t('form.submitting')}
-          </>
-        ) : submitStatus === 'success' ? (
-          <>
-            <CheckCircle2 className="w-5 h-5" />
-            {t('form.successTitle')}
-          </>
-        ) : (
-          <>
-            <Send className="w-5 h-5" />
-            {t('form.submitButton')}
-          </>
-        )}
-      </button>
+      {/* Button row: start-aligned (full width on phones), then the result in its place below */}
+      <div className="sm:col-span-2">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[12px] bg-primary-strong px-7 font-heading text-[17px] font-bold text-white transition-colors sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+            isSubmitting ? 'cursor-not-allowed opacity-70' : 'hover:bg-primary-strong-hover'
+          }`}
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+              {t('form.submitting')}
+            </>
+          ) : submitStatus === 'success' ? (
+            <>
+              <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+              {t('form.successTitle')}
+            </>
+          ) : (
+            <>
+              <Send className="h-5 w-5 rtl:-scale-x-100" aria-hidden="true" />
+              {t('form.submitButton')}
+            </>
+          )}
+        </button>
 
-      {/* Success/Error Messages */}
-      <div
-        ref={statusMessageRef}
-        tabIndex={-1}
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-      >
-        {submitStatus === 'success' && t('form.srSuccess')}
-        {submitStatus === 'unconfirmed' && t('form.unconfirmedTitle')}
-        {submitStatus === 'error' && t('form.srError')}
-      </div>
-
-      {submitStatus === 'success' && (
+        {/* Success/Error Messages */}
         <div
-          role="alert"
+          ref={statusMessageRef}
+          tabIndex={-1}
           aria-live="polite"
-          className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm fade-in"
+          aria-atomic="true"
+          className="sr-only"
         >
-          {t('form.successBody')}
+          {submitStatus === 'success' && t('form.srSuccess')}
+          {submitStatus === 'unconfirmed' && t('form.unconfirmedTitle')}
+          {submitStatus === 'error' && t('form.srError')}
         </div>
-      )}
 
-      {submitStatus === 'unconfirmed' && (
-        <div
-          role="alert"
-          aria-live="assertive"
-          className="p-4 bg-amber-50 border border-amber-300 rounded-lg text-amber-900 text-sm fade-in"
-        >
-          <p className="font-semibold">{t('form.unconfirmedTitle')}</p>
-          <p className="mt-1">
+        {submitStatus === 'success' && (
+          <StatusBox tone="success" icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />} title={t('form.successTitle')}>
+            {t('form.successBody')}
+          </StatusBox>
+        )}
+
+        {submitStatus === 'unconfirmed' && (
+          <StatusBox tone="unconfirmed" icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />} title={t('form.unconfirmedTitle')}>
             {t.rich('form.unconfirmedBody', {
               email: (chunks) => <Ltr>{chunks}</Ltr>,
               phone: (chunks) => <Ltr>{chunks}</Ltr>,
             })}
-          </p>
-        </div>
-      )}
+          </StatusBox>
+        )}
 
-      {submitStatus === 'error' && (
-        <div
-          role="alert"
-          aria-live="assertive"
-          className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm fade-in"
-        >
-          {t('form.errorBody')}
-        </div>
-      )}
+        {submitStatus === 'error' && (
+          <StatusBox tone="error" icon={<XCircle className="h-5 w-5" aria-hidden="true" />} title={t('form.srError')}>
+            {t('form.errorBody')}
+          </StatusBox>
+        )}
+      </div>
     </form>
+  )
+}
+
+// The three results, in the page's state colours: an icon tile, a bold title, the body
+const TONES = {
+  success: { box: 'border-[#9ED3B0] bg-[#E9F6EE] text-[#1F6B3A]', tile: 'bg-white text-[#1F6B3A]' },
+  unconfirmed: { box: 'border-[#E8B98C] bg-[#FBEFE4] text-[#7A4510]', tile: 'bg-white text-[#7A4510]' },
+  error: { box: 'border-[#E7A99C] bg-[#FCEDEA] text-[#8E2A17]', tile: 'bg-white text-[#8E2A17]' },
+} as const
+
+function StatusBox({ tone, icon, title, children }: { tone: keyof typeof TONES; icon: React.ReactNode; title: string; children: React.ReactNode }) {
+  return (
+    <div role="status" className={`mt-5 flex gap-3 rounded-[16px] border p-4 text-[15px] leading-relaxed ${TONES[tone].box}`}>
+      <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] ${TONES[tone].tile}`} aria-hidden="true">{icon}</span>
+      <div>
+        <p className="font-semibold">{title}</p>
+        <p className="mt-0.5">{children}</p>
+      </div>
+    </div>
   )
 }

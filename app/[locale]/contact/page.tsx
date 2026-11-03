@@ -1,15 +1,16 @@
+import type { ReactNode } from 'react'
 import { Link } from '@/i18n/navigation'
-import Image from 'next/image'
-import { MessageCircle, Mail, Phone, AlertCircle, ArrowRight, MapPin, Clock } from 'lucide-react'
-import InteriorHeader from '@/components/InteriorHeader'
+import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import ContactPageSchema from '@/components/ContactPageSchema'
 import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import ContactForm from '@/components/ContactForm'
+import WhatsAppIcon from '@/components/WhatsAppIcon'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, getTranslations } from 'next-intl/server'
+import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { Ltr } from '@/components/Ltr'
+import { container, focusRing, NetworkLines, ArrowIcon } from '@/components/home/shared'
 import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
 
 export async function generateMetadata({
@@ -32,8 +33,77 @@ export async function generateMetadata({
   })
 }
 
-export default async function ContactPage() {
+// One white section: breadcrumb, H1 and intro, then the form card. On lg the channel list and
+// the 24/7 box sit under the intro in a 400px column with the form beside them; on phones they
+// follow the form under their own H2. The two channel blocks are the same list, each shown at
+// one size only, so the Tab order always matches what is on screen. No in-page CTA, and the
+// footer's CTA band is hidden here.
+
+const WHATSAPP = 'https://wa.me/254119402737'
+const linkClass = `rounded !no-underline hover:!underline ${focusRing}`
+
+function ChannelRow({ icon, tile, label, children }: { icon: ReactNode; tile: string; label?: string; children: ReactNode }) {
+  return (
+    <li className="flex items-center gap-4 py-4">
+      <span aria-hidden="true" className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] ${tile}`}>{icon}</span>
+      <div className="min-w-0">
+        {label && <p className="text-[14px] text-[#4A5868]">{label}</p>}
+        <div className="text-[17px] font-semibold text-navy">{children}</div>
+      </div>
+    </li>
+  )
+}
+
+async function Channels() {
   const t = await getTranslations('ContactPage')
+  const tFooter = await getTranslations('Footer')
+  const prefill = encodeURIComponent(t('emergencyPrefill'))
+  return (
+    <>
+      <ul className="divide-y divide-[#E3E9EF] border-y border-[#E3E9EF]">
+        <ChannelRow icon={<WhatsAppIcon className="h-5 w-5" />} tile="bg-[#075E54] text-white" label={t('whatsappLabel')}>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`text-navy ${linkClass}`}><Ltr>+254 119 402 737</Ltr></a>
+        </ChannelRow>
+        <ChannelRow icon={<Phone size={20} strokeWidth={1.75} />} tile="bg-[#EAF4FB] text-primary" label={t('channels.call')}>
+          <a href="tel:+254119402737" className={`text-navy ${linkClass}`}><Ltr>+254 119 402 737</Ltr></a>
+          <p className="mt-0.5 text-[14px] font-normal text-[#4A5868]">
+            {t('channels.rwandaLine')}{' '}
+            <a href="tel:+250798973375" className={`text-[#4A5868] ${linkClass}`}><Ltr>+250 798 973 375</Ltr></a>
+          </p>
+        </ChannelRow>
+        <ChannelRow icon={<Mail size={20} strokeWidth={1.75} />} tile="bg-[#EAF4FB] text-primary" label={t('emailLabel')}>
+          <a href="mailto:contact@blueteamafrica.com" className={`text-navy [overflow-wrap:anywhere] ${linkClass}`}><Ltr>contact@blueteamafrica.com</Ltr></a>
+        </ChannelRow>
+        <ChannelRow icon={<MapPin size={20} strokeWidth={1.75} />} tile="bg-[#EAF4FB] text-primary">
+          {tFooter('registered')}
+        </ChannelRow>
+      </ul>
+
+      {/* 24/7: navy box, the whole box is the WhatsApp link with the emergency message prefilled */}
+      <a
+        href={`${WHATSAPP}?text=${prefill}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-6 flex gap-4 rounded-[20px] bg-navy p-5 text-white !no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      >
+        <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-white/10 text-[#F0A867]">
+          <ShieldCheck size={22} strokeWidth={1.75} />
+        </span>
+        <span>
+          <span className="block font-heading text-[17px] font-bold text-white">{t('hoursDetail')}</span>
+          <span className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#8CC8EE] group-hover:underline">
+            {t('emergencyNgoLink')} <ArrowIcon />
+          </span>
+        </span>
+      </a>
+    </>
+  )
+}
+
+export default async function ContactPage() {
+  const locale = await getLocale()
+  const t = await getTranslations('ContactPage')
+  const tTemplate = await getTranslations('ServiceTemplate')
   const messages = await getMessages()
   // ContactForm (client) only needs these two subtrees; keep the client payload small
   const contactFormMessages = {
@@ -47,377 +117,46 @@ export default async function ContactPage() {
       <LocalBusinessSchema />
       <OrganizationSchema />
 
-      <div className="bg-white text-gray-800">
-        <InteriorHeader
-          title={t('title')}
-          breadcrumb={[
-            { label: t('breadcrumbHome'), href: '/' },
-            { label: t('breadcrumbContact') }
-          ]}
-        />
-
-        {/* SEO-Optimized Introduction + Contact Form - Two Column Layout */}
-        <section className="py-20 container mx-auto px-6 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left Column: Text Content */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                {t('subtitle')}
-              </h2>
-
-              <div className="prose prose-lg max-w-none">
-                <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                  {t.rich('seoPara1', {
-                    webDesign: (chunks) => <Link href="/services/web-design" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    erp: (chunks) => <Link href="/services/erp" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    crm: (chunks) => <Link href="/services/crm" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    mobile: (chunks) => <Link href="/services/mobile-apps" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                    cyber: (chunks) => <Link href="/services/cybersecurity" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                  })}
-                </p>
-
-                <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                  {t.rich('seoPara2', {
-                    hosting: (chunks) => <Link href="/services/hosting" className="text-primary hover:underline font-semibold">{chunks}</Link>,
-                  })}
-                </p>
-
-                <p className="text-lg leading-relaxed mb-6 text-gray-700">
-                  {t('seoPara3')}
-                </p>
-              </div>
-
-              {/* Hero Image */}
-              <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src="/images/contact/contact-hero-1.webp"
-                  alt="Blue Team Africa Contact"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Right Column: Contact Form */}
-            <div className="lg:sticky lg:top-24">
-              <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('formSectionTitle')}</h3>
-                <NextIntlClientProvider messages={contactFormMessages}>
-                  <ContactForm />
-                </NextIntlClientProvider>
-              </div>
-            </div>
+      <section aria-labelledby="contact-heading" className="relative overflow-hidden bg-white">
+        <NetworkLines className="absolute -start-24 -top-10 w-[420px] text-primary opacity-[0.08] lg:-start-16 lg:w-[540px]" />
+        <div className={`${container} relative grid gap-10 pb-16 pt-8 md:pt-12 lg:grid-cols-[400px_minmax(0,1fr)] lg:gap-x-16 lg:gap-y-10 lg:pb-24 lg:pt-16`}>
+          <div className="lg:col-start-1 lg:row-start-1">
+            <nav aria-label={tTemplate('breadcrumbNav')}>
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-[#4A5868]">
+                <li className="flex items-center gap-2">
+                  <Link href="/" className={`hover:text-navy ${linkClass}`}>{t('breadcrumbHome')}</Link>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span aria-hidden="true">{locale === 'ar' ? '‹' : '›'}</span>
+                  <span aria-current="page" className="text-navy">{t('breadcrumbContact')}</span>
+                </li>
+              </ol>
+            </nav>
+            <h1 id="contact-heading" className="mt-6 font-heading !text-[34px] font-bold !leading-[1.12] text-navy md:!text-[44px] lg:!text-[50px] rtl:!leading-[1.35]">
+              {t('title')}
+            </h1>
+            <p className="mt-5 text-[17px] leading-relaxed text-[#4A5868] md:text-[18px]">{t('subtitle')}</p>
           </div>
-        </section>
 
-        {/* Why Choose Blue Team Africa */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-gray-900">
-              {t('whyChooseTitle')}
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('regionalExpertise')}</h3>
-                  <p className="text-gray-700">{t('regionalExpertiseText')}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('regionalExpertiseBody')}</h3>
-                  <p className="text-gray-700">{t('ngoExpertiseText')}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('responsiveTime')}</h3>
-                  <p className="text-gray-700">{t('fullServiceText')}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('responsiveTimeBody')}</h3>
-                  <p className="text-gray-700">{t('securityFirstText')}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 md:col-span-2">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-semibold text-xl mb-2 text-gray-900">{t('provenResults')}</h3>
-                  <p className="text-gray-700">{t('provenResultsText')}</p>
-                </div>
-              </div>
-            </div>
+          {/* lg: channels under the intro */}
+          <div className="hidden lg:col-start-1 lg:row-start-2 lg:block">
+            <Channels />
           </div>
-        </section>
 
-        {/* Contact Information Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-gray-900">
-              {t('provenResultsBody')}
-            </h2>
-
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Contact Information Cards */}
-              <div className="space-y-8">
-                {/* Quick Contact Options */}
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('supportTitle')}</h3>
-
-                  <div className="space-y-6">
-                    {/* WhatsApp */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <MessageCircle className="w-6 h-6 text-green-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('whatsappLabel')}</h4>
-                        <p className="text-gray-600 mb-2">{t('supportBody')}</p>
-                        <a
-                          href="https://wa.me/250798973375"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline font-medium"
-                        >
-                          <Ltr>+250 798 973 375 →</Ltr>
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Email */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-6 h-6 text-primary" />
-                      </div>
-                      {/* min-w-0 + overflow-wrap:anywhere let the address wrap on narrow phones
-                          instead of widening the card past the viewport */}
-                      <div className="min-w-0">
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('emailLabel')}</h4>
-                        <p className="text-gray-600 mb-2">{t('directContact')}</p>
-                        <a
-                          href="mailto:contact@blueteamafrica.com"
-                          className="text-primary hover:underline font-medium [overflow-wrap:anywhere]"
-                        >
-                          <Ltr>contact@blueteamafrica.com →</Ltr>
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-6 h-6 text-purple-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('phoneLabel')}</h4>
-                        <p className="text-gray-600 mb-2">{t('whatsapp')}</p>
-                        <a
-                          href="tel:+250798973375"
-                          className="text-primary hover:underline font-medium"
-                        >
-                          <Ltr>+250 798 973 375 →</Ltr>
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Emergency NGO Support */}
-                    <div className="flex items-start gap-4 p-4 bg-red-50 rounded-lg border border-red-200">
-                      <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <AlertCircle className="w-6 h-6 text-red-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-lg text-gray-900 mb-1">{t('emergencyNgoTitle')}</h4>
-                        <p className="text-gray-600 mb-2">{t('phone')}</p>
-                        <a
-                          href="https://wa.me/250798973375?text=Emergency%20NGO%20Support%20Request"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-red-700 hover:underline font-medium"
-                        >
-                          {t('emergencyNgoLink')} →
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Office Info */}
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('email')}</h3>
-
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">{t('locationLabel')}</h4>
-                        <p className="text-gray-600">{t('office')}</p>
-                        <p className="text-gray-600">{t('officeAddress')}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">{t('hoursLabel')}</h4>
-                        <p className="text-gray-600">{t('hours')}</p>
-                        <p className="text-gray-600">{t('hoursDetail')}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Images */}
-              <div className="space-y-6">
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                  <Image
-                    src="/images/contact/contact-office-01.webp"
-                    alt="Blue Team Africa Office"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover"
-                    unoptimized={true}
-                  />
-                </div>
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                  <Image
-                    src="/images/contact/contact-team-01.webp"
-                    alt="Blue Team Africa Team"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="rounded-[24px] border border-[#E3E9EF] bg-white p-5 shadow-[0_12px_32px_rgba(11,27,43,0.08)] sm:p-8 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
+            <h2 className="mb-6 font-heading !text-[24px] font-bold !leading-snug text-navy md:!text-[28px]">{t('formSectionTitle')}</h2>
+            <NextIntlClientProvider messages={contactFormMessages}>
+              <ContactForm />
+            </NextIntlClientProvider>
           </div>
-        </section>
 
-        {/* Internal Links Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-900">
-              {t('followUs')}
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">{t('linksDigitalTitle')}</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/services/web-design" className="text-primary hover:underline">{t('linksWebDesign')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/website-development" className="text-primary hover:underline">{t('linksWebDev')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/ecommerce" className="text-primary hover:underline">{t('linksEcommerce')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/ui-ux" className="text-primary hover:underline">{t('linksUIUX')}</Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">{t('linksBusinessTitle')}</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/services/erp" className="text-primary hover:underline">{t('linksERP')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/crm" className="text-primary hover:underline">{t('linksCRM')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/mobile-apps" className="text-primary hover:underline">{t('linksMobile')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/custom-systems" className="text-primary hover:underline">{t('linksCustom')}</Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-xl mb-4 text-gray-900">{t('linksSecurityTitle')}</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/services/cybersecurity" className="text-primary hover:underline">{t('linksCyber')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/hosting" className="text-primary hover:underline">{t('linksHosting')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/services/maintenance" className="text-primary hover:underline">{t('linksMaintenance')}</Link>
-                  </li>
-                  <li>
-                    <Link href="/about" className="text-primary hover:underline">{t('linksAbout')}</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-              <p className="text-gray-700 leading-relaxed">
-                {t.rich('rwandaPara', {
-                  webDesign: (chunks) => <Link href="/web-design-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>,
-                  webDev: (chunks) => <Link href="/web-development-rwanda" className="text-primary hover:text-primary-dark hover:underline">{chunks}</Link>,
-                })}
-              </p>
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
-              >
-                <ArrowRight size={18} className="rotate-180" />
-                {t('backToHome')}
-              </Link>
-            </div>
+          {/* Phones: after the form, under their own heading */}
+          <div className="lg:hidden">
+            <h2 className="mb-4 font-heading !text-[24px] font-bold !leading-snug text-navy">{t('otherWays')}</h2>
+            <Channels />
           </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-[#F5F7FA]/80 backdrop-blur-md border-b border-gray-200 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-            {t('bottomTitle')}
-          </h2>
-          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto px-6 text-gray-700">
-            {t('ctaBodyText')}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://wa.me/250798973375"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary-strong text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-primary-dark transition"
-            >
-              <MessageCircle size={20} />
-              {t('bottomSubtitle')}
-            </a>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary-strong hover:text-white transition"
-            >
-              {t('bottomCta')}
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-        </section>
-
-      </div>
+        </div>
+      </section>
     </>
   )
 }
