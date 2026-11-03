@@ -68,8 +68,9 @@ function ContactLine({ href, icon, children, className = 'text-[#C5D2DE]' }: { h
 
 export default function FooterView({ s }: { s: FooterStrings }) {
   const pathname = usePathname()
-  // The homepage (/ and /ar) ends with its own CTA band
-  const showCta = pathname !== '/' && pathname !== '/ar'
+  // No band on the homepage (it ends with its own CTA band) or on the contact page (the form is
+  // the page)
+  const showCta = !['/', '/ar', '/contact', '/ar/contact'].includes(pathname)
   const social = [
     { href: 'https://www.facebook.com/profile.php?id=61585128246041', label: s.socialFacebook, icon: Facebook },
     { href: 'https://www.linkedin.com/company/blue-team-africa', label: s.socialLinkedIn, icon: Linkedin },
