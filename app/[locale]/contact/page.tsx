@@ -60,13 +60,13 @@ async function Channels() {
     <>
       <ul className="divide-y divide-[#E3E9EF] border-y border-[#E3E9EF]">
         <ChannelRow icon={<WhatsAppIcon className="h-5 w-5" />} tile="bg-[#075E54] text-white" label={t('whatsappLabel')}>
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`text-navy ${linkClass}`}><Ltr>+254 119 402 737</Ltr></a>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`text-navy ${linkClass}`}><span className="whitespace-nowrap"><Ltr>+254 119 402 737</Ltr></span></a>
         </ChannelRow>
         <ChannelRow icon={<Phone size={20} strokeWidth={1.75} />} tile="bg-[#EAF4FB] text-primary" label={t('channels.call')}>
-          <a href="tel:+254119402737" className={`text-navy ${linkClass}`}><Ltr>+254 119 402 737</Ltr></a>
+          <a href="tel:+254119402737" className={`text-navy ${linkClass}`}><span className="whitespace-nowrap"><Ltr>+254 119 402 737</Ltr></span></a>
           <p className="mt-0.5 text-[14px] font-normal text-[#4A5868]">
             {t('channels.rwandaLine')}{' '}
-            <a href="tel:+250798973375" className={`text-[#4A5868] ${linkClass}`}><Ltr>+250 798 973 375</Ltr></a>
+            <a href="tel:+250798973375" className={`text-[#4A5868] ${linkClass}`}><span className="whitespace-nowrap"><Ltr>+250 798 973 375</Ltr></span></a>
           </p>
         </ChannelRow>
         <ChannelRow icon={<Mail size={20} strokeWidth={1.75} />} tile="bg-[#EAF4FB] text-primary" label={t('emailLabel')}>

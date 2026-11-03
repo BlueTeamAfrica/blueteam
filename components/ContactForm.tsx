@@ -464,7 +464,8 @@ export default function ContactForm() {
           <StatusBox tone="unconfirmed" icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />} title={t('form.unconfirmedTitle')}>
             {t.rich('form.unconfirmedBody', {
               email: (chunks) => <Ltr>{chunks}</Ltr>,
-              phone: (chunks) => <Ltr>{chunks}</Ltr>,
+              // A phone number never breaks across lines
+              phone: (chunks) => <span className="whitespace-nowrap"><Ltr>{chunks}</Ltr></span>,
             })}
           </StatusBox>
         )}
