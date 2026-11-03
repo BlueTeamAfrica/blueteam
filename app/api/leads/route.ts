@@ -89,15 +89,13 @@ export async function POST(request: NextRequest) {
       'X-RateLimit-Remaining': String(rateLimit.remaining),
     }
 
-    // Honeypot: real visitors never see company_website (off-screen, aria-hidden, not
-    // tabbable). If it's filled, store nothing, send nothing, and answer exactly like a
-    // stored and notified lead so a bot can't tell
-    if (typeof body.company_website === 'string' && body.company_website.trim() !== '') {
-      console.warn('[LEADS_HONEYPOT] Honeypot field filled — submission dropped', { ip: ip === 'unknown' ? undefined : ip })
-      return NextResponse.json(
-        { success: true, message: 'Lead saved successfully', storage: 'firebase', notified: true },
-        { status: 200, headers: rateLimitHeaders }
-      )
+    // Honeypot (bt_hp_x7; company_website from pages cached before the rename). Browser
+    // autofill can fill it for a real visitor, so a filled honeypot never drops a lead: it's
+    // stored and emailed as usual, flagged as suspected spam
+    const honeypotRaw = typeof body.bt_hp_x7 === 'string' ? body.bt_hp_x7 : typeof body.company_website === 'string' ? body.company_website : ''
+    const suspectedSpam = honeypotRaw.trim() !== ''
+    if (suspectedSpam) {
+      console.warn('[LEADS_HONEYPOT] Honeypot field filled — lead kept and flagged as suspected spam', { ip: ip === 'unknown' ? undefined : ip })
     }
 
     // Sanitize all inputs
@@ -155,6 +153,7 @@ export async function POST(request: NextRequest) {
       locale,
       ip: ip === 'unknown' ? undefined : ip, // Don't store if unknown
       userAgent: request.headers.get('user-agent') || undefined,
+      ...(suspectedSpam && { suspectedSpam: true, honeypotValue: sanitizeInput(honeypotRaw).slice(0, 200) }),
     }
 
     // Try to save to Firestore via Admin SDK
@@ -167,13 +166,14 @@ export async function POST(request: NextRequest) {
       try {
         const docRef = await adminDb.collection('leads').add(leadData)
         savedToFirebase = true
-        console.log('[LEADS] Saved to Firestore successfully')
+        // Trace for every lead (no personal data); warn so production builds keep it
+        console.warn('[LEADS] stored', { docId: docRef.id })
 
         // Send staff notification — failure must not affect the user response
         try {
-          await notifyNewLead({ ...leadData, leadId: docRef.id })
+          const messageId = await notifyNewLead({ ...leadData, leadId: docRef.id }, { suspectedSpam })
           notified = true
-          console.log('[LEADS_NOTIFY] Staff notification sent')
+          console.warn('[LEADS_NOTIFY] sent', { messageId, docId: docRef.id })
         } catch (emailErr) {
           console.error('[EMAIL_NOTIFY_FAILED] Staff notification failed — lead is safely stored in Firestore:', emailErr)
         }
@@ -204,10 +204,10 @@ export async function POST(request: NextRequest) {
     if (!savedToFirebase) {
       // The lead isn't stored: email it anyway, so the email is at least one copy
       try {
-        await notifyNewLead(leadData, { notSaved: true })
+        const messageId = await notifyNewLead(leadData, { notSaved: true, suspectedSpam })
         notified = true
         // warn, not log: production builds strip console.log (next.config.js removeConsole)
-        console.warn('[LEADS_NOTIFY] Staff notification sent for a lead Firestore did not store')
+        console.warn('[LEADS_NOTIFY] sent', { messageId, docId: null })
       } catch (emailErr) {
         console.error('[EMAIL_NOTIFY_FAILED] Staff notification failed and Firestore did not store the lead:', emailErr)
       }

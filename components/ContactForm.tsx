@@ -11,8 +11,9 @@ interface FormData {
   phone: string
   subject: string
   message: string
-  // Honeypot: off-screen and aria-hidden, so only bots fill it
-  company_website: string
+  // Honeypot: off-screen and aria-hidden, so only bots (or autofill) fill it. The name has no
+  // word autofill matches on (company, website, url, name, email, phone, address)
+  bt_hp_x7: string
 }
 
 interface FormErrors {
@@ -57,7 +58,7 @@ export default function ContactForm() {
     phone: '',
     subject: '',
     message: '',
-    company_website: '',
+    bt_hp_x7: '',
   })
 
   const [errors, setErrors] = useState<FormErrors>({})
@@ -136,7 +137,7 @@ export default function ContactForm() {
         phone: sanitizeInput(formData.phone),
         subject: sanitizeInput(formData.subject),
         message: sanitizeInput(formData.message),
-        company_website: formData.company_website,
+        bt_hp_x7: formData.bt_hp_x7,
         locale,
       }
 
@@ -168,16 +169,16 @@ export default function ContactForm() {
           phone: '',
           subject: '',
           message: '',
-          company_website: '',
+          bt_hp_x7: '',
         })
         setErrors({})
         // Focus on status message for screen readers
         if (statusMessageRef.current) {
           statusMessageRef.current.focus()
         }
-        // GA4 form_submit only on a real success (stored or emailed). A filled honeypot
-        // gets the API's fake success, which isn't a conversion
-        if (!sanitizedData.company_website && typeof window !== 'undefined' && window.gtag) {
+        // GA4 form_submit only on a real success (stored or emailed). A filled honeypot is
+        // stored as suspected spam, so it isn't counted as a conversion
+        if (!sanitizedData.bt_hp_x7 && typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit', {
             form_name: 'contact',
             form_subject: sanitizedData.subject,
@@ -398,17 +399,22 @@ export default function ContactForm() {
 
       {/* Honeypot: off-screen (not display:none, which some bots skip), out of the tab order
           and hidden from assistive tech. Kept on the inline-start side so it never adds
-          scrollable overflow in either direction */}
+          scrollable overflow in either direction. Name, id and label avoid every word browser
+          autofill matches on, and the data-* flags tell password managers to skip it */}
       <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden rtl:left-auto rtl:-right-[9999px]">
-        <label htmlFor="company_website">Website</label>
+        <label htmlFor="bt_hp_x7">Leave blank</label>
         <input
           type="text"
-          id="company_website"
-          name="company_website"
-          value={formData.company_website}
+          id="bt_hp_x7"
+          name="bt_hp_x7"
+          value={formData.bt_hp_x7}
           onChange={handleChange}
           tabIndex={-1}
           autoComplete="off"
+          data-lpignore="true"
+          data-1p-ignore=""
+          data-bwignore="true"
+          data-form-type="other"
         />
       </div>
 

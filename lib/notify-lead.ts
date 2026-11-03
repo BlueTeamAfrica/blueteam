@@ -21,12 +21,13 @@ export async function notifyNewLead(lead: {
   timestamp: string
   locale?: string
   leadId?: string
-}, { notSaved = false }: { notSaved?: boolean } = {}) {
+}, { notSaved = false, suspectedSpam = false }: { notSaved?: boolean; suspectedSpam?: boolean } = {}): Promise<string> {
   const subjectLabel = lead.subject.replace(/-/g, ' ')
-  // A lead Firestore couldn't store exists only in this email: say so in the subject
-  const prefix = notSaved ? '[NOT SAVED — Firestore failed] ' : ''
+  // A lead Firestore couldn't store exists only in this email: say so in the subject.
+  // A filled honeypot is flagged, not dropped (autofill can fill it for a real visitor)
+  const prefix = (suspectedSpam ? '[SUSPECTED SPAM] ' : '') + (notSaved ? '[NOT SAVED — Firestore failed] ' : '')
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: `"Blue Team Africa" <${process.env.SMTP_USER}>`,
     to: NOTIFY_TO,
     replyTo: lead.email,
@@ -45,6 +46,8 @@ export async function notifyNewLead(lead: {
       ``,
       `Submitted: ${lead.timestamp}`,
       lead.leadId ? `Firestore ID: ${lead.leadId}` : 'NOT SAVED: Firestore write failed; this email is the only copy',
+      suspectedSpam ? 'SUSPECTED SPAM: the hidden anti-spam field was filled (bots do this; so can browser autofill)' : '',
     ].filter(line => line !== undefined).join('\n'),
   })
+  return info.messageId
 }
