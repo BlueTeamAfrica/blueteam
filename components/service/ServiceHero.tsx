@@ -13,7 +13,7 @@ export type ServiceFamily = 'design' | 'systems' | 'protect'
 const GROUP_KEY = { design: 'groupBuild', systems: 'groupSystems', protect: 'groupProtect' } as const
 const WHATSAPP = 'https://wa.me/254119402737'
 
-export interface Crumb { label: string; href?: string }
+interface Crumb { label: string; href?: string }
 
 export default async function ServiceHero({ family, title, tagline, intro, introExtra, breadcrumb, pills, actions = true }: {
   family: ServiceFamily

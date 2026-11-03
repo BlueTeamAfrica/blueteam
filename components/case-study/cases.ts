@@ -4,7 +4,7 @@ import type { ServiceFamily } from '@/components/service/ServiceHero'
 // follows, wrapping at the end). values: the page's three figures exactly as it shows them,
 // one per stat1Label… key in its namespace. item: the PortfolioPage card key (title, desc, cat).
 
-export interface CaseStudy {
+interface CaseStudy {
   slug: string
   namespace: string
   item: string

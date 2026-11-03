@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 // 1. How to Choose the Right Website for Your NGO
-export const metadataHowToChooseWebsite: Metadata = {
+const metadataHowToChooseWebsite: Metadata = {
   title: 'How to Choose the Right Website for Your NGO',
   description: 'A practical guide for NGOs in Kigali and East Africa to select the best website for their needs and impact.',
   alternates: {
@@ -10,7 +10,7 @@ export const metadataHowToChooseWebsite: Metadata = {
 }
 
 // 2. Why Hosting Speed Matters in Africa
-export const metadataHostingSpeed: Metadata = {
+const metadataHostingSpeed: Metadata = {
   title: 'Why Hosting Speed Matters in Africa',
   description: 'Insights on web hosting performance for NGOs and businesses in Kigali and East Africa. Speed matters for success.',
   alternates: {
@@ -19,7 +19,7 @@ export const metadataHostingSpeed: Metadata = {
 }
 
 // 3. ERP for African SMEs: A Complete Guide
-export const metadataErpGuide: Metadata = {
+const metadataErpGuide: Metadata = {
   title: 'ERP for African SMEs: A Complete Guide',
   description: 'Comprehensive guide on ERP systems for SMEs in Kigali and East Africa. Boost efficiency and business growth.',
   alternates: {
@@ -28,7 +28,7 @@ export const metadataErpGuide: Metadata = {
 }
 
 // 4. Choosing a Web Design Company in Rwanda: What Businesses Should Know
-export const metadataChoosingWebDesignRwanda: Metadata = {
+const metadataChoosingWebDesignRwanda: Metadata = {
   title: 'Choosing a Web Design Partner: A Guide for Rwandan Businesses',
   description: 'A guide to selecting a web design partner in Rwanda, covering key factors businesses should consider when making this important decision.',
   alternates: {
@@ -37,7 +37,7 @@ export const metadataChoosingWebDesignRwanda: Metadata = {
 }
 
 // 5. Web Development Companies in Rwanda: What to Look For (2026)
-export const metadataWebDevelopmentCompaniesRwanda: Metadata = {
+const metadataWebDevelopmentCompaniesRwanda: Metadata = {
   title: 'Web Development Companies in Rwanda: What to Look For (2026)',
   description: 'Looking for reliable web development companies in Rwanda? Learn how to choose the right partner for your business in 2026.',
   alternates: {
@@ -46,7 +46,7 @@ export const metadataWebDevelopmentCompaniesRwanda: Metadata = {
 }
 
 // 6. Website Design Cost in Rwanda (2026 Guide)
-export const metadataWebDesignCostRwanda: Metadata = {
+const metadataWebDesignCostRwanda: Metadata = {
   title: 'Website Design Cost in Rwanda (2026 Guide)',
   description: 'Complete guide to website design costs in Rwanda for 2026. Understand pricing factors and what to expect when investing in a professional website.',
   alternates: {

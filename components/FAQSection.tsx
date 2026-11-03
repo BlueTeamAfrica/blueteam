@@ -2,37 +2,27 @@
 
 import { useState } from 'react'
 import { Link } from '@/i18n/navigation'
-import { ChevronDown, MessageCircle, ArrowRight } from 'lucide-react'
+import { ChevronDown, ArrowRight } from 'lucide-react'
 import type { FAQ } from '@/lib/faqs'
 
 interface FAQSectionProps {
   showAll?: boolean
   maxItems?: number
-  showCTA?: boolean
   title?: string
   description?: string
   bgColor?: 'white' | 'gray'
   customFAQs: FAQ[]
   viewAllLabel?: string
-  ctaTitle?: string
-  ctaBody?: string
-  ctaWhatsApp?: string
-  ctaContact?: string
 }
 
 export default function FAQSection({
   showAll = false,
   maxItems = 6,
-  showCTA = true,
-  title = 'Frequently Asked Questions',
-  description = 'Common questions about our services, pricing, and processes',
+  title,
+  description,
   bgColor = 'white',
   customFAQs,
-  viewAllLabel = 'View All FAQs',
-  ctaTitle = 'Still Have Questions?',
-  ctaBody = "We're here to help. Get in touch and we'll answer any questions you have.",
-  ctaWhatsApp = 'Chat on WhatsApp',
-  ctaContact = 'Contact Us'
+  viewAllLabel,
 }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -108,35 +98,6 @@ export default function FAQSection({
               {viewAllLabel}
               <ArrowRight size={18} className="rtl:rotate-180" />
             </Link>
-          </div>
-        )}
-
-        {showCTA && showAll && (
-          <div className="mt-12 bg-gray-50 rounded-lg p-8 text-center">
-            <h3 className="text-xl font-heading font-bold text-gray-900 mb-4">
-              {ctaTitle}
-            </h3>
-            <p className="text-gray-700 mb-6">
-              {ctaBody}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://wa.me/254119402737"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary-strong text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition"
-              >
-                <MessageCircle size={20} />
-                {ctaWhatsApp}
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition"
-              >
-                {ctaContact}
-                <ArrowRight size={18} className="rtl:rotate-180" />
-              </Link>
-            </div>
           </div>
         )}
       </div>

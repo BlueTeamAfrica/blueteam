@@ -1,26 +1,4 @@
-export interface LocalBusinessSchema {
-  '@context': string;
-  '@type': string;
-  name: string;
-  description?: string;
-  address?: {
-    '@type': string;
-    addressCountry: string;
-    addressLocality: string;
-    addressRegion?: string;
-  };
-  telephone?: string;
-  email?: string;
-  url: string;
-  priceRange?: string;
-  areaServed?: {
-    '@type': string;
-    name: string;
-  }[];
-  serviceType?: string[];
-}
-
-export interface ServiceSchema {
+interface ServiceSchema {
   '@context': string;
   '@type': string;
   name: string;
@@ -35,29 +13,13 @@ export interface ServiceSchema {
 }
 
 /** A schema.org Place (Country, City…), optionally inside a larger one */
-export interface Place {
+interface Place {
   '@type': string;
   name: string;
   containedInPlace?: Place;
 }
 
-export interface OrganizationSchema {
-  '@context': string;
-  '@type': string;
-  name: string;
-  description: string;
-  url: string;
-  logo?: string;
-  contactPoint?: {
-    '@type': string;
-    telephone: string;
-    contactType: string;
-    areaServed: string[];
-  }[];
-  sameAs?: string[];
-}
-
-export interface BreadcrumbSchema {
+interface BreadcrumbSchema {
   '@context': string;
   '@type': string;
   itemListElement: {
@@ -66,50 +28,6 @@ export interface BreadcrumbSchema {
     name: string;
     item: string;
   }[];
-}
-
-export interface FAQPageSchema {
-  '@context': string;
-  '@type': string;
-  mainEntity: {
-    '@type': string;
-    name: string;
-    acceptedAnswer: {
-      '@type': string;
-      text: string;
-    };
-  }[];
-}
-
-export function generateLocalBusinessSchema(
-  name: string,
-  country: string,
-  city: string,
-  url: string,
-  services?: string[],
-  telephone?: string
-): LocalBusinessSchema {
-  const schema: LocalBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name,
-    url,
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: country,
-      addressLocality: city,
-    },
-  };
-
-  if (services && services.length > 0) {
-    schema.serviceType = services;
-  }
-
-  if (telephone) {
-    schema.telephone = telephone;
-  }
-
-  return schema;
 }
 
 export function generateServiceSchema(
@@ -138,43 +56,6 @@ export function generateServiceSchema(
     schema.areaServed = areasServed.map(area =>
       typeof area === 'string' ? { '@type': 'Country', name: area } : area
     );
-  }
-
-  return schema;
-}
-
-export function generateOrganizationSchema(
-  name: string,
-  description: string,
-  url: string,
-  logo?: string,
-  sameAs?: string[],
-  telephone?: string,
-  email?: string
-): OrganizationSchema {
-  const schema: OrganizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name,
-    description,
-    url,
-  };
-
-  if (logo) {
-    schema.logo = logo;
-  }
-
-  if (sameAs && sameAs.length > 0) {
-    schema.sameAs = sameAs;
-  }
-
-  if (telephone || email) {
-    schema.contactPoint = [{
-      '@type': 'ContactPoint',
-      telephone: telephone || '',
-      contactType: 'customer service',
-      areaServed: ['UG', 'KE', 'RW', 'SD'],
-    }];
   }
 
   return schema;
@@ -263,17 +144,6 @@ export function getPortfolioSchema(projectName: string, projectSlug: string) {
   };
 }
 
-// List of portfolio projects
-export const portfolioProjects = [
-  { name: 'CSLO Sudan', slug: 'cslo-sudan' },
-  { name: 'NGO Portal', slug: 'ngo-portal' },
-  { name: 'ERP Integration', slug: 'erp-integration' },
-  { name: 'E-commerce Shop', slug: 'ecommerce-shop' },
-  { name: 'Mobile App', slug: 'mobile-app' },
-  { name: 'CRM System', slug: 'crm-system' },
-  { name: 'Cloud Migration', slug: 'cloud-migration' }
-];
-
 export interface BlogSchemaImage {
   path: string;
   width: number;
@@ -311,11 +181,3 @@ export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished
     "keywords": ["Kigali", "East Africa", "NGO", "business", "technology", "web", "mobile", "ERP", "CRM"]
   };
 }
-
-// List of blog posts
-export const blogs = [
-  { title: 'How to Choose the Right Website for Your NGO', slug: 'how-to-choose-the-right-website-for-your-ngo', date: '2024-01-15' },
-  { title: 'Why Hosting Speed Matters in Africa', slug: 'why-hosting-speed-matters-in-africa', date: '2024-01-10' },
-  { title: 'ERP for African SMEs: A Complete Guide', slug: 'erp-for-african-smes-a-complete-guide', date: '2024-01-05' }
-];
-

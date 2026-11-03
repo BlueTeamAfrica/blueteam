@@ -6,8 +6,8 @@ import { container, focusRing, stretched, H2, Eyebrow, CheckIcon, ArrowIcon } fr
 // paragraphs as props (the page's own strings, rich where the copy carries links). `tone`
 // picks the band: white, light (#F6F8FA) or dark (navy), so pages can alternate them.
 
-export type Tone = 'white' | 'light' | 'dark'
-export interface Item { title?: ReactNode; body: ReactNode; bullets?: ReactNode[] }
+type Tone = 'white' | 'light' | 'dark'
+interface Item { title?: ReactNode; body: ReactNode; bullets?: ReactNode[] }
 
 const BAND: Record<Tone, string> = { white: 'bg-white', light: 'bg-[#F6F8FA]', dark: 'bg-[#0A1A2B] text-white' }
 // Cards sit on the opposite light tone, so they read as cards on either light band
@@ -177,7 +177,7 @@ export function Checklist({ id, heading, eyebrow, lead, closing, items, tone = '
   )
 }
 
-export interface CaseCard { href: string; tag?: string; title: ReactNode; body: ReactNode[]; linkLabel?: string }
+interface CaseCard { href: string; tag?: string; title: ReactNode; body: ReactNode[]; linkLabel?: string }
 
 /** Cards linking to case studies; the whole card is the link */
 export function CaseStudyCards({ id, heading, eyebrow, lead, cases, allLink, tone = 'white' }: {

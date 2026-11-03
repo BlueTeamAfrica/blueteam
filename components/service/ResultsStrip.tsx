@@ -6,7 +6,7 @@ import { container } from '@/components/home/shared'
 // verbatim (values as the page shows them, labels from its own message keys); a service page
 // without a matching case study leaves the strip out.
 
-export interface Stat { value: string; label: string }
+interface Stat { value: string; label: string }
 
 export default function ResultsStrip({ label, stats, href, linkLabel }: {
   label: string

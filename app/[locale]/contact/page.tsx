@@ -2,7 +2,6 @@ import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import { MessageCircle, Mail, Phone, AlertCircle, ArrowRight, MapPin, Clock } from 'lucide-react'
 import InteriorHeader from '@/components/InteriorHeader'
-import SectionWrapper from '@/components/SectionWrapper'
 import OrganizationSchema from '@/components/OrganizationSchema'
 import ContactPageSchema from '@/components/ContactPageSchema'
 import LocalBusinessSchema from '@/components/LocalBusinessSchema'
@@ -45,7 +44,7 @@ export default async function ContactPage() {
     <>
       {/* JSON-LD Schemas */}
       <ContactPageSchema />
-      <LocalBusinessSchema location="Rwanda" />
+      <LocalBusinessSchema />
       <OrganizationSchema />
 
       <div className="bg-white text-gray-800">

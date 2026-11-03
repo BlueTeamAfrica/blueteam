@@ -62,7 +62,6 @@ export default async function FAQPage() {
       {/* Accordion */}
       <FAQSection
         showAll={true}
-        showCTA={false}
         title=""
         description=""
         customFAQs={faqs}

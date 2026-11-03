@@ -19,7 +19,7 @@ import { SERVICES, getServiceNames } from '@/components/service/services'
 const SITE = 'https://www.blueteamafrica.com'
 
 /** Links to services by slug, named as the header and footer name them */
-export async function serviceLinks(slugs: string[]) {
+async function serviceLinks(slugs: string[]) {
   const serviceName = await getServiceNames()
   return slugs.map((slug) => ({ href: `/services/${slug}`, label: serviceName(SERVICES.find((svc) => svc.slug === slug)!) }))
 }

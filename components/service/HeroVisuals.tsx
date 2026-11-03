@@ -10,9 +10,9 @@ const box = 'relative mx-auto aspect-[6/5] w-full max-w-[560px] [container-type:
 // Arabic on English pages stays off Scheherazade New (see LocaleSwitcher), so no 87 KB font load
 const latinOnly: CSSProperties = { fontFamily: 'var(--font-poppins-latin), sans-serif' }
 
-export interface DesignStrings { headline: string; performanceTarget: string; devices: string; latinAr: boolean }
-export interface SystemsStrings { phoneTitle: string; phoneSubtitle: string; synced: string; recordsBySite: string; live: string; illustrativeData: string }
-export interface ProtectStrings {
+interface DesignStrings { headline: string; performanceTarget: string; devices: string; latinAr: boolean }
+interface SystemsStrings { phoneTitle: string; phoneSubtitle: string; synced: string; recordsBySite: string; live: string; illustrativeData: string }
+interface ProtectStrings {
   securityEvents: string; monitored: string; events: [string, string][]; illustrative: string; tags: string[]
 }
 

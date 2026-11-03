@@ -5,9 +5,9 @@ import { parseFrontmatter, markdownToHtml } from '@/lib/markdown'
 import fieldDataEn from '@/content/blog/field-data-app-dashboard-sudan.en'
 import fieldDataAr from '@/content/blog/field-data-app-dashboard-sudan.ar'
 
-export type BilingualLocale = 'en' | 'ar'
+type BilingualLocale = 'en' | 'ar'
 
-export interface BilingualPost {
+interface BilingualPost {
   slug: string
   locale: BilingualLocale
   title: string
@@ -60,7 +60,7 @@ export function getBilingualPost(slug: string, locale: string): BilingualPost | 
   }
 }
 
-export type BilingualPostCard = Pick<BilingualPost, 'slug' | 'title' | 'image' | 'imageWidth' | 'imageHeight' | 'imageAlt'>
+type BilingualPostCard = Pick<BilingualPost, 'slug' | 'title' | 'image' | 'imageWidth' | 'imageHeight' | 'imageAlt'>
 
 /** The most recently published bilingual post, without rendering its body (header featured card). */
 export function getLatestBilingualPost(locale: string): BilingualPostCard {

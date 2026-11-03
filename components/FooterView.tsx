@@ -18,7 +18,7 @@ import { container, NetworkLines } from '@/components/home/shared'
 // "Africa" #F0A867 (8.8:1). The CTA card is primary-strong (white text 4.52:1).
 
 export interface FooterLink { href: string; label: string }
-export interface FooterStrings {
+interface FooterStrings {
   ctaTitle: string; ctaText: string; cta: string; ctaWhatsApp: string
   tagline: string; services: string; company: string; locations: string
   registered: string; socialFacebook: string; socialLinkedIn: string; legalNav: string; copyright: string

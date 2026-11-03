@@ -1,49 +1,18 @@
-interface LocalBusinessSchemaProps {
-  location?: 'Uganda' | 'Sudan' | 'Rwanda'
-}
-
-export default function LocalBusinessSchema({ location = 'Rwanda' }: LocalBusinessSchemaProps) {
-  const getLocationData = (): { addressCountry: string; addressLocality: string; addressRegion?: string; telephone: string } => {
-    switch (location) {
-      case 'Rwanda':
-        return {
-          addressCountry: 'RW',
-          addressLocality: 'Kigali',
-          addressRegion: 'Kigali City',
-          telephone: '+250798973375',
-        }
-      case 'Sudan':
-        return {
-          addressCountry: 'SD',
-          addressLocality: 'Khartoum',
-          addressRegion: 'Khartoum State',
-          telephone: '+254119402737',
-        }
-      default: // Uganda
-        return {
-          addressCountry: 'UG',
-          addressLocality: 'Kampala',
-          addressRegion: 'Central Region',
-          telephone: '+254119402737',
-        }
-    }
-  }
-  
-  const locationData = getLocationData()
-  
+// Kigali is the only public address; the schema renders on /contact
+export default function LocalBusinessSchema() {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Blue Team Africa',
     description: 'Founded by Sudanese technologists, Blue Team Africa builds secure digital systems for NGOs, media, and businesses serving Sudan, the diaspora, and East Africa.',
     url: 'https://www.blueteamafrica.com',
-    telephone: locationData.telephone,
+    telephone: '+250798973375',
     email: 'contact@blueteamafrica.com',
     address: {
       '@type': 'PostalAddress',
-      addressCountry: locationData.addressCountry,
-      addressLocality: locationData.addressLocality,
-      ...(locationData.addressRegion && { addressRegion: locationData.addressRegion }),
+      addressCountry: 'RW',
+      addressLocality: 'Kigali',
+      addressRegion: 'Kigali City',
     },
     priceRange: '$$',
     areaServed: [

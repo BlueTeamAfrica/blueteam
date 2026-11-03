@@ -5,7 +5,7 @@ import { container, focusRing, H2, ArrowIcon } from '@/components/home/shared'
 // The page's FAQ: the homepage accordion, and the FAQPage JSON-LD built from the same items,
 // so the structured data is the visible text, byte for byte.
 
-export interface FaqItem { q: string; a: string }
+interface FaqItem { q: string; a: string }
 
 export default function ServiceFaq({ title, description, items, viewAllLabel, tone = 'white', schema: withSchema = true }: {
   title: string

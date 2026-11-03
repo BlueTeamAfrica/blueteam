@@ -22,7 +22,7 @@ import type { ServiceFamily } from './ServiceHero'
 // are the header's one-liners. A figure is one value from the service's results strip, exactly
 // as its case page shows it, labelled by that page's own stat key.
 
-export interface ServiceFigure {
+interface ServiceFigure {
   value: string
   /** Case-study namespace and its stat label key */
   namespace: string

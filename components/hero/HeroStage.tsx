@@ -18,7 +18,7 @@ export interface StageStrings {
   captions: string[]
 }
 
-export interface SiteLayer {
+interface SiteLayer {
   lang: string
   dir: 'ltr' | 'rtl'
   url: string

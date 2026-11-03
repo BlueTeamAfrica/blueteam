@@ -4,7 +4,7 @@ import { container, Eyebrow, H2 } from '@/components/home/shared'
 // The page's value cards as a bento: first card wide and light, second navy, third peach.
 // One column on phones.
 
-export interface Card { title: string; body: string }
+interface Card { title: string; body: string }
 
 const TONES = [
   'bg-[#F4F8FB] md:col-span-2',

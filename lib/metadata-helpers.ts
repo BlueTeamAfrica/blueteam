@@ -40,7 +40,7 @@ export function buildEnglishOnlyAlternates(pagePath: string) {
 }
 
 /** The site's default social card (1200×630), used wherever a page sets no image of its own */
-export const DEFAULT_OG_IMAGE = {
+const DEFAULT_OG_IMAGE = {
   url: '/images/hero/hero-og-1200x630.jpg',
   width: 1200,
   height: 630,

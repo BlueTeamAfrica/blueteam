@@ -5,21 +5,9 @@
 :root {
   --color-primary: #1C83C5;
   --color-primary-dark: #14699a;
-  --color-primary-light: #4da3d9;
   --color-primary-text: #0d5a8a; /* Darker shade for better contrast on white */
-  --color-secondary: #D97706;
   --color-background: #F8FAFC;
-  --color-surface: #FFFFFF;
   --color-dark: #0F172A;
-  --color-muted: #64748B;
-  
-  /* Keep existing for backward compatibility */
-  --background: var(--color-surface);
-  --foreground: var(--color-dark);
-  --primary: var(--color-primary);
-  --primary-dark: var(--color-primary-dark);
-  --secondary: var(--color-muted);
-  --accent: #0ea5e9;
 }
 
 /* Ensure links with primary color have sufficient contrast (WCAG AA compliant) */
@@ -42,17 +30,14 @@ a:not([class*="bg-"]) {
 
 /* Buttons and CTAs don't need underline */
 a[class*="bg-"],
-button[class*="bg-"],
-.btn-primary,
-.btn-secondary {
+button[class*="bg-"] {
   text-decoration: none !important;
 }
 
 /* Remove underlines from header navigation only (header + its mobile menu) */
 header a,
 header nav a,
-#hdr-mobile a,
-aside[role="dialog"] a {
+#hdr-mobile a {
   text-decoration: none !important;
 }
 
@@ -74,83 +59,12 @@ body {
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
   /* Provide a utility class for hover:bg-primary-dark */
   .hover\:bg-primary-dark:hover {
     background: var(--color-primary-dark);
   }
 }
 
-
-/* Oracom-style Navlink Underline Animation */
-.navlink-underline {
-  position: relative;
-  display: inline-block;
-}
-
-.navlink-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background: var(--color-primary);
-  transition: width 0.25s ease-in-out;
-}
-
-.navlink-underline:hover::after {
-  width: 100%;
-}
-
-.navlink-underline.active::after {
-  width: 100%;
-}
-
-/* White text variant - underline should be white when text is white */
-.navlink-underline.text-white::after,
-.navlink-underline.text-white:hover::after {
-  background: #ffffff;
-}
-
-.navlink-underline.text-white.active::after {
-  background: #ffffff;
-  width: 100%;
-}
-
-/* Footer links: white underline on hover when hover:text-white class is applied */
-.navlink-underline.hover\:text-white:hover::after {
-  background: #ffffff;
-}
-
-/* Gradient Wave Animation */
-@keyframes gradient-wave {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient-wave {
-  background-size: 200% 200%;
-  animation: gradient-wave 12s ease-in-out infinite;
-}
-
-/* Optional: slightly reduce gradient intensity on very small screens */
-@media (max-width: 640px) {
-  .animate-gradient-wave {
-    opacity: 0.6 !important;
-    filter: blur(4px) !important;
-    transform: scale(1.05) !important;
-  }
-}
 
 /* Smooth scrolling */
 html {
@@ -170,47 +84,6 @@ html {
   color: var(--color-primary);
 }
 
-/* Logo filter to match primary blue color (#1982c4) */
-.logo-blue {
-  filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2873%) hue-rotate(194deg) brightness(104%) contrast(97%);
-}
-
-.text-muted {
-  color: var(--color-muted);
-}
-
-.bg-secondary {
-  background: var(--color-secondary);
-}
-
-.bg-dark {
-  background: var(--color-dark);
-}
-
-/* Custom button styles */
-.btn-primary {
-  @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl;
-}
-
-.btn-secondary {
-  @apply bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300;
-}
-
-/* Button hover (custom, since @apply can't see our custom hover token) */
-.btn-primary:hover {
-  background: var(--color-primary-dark);
-}
-
-/* Card hover effects */
-.card-hover {
-  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
-}
-
-/* Section spacing */
-.section-padding {
-  @apply py-16 md:py-20;
-}
-
 /* Pulse animation for WhatsApp button */
 @keyframes ping {
   75%, 100% {
@@ -228,85 +101,12 @@ html {
   z-index: 50;
 }
 
-/* Hero Section Animations - Oracom Style */
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Direct animation classes for hero elements */
-.hero-fade-up {
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.hero-fade-up-delay-200 {
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
-}
-
-.hero-fade-up-delay-400 {
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
-}
-
-.hero-fade-up-delay-600 {
-  animation: fadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out forwards;
-}
-
 /* Location page animations - CSS only, no JS */
 .fade-in {
   animation: fadeIn 0.6s ease-in-out forwards;
   opacity: 0;
 }
 
-.fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-  opacity: 0;
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -316,110 +116,9 @@ html {
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Stagger animation delays for cards */
-.fade-in-up:nth-child(1) { animation-delay: 0.1s; }
-.fade-in-up:nth-child(2) { animation-delay: 0.2s; }
-.fade-in-up:nth-child(3) { animation-delay: 0.3s; }
-.fade-in-up:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slideDown {
-  animation: slideDown 0.25s ease-out forwards;
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.25s ease-out forwards;
-}
-
-@keyframes scaleIn {
-  0% {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-}
-
-/* Pulse ring animation class */
-.pulse-ring {
-  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Gradient move animation */
-.gradient-move-animation {
-  animation: gradient-move 15s ease-in-out infinite;
-  background-size: 200% 200%;
-}
-
-/* Location link section styling - minimal, mobile-first */
-.location-link {
-  padding: 1.5rem;
-  border-left: 3px solid var(--color-primary, #1C83C5);
-  background: rgba(37, 99, 235, 0.05);
-  border-radius: 0 8px 8px 0;
-}
-
-@media (max-width: 640px) {
-  .location-link {
-    padding: 1.25rem;
-  }
-}
-
 /* Mobile Typography Fix — Ensures headings > body text */
 @media (max-width: 640px) {
-  h1,
-  .page-title,
-  .hero-title {
+  h1 {
     font-size: 1.75rem !important;
     line-height: 1.15 !important;
   }
@@ -436,8 +135,7 @@ html {
     line-height: 1.25 !important;
   }
 
-  p,
-  .lead {
+  p {
     font-size: 1rem;
     line-height: 1.6;
   }
@@ -599,7 +297,7 @@ html {
 
 /* Scheherazade New's marks reach well above and below its letters, so Arabic lines collide at
    the tight Latin heading leading (1.0–1.25); !important to override the mobile sizes above */
-:lang(ar) :is(h1, h2, h3, .page-title, .hero-title, .section-title) {
+:lang(ar) :is(h1, h2, h3, .section-title) {
   line-height: 1.4 !important;
 }
 
