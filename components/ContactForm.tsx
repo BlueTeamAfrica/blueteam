@@ -293,7 +293,8 @@ export default function ContactForm() {
           aria-invalid={errors.email ? 'true' : 'false'}
           aria-describedby={errors.email ? 'email-error' : undefined}
           maxLength={255}
-          className={`${field(!!errors.email)} h-[50px]`}
+          dir="ltr"
+          className={`${field(!!errors.email)} h-[50px] text-left rtl:text-right`}
           placeholder={t('form.emailPlaceholder')}
         />
         {errors.email && (

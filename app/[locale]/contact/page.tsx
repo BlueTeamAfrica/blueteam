@@ -111,7 +111,7 @@ export default async function ContactPage() {
   return (
     <>
       {/* JSON-LD: ContactPage only; the site-wide blocks come from the layout */}
-      <ContactPageSchema />
+      <ContactPageSchema locale={locale} />
 
       <section aria-labelledby="contact-heading" className="relative overflow-hidden bg-white">
         <NetworkLines className="absolute -start-24 -top-10 w-[420px] text-primary opacity-[0.08] lg:-start-16 lg:w-[540px]" />

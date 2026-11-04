@@ -1,10 +1,11 @@
-export default function ContactPageSchema() {
+// url is the page's own locale URL (/ar/contact on the Arabic page)
+export default function ContactPageSchema({ locale }: { locale: string }) {
   const contactPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Us | Blue Team Africa',
     description: 'Contact Blue Team Africa about websites, ERP and CRM systems, mobile apps and cybersecurity for organisations working on Sudan and East Africa.',
-    url: 'https://www.blueteamafrica.com/contact',
+    url: locale === 'ar' ? 'https://www.blueteamafrica.com/ar/contact' : 'https://www.blueteamafrica.com/contact',
     mainEntity: {
       '@type': 'Organization',
       name: 'Blue Team Africa',
