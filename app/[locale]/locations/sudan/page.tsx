@@ -25,7 +25,6 @@ export async function generateMetadata({
       'NGO technology Sudan',
       'humanitarian technology Sudan',
       'Sudanese organizations tech',
-      'LMS Sudan colleges',
       'secure systems Sudan',
       'diaspora Sudan technology',
     ],
