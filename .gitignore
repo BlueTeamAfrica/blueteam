@@ -63,3 +63,6 @@ data/leads.json
 # SEO keyword research (kept locally, not in the repo)
 Keywords/
 kewords.ods
+
+# Claude Code reports (kept locally, not in the repo)
+docs/reports/
