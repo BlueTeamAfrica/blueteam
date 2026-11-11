@@ -7,7 +7,7 @@ import { container, sectionPad, focusRing, SectionHeader, ArrowIcon } from './sh
 export default async function WhereWeWork({ note, tone = 'light' }: { note?: string; tone?: 'light' | 'white' } = {}) {
   const t = await getTranslations('HomePage.whereWeWork')
   const tHeader = await getTranslations('Header')
-  const tFooter = await getTranslations('Footer')
+  const tRwanda = await getTranslations('LocationsRwandaPage')
   const linkClass = `mt-4 inline-flex items-center gap-1.5 rounded text-[15px] font-semibold text-[#0D5A8A] !no-underline hover:!underline ${focusRing}`
 
   const countries = [
@@ -18,7 +18,7 @@ export default async function WhereWeWork({ note, tone = 'light' }: { note?: str
       code: 'rw',
       name: t('rwanda.name'),
       text: t('rwandaText'),
-      link: <Link href="/web-design-rwanda" className={linkClass}>{tFooter('webDesignRwanda')}<ArrowIcon /></Link>,
+      link: <Link href="/locations/rwanda" className={linkClass}>{tRwanda('servicesTitle')}<ArrowIcon /></Link>,
     },
   ] as const
 

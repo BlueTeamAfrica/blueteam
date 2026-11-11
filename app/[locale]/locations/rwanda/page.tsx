@@ -239,7 +239,7 @@ export default async function RwandaLocationPage() {
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">{t('websiteDesignTitle')}</h3>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed">{t('websiteDesignBody')}</p>
-              <Link href="/services/web-design" className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center">
+              <Link href="/web-design-rwanda" className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center">
                 {t('websiteDesignLink')}
               </Link>
             </div>
@@ -250,7 +250,7 @@ export default async function RwandaLocationPage() {
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">{t('websiteDevTitle')}</h3>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed">{t('websiteDevBody')}</p>
-              <Link href="/services/website-development" className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center">
+              <Link href="/web-development-rwanda" className="text-primary font-semibold hover:text-primary-dark hover:underline text-sm inline-flex items-center">
                 {t('websiteDevLink')}
               </Link>
             </div>

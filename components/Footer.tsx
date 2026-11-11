@@ -27,8 +27,6 @@ export default async function Footer() {
   const locations: FooterLink[] = [
     { href: '/locations/sudan', label: tSudan('breadcrumbSudan') },
     { href: '/locations/rwanda', label: tRwanda('breadcrumbRwanda') },
-    { href: '/web-design-rwanda', label: t('webDesignRwanda') },
-    { href: '/web-development-rwanda', label: t('webDevelopmentRwanda') },
   ]
   const legal: FooterLink[] = [
     { href: '/privacy', label: t('privacyPolicy') },
