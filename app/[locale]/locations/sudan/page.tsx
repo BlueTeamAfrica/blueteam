@@ -154,7 +154,7 @@ export default async function SudanLocationPage({
             <p className="mt-5 max-w-[600px] text-[17px] leading-relaxed text-[#3E4C5C] md:text-[19px]">{t('heroSubline')}</p>
             <ul className="mt-7 flex flex-wrap gap-2.5">
               <li className={`${chip} border-[#D5DEE7] bg-white text-navy`} style={latinOnly}>{tAbout('chipLanguages')}</li>
-              <li className={`${chip} border-[#D5DEE7] bg-white text-navy`}>{tAbout('cardLowConnectivityTitle')}</li>
+              <li className={`${chip} border-[#D5DEE7] bg-white text-navy`}>{tAbout('chipOffline')}</li>
               <li className={`${chip} border-[#F0C9A3] bg-[#FBEFE4] text-accent-strong`}>{t('chipEmergency')}</li>
             </ul>
           </div>
@@ -232,7 +232,7 @@ export default async function SudanLocationPage({
               <li className={`${chip} border-[#D5DEE7] bg-white text-[13px] text-navy`}>{t('mediaChipSeo')}</li>
             </ul>
             <div className="mt-5 flex flex-col items-start">
-              <a href="https://sudanfacts.org" target="_blank" rel="noopener" className={textLink}>
+              <a href="https://sudanfacts.org" target="_blank" rel="noopener noreferrer" className={textLink}>
                 {t('mediaVisit')}
                 <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-4 w-4 rtl:-scale-x-100">
                   <path d="M5 11 11 5M6 5h5v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
