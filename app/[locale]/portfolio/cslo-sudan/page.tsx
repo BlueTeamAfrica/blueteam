@@ -53,6 +53,7 @@ export async function generateMetadata({
 
 export default async function CSLOSudanCaseStudy() {
   const t = await getTranslations('CaseStudyCsloSudanPage')
+  const tSudan = await getTranslations('LocationsSudanPage')
   const to = (href: string) => (chunks: ReactNode) => <Link href={href} className={inlineLink}>{chunks}</Link>
   const bold = { b: (chunks: ReactNode) => <strong>{chunks}</strong> }
   const nums = (n: number) => Array.from({ length: n }, (_, i) => i + 1)
@@ -95,7 +96,13 @@ export default async function CSLOSudanCaseStudy() {
           t.rich('solutionP4', { erpDevLink: to('/services/erp'), crmLink: to('/services/crm') }),
         ]}
       />
-      <CaseSection id="results-heading" step="03" heading={t('resultsTitle')} paragraphs={nums(4).map((n) => t(`resultsP${n}`))} />
+      <CaseSection
+        id="results-heading"
+        step="03"
+        heading={t('resultsTitle')}
+        paragraphs={nums(4).map((n) => t(`resultsP${n}`))}
+        closing={[to('/locations/sudan')(tSudan('moreOnSudanLink'))]}
+      />
 
       {/* The page's FAQ, as before without FAQPage JSON-LD */}
       <ServiceFaq tone="light" schema={false} title={t('faqTitle')} items={nums(5).map((n) => ({ q: t(`faq${n}Q`), a: t(`faq${n}A`) }))} />

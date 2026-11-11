@@ -458,6 +458,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
 
   const tBlog = await getTranslations('BlogPage')
   const t = await getTranslations('BlogPostPage')
+  const tSudan = await getTranslations('LocationsSudanPage')
   // The Arabic post has no Arabic author box or related posts (those list English-only posts)
   const isArabic = bilingual?.locale === 'ar'
   const postSchema = bilingual && {
@@ -538,6 +539,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
             className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-gray-700 prose-strong:text-gray-900 post-body"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+          {/* The Sudan post links to /locations/sudan, in the post body's own link style */}
+          {slug === 'field-data-app-dashboard-sudan' && (
+            <div className="post-body mt-8">
+              <p><Link href="/locations/sudan">{tSudan('moreOnSudanLink')}</Link></p>
+            </div>
+          )}
           {/* FAQ Schema */}
           {post.faqSchema && (
             <>
