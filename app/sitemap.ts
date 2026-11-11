@@ -49,7 +49,7 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/faq`, changeFrequency: 'monthly', priority: 0.65, alternates: alts('/faq') },
   { url: `${BASE_URL}/blog`, changeFrequency: 'weekly', priority: 0.75, alternates: alts('/blog') },
   { url: `${BASE_URL}/locations/rwanda`, changeFrequency: 'monthly', priority: 0.7, alternates: alts('/locations/rwanda') },
-  { url: `${BASE_URL}/locations/sudan`, changeFrequency: 'monthly', priority: 0.75, alternates: alts('/locations/sudan') },
+  { url: `${BASE_URL}/locations/sudan`, changeFrequency: 'monthly', priority: 0.9, alternates: alts('/locations/sudan') },
   { url: `${BASE_URL}/web-design-rwanda`, changeFrequency: 'monthly', priority: 0.8, alternates: alts('/web-design-rwanda') },
   { url: `${BASE_URL}/web-development-rwanda`, changeFrequency: 'monthly', priority: 0.8, alternates: alts('/web-development-rwanda') },
   { url: `${BASE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.3, alternates: enOnlyAlts('/privacy') },

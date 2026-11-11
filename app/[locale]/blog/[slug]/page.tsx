@@ -496,6 +496,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
           blogSlug={slug} 
           datePublished={post.date}
           image={{ path: post.image, width: post.imageWidth, height: post.imageHeight }}
+          // Posts about Rwanda keep their Kigali keyword and description; others get no place
+          place={slug.includes('rwanda') ? 'Kigali' : undefined}
         />
       )}
       <InteriorHeader

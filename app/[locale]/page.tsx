@@ -97,7 +97,7 @@ export default async function Home() {
       "https://www.linkedin.com/company/blue-team-africa",
       "https://about.me/blueteamafrica"
     ],
-    "description": "Blue Team Africa is a Rwanda-based web design and web development company delivering high-performance, SEO-driven digital solutions for businesses and NGOs.",
+    "description": "Blue Team Africa builds secure, bilingual websites, apps and systems for NGOs, media and businesses working on Sudan and across East Africa.",
     "foundingDate": "2023-09-16",
     "serviceType": [
       "Web Design",

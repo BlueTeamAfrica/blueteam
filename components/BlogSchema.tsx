@@ -6,10 +6,12 @@ interface BlogSchemaProps {
   datePublished: string
   image: BlogSchemaImage
   dateModified?: string
+  /** A city the post is about, e.g. "Kigali" for the Rwanda posts */
+  place?: string
 }
 
-export default function BlogSchema({ blogTitle, blogSlug, datePublished, image, dateModified }: BlogSchemaProps) {
-  const schema = getBlogSchema(blogTitle, blogSlug, datePublished, image, dateModified)
+export default function BlogSchema({ blogTitle, blogSlug, datePublished, image, dateModified, place }: BlogSchemaProps) {
+  const schema = getBlogSchema(blogTitle, blogSlug, datePublished, image, dateModified, place)
 
   return (
     <script

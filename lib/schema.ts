@@ -74,6 +74,13 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
   };
 }
 
+/** The countries we serve, Sudan first. Shared by the Organization and Service JSON-LD. */
+export const AREA_SERVED_COUNTRIES = ['Sudan', 'Uganda', 'Rwanda', 'Kenya'] as const
+
+export function countriesServed() {
+  return AREA_SERVED_COUNTRIES.map((name) => ({ '@type': 'Country', name }))
+}
+
 // Function to generate service JSON-LD; description is the service page's own (English) meta description
 export function getServiceSchema(serviceName: string, serviceSlug: string, description: string) {
   return {
@@ -86,10 +93,7 @@ export function getServiceSchema(serviceName: string, serviceSlug: string, descr
       "url": "https://www.blueteamafrica.com",
       "logo": "https://www.blueteamafrica.com/images/logo/logo.png"
     },
-    "areaServed": {
-      "@type": "Place",
-      "name": "Kigali, Rwanda"
-    },
+    "areaServed": countriesServed(),
     "url": `https://www.blueteamafrica.com/services/${serviceSlug}`,
     "description": description
   };
@@ -150,8 +154,9 @@ export interface BlogSchemaImage {
   height: number;
 }
 
-// Function to generate blog JSON-LD
-export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished: string, image: BlogSchemaImage, dateModified?: string) {
+// Function to generate blog JSON-LD. `place`: a city the post is about (the Rwanda posts pass
+// "Kigali"); it leads the keywords and description. No place is added by default.
+export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished: string, image: BlogSchemaImage, dateModified?: string, place?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -177,7 +182,7 @@ export function getBlogSchema(blogTitle: string, blogSlug: string, datePublished
     },
     "datePublished": datePublished,
     "dateModified": dateModified || datePublished,
-    "description": `Blog post: ${blogTitle}, relevant to NGOs and businesses in Kigali and East Africa.`,
-    "keywords": ["Kigali", "East Africa", "NGO", "business", "technology", "web", "mobile", "ERP", "CRM"]
+    "description": `Blog post: ${blogTitle}, relevant to NGOs and businesses in ${place ? `${place} and ` : ''}East Africa.`,
+    "keywords": [...(place ? [place] : []), "East Africa", "NGO", "business", "technology", "web", "mobile", "ERP", "CRM"]
   };
 }

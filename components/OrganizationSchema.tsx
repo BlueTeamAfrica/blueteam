@@ -1,3 +1,5 @@
+import { countriesServed } from '@/lib/schema'
+
 export default function OrganizationSchema() {
   const organizationSchema = JSON.stringify({
     '@context': 'https://schema.org',
@@ -8,7 +10,7 @@ export default function OrganizationSchema() {
     logo: 'https://www.blueteamafrica.com/images/logo/logo.png',
     // Owner-approved: founded 2023; works in these four countries
     foundingDate: '2023',
-    areaServed: ['Sudan', 'Uganda', 'Rwanda', 'Kenya'].map((name) => ({ '@type': 'Country', name })),
+    areaServed: countriesServed(),
     // The profiles the footer links (FooterView): Facebook and LinkedIn
     sameAs: [
       'https://www.facebook.com/profile.php?id=61585128246041',
