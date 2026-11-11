@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import OrganizationSchema from '@/components/OrganizationSchema'
+import { countriesServed } from '@/lib/schema'
 import HeroSection from '@/components/hero/Hero'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates, withSocialDefaults } from '@/lib/metadata-helpers'
@@ -87,12 +88,7 @@ export default async function Home() {
       "@type": "PostalAddress",
       "addressCountry": "RW"
     },
-    "areaServed": [
-      { "@type": "Country", "name": "Sudan" },
-      { "@type": "Country", "name": "Rwanda" },
-      { "@type": "Country", "name": "Uganda" },
-      { "@type": "Country", "name": "Kenya" }
-    ],
+    "areaServed": countriesServed(),
     "sameAs": [
       "https://www.linkedin.com/company/blue-team-africa",
       "https://about.me/blueteamafrica"
